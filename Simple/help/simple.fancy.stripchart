@@ -1,0 +1,33 @@
+simple.fancy.stripchart        package:Simple        R Documentation
+
+_M_a_k_e_s _a _f_a_n_c_i_e_r _s_t_r_i_p _c_h_a_r_t: _p_l_o_t_s _m_e_a_n_s _a_n_d _a _l_i_n_e
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Not much, just hides some ugly code
+
+_U_s_a_g_e:
+
+     simple.fancy.stripchart(l)
+
+_A_r_g_u_m_e_n_t_s:
+
+       l: A list with each element to be plotted with a stripchart 
+
+_V_a_l_u_e:
+
+     Creates the plot
+
+_A_u_t_h_o_r(_s):
+
+     John Verzani
+
+_S_e_e _A_l_s_o:
+
+     stripchart
+
+_E_x_a_m_p_l_e_s:
+
+     x = rnorm(10);y=rnorm(10,1)
+     simple.fancy.stripchart(list(x=x,y=y))
+

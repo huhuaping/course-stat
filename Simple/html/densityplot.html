@@ -1,0 +1,86 @@
+<html><head><title>R: Plots densities of data</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for densityplot {Simple}"><tr><td>densityplot {Simple}</td><td align="right">R Documentation</td></tr></table>
+<h2>Plots densities of data</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Allows one to compare empirical densities of different distributions
+in a simple manner. The density is used as graphs with multiple
+histograms are too crowded. The usage is similar to side-by-side boxplots.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+densityplot(x, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+x may be a sequence of data vectors (eg. x,y,z), a data frame 
+with numeric column vectors or a model formula</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+You can pass in a bandwidth argument such as bw="SJ". See 
+density for details. A legend will be placed for you automatically. To 
+overide the positioning set do.legend="manual". To skip the legend,
+set do.legend=FALSE. </td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+Makes a plot</p>
+
+<h3>Author(s)</h3>
+
+<p>
+John Verzani
+</p>
+
+
+<h3>References</h3>
+
+<p>
+Basically a modified boxplot function. As well it should be 
+as it serves the same utility: comparing distributions.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="../../graphics/html/boxplot.html">boxplot</a></code>,<code><a href="violinplot.html">violinplot</a></code>,<code><a href="../../stats/html/density.html">density</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## taken from boxplot
+## using a formula
+data(InsectSprays)
+densityplot(count ~ spray, data = InsectSprays)
+## on a matrix (data frame)
+mat &lt;- cbind(Uni05 = (1:100)/21, Norm = rnorm(100),
+             T5 = rt(100, df = 5), Gam2 = rgamma(100, shape = 2))
+densityplot(data.frame(mat))
+
+</pre>
+
+
+
+<hr><div align="center">[Package <em>Simple</em> version 0.6 <a href="00Index.html">Index]</a></div>
+
+</body></html>

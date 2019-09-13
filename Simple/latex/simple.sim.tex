@@ -1,0 +1,49 @@
+\HeaderA{simple.sim}{Simplify the process of simulation}{simple.sim}
+\keyword{univar}{simple.sim}
+\keyword{datagen}{simple.sim}
+\begin{Description}\relax
+'simple.sim' is intended to make it a little easier to do simulations
+with R. Instead of writing a for loop, or dealing with column or row
+sums, a student can use this "simpler" interface.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+simple.sim(no.samples, f, ...)
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{no.samples}] How many samples do you wish to generate 
+\item[\code{f}] A function which generates a single random number from some
+distributions. simple.sim generates the rest.
+\item[\code{...}] parameters passed to f. It does not like named parameters.
+\end{ldescription}
+\end{Arguments}
+\begin{Details}\relax
+This is simply a wrapper for a for loop that uses the function f to
+create random numbers from some distribution.
+\end{Details}
+\begin{Value}
+returns a vector of size no.samples
+\end{Value}
+\begin{Author}\relax
+John Verzani
+\end{Author}
+\begin{Examples}
+\begin{ExampleCode}
+## First shows trivial (and very unnecessary usage)
+## define a function f and then simulate
+f<-function() rnorm(1)     # create a single random real number
+sim <- simple.sim(100,f)   # create 100 random normal numbers
+hist(sim)
+
+## what does range look like?
+f<- function (n,mu=0,sigma=1) {
+  tmp <- rnorm(n,mu,sigma)
+  max(tmp) - min(tmp)
+}
+sim <- simple.sim(100,f,5)
+hist(sim)
+\end{ExampleCode}
+\end{Examples}
+

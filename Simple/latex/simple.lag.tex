@@ -1,0 +1,43 @@
+\HeaderA{simple.lag}{applies function to moving subsets of a data vector}{simple.lag}
+\keyword{ts}{simple.lag}
+\keyword{univar}{simple.lag}
+\begin{Description}\relax
+Used to apply a function to subsets of a data vector. In particular,
+it is used to find moving averages over a certain "lag" period.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+simple.lag(x, lag, FUN = mean)
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a data vector 
+\item[\code{lag}] the lag amount to use. 
+\item[\code{FUN}] a function to apply to the lagged data. Defaults to mean 
+\end{ldescription}
+\end{Arguments}
+\begin{Details}\relax
+The function FUN is applied to the data x[(i-lag):i] and assigned to
+the (i-lag)th component of the return vector. Useful for finding
+moving averages.
+\end{Details}
+\begin{Value}
+returns a vector.
+\end{Value}
+\begin{Author}\relax
+Provided to R help list by Martyn Plummer
+\end{Author}
+\begin{SeeAlso}\relax
+filter
+\end{SeeAlso}
+\begin{Examples}
+\begin{ExampleCode}
+## find a moving average of the dow daily High
+data(dowdata)
+lag = 50; n = length(dowdata$High)
+plot(simple.lag(dowdata$High,lag),type="l")
+lines(dowdata$High[lag:n])
+\end{ExampleCode}
+\end{Examples}
+

@@ -1,0 +1,66 @@
+<html><head><title>R: Sale price of homes in New Jersey in the year 2001</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for homeprice {Simple}"><tr><td>homeprice {Simple}</td><td align="right">R Documentation</td></tr></table>
+<h2>Sale price of homes in New Jersey in the year 2001</h2>
+
+
+<h3>Description</h3>
+
+<p>
+The <code>homeprice</code> data frame has 29 rows and 7 columns.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>data(homeprice)</pre>
+
+
+<h3>Format</h3>
+
+<p>
+This data frame contains the following columns:
+<dl>
+<dt>list</dt><dd>list price of home (in thousands)</dd>
+<dt>sale</dt><dd>actual sale price</dd>
+<dt>full</dt><dd>Number of full bathrooms</dd>
+<dt>half</dt><dd>number of half bathrooms</dd>
+<dt>bedrooms</dt><dd>number of bedrooms</dd>
+<dt>rooms</dt><dd>total number of rooms</dd>
+<dt>neighborhood</dt><dd>Subjective assessment of neighborhood on scale
+of 1-5</dd>
+</dl>
+
+<h3>Details</h3>
+
+<p>
+This dataset is a random sampling of the homes sold in Maplewood, NJ
+during the year 2001. Of course the prices will either seem incredibly
+high or fantastically cheap depending on where you live, and if you
+have recently purchased a home.
+</p>
+
+
+<h3>Source</h3>
+
+<p>
+Source Burgdorff Realty.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+data(homeprice)
+plot(homeprice$sale,homeprice$list)
+abline(lm(homeprice$list~homeprice$sale))
+</pre>
+
+
+
+<hr><div align="center">[Package <em>Simple</em> version 0.6 <a href="00Index.html">Index]</a></div>
+
+</body></html>

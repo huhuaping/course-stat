@@ -1,0 +1,26 @@
+puerto                package:Simple                R Documentation
+
+_I_n_c_o_m_e_s _f_o_r _P_u_e_r_t_o _R_i_c_a_n _i_m_m_i_g_r_a_n_t_s _t_o _M_i_a_m_i
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Incomes for Puerto Rican immigrants to Miami
+
+_U_s_a_g_e:
+
+     data(puerto)
+
+_F_o_r_m_a_t:
+
+     The format is: num [1:50] 150 280 175 190 305 380 290 300 170 315
+     ...
+
+_S_o_u_r_c_e:
+
+     From Kitchens Exploring Statistics
+
+_E_x_a_m_p_l_e_s:
+
+     data(puerto)
+     hist(puerto)
+

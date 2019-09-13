@@ -1,0 +1,30 @@
+crime                 package:Simple                 R Documentation
+
+_v_i_o_l_e_n_t _c_r_i_m_e _r_a_t_e_s _i_n _5_0 _s_t_a_t_e_s _o_f _U_S
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     crime rates for 50 states in 1983 and 1993
+
+_U_s_a_g_e:
+
+     data(crime)
+
+_F_o_r_m_a_t:
+
+     This data frame contains the following columns:
+
+     _y_1_9_8_3 a numeric vector
+
+     _y_1_9_9_3 a numeric vector
+
+_S_o_u_r_c_e:
+
+     from Kitchens' Exploring Statistics
+
+_E_x_a_m_p_l_e_s:
+
+     data(crime)
+     boxplot(crime)
+     t.test(crime[,1],crime[,2],paired=TRUE)
+

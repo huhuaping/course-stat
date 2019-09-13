@@ -1,0 +1,50 @@
+WeightData              package:Simple              R Documentation
+
+_D_a_t_a _o_n _h_e_i_g_h_t, _w_e_i_g_h_t _a_n_d _a_g_e _o_f _c_h_i_l_d_r_e_n
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     The 'WeightData' data frame has 5337 rows and 5 columns.
+
+     Data set from NHANES data that contains weight, height and age
+     information of children sampled from the United States.
+
+_U_s_a_g_e:
+
+     data(WeightData)
+
+_F_o_r_m_a_t:
+
+     This data frame contains the following columns:
+
+     _a_g_e age in months of child
+
+     _w_e_i_g_h_t weight in pounds
+
+     _h_e_i_g_h_t height in inches
+
+     _g_e_n_d_e_r Male = 1, Female = 2
+
+     _s_a_m_p_l_e._w_e_i_g_h_t a weight to allow for adjustment to oversampling
+          procedures
+
+_D_e_t_a_i_l_s:
+
+     This data set is excerpted from the NHANES III national survey. 
+     See the NHANES web site for much more information about the data.
+
+_S_o_u_r_c_e:
+
+     NHANES III national survey conducted 1999-2001,
+     http://www.cdc.gov/nchs/nhanes.htm
+
+_R_e_f_e_r_e_n_c_e_s:
+
+     Data is used to make growth charts.
+
+_E_x_a_m_p_l_e_s:
+
+     data(WeightData)
+     age.yrs = floor(WeightData$age/12)
+     boxplot(WeightData$weight ~ age.yrs)
+

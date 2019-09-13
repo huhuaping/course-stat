@@ -1,0 +1,15 @@
+Package: Simple
+Version: 0.6
+Date: 2005-6-22
+Title: functions and data to accompany simpleR
+Author: John Verzani <verzani@math.csi.cuny.edu>
+Maintainer: John Verzani <verzani@math.csi.cuny.edu>
+Description: This package includes some simple functions and data sets
+        to accompany the notes "simpleR: Using R for Introductory
+        Statistics".
+License: GPL version 2 or newer
+URL: http://www.math.csi.cuny.edu/Statistics/R/simpleR
+LazyLoad: TRUE
+LazyData: TRUE
+Packaged: Wed Jun 22 12:31:15 2005; verzani
+Built: R 2.1.0; ; 2005-06-22 12:50:19; unix

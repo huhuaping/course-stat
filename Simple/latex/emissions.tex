@@ -1,0 +1,33 @@
+\HeaderA{emissions}{CO2 emissions data and Gross Domestic product for 26 countries}{emissions}
+\keyword{datasets}{emissions}
+\begin{Description}\relax
+The \code{emissions} data frame has 26 rows and 3 columns.
+
+Data set for 1999
+
+lists GDP, GDP/capita and CO2 emissions.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}data(emissions)\end{verbatim}
+\end{Usage}
+\begin{Format}\relax
+This data frame contains the following columns:
+\describe{
+\item[GDP] a numeric vector
+\item[perCapita] a numeric vector
+\item[CO2] a numeric vector
+}
+\end{Format}
+\begin{Source}\relax
+www.grida.no for CO2,
+www.mrdowling.com for GDP.
+
+Prompted by a plot appearing in a June 2001 issue of the NY Times.
+\end{Source}
+\begin{Examples}
+\begin{ExampleCode}
+data(emissions)
+plot(emissions)
+\end{ExampleCode}
+\end{Examples}
+

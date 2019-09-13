@@ -1,0 +1,25 @@
+south                 package:Simple                 R Documentation
+
+_M_u_r_d_e_r _r_a_t_e_s _f_o_r _3_0 _S_o_u_t_h_e_r_n _U_S _c_i_t_i_e_s
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Murder rates for 30 Southern US cities
+
+_U_s_a_g_e:
+
+     data(south)
+
+_F_o_r_m_a_t:
+
+     The format is: num [1:30] 12 10 10 13 12 12 14 7 16 18 ...
+
+_S_o_u_r_c_e:
+
+     From Kitchens' Exploring Statistics
+
+_E_x_a_m_p_l_e_s:
+
+     data(south)
+     hist(south)
+

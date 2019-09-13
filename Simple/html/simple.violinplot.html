@@ -1,0 +1,85 @@
+<html><head><title>R: Plots violinplots instead of boxplots</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for simple.violinplot {Simple}"><tr><td>simple.violinplot {Simple}</td><td align="right">R Documentation</td></tr></table>
+<h2>Plots violinplots instead of boxplots</h2>
+
+
+<h3>Description</h3>
+
+<p>
+This function serves the same utility as side-by-side boxplots, only
+it provides more detail about the different distribution. It
+plots violinplots instead of boxplots. That is, instead of a box, it
+uses the density function to plot the density. For skewed
+distributions, the results look like "violins". Hence the name.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+simple.violinplot(x, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+Either a sequence of variable names, or a data frame, or a
+model formula</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+You can pass arguments to polygon with this. Notably, you 
+can set the color to red with col='red', and a border color with border='blue'</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+Returns a plot.</p>
+
+<h3>Author(s)</h3>
+
+<p>
+John Verzani
+</p>
+
+
+<h3>References</h3>
+
+<p>
+This is really the boxplot function from R/base with some
+minor adjustments
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+boxplot, simple.densityplot
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## make a "violin"
+x &lt;- rnorm(100) ;x[101:150] &lt;- rnorm(50,5)
+simple.violinplot(x,col="brown")
+f&lt;-factor(rep(1:5,30))
+## make a quintet. Note also choice of bandwidth
+simple.violinplot(x~f,col="brown",bw="SJ")
+
+
+</pre>
+
+
+
+<hr><div align="center">[Package <em>Simple</em> version 0.6 <a href="00Index.html">Index]</a></div>
+
+</body></html>

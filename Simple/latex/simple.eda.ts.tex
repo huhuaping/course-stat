@@ -1,0 +1,41 @@
+\HeaderA{simple.eda.ts}{Makes 3 useful graphs for eda of times series}{simple.eda.ts}
+\keyword{univar}{simple.eda.ts}
+\begin{Description}\relax
+This makes 3 graphs to check for serial correlation in data. The
+graphs are a sequential plot (i vs \eqn{X_i}{X_i}), a lag plot
+(plotting \eqn{X_i}{X_i} vs \eqn{X_i}{X_{i+k}} where k=1 by default)
+and an autocorrelation plot from the times series ("ts") package.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+simple.eda.ts(x, lag=1)
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a univariate vector of data 
+\item[\code{lag}] a lag to give to the lag plot 
+\end{ldescription}
+\end{Arguments}
+\begin{Value}
+Makes the graph with 1 row, 3 columns
+\end{Value}
+\begin{Author}\relax
+John Verzani
+\end{Author}
+\begin{References}\relax
+see
+\href{http://www.itl.nist.gov/div898/handbook/eda/section3/eda34.htm}
+for more information on these and other plots for exploratory data analysis.
+\end{References}
+\begin{Examples}
+\begin{ExampleCode}
+## The function is currently defined as
+
+## look for no correlation
+x <- rnorm(100);simple.eda.ts(x)
+## you will find correlation here
+simple.eda.ts(cumsum(x))
+\end{ExampleCode}
+\end{Examples}
+

@@ -1,0 +1,53 @@
+<html><head><title>R: Time until divorce for divorced women (by age)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for divorce {Simple}"><tr><td>divorce {Simple}</td><td align="right">R Documentation</td></tr></table>
+<h2>Time until divorce for divorced women (by age)</h2>
+
+
+<h3>Description</h3>
+
+<p>
+The <code>divorce</code> data frame has 25 rows and 6 columns.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>data(divorce)</pre>
+
+
+<h3>Format</h3>
+
+<p>
+This data frame contains the following columns:
+<dl>
+<dt>time of divorce</dt><dd>a factor</dd>
+<dt>all ages</dt><dd>a numeric vector</dd>
+<dt>0-17</dt><dd>a numeric vector</dd>
+<dt>18-19</dt><dd>a numeric vector</dd>
+<dt>20-24</dt><dd>a numeric vector</dd>
+<dt>25-100</dt><dd>a numeric vector</dd>
+</dl>
+
+<h3>Source</h3>
+
+<p>
+Forgot source
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+data(divorce)
+apply(divorce[,2:6],2,sum)      # percent divorced by age of marriage
+</pre>
+
+
+
+<hr><div align="center">[Package <em>Simple</em> version 0.6 <a href="00Index.html">Index]</a></div>
+
+</body></html>

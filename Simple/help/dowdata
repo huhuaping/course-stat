@@ -1,0 +1,33 @@
+dowdata                package:Simple                R Documentation
+
+_T_h_e _D_o_w _J_o_n_e_s _a_v_e_r_a_g_e _f_r_o_m _J_a_n _1_9_9_9 _t_o _O_c_t_o_b_e_r _2_0_0_0
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     The 'dowdata' data frame has 443 rows and 5 columns.
+
+_U_s_a_g_e:
+
+     data(dowdata)
+
+_F_o_r_m_a_t:
+
+_O_p_e_n a numeric vector
+
+_H_i_g_h a numeric vector
+
+_L_o_w a numeric vector
+
+_C_l_o_s_e a numeric vector
+
+_S_o_u_r_c_e:
+
+     this data comes from the site http://www.forecasts.org/
+
+_E_x_a_m_p_l_e_s:
+
+     data(dowdata)
+     the.close <- dowdata$Close
+     n <- length(the.close)
+     plot(log(the.close[2:n]/the.close[1:(n-1)]))
+

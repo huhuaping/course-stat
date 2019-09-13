@@ -1,0 +1,36 @@
+\HeaderA{simple.scatterplot}{Simple scatter plot of x versus y with histograms of each}{simple.scatterplot}
+\keyword{hplot}{simple.scatterplot}
+\begin{Description}\relax
+Shows scatterplot of x vs y with histograms of each on sides of
+graph. As in the example from layout.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+simple.scatterplot(x, y, ...)
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] data vector 
+\item[\code{y}] data vector 
+\item[\code{...}] passed to plot command 
+\end{ldescription}
+\end{Arguments}
+\begin{Value}
+Returns the plot
+\end{Value}
+\begin{Author}\relax
+John Verzani
+\end{Author}
+\begin{SeeAlso}\relax
+layout
+\end{SeeAlso}
+\begin{Examples}
+\begin{ExampleCode}
+  x<-sort(rnorm(100))
+  y<-sort(rt(100,3))
+  simple.scatterplot(x,y)
+
+\end{ExampleCode}
+\end{Examples}
+

@@ -1,0 +1,47 @@
+homeprice               package:Simple               R Documentation
+
+_S_a_l_e _p_r_i_c_e _o_f _h_o_m_e_s _i_n _N_e_w _J_e_r_s_e_y _i_n _t_h_e _y_e_a_r _2_0_0_1
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     The 'homeprice' data frame has 29 rows and 7 columns.
+
+_U_s_a_g_e:
+
+     data(homeprice)
+
+_F_o_r_m_a_t:
+
+     This data frame contains the following columns:
+
+     _l_i_s_t list price of home (in thousands)
+
+     _s_a_l_e actual sale price
+
+     _f_u_l_l Number of full bathrooms
+
+     _h_a_l_f number of half bathrooms
+
+     _b_e_d_r_o_o_m_s number of bedrooms
+
+     _r_o_o_m_s total number of rooms
+
+     _n_e_i_g_h_b_o_r_h_o_o_d Subjective assessment of neighborhood on scale of 1-5
+
+_D_e_t_a_i_l_s:
+
+     This dataset is a random sampling of the homes sold in Maplewood,
+     NJ during the year 2001. Of course the prices will either seem
+     incredibly high or fantastically cheap depending on where you
+     live, and if you have recently purchased a home.
+
+_S_o_u_r_c_e:
+
+     Source Burgdorff Realty.
+
+_E_x_a_m_p_l_e_s:
+
+     data(homeprice)
+     plot(homeprice$sale,homeprice$list)
+     abline(lm(homeprice$list~homeprice$sale))
+

@@ -1,0 +1,27 @@
+bumpers                package:Simple                R Documentation
+
+_b_u_m_p_e_r _r_e_p_a_i_r _c_o_s_t_s
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     bumper repair costs
+
+_U_s_a_g_e:
+
+     data(bumpers)
+
+_F_o_r_m_a_t:
+
+     The format is: Named num [1:23]  618  795 1304 1308 1340 ... -
+     attr(*, "names")= chr [1:23] "Honda Accord" "Chevrolet Cavalier"
+     "Toyota Camry" "Saturn SL2" ...
+
+_S_o_u_r_c_e:
+
+     From Kitchens Exploring Statistics
+
+_E_x_a_m_p_l_e_s:
+
+     data(bumpers)
+     stem(bumpers)
+

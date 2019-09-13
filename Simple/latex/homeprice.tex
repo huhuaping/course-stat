@@ -1,0 +1,38 @@
+\HeaderA{homeprice}{Sale price of homes in New Jersey in the year 2001}{homeprice}
+\keyword{datasets}{homeprice}
+\begin{Description}\relax
+The \code{homeprice} data frame has 29 rows and 7 columns.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}data(homeprice)\end{verbatim}
+\end{Usage}
+\begin{Format}\relax
+This data frame contains the following columns:
+\describe{
+\item[list] list price of home (in thousands)
+\item[sale] actual sale price
+\item[full] Number of full bathrooms
+\item[half] number of half bathrooms
+\item[bedrooms] number of bedrooms
+\item[rooms] total number of rooms
+\item[neighborhood] Subjective assessment of neighborhood on scale
+of 1-5
+}
+\end{Format}
+\begin{Details}\relax
+This dataset is a random sampling of the homes sold in Maplewood, NJ
+during the year 2001. Of course the prices will either seem incredibly
+high or fantastically cheap depending on where you live, and if you
+have recently purchased a home.
+\end{Details}
+\begin{Source}\relax
+Source Burgdorff Realty.
+\end{Source}
+\begin{Examples}
+\begin{ExampleCode}
+data(homeprice)
+plot(homeprice$sale,homeprice$list)
+abline(lm(homeprice$list~homeprice$sale))
+\end{ExampleCode}
+\end{Examples}
+

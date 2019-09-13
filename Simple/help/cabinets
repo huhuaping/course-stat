@@ -1,0 +1,29 @@
+cabinets               package:Simple               R Documentation
+
+_c_o_s_t _o_f _c_a_b_i_n_e_t_s _f_r_o_m _2 _s_u_p_p_l_i_e_r_s
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     The 'cabinets' data frame has 20 rows and 2 columns.
+
+_U_s_a_g_e:
+
+     data(cabinets)
+
+_F_o_r_m_a_t:
+
+     This data frame contains the following columns:
+
+     _S_u_p_p_l_i_e_r_A a numeric vector
+
+     _S_u_p_p_l_i_e_r_B a numeric vector
+
+_S_o_u_r_c_e:
+
+     Borrowed from Kitchen's Exploring Statistics
+
+_E_x_a_m_p_l_e_s:
+
+     data(cabinets)
+     boxplot(cabinets)
+

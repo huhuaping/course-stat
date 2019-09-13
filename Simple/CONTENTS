@@ -1,0 +1,323 @@
+Entry: WeightData
+Aliases: WeightData
+Keywords: datasets
+Description: Data on height, weight and age of children
+URL: ../../../library/Simple/html/WeightData.html
+
+Entry: aid
+Aliases: aid
+Keywords: datasets
+Description: monthly payment for federal program
+URL: ../../../library/Simple/html/aid.html
+
+Entry: babies
+Aliases: babies
+Keywords: datasets
+Description: Data set with Mothers and Babies data from Child Health and Development Study
+URL: ../../../library/Simple/html/babies.html
+
+Entry: blood
+Aliases: blood
+Keywords: datasets
+Description: blood pressure readings
+URL: ../../../library/Simple/html/blood.html
+
+Entry: bumpers
+Aliases: bumpers
+Keywords: datasets
+Description: bumper repair costs
+URL: ../../../library/Simple/html/bumpers.html
+
+Entry: cabinets
+Aliases: cabinets
+Keywords: datasets
+Description: cost of cabinets from 2 suppliers
+URL: ../../../library/Simple/html/cabinets.html
+
+Entry: cancer
+Aliases: cancer
+Keywords: datasets
+Description: cancer survival times
+URL: ../../../library/Simple/html/cancer.html
+
+Entry: carbon
+Aliases: carbon
+Keywords: datasets
+Description: Carbon Monoxide levels at different sites
+URL: ../../../library/Simple/html/carbon.html
+
+Entry: chicken
+Aliases: chicken
+Keywords: datasets
+Description: weight gain of chickens fed 3 different rations
+URL: ../../../library/Simple/html/chicken.html
+
+Entry: chips
+Aliases: chips
+Keywords: datasets
+Description: Measurements of chip wafers
+URL: ../../../library/Simple/html/chips.html
+
+Entry: corn
+Aliases: corn
+Keywords: datasets
+Description: Comparison of corn for new and standard variety
+URL: ../../../library/Simple/html/corn.html
+
+Entry: crime
+Aliases: crime
+Keywords: datasets
+Description: violent crime rates in 50 states of US
+URL: ../../../library/Simple/html/crime.html
+
+Entry: densityplot
+Aliases: densityplot densityplot.default densityplot.formula
+Keywords: multivariate
+Description: Plots densities of data
+URL: ../../../library/Simple/html/densityplot.html
+
+Entry: divorce
+Aliases: divorce
+Keywords: datasets
+Description: Time until divorce for divorced women (by age)
+URL: ../../../library/Simple/html/divorce.html
+
+Entry: dowdata
+Aliases: dowdata
+Keywords: datasets
+Description: The Dow Jones average from Jan 1999 to October 2000
+URL: ../../../library/Simple/html/dowdata.html
+
+Entry: emissions
+Aliases: emissions
+Keywords: datasets
+Description: CO2 emissions data and Gross Domestic product for 26 countries
+URL: ../../../library/Simple/html/emissions.html
+
+Entry: ewr
+Aliases: ewr
+Keywords: datasets
+Description: Taxi in and taxi out times at EWR (Newark) airport for 1999-2001
+URL: ../../../library/Simple/html/ewr.html
+
+Entry: exec.pay
+Aliases: exec.pay
+Keywords: datasets
+Description: Direct compensation for 200 United States CEO's for 2000
+URL: ../../../library/Simple/html/exec.pay.html
+
+Entry: failrate
+Aliases: failrate
+Keywords: datasets
+Description: Failrates for 7 different adjuncts
+URL: ../../../library/Simple/html/failrate.html
+
+Entry: firstchi
+Aliases: firstchi
+Keywords: datasets
+Description: Age of mother at birth of first child
+URL: ../../../library/Simple/html/firstchi.html
+
+Entry: florida
+Aliases: florida
+Keywords: datasets
+Description: County-by-County results of year 2000 US presidential election in Florida
+URL: ../../../library/Simple/html/florida.html
+
+Entry: heartrate
+Aliases: heartrate
+Keywords: datasets
+Description: Simulated data of age vs. max heart rate
+URL: ../../../library/Simple/html/heartrate.html
+
+Entry: home
+Aliases: home
+Keywords: datasets
+Description: Maplewood NJ homedata
+URL: ../../../library/Simple/html/home.html
+
+Entry: homedata
+Aliases: homedata
+Keywords: datasets
+Description: Maplewood NJ assessed values for years 1970 and 2000
+URL: ../../../library/Simple/html/homedata.html
+
+Entry: homeprice
+Aliases: homeprice
+Keywords: datasets
+Description: Sale price of homes in New Jersey in the year 2001
+URL: ../../../library/Simple/html/homeprice.html
+
+Entry: homework
+Aliases: homework
+Keywords: datasets
+Description: Homework averages for Private and Public schools
+URL: ../../../library/Simple/html/homework.html
+
+Entry: iq
+Aliases: iq
+Keywords: datasets
+Description: IQ scores
+URL: ../../../library/Simple/html/iq.html
+
+Entry: malpract
+Aliases: malpract
+Keywords: datasets
+Description: malpractice settlements
+URL: ../../../library/Simple/html/malpract.html
+
+Entry: math
+Aliases: math
+Keywords: datasets
+Description: Standardized math scores
+URL: ../../../library/Simple/html/math.html
+
+Entry: movies
+Aliases: movies
+Keywords: datasets
+Description: Top 25 movies for June 2001
+URL: ../../../library/Simple/html/movies.html
+
+Entry: pi2000
+Aliases: pi2000
+Keywords: datasets
+Description: first 2000 digits of pi
+URL: ../../../library/Simple/html/pi2000.html
+
+Entry: puerto
+Aliases: puerto
+Keywords: datasets
+Description: Incomes for Puerto Rican immigrants to Miami
+URL: ../../../library/Simple/html/puerto.html
+
+Entry: rat
+Aliases: rat
+Keywords: datasets
+Description: Survival times of 20 rats exposed to radiation
+URL: ../../../library/Simple/html/rat.html
+
+Entry: simple.chutes
+Aliases: simple.chutes
+Keywords: univar
+Description: simulate a chutes and ladder game
+URL: ../../../library/Simple/html/simple.chutes.html
+
+Entry: simple.densityplot
+Aliases: simple.densityplot simple.densityplot.default simple.densityplot.formula dnstyplt
+Keywords: multivariate
+Description: Plots densities of data
+URL: ../../../library/Simple/html/simple.densityplot.html
+
+Entry: simple.eda
+Aliases: simple.eda
+Keywords: univar hplot
+Description: Simple function to plot histogram, boxplot and normal plot
+URL: ../../../library/Simple/html/simple.eda.html
+
+Entry: simple.eda.ts
+Aliases: simple.eda.ts
+Keywords: univar
+Description: Makes 3 useful graphs for eda of times series
+URL: ../../../library/Simple/html/simple.eda.ts.html
+
+Entry: simple.fancy.stripchart
+Aliases: simple.fancy.stripchart
+Keywords: hplot
+Description: Makes a fancier strip chart: plots means and a line
+URL: ../../../library/Simple/html/simple.fancy.stripchart.html
+
+Entry: simple.freqpoly
+Aliases: simple.freqpoly
+Keywords: univar hplot
+Description: Simply plot histogram and frequency polygon
+URL: ../../../library/Simple/html/simple.freqpoly.html
+
+Entry: simple.hist.and.boxplot
+Aliases: simple.hist.and.boxplot simple.plot.hist.and.box
+Keywords: univar aplot
+Description: A function to plot both a histogram and a boxplot
+URL: ../../../library/Simple/html/simple.hist.and.boxplot.html
+
+Entry: simple.lag
+Aliases: simple.lag
+Keywords: ts univar
+Description: applies function to moving subsets of a data vector
+URL: ../../../library/Simple/html/simple.lag.html
+
+Entry: simple.lm
+Aliases: simple.lm
+Keywords: regression
+Description: Simplify usage of lm
+URL: ../../../library/Simple/html/simple.lm.html
+
+Entry: simple.median.test
+Aliases: simple.median.test
+Keywords: htest
+Description: Do simple sign test for median -- no ranks
+URL: ../../../library/Simple/html/simple.median.test.html
+
+Entry: simple.plot.hist.and.box
+Aliases: simple.plot.hist.and.box
+Keywords: univar aplot
+Description: A function to plot both a histogram and a boxplot
+URL: ../../../library/Simple/html/simple.plot.hist.and.box.html
+
+Entry: simple.scatterplot
+Aliases: simple.scatterplot
+Keywords: hplot
+Description: Simple scatter plot of x versus y with histograms of each
+URL: ../../../library/Simple/html/simple.scatterplot.html
+
+Entry: simple.sim
+Aliases: simple.sim
+Keywords: univar datagen
+Description: Simplify the process of simulation
+URL: ../../../library/Simple/html/simple.sim.html
+
+Entry: simple.violinplot
+Aliases: simple.violinplot simple.violinplot.formula simple.violinplot.default vlnplt
+Keywords: multivariate
+Description: Plots violinplots instead of boxplots
+URL: ../../../library/Simple/html/simple.violinplot.html
+
+Entry: simple.z.test
+Aliases: simple.z.test
+Keywords: univar
+Description: Implement basic z-test for illustrative purposes
+URL: ../../../library/Simple/html/simple.z.test.html
+
+Entry: skateranks
+Aliases: skateranks
+Keywords: datasets
+Description: Judges scores for disputed ice skating competition
+URL: ../../../library/Simple/html/skateranks.html
+
+Entry: slc
+Aliases: slc
+Keywords: datasets
+Description: Sodium-Lithium countertransport
+URL: ../../../library/Simple/html/slc.html
+
+Entry: smokyph
+Aliases: smokyph
+Keywords: datasets
+Description: Water pH levels at 75 water samples in the Great Smoky Mountains
+URL: ../../../library/Simple/html/smokyph.html
+
+Entry: south
+Aliases: south
+Keywords: datasets
+Description: Murder rates for 30 Southern US cities
+URL: ../../../library/Simple/html/south.html
+
+Entry: vacation
+Aliases: vacation
+Keywords: datasets
+Description: vacation days
+URL: ../../../library/Simple/html/vacation.html
+
+Entry: violinplot
+Aliases: violinplot violinplot.default violinplot.formula
+Keywords: multivariate
+Description: Plots violinplots instead of boxplots
+URL: ../../../library/Simple/html/violinplot.html

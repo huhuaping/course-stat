@@ -1,0 +1,51 @@
+simple.lm               package:Simple               R Documentation
+
+_S_i_m_p_l_i_f_y _u_s_a_g_e _o_f _l_m
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Simplify usage of lm by avoiding model notation, drawing plot,
+     drawing  regression line, drawing confidence intervals.
+
+_U_s_a_g_e:
+
+     simple.lm(x, y, show.residuals=FALSE, show.ci=FALSE, conf.level=0.95,pred=)
+
+_A_r_g_u_m_e_n_t_s:
+
+       x: The predictor variable 
+
+       y: The response variable 
+
+show.residuals: set to TRUE to plot residuals 
+
+ show.ci: set to TRUE to plot confidence intervals 
+
+conf.level: if show.ci=TRUE will plot these CI's at this level 
+
+    pred: values of the x-variable for prediction
+
+_V_a_l_u_e:
+
+     returns plots and an instance of lm, as though it were called
+     'lm(y ~ x)'
+
+_A_u_t_h_o_r(_s):
+
+     John Verzani
+
+_S_e_e _A_l_s_o:
+
+     lm
+
+_E_x_a_m_p_l_e_s:
+
+     ## on simulated data
+     x<-1:10
+     y<-5*x + rnorm(10,0,1)
+     tmp<-simple.lm(x,y)
+     summary(tmp)
+
+     ## predict values
+     simple.lm(x,y,pred=c(5,6,7))
+

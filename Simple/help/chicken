@@ -1,0 +1,31 @@
+chicken                package:Simple                R Documentation
+
+_w_e_i_g_h_t _g_a_i_n _o_f _c_h_i_c_k_e_n_s _f_e_d _3 _d_i_f_f_e_r_e_n_t _r_a_t_i_o_n_s
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     weight gain of chickens fed 3 different rations
+
+_U_s_a_g_e:
+
+     data(chicken)
+
+_F_o_r_m_a_t:
+
+     This data frame contains the following columns:
+
+     _R_a_t_i_o_n_1 a numeric vector
+
+     _R_a_t_i_o_n_2 a numeric vector
+
+     _R_a_t_i_o_n_3 a numeric vector
+
+_S_o_u_r_c_e:
+
+     From Kitchens' Exploring Statistics.
+
+_E_x_a_m_p_l_e_s:
+
+     data(chicken)
+     boxplot(chicken)
+

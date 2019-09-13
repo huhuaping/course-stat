@@ -1,0 +1,60 @@
+florida                package:Simple                R Documentation
+
+_C_o_u_n_t_y-_b_y-_C_o_u_n_t_y _r_e_s_u_l_t_s _o_f _y_e_a_r _2_0_0_0 _U_S _p_r_e_s_i_d_e_n_t_i_a_l _e_l_e_c_t_i_o_n
+_i_n _F_l_o_r_i_d_a
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     The 'florida' data frame has 67 rows and 13 columns.
+
+     Gives a county by county accounting of the US elections in the
+     state of Florida.
+
+_U_s_a_g_e:
+
+     data(florida)
+
+_F_o_r_m_a_t:
+
+     This data frame contains the following columns:
+
+     _C_o_u_n_t_y a numeric vector
+
+     _V_2 a numeric vector
+
+     _G_O_R_E a numeric vector
+
+     _B_U_S_H a numeric vector
+
+     _B_U_C_H_A_N_A_N a numeric vector
+
+     _N_A_D_E_R a numeric vector
+
+     _B_R_O_W_N_E a numeric vector
+
+     _H_A_G_E_L_I_N a numeric vector
+
+     _H_A_R_R_I_S a numeric vector
+
+     _M_C_R_E_Y_N_O_L_D_S a numeric vector
+
+     _M_O_O_R_E_H_E_A_D a numeric vector
+
+     _P_H_I_L_L_I_P_S a numeric vector
+
+     _T_o_t_a_l a numeric vector
+
+_S_o_u_r_c_e:
+
+     Found in the excellent guide    ``Using R for Data Analysis and
+     Graphics''  by John Maindonald. The data set is available from
+     <URL: http://room.anu.edu.au/~johnm/>
+
+_E_x_a_m_p_l_e_s:
+
+     data(florida)
+     attach(florida)
+     result.lm <- lm(BUCHANAN ~ BUSH)
+     plot(BUSH,BUCHANAN)
+     abline(result.lm) ## can you find Miami-Dade coutny?
+

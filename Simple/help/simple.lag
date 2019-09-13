@@ -1,0 +1,48 @@
+simple.lag              package:Simple              R Documentation
+
+_a_p_p_l_i_e_s _f_u_n_c_t_i_o_n _t_o _m_o_v_i_n_g _s_u_b_s_e_t_s _o_f _a _d_a_t_a _v_e_c_t_o_r
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Used to apply a function to subsets of a data vector. In
+     particular, it is used to find moving averages over a certain
+     "lag" period.
+
+_U_s_a_g_e:
+
+     simple.lag(x, lag, FUN = mean)
+
+_A_r_g_u_m_e_n_t_s:
+
+       x: a data vector 
+
+     lag: the lag amount to use. 
+
+     FUN: a function to apply to the lagged data. Defaults to mean 
+
+_D_e_t_a_i_l_s:
+
+     The function FUN is applied to the data x[(i-lag):i] and assigned
+     to the (i-lag)th component of the return vector. Useful for
+     finding moving averages.
+
+_V_a_l_u_e:
+
+     returns a vector.
+
+_A_u_t_h_o_r(_s):
+
+     Provided to R help list by Martyn Plummer
+
+_S_e_e _A_l_s_o:
+
+     filter
+
+_E_x_a_m_p_l_e_s:
+
+     ## find a moving average of the dow daily High
+     data(dowdata)
+     lag = 50; n = length(dowdata$High)
+     plot(simple.lag(dowdata$High,lag),type="l")
+     lines(dowdata$High[lag:n])
+

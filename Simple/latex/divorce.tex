@@ -1,0 +1,29 @@
+\HeaderA{divorce}{Time until divorce for divorced women (by age)}{divorce}
+\keyword{datasets}{divorce}
+\begin{Description}\relax
+The \code{divorce} data frame has 25 rows and 6 columns.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}data(divorce)\end{verbatim}
+\end{Usage}
+\begin{Format}\relax
+This data frame contains the following columns:
+\describe{
+\item[time of divorce] a factor
+\item[all ages] a numeric vector
+\item[0-17] a numeric vector
+\item[18-19] a numeric vector
+\item[20-24] a numeric vector
+\item[25-100] a numeric vector
+}
+\end{Format}
+\begin{Source}\relax
+Forgot source
+\end{Source}
+\begin{Examples}
+\begin{ExampleCode}
+data(divorce)
+apply(divorce[,2:6],2,sum)      # percent divorced by age of marriage
+\end{ExampleCode}
+\end{Examples}
+

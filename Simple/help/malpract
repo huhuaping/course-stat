@@ -1,0 +1,26 @@
+malpract               package:Simple               R Documentation
+
+_m_a_l_p_r_a_c_t_i_c_e _s_e_t_t_l_e_m_e_n_t_s
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     malpractice settlements
+
+_U_s_a_g_e:
+
+     data(malpract)
+
+_F_o_r_m_a_t:
+
+     The format is: num [1:17] 760 380 125 250 2800 450 100 150 2000
+     180 ...
+
+_S_o_u_r_c_e:
+
+     From Kitchens Exploring Statistics
+
+_E_x_a_m_p_l_e_s:
+
+     data(malpract)
+     boxplot(malpract)
+

@@ -1,0 +1,31 @@
+smokyph                package:Simple                R Documentation
+
+_W_a_t_e_r _p_H _l_e_v_e_l_s _a_t _7_5 _w_a_t_e_r _s_a_m_p_l_e_s _i_n _t_h_e _G_r_e_a_t _S_m_o_k_y _M_o_u_n_t_a_i_n_s
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Water pH levels at 75 water samples in the Great Smoky Mountains
+
+_U_s_a_g_e:
+
+     data(smokyph)
+
+_F_o_r_m_a_t:
+
+     This data frame contains the following columns:
+
+     _w_a_t_e_r_p_h a numeric vector
+
+     _e_l_e_v a numeric vector
+
+     _c_o_d_e a numeric vector
+
+_S_o_u_r_c_e:
+
+     From Kitchens' Exploring Statistics
+
+_E_x_a_m_p_l_e_s:
+
+     data(smokyph)
+     plot(smokyph$elev,smokyph$waterph)
+

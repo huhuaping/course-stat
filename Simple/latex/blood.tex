@@ -1,0 +1,30 @@
+\HeaderA{blood}{blood pressure readings}{blood}
+\keyword{datasets}{blood}
+\begin{Description}\relax
+blood pressure of 15 males taken by machine and expert
+\end{Description}
+\begin{Usage}
+\begin{verbatim}data(blood)\end{verbatim}
+\end{Usage}
+\begin{Format}\relax
+This data frame contains the following columns:
+\describe{
+\item[Machine] a numeric vector
+\item[Expert] a numeric vector
+}
+\end{Format}
+\begin{Source}\relax
+Taken from Kitchen's Exploring Statistics.
+\end{Source}
+\begin{References}\relax
+~~ possibly secondary sources and usages ~~
+\end{References}
+\begin{Examples}
+\begin{ExampleCode}
+data(blood)
+attach(blood)
+t.test(Machine,Expert)
+detach(blood)
+\end{ExampleCode}
+\end{Examples}
+

@@ -1,0 +1,327 @@
+---
+title: "统计学原理"
+subtitle: "数据展示"
+author: "胡华平"
+date: "`r Sys.Date()`"
+output: 
+  bookdown::html_document2:
+    number_sections: yes
+    toc: yes
+    fig_caption:  true
+    toc_float: yes
+  bookdown::word_document2: 
+    fig_caption:  true
+    toc: yes
+    toc_depth: 4
+    reference_docx: tech-report-reference.docx
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    fig_caption:  true
+    includes:
+      in_header: header.tex
+      before_body: preamble.tex
+    toc: yes
+    toc_depth: 5
+    number_sections: no
+    keep_tex: true
+always_allow_html: yes
+documentclass: article
+classoption: [(landscape,a4paper),(portrait,a4paper)]
+fontsize: "12pt"
+thanks: "感谢经济管理学院数量经济学教研室同仁的大力支持！"
+pagestyle: "headings"
+---
+
+
+```{r global_options, echo=F,message=FALSE,warning=F}
+knitr::opts_chunk$set(fig.align='center',echo = FALSE,message = FALSE) # Places figures on their own pages
+options(
+  htmltools.dir.version = FALSE, 
+  formatR.indent = 2, width = 55, 
+  digits = 2,scipen=999,tinytex.verbose = TRUE,
+  knitr.kable.NA = '',
+  fig.width=12, fig.height=8,
+  echo=FALSE, warning=FALSE, message=FALSE)
+library('bookdown')
+library('knitr')
+library('xlsx')
+library("openxlsx")
+#install.packages('tidyr')
+#install.packages('plyr')
+library('tidyr')
+library('dplyr')
+library('stringr')
+library('tidyverse')
+library('ggplot2')
+library("scales")
+#install.packages("gridExtra")
+library("gridExtra")
+#install.packages("magrittr")
+library("magrittr")
+#install.packages("ggthemes")
+#install.packages("ggrepel")
+require("ggthemes")
+require("ggrepel")
+require("lubridate")
+require(kableExtra)
+```
+
+# 纽约机场数据
+
+## 数据说明
+
+```{r}
+#install.packages("nycflights13")
+#install.packages("DT")
+require("DT")
+require("nycflights13")
+```
+
+[数据来源nycflights13](https://github.com/hadley/nycflights13)
+
+This package contains information about all flights that departed from NYC (e.g. EWR, JFK and LGA) in 2013: 336,776 flights in total. To help understand what causes delays, it also includes a number of other useful datasets. This package provides the following data tables.
+
+- flights: all flights that departed from NYC in 2013
+
+- weather: hourly meterological data for each airport
+
+- planes: construction information about each plane
+
+- airports: airport names and locations
+
+- airlines: translation between two letter carrier codes and names
+
+
+
+## 航班信息(flights):变量情况
+
+从`r min(nycflights13::flights$time_hour)`到`r max(nycflights13::flights$time_hour)`期间，纽约市三个机场`r str_c(levels(factor(flights$origin)),collapse="、")`，起落航班总数有`r dim(nycflights13::flights)[1]`架次。
+
+```{r, echo=FALSE}
+data(flights)
+glimpse(nycflights13::flights)
+
+```
+
+下面展示的是2013年1月1日的航班情况：
+
+```{r, echo=FALSE}
+data(flights)
+show_flights <- as_tibble(flights) %>%
+  #select(year:day,carrier:dest,distance) %>%
+  filter(year==2013,month==1,day==1)
+  #sample_n(50)
+#kable(show_flights[1:10,1:5],caption = "航班信息",format = 'html') %>%
+#  kable_styling(full_width = T)
+datatable(show_flights,
+          options = list(pageLength =10, dom = 'tip'))
+```
+
+2013年1月1日这一天的航班总数为`r nrow(show_flights)`架次。
+
+这样的**数据表**有什么特点？
+
+每天的航班数和平均延误时长情况见下表：
+
+```{r}
+day_count<-flights %>%
+  mutate(date=ymd(str_c(year,month,day,sep = "-"))) %>%
+  group_by(date)  %>%
+  summarise(n_flight=n(),
+            mean_dep_delay=mean(dep_delay,na.rm = T),
+            mean_dep_arr=mean(arr_delay,na.rm = T))
+
+datatable(day_count,
+          options = list(pageLength =10, dom = 'tip'),
+          caption="每天的航班数和平均延误时长")%>%
+  formatRound(c(3:4), 1)
+```
+
+按时间轴图形如下：
+```{r}
+ggplot(day_count,aes(x=date,y=n_flight)) +
+  geom_line() +
+  geom_point(color="blue")
+```
+
+航班数是不是跟星期几有关系？童鞋们，咱先上一个表：
+```{r}
+day_count_wday <- day_count %>% 
+  mutate(wday = wday(date, label = TRUE)) %>%
+  select(date,wday,everything())
+datatable(day_count_wday,
+          options = list(pageLength =10, dom = 'tip'),
+          caption="每天(星期)的航班数和平均延误时长")%>%
+  formatRound(c(4:5), 1)
+```
+
+小伙伴们，那咱们再上个图瞧一瞧吧
+
+```{r}
+ggplot(day_count_wday, aes(wday, n_flight)) + 
+  geom_boxplot()
+```
+
+
+星期六好像航班很少耶！！ 扣扣鼻子问，WHY？ 具体是怎样呢？？
+
+```{r}
+day_count_wday %>% 
+  filter(wday == "周六") %>%
+  datatable( options = list(pageLength =7, dom = 'tip'),
+          caption="每天(星期)的航班数和平均延误时长")%>%
+  formatRound(c(4:5), 1)
+```
+
+惊讶的小伙伴们，再看看星期六的表现吧
+
+```{r}
+day_count_wday %>% 
+  filter(wday == "周六")%>% 
+  ggplot(aes(date, n_flight)) + 
+    geom_point(col="blue") + 
+    geom_line(col="green") +
+    scale_x_date(NULL, date_breaks = "1 month", date_labels = "%b")
+```
+
+
+
+每天的航班数和平均延误时长情况见下表：
+
+```{r}
+airport_count<-flights %>%
+  mutate(date=ymd(str_c(year,month,day,sep = "-"))) %>%
+  group_by(origin,month)  %>%
+  summarise(n_flight=n(),
+            mean_dep_delay=mean(dep_delay,na.rm = T),
+            mean_dep_arr=mean(arr_delay,na.rm = T))
+
+datatable(airport_count,
+          options = list(pageLength =12, dom = 'tip',digits=1),
+          caption="三大机场每月航班数和月平均延误时长") %>%
+  formatRound(c(4:5), 1)
+```
+
+
+
+## 机场信息(airport):变量情况
+
+
+```{r}
+data("airports")
+airports %>%
+  datatable(options = list(pageLength =10, dom = 'tip',digits=1),
+          caption="美国机场数据") %>%
+  formatRound(c(3:4), 1)
+```
+
+总共有`r nrow(airports)`个机场。
+
+
+概括地来看看机场数据吧：
+```{r, echo=FALSE}
+glimpse(nycflights13::airports)
+
+```
+
+[来一个炫酷一点的直观地图吧Flight connection map with R](https://www.gis-blog.com/flight-connection-map-with-r/)
+
+```{r}
+# install.packages("maps")
+# install.packages("geosphere")
+require("maps")
+require("geosphere")
+
+usairports <- filter(airports, lat < 48.5)
+usairports <- filter(usairports, lon > -130)
+usairports <- filter(usairports, faa!="JFK") #filter out jfk
+jfk <- filter(airports, faa=="JFK") #separate df for jfk
+#create basemap
+map("world", regions=c("usa"), fill=T, col="grey8", bg="grey15", ylim=c(21.0,50.0), xlim=c(-130.0,-65.0))
+#overlay airports
+points(usairports$lon,usairports$lat, pch=3, cex=0.1, col="chocolate1")
+
+```
+
+
+ 机场信息(airport):可视化
+
+```{r }
+
+#create basemap
+map("world", regions=c("usa"), fill=T, col="grey8", bg="grey15", ylim=c(21.0,50.0), xlim=c(-130.0,-65.0))
+#overlay airports
+points(usairports$lon,usairports$lat, pch=3, cex=0.1, col="chocolate1")
+for (i in (1:dim(usairports)[1])) { 
+inter <- geosphere::gcIntermediate(c(jfk$lon[1], jfk$lat[1]), c(usairports$lon[i], usairports$lat[i]), n=200)
+lines(inter, lwd=1, col="turquoise2")    
+}
+
+```
+
+
+# 钻石数据（这个你们喜欢吧）
+
+## 数据表
+
+先上个数据表吧。
+```{r}
+diamonds %>%
+  datatable(options = list(pageLength =10, dom = 'tip',digits=1),
+          caption="钻石数据") 
+
+```
+
+亲们，这里共统计了`r nrow(diamonds)`颗亮晶晶的钻石哦
+
+对数据整体概览一下吧
+
+```{r}
+diamonds %>%
+glimpse()
+```
+
+- cut大概表示钻石的**切面**好坏，依次分为`r str_c(levels(diamonds$cut),collapse="、")`
+
+- color大概表示钻石的**色泽**好坏，依次分为`r str_c(levels(diamonds$color),collapse="、")`
+
+- clarity大概表示钻石的**纯度**好坏，依次分为`r str_c(levels(diamonds$clarity),collapse="、")`
+
+
+## 看图吧，小伙伴们
+
+看看不同切面水平下的钻石数量分布吧~  数呀数…… 我有点眼花了
+
+
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut))
+```
+
+  
+你是不是更关注钻石重量！？！？ “钻石恒久远，你还是送我一颗最大的吧，嘻嘻！”
+ 
+```{r}
+ggplot(data = diamonds) +
+  geom_histogram(mapping = aes(x = carat,fill="yellow"), binwidth = 0.5) 
+```
+ 
+
+省省吧，你还是先看看小于3克拉滴 
+
+
+```{r}
+smaller <- diamonds %>% 
+  filter(carat < 3)
+  
+ggplot(data = smaller, mapping = aes(x = carat,fill="blue")) +
+  geom_histogram(binwidth = 0.1)
+```
+
+还是戴上放大镜吧……眼睛有点不好使……
+
+```{r}
+ggplot(data = smaller, mapping = aes(x = carat,fill="blue")) +
+  geom_histogram(binwidth = 0.01)
+```
+

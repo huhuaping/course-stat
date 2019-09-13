@@ -1,0 +1,38 @@
+simple.eda              package:Simple              R Documentation
+
+_S_i_m_p_l_e _f_u_n_c_t_i_o_n _t_o _p_l_o_t _h_i_s_t_o_g_r_a_m, _b_o_x_p_l_o_t _a_n_d _n_o_r_m_a_l _p_l_o_t
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Simply plots histogram, boxplot and normal plot for experimental
+     data analysis.
+
+_U_s_a_g_e:
+
+     simple.eda(x)
+
+_A_r_g_u_m_e_n_t_s:
+
+       x: a vector of data 
+
+_V_a_l_u_e:
+
+     Just does the plots. No return value
+
+_A_u_t_h_o_r(_s):
+
+     John Verzani
+
+_R_e_f_e_r_e_n_c_e_s:
+
+     Inspired by S-Plus documentation
+
+_S_e_e _A_l_s_o:
+
+     hist,boxplot,qnorm
+
+_E_x_a_m_p_l_e_s:
+
+       x<- rnorm(100,5,10)
+       simple.eda(x)
+

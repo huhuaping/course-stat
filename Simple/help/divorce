@@ -1,0 +1,37 @@
+divorce                package:Simple                R Documentation
+
+_T_i_m_e _u_n_t_i_l _d_i_v_o_r_c_e _f_o_r _d_i_v_o_r_c_e_d _w_o_m_e_n (_b_y _a_g_e)
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     The 'divorce' data frame has 25 rows and 6 columns.
+
+_U_s_a_g_e:
+
+     data(divorce)
+
+_F_o_r_m_a_t:
+
+     This data frame contains the following columns:
+
+     _t_i_m_e _o_f _d_i_v_o_r_c_e a factor
+
+     _a_l_l _a_g_e_s a numeric vector
+
+     _0-_1_7 a numeric vector
+
+     _1_8-_1_9 a numeric vector
+
+     _2_0-_2_4 a numeric vector
+
+     _2_5-_1_0_0 a numeric vector
+
+_S_o_u_r_c_e:
+
+     Forgot source
+
+_E_x_a_m_p_l_e_s:
+
+     data(divorce)
+     apply(divorce[,2:6],2,sum)      # percent divorced by age of marriage
+

@@ -1,0 +1,74 @@
+<html><head><title>R: Makes 3 useful graphs for eda of times series</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for simple.eda.ts {Simple}"><tr><td>simple.eda.ts {Simple}</td><td align="right">R Documentation</td></tr></table>
+<h2>Makes 3 useful graphs for eda of times series</h2>
+
+
+<h3>Description</h3>
+
+<p>
+This makes 3 graphs to check for serial correlation in data. The
+graphs are a sequential plot (i vs <i>X_i</i>), a lag plot
+(plotting <i>X_i</i> vs <i>X_{i+k}</i> where k=1 by default)
+and an autocorrelation plot from the times series ("ts") package.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+simple.eda.ts(x, lag=1)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+a univariate vector of data </td></tr>
+<tr valign="top"><td><code>lag</code></td>
+<td>
+a lag to give to the lag plot </td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+Makes the graph with 1 row, 3 columns</p>
+
+<h3>Author(s)</h3>
+
+<p>
+John Verzani
+</p>
+
+
+<h3>References</h3>
+
+<p>
+see
+href{http://www.itl.nist.gov/div898/handbook/eda/section3/eda34.htm}
+for more information on these and other plots for exploratory data analysis.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## The function is currently defined as
+
+## look for no correlation
+x &lt;- rnorm(100);simple.eda.ts(x)
+## you will find correlation here
+simple.eda.ts(cumsum(x))
+</pre>
+
+
+
+<hr><div align="center">[Package <em>Simple</em> version 0.6 <a href="00Index.html">Index]</a></div>
+
+</body></html>

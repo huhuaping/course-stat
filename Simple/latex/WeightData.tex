@@ -1,0 +1,41 @@
+\HeaderA{WeightData}{Data on height, weight and age of children}{WeightData}
+\keyword{datasets}{WeightData}
+\begin{Description}\relax
+The \code{WeightData} data frame has 5337 rows and 5 columns.
+
+Data set from NHANES data that contains weight, height and age
+information of children sampled from the United States.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}data(WeightData)\end{verbatim}
+\end{Usage}
+\begin{Format}\relax
+This data frame contains the following columns:
+\describe{
+\item[age] age in months of child
+\item[weight] weight in pounds
+\item[height] height in inches
+\item[gender] Male = 1, Female = 2
+\item[sample.weight] a weight to allow for adjustment to
+oversampling procedures
+}
+\end{Format}
+\begin{Details}\relax
+This data set is excerpted from the NHANES III national survey.  See
+the NHANES web site for much more information about the data.
+\end{Details}
+\begin{Source}\relax
+NHANES III national survey conducted 1999-2001,
+http://www.cdc.gov/nchs/nhanes.htm
+\end{Source}
+\begin{References}\relax
+Data is used to make growth charts.
+\end{References}
+\begin{Examples}
+\begin{ExampleCode}
+data(WeightData)
+age.yrs = floor(WeightData$age/12)
+boxplot(WeightData$weight ~ age.yrs)
+\end{ExampleCode}
+\end{Examples}
+

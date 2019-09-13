@@ -1,0 +1,56 @@
+simple.chutes             package:Simple             R Documentation
+
+_s_i_m_u_l_a_t_e _a _c_h_u_t_e_s _a_n_d _l_a_d_d_e_r _g_a_m_e
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     This function will simulate a chutes and ladder game. It  returns
+     a trajectory for a single player. Optionally it can return the 
+     transition matrix which can be used to speed up the simulation.
+
+_U_s_a_g_e:
+
+     simple.chutes(sim=FALSE, return.cl=FALSE, cl=make.cl())
+
+_A_r_g_u_m_e_n_t_s:
+
+     sim: Set to TRUE to return a trajectory.
+
+return.cl: Set to TRUE to return a transistion matrix 
+
+      cl: set to the chutes and ladders transition matrix 
+
+_D_e_t_a_i_l_s:
+
+     To make a chutes and ladders trajectory
+
+     simple.chutes(sim=TRUE)
+
+     To return the game board
+
+     simple.chutes(return.cl=TRUE)
+
+     when doing a lot of simulations, it may be best to pass in the
+     game board
+
+     cl <- simple.chutes(return.cl=TRUE) simple.chutes(sim=TRUE,cl)
+
+_V_a_l_u_e:
+
+     returns a trajectory as a vector, or a matrix if asked to return
+     the transition matrix
+
+_A_u_t_h_o_r(_s):
+
+     John Verzani
+
+_R_e_f_e_r_e_n_c_e_s:
+
+     board from <URL:
+     http://www.ahs.uwaterloo.ca/~musuem/vexhibit/Whitehill/snakes/snak
+     es.gif>
+
+_E_x_a_m_p_l_e_s:
+
+     plot(simple.chutes(sim=TRUE))
+

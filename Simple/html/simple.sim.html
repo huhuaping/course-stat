@@ -1,0 +1,83 @@
+<html><head><title>R: Simplify the process of simulation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for simple.sim {Simple}"><tr><td>simple.sim {Simple}</td><td align="right">R Documentation</td></tr></table>
+<h2>Simplify the process of simulation</h2>
+
+
+<h3>Description</h3>
+
+<p>
+'simple.sim' is intended to make it a little easier to do simulations
+with R. Instead of writing a for loop, or dealing with column or row
+sums, a student can use this "simpler" interface.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+simple.sim(no.samples, f, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>no.samples</code></td>
+<td>
+How many samples do you wish to generate </td></tr>
+<tr valign="top"><td><code>f</code></td>
+<td>
+A function which generates a single random number from some
+distributions. simple.sim generates the rest.</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+parameters passed to f. It does not like named parameters.</td></tr>
+</table>
+
+<h3>Details</h3>
+
+<p>
+This is simply a wrapper for a for loop that uses the function f to
+create random numbers from some distribution.
+</p>
+
+
+<h3>Value</h3>
+
+<p>
+returns a vector of size no.samples</p>
+
+<h3>Author(s)</h3>
+
+<p>
+John Verzani
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## First shows trivial (and very unnecessary usage)
+## define a function f and then simulate
+f&lt;-function() rnorm(1)     # create a single random real number
+sim &lt;- simple.sim(100,f)   # create 100 random normal numbers
+hist(sim)
+
+## what does range look like?
+f&lt;- function (n,mu=0,sigma=1) {
+  tmp &lt;- rnorm(n,mu,sigma)
+  max(tmp) - min(tmp)
+}
+sim &lt;- simple.sim(100,f,5)
+hist(sim)
+</pre>
+
+
+
+<hr><div align="center">[Package <em>Simple</em> version 0.6 <a href="00Index.html">Index]</a></div>
+
+</body></html>

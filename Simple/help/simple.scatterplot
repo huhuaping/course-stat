@@ -1,0 +1,39 @@
+simple.scatterplot          package:Simple          R Documentation
+
+_S_i_m_p_l_e _s_c_a_t_t_e_r _p_l_o_t _o_f _x _v_e_r_s_u_s _y _w_i_t_h _h_i_s_t_o_g_r_a_m_s _o_f _e_a_c_h
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Shows scatterplot of x vs y with histograms of each on sides of
+     graph. As in the example from layout.
+
+_U_s_a_g_e:
+
+     simple.scatterplot(x, y, ...)
+
+_A_r_g_u_m_e_n_t_s:
+
+       x: data vector 
+
+       y: data vector 
+
+     ...: passed to plot command 
+
+_V_a_l_u_e:
+
+     Returns the plot
+
+_A_u_t_h_o_r(_s):
+
+     John Verzani
+
+_S_e_e _A_l_s_o:
+
+     layout
+
+_E_x_a_m_p_l_e_s:
+
+       x<-sort(rnorm(100))
+       y<-sort(rt(100,3))
+       simple.scatterplot(x,y)
+

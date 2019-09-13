@@ -1,0 +1,29 @@
+homework               package:Simple               R Documentation
+
+_H_o_m_e_w_o_r_k _a_v_e_r_a_g_e_s _f_o_r _P_r_i_v_a_t_e _a_n_d _P_u_b_l_i_c _s_c_h_o_o_l_s
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Homework averages for Private and Public schools
+
+_U_s_a_g_e:
+
+     data(homework)
+
+_F_o_r_m_a_t:
+
+     This data frame contains the following columns:
+
+     _P_r_i_v_a_t_e a numeric vector
+
+     _P_u_b_l_i_c a numeric vector
+
+_S_o_u_r_c_e:
+
+     This is from Kitchens Exploring Statistics
+
+_E_x_a_m_p_l_e_s:
+
+     data(homework)
+     boxplot(homework)
+

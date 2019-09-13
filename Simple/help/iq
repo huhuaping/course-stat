@@ -1,0 +1,25 @@
+iq                  package:Simple                  R Documentation
+
+_I_Q _s_c_o_r_e_s
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     simulated IQ scores
+
+_U_s_a_g_e:
+
+     data(iq)
+
+_F_o_r_m_a_t:
+
+     The format is: num [1:100] 72 75 77 77 81 82 83 84 84 86 ...
+
+_S_o_u_r_c_e:
+
+     From Kitchens Exploring Statistics
+
+_E_x_a_m_p_l_e_s:
+
+     data(iq)
+     qqnorm(iq)
+

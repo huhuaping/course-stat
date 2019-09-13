@@ -1,0 +1,81 @@
+<html><head><title>R: applies function to moving subsets of a data vector</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for simple.lag {Simple}"><tr><td>simple.lag {Simple}</td><td align="right">R Documentation</td></tr></table>
+<h2>applies function to moving subsets of a data vector</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Used to apply a function to subsets of a data vector. In particular,
+it is used to find moving averages over a certain "lag" period.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+simple.lag(x, lag, FUN = mean)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+a data vector </td></tr>
+<tr valign="top"><td><code>lag</code></td>
+<td>
+the lag amount to use. </td></tr>
+<tr valign="top"><td><code>FUN</code></td>
+<td>
+a function to apply to the lagged data. Defaults to mean </td></tr>
+</table>
+
+<h3>Details</h3>
+
+<p>
+The function FUN is applied to the data x[(i-lag):i] and assigned to
+the (i-lag)th component of the return vector. Useful for finding
+moving averages.
+</p>
+
+
+<h3>Value</h3>
+
+<p>
+returns a vector.</p>
+
+<h3>Author(s)</h3>
+
+<p>
+Provided to R help list by Martyn Plummer
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+filter
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## find a moving average of the dow daily High
+data(dowdata)
+lag = 50; n = length(dowdata$High)
+plot(simple.lag(dowdata$High,lag),type="l")
+lines(dowdata$High[lag:n])
+</pre>
+
+
+
+<hr><div align="center">[Package <em>Simple</em> version 0.6 <a href="00Index.html">Index]</a></div>
+
+</body></html>

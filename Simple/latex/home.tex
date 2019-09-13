@@ -1,0 +1,29 @@
+\HeaderA{home}{Maplewood NJ homedata}{home}
+\keyword{datasets}{home}
+\begin{Description}\relax
+The \code{home} data frame has 15 rows and 2 columns.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}data(home)\end{verbatim}
+\end{Usage}
+\begin{Format}\relax
+This data frame contains the following columns:
+\describe{
+\item[old] a numeric vector
+\item[new] a numeric vector
+}
+\end{Format}
+\begin{Details}\relax
+See full dataset homedata
+\end{Details}
+\begin{Source}\relax
+See full dataset homedata
+\end{Source}
+\begin{Examples}
+\begin{ExampleCode}
+data(home)
+## compare on the same scale
+boxplot(data.frame(scale(home))) 
+\end{ExampleCode}
+\end{Examples}
+
