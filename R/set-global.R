@@ -22,7 +22,9 @@ options(DT.options = list(dom ="t" ,  # pure table with no search blank
 
 # global options for servr pkg
 
-options(servr.interval = 0.5)
+options(servr.interval = 0.5) # control time to refresh the preview
+options(servr.daemon = TRUE) # unlock thread when infinite moon render
+
 
 # pkg needed
 

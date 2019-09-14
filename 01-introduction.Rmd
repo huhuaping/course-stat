@@ -265,5 +265,117 @@ lines( x = c(0,xlu), y = coef[1]+c(0,xlu)*coef[2])
 - 因此，有些香烟不会上瘾（结论）
 
 ---
+class: center, middle, inverse
+
 # 变量和数据
 
+---
+## 变量
+
+
+```{r, fig.height=4, eval=FALSE}
+#install.packages("DiagrammeR")
+library(DiagrammeR)
+library(DiagrammeRsvg)
+library(magrittr)
+library(svglite)
+library(rsvg)
+library(png)
+g <- grViz("digraph flowchart {
+      # node definitions with substituted label text
+      node [fontname = Helvetica, shape = rectangle]        
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+      tab5 [label = '@@5']
+
+      # edge definitions with the node IDs
+      tab1 -> tab2 ;
+      tab1 -> tab3 -> tab4 ;
+      tab3 -> tab5;
+      }
+
+      [1]: '变量\\n(Variable)'
+      [2]: '定性变量\\n(Qualitative variable)'
+      [3]: '定量变量\\n(Quantitative variable)'
+      [4]: '离散变量\\n(Discrete variable)'
+      [5]: '连续变量\\n(Continuous variable)'
+      ")
+g %>% export_svg %>% charToRaw %>% rsvg %>% png::writePNG("pic/flowchart-variables.pdf")
+```
+
+.pull-left[
+![](pic/flowchart-variables.pdf)
+]
+
+--
+
+.pull-right[
+- 变量：描述事物或现象的变化特征。
+
+
+- 定性变量：非数值化的变量。
+
+- 定量变量：数值化的变量。
+
+
+- 离散变量：可能的取值比较有限、并能轻松列示的一类定量变量。
+
+- 连续变量：可能的取值较多、以特定微小数值间隔的一类定量变量。
+]
+
+---
+## 数据
+
+
+```{r, fig.height=4, eval=FALSE}
+#install.packages("DiagrammeR")
+library(DiagrammeR)
+library(DiagrammeRsvg)
+library(magrittr)
+library(svglite)
+library(rsvg)
+library(png)
+g <- grViz("digraph flowchart {
+      # node definitions with substituted label text
+      node [fontname = Helvetica, shape = rectangle]        
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+      tab5 [label = '@@5']
+
+      # edge definitions with the node IDs
+      tab1 -> tab2 ;
+      tab1 -> tab3 -> tab4 ;
+      tab3 -> tab5;
+      }
+
+      [1]: '数据\\n(Data)'
+      [2]: '定性数据\\n(Qualitative data)'
+      [3]: '定量数据\\n(Quantitative data)'
+      [4]: '离散数据\\n(Discrete data)'
+      [5]: '连续数据\\n(Continuous data)'
+      ")
+g %>% export_svg %>% charToRaw %>% rsvg %>% png::writePNG("pic/flowchart-data.pdf")
+```
+
+.pull-left[
+![](pic/flowchart-data.pdf)
+]
+
+--
+
+.pull-right[
+- 数据：变量的取值。
+
+
+- 定性数据：定性变量的取值。
+
+- 定量数据：定量变量的取值。
+
+- 离散数据：离散变量的取值。
+
+- 连续数据：连续变量的取值。
+]
