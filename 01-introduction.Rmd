@@ -1,11 +1,6 @@
 ---
-title: "xaringan template for Duke University"
-subtitle: "Combined CSS Styles"
-author: "John Little"
-date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    chakra: libs/remark-latest.min.js
     seal: false
     lib_dir: libs
     css: 
@@ -26,6 +21,8 @@ background-image: url("pic/slide-front-page.jpg")
 class: center,middle
 
 # 统计学原理(Statistic)
+
+<!---    chakra: libs/remark-latest.min.js --->
 
 ### 胡华平
 
@@ -343,140 +340,13 @@ B. 持枪派，控枪派和中立派或许都无可厚非，各方相互制衡�
 
 C. 其他观点
 
-
----
-class: center, middle, inverse
-
-# 关于统计学
-
-
----
-## 统计学的方法论
-
-用**样本**.red[描述]或.red[推断]**总体**。**概率论**在其中发挥着重要作用，也是方法论的分水岭。
-
-```{r}
-include_graphics("pic/chpt01-stat-methology.png")
-```
-
----
-## 描述性统计(descriptive statistics)
-
-- **定义**：研究数据收集、处理、汇总、图表描述、概括与分析等统计方法 
-
-- **内容**：
-    - 搜集数据
-    - 整理数据
-    - 展示数据
-    - 描述性分析
-
-- **目的**：描述数据特征；找出数据的基本规律
-
----
-## 描述性统计(descriptive statistics)
-
-```{r}
-include_graphics("pic/chpt01-descriptive-stat.jpg", dpi = 100)
-```
-
-
----
-## 推断性统计(inferential statistics)
-
-- **定义**：研究如何利用样本数据来推断总体特征的统计方法
-
-- **内容**：
-    - 参数估计
-    - 假设检验
-
-- **目的**：对总体特征作出推断
-
----
-## 推断性统计(inferential statistics)
-
-```{r}
-include_graphics("pic/chpt01-inferential-stat.png", dpi = 100)
-```
-
----
-## 推断性统计(inferential statistics)
-
-```{r}
-include_graphics("pic/chpt01-inferential-stat-sampling.png", dpi = 140)
-```
-
----
-## 总体和样本
-
-**总体(population)**：
-
-- **定义**：所研究的全部个体(数据) 的集合，其中的每一个个体也称为元素
-
-- **分类**：分为有限总体和无限总体
-
-    - 有限总体的范围能够明确确定，且元素的数目是有限的
-    - 无限总体所包括的元素是无限的，不可数的
-
-**样本 (sample)**
-
-- **定义**：从总体中抽取的一部分元素的集合
-
-- **样本容量**：构成样本的元素的数目称为样本容量或样本量 (sample size)
-
----
-## 参数和统计量
-
-**参数(parameter)**:
-
-- **定义**：描述总体特征的概括性数字度量，是研究者想要了解的总体的某种特征值
-
-- **重要统计量**：所关心的参数主要有总体均值(
-$\mu$)、方差(
-$\sigma^2$) 等
-
-- **记号**：总体参数通常用希腊字母表示
-$\mu,\sigma^2,\Phi,\gamma,\cdots$
-
-**统计量(statistic)**:
-
-- **定义**：用来描述样本特征的概括性数字度量，它是根据样本数据计算出来的一些量，是样本的函数
-
-- **重要统计量**：所关心的样本统计量有样本均值(
-$\bar{x}$)、样本方差(
-$s^2$) 等
-
-- **记号**：样本统计量通常用小写英文字母来表示
-$\bar{x},s^2,w,v,\cdots$
-
-
----
-class: center, middle, inverse
-
-# 统计分析的基本过程
-
----
-## 统计分析的基本过程
-
-- 实际问题：发现问题
-
-- 收集数据：取得数据
-
-- 处理数据：整理与图表展示 
-
-- 分析数据：利用统计方法分析数据
-
-- 解释数据:	结果的说明
-
-- 得到结论：从数据分析中得出客观结论
-
-
 ---
 class: center, middle, inverse
 
 # 变量和数据
 
 ---
-## 变量
+## 变量及其类型A
 
 
 ```{r, fig.height=4, eval=FALSE}
@@ -511,6 +381,10 @@ g <- grViz("digraph flowchart {
 g %>% export_svg %>% charToRaw %>% rsvg %>% png::writePNG("pic/flowchart-variables.pdf")
 ```
 
+**变量**：描述事物或现象的变化特征。
+
+--
+
 .pull-left[
 ![](pic/flowchart-variables.pdf)
 ]
@@ -518,39 +392,142 @@ g %>% export_svg %>% charToRaw %>% rsvg %>% png::writePNG("pic/flowchart-variabl
 --
 
 .pull-right[
-- 变量：描述事物或现象的变化特征。
+A.按性质不同可分为：
 
+- **定性变量**：非数值化的变量。
 
-- 定性变量：非数值化的变量。
+- **定量变量**：数值化的变量。
 
-- 定量变量：数值化的变量。
-
-
-- 离散变量：可能的取值比较有限、并能轻松列示的一类定量变量。
-
-- 连续变量：可能的取值较多、以特定微小数值间隔的一类定量变量。
+    - **离散变量**：可能的取值比较有限、并能轻松列示的一类定量变量。
+    
+    - **连续变量**：可能的取值较多、以特定微小数值间隔的一类定量变量。
 ]
 
 ---
-## 变量
+class: duke-softblue
+### 随堂测验（2min）
 
-- 按变量是否随机：
+请分别说出如下情形分别属于那种变量类型？
 
-    - 随机变量
-    
-    - 非随机变量
+--
 
-- 按变量是否抽象化：
+- 教育程度（可能取值为：文盲、非文盲）
 
-    - 经验变量：经验变量所描述的是我们周围可以观察到的事物
+--
 
-    - 理论变量：理论变量则是由统计学家用数学方法所构造出来的一些变量，比如z 统计量、t 统计量、
+- 教育程度（可能取值为：小学及以下、初中、高中、大学、研究生及以上）
+
+--
+
+- 教育程度（可能取值为：1=小学及以下、2=初中、3=高中、4=大学、5=研究生及以上）
+
+--
+
+- 教育程度（单位为年，可能取值为：6、9、12、15、18、21、24。）
+
+--
+
+- 教育程度（单位为年，可能取值为：6、7、8、9、12、14.5、15、18、20、21、...）
+
+
+---
+## 变量及其类型B
+
+B.按变量是否**随机**：
+
+- 随机变量（random variable）：在事件集合上的一个特定函数的**随机分布**状态。
+
+- 非随机变量（non-random variable）：也称为**确定性变量**（Deterministic variable）。
+
+<br>
+
+**100天降雨量记录**(mm)：下面只列出了前50天
+
+```{r,comment=""}
+set.seed(123)
+rainfall <- as_tibble(list(rain=50*abs(rnorm(100)),day=str_c("day",1:100)))
+rainfall_show <- rainfall$rain
+names(rainfall_show) <- rainfall$day
+rainfall_show[1:50]
+```
+
+
+---
+class: duke-softblue
+### 课堂讨论（2min）：
+
+非随机变量（non-random variable）实际存在么？
+
+--
+.pull-left[
+
+.orange[**正方**：存在!
+
+- 有随机变量就自然有非随机变量，它取值的产生是经过特意安排的，也即**非随机**的。
+]
+]
+
+--
+
+.pull-right[
+
+.red[**反方**：不存在!
+
+- 非随机变量是杜撰的，如果是变量则都应该是随机的。非随机变量其实就是**常数**（constant），当然不能称为变量，也就不能叫做非随机变量。
+]
+
+]
+
+???
+参考资料：https://www.quora.com/What-is-a-non-random-variable
+
+---
+## 变量及其类型C
+
+C.按变量是否**抽象化**：
+
+- 经验变量：经验变量所描述的是我们周围可以观察到的事物。
+
+- 理论变量：理论变量则是由统计学家用数学方法所构造出来的一些变量，比如z 统计量、t 统计量、
 $\chi^2$统计量、F 统计量等。
+
+```{r}
+p1 <- rainfall %>%
+  ggplot(aes(x=rain)) +
+  #geom_histogram(bins=7,position = "identity",
+  #               color = "black", fill = "gray") +
+  geom_histogram(aes(y=..density..),bins = 10, color = "black", fill = "gray") +
+  geom_density(alpha=.2, fill="#FF6666") +
+  labs(x="降雨量（mm）",y ='概率密度')
+
+p2 <- ggplot(data = data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1)) + ylab("") 
+```
+
+--
+
+.pull-left[
+
+```{r, fig.cap= "降雨量记录数据的分布图n=100"}
+p1
+```
+
+]
+
+--
+
+.pull-right[
+
+```{r, fig.cap= "理论正态分布图"}
+p2
+```
+
+]
 
 
 
 ---
-## 数据
+## 数据及其类型
 
 
 ```{r, fig.height=4, eval=FALSE}
@@ -578,24 +555,38 @@ g <- grViz("digraph flowchart {
 g %>% export_svg %>% charToRaw %>% rsvg %>% png::writePNG("pic/flowchart-data.pdf")
 ```
 
+**数据**：变量的实际具体取值组成的集合。
+
+--
+
 .pull-left[
 ![](pic/flowchart-data.pdf)
 ]
 
---
 
 .pull-right[
-- 数据：变量的取值。
 
+A.按数据取值的性质分：
 
-- 定性数据：定性变量的取值。
+- **定性数据**：定性变量的取值。
 
-- 定量数据：定量变量的取值。
+- **定量数据**：定量变量的取值。
 
-- 离散数据：离散变量的取值。
-
-- 连续数据：连续变量的取值。
+  - **离散数据**：离散变量的取值。
+  
+  - **连续数据**：连续变量的取值。
 ]
+
+---
+## 数据与变量的关系
+
+- 变量是数据存身之所，而数据是变量的现实表达。
+
+- 变量是一个抽象概念，而数据是实体概念。
+
+- 数据和变量是相互依存的关系，如同一个硬币的两面。
+
+- 数据和变量可以进一步共同描述或表达事物或现象的**信息**（information）。
 
 ---
 class: middle, center, duke-orange
@@ -651,6 +642,49 @@ head(flights_jan,500) %>%    # 只看前500条数据
                            fixedColumns = TRUE))
 ```
 
+
+---
+class: duke-softblue, middle, center
+
+# 课堂阅读与讨论(5 mins)
+
+## 数据和信息有何联系与不同？
+
+---
+class: duke-softblue
+
+### 数据和信息有何联系与不同？
+
+> "The numbers have no way of speaking for themselves. We speak for them. We imbue them with meaning." 
+> —Statistician Nate Silver in the book The Signal and the Noise
+
+- The history of temperature readings all over the world for the past 100 years is data. If this data is organized and analyzed to find that global temperature is rising, then that is information.
+
+- The number of visitors to a website by country is an example of data. Finding out that traffic from the U.S. is increasing while that from Australia is decreasing is meaningful information.
+
+- Often data is required to back up a claim or conclusion (information) derived or deduced from it. For example, before a drug is approved by the FDA, the manufacturer must conduct clinical trials and present a lot of data to demonstrate that the drug is safe.
+
+???
+参考资料：https://www.diffen.com/difference/Data_vs_Information
+
+---
+class:duke-softblue
+
+### 数据和信息有何联系与不同？
+
+
+.red[**Data**] are simply facts or figures — bits of information, but not information itself. When data are processed, interpreted, organized, structured or presented so as to make them meaningful or useful, they are called .red[**information**]. 
+
+进一步思考下图(DIKW)：
+
+```{r}
+include_graphics("pic/chpt01-data-info-DIKW.png",dpi ="120")
+```
+
+
+???
+参考资料：https://www.guru99.com/difference-information-data.html
+
 ---
 class: center, middle, inverse
 
@@ -694,13 +728,32 @@ g
 
 - 对事物进行分类的结果，数据表现为类别，一般用文字来表述。
 
-    - 例如，性别(男、女）和婚姻状况(已婚、未婚、离婚、分居）之类的变量。
+    - 性别(男、女）
+    
+    - 婚姻状况(已婚、未婚、离婚、分居）
+
+---
+class: duke-softblue
+### 名义数据举例
 
 --
 
-```{r}
+```{r,fig.cap="变量及可能取值"}
 include_graphics("pic/nominal-show.png")
 ```
+--
+
+```{r}
+nominal <- as_tibble(list(name= c("tom","jenny","lilei", "hanmeimei"),
+                          gender= c("M","F", "M", "F"),
+                          color =c("brown", "black", "yellow","yellow"),
+                          area = c("North", "south", "North","Neither")))
+
+nominal %>%
+  datatable(caption ="数据集") %>%
+  formatStyle(columns = 1:4, target = "cell",Color = "black")
+```
+
 
 ---
 ## 序数数据(ordinal data)
@@ -709,26 +762,74 @@ include_graphics("pic/nominal-show.png")
 
 - 变量的不同取值的差值，没有实际意义
 
-    - 五分量表、无差异曲线
-
 
 --
 
-```{r}
+.pull-left[
+
+- 常用的五分量表
+
+```{r, fig.cap= ""}
 include_graphics("pic/ordinal-show.png")
 ```
 
----
-## 序数数据(ordinal data)
+]
 
-无差异曲线：
+--
 
 .pull-right[
-```{r}
-include_graphics("pic/ordinal-show2.png", dpi=50)
+
+- 经济学中的无差异曲线
+
+```{r, fig.cap= ""}
+include_graphics("pic/ordinal-show2.png")
 ```
 
 ]
+
+---
+class: duke-green
+### 序数数据举例
+
+.pull-left[
+
+```{r}
+temperature <- as_tibble(list(temp=c("High", "Low", "High", "Low", "Medium"),
+                              weekday = c("Mon", "Tue", "Wen", "Thu","Fri"),
+                              feel =c("VU", "VH", "UH", "OK","H"))) %>%
+  select(weekday, temp,feel) %>%
+  mutate(temp= factor(temp, levels = c("Low", "Medium", "High")),
+         feel =factor(feel, levels = c("VH", "H", "OK","UH","VU")))
+
+temperature %>%
+  datatable(caption = "原始数据（按工作日）")
+```
+
+]
+
+--
+
+.pull-right[
+
+```{r}
+temperature %>%
+  arrange(feel) %>%
+  datatable(caption = "排序后数据（按feel）")
+
+```
+
+]
+
+--
+
+数据概览如下：
+
+```{r,comment="",echo= T}
+glimpse(temperature)
+```
+
+
+
 
 ---
 
@@ -747,6 +848,101 @@ include_graphics("pic/ordinal-show2.png", dpi=50)
 
 --
     - 2013年8 月11 日上午11 点天气预报说杨凌的温度是华氏60 度，而长沙达到华氏90 度。长沙比杨凌温度高30华氏度(90-60)，是可以的。但说长沙比杨凌暖和1.5倍(90/60)，是没有意义。
+    
+    
+---
+class: duke-orange
+### 区间数据举例：起飞延误时长与星期几有关系么？
+
+```{r}
+flights_jfk <-
+  nycflights13::flights %>% 
+  filter(origin == "JFK",month==1) %>% 
+  mutate(hh = round(sched_dep_time / 100, 0) - 1) %>% 
+  mutate(ymd = lubridate::ymd(sprintf("%04.0f-%02.0f-%02.0f", year, month, day))) %>% 
+  mutate(wd = lubridate::wday(ymd, label = TRUE)) %>%
+  select(year:day,dep_time, sched_dep_time,dep_delay,wd)  %>%
+  mutate(delay_cat = cut(dep_delay, 
+                         breaks = c(-Inf, seq(0,600,by=60),Inf),
+                         labels = c("提前起飞", 
+                                    str_c("延误",seq(0,9,1),"-",
+                                          seq(1,10,1),"小时内"),
+                                    "延误10小时以上")
+                         )
+         )  %>%
+  mutate(delay_cat=forcats::fct_explicit_na(delay_cat, na_level = "取消航班"))
+
+
+smry_delay <- flights_jfk %>%
+  group_by(wd,delay_cat) %>%
+  summarise(n=n()) %>%
+  ungroup() %>%
+  spread(key = wd, value = n)
+
+```
+
+.pull-left[
+
+```{r}
+flights_jfk %>%
+  select(day,wd,dep_time,sched_dep_time) %>%
+  datatable(caption = "2013年1月jfk机场起飞情况（原始）",
+            options = list(dom ="tip",
+                           pageLength = 7))
+```
+]
+
+.pull-right[
+
+纽约JKF机场在2013年1月起飞航班数据集：
+
+- 计划起飞时间（`sched_dep_time`）和实际起飞时间（`dep_time`）能直接相减么？
+
+- 如果延误超过一天，该怎么计算起飞延误时长？
+
+- 如果取消航班了，该怎么计算起飞延误时长？
+
+]
+
+
+---
+class: duke-orange
+### 区间数据举例：起飞延误时长与星期几有关系么？
+
+
+```{r}
+flights_jfk %>%
+  select(day,wd,dep_time,sched_dep_time,dep_delay,delay_cat) %>%
+  datatable(caption = "2013年1月jfk机场起飞情况（计算并分类）",
+            options = list(dom ="tip",
+                           pageLength = 7))
+```
+
+
+
+???
+参考资料：https://www.r-bloggers.com/dealing-with-interval-data-and-the-nycflights13-package-using-r/
+
+
+---
+class: duke-orange
+### 区间数据举例:起飞延误时长与星期几有关系么？
+
+
+
+```{r}
+total_delay <- smry_delay %>%
+  summarise_if(is.numeric, sum, na.rm = TRUE) %>%
+  add_column(delay_cat = "合计", .before = "周日")
+  
+smry_delay %>%
+  mutate(delay_cat = as.character(delay_cat)) %>%
+  bind_rows(total_delay, .) %>%
+  datatable(caption = "",
+            options = list(pageLength = 8, dom= "tip"))
+```
+
+
 
 ---
 ## 比率数据(ratio data)：
@@ -861,13 +1057,7 @@ eggs %>%
 
 ```
 
-.content-box-blue[思考提问：]
-
-???
-
-- 图中特征符合经济学理论么？为什么？
-
-- 图中反映了数据可能存在哪些潜在问题？
+**思考提问**：图中特征符合经济学理论么？为什么？图中反映了数据可能存在哪些潜在问题？
 
 
 ---
@@ -983,3 +1173,463 @@ steel_wide %>%
 - 问2：多少数据点？
 
 - 问3：两个公司投资函数是否相同？
+
+
+---
+class: center, middle, inverse
+
+# 关于统计学
+
+
+---
+## 统计学的方法论
+
+**方法论**：用**样本**.red[描述]或.red[推断]**总体**。
+
+**主要途径**：**概率论**在其中发挥着重要作用，也是方法论的分水岭。
+
+```{r}
+include_graphics("pic/chpt01-stat-methology.png",dpi=150)
+```
+
+---
+## 描述性统计(descriptive statistics)
+
+- **定义**：研究数据收集、处理、汇总、图表描述、概括与分析等统计方法 
+
+--
+
+- **目的**：描述数据特征；找出数据的基本规律
+
+- **内容**：
+    - 搜集数据
+    - 整理数据
+    - 展示数据
+    - 描述性分析
+
+
+---
+## 描述性统计(descriptive statistics)
+
+```{r}
+include_graphics("pic/chpt01-descriptive-stat.jpg", dpi = 100)
+```
+
+
+---
+## 推断性统计(inferential statistics)
+
+- **定义**：研究如何利用样本数据来推断总体特征的统计方法
+
+--
+
+- **目的**：对总体特征作出推断
+
+- **内容**：
+    - 参数估计
+    - 假设检验
+
+---
+## 推断性统计(inferential statistics)
+
+```{r}
+include_graphics("pic/chpt01-inferential-stat.png", dpi = 100)
+```
+
+---
+## 推断性统计(inferential statistics)
+
+```{r}
+include_graphics("pic/chpt01-inferential-stat-sampling.png", dpi = 140)
+```
+
+---
+## 总体和样本
+
+**总体(population)**：
+
+- **定义**：所研究的全部个体(数据) 的集合，其中的每一个个体也称为元素
+
+- **分类**：分为有限总体和无限总体
+
+    - 有限总体的范围能够明确确定，且元素的数目是有限的
+    - 无限总体所包括的元素是无限的，不可数的
+
+**样本 (sample)**
+
+- **定义**：从总体中抽取的一部分元素的集合
+
+- **样本容量**：构成样本的元素的数目称为样本容量或样本量 (sample size)
+
+---
+## 参数和统计量
+
+**参数(parameter)**:
+
+- **定义**：描述总体特征的概括性数字度量，是研究者想要了解的总体的某种特征值
+
+- **重要统计量**：所关心的参数主要有总体均值(
+$\mu$)、方差(
+$\sigma^2$) 等
+
+- **记号**：总体参数通常用希腊字母表示
+$\mu,\sigma^2,\Phi,\gamma,\cdots$
+
+**统计量(statistic)**:
+
+- **定义**：用来描述样本特征的概括性数字度量，它是根据样本数据计算出来的一些量，是样本的函数
+
+- **重要统计量**：所关心的样本统计量有样本均值(
+$\bar{x}$)、样本方差(
+$s^2$) 等
+
+- **记号**：样本统计量通常用小写英文字母来表示
+$\bar{x},s^2,w,v,\cdots$
+
+
+---
+class: center, middle, inverse
+
+# 统计分析的基本过程
+
+---
+## 统计分析的基本过程
+
+- 实际问题：发现问题
+
+- 收集数据：取得数据
+
+- 处理数据：整理与图表展示 
+
+- 分析数据：利用统计方法分析数据
+
+- 解释数据:	结果的说明
+
+- 得到结论：从数据分析中得出客观结论
+
+
+---
+class:duke-softblue, middle,center
+
+## 统计分析过程案例
+
+### 航班延误背后的故事
+
+---
+class: duke-orange
+### 故事背景：纽约繁忙的天空
+
+[数据来源nycflights13](https://github.com/hadley/nycflights13)
+
+This package contains information about all flights that departed from NYC (e.g. EWR, JFK and LGA) in 2013: 336,776 flights in total. To help understand what causes delays, it also includes a number of other useful datasets. This package provides the following data tables.
+
+- flights: all flights that departed from NYC in 2013
+
+- weather: hourly meterological data for each airport
+
+- planes: construction information about each plane
+
+- airports: airport names and locations
+
+- airlines: translation between two letter carrier codes and names
+
+
+---
+
+### 实际问题：航班延误有规律可循么？变量情况
+
+
+从`r min(nycflights13::flights$time_hour)`到`r max(nycflights13::flights$time_hour)`期间，纽约市三个机场`r str_c(levels(factor(flights$origin)),collapse="、")`，起落航班总数有`r dim(nycflights13::flights)[1]`架次。
+
+```{r, echo=FALSE, comment= ""}
+data(flights)
+str(nycflights13::flights, list.len =10, max.level=8)
+
+```
+
+---
+### 分析数据：描述性统计1——1天的航班情况
+
+```{r}
+data(flights)
+show_flights <- as_tibble(flights) %>%
+  #select(year:day,carrier:dest,distance) %>%
+  filter(year==2013,month==1,day==1)
+  #sample_n(50)
+#kable(show_flights[1:10,1:5],caption = "航班信息",format = 'html') %>%
+#  kable_styling(full_width = T)
+```
+
+2013年1月1日这一天的航班总数为`r nrow(show_flights)`架次。从这样的**数据表**能看出什么规律？
+
+
+```{r, echo=FALSE}
+
+datatable(show_flights, 
+          extensions = 'FixedColumns',
+          options = list(pageLength =5, dom = 'tip',
+                         scrollX = TRUE,
+                         fixedColumns = TRUE))
+```
+
+---
+### 分析数据：描述性统计2——每天的航班数和平均延误时长
+
+这样的统计分析，能不能看出任何蛛丝马迹呢？
+
+```{r}
+day_count<-flights %>%
+  mutate(date=ymd(str_c(year,month,day,sep = "-"))) %>%
+  group_by(date)  %>%
+  summarise(n_flight=n(),
+            mean_dep_delay=mean(dep_delay,na.rm = T),
+            mean_dep_arr=mean(arr_delay,na.rm = T))
+
+datatable(day_count,
+          options = list(pageLength =7, dom = 'tip'),
+          caption="")%>%
+  formatRound(c(3:4), 1)
+```
+
+---
+### 分析数据：描述性统计3(每天航班数)
+
+按时间轴查看每天航班数的全貌图，是不是会更轻松一点？
+
+```{r}
+ggplot(day_count,aes(x=date,y=n_flight)) +
+  geom_line() +
+  geom_point(color="blue") +
+  labs(x="日期", y = "航班数")
+```
+
+---
+### 分析数据：描述性统计4(航班数和平均延误时长)
+
+星期几与航班数和平均延误时长有关系？童鞋们，咱先上一个表：
+
+```{r}
+day_count_wday <- day_count %>% 
+  mutate(wday = wday(date, label = TRUE)) %>%
+  select(date,wday,everything())
+datatable(day_count_wday,
+          options = list(pageLength =7, dom = 'tip'),
+          caption="")%>%
+  formatRound(c(4:5), 1)
+```
+
+---
+### 分析数据：描述性统计5(星期几matter?)
+
+小伙伴们，那咱们再上个图（**多批箱线图**）瞧一瞧吧
+
+```{r,fig.width= 15, fig.height= 7}
+ggplot(day_count_wday, aes(wday, n_flight,color=wday)) + 
+  geom_boxplot() +
+  labs(x="星期几", y = "航班数")
+```
+
+---
+### 分析数据：描述性统计6(幸运星期六)
+
+星期六会更适合坐飞机么？星期六好像航班很少耶！！ 扣扣鼻子问，WHY？ 具体是怎样呢？？
+
+```{r}
+day_count_wday %>% 
+  filter(wday == "周六") %>%
+  datatable( options = list(pageLength =6, dom = 'tip'),
+          caption="每天(星期)的航班数和平均延误时长")%>%
+  formatRound(c(4:5), 1)
+```
+
+---
+### 分析数据：描述性统计7(全年的周六)
+
+全年只看星期六的航班数是怎样的赶脚？惊讶的小伙伴们，看看星期六的表现吧！
+
+```{r}
+day_count_wday %>% 
+  filter(wday == "周六")%>% 
+  ggplot(aes(date, n_flight)) + 
+    geom_point(col="blue") + 
+    geom_line(col="green") +
+    scale_x_date(NULL, date_breaks = "1 month", date_labels = "%b") +
+  labs(x="日期", y ="航班数")
+```
+
+---
+### 分析数据：描述性统计8(机场matter?)
+
+选择起飞机场是不是能避免延误？
+
+
+```{r}
+airport_count<-flights %>%
+  mutate(date=ymd(str_c(year,month,day,sep = "-"))) %>%
+  group_by(origin,month)  %>%
+  summarise(n_flight=n(),
+            mean_dep_delay=mean(dep_delay,na.rm = T),
+            mean_dep_arr=mean(arr_delay,na.rm = T))
+
+datatable(airport_count,
+          options = list(pageLength =6, dom = 'tip',digits=1),
+          caption="三大机场每月航班数和月平均延误时长") %>%
+  formatRound(c(4:5), 1)
+```
+
+---
+### 分析数据：描述性统计9(机场matter?2)
+
+选择起飞机场是不是能避免延误？
+
+
+```{r}
+
+airport_count %>%
+  group_by(origin) %>%
+  summarise(n_flight=sum(n_flight),
+            mean_dep_delay=mean(mean_dep_delay,na.rm = T),
+            mean_dep_arr=mean(mean_dep_arr,na.rm = T)) %>%
+  datatable(caption="三大机场每月航班数和月平均延误时长") %>%
+    formatRound(c(3:4), 1)
+```
+
+---
+### 分析数据：描述性统计9(机场matter?3)
+
+下面看看美国所有机场信息(airport):变量情况
+
+
+```{r}
+data("airports")
+airports %>%
+  datatable(options = list(pageLength =5, dom = 'tip',digits=1),
+          caption="") %>%
+  formatRound(c(3:4), 1)
+```
+
+美国总共有`r nrow(airports)`个机场。
+
+---
+### 分析数据：描述性统计10(机场matter?4)
+
+概括地来看看机场数据吧：
+
+```{r, echo=FALSE}
+glimpse(nycflights13::airports)
+
+```
+
+---
+### 分析数据：描述性统计11(机场matter?5)
+
+[来一个炫酷一点的可视化直观地图吧](Flight connection map with Rhttps://www.gis-blog.com/flight-connection-map-with-r/)
+
+```{r}
+# install.packages("maps")
+# install.packages("geosphere")
+require("maps")
+require("geosphere")
+
+usairports <- filter(airports, lat < 48.5)
+usairports <- filter(usairports, lon > -130)
+usairports <- filter(usairports, faa!="JFK") #filter out jfk
+jfk <- filter(airports, faa=="JFK") #separate df for jfk
+#create basemap
+map("world", regions=c("usa"), fill=T, col="grey8", bg="grey15", ylim=c(21.0,50.0), xlim=c(-130.0,-65.0))
+#overlay airports
+points(usairports$lon,usairports$lat, pch=3, cex=0.1, col="chocolate1")
+
+```
+
+---
+### 分析数据：描述性统计12(机场matter?6)
+
+ 机场信息(airport):可视化
+
+```{r }
+
+#create basemap
+map("world", regions=c("usa"), fill=T, col="grey8", bg="grey15", ylim=c(21.0,50.0), xlim=c(-130.0,-65.0))
+#overlay airports
+points(usairports$lon,usairports$lat, pch=3, cex=0.1, col="chocolate1")
+for (i in (1:dim(usairports)[1])) { 
+inter <- geosphere::gcIntermediate(c(jfk$lon[1], jfk$lat[1]), c(usairports$lon[i], usairports$lat[i]), n=200)
+lines(inter, lwd=1, col="turquoise2")    
+}
+
+```
+
+---
+### 分析数据：描述性统计(JFK机场的热力图)
+
+下面重点看看纽约JFK机场全年的起飞延误情况（热力图`heat map plot`），日期和星期几确实影响起飞延误么？
+
+```{r}
+flights_jfk <-
+  nycflights13::flights %>% 
+  filter(origin == "JFK") %>% 
+  mutate(hh = round(sched_dep_time / 100, 0) - 1) %>% 
+  mutate(ymd = lubridate::ymd(sprintf("%04.0f-%02.0f-%02.0f", year, month, day))) %>% 
+  mutate(wd = lubridate::wday(ymd, label = TRUE))
+
+flights_jfk %>%
+  filter(!is.na(hh)) %>%
+  filter(!is.na(dep_delay)) %>%
+  filter(dep_delay < quantile(dep_delay, 0.90)) %>%
+  ggplot( aes(hh, wd)) + 
+    geom_tile(aes(fill = dep_delay),colour = "white") + 
+    scale_fill_gradient(low = "white",high = "red") +
+    labs(x ="24h时段", y ="星期几", fill = "起飞延误m") +
+    scale_x_continuous(limits = c(0,24), breaks = seq(0,24,2))
+
+```
+
+---
+### 分析数据：推断性统计(JFK机场ANOVA分析1)
+
+
+
+```{r, echo=T, comment= ""}
+# 起飞延误时长VS星期几
+summary(aov(dep_delay ~ wd, data = flights_jfk))
+```
+
+---
+### 分析数据：推断性统计(JFK机场ANOVA分析2)
+
+
+```{r, echo=T, comment= ""}
+# 起飞延误时长VS24h时间段
+summary(aov(dep_delay ~ hh, data = flights_jfk))
+```
+
+
+---
+### 分析数据：推断性统计(JFK机场回归分析)
+
+.pull-left[
+$$\begin{align}
+dep\_delay &= \\ 
+&\beta_0  +\beta_1 Mon +\beta_1 Tue \\
+&+ \beta_1 Wen+ \beta_1 Thu \\
+&+ \beta_1 Fri + \beta_1 Sta \\
+&+  \beta_1 hh  +u_i
+\end{align}$$
+]
+
+.pull-right[
+```{r, comment= ""}
+lm_both <- lm(dep_delay ~ wd + hh, data = flights_jfk)
+summary(lm_both)
+```
+]
+
+---
+### 得到结论：
+
+
+---
+background-image: url("pic/thank-you-gif-funny-little-yellow.gif")
+class: inverse,center
+# 本章结束

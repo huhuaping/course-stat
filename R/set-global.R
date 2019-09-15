@@ -3,7 +3,7 @@
 options(
   htmltools.dir.version = FALSE, 
   formatR.indent = 2, width = 55, 
-  digits = 2,scipen=999,tinytex.verbose = TRUE,
+  digits = 2,tinytex.verbose = TRUE,
   knitr.kable.NA = '',
   echo=FALSE, warning=FALSE, message=FALSE)
 
