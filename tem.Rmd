@@ -13,13 +13,27 @@ output:
       - hygge-duke
       - libs/cc-fonts.css
       - libs/figure-captions.css
+      - libs/mycss/footer-header.css
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"><span>xaringan power    
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+yolo</span></div> 
+
 ---
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+source("R/set-global.R")
 ```
 class: center, middle
 

@@ -10,6 +10,8 @@ output:
       - hygge-duke
       - libs/cc-fonts.css
       - libs/figure-captions.css
+      - libs/mycss/footer-header.css
+      - libs/mycss/slide-number.css
     nature:
       highlightStyle: github
       highlightLines: true
@@ -53,9 +55,20 @@ source("R/external-math-equation.R")
 ---
 class: inverse, center, middle, duke-softblue
 
-# 为什么学习统计学
+# 1.1 为什么学习统计学
 
 ---
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"><span>第01章 绪论   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+1.1 为什么学习统计学</span></div> 
+
+---
+
 ## 辛普森悖论的警示
 
 
@@ -108,6 +121,7 @@ smry %>%
 
 
 ---
+
 ## 辛普森悖论的警示
 
 但故事背后却另有蹊跷：
@@ -121,6 +135,7 @@ simpson %>%
 ```
 
 ---
+
 ## 辛普森悖论的警示
 
 事情的“真相”是：
@@ -135,6 +150,7 @@ detail_long %>%
 ```
 
 ---
+
 ## 辛普森悖论的警示
 
 对比一下
@@ -173,6 +189,7 @@ smry_weight%>%
 
 
 ---
+
 ## 辛普森悖论的警示
 
 更加细节的数据：
@@ -195,6 +212,7 @@ berkeley %>%
 
 
 ---
+
 ## 辛普森悖论的警示
 
 令人吃惊的对称性分布：
@@ -242,6 +260,7 @@ lines( x = c(0,xlu), y = coef[1]+c(0,xlu)*coef[2])
 
 
 ---
+
 ## 信念偏见诅咒 
 
 **信念偏见效应**：如果你让人们决定一个特定的论点是否在逻辑上是有效的，我们往往会受到结论可信度的影响，即使我们不应该这样做。
@@ -263,6 +282,7 @@ lines( x = c(0,xlu), y = coef[1]+c(0,xlu)*coef[2])
 - 因此，有些香烟不会上瘾（结论）
 
 ---
+
 ## 信念偏见诅咒 
 
 ```{r}
@@ -271,6 +291,7 @@ include_graphics("pic/chpt01-believe-bias.png")
 
 
 ---
+
 ## 信念偏见诅咒：持枪和控枪的美国现象
 
 **素材1**：
@@ -287,6 +308,7 @@ C. 其他观点
 
 
 ---
+
 ## 信念偏见诅咒：持枪和控枪的美国现象
 
 **素材2**：
@@ -305,6 +327,7 @@ B. 军火市场根深蒂固，进而让私人禁枪的提案或修宪变得困�
 C. 其他观点
 
 ---
+
 ## 信念偏见诅咒：持枪和控枪的美国现象
 
 **素材3**：
@@ -322,6 +345,7 @@ B. 引发死亡率的主因很多，私人持枪造成的社会伤害并没有�
 C. 其他观点
 
 ---
+
 ## 信念偏见诅咒：持枪和控枪的美国现象
 
 **素材4**：
@@ -341,11 +365,23 @@ B. 持枪派，控枪派和中立派或许都无可厚非，各方相互制衡�
 C. 其他观点
 
 ---
+layout: false
 class: center, middle, inverse
 
-# 变量和数据
+# 1.2 变量和数据
 
 ---
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"><span>第01章 绪论   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+1.2 变量和数据</span></div> 
+
+---
+
 ## 变量及其类型A
 
 
@@ -431,6 +467,7 @@ class: duke-softblue
 
 
 ---
+
 ## 变量及其类型B
 
 B.按变量是否**随机**：
@@ -482,6 +519,7 @@ class: duke-softblue
 参考资料：https://www.quora.com/What-is-a-non-random-variable
 
 ---
+
 ## 变量及其类型C
 
 C.按变量是否**抽象化**：
@@ -527,6 +565,7 @@ p2
 
 
 ---
+
 ## 数据及其类型
 
 
@@ -578,6 +617,7 @@ A.按数据取值的性质分：
 ]
 
 ---
+
 ## 数据与变量的关系
 
 - 变量是数据存身之所，而数据是变量的现实表达。
@@ -597,14 +637,14 @@ class: middle, center, duke-orange
 
 ---
 class: middle,center
-background-size: cover
+background-size: contain
 background-image: url("pic/chpt01-spss-data-view.png")
 
 ## .red[SPSS软件的数据视图]
 
 ---
 class: middle,center
-background-size: cover
+background-size: contain
 background-image: url("pic/chpt01-spss-var-view.png")
 ## .red[SPSS软件的变量视图]
 
@@ -617,6 +657,7 @@ class: middle, center, duke-orange
 
 
 ---
+
 ## 纽约机场数据库：变量视图
 
 只看2013年1月的数据。
@@ -630,6 +671,7 @@ str(flights_jan, max.level =5, list.len =10)
 ```
 
 ---
+
 ## 纽约机场数据库：数据视图
 
 只看2013年1月数据集的前500条数据。
@@ -686,9 +728,10 @@ include_graphics("pic/chpt01-data-info-DIKW.png",dpi ="120")
 参考资料：https://www.guru99.com/difference-information-data.html
 
 ---
+layout: false
 class: center, middle, inverse
 
-# 数据的计量层次
+# 1.3 数据的计量层次
 
 ```{r, fig.height=4, eval=F}
 g <- grViz("digraph flowchart {
@@ -722,6 +765,17 @@ g
 
 
 ---
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"><span>第01章 绪论   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+1.3 数据的计量层次</span></div> 
+
+---
+
 ## 名义数据(nominal data)
 
 - 取值只用于区分所属类别的定性数据。
@@ -756,6 +810,7 @@ nominal %>%
 
 
 ---
+
 ## 序数数据(ordinal data)
 
 - 变量的不同取值有顺序差异，即存在自然顺序
@@ -947,6 +1002,7 @@ smry_delay %>%
 
 
 ---
+
 ## 比率数据(ratio data)：
 
 比率数据(ratio data)的取值存在自然顺序、可以比较大小（加减）、乘除比率有实际意义。
@@ -966,6 +1022,7 @@ $X_1/X_2$）
     - 如：GDP(亿元)、个人收入(元)等
 
 ---
+
 ## 数据层次小结
 
 数据层次与数据运算可能性存在一定联系：
@@ -982,8 +1039,19 @@ scale_smry %>%
 
 
 ---
+layout: false
 class: inverse, middle, center
-# 数据的时间状态
+# 1.4 数据的时间状态
+
+---
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"><span>第01章 绪论   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+1.4 数据的时间状态</span></div> 
 
 ---
 
@@ -1022,6 +1090,7 @@ include_graphics("pic/chpt01-1-data-series-M1.png", dpi=120)
 ```
 
 ---
+
 ## Type2：截面数据(cross-section data)：
 
 横截面数据：对一个或多个变量在同一时间点上收集的数据
@@ -1063,6 +1132,7 @@ eggs %>%
 
 
 ---
+
 ## Type3：面板数据(Panel Data)
 
 **面板数据**：是兼有时间序列和横截面数据两种成份，指对相同的横截面单元在时间轴上进行跟踪调查的数据。
@@ -1178,12 +1248,23 @@ steel_wide %>%
 
 
 ---
+layout: false
 class: center, middle, inverse
 
-# 关于统计学
-
+# 1.5 关于统计学
 
 ---
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"><span>第01章 绪论   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+1.5 关于统计学</span></div> 
+
+---
+
 ## 统计学的方法论
 
 **方法论**：用**样本**.red[描述]或.red[推断]**总体**。
@@ -1195,6 +1276,7 @@ include_graphics("pic/chpt01-stat-methology.png",dpi=150)
 ```
 
 ---
+
 ## 描述性统计(descriptive statistics)
 
 - **定义**：研究数据收集、处理、汇总、图表描述、概括与分析等统计方法 
@@ -1211,6 +1293,7 @@ include_graphics("pic/chpt01-stat-methology.png",dpi=150)
 
 
 ---
+
 ## 描述性统计(descriptive statistics)
 
 ```{r}
@@ -1219,6 +1302,7 @@ include_graphics("pic/chpt01-descriptive-stat.jpg", dpi = 100)
 
 
 ---
+
 ## 推断性统计(inferential statistics)
 
 - **定义**：研究如何利用样本数据来推断总体特征的统计方法
@@ -1232,6 +1316,7 @@ include_graphics("pic/chpt01-descriptive-stat.jpg", dpi = 100)
     - 假设检验
 
 ---
+
 ## 推断性统计(inferential statistics)
 
 ```{r}
@@ -1239,6 +1324,7 @@ include_graphics("pic/chpt01-inferential-stat.png", dpi = 100)
 ```
 
 ---
+
 ## 推断性统计(inferential statistics)
 
 ```{r}
@@ -1246,6 +1332,7 @@ include_graphics("pic/chpt01-inferential-stat-sampling.png", dpi = 140)
 ```
 
 ---
+
 ## 总体和样本
 
 **总体(population)**：
@@ -1264,6 +1351,7 @@ include_graphics("pic/chpt01-inferential-stat-sampling.png", dpi = 140)
 - **样本容量**：构成样本的元素的数目称为样本容量或样本量 (sample size)
 
 ---
+
 ## 参数和统计量
 
 **参数(parameter)**:
@@ -1290,11 +1378,24 @@ $\bar{x},s^2,w,v,\cdots$
 
 
 ---
+layout: false
 class: center, middle, inverse
 
-# 统计分析的基本过程
+# 1.6 统计分析的基本过程
 
 ---
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"><span>第01章 绪论   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+1.6 统计分析的基本过程</span></div> 
+
+
+---
+
 ## 统计分析的基本过程
 
 - 实际问题：发现问题
@@ -1350,6 +1451,7 @@ str(nycflights13::flights, list.len =10, max.level=8)
 ```
 
 ---
+
 ### 分析数据：描述性统计1——1天的航班情况
 
 ```{r}
@@ -1375,6 +1477,7 @@ datatable(show_flights,
 ```
 
 ---
+
 ### 分析数据：描述性统计2——每天的航班数和平均延误时长
 
 这样的统计分析，能不能看出任何蛛丝马迹呢？
@@ -1394,6 +1497,7 @@ datatable(day_count,
 ```
 
 ---
+
 ### 分析数据：描述性统计3(每天航班数)
 
 按时间轴查看每天航班数的全貌图，是不是会更轻松一点？
@@ -1406,6 +1510,7 @@ ggplot(day_count,aes(x=date,y=n_flight)) +
 ```
 
 ---
+
 ### 分析数据：描述性统计4(航班数和平均延误时长)
 
 星期几与航班数和平均延误时长有关系？童鞋们，咱先上一个表：
@@ -1421,6 +1526,7 @@ datatable(day_count_wday,
 ```
 
 ---
+
 ### 分析数据：描述性统计5(星期几matter?)
 
 小伙伴们，那咱们再上个图（**多批箱线图**）瞧一瞧吧
@@ -1432,6 +1538,7 @@ ggplot(day_count_wday, aes(wday, n_flight,color=wday)) +
 ```
 
 ---
+
 ### 分析数据：描述性统计6(幸运星期六)
 
 星期六会更适合坐飞机么？星期六好像航班很少耶！！ 扣扣鼻子问，WHY？ 具体是怎样呢？？
@@ -1445,6 +1552,7 @@ day_count_wday %>%
 ```
 
 ---
+
 ### 分析数据：描述性统计7(全年的周六)
 
 全年只看星期六的航班数是怎样的赶脚？惊讶的小伙伴们，看看星期六的表现吧！
@@ -1460,6 +1568,7 @@ day_count_wday %>%
 ```
 
 ---
+
 ### 分析数据：描述性统计8(机场matter?)
 
 选择起飞机场是不是能避免延误？
@@ -1480,6 +1589,7 @@ datatable(airport_count,
 ```
 
 ---
+
 ### 分析数据：描述性统计9(机场matter?2)
 
 选择起飞机场是不是能避免延误？
@@ -1497,6 +1607,7 @@ airport_count %>%
 ```
 
 ---
+
 ### 分析数据：描述性统计9(机场matter?3)
 
 下面看看美国所有机场信息(airport):变量情况
@@ -1513,6 +1624,7 @@ airports %>%
 美国总共有`r nrow(airports)`个机场。
 
 ---
+
 ### 分析数据：描述性统计10(机场matter?4)
 
 概括地来看看机场数据吧：
@@ -1523,6 +1635,7 @@ glimpse(nycflights13::airports)
 ```
 
 ---
+
 ### 分析数据：描述性统计11(机场matter?5)
 
 [来一个炫酷一点的可视化直观地图吧](Flight connection map with Rhttps://www.gis-blog.com/flight-connection-map-with-r/)
@@ -1545,6 +1658,7 @@ points(usairports$lon,usairports$lat, pch=3, cex=0.1, col="chocolate1")
 ```
 
 ---
+
 ### 分析数据：描述性统计12(机场matter?6)
 
  机场信息(airport):可视化
@@ -1563,6 +1677,7 @@ lines(inter, lwd=1, col="turquoise2")
 ```
 
 ---
+
 ### 分析数据：描述性统计(JFK机场的热力图)
 
 下面重点看看纽约JFK机场全年的起飞延误情况（热力图`heat map plot`），日期和星期几确实影响起飞延误么？
@@ -1588,6 +1703,7 @@ flights_jfk %>%
 ```
 
 ---
+
 ### 分析数据：推断性统计(JFK机场ANOVA分析1)
 
 
@@ -1598,6 +1714,7 @@ summary(aov(dep_delay ~ wd, data = flights_jfk))
 ```
 
 ---
+
 ### 分析数据：推断性统计(JFK机场ANOVA分析2)
 
 
@@ -1608,6 +1725,7 @@ summary(aov(dep_delay ~ hh, data = flights_jfk))
 
 
 ---
+
 ### 分析数据：推断性统计(JFK机场回归分析)
 
 .pull-left[
@@ -1628,10 +1746,12 @@ summary(lm_both)
 ]
 
 ---
+
 ### 得到结论：
 
 
 ---
+layout:false
 background-image: url("pic/thank-you-gif-funny-little-yellow.gif")
 class: inverse,center
 # 本章结束
