@@ -746,7 +746,7 @@ include_graphics("pic/nominal-show.png")
 ```{r}
 nominal <- as_tibble(list(name= c("tom","jenny","lilei", "hanmeimei"),
                           gender= c("M","F", "M", "F"),
-                          color =c("brown", "black", "yellow","yellow"),
+                          color =c("brown", "blonde", "black","black"),
                           area = c("North", "south", "North","Neither")))
 
 nominal %>%
@@ -819,6 +819,8 @@ temperature %>%
 ```
 
 ]
+
+.red[**课堂思考**]：序数数据如何排序？如果数据量超级大，怎样快速排序
 
 --
 
