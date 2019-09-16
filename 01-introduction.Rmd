@@ -618,6 +618,21 @@ A.按数据取值的性质分：
 
 ---
 
+### 观察性数据和实验性数据
+
+**观察性数据**（observational data）：人们在观察性研究中被动性记录下来的数据。
+
+- 选择性偏差难以避免 [Bias in Observational Studies – Sensitivity Analysis with R package episensr](https://www.r-bloggers.com/bias-in-observational-studies-sensitivity-analysis-with-r-package-episensr/)
+
+(https://homerhanumat.github.io/elemStats/design-of-studies.html)
+
+
+**实验性数据**（experimental data）：人们通过主动控制和改变实验条件获得并记录的数据。
+
+
+
+---
+
 ## 数据与变量的关系
 
 - 变量是数据存身之所，而数据是变量的现实表达。
@@ -658,7 +673,7 @@ class: middle, center, duke-orange
 
 ---
 
-## 纽约机场数据库：变量视图
+### 纽约机场数据库：变量视图
 
 只看2013年1月的数据。
 
@@ -672,7 +687,7 @@ str(flights_jan, max.level =5, list.len =10)
 
 ---
 
-## 纽约机场数据库：数据视图
+### 纽约机场数据库：数据视图
 
 只看2013年1月数据集的前500条数据。
 
@@ -684,48 +699,85 @@ head(flights_jan,500) %>%    # 只看前500条数据
                            fixedColumns = TRUE))
 ```
 
-
 ---
-class: duke-softblue, middle, center
+class:duke-softblue
 
-# 课堂阅读与讨论(5 mins)
+## 数据和信息的关系
 
-## 数据和信息有何联系与不同？
-
----
-class: duke-softblue
-
-### 数据和信息有何联系与不同？
+数据和信息有何联系与不同？
 
 > "The numbers have no way of speaking for themselves. We speak for them. We imbue them with meaning." 
 > —Statistician Nate Silver in the book The Signal and the Noise
 
-- The history of temperature readings all over the world for the past 100 years is data. If this data is organized and analyzed to find that global temperature is rising, then that is information.
-
-- The number of visitors to a website by country is an example of data. Finding out that traffic from the U.S. is increasing while that from Australia is decreasing is meaningful information.
-
-- Often data is required to back up a claim or conclusion (information) derived or deduced from it. For example, before a drug is approved by the FDA, the manufacturer must conduct clinical trials and present a lot of data to demonstrate that the drug is safe.
-
-???
-参考资料：https://www.diffen.com/difference/Data_vs_Information
-
----
-class:duke-softblue
-
-### 数据和信息有何联系与不同？
-
-
-.red[**Data**] are simply facts or figures — bits of information, but not information itself. When data are processed, interpreted, organized, structured or presented so as to make them meaningful or useful, they are called .red[**information**]. 
-
-进一步思考下图(DIKW)：
-
-```{r}
+```{r, fig.cap= "DIKW"}
 include_graphics("pic/chpt01-data-info-DIKW.png",dpi ="120")
 ```
 
 
 ???
 参考资料：https://www.guru99.com/difference-information-data.html
+
+---
+class: duke-softblue
+
+## 数据与信息的关系
+
+**大数据**（big data）是不是一定好？
+
+- 优点：可能包含更多信息；
+
+- 缺点：信息量太大以至于无法处理。
+
+.pull-left[
+
+大数据的[四大特征（4V）](https://www.dummies.com/careers/find-a-job/the-4-vs-of-big-data/)：
+
+- Volume（数据量大）
+
+- Variety（变异性大）
+
+- Veracity（精确记录）
+
+- Velocity（迅疾变化）
+
+]
+
+.pull-right[
+![](https://www.go-globe.com/wp-content/uploads/2017/08/60-seconds.gif)
+]
+
+???
+大数据证相关，小数据证因果。
+- 大数据只是扩展了观察和抽象世界的研究手段与数据实验工具。
+- 统计学理论也需要新突破和创新。
+
+
+---
+class: duke-softblue
+
+## 数据与信息的关系
+
+.pull-left[
+
+- 天体运行规律：第谷的海量天文数据VS开普勒筛选分析。
+
+![](pic/kepler.gif)
+
+]
+
+--
+
+.pull-right[
+
+- 总统选举预测：《文学文摘》240万人大调查VS盖洛普5000人调查。
+
+![](pic/gallup-survey.gif)
+
+]
+
+???
+
+每年的1月1日，地球在什么位置，土星在什么位置，太阳在什么位置，等等。这样20年的观测数据筛选之后，每一颗行星的数据就只有20个了。开普勒知道，地球每隔365天会回到同一个位置，然后他把地球的位置固定，再分析其他行星跟地球的相对位置。开普勒通过固定地球的位置，对其他行星位置20年的数据进行分析，就成功得到了其他行星的运行轨迹。
 
 ---
 layout: false
@@ -983,7 +1035,7 @@ flights_jfk %>%
 
 ---
 class: duke-orange
-### 区间数据举例:起飞延误时长与星期几有关系么？
+### 区间数据举例：起飞延误时长与星期几有关系么？
 
 
 
@@ -1325,15 +1377,7 @@ include_graphics("pic/chpt01-inferential-stat.png", dpi = 100)
 
 ---
 
-## 推断性统计(inferential statistics)
-
-```{r}
-include_graphics("pic/chpt01-inferential-stat-sampling.png", dpi = 140)
-```
-
----
-
-## 总体和样本
+### 总体和样本
 
 **总体(population)**：
 
@@ -1352,7 +1396,7 @@ include_graphics("pic/chpt01-inferential-stat-sampling.png", dpi = 140)
 
 ---
 
-## 参数和统计量
+### 参数和统计量
 
 **参数(parameter)**:
 
@@ -1375,6 +1419,37 @@ $s^2$) 等
 
 - **记号**：样本统计量通常用小写英文字母来表示
 $\bar{x},s^2,w,v,\cdots$
+
+---
+
+### 参数和统计量
+
+```{r}
+
+tab_cmpr <- as_tibble(list(  "参数" = c("数据元", "总体期望", '总体比率', '总体方差', '总体标准差','总体容量',"总体相关系数"),
+                          "par" = c("X", "\\( \\mu \\)", 'P', '\\( \\sigma^2 \\)', '\\( \\sigma \\)','N',"\\( \\rho \\)"),
+       
+         "统计量" = c("数据元", "样本均值", '样本比率', '样本方差', '样本标准差','样本观测数',"样本相关系数"),
+                   "stat" = c("x", "\\( \\bar{x} \\)", 'p', '\\( s^2 \\)', 's','n',"r"))) 
+
+datatable(tab_cmpr)
+          
+  
+
+```
+
+
+---
+
+### 参数和统计量
+
+```{r}
+include_graphics("pic/chpt01-inferential-stat-sampling.png",dpi =1000)
+```
+
+---
+### 参数和统计量
+
 
 
 ---
