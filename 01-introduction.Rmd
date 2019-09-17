@@ -215,9 +215,9 @@ berkeley %>%
 
 ## 辛普森悖论的警示
 
-令人吃惊的对称性分布：
+令人吃惊的对称性分布(圆圈表示总申请数大于40人的部门，叉叉表示总申请数小于40人的部门)：
 
-```{r}
+```{r, fig.height=6}
 plot.new()
 xlu <- 80
 plot.window(  xlim = c(0,100),
@@ -253,9 +253,6 @@ coef <- lm( formula = total.admit ~ women.apply,
 lines( x = c(0,xlu), y = coef[1]+c(0,xlu)*coef[2]) 
 ```
 
-
-
-**说明**：圆圈表示总申请数大于40人的部门，叉叉表示总申请数小于40人的部门
 
 
 
@@ -476,7 +473,6 @@ B.按变量是否**随机**：
 
 - 非随机变量（non-random variable）：也称为**确定性变量**（Deterministic variable）。
 
-<br>
 
 **100天降雨量记录**(mm)：下面只列出了前50天
 
@@ -842,9 +838,11 @@ layout: true
 class: duke-softblue
 ### 名义数据举例
 
+变量及可能取值VS数据集
+
 --
 
-```{r,fig.cap="变量及可能取值"}
+```{r,fig.cap=""}
 include_graphics("pic/nominal-show.png")
 ```
 --
@@ -856,7 +854,7 @@ nominal <- as_tibble(list(name= c("tom","jenny","lilei", "hanmeimei"),
                           area = c("North", "south", "North","Neither")))
 
 nominal %>%
-  datatable(caption ="数据集") %>%
+  datatable(caption ="") %>%
   formatStyle(columns = 1:4, target = "cell",Color = "black")
 ```
 
@@ -927,13 +925,10 @@ temperature %>%
 
 ]
 
-.red[**课堂思考**]：序数数据如何排序？如果数据量超级大，怎样快速排序
+.red[**课堂思考**]：序数数据如何排序？如果数据量超级大，怎样快速排序(
+数据概览如下)：
 
---
-
-数据概览如下：
-
-```{r,comment="",echo= T}
+```{r,comment="",echo= F}
 glimpse(temperature)
 ```
 
@@ -1075,9 +1070,8 @@ $X_1/X_2$）
 
 ---
 
-## 数据层次小结
+## 数据层次小结:数据运算可能性
 
-数据层次与数据运算可能性存在一定联系：
 
 ```{r}
 scale_smry <- read.xlsx2("data-analysis/chpt01-scale-variable.xlsx",1,startRow = 2) %>%
@@ -1088,7 +1082,8 @@ scale_smry %>%
 ```
 
 
-
+???
+数据层次与数据运算可能性存在一定联系!
 
 ---
 layout: false
@@ -1165,12 +1160,15 @@ eggs %>%
 $Y_1$代表1990年鸡蛋产量(百万个)；
 $X_1$代表1990年每打鸡蛋的价格(美分/打)。
 
+???
+美国50个州的蛋类生产和价格数据
+
 ---
 
 ### 案例：鸡蛋价格与鸡蛋产量
 
 
-```{r, fig.cap= "1990年蛋产量与价格的关系",fig.height=6, fig.width=10}
+```{r, fig.cap= "",fig.height=6, fig.width=10}
 eggs %>%
   select(STATE, X1, Y1) %>%
   ggplot(aes(x=Y1, y=X1)) +
@@ -1277,8 +1275,6 @@ datatable(steel_long,
 
 ### 案例：钢铁公司
 
-缺失部分数据：
-
 ```{r}
 steel_wide %>%
   mutate(US.C=ifelse(year %in% c(1940,1953), NA, US.C),
@@ -1288,15 +1284,7 @@ steel_wide %>%
           caption = "1935-1954年间美国两大钢铁公司的数据(缺失部分数据)")
 ```
 
-.content-box-blue[课堂测试：]
-
-???
-
-- 问1：平衡面板还是非平衡面板？
-
-- 问2：多少数据点？
-
-- 问3：两个公司投资函数是否相同？
+**课堂测试**： 问1：平衡面板还是非平衡面板？问2：多少数据点？问3：两个公司投资函数是否相同？
 
 
 ---
@@ -1444,13 +1432,87 @@ datatable(tab_cmpr)
 ### 参数和统计量
 
 ```{r}
-include_graphics("pic/chpt01-inferential-stat-sampling.png",dpi =1000)
+include_graphics("pic/chpt01-inferential-stat-sampling.png",dpi =160)
 ```
 
 ---
-### 参数和统计量
+
+### 参数和统计量(实验演示)
+
+.pull-left[
+- 总体（
+$[Y_i, X_i],N$）
+
+- 总体参数？？？
+
+- 变量的总体关系？？？
+]
+
+.pull-right[
+
+- 样本（
+$[y_i, x_i],n$）
+
+- 样本统计量？？？
+
+- 怎么透过样本数据来窥探总体关系的秘密？
+
+]
+
+---
+
+### 参数和统计量(实验演示)
+
+总共162名同学参与随机抽样；每个同学都随机抽取
+$n=10$个数据点。
+因此共有162份样本数据（每份含10个观测数）。
+--
+
+.pull-left[
+
+![](pic/plot-out-every.gif)
+
+]
+
+--
+
+.pull-right[
+
+![](pic/plot-out-all.gif)
+
+]
+
+---
+
+### 参数和统计量(实验演示)
 
 
+总体参数有哪些？
+
+样本统计量又有哪些？
+
+
+--
+.pull-left[
+
+总体：
+
+$Y_i = \beta_0+ \beta_1 X_i + u_i$
+
+
+$Y_i = 25+ 0.5 X_i + u_i$
+
+]
+
+--
+
+.pull-right[
+
+样本：
+
+$Y_i = \hat{\beta}_0+ \hat{\beta}_1 X_i + e_i$
+
+]
 
 ---
 layout: false
