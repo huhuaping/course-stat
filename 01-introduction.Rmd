@@ -10,8 +10,7 @@ output:
       - hygge-duke
       - libs/cc-fonts.css
       - libs/figure-captions.css
-      - libs/mycss/footer-header.css
-      - libs/mycss/slide-number.css
+      - libs/mycss/my-custom.css
     nature:
       highlightStyle: github
       highlightLines: true
@@ -40,6 +39,7 @@ class: center,middle
 source("R/set-global.R")
 
 ```
+
 
 ```{r ex-math-eq}
 source("R/external-math-equation.R")
@@ -1865,22 +1865,21 @@ summary(aov(dep_delay ~ hh, data = flights_jfk))
 
 ### 分析数据：推断性统计(JFK机场回归分析)
 
-.pull-left[
-$$\begin{align}
-dep\_delay &= \\ 
-&\beta_0  +\beta_1 Mon +\beta_1 Tue \\
-&+ \beta_1 Wen+ \beta_1 Thu \\
-&+ \beta_1 Fri + \beta_1 Sta \\
-&+  \beta_1 hh  +u_i
-\end{align}$$
-]
 
-.pull-right[
+$$\begin{align}
+dep\_delay &= \beta_0  +\beta_1 Mon +\beta_1 Tue + \beta_1 Wen+ \beta_1 Thu+ \beta_1 Fri + \beta_1 Sta +  \beta_1 hh  +u_i
+\end{align}$$
+
+
+.scroll-box-18[
+
 ```{r, comment= ""}
 lm_both <- lm(dep_delay ~ wd + hh, data = flights_jfk)
 summary(lm_both)
 ```
+
 ]
+
 
 ---
 
