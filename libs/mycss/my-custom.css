@@ -1,3 +1,12 @@
+
+/* adjust font size */
+
+.remark-slide-content {
+    font-size: 26px;
+    padding: 1em 4em 1em 4em;
+}
+
+
 /* footer and header */
 
 div.my-header {
