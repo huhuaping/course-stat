@@ -2484,6 +2484,208 @@ include_graphics("pic/chpt02-alibaba-map-reduce.jpg",dpi = 80)
 第四步呢，reducing，就是把已经归类好的合并同类项，由此获得的产出是格式化的、结构化的数据， 可以用于分析与研究的数据库化的数据了。 这就是大数据的清洗，这些步骤都是在系统中完成的。 
 
 ---
+
+### CGSS数据的清洗：介绍
+
+
+```{r}
+#install.packages("haven")
+#install.packages("sjmisc")
+require("haven")
+require("sjmisc")
+
+
+CGSS2015 <- read_dta("data-raw/CGSS2015.dta")  #%>%
+  #as_factor(.,  levels = "both")
+#CGSS2013 <- read_dta("data-raw/CGSS2013.dta")
+
+n_obs <- nrow(CGSS2015)
+
+vars_all <- data.frame("name" = names(CGSS2015),
+                   "label" = sapply(CGSS2015, function(x) attr(x, "label"))  %>% as.character(),
+                   "class" = sapply(CGSS2015, typeof),
+                   "format" = sapply(CGSS2015, function(x) attr(x, "format.stata"))  %>% as.character(),
+                   "labelled" = sapply(CGSS2015, is.labelled),
+                   "labels" = sapply(CGSS2015, function(x) attr(x, "labels"))  %>% as.character()) %>%
+  add_column("index"= 1:nrow(.), .before = "name")
+n_vars <- nrow(vars_all)
+
+
+```
+
+```{r, eval=FALSE}
+levels(CGSS2015[1:5,"a8a"])
+
+typeof(CGSS2015$a8a)
+
+levels(as_factor(CGSS2015$a8a, levels = "labels"))
+
+vars_all %>%
+  filter(name == "a8a") %>%
+  #mutate(labels = str_extract(labels, "\(([^\)]+)\)"))
+  extract2("labels") %>%
+  unlist() %>%
+  str_extract("\(([^\)]+)\)")
+
+  levels(vars_all$labels)[1]
+vars_all[name=="a8a",]$labels
+```
+
+
+
+中国综合社会调查（China General Society Survey，**CGSS**）：
+
+- CGSS2013, **CGSS2015**
+
+- 属于**混合截面数据**：也即不同年份的观测单位不是固定的。
+
+- **CGSS2015**一共有样本数`r n_obs`，变量总数有`r n_vars`
+
+---
+
+### CGSS数据的清洗：数据视图
+
+随机抽取300份样本的前20个变量。`r str_c("CGSS2015数据（样本数=", n_obs, "）")`数据如下：
+
+```{r}
+
+CGSS2015  %>%
+  sample_n(300) %>%
+  arrange(id) %>%
+  select(1:20) %>%
+  datatable(#caption = ,
+            extensions = 'FixedColumns',
+            options = list(pageLength = 3,dom= "tip",
+                           fixedColumns = TRUE,
+                           scrollX=TRUE,scrollY=TRUE))
+```
+
+---
+
+### CGSS数据的清洗：变量视图(全景)
+
+```{r}
+names_chn <- c("题号","变量名", "题项", "变量类型", "取值格式","是否标签","标签")
+
+vars_all  %>%
+  rename_at(names(.), ~names_chn) %>%
+  select(-`标签`,-`取值格式`) %>%
+  datatable(caption = str_c("CGSS2015变量体系（变量数=", n_vars, "）"),
+            options = list(pageLength = 5, dom = "tip"))
+```
+
+---
+
+### CGSS数据的清洗：变量视图(局部)
+
+```{r}
+
+vars_all  %>%
+  filter(str_detect(.$label,".*收入")) %>%
+  rename_at(names(.), ~names_chn) %>%
+  select(one_of(names_chn[c(1:3,7)])) %>%
+  datatable(caption = str_c("含有“收入”的变量（变量数=", nrow(.), "）"),
+            options = list(pageLength = 4, dom = "tip",
+                           scrollX=TRUE,scrollY=TRUE,
+                           autoWidth = TRUE,
+                           columnDefs = list(list(width = '45%', targets =c(2)))))
+```
+
+
+---
+
+### CGSS数据的清洗：缺失值1
+
+挑选出如下几个变量来观测：
+
+```{r}
+vars_sel <- c("b8b", "b1011", "a5606") 
+
+vars_all %>%
+  filter(name %in% vars_sel) %>%
+  rename_at(names(.), ~names_chn) %>%
+  select(one_of(names_chn[c(1:3,7)])) %>%
+  datatable(#caption = str_c("CGSS2015变量体系（变量数=", n_vars, "）"),
+            options = list(pageLenth =3,
+                           scrollX=TRUE,
+                           autoWidth = TRUE,
+                           columnDefs = list(list(width = '30%', targets =c(2)))))
+```
+
+---
+
+### CGSS数据的清洗：缺失值2
+
+挑选出如下几个变量来观测。CGSS2015回答情况一瞥(随机40个样本)：
+
+```{r}
+vars_sel <- c("id","b8b", "b1011", "a5606") 
+
+CGSS2015 %>%
+  select(one_of(vars_sel)) %>%
+  sample_n(40) %>%
+  datatable(#caption = "CGSS2015回答情况一瞥(第20~25个样本)",
+            options = list(pageLength =4, dom ="tip" ))
+```
+
+---
+
+### CGSS数据的清洗：变量处理
+
+```{r}
+vars_sel <- c("id","a36","a10", "a8a")
+vars_eng <- c("id","Happ","Pol","Inc")
+
+
+dt_sub <- CGSS2015 %>% 
+  select(one_of(vars_sel)) %>%
+  rename_at(names(.), ~vars_eng) %>%
+  filter(Inc >=0 & Inc < 10^6) %>%
+  mutate(Lninc =round(log(Inc),2))
+
+row_sel <- sort(sample(dt_sub$id,100))
+```
+
+.pull-left[
+```{r}
+
+CGSS2015 %>% 
+  select(one_of(vars_sel)) %>%
+  filter( id %in% row_sel) %>%
+  datatable(caption = "变量重新命名前",
+            options = list(pageLength =5, dom = "tip"))
+```
+]
+
+
+.pull-right[
+```{r}
+dt_sub %>%
+  filter( id %in% row_sel)  %>%
+  datatable(caption = "变量重新命名后",
+            options = list(pageLength =5, dom = "tip"))
+```
+
+]
+
+---
+
+
+### CGSS数据的清洗：变量分布
+
+```{r, fig.cap= "年收入的直方图",warning=FALSE, message=FALSE}
+
+dt_sub %>%
+  ggplot(aes(x=Lninc))+
+  geom_histogram(bins = 30, color = "blue") +
+  labs(y="Lninc（年收入的对数）")
+
+```
+
+
+
+
+---
 layout: false
 class: inverse, center, middle, duke-softblue
 
@@ -2693,14 +2895,6 @@ SPSS数据库的**变量视图**
     - 比如受教育程度或者年龄的重新分组
     - 比如依据受教育程度和收入来建构社会经济地位
     
----
-
-### CGSS数据
-
-```{r}
-
-```
-
 
 ---
 
