@@ -5,10 +5,10 @@ options(
   formatR.indent = 2, width = 55, 
   digits = 2,tinytex.verbose = TRUE,
   knitr.kable.NA = '',
-  echo=FALSE, warning=FALSE, message=FALSE)
+  echo=FALSE, warning=FALSE, message=FALSE,comment="")
 
 # global options for knitr
-knitr::opts_chunk$set(fig.align='center',echo = FALSE,message = FALSE,
+knitr::opts_chunk$set(fig.align='center',echo = FALSE,message = FALSE,comment="",
                       fig.width=11, fig.height=6) # Places figures on their own pages
 
 # global options for DT
