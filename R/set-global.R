@@ -12,6 +12,7 @@ knitr::opts_chunk$set(fig.align='center',echo = FALSE,message = FALSE,comment=""
                       fig.width=11, fig.height=6) # Places figures on their own pages
 
 # global options for DT
+options(htmltools.preserve.raw = FALSE)
 options(DT.options = list(dom ="t" ,  # pure table with no search blank
                           columnDefs = list(
                             list(className = "dt-center", targets = "_all"), # align center

@@ -1,0 +1,127 @@
+---
+title: "分组数据:潜在分布的参数估计"
+author: "huhuaping"
+date: "`r Sys.Date()`"
+output: 
+  bookdown::word_document2: 
+    fig_caption:  true
+    toc: yes
+    toc_depth: 4
+    reference_docx: ../template/create-template.docx
+  bookdown::html_document2:
+    number_sections: yes
+    toc: yes
+    fig_caption:  true
+    toc_float: yes
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    fig_caption:  true
+    includes:
+      in_header: ../latex/header.tex
+      before_body: ../latex/preamble.tex
+    toc: yes
+    toc_depth: 5
+    number_sections: no
+    keep_tex: true
+always_allow_html: yes
+documentclass: article
+classoption: [(landscape,a4paper),(portrait,a4paper)]
+fontsize: "12pt"
+thanks: "感谢经济管理学院数量经济学教研室同仁的大力支持！"
+pagestyle: "headings"
+knit: (function(inputFile, encoding) { 
+      out_dir <- '../public';
+      rmarkdown::render(inputFile,
+                        encoding=encoding, 
+                        output_file=file.path(dirname(inputFile), out_dir, 'thread-binned-data-pars-estimation.docx')) })
+         
+---
+
+# 缘由
+
+**分组数据**（或分配数列）是《统计学原理》课程中描述性统计部分的一个重要内容。课本里面的一些内容大多比较过失，而且很多问题没有说清楚。
+
+这里面涉及到的主要是“有序分类数据”（Ordinal data）。
+
+那么如何来理解两个“有序分类变量”（Ordinal variables）之间的关系？
+
+
+# 参考资料
+
+- Parameter Estimation of Binned Data （[原文网址](https://www.stats-et-al.com/2018/10/parameter-estimation-of-binned-data.html)；配套R代码[地址](https://drive.google.com/file/d/1_b_BoaJ4yhFfD7I0I0LsS_NKWvV0r_tH/view)，并下载在本地`"R/binned-data-pars-est.R"`）
+
+- How does Polychoric Correlation Work? (aka Ordinal-to-Ordinal correlation)（[原文网址](https://www.stats-et-al.com/2021/02/how-does-polychoric-correlation-work.html)）
+
+- Predictive Power Score vs CorrelationFunnel （[原文网址](https://www.business-science.io/code-tools/2021/02/16/power-score-vs-correlation-funnel.html)）
+
+# 数据
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+source("../R/set-global.R")
+```
+
+
+```{r}
+df_bin <- tibble::tribble(
+  ~Group, ~Frequency,
+  "0 to 25", 114,
+  "25 to 50", 76,
+  "50 to 75", 58,
+  "75 to 100", 51,
+  "100 to 250", 140,
+  "250 to 500", 107,
+  "500 to 1000", 77,
+  "1000 to 5000", 124,
+  "5000 or more", 42)
+
+```
+
+```{r}
+knitr::kable(df_bin, align = "c", caption = "分组数据")
+```
+
+# 参数估计
+
+## 指数分布下的参数点估计
+
+```{r}
+## Section 2 Fitting a distribution: Finding point estimates of parameters
+
+### Minimize the Kullback Leibler Divergence between a distribution binned and actual binned
+
+group_freq = c(114,76,58,51,140,107,77,124,42) # observed frequencies
+cutoffs = c(0,25,50,75,100,250,500,1000,5000,20000) # bin boundaries
+
+group_prob = group_freq / sum(group_freq)
+
+### Getting initial estimates for exponential distribution
+midpoints = 1/2 * (cutoffs[-1] + cutoffs[-length(cutoffs)])
+init_par_exp = sum(midpoints * group_prob)
+init_par_exp
+	
+
+### 1b Measuring the KL Divergence
+
+get.KL.div.exp = function(x, cutoffs, group_prob)
+{
+	exp_freq = diff( pexp(cutoffs, rate = 1/x))
+	KL = sum(group_prob * log(group_prob / exp_freq))
+	return(KL)
+}	
+
+### Negative log-likelihood, if you like
+get.nllik.exp = function(x, cutoffs, yi)
+{
+	pi = diff( pexp(cutoffs, rate = 1/x))
+	nll = -sum(yi * log(pi))
+	return(nll)
+}
+
+result_exp = optim(par = init_par_exp, fn = get.KL.div.exp, method = "Brent", lower=1, upper=10000,
+				cutoffs=cutoffs, group_prob=group_prob)
+				
+result_exp$par ## This is the parameters for the distribution
+result_exp$value ## This is the KL Divergence
+```
+
+
