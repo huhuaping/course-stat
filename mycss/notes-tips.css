@@ -1,0 +1,18 @@
+/* -----------div tips------------- */
+
+div.puzzle, div.fyi, div.demo, div.notes {
+    padding: 0.5em;
+    margin: 0.5em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 100px;
+    color: #1f5386;
+    background-color: #bed3ec;
+    border: solid 5px #dfedff;
+}
+
+div.notes {
+  background-image: url("notes-light-bulb-ff5500.png");
+}
