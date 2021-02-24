@@ -245,3 +245,19 @@ pre {
 .remark-slide-content.roomy h3 {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+
+/* Two-column layout */
+.left-column {
+  color: #777;
+  width: 20%;
+  height: 92%;
+  float: left;
+}
+.left-column h2:last-of-type, .left-column h3:last-child {
+  color: #fbd0ac;
+}
+.right-column {
+  width: 75%;
+  float: right;
+  padding-top: 0em;
+}

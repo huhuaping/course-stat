@@ -1,0 +1,3042 @@
+---
+output:
+  xaringan::moon_reader:
+    seal: false
+    lib_dir: libs
+    css: 
+      - default
+      - default-fonts
+      - duke-blue
+      - hygge-duke
+      - ../mycss/my-custom-for-video.css
+      - ../mycss/notes-tips.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+
+# 统计学原理(Statistic)
+
+<!---    chakra: libs/remark-latest.min.js --->
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### `r Sys.Date()`
+
+```{r global_options, echo=F,message=FALSE,warning=F}
+source("../R/set-global.R")
+
+```
+
+
+```{r ex-math-eq}
+source("../R/external-math-equation.R")
+```
+
+
+---
+class: inverse, center, middle
+name:chapter
+
+# 第四章 数据的概括性度量
+
+
+[4.1 总量程度的度量](#absolute)
+
+[4.2 相对程度的度量](#relative)
+
+[4.3 集中趋势的度量](#center)
+
+[4.4 离散程度的度量](#variance)
+
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name: absolute
+
+# 4.1 总量程度的度量
+
+
+---
+layout: true
+
+<div class="my-header-h2"></div>
+
+<div class="watermark1"></div>
+
+<div class="watermark2"></div>
+
+<div class="watermark3"></div>
+
+<div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter"> 第04章 数据的概括性度量 </a>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="#absolute"> 4.1 总量程度的度量 </a> </span></div> 
+
+---
+
+## 本节内容
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name: relative
+
+# 4.2 相对程度的度量
+
+.pull-left[
+
+### 相对指标概述
+
+### 计划完成相对指标
+
+### 结构相对指标
+
+### 比例相对指标
+
+]
+
+.pull-right[
+
+### 比较相对指标
+
+### 强度相对指标
+
+### 动态相对指标
+
+]
+
+
+---
+layout: true
+
+<div class="my-header-h2"></div>
+
+<div class="watermark1"></div>
+
+<div class="watermark2"></div>
+
+<div class="watermark3"></div>
+
+<div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter"> 第04章 数据的概括性度量 </a>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="#relative"> 4.2 相对程度的度量 </a> </span></div> 
+
+---
+
+## 相对指标概述：概念和作用
+
+**相对指标**：是两个有联系的绝对指标之比。
+
+> 示例：2009年我国对外贸易进口总额增长率为16.3%。
+
+**作用**：
+
+- 具体表明社会经济现象之间的比例关系。
+
+- 使一些不能直接对比的事物找出共同比较的基础。
+
+- 便于记忆、易于保密。
+
+---
+
+## 相对指标概述：类型
+
+- **计划完成相对指标**：用来检查、监督计划执行情况的相对指标。
+
+- **结构相对指标**：利用分组法，将总体区分为不同性质（即差异）的各部分，以部分数值与总体全部数值对比而得出比重或比率，用以反映总体内部构成状况的相对指标。
+
+- **比例相对指标**：同一总体内不同组成部分的指标数值对比的结果，用来反映总体内部的比例关系。
+
+- **比较相对指标**：将两个同类指标做静态对比得出的相对指标，表明同类现象在不同条件下的数量对比关系。
+
+- **强度相对指标**：是两个不同性质的、但有一定联系的总量指标对比的结果，用来表明现象的强度、密度和普遍程度的相对指标。
+
+- **动态相对指标**：
+
+---
+
+## 相对指标概述：表现形式
+
+相对指标的表现形式有两大类：
+
+- 有名数形式：分子分母的单位**不能**化约。
+
+    - 人口密度：人/平方公里
+    
+    - 平均每人分摊的粮食产量：千克/人 
+
+- 无名数形式：分子分母的单位**可以**化约。
+
+    - 系数或倍数：是将比的基数抽象化为1。例如：固定资产磨损系数、工资等级系数、结构比例系数。
+
+    - 成数：是将比的基数抽象化为10。例如：粮食产量增加一成，即增长1/10。
+    
+    - 百分数：是将比的基数抽象化为100。 
+    
+    - 千分数：是将比的基数抽象化为1000。 
+
+---
+
+## 相对指标概述：运用原则
+
+相对指标的运用原则：
+
+- 注意二个对比指标的可比性。
+
+- 相对指标要和总量指标结合起来运用。 
+
+- 多种相对数结合运用
+
+- 在比较二个相对数时，是否适宜相除再求一个相对数，应视情况而定。若除出来有实际意义，则除；若不宜相除，只宜相减求差数，用百分点表示之。
+
+>百分点：即百分比中相当于百分之一的单位。
+
+
+---
+
+### （示例）相对指标与总量指标巧妙结合
+
+
+```{block, type='notes', echo=T}
+
+待完成：提供数据表，展示相对指标与总量指标的结合应用。
+
+```
+
+---
+
+## 计划完成相对指标：概念和特征
+
+**计划完成相对指标**：实际完成数与计划任务数对比的比率。根据分子分母是否属于同一时期，可以分为两类，具体计算公式分别为：
+
+- 计划完成**程度**：分子分母属同一时期。
+
+$$计划完成程度 = \frac{实际完成数}{计划完成数}\times 100\%$$
+- 计划完成**进度**：分子分母属不同时期。
+
+$$计划完成进度 = \frac{计划初期至某期实际累计完成数}{全期计划数}\times 100\%$$
+
+
+**特征**：分子分母不能颠倒位置。
+
+
+---
+
+## 计划完成相对指标：任务下达形式
+
+计划完成相对指标的下达形式主要有三种：
+
+- 以**总量指标**下达任务，具体计算公式为：
+
+$$计划完成相对指标 = \frac{实际水平}{计划水平}\times 100\%$$
+
+- 以**平均指标**下达任务，具体计算公式为：
+
+$$计划完成相对指标 = \frac{实际平均水平}{计划平均水平}\times 100\%$$
+
+- 以**相对指标**下达任务，具体计算公式为：
+
+$$\begin{align}
+计划完成相对指标 &= \frac{实际为基数的百分数}{计划为基数的百分数}\times 100\% \\
+&= \frac{1 \pm 实际增减百分数}{1  \pm 计划增减百分数}\times 100\% 
+\end{align}$$
+
+---
+
+### （示例）计算计划完成相对指标：以**总量指标**为基础
+
+**问题**：设某公司某年计划工业总产值为200万元，实际完成220万元，则计划完成程度为多少？
+
+**答案**：
+
+$$\begin{align}
+\text { 总产值计划完成相对数 }=\frac{220}{200} \times 100 \%=110 \%
+\end{align}$$
+
+---
+
+### （示例）计算计划完成相对指标：以**平均指标**为基础
+
+**问题**：某化肥企业某年每吨化肥计划成本为200元，实际成本为180元，则计划完成程度为多少？
+
+**答案**：
+
+$实际单位成本-计划单位成本=180-200=-20（元）$
+
+计算结果表明该企业化肥单位成本实际比计划降低了10%，平均每吨化肥节约生产费用20元。
+
+$$\begin{align}
+\text { 成本计划完成相对数 }=\frac{180}{200} \times 100 \%=90 \%
+\end{align}$$
+
+
+---
+
+### （示例）计算计划完成相对指标：以**相对指标**为基础
+
+**问题**：某企业生产某产品，上年度实际成本为420元/吨，本年度计划单位成本降低6%，实际降低7.6%，则计划完成程度为多少？
+
+
+**答案1**：
+
+$$\begin{align}
+\text { 成本降低率计划完成相对数 }=\frac{1-7.6 \%}{1-6 \%} \times 100 \%=98.29 \%
+\end{align}$$
+
+**答案2**：本题也可换算成绝对数计算。
+
+$$\begin{array}{ccc}
+\text { 计划: } & -6 \% & \sim \text { 394. 8元/吨 } & {[(1-6 \%) \times 420]} \\
+\text { 实际: } & -7.6 \% & \sim 388.08 \text { 元 } / \text { 吨 } & {[(1-7.6 \%) \times 420]}
+\end{array}$$
+
+
+$$\begin{align}
+\text { 成本降低率计划完成相对数 }=\frac{388.08}{394.8} \times 100 \%=98.29 \%
+\end{align}$$
+
+---
+
+## 计划完成相对指标：中长期计划
+
+中长期计划执行情况检查：
+
+- **水平法**：根据计划末期实际达到水平与计划规定末期应达到水平对比，来确定是否完成全期计划。
+
+$$\begin{equation}
+\text { 计划完成程度 }=\frac{\text { 计划末期实际达到水平 }}{\text { 计划末期应达到水平 }} \times 100 \%
+\end{equation}$$
+
+- **累计法**：整个计划期间实际完成的累计数与全期计划数对比，来确定是否完成全期计划。
+
+$$\begin{equation}
+\text { 计划完成程度 }=\frac{\text { 实际全期累计完成数 }}{\text { 计划全期累计数 }} \times 100 \%
+\end{equation}$$
+
+---
+
+## 计划完成相对指标：提前完成时间
+
+计算提前完成计划时间
+
+- 对于**水平法**：在整个计划期内，只要连续12个月实际完成数达到计划末期水平，就算完成计划，则往后的时间即为提前完成计划的时间。
+
+- 对于**累计法**：从计划初开始至某一时期止，实际完成累计数达到计划规定的累计数，就算完成计划，而往后的时间即为提前完成计划的时间。
+
+---
+
+### （示例1）中长期计划提前期：水平法
+
+**例题**：某地区按五年计划规定，最后一年国民生产总值应达到520亿元，实际国民生产总值如下表所示：
+
+</br>
+
+```{r}
+long_plan <- readxl::read_excel("../data/mid-long-plan.xlsx",col_names = T,sheet = 1)
+
+kable(as_tibble(t(long_plan),.name_repair ="minimal"), align =  "c",booktabs = T) %>%
+  kable_styling(full_width = T)
+```
+
+**问题**：请用水平法计算提前多长时间完成计划任务？
+
+**解答**：根据水平法，只需要连续一个**自然年**（12个月）达到年计划产值，就算完成任务
+$^\ast$。通过观察和计算可以发现：第4年下半年+第5年第1季度+第5年第2季度=
+$(220+140+160)=520$。因此提前了两个季度完成520亿元的年度计划任务。
+
+
+.footnote[
+$^\ast$ 注意潜藏着一个线性递增产能的假设。]
+
+---
+
+## （示例2）中长期计划提前期：水平法
+
+.left-column[
+### 1)例题提问：
+]
+
+.right-column[
+
+某产品计划年度任务产量为56万吨，实际第五年产量63万吨，现假定第4年、第5年各月完成情况如下：
+
+
+```{r}
+long_plan2 <- readxl::read_excel("../data/mid-long-plan.xlsx",col_names = T,sheet = 2)
+
+roll_sum <- long_plan2 %>%
+  add_column("序号" = 1:nrow(.), .before = "年份") %>%
+  #group_by(index) %>%
+  mutate("滚动累加" =zoo::rollapplyr(`产量`, 12, sum, partial = T)) %>%
+  mutate("滚动累加" = ifelse(`序号`>11, `滚动累加`, NA))
+
+
+```
+
+```{r,eval=T}
+roll_sum %>%
+  select(-5) %>%
+  #as_tibble(t(.),.name_repair ="unique") %>%
+  DT::datatable(options = list(
+    pageLength = 6, dom ="tip"
+  ))
+```
+
+
+**问题**：请用水平法计算提前多少天完成计划任务？
+
+]
+
+
+
+---
+
+## （示例2）中长期计划提前期：水平法
+
+.left-column[
+### 1)例题提问：
+
+### 2)解答思路：
+]
+
+.right-column[
+根据水平法，只需要连续一个**自然年**（12个月）达到年计划产量，就算完成任务产量56万吨
+$^\ast$。容易计算得到，12个月滚动累加的结果如下：
+
+```{r,eval=T}
+roll_sum %>%
+  #select(-5) %>%
+  #as_tibble(t(.),.name_repair ="unique") %>%
+  DT::datatable(options = list(
+    pageLength = 6, dom ="tip"
+  ))
+```
+
+]
+
+???
+
+.footnote[
+$^\ast$ 注意潜藏着一个线性递增产能的假设。]
+
+---
+
+## （示例2）中长期计划提前期：水平法
+
+.left-column[
+
+### 1)例题提问：
+
+### 2)解答思路：
+
+### 3)分析求解：
+
+]
+
+.right-column[
+
+根据上述滚动12月累加，可以发现正好生产56万吨的时间应是：“第4年8月第31-X天到第5年8月第(31-X)天”的连续12个月。图示如下： 
+
+```{r}
+include_graphics("../pic/chpt04-long-plan2.png", error = FALSE)
+```
+
+假定月内产量是均匀分布的，则有如下等式：
+
+$$\begin{align}
+\frac{4}{31} X+51+\frac{6}{31}\left(31-X \right) &=56 \\
+X &= 15.5
+\end{align}$$
+
+也即：提前4个月又15天半完成五年计划的年度目标计划任务。
+
+]
+
+---
+
+### （示例3）中长期计划提前期：累计法
+
+**例题**：某地区按五年计划规定，固定资产投入额为30亿元，实际投入情况如下表所示：
+
+
+```{r}
+long_plan3 <- readxl::read_excel("../data/mid-long-plan.xlsx",col_names = T,sheet = 3)
+
+kable(as_tibble(t(long_plan3),.name_repair ="minimal"), align =  "c",booktabs = T) %>%
+  kable_styling(full_width = T)
+```
+
+**问题**：请用累计法计算提前多长时间完成计划任务？
+
+</br>
+
+**解答**：根据累计法，从期初开始累计达到计划投入额30亿元，即为达成目标，剩余日期即为提前期。通过观察和计算可以发现：第1年至第4年实际投入额累加=
+$(6+7+8+9)=30$。因此完成计划时间为**第4年**，也即意味着**提前1年**完成五年计划规定任务。
+
+---
+
+## 结构相对指标：概念和特征
+
+**结构相对指标**：反映某个总体内，有机构成的组成部分在系统中的地位，具体通过同一总体中部分数值与总体数值之比来衡量。
+
+.pull-left[
+
+**指标特征**：
+
+- 子分母不能颠倒
+
+- 结构相对指标直接相加之和等于1
+
+]
+
+.pull-right[
+
+**计算公式**：
+
+$$结构相对指标 = \frac{总体部分数值}{总体全部数值}\times 100\%$$
+
+]
+
+---
+
+## 结构相对指标：作用
+
+- 可以反映总体内部结构的特征
+
+- 不同时期相对数的比较，可以看出变化过程及趋势
+
+- 能反映对忍耐力、物力、财力的利用程度及经营效果的好坏
+
+- 结构相对数在平均数计算中的应用：用于分析加权算术平均数指标的大小极其变动的原因
+$^\ast$。
+
+.footnote[.red[**注释**]：
+$^\ast$ 以后**第14章 指数**中会详细介绍。]
+
+---
+
+### （示例）结构相对指标：两个示例
+
+
+```{block, type='notes', echo=T}
+
+待完成：提供数据表，展示两个结构相对指标示例。
+
+```
+
+---
+
+## 比例相对指标：概念和特征
+
+**比例相对指标**：反映某个总体内，某一组成部分与其他组成部分的地位对比关系，具体通过同一总体中各组成部分之间数值之比来衡量。
+
+.pull-left[
+
+**指标特征**：
+
+- 分子分母可以颠倒
+
+]
+
+.pull-right[
+
+**计算公式**：
+
+$$比例相对指标 = \frac{总体某一部分数值}{总体中另一部分数值}\times 100\%$$
+
+]
+
+---
+
+## 比例相对指标：类型与形式
+
+比例相对指标有两类表现形式：
+
+- **两两作比**：抽象基数为1、10、100或1000。
+
+> 示例：我国2000年第五次人口普查结果，男女性别比例为106.74:100，这说明以女性为100，男性人口是女性人口数的106.74倍。2009年我国出生人口性别比为119.45，比2008年下降了1.11。
+
+- **多部作比**：各部分的百分数连比得比例相对数。
+
+> 示例：2009年上海GDP抽象化为100，第一产业、第二产业、第三产业的比例为：0.7︰39.9︰59.4 
+
+---
+
+### （示例）比例相对指标
+
+**示例**：某学院两个学科的人数统计表如下：
+
+```{r}
+df_ratio <- tribble(
+  ~`学科`, ~`人数`, ~`比例`,
+  "经济学", 781, 41.3,
+  "管理学", 1108, 58.7,
+  "合计", 1889, 100.0
+)
+
+kable(df_ratio, booktab=T, align = "c")
+```
+
+**计算**比例相对指标：
+
+- 此处，我们假定两个学科的地位是平等无差异的的。
+
+- 学科人数比（经济学=100）：
+$R_{r1} = \frac{1108}{781}\times 100\%=$ `r round(100*1108/780,1)`
+
+- 学科人数比（管理学=100）：
+$R_{r2} = \frac{781}{1108}\times 100\%=$ `r round(100*780/1108,1)`
+
+---
+
+## 比较相对指标：概念和特征
+
+**比较相对指标**：反映同类现象不同条件下（不同时间/不同空间之间）的指标对比。
+
+**计算公式**：
+
+$$比较相对指标 = \frac{某一条件下某类指标数值}{另一条件下同类指标数值}\times 100\%$$
+
+**指标特征**：
+
+- 比较基数（标准）是一般对象，分子与分母的位置可以互换。
+
+- 比较基数（标准）具有典型化，分子与分母的位置不能互换。
+
+>例如：单位产品的质量、成本、单耗等技术经济指标。
+
+---
+
+## （示例）比较相对指标：两个示例
+
+.left-column[
+
+### 1)可互换：
+
+]
+
+.right-column[
+
+**示例1**：2015年甲、乙两地国民生产总值分别为50亿元和60亿元，则比较相对指标为：
+
+</br>
+
+**计算**比较相对指标：
+
+- 此处，假定以甲乙两地的地位是无差异的，则分子分母可互换。
+
+- 甲地国民收入是乙地的1.2倍：
+$R_{c1} = \frac{60}{50} =1.2$。
+
+- 乙地国民收入是甲地的83.3%：
+$R_{c1} = \frac{50}{60}\times 100\% =83.3\%$。
+
+]
+
+---
+
+## （示例）比较相对指标：两个示例
+
+.left-column[
+
+### 1)可互换：
+
+### 2)不宜换：
+
+]
+
+.right-column[
+
+**示例2**：某年有甲、乙两企业同时生产一种性能相同的产品，甲企业工人劳动生产率为19,307元，乙企业为27,994元。
+
+</br>
+
+**计算**比较相对指标：
+
+- 此处，假定以表现“优秀”的企业为参考系，则分子分母不宜互换。
+
+- 两企业劳动生产率比较相对数：
+$R_{c2} = \frac{19307}{27994} \times 100\% =$ `r scales::percent(19307/27994, 0.1)`。
+
+- 表明甲企业劳动生产率比乙企业低31%。
+
+]
+
+---
+
+## 强度相对指标：概念和作用
+
+**强度相对指标**：两个性质不同但又相互联系的总量指标的对比。
+
+**计算公式**：
+
+$$强度相对指标 = \frac{某一总体指标数值}{另一有联系的总体指标数值}\times 100\%$$
+**指标作用**：
+
+- 说明一个国家、地区、部门的经济实力或为社会服务的能力。
+
+- 反映和考核社会经济效益。如流通费用率、资金利润率等。
+
+- 为贬值计划和长远规划提供参考依据。
+
+---
+
+## 强度相对指标：表现形式
+
+强度相对数的主要有两种表现形式：
+
+- **有名数形式**：一般用**复名数**表示，如人/平方公里、部/百人 
+
+- **无名数形式**：一般用**百分**（%）或**千分数**（
+$\unicode{x2030}$）表示，如流通费用率（%）、人口增长率（
+$\unicode{x2030}$）。
+
+有些强度相对指标有**正指标**/**逆指标**两种计算方法。
+
+- 分子分母可以交换，含义相同，只是表达习惯上的差异。
+
+- 与术语词义一致的、或广为使用的则称为**“正指标”**，反之则称为**“逆指标”**。
+
+
+**示例**：某城市人口100万人，有零售商业机构5000个，则可以分别计算出商业网店密度的正指标和逆指标：
+
+- 商业网店密度的**正指标**：
+$R_{d1}=\frac{5000个}{1000000人}=5$（个/千人）
+
+- 商业网店密度的**逆指标**：
+$R_{d1}=\frac{1000000人}{5000个}=200$（人/个）
+
+---
+
+## 动态相对指标：概念和特征
+
+**动态相对指标**：同类现象同一空间不同时间指标的对比。
+
+**计算公式**：
+
+$$动态相对指标 = \frac{某一现象报告期数值}{同一现象基期数值}\times 100\%$$
+**指标特征**：分子分母不能颠倒。
+
+</br>
+
+**示例**：某地2014年和2015年国民生产总值分别为56 亿元和60亿元，则动态相对指标为：
+
+$$R_p= \frac{60}{56}\times 100\%=107\%$$
+
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name: center
+
+# 4.3 集中趋势的度量
+
+---
+layout: true
+
+<div class="my-header-h2"></div>
+
+<div class="watermark1"></div>
+
+<div class="watermark2"></div>
+
+<div class="watermark3"></div>
+
+<div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter"> 第04章 数据的概括性度量 </a>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="#center"> 4.3 集中趋势的度量 </a> </span></div> 
+
+---
+
+## 集中趋势：概述
+
+**集中趋势（central tendency）**：一组数据向其中心值靠拢的倾向和程度。
+
+.pull-left[
+
+**内涵**：
+
+- 测度集中趋势就是寻找数据水平的代表值或中心值。
+
+- 不同类型的数据用不同的集中趋势测度值。
+
+- 低层次数据的测度值适用于高层次的测量数据<sup>*</sup>，但高层次数据的测度值并不适用于低层次的测量数据。
+
+]
+
+.pull-right[
+
+```{r, fig.cap= "集中趋势示意图"}
+knitr::include_graphics("../pic/chpt04-glips-demo.png", error = F)
+```
+
+]
+
+.footnote[.red[**注释**]：<sup>*</sup> 复习数据的四个层次：名义尺度（nominal）、 顺序尺度（ordinal）、区间尺度（interval）、比率尺度（ratio）。]
+
+---
+
+## 集中趋势：测度指标
+
+```{block, type='notes', echo=T}
+
+待完成：提供一张表格式总结，展示相不同层次数据的集中趋势测度指标。
+
+```
+
+
+---
+
+## 众数：概念和特征
+
+**众数（Mode）**：一组数据中出现次数最多的变量值，一般记为
+$M_o$。
+
+**众数的特征**：
+
+- 适合于数据量较多时使用。
+
+- 不受极端值的影响。
+
+- 一组数据可能没有众数或有几个众数。
+
+- 主要用于分类数据，也可用于顺序数据和数值型数据。
+
+---
+
+## （示例）众数的表现形式：河流长度
+
+
+```{r}
+
+river <- tibble(
+  river= paste0("R", 1:6),
+  area1= c(10,5,9,12,6,8),
+  area2= c(6,5,9,8,5,5), 
+  area3= c(25,28,28, 36,42,42))
+
+mode_river <- river %>%
+  gather(key = "area", value = "length", area1:area3) %>%
+  dplyr::count(area, length) 
+  
+
+```
+
+.left-column[
+
+### 0)源数据：
+
+]
+
+.right-column[
+
+**案例说明**：对三个地区各6条河流的长度进行测量，得到如下的数据表：
+
+```{r}
+river %>%
+  #select(1,area1) %>%
+  kable( align = "c", caption= "3个地区的河流及长度（100公里）")
+
+```
+
+]
+
+---
+
+## （示例）众数的表现形式：河流长度
+
+.left-column[
+
+### 0)源数据：
+
+### 1)无众数：
+
+]
+
+.right-column[
+
+
+.pull-left[
+
+**a.频次表**：对于地区1（area1）的6条河流，我们可以统计得到不同长度（length）下的河流数（n），得到如下的频次数据表：
+
+```{r}
+mode_river %>%
+  filter(area == "area1") %>%
+  kable( align = "c", caption= "地区1不同长度的河流数量")
+
+```
+
+]
+
+.pull-right[
+
+**b.示意图**：因为每条河流都有不同的长度，出现频次全部等于1。因此，地区1的**河流长度无众数**。
+
+</br>
+
+
+```{r, fig.cap=""}
+include_graphics("../pic/chpt04-mode-non.png", error = F)
+```
+
+]
+
+]
+
+---
+
+## （示例）众数的表现形式：河流长度
+
+.left-column[
+
+### 0)源数据：
+
+### 1)无众数：
+
+### 2)单众数：
+
+]
+
+.right-column[
+
+
+.pull-left[
+
+**a.频次表**：对于地区2（area2）的6条河流，我们可以统计得到不同长度（length）下的河流数（n），得到如下的频次数据表：
+
+</br>
+
+```{r}
+mode_river %>%
+  filter(area == "area2") %>%
+  kable( align = "c", caption= "地区2不同长度的河流数量")
+
+```
+
+]
+
+.pull-right[
+
+**b.示意图**：因为长度为5（百km）出现频次最多（3次）。因此，地区2的**河流长度有1个众数**，且
+$M_{o1}=5$。
+
+</br>
+
+
+```{r, fig.cap=""}
+include_graphics("../pic/chpt04-mode-one.png", error = F)
+```
+
+]
+
+]
+
+---
+
+## （示例）众数的表现形式：河流长度
+
+.left-column[
+
+### 0)源数据：
+
+### 1)无众数：
+
+### 2)单众数：
+
+### 3)多众数：
+
+]
+
+.right-column[
+
+
+.pull-left[
+
+**a.频次表**：对于地区3（area3）的6条河流，我们可以统计得到不同长度（length）下的河流数（n），得到如下的频次数据表：
+
+</br>
+
+```{r}
+mode_river %>%
+  filter(area == "area3") %>%
+  kable( align = "c", caption= "地区3不同长度的河流数量")
+
+```
+
+]
+
+.pull-right[
+
+**b.示意图**：因为长度为28（百km）和42（百km）都出现频次最多（2次）。因此，地区3的**河流长度有2个众数**，且
+$M_{o1}=28;M_{o1}=42$。示意简图如下<sup>1</sup>：
+
+</br>
+
+```{r, fig.cap=""}
+include_graphics("../pic/chpt04-mode-multi.png", error = F)
+```
+
+]
+
+]
+
+???
+
+1.示意图需要调整，两个众数的高点应该一致！
+
+---
+
+## 众数计算：概览
+
+- 对于**单项式分配数列**：观察法，识别频次最多的组。
+
+- 对于**组距式分配数列**：由最多次数来确定众数所在组；利用**比例插值法**推算众数的近似值。
+
+.pull-left[
+
+- 下限插值公式：
+
+$$\begin{equation}
+M_{0}=X_{L}+\frac{\Delta_{1}}{\Delta_{1}+\Delta_{2}} \cdot d
+\end{equation}$$
+
+- 上限插值公式：
+
+$$\begin{equation}
+M_{0}=X_{U} - \frac{\Delta_{2}}{\Delta_{1}+\Delta_{2}} \cdot d
+\end{equation}$$
+
+]
+
+.pull-right[
+
+其中：
+
+- 
+$X_{L}$表示组下限（Lower limits）；
+$X_{U}$表示组上限（Upper limits）；
+
+- 
+$\Delta_{1}$表示众数组与**前一组**的频次之差；
+$\Delta_{2}$表示众数组与**后一组**的频次之差；
+
+- 
+$d$表示众数组的**组距**（width）。
+
+]
+
+---
+
+## 众数计算：组距式数列
+
+.left-column[
+
+### 0)图形示意：
+
+]
+
+.right-column[
+
+.pull-left[
+
+```{r}
+include_graphics("../pic/chpt04-mode-binned1.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r}
+include_graphics("../pic/chpt04-mode-binned2.png", error = FALSE)
+
+```
+]
+
+.pull-left[
+
+- 
+$X_{L}$表示组下限（Lower limits）；
+$X_{U}$表示组上限（Upper limits）；
+- 
+$d$表示众数组的**组距**（width）；
+$x$表示待求解的组距部分。
+
+]
+
+.pull-right[
+- 
+$\Delta_{1}$表示众数组与**前一组**的频次之差；
+$\Delta_{2}$表示众数组与**后一组**的频次之差；
+]
+
+]
+
+---
+
+## 众数计算：组距式数列
+
+.left-column[
+
+### 0)图形示意：
+
+### 1)上限公式：
+
+]
+
+.right-column[
+
+.pull-left[
+
+```{r}
+include_graphics("../pic/chpt04-mode-binned1.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r}
+include_graphics("../pic/chpt04-mode-binned2.png", error = FALSE)
+
+```
+]
+
+
+.pull-left[
+
+给定上限值，则采用**上限插值公式**：
+
+.small[
+$$\begin{equation}
+\Rightarrow \frac{x}{d-x}=\frac{\Delta_{1}}{\Delta_{2}} \Rightarrow x=\frac{\Delta_{1} \cdot d}{\Delta_{1}+\Delta_{2}}  \Rightarrow \mathrm{M}_{0}=X_{4 U}-(d-x)=X_{4 U}-\frac{\Delta_{2} \cdot d}{\Delta_{1}+\Delta_{2}}
+\end{equation}$$
+] 
+
+]
+
+
+]
+
+---
+
+## 众数计算：组距式数列
+
+.left-column[
+
+### 0)图形示意：
+
+### 1)上限公式：
+
+### 2)下限公式：
+
+]
+
+.right-column[
+
+.pull-left[
+
+```{r}
+include_graphics("../pic/chpt04-mode-binned1.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r}
+include_graphics("../pic/chpt04-mode-binned2.png", error = FALSE)
+
+```
+]
+
+
+.pull-left[
+给定下限值，则采用**下限插值公式**：
+.small[
+$$\begin{align}
+\Rightarrow \frac{x}{d-x}=\frac{\Delta_{1}}{\Delta_{2}} \Rightarrow x=\frac{\Delta_{1} \cdot d}{\Delta_{1}+\Delta_{2}}   \Rightarrow \mathrm{M}_{0}=\mathrm{X}_{4 L}+\frac{\Delta_{1} \cdot d}{\Delta_{1}+\Delta_{2}}
+\end{align}$$
+]
+
+]
+
+]
+
+---
+
+## 众数计算：组距式数列（待完成）
+
+```{block, type='notes', echo=T}
+
+待完成：提供组距式数列众数插值公式的演示图。
+
+- 表现相似三角形原理。
+
+- 动态展示，可控制。
+
+possible solutions:
+
+- shinny APP. see [Dynamic data visualization with R](https://lrouviere.github.io/TUTO_DATAVIZ/shiny-web-applications.html)
+
+```
+
+---
+
+## （示例）：众数计算（单项式数列）
+
+```{r}
+brand <-c("果汁","矿泉水","绿茶","其他","碳酸饮料")
+reps <- c(6L, 10L,11L, 8L,15L) 
+
+drink_list <- rep(brand, reps)
+
+drink <- data.frame(brand = drink_list, row.names=NULL)
+
+```
+
+**案例说明**：某饮料便利店一天内不同品牌饮料的销售情况如下表所示。请计算众数是什么？
+
+```{r}
+drink %>%
+  janitor::tabyl(brand) %>%
+  arrange(n) %>%
+  janitor::adorn_totals("row") %>%
+  janitor::adorn_pct_formatting(digits = 0) %>%
+  kable(align = "c", caption = "不同品牌饮料的购买分布") %>%
+  kable_styling(full_width = T)
+```
+
+--
+
+**解答**：这里的变量为“饮料品牌”，这是个**分类变量**（nominal），不同类型的饮料就是变量值。所调查的50人中，购买碳酸饮料的人数最多（15人），占总被调查人数的30%，因此众数为“可口可乐”这一品牌，即：
+$M_0=$碳酸饮料。
+
+---
+
+## （示例）：众数计算（单项式数列）
+
+```{r}
+char <-c("非常不满意","不满意","一般","满意","非常满意")
+reps <- c(24L, 108L,93L, 45L,30L) 
+
+sat_list <- rep(char, reps)
+
+sat <- data.frame(satisfication = sat_list, row.names=NULL) %>%
+  mutate(satisfication = factor(satisfication, levels = char))
+
+```
+
+**案例说明**：甲城市`r length(sat_list)`家庭对住房状况进行评价，数据统计情况如下表所示。请计算众数是什么？
+
+```{r}
+sat_tbl <- sat %>%
+  janitor::tabyl(satisfication) %>%
+  arrange(satisfication) 
+
+sat_tbl %>%
+  janitor::adorn_totals("row") %>%
+  janitor::adorn_pct_formatting(digits = 0) %>%
+  kable(align = "c", caption = "甲城市家庭对住房状况评价分布") %>%
+  kable_styling(full_width = T)
+
+```
+
+
+--
+
+**解答**：这里的变量为“住房状况评价”，这是个**顺序变量**（orderial），不同类型的饮料就是变量值。所调查的300人中，甲城市中对住房表示不满意的户数最多（108户），因此众数为“不满意”这一类别，即：
+$M_0=$碳酸饮料。
+
+---
+
+## （示例）：众数计算（组距式数列）
+
+```{r}
+bins <-c("1000元以下","1000-1500元","1500-2000元","2000-2500元","2500元以上","合计")
+freq <- c(20L, 37L,70L, 43L,30L,200) 
+
+bin_income <- data.frame("收入水平" = bins,
+                    "人数"= freq)
+
+```
+
+**案例说明**：某饮料便利店一天内不同品牌饮料的销售情况如下表所示。请计算众数是什么？
+
+.pull-left[
+
+```{r}
+bin_income %>%
+  kable( align = "c", booktabs= T) %>%
+  kable_styling() %>%
+  row_spec(3, bold = T, color = "white", background = "red")
+
+```
+
+]
+
+.pull-right[
+
+**解题思路**：
+
+- 先观察众数在第三组（“1500-2000”）。
+
+- 再利用插值公式计算。
+
+]
+
+</br>
+
+$$\begin{align}
+\text { 下限公式: } M_{o}&=1500+\frac{70-37}{(70-37)+(70-43)} \times 500=1775(\text { 元 })
+\end{align}$$
+
+$$\begin{align}
+\text { 上限公式: } M_{o}&=2000-\frac{70-43}{(70-37)+(70-43)} \times 500=1775(\text { 元 })
+\end{align}$$
+
+---
+
+## 众数特征：总结1
+
+- 众数是一个位置平均数，它只考虑总体分布中最频繁出现的变量值，而不受各单位标志值的影响，从而增强了对变量数列一般水平的代表性。不受极端值和开口组数列的影响。
+
+- 众数是一个不容易确定的平均指标，当分布数列没有明显的集中趋势而趋均匀分布时，则无众数可言；当变量数列是不等距分组时，众数的位置也不好确定。
+
+---
+
+## 众数特征：总结2
+
+在组距式数列的**插值近似计算**中，众数的确定受相邻两个组频次的影响。
+
+- 若
+$f_{m-1}=f_{m+1}$，则众数取值等于众数组的组中值。
+
+- 若
+$f_{m-1} < f_{m+1}$，则众数取值大于众数组的组中值，从而接近于组上限值。
+
+- 若
+$f_{m-1} > f_{m+1}$，则众数取值小于众数组的组中值，从而接近于组下限值。
+
+---
+
+## 中位数：概念和特征
+
+**中位数（median）** ：排序后处于中间位置上的变量值，一般记为
+$M_e $。
+
+**中位数的特征**：
+
+- 不受极端值的影响
+
+- 主要用于顺序数据，也可用数值型数据，但不能用于分类数据。
+
+- 各变量值与中位数的离差绝对值之和最小，即：
+
+$$\begin{equation}
+\sum_{i=1}^{n}\left|X_{i}-M_{\mathrm{e}}\right|=\min
+\end{equation}$$
+
+---
+
+## 中位数计算：概览
+
+.pull-left[
+
+**情形1**：未分组资料确定中位数；
+
+- 先排序。
+
+- 再确定中位数所在位置。
+
+- 再确定中位数。
+
+]
+
+.pull-right[
+
+**情形2**：分组资料确定中位数；
+
+- 情形2-1:单项式分组数列计算中位数数
+
+    - 计算累积百分比，确定中位数所在组。
+    - 确定中位数。
+
+- 情形2-2:组距式分组数列计算中位数数
+
+    - 计算累积百分比，确定中位数所在组。
+    - （利用插值公式近似）确定中位数。
+]
+
+---
+
+## 中位数计算：未分组资料
+
+第一步：中位数的位置
+$p$的确定。
+
+$$\begin{equation}
+ p = \left\{
+\begin{array}{ll}
+\frac{n+1}{2} & (n \text {为奇数}) \\
+\frac{n}{2}, \frac{n}{2}+1 & (n \text {为偶数})
+\end{array}\right.
+\end{equation}$$
+
+
+第二步：数值的确定。
+
+$$\begin{equation}
+M_{e}=\left\{\begin{array}{ll}
+X_{\left(\frac{n+1}{2}\right)} & (n \text {为奇数}) \\
+\frac{1}{2}\left (X_{\left(\frac{n}{2}\right)}+X_{\left(\frac{n}{2}+1\right)}\right) & (n \text {为偶数 })
+\end{array}\right.
+\end{equation}$$
+
+---
+
+## （示例）：未分组数据计算中位数
+
+**案例说明**：有7名工人生成同种产品，日产量分别为：
+
+```{r}
+output<- c(10,21,12,15,14,19,17)
+names(output) <- paste0("W", 1:length(output))
+
+output2<- c(22,10,21,12,15,14,19,17)
+names(output2) <- paste0("W", 1:length(output2))
+
+```
+
+
+```{r}
+output
+```
+
+
+**解题过程**：我们注意到数据样本量
+$n=$ `r length(output)`，为奇数。
+
+- 对原始数据进行排序（由小到大）：
+
+```{r}
+sort(output)
+p <- (length(output)+1)/2
+```
+
+- 确定中位数的位置
+$p = \frac{7+1}{2}=$ `r p`。
+
+- 因此得到中位数为
+$m_e=$ `r sort(output)[p]`（件）。
+
+---
+
+## （示例）：未分组数据计算中位数
+
+**案例说明**：继续前面案例数据，假设增加另1名工人的日产量数据：
+
+```{r}
+output2
+```
+
+
+**解题过程**：我们注意到数据样本量
+$n=$ `r length(output2)`，为偶数。
+
+- 对原始数据进行排序（由小到大）：
+
+```{r}
+sort(output2)
+p <- (length(output2)+1)/2
+```
+
+- 确定中位数的位置
+$p = \frac{8+1}{2}=$ `r p`。
+
+- 因此得到中位数为
+$m_e=\frac{15+17}{2}$ `r (sort(output2)[ceiling(p)] + sort(output2)[floor(p)])/2`（件）。
+
+---
+
+## 中位数计算：单项式分组数列
+
+主要计算步骤：
+
+- 第一步：先按组顺序，计算累计分布次数（较大制或较小制）。
+
+- 第二步：再确定中位数所在的位置：
+$p= \frac{\sum{f_i}}{2}$。
+
+- 第三步：根据计算的位置，找到该位置所在组，并确定中位数
+$M_e$。
+
+---
+
+## （示例）：单项式数列计算中位数
+
+```{r}
+sat_cumsum <- sat_tbl %>%
+  mutate(cumsum = cumsum(n)) %>%
+  janitor::adorn_totals("row") %>%
+  select(-percent) %>%
+  mutate(cumsum = ifelse(satisfication =="Total", NA, cumsum ))
+
+```
+
+.left-column[
+
+### 1)案例数据：
+
+]
+
+.right-column[
+
+**案例说明**：甲城市`r length(sat_list)`家庭对住房状况进行评价，评价（satisfication）采用五分制里克特量表，人数分布的统计情况如下左表所示。请计算中位数是什么？
+
+
+```{r, chunk-sat-tbl}
+sat_cumsum %>%
+  select(-cumsum ) %>%
+  kable(align = "c", booktabs =T) %>%
+  kable_styling(full_width = T) %>%
+  row_spec(c(0,6), bold = T, color = "black", background = "gray")
+```
+
+]
+
+---
+
+## （示例）：单项式数列计算中位数
+
+.left-column[
+
+### 1)案例数据：
+
+### 2)分析过程：
+
+]
+
+.right-column[
+
+
+.pull-left[
+
+```{r, chunk-sat-cumsum}
+sat_cumsum %>%
+  #select(-cumsum ) %>%
+  kable(align = "c", booktabs =T) %>%
+  kable_styling(full_width = T) %>%
+  row_spec(c(0,6), bold = T, color = "black", background = "gray")
+```
+
+]
+
+.pull-right[
+
+**解题思路**：
+
+- 首先计算并得到累计频数（cumsum，较小制<sup>*</sup>）（见左）。
+
+- 然后计算中位数的位置
+$p= \frac{300+1}{2}=150.5$
+
+- 根据累计频数观察得到中位数为：
+$M_e=$**“一般”**。
+
+]
+
+]
+
+.footnote[.red[**思考**]：<sup>*</sup> 大家可以练习使用较大制方法累计频次。]
+
+---
+
+## （示例）：单项式数列计算中位数
+
+```{r}
+worker_tbl <- tibble(output = 5:10,
+       workers = c(8,12,19,35,25,6))
+
+worker_cumsum <- worker_tbl %>% 
+  add_column(group = paste0("G", 1:nrow(.)), .before = "output")%>%
+  mutate(cumsum = cumsum(workers)) %>%
+  janitor::adorn_totals("row") %>%
+  mutate(cumsum = ifelse(group =="Total", NA, cumsum ))
+
+n <- sum(worker_tbl$workers)
+```
+
+.left-column[
+
+### 1)案例数据：
+
+]
+
+.right-column[
+
+**案例说明**：某工厂共有`r n`个工人，全体工人的日产量（output）经过分组统计后（
+$G1 \sim G6$），各组工人人数（workers）的数据如下表所示。请计算中位数是什么？
+
+
+```{r}
+worker_cumsum %>%
+  select(-cumsum ) %>%
+  kable(align = "c") %>%
+  kable_styling() %>%
+  row_spec(c(0,7), bold = T, color = "white", background = "gray")
+```
+
+]
+
+---
+
+## （示例）：单项式数列计算中位数
+
+.left-column[
+
+### 1)案例数据：
+
+### 2)分析过程：
+
+]
+
+.right-column[
+
+
+.pull-left[
+
+```{r}
+worker_cumsum %>%
+  kable(align = "c") %>%
+  kable_styling() %>%
+  row_spec(4, bold = T, color = "white", background = "red") %>%
+  row_spec(c(0,7), bold = T, color = "white", background = "gray")
+```
+
+]
+
+.pull-right[
+
+**解题思路**：
+
+- 首先计算并得到累计频数（cumsum，较小制<sup>*</sup>）（见左）。
+
+- 然后计算中位数的位置
+$p= \frac{(\sum{f_i}+1)}{2}=\frac{105+1}{2}=53$，根据累计频数观察得到中位数位置为
+$p =$第4组（日产量=8）。
+
+- 根据中位数所在位置，得到中位数为：
+$M_e=8$（件）。
+
+
+]
+
+]
+
+.footnote[.red[**思考**]：<sup>*</sup> 大家可以练习使用较大制方法累计频次。]
+
+---
+
+## 中位数计算：组距式分组数列
+
+主要计算步骤：
+
+- 第一步：先按组顺序，计算累计分布次数（较大制或较小制）。
+
+- 第二步：再确定中位数所在的位置：
+$p= \frac{\sum{f_i}}{2}$。
+
+- 第三步：根据计算的位置，找到该位置所在组，初步确定中位数
+$M_{e1}$。
+
+- 第四步：利用合适的**插值公式**，近似计算得到更为“精确”的中位数数值
+$M_{e2}$。
+
+---
+
+## （演示）中位数计算：较小制下限插值公式
+
+.pull-left[
+
+```{r}
+include_graphics("../pic/chpt04-median-binned-min-tbl.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r, out.height='260px'}
+include_graphics("../pic/chpt04-median-binned-min-lower.png", error = FALSE)
+
+```
+]
+
+
+.red[较小制]且给定.red[下限值]时的**相关定义**：
+
+- 
+$X_{L}$表示组下限（Lower limits）；
+$X_{U}$表示组上限（Upper limits）。
+
+- 
+$d$表示众数组的**组距**（width）；
+$x$表示待求解的组距部分。
+
+- 
+$f_{m}$表示中位数组的频次,
+$S_{m-1}$表示中位数所在组的**前一组**的**较小累计频次**；
+$y$表示与
+$x$宽度相对应频次。
+
+---
+
+## （演示）中位数计算：较小制下限插值公式
+
+.pull-left[
+
+```{r}
+include_graphics("../pic/chpt04-median-binned-min-tbl.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r, out.height='260px'}
+include_graphics("../pic/chpt04-median-binned-min-lower.png", error = FALSE)
+
+```
+]
+
+较小制给定下限值时，则采用**.blue[较小制下限]公式**
+$(Min, Lower)$：
+
+$$\begin{equation}
+\frac{x}{d} = \frac{\left(\sum{f_i}/{2}-S_{m-1}\right)}{f_m} \quad 
+\Rightarrow  \quad
+M_{eL}=X_{L}+ x \\ 
+M_{eL}= X_{L}+\frac{\frac{\sum f}{2}-S_{m-1}}{f_{m}} \cdot d
+\end{equation}$$
+
+---
+
+## （演示）中位数计算：较小制上限插值公式
+
+.pull-left[
+
+```{r}
+include_graphics("../pic/chpt04-median-binned-min-tbl.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r, out.height='260px'}
+include_graphics("../pic/chpt04-median-binned-min-upper.png", error = FALSE)
+
+```
+
+]
+
+.red[较小制]且给定.red[上限值]时的**相关定义**：
+
+- 
+$X_{L}$表示组下限（Lower limits）；
+$X_{U}$表示组上限（Upper limits）。
+
+- 
+$d$表示众数组的**组距**（width）；
+$x$表示待求解的组距部分。
+
+- 
+$f_{m}$表示中位数组的频次,
+$S_{m}$表示中位数所在组的**较小累计频次**；
+$y$表示与
+$x$宽度相对应频次。
+
+---
+
+## （演示）中位数计算：较小制上限插值公式
+
+.pull-left[
+
+```{r}
+include_graphics("../pic/chpt04-median-binned-min-tbl.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r, out.height='260px'}
+include_graphics("../pic/chpt04-median-binned-min-upper.png", error = FALSE)
+
+```
+]
+
+较小制给定下限值时，则采用**.red[较小制上限]公式**
+$(Min, Upper)$：
+
+$$\begin{equation}
+\frac{x}{d} = \frac{\left(S_{m} - \sum{f_i}/{2}\right)}{f_m} \quad 
+\Rightarrow  \quad
+M_{eU}=X_{U} -x \\
+M_{eU}=X_{U} -\frac{S_{m} - \frac{\sum f}{2}}{f_{m}} \cdot d
+\end{equation}$$
+
+---
+
+## （演示）中位数计算：较大制下限插值公式
+
+.pull-left[
+
+```{r}
+include_graphics("../pic/chpt04-median-binned-max-tbl.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r, out.height='260px'}
+include_graphics("../pic/chpt04-median-binned-max-lower.png", error = FALSE)
+
+```
+]
+
+
+.red[较大制]且给定.red[下限值]时的**相关定义**：
+
+- 
+$X_{L}$表示组下限（Lower limits）；
+$X_{U}$表示组上限（Upper limits）。
+
+- 
+$d$表示众数组的**组距**（width）；
+$x$表示待求解的组距部分。
+
+- 
+$f_{m}$表示中位数组的频次,
+$S_{m}$表示中位数所在组的**较大累计频次**；
+$y$表示与
+$x$宽度相对应频次。
+
+---
+
+## （演示）中位数计算：大小制下限插值公式
+
+.pull-left[
+
+```{r}
+include_graphics("../pic/chpt04-median-binned-max-tbl.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r, out.height='260px'}
+include_graphics("../pic/chpt04-median-binned-max-lower.png", error = FALSE)
+
+```
+]
+
+较大制给定下限值时，则采用**.blue[较大制下限]公式**
+$(Max, Lower)$：
+
+$$\begin{equation}
+\frac{x}{d} = \frac{\left(S_{m}- \sum{f_i}/{2}\right)}{f_m} \quad 
+\Rightarrow  \quad
+M_{eL}=X_{L}+ x \\ 
+M_{eL}= X_{L}+\frac{S_{m} -\frac{\sum f}{2}}{f_{m}} \cdot d
+\end{equation}$$
+
+---
+
+## （演示）中位数计算：较大制上限插值公式
+
+.pull-left[
+
+```{r}
+include_graphics("../pic/chpt04-median-binned-max-tbl.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r, out.height='260px'}
+include_graphics("../pic/chpt04-median-binned-max-upper.png", error = FALSE)
+
+```
+
+]
+
+.red[较大制]且给定.red[上限值]时的**相关定义**：
+
+- 
+$X_{L}$表示组下限（Lower limits）；
+$X_{U}$表示组上限（Upper limits）。
+
+- 
+$d$表示众数组的**组距**（width）；
+$x$表示待求解的组距部分。
+
+- 
+$f_{m}$表示中位数组的频次,
+$S_{m+1}$表示中位数所在组的**后一组**的**较小累计频次**；
+$y$表示与
+$x$宽度相对应频次。
+
+---
+
+## （演示）中位数计算：较大制上限插值公式
+
+.pull-left[
+
+```{r}
+include_graphics("../pic/chpt04-median-binned-max-tbl.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r, out.height='260px'}
+include_graphics("../pic/chpt04-median-binned-max-upper.png", error = FALSE)
+
+```
+]
+
+较大制给定上限值时，则采用**.red[较大制上限]公式**
+$(Max, Upper)$：
+
+$$\begin{equation}
+\frac{x}{d} = \frac{\left( \sum{f_i}/{2} -S_{m+1} \right)}{f_m} \quad 
+\Rightarrow  \quad
+M_{eU}=X_{U} -x \\
+M_{eU}=X_{U} -\frac{\frac{\sum f}{2} -S_{m+1} }{f_{m}} \cdot d
+\end{equation}$$
+
+---
+
+## （示例）组距式分配数列中位数计算
+
+```{r}
+# give data set and useful statistics
+bins <- c("60Kg以下",
+          stringr::str_c(seq(60,100,10), "-", seq(70,110, 10),"Kg"), 
+          "110Kg以上")
+reps <- c(10, 19, 50, 36, 27, 14, 8)
+
+me_workers <- tibble(X = bins, n = reps) %>% 
+  mutate(X = factor(X, levels = bins)) %>%
+  add_column(groups = str_c("G",1:nrow(.)), .before = "X")
+
+n <- sum(me_workers$n)
+
+min_workers <- me_workers %>%
+  mutate(cumsum = cumsum(n)) %>%
+  janitor::adorn_totals("row") %>%
+  mutate(cumsum = ifelse(groups =="Total", NA, cumsum ))
+ 
+max_workers <- me_workers %>%
+  arrange(desc(X)) %>%
+  mutate(cumsum = cumsum(n)) %>% 
+  arrange(X) %>%
+  janitor::adorn_totals("row") %>%
+  mutate(cumsum = ifelse(groups =="Total", NA, cumsum ))
+
+```
+
+**案例说明**：某工厂共有`r n`个工人，全体工人的日产量（X）经过分组统计后（
+$G1 \sim G7$），各组工人人数（n）的分布数据如下表所示。请计算中位数是什么？
+
+```{r}
+me_workers %>%
+  janitor::adorn_totals("row") %>%
+  kable(align = "c", booktabs = T) %>%
+  kable_styling(full_width = T) %>%
+  row_spec(c(0,8), bold = T, color = "white", background = "gray")
+```
+
+---
+
+## （示例）较小制情形下中位数计算：粗略结果
+
+.pull-left[
+
+```{r, chunk-mincum}
+min_workers %>%
+  kable(align = "c") %>%
+  kable_styling() %>%
+  row_spec(4, bold = T, color = "white", background = "red") %>%
+  row_spec(c(0,8), bold = T, color = "white", background = "gray")
+
+```
+
+]
+
+
+.pull-right[
+
+**解题思路**：
+
+- 首先计算并得到**较小制累计频次表**<sup>*</sup>（cumsum）（见左）。
+
+- 然后计算中位数的位置
+$p= \frac{(\sum{f_i})}{2}=\frac{164}{2}=82$，根据累计频数观察得到中位数位置为
+$p =4$， 也即第G4组（日产量80-90Kg）。
+
+- 根据中位数所在位置，初步得到中位数为：
+$M_e=$"80-90Kg"。
+
+]
+
+
+
+---
+
+## （示例）较小制情形下中位数计算：插值公式结果
+
+.pull-left[
+
+```{r, ref.label='chunk-mincum'}
+# refer chunk for exist table
+```
+
+]
+
+.pull-right[
+
+- **较小制下限插值公式**计算结果：
+
+$$\begin{align}
+M_{eL}&=X_{L}+\frac{\frac{\sum f}{2}-S_{m-1}}{f_{m}} \cdot d \\
+& =80+\frac{82-79}{36} * 10 \\
+& =80.8333
+\end{align}$$
+
+- **较小制上限插值公式**计算结果：
+
+$$\begin{align}
+M_{eU}
+&=X_{U}-\frac{S_{m}-\frac{\sum f}{2}}{f_{m}} \cdot d \\
+&=90-\frac{115-82}{36} * 10 \\
+&=80.8333
+\end{align}$$
+
+]
+
+---
+
+## （示例）较大制情形下中位数计算：粗略结果
+
+.pull-left[
+
+```{r, chunk-maxcum}
+max_workers %>%
+  kable(align = "c") %>%
+  kable_styling() %>%
+  row_spec(4, bold = T, color = "white", background = "red") %>%
+  row_spec(c(0,8), bold = T, color = "white", background = "gray")
+```
+
+]
+
+
+.pull-right[
+
+**解题思路**：
+
+- 首先计算并得到**较小制累计频次表**<sup>*</sup>（cumsum）（见左）。
+
+- 然后计算中位数的位置
+$p= \frac{(\sum{f_i})}{2}=\frac{164}{2}=82$，根据累计频数观察得到中位数位置为
+$p =4$， 也即第G4组（日产量80-90Kg）。
+
+- 根据中位数所在位置，初步得到中位数为：
+$M_e=$"80-90Kg"。
+
+]
+
+---
+
+## （示例）较大制情形下中位数计算：插值公式结果
+
+.pull-left[
+
+```{r, ref.label='chunk-maxcum'}
+# refer chunk for exist table
+```
+
+]
+
+.pull-right[
+
+- **较大制下限插值公式**计算结果：
+
+$$\begin{align}
+M_{eU}&=X_{L}+\frac{S_{m} -\frac{\sum f}{2}}{f_{m}} \cdot d \\
+& =80+\frac{85-82}{36} * 10 \\
+& =80.8333
+\end{align}$$
+
+- **较大制上限插值公式**计算结果：
+
+$$\begin{align}
+M_{eU}
+&=X_{U}-\frac{\frac{\sum f}{2} - S_{m+1}}{f_{m}} \cdot d \\
+&=90-\frac{82-49}{36} * 10 \\
+&=80.8333
+\end{align}$$
+
+]
+
+---
+
+## 中位数特征：总结1
+
+- 中位数不受极端值及开口组的影响，具有稳健性。
+
+- 各单位标志值与中位数离差的绝对值之和是个最小值。
+
+$$\begin{equation}
+\sum\left|X-M_{e}\right|=\min ;\quad or \quad 
+\sum{\left|X-M_{e}\right|f_i}=\min
+\end{equation}$$
+
+- 对某些不具有数学特点或不能用数字测定的现象，可用中位数求其一般水平。
+
+---
+
+## 中位数特征：总结2
+
+中位数数值
+$M_e$受到中位数所在组的**较小累计频次**
+$S_{(m,Min)}$及**较大累计频次**
+$S_{(m,Max)}$数值大小的共同影响。
+
+- 若
+$S_{(m,Min)} = S_{(m,Max)}$，则中位数所在组的**组中值**等于插值近似计算值，也即：
+
+$$M_e = M_{eL}= M_{eU}= \frac{X_U +X_L}{2}$$
+
+- 若
+$S_{(m,Min)} < S_{(m,Max)}$，则插值近似计算值更加接近于中位数所在组的**组上限**值，也即：
+
+$$M_e = M_{eL}= M_{eU}  \ll X_U$$
+
+- 若
+$S_{(m,Min)} > S_{(m,Max)}$，则插值近似计算值更加接近于中位数所在组的**组下限**值，也即：
+
+$$M_e = M_{eL}= M_{eU}  \gg X_L$$
+
+> 在前面例子中，累积频次分别为
+$S_{(m,Min)} = 115,S_{(m,Max)=85}$，而中位数所在组为第4组（G4，"80-90Kg"），改组的组中值
+$\frac{X_U +X_L}{2}= \frac{80+90}{2} =85$。因此插值公式得到的中位数近似值（80.8333）会小于组中值（85），而更接近改组的下限值（80）。
+
+---
+
+## 四分位数：概念和特征
+
+**四分位数（Quartile）**：排序后处于25%和75%位置上的值，包括四分之一位数（
+$Q_1$）和四分之三位数（
+$Q_3$）。
+
+**四分位数的特征**：
+
+- 不受极端值的影响。
+
+---
+
+## 四分位数：计算方法
+
+.pull-left[
+
+**情形1**：未分组资料确定分位数；
+
+- 先排序。
+
+- 再确定1/4和3/4分割点位置。
+
+- 再确定两个分位数
+$Q_1$和$Q_3$。
+
+]
+
+.pull-right[
+
+**情形2**：分组资料确定分位数；
+
+- 情形2-1:单项式分组数列计算中位数数
+
+    - 确定1/4和3/4分割点位置。
+    - 再确定两个分位数
+$Q_1$和$Q_3$。
+
+- 情形2-2:组距式分组数列计算分位数
+
+    - 计算累积频次，确定1/4和3/4分割点位置。
+    - 初步确定两个分位数（所在组）$Q_1$和$Q_3$。
+    - 最后（利用插值公式近似）相对“精确地”估算两个分位数
+$Q_1$和$Q_3$。
+]
+
+---
+
+## 四分位数计算：未分组资料
+
+未分组资料的四分位数计算，主要步骤如下：
+
+**第一步**：将总体各单位的标志值按大小顺序排列/或分组排序。
+
+**第二步**：确定1/4和3/4分割点位置
+$p_1$和
+$p_3$。
+
+$$\begin{equation}
+ p_1 = \frac{n+1}{4} ; \quad
+p_3 = \frac{3(n+1)}{4} 
+\end{equation}$$
+
+**第三步**：确定两个分位数
+$Q_1$和
+$Q_3$。
+
+- 若
+$\frac{n+1}{4}$为整数，则
+$p_1$和
+$p_3$分割点位置对应的分组标志值则分别为对应的四分位数$Q_1$和
+$Q_3$。
+
+- 若
+$\frac{n+1}{4}$不是整数，则
+要用分割点位置对应的两个相邻组近似计算（加权算术平均数）相应的分位数
+$Q_1$和
+$Q_3$。
+
+---
+
+## （示例）：未分组数据计算分位数
+
+**案例说明**：有11名工人生成同种产品，日产量分别为：
+
+```{r}
+output<- c(2,7,5,6,8,12,9,10,16,15,20)
+names(output) <- paste0("W", 1:length(output))
+
+output2<- c(22,2,7,5,6,8,12,9,10,16,15,20)
+names(output2) <- paste0("W", 1:length(output2))
+
+```
+
+
+```{r}
+output
+```
+
+
+**解题过程**：我们注意到数据样本量
+$(n+1)/4=$ `r (length(output)+1)/4`，为整数。
+
+- 对原始数据进行排序（由小到大）：
+
+```{r}
+sort(output)
+p <- (length(output)+1)/2
+```
+
+- 再确定分位数的位置，其中且
+分割点为：
+$p_1 =(n+1)/4= (11+1)/4= 3$和
+$p_3 =3*(n+1)/4=3*(11+1)/4= 9$。
+
+- 因此得到分位数分别为
+$Q_1=$ `r sort(output)[3]`（件）和
+$Q_3=$ `r sort(output)[9]`（件）。
+
+---
+
+## （示例）：未分组数据计算中位数
+
+**案例说明**：继续前面案例数据，假设增加另1名工人的日产量数据：
+
+```{r}
+output2
+```
+
+
+**解题过程**：我们注意到数据样本量
+$(n+1)/4=$ `r (length(output)+1)/4`，不是整数。
+
+- 对原始数据进行排序（由小到大）：
+
+```{r}
+sort(output2)
+p <- (length(output2)+1)/2
+```
+
+- 再确定分位数的位置，其中且
+分割点为：
+$p_1 =(n+1)/4= (11+1)/4= 3.25$和
+$p_3 =3*(n+1)/4=3*(11+1)/4= 9.75$。
+
+- 因此得到分位数分别为
+$Q_1=(6+7)/2=6.5$（件）和
+$Q_3=(15+16)/2=15.5$（件）。
+
+---
+
+## 四分位数计算：单项式数列
+
+单项式数列的四分位数计算，主要步骤如下：
+
+**第一步**：计算累计频次表。
+
+**第二步**：确定1/4和3/4分割点位置
+$p_1 =\frac{\sum{f_i}}{4}$和
+$p_3 =\frac{3\sum{f_i}}{4}$。
+
+
+**第三步**：观察比较分割点位置和累计频次，确定得到两个分位数
+$Q_1$和
+$Q_3$。
+
+
+---
+
+## （示例）：单项式数列计算四分位数
+
+**案例说明**：继续前面**甲城市家庭住房评价案例**数据，请你计算出相应的两个四分位数？
+
+.pull-left[
+
+```{r}
+sat_cumsum %>%
+  #select(-cumsum ) %>%
+  kable(align = "c", caption = "甲城市住房满意度评价统计表") %>%
+  kable_styling() %>%
+  row_spec(c(0,6), bold = T, color = "black", background = "gray") %>%
+  row_spec(2, bold = T, color = "white", background = "orange") %>%
+  row_spec(3, bold = T, color = "white", background = "red") 
+
+```
+
+]
+
+.pull-right[
+
+**解题过程**：
+
+- 计算累计频次表（见左）。
+
+- 确定分位数的位置，其中且
+分割点为：
+$p_1 =\frac{\sum{f_i}}{4}= \frac{300}{4}=75$和
+$p_3 =\frac{3\sum{f_i}}{4}= \frac{3*300}{4}=225$。
+
+- 观察累计频次，得到分位数分别为
+$Q_1=$“不满意”（第二组）和
+$Q_3=$“一般”（第三组）。
+
+]
+
+---
+
+## 四分位数计算：组距式数列
+
+组距式数列的四分位数计算，主要步骤如下：
+
+- **第一步**：先按组顺序，计算累计分布次数（较大制或较小制）。
+
+- **第二步**：再确定1/4和3/4分割点位置
+$p_1 =\frac{\sum{f_i}}{4}$和
+$p_3 =\frac{3\sum{f_i}}{4}$。
+
+- **第三步**：根据计算的位置，找到该分割点位置所在组，初步确定四分位数
+$Q_1$和
+$Q_3$。
+
+- **第四步**：利用合适的**插值公式**，近似计算得到更为“精确”的中位数数值
+$Q_1$和
+$Q_3$。
+
+---
+
+## （演示）分位数计算：较小制下限插值公式(定义)
+
+.pull-left[
+
+```{r, chunk-quatile-min-tbl, out.height='260px'}
+include_graphics("../pic/chpt04-quatile-binned-min-tbl.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r, chunk-quatile-min-lower,out.height='260px'}
+include_graphics("../pic/chpt04-quatile-binned-min-lower.png", error = FALSE)
+
+```
+
+]
+
+
+- 
+$Q_{j}$表示四分位数，其中
+$j \in 1,3$。
+$X_{Q_jL}$表示组下限（Lower limits）；
+$X_{Q_jU}$表示组上限（Upper limits）。
+$d_{Q_j}$表示分位数组的**组距**（width）；
+$x_j$表示待求解的组距部分。
+- 
+$f_{i}$表示各组所对应的频次，其中
+$i \in 1,2,\cdots,5$。
+$f_{Q_j}$表示分位数组的频次
+$p_j$表示1/4或3/4分割位置，其中：
+$p_1=\frac{\sum{f_i}}{4}$，
+$p_3=\frac{3\sum{f_i}}{4}$。
+- 
+$S_{Q_j-1}$表示相应分位数所在组的**前一组**的**较小累计频次**；
+$y_j$表示与
+$x_j$宽度相对应频次。
+
+---
+
+## （演示）分位数计算：较小制下限插值公式(Q1)
+
+.pull-left[
+
+```{r, ref.label='chunk-quatile-min-tbl', out.height='260px'}
+# ref chunk
+```
+
+]
+
+.pull-right[
+
+```{r, ref.label='chunk-quatile-min-lower', out.height='260px'}
+# ref chunk
+```
+
+]
+
+
+- **四分之一位数**的较小制下限插值公式：
+
+$$\begin{align}
+\frac{x_1}{d_{Q_1}} = \frac{y_1}{f_{Q_1}}
+=\frac{p_1-S_{Q_1-1}}{f_{Q_1}} 
+\quad \Rightarrow \quad
+Q_{1L}=X_{\mathrm{Q}_{1} L}+\frac{\frac{\sum f_i}{4}-S_{Q_{1}-1}}{f_{Q_1}} \cdot d_{Q_1}
+\end{align}$$
+
+---
+
+## （演示）分位数计算：较小制下限插值公式(Q3)
+
+.pull-left[
+
+```{r, ref.label='chunk-quatile-min-tbl', out.height='260px'}
+# ref chunk
+```
+
+]
+
+.pull-right[
+
+```{r, ref.label='chunk-quatile-min-lower', out.height='260px'}
+# ref chunk
+```
+
+]
+
+- **四分之三位数**的较小制下限插值公式：
+
+$$\begin{align}
+\frac{x_3}{d_{Q_3}} = \frac{y_3}{f_{Q_3}}
+=\frac{p_3-S_{Q_3-1}}{f_{Q_3}} 
+\quad \Rightarrow \quad
+Q_{3L}=X_{\mathrm{Q}_{3} L}+\frac{\frac{3\sum f_i}{4}-S_{Q_{3}-1}}{f_{Q_3}} \cdot d_{Q_3}
+\end{align}$$
+
+---
+
+## （示例）较小制分位数计算：粗略结果
+
+.pull-left[
+
+```{r, case-quatile-mincum-raw}
+min_workers %>%
+  kable(align = "c", caption = "较小制累计频次表") %>%
+  kable_styling() %>%
+  row_spec(c(0,8), bold = T, color = "white", background = "gray") %>%
+  row_spec(3, bold = T, color = "white", background = "orange") %>%
+  row_spec(5, bold = T, color = "white", background = "red") 
+
+```
+
+]
+
+
+.pull-right[
+
+**解题思路**：
+
+- 首先计算并得到**较小制累计频次表**（cumsum）（见左）。
+
+- 然后计算分位数分割位置
+$p_1= \frac{\sum{f_i}}{4}=\frac{164}{4}=41$，
+$p_3= \frac{3\sum{f_i}}{4}=\frac{3*164}{4}=123$。
+
+- 对照分位数的位置
+$p_j$和较小累计频数，初步得到分位数：
+$Q_1 =$"70-80Kg"（G3组）；
+$Q_3 =$"90-100Kg"（G5组）。
+
+]
+
+
+
+---
+
+## （示例）较小制分位数计算：下限插值公式
+
+.pull-left[
+
+```{r, ref.label='case-quatile-mincum-raw'}
+# refer chunk for exist table
+```
+
+]
+
+.pull-right[
+
+- 四分之一位数**较小制下限公式**计算结果：
+
+$$\begin{align}
+Q_{1L} 
+&=X_{\mathrm{Q}_{1} L}+\frac{\frac{\sum f_i}{4}-S_{Q_{1}-1}}{f_{Q_1}} \cdot d_{Q_1} \\
+&= 70+\frac{\frac{164}{4}-29}{50} \times 10=72.4
+\end{align}$$
+
+- 四分之三位数**较小制下限公式**计算结果：
+
+$$\begin{align}
+Q_{3L}
+&=X_{\mathrm{Q}_{3} L}+\frac{\frac{3\sum f_i}{4}-S_{Q_{3}-1}}{f_{Q_3}} \cdot d_{Q_3} \\
+&=90+\frac{3 \times \frac{164}{4}-115}{27} \times 10=92.96 
+\end{align}$$
+
+]
+
+**含义**：两个分位数之差，即为**四分位差**（QD）：
+$\mathbf{QD} =Q_{3}-Q_{1} =92.96-72.4 =20.56$。这**表明**：有一半工人的日产量分布在70.4
+$\sim$ 92.96之间，他们的最大差异为20.56Kg。
+
+---
+
+## （演示）分位数计算：较小制上限插值公式(定义)
+
+.pull-left[
+
+```{r, ref.label='chunk-quatile-min-tbl', out.height='260px'}
+#ref chunk
+```
+
+]
+
+.pull-right[
+
+```{r, chunk-quatile-min-upper,out.height='260px'}
+include_graphics("../pic/chpt04-quatile-binned-min-upper.png", error = FALSE)
+
+```
+
+]
+
+- 
+$Q_{j}$表示四分位数，其中
+$j \in 1,3$。
+$X_{Q_jL}$表示组下限（Lower limits）；
+$X_{Q_jU}$表示组上限（Upper limits）。
+$d_{Q_j}$表示分位数组的**组距**（width）；
+$x_j$表示待求解的组距部分。
+- 
+$f_{i}$表示各组所对应的频次，其中
+$i \in 1,2,\cdots,5$。
+$f_{Q_j}$表示分位数组的频次。
+$p_j$表示1/4或3/4分割位置，其中：
+$p_1=\frac{\sum{f_i}}{4}$，
+$p_3=\frac{3\sum{f_i}}{4}$。
+- 
+$S_{Q_j}$表示相应分位数所在组的**较小累计频次**；
+$y_j$表示与
+$x_j$宽度相对应频次。
+
+---
+
+## （演示）分位数计算：较小制上限插值公式(Q1)
+
+.pull-left[
+
+```{r, ref.label='chunk-quatile-min-tbl', out.height='260px'}
+# ref chunk
+```
+
+]
+
+.pull-right[
+
+```{r, ref.label='chunk-quatile-min-upper', out.height='260px'}
+# ref chunk
+```
+
+]
+
+
+- **四分之一位数**的较小制上限插值公式：
+
+$$\begin{align}
+\frac{x_1}{d_{Q_1}} = \frac{y_1}{f_{Q_1}}
+=\frac{S_{Q_1}-p_1}{f_{Q_1}} 
+\quad \Rightarrow \quad
+Q_{1U}=X_{\mathrm{Q}_{1} U} - \frac{S_{Q_{1}}-\frac{\sum f_i}{4}}{f_{Q_1}} \cdot d_{Q_1}
+\end{align}$$
+
+---
+
+## （演示）分位数计算：较小制上限插值公式(Q3)
+
+.pull-left[
+
+```{r, ref.label='chunk-quatile-min-tbl', out.height='260px'}
+# ref chunk
+```
+
+]
+
+.pull-right[
+
+```{r, ref.label='chunk-quatile-min-upper', out.height='260px'}
+# ref chunk
+```
+
+]
+
+- **四分之三位数**的较小制上限插值公式：
+
+$$\begin{align}
+\frac{x_3}{d_{Q_3}} = \frac{y_3}{f_{Q_3}}
+=\frac{S_{Q_3}-p_3}{f_{Q_3}} 
+\quad \Rightarrow \quad
+Q_{3U}=X_{\mathrm{Q}_{3}U} -\frac{S_{Q_3}- \frac{3\sum f_i}{4}}{f_{Q_3}} \cdot d_{Q_3}
+\end{align}$$
+
+---
+
+## （示例）较小制分位数计算：上限插值公式
+
+.pull-left[
+
+```{r, ref.label='case-quatile-mincum-raw'}
+# refer chunk for exist table
+```
+
+]
+
+.pull-right[
+
+- 四分之一位数**较小制.red[上限]公式**计算结果：
+
+$$\begin{align}
+Q_{1L}&=X_{\mathrm{Q}_{1} U} - \frac{S_{Q_{1}}-\frac{\sum f_i}{4}}{f_{Q_1}} \cdot d_{Q_1} \\
+&=80-\frac{79-\frac{164}{4}}{50} \times 10=72.4 
+\end{align}$$
+
+- 四分之三位数**较小制.red[上限]公式**计算结果：
+
+$$\begin{align}
+Q_{3U}
+&=X_{\mathrm{Q}_{3}U} -\frac{S_{Q_3}- \frac{3\sum f_i}{4}}{f_{Q_3}} \cdot d_{Q_3}\\
+&=100-\frac{142-\frac{3 \times 164}{4}}{27} \times 10=92.96 
+\end{align}$$
+
+]
+
+**含义**：两个分位数之差，即为**四分位差**（QD）：
+$\mathbf{QD} =Q_{3}-Q_{1} =92.96-72.4 =20.56$。这**表明**：有一半工人的日产量分布在70.4
+$\sim$ 92.96之间，他们的最大差异为20.56Kg。
+
+---
+
+## （演示）分位数计算：较大制下限插值公式(定义)
+
+.pull-left[
+
+```{r, chunk-quatile-max-tbl, out.height='260px'}
+include_graphics("../pic/chpt04-quatile-binned-max-tbl.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r, chunk-quatile-max-lower,out.height='260px'}
+include_graphics("../pic/chpt04-quatile-binned-max-lower.png", error = FALSE)
+
+```
+
+]
+
+
+- 
+$Q_{j}$表示四分位数，其中
+$j \in 1,3$。
+$X_{Q_jL}$表示组下限（Lower limits）；
+$X_{Q_jU}$表示组上限（Upper limits）。
+$d_{Q_j}$表示分位数组的**组距**（width）；
+$x_j$表示待求解的组距部分。
+- 
+$f_{i}$表示各组所对应的频次，其中
+$i \in 1,2,\cdots,5$。
+$f_{Q_j}$表示分位数组的频次
+$p_j$表示1/4或3/4分割位置，其中：
+$p_1=\frac{\sum{f_i}}{4}$，
+$p_3=\frac{3\sum{f_i}}{4}$。
+- 
+$S_{Q_j}$表示相应分位数所在组的**较大累计频次**；
+$y_j$表示与
+$x_j$宽度相对应频次。
+
+---
+
+## （演示）分位数计算：较大制下限插值公式(Q1)
+
+.pull-left[
+
+```{r, ref.label='chunk-quatile-max-tbl', out.height='260px'}
+# ref chunk
+```
+
+]
+
+.pull-right[
+
+```{r, ref.label='chunk-quatile-max-lower', out.height='260px'}
+# ref chunk
+```
+
+]
+
+
+- **四分之一位数**的较大制下限插值公式：
+
+$$\begin{align}
+\frac{x_1}{d_{Q_1}} = \frac{y_1}{f_{Q_1}}
+=\frac{S_{Q_1} - p_3}{f_{Q_1}} 
+\quad \Rightarrow \quad
+Q_{1L}=X_{\mathrm{Q}_{1} L}+\frac{S_{Q_1}- \frac{3\sum f_i}{4}}{f_{Q_1}} \cdot d_{Q_1}
+\end{align}$$
+
+---
+
+## （演示）分位数计算：较大制下限插值公式(Q3)
+
+.pull-left[
+
+```{r, ref.label='chunk-quatile-max-tbl', out.height='260px'}
+# ref chunk
+```
+
+]
+
+.pull-right[
+
+```{r, ref.label='chunk-quatile-max-lower', out.height='260px'}
+# ref chunk
+```
+
+]
+
+- **四分之三位数**的较大制下限插值公式：
+
+$$\begin{align}
+\frac{x_3}{d_{Q_3}} = \frac{y_3}{f_{Q_3}}
+=\frac{S_{Q_3}- p_1}{f_{Q_3}} 
+\quad \Rightarrow \quad
+Q_{3L}=X_{\mathrm{Q}_{3} L}+\frac{S_{Q_3} -\frac{\sum f_i}{4}}{f_{Q_3}} \cdot d_{Q_3}
+\end{align}$$
+
+---
+
+## （示例）较大制分位数计算：粗略结果
+
+.pull-left[
+
+```{r, case-quatile-maxcum-raw}
+max_workers %>%
+  kable(align = "c", caption = "较大制累计频次表") %>%
+  kable_styling() %>%
+  row_spec(c(0,8), bold = T, color = "white", background = "gray") %>%
+  row_spec(3, bold = T, color = "white", background = "orange") %>%
+  row_spec(5, bold = T, color = "white", background = "red") 
+
+```
+
+]
+
+
+.pull-right[
+
+**解题思路**：
+
+- 首先计算并得到**较大制累计频次表**（cumsum）（见左）。
+
+- 然后计算分位数分割位置：
+$p_1= \frac{3\sum{f_i}}{4}=\frac{3\times 164}{4}=123$，
+$p_3= \frac{\sum{f_i}}{4}=\frac{164}{4}=41$。
+
+- 对照分位数的位置
+$p_j$和较大累计频数，初步得到分位数：
+$Q_1 =$"70-80Kg"（G3组）；
+$Q_3 =$"90-100Kg"（G5组）。
+
+]
+
+
+.footnote[**.red[注意]**：<sup>*</sup>较大制下，分位数分割位置要调换！]
+
+---
+
+## （示例）较大制分位数计算：下限插值公式
+
+.pull-left[
+
+```{r, ref.label='case-quatile-maxcum-raw'}
+# refer chunk for exist table
+```
+
+]
+
+.pull-right[
+
+- 四分之一位数**较大制下限公式**计算结果：
+
+$$\begin{align}
+Q_{1L} 
+&=X_{\mathrm{Q}_{1} L}+\frac{\frac{\sum f_i}{4}-S_{Q_{1}-1}}{f_{Q_1}} \cdot d_{Q_1} \\
+&= 70+\frac{\frac{164}{4}-29}{50} \times 10=72.4
+\end{align}$$
+
+- 四分之三位数**较大制下限公式**计算结果：
+
+$$\begin{align}
+Q_{3L}
+&=X_{\mathrm{Q}_{3} L}+\frac{\frac{3\sum f_i}{4}-S_{Q_{3}-1}}{f_{Q_3}} \cdot d_{Q_3} \\
+&=90+\frac{3 \times \frac{164}{4}-115}{27} \times 10=92.96 
+\end{align}$$
+
+]
+
+**含义**：两个分位数之差，即为**四分位差**（QD）：
+$\mathbf{QD} =Q_{3}-Q_{1} =92.96-72.4 =20.56$。这**表明**：有一半工人的日产量分布在70.4
+$\sim$ 92.96之间，他们的最大差异为20.56Kg。
+
+---
+
+## （演示）分位数计算：较大制上限插值公式(定义)
+
+.pull-left[
+
+```{r, ref.label='chunk-quatile-max-tbl', out.height='260px'}
+#ref chunk
+```
+
+]
+
+.pull-right[
+
+```{r, chunk-quatile-max-upper,out.height='260px'}
+include_graphics("../pic/chpt04-quatile-binned-max-upper.png", error = FALSE)
+
+```
+
+]
+
+- 
+$Q_{j}$表示四分位数，其中
+$j \in 1,3$。
+$X_{Q_jL}$表示组下限（Lower limits）；
+$X_{Q_jU}$表示组上限（Upper limits）。
+$d_{Q_j}$表示分位数组的**组距**（width）；
+$x_j$表示待求解的组距部分。
+- 
+$f_{i}$表示各组所对应的频次，其中
+$i \in 1,2,\cdots,5$。
+$f_{Q_j}$表示分位数组的频次。
+$p_j$表示1/4或3/4分割位置，其中：
+$p_1=\frac{\sum{f_i}}{4}$，
+$p_3=\frac{3\sum{f_i}}{4}$。
+- 
+$S_{Q_j+1}$表示相应分位数所在组的.red[下一组]的**较大累计频次**；
+$y_j$表示与
+$x_j$宽度相对应频次。
+
+---
+
+## （演示）分位数计算：较大制上限插值公式(Q1)
+
+.pull-left[
+
+```{r, ref.label='chunk-quatile-max-tbl', out.height='260px'}
+# ref chunk
+```
+
+]
+
+.pull-right[
+
+```{r, ref.label='chunk-quatile-max-upper', out.height='260px'}
+# ref chunk
+```
+
+]
+
+
+- **四分之一位数**的较大制上限插值公式：
+
+$$\begin{align}
+\frac{x_1}{d_{Q_1}} = \frac{y_1}{f_{Q_1}}
+=\frac{p_3-S_{Q_1}}{f_{Q_1}} 
+\quad \Rightarrow \quad
+Q_{1U}=X_{\mathrm{Q}_{1} U} - \frac{\frac{3\sum f_i}{4} - S_{Q_{1}+1}}{f_{Q_1}} \cdot d_{Q_1}
+\end{align}$$
+
+---
+
+## （演示）分位数计算：较大制上限插值公式(Q3)
+
+.pull-left[
+
+```{r, ref.label='chunk-quatile-max-tbl', out.height='260px'}
+# ref chunk
+```
+
+]
+
+.pull-right[
+
+```{r, ref.label='chunk-quatile-max-upper', out.height='260px'}
+# ref chunk
+```
+
+]
+
+- **四分之三位数**的较大制上限插值公式：
+
+$$\begin{align}
+\frac{x_3}{d_{Q_3}} = \frac{y_3}{f_{Q_3}}
+=\frac{p_1- S_{Q_3+1}}{f_{Q_3}} 
+\quad \Rightarrow \quad
+Q_{3U}=X_{\mathrm{Q}_{3}U} -\frac{\frac{\sum f_i}{4} -S_{Q_3+1}}{f_{Q_3}} \cdot d_{Q_3}
+\end{align}$$
+
+---
+
+## （示例）较大制分位数计算：上限插值公式
+
+.pull-left[
+
+```{r, ref.label='case-quatile-maxcum-raw'}
+# refer chunk for exist table
+```
+
+]
+
+.pull-right[
+
+- 四分之一位数**较大制上限公式**计算结果：
+
+$$\begin{align}
+Q_{1U}
+&=X_{\mathrm{Q}_{1} U} - \frac{\frac{3\sum f_i}{4} - S_{Q_{1}+1}}{f_{Q_1}} \cdot d_{Q_1} \\
+&=80-\frac{\frac{3 \times 164}{4}-85}{50} \times 10=72.4
+\end{align}$$
+
+- 四分之三位数**较大制上限公式**计算结果：
+
+$$\begin{align}
+Q_{3U}
+&=X_{\mathrm{Q}_{3}U} -\frac{\frac{\sum f_i}{4} -S_{Q_3+1}}{f_{Q_3}} \cdot d_{Q_3} \\
+&=100-\frac{\frac{164}{4}-22}{27} \times 10=92.96
+\end{align}$$
+
+]
+
+**含义**：两个分位数之差，即为**四分位差**（QD）：
+$\mathbf{QD} =Q_{3}-Q_{1} =92.96-72.4 =20.56$。这**表明**：有一半工人的日产量分布在70.4
+$\sim$ 92.96之间，他们的最大差异为20.56Kg。
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name: variance
+
+# 4.4 离散程度的度量
+
+---
+layout: true
+
+<div class="my-header-h2"></div>
+
+<div class="watermark1"></div>
+
+<div class="watermark2"></div>
+
+<div class="watermark3"></div>
+
+<div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter"> 第04章 数据的概括性度量 </a>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="#variance"> 4.4 离散程度的度量 </a> </span></div> 
+
+---
+
+## 本节内容
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-fan.gif")
+class: inverse,center
+# 本章结束
+
