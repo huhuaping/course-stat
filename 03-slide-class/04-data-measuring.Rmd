@@ -67,6 +67,9 @@ name: absolute
 
 # 4.1 总量程度的度量
 
+### 时期指标
+
+### 时点指标
 
 ---
 layout: true
@@ -82,6 +85,12 @@ layout: true
 <div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter"> 第04章 数据的概括性度量 </a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 <a href="#absolute"> 4.1 总量程度的度量 </a> </span></div> 
+
+---
+background-image: url("../pic/chpt04-nav-01-absolute.png")
+background-size: contain
+
+## 内容导航
 
 ---
 
@@ -116,7 +125,6 @@ name: relative
 
 ]
 
-
 ---
 layout: true
 
@@ -131,6 +139,12 @@ layout: true
 <div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter"> 第04章 数据的概括性度量 </a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 <a href="#relative"> 4.2 相对程度的度量 </a> </span></div> 
+
+---
+background-image: url("../pic/chpt04-nav-02-relative.png")
+background-size: contain
+
+## 内容导航
 
 ---
 
@@ -756,6 +770,12 @@ layout: true
 <div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter"> 第04章 数据的概括性度量 </a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 <a href="#center"> 4.3 集中趋势的度量 </a> </span></div> 
+
+---
+background-image: url("../pic/chpt04-nav-03-mean-position.png")
+background-size: contain
+
+## 内容导航
 
 ---
 
@@ -1566,20 +1586,22 @@ $M_e=$**“一般”**。
 .footnote[.red[**思考**]：<sup>*</sup> 大家可以练习使用较大制方法累计频次。]
 
 ---
+name:case-worker-median
 
 ## （示例）：单项式数列计算中位数
 
 ```{r}
-worker_tbl <- tibble(output = 5:10,
-       workers = c(8,12,19,35,25,6))
+worker_tbl <- tibble(X = 5:10,
+       n = c(8,12,19,35,25,6)) %>% 
+  add_column(group = paste0("G", 1:nrow(.)), .before = "X")
 
-worker_cumsum <- worker_tbl %>% 
-  add_column(group = paste0("G", 1:nrow(.)), .before = "output")%>%
-  mutate(cumsum = cumsum(workers)) %>%
+worker_cumsum <- worker_tbl %>%
+  mutate(cumsum = cumsum(n)) %>%
   janitor::adorn_totals("row") %>%
-  mutate(cumsum = ifelse(group =="Total", NA, cumsum ))
+  mutate(cumsum = ifelse(group =="Total", NA, cumsum ))%>%
+  mutate(X = ifelse(group =="Total", NA, X ))
 
-n <- sum(worker_tbl$workers)
+n <- sum(worker_tbl$n)
 ```
 
 .left-column[
@@ -1590,8 +1612,10 @@ n <- sum(worker_tbl$workers)
 
 .right-column[
 
-**案例说明**：某工厂共有`r n`个工人，全体工人的日产量（output）经过分组统计后（
-$G1 \sim G6$），各组工人人数（workers）的数据如下表所示。请计算中位数是什么？
+**案例说明**：某工厂共有`r n`个工人，全体工人的日产量（
+$X$，件/日）经过分组统计后（
+$G1 \sim G6$），各组工人人数（
+$n$）的数据如下表所示。请计算中位数是什么？
 
 
 ```{r}
@@ -1945,6 +1969,7 @@ M_{eU}=X_{U} -\frac{\frac{\sum f}{2} -S_{m+1} }{f_{m}} \cdot d
 \end{equation}$$
 
 ---
+name:case-worker-median-bin
 
 ## （示例）组距式分配数列中位数计算
 
@@ -1959,7 +1984,7 @@ me_workers <- tibble(X = bins, n = reps) %>%
   mutate(X = factor(X, levels = bins)) %>%
   add_column(groups = str_c("G",1:nrow(.)), .before = "X")
 
-n <- sum(me_workers$n)
+n_worker_bin <- sum(me_workers$n)
 
 min_workers <- me_workers %>%
   mutate(cumsum = cumsum(n)) %>%
@@ -1975,7 +2000,7 @@ max_workers <- me_workers %>%
 
 ```
 
-**案例说明**：某工厂共有`r n`个工人，全体工人的日产量（X）经过分组统计后（
+**案例说明**：某工厂共有`r n_worker_bin`个工人，全体工人的日产量（X）经过分组统计后（
 $G1 \sim G7$），各组工人人数（n）的分布数据如下表所示。请计算中位数是什么？
 
 ```{r}
@@ -2560,7 +2585,7 @@ Q_{3L}
 ]
 
 **含义**：两个分位数之差，即为**四分位差**（QD）：
-$\mathbf{QD} =Q_{3}-Q_{1} =92.96-72.4 =20.56$。这**表明**：有一半工人的日产量分布在70.4
+$\mathbf{QD} =Q_{3}-Q_{1} =92.96-72.4 =20.56$。这**表明**：有一半工人的日产量分布在72.4
 $\sim$ 92.96之间，他们的最大差异为20.56Kg。
 
 ---
@@ -2694,7 +2719,7 @@ Q_{3U}
 ]
 
 **含义**：两个分位数之差，即为**四分位差**（QD）：
-$\mathbf{QD} =Q_{3}-Q_{1} =92.96-72.4 =20.56$。这**表明**：有一半工人的日产量分布在70.4
+$\mathbf{QD} =Q_{3}-Q_{1} =92.96-72.4 =20.56$。这**表明**：有一半工人的日产量分布在72.4
 $\sim$ 92.96之间，他们的最大差异为20.56Kg。
 
 ---
@@ -2870,7 +2895,7 @@ Q_{3L}
 ]
 
 **含义**：两个分位数之差，即为**四分位差**（QD）：
-$\mathbf{QD} =Q_{3}-Q_{1} =92.96-72.4 =20.56$。这**表明**：有一半工人的日产量分布在70.4
+$\mathbf{QD} =Q_{3}-Q_{1} =92.96-72.4 =20.56$。这**表明**：有一半工人的日产量分布在72.4
 $\sim$ 92.96之间，他们的最大差异为20.56Kg。
 
 ---
@@ -3005,8 +3030,997 @@ Q_{3U}
 ]
 
 **含义**：两个分位数之差，即为**四分位差**（QD）：
-$\mathbf{QD} =Q_{3}-Q_{1} =92.96-72.4 =20.56$。这**表明**：有一半工人的日产量分布在70.4
+$\mathbf{QD} =Q_{3}-Q_{1} =92.96-72.4 =20.56$。这**表明**：有一半工人的日产量分布在72.4
 $\sim$ 92.96之间，他们的最大差异为20.56Kg。
+
+---
+background-image: url("../pic/chpt04-nav-04-mean-value.png")
+background-size: contain
+
+## 内容导航
+
+---
+
+## 平均数：概述
+
+**平均数**：是对数据的中心的一种数值化测量指标。我们一般所说的平均数是指**样本均值**。
+
+- 根据总体数据（population）计算的，则称为**总体期望（expectation）**，记为
+$\mu$；读作`miu`。
+
+- 根据样本数据（sample）计算的，则称为样本平均数，也称为**均值（Mean）**，记为
+$\bar{X}$，读作`X bar`。
+
+.pull-left[
+
+**平均数的特征**：
+
+- 集中趋势的最常用测度值
+
+- 一组数据的均衡点（中心点）所在
+
+- 体现了数据的必然性特征
+
+- 易受极端值的影响
+
+]
+
+.pull-righ[
+
+**平均数的类型**：
+
+- 算术平均数，记为
+$\bar{X}$。具体又分为：a)简单算数平均数
+$\bar{X}=\frac{\sum{X_i}}{n}$；b)加权算数平均数
+$\bar{X}=\frac{\sum{(f_iX_i)}}{\sum{f_i}}$。
+
+- 调和平均数，记为
+$\bar{X}_H$。
+
+- 几何平均数，记为
+$\bar{X}_G$。
+
+]
+
+---
+
+## 算术平均数：概念
+
+设样本量为
+$n$的样本数据来自于一个总体（总体数据量为
+$N$）。
+
+.pull-left[
+
+数据来源：
+
+- 样本数据：
+$X_1 ,X_2 , \cdots, X_n$ 
+
+- 总体数据：
+$X_1 ,X_2 , \cdots, X_n, \cdots, X_N$
+
+]
+
+.pull-right[
+
+定义公式：
+
+- **样本平均数**计算公式：
+
+$$\bar{X}=\frac{X_{1}+X_{2}+\cdots+X_{n}}{n}=\frac{\sum_{i=1}^{n} X_{i}}{n}$$
+
+
+
+- **总体平均数**（期望）计算公式：
+
+$$\mu=\frac{X_{1}+X_{2}+\cdots+X_{N}}{N}=\frac{\sum_{i=1}^{N} X_{i}}{N}$$
+
+]
+
+下面我们重点谈**样本平均数**的计算和分析！
+
+---
+
+## 算数平均数：基本公式
+
+样本**算术平均数**具体包括两类：
+
+- 简单算数平均数
+
+$$\bar{X}=\frac{X_{1}+X_{2}+\cdots+X_{n}}{n}=\frac{\sum_{i=1}^{n} X_{i}}{n}$$
+
+- 加权算数平均数
+
+.pull-left[
+> 如果给出频次（次数）
+$f_i$数据：
+
+</br>
+    
+$$\bar{X}=\frac{\sum_1^n{(f_iX_i)}}{\sum_1^n{f_i}}$$
+
+]
+
+.pull-right[
+> 如果给出频率（比重）
+$w_i = \frac{f_i }{\sum_1^n{f_i}}$数据：
+    
+$$\bar{X}=\sum_1^n{\left(X_i \cdot \left(\frac{f_i }{\sum_1^n{f_i}}\right)\right)}$$
+]
+
+---
+
+## 简单算术平均数的计算
+
+**适合情形**：未分组资料
+
+**计算规则**：将各总体单位的标志值简单相加，除以总体单位数所求得的结果。
+
+**计算公式**：
+
+$$\bar{X}=\frac{X_{1}+X_{2}+\cdots+X_{n}}{n}=\frac{\sum_{i=1}^{n} X_{i}}{n}$$
+
+**计算示例**：某单位有8名职工，周工资分别为1200元、1400元、1500元、1600元、1650元、1700元、1750元和1800元，则8名职工平均工资为：
+
+$$\begin{align}
+\bar{X} &=\frac{\sum X}{n}=\frac{X_{1}+X_{2}+X_{3}+\cdots \ldots+X_{n}}{n} \\
+&=\frac{1200+1400+1500+1600+1650+1700+1750+1800}{8} \\
+&=1575(\text { 元 })
+\end{align}$$
+
+---
+
+## 加权算术平均数：计算概述
+
+**适合情形**：分组数据且各组次数不完全相同。
+
+**计算规则**：各组变量值（组中值）乘以各组权数求出标志总量，再将各组权数相加求出总体单位数，二者相除计算出的结果。
+
+
+**一般公式**：
+
+$$\begin{equation}
+\bar{X}=\frac{X_{1} f_{1}+X_{2} f_{2}+\ldots \ldots+X_{k} f_{k}}{f_{1}+f_{2}+\ldots \ldots+f_{k}}=\frac{\sum_{i=1}^{k} X_{i} f_{i}}{\sum_{i=1}^{k} f_{i}}=\frac{\sum X f}{\sum f}
+\end{equation}$$
+
+---
+
+## 加权算术平均数：计算概述
+
+
+
+**计算类型**：
+
+- 单项式分配数列的计算
+
+- 组距式分配数列的计算
+
+
+**计算要点**：
+- 变量值（
+$X_i$）：单项式分组为组标志值；组距式分组为组中值。
+
+- 权数（
+$f_i$）：具有权衡轻重的作用。权重既可以是**频数**（绝对数），也可以是**频率**（相对数）。
+
+.pull-left[
+> 如果是频次（次数）
+$f_i$数据：
+
+$$\bar{X}=\frac{\sum_1^n{(f_iX_i)}}{\sum_1^n{f_i}}$$
+]
+
+.pull-right[
+> 如果是频率（比重）
+$w_i = \frac{f_i }{\sum_1^n{f_i}}$：
+
+$$\bar{X}=\sum_1^n{\left(X_i \cdot \left(\frac{f_i }{\sum_1^n{f_i}}\right)\right)}$$
+]
+
+
+---
+
+## （示例）加权平均数计算：单项式数列
+
+```{r}
+worker_mean <- worker_tbl %>%
+  rename("f" = "n") %>%
+  mutate(Xf = X*f) %>%
+  janitor::adorn_totals("row")
+
+n <- sum(worker_tbl$n)
+```
+
+
+**案例说明**：某工厂共有`r n`个工人，全体工人的日产量（
+$X$，件/日）经过分组统计后（
+$G1 \sim G6$），各组工人人数（
+$n$）的数据如下表所示。请计算全体工人的平均日产量是多少？
+
+
+
+```{r}
+worker_mean %>%
+  select(-Xf) %>%
+  kable( align = "c") %>%
+  kable_styling() %>%
+  row_spec(c(0,7), bold = T,color = "black", background = "gray")
+```
+
+
+.footnote[.red[**说明**]：可参看之前的单项式数列中位数计算-[工人日产量案例](#case-worker-median)]
+
+
+---
+
+## （示例）加权平均数计算：单项式数列
+
+
+.pull-left[
+
+**解答过程**：
+
+- 根据分组标志值（日产量）
+$X$和频次权重（职工人数）
+$f$，计算得到各组的日产量
+$Xf$。（见右）
+
+- 利用加权平均数公式计算得到平均日产量：
+
+$$\begin{equation}
+\bar{X}=\frac{X_{1} f_{1}+X_{2} f_{2}+\ldots \ldots+X_{k} f_{k}}{f_{1}+f_{2}+\ldots \ldots+f_{k}}=\frac{810}{105}=7.71(件/人)
+\end{equation}$$
+
+]
+
+.pull-right[
+
+
+```{r}
+worker_mean %>%
+  #select(-Xf) %>%
+  kable( align = "c") %>%
+  kable_styling() %>%
+  column_spec(4,  background = "green")%>%
+  row_spec(c(0,7), bold = T,color = "black", background = "gray") 
+
+```
+
+]
+
+
+---
+
+## （示例）加权平均数计算：组距式数列
+
+```{r}
+mid_value <- seq(55,115, 10)
+worker_mean_bin <- me_workers %>%
+  rename("f"= "n") %>%
+  add_column(Xi = mid_value, .before = "f") %>%
+  mutate(Xf = Xi*f,
+         w = f/n_worker_bin,
+         Xw = Xi*w)
+
+```
+
+
+**案例说明**：某工厂共有`r n_worker_bin`个工人，全体工人的日产量（X）经过分组统计后（
+$G1 \sim G7$），各组工人人数（f）的分布数据如下表所示。请计算全体工人的平均日产量是多少千克？
+
+```{r}
+worker_mean_bin %>%
+  select(-Xi, -Xf, -w, -Xw) %>%
+  janitor::adorn_totals("row") %>%
+  kable(align = "c", booktabs = T) %>%
+  kable_styling(full_width = T) %>%
+  row_spec(c(0,8), bold = T, color = "white", background = "gray")
+
+
+```
+
+
+.footnote[.red[**说明**]：可参看之前的组距式数列中位数计算-[工人日产量案例](#case-worker-median-bin)]
+
+---
+
+## （示例）加权平均数计算：组距式数列（频次）
+
+
+.pull-left[
+
+**解答过程**：
+
+- 根据组距式分组标志值（日产量）
+$X$，计算各组的组中值，然后再利用频次权重（职工人数）
+$f$，计算得到各组的日产量
+$Xf$。（见右）
+
+- 利用加权平均数公式计算得到平均日产量：
+
+$$\begin{equation}
+\bar{X}=\frac{\sum_{i=1}^n (X_i \cdot f_i)}{\sum_{i=1}^n f_i}=\frac{13550}{164}=82.62(\text { 千克 })
+\end{equation}$$
+
+]
+
+.pull-right[
+
+
+```{r}
+worker_mean_bin %>%
+  select(-w, -Xw) %>%
+  janitor::adorn_totals("row") %>%
+  kable( align = "c") %>%
+  kable_styling() %>%
+  column_spec(c(3,5),  background = "green")%>%
+  row_spec(c(0,8), bold = T,color = "black", background = "gray") 
+
+```
+
+]
+
+
+---
+
+## （示例）加权平均数计算：组距式数列（频率）
+
+
+.pull-left[
+
+**解答过程**：
+
+- 根据组距式分组标志值（日产量）
+$X$，计算各组的组中值，然后再利用频次（职工人数）
+$f$计算出各组的频率权重（职工占比）
+$w$，计算得到各组的日产量
+$Xw$。（见右）
+
+- 利用加权平均数公式计算得到平均日产量。
+
+
+]
+
+.pull-right[
+
+
+```{r}
+worker_mean_bin %>%
+  select( -Xf) %>%
+  janitor::adorn_totals("row") %>%
+   mutate(Xw = formatC(Xw, digits = 2, format = "f")) %>%
+  kable( align = "c",digits = c(0,0,0,0,2,2)) %>%
+  kable_styling(bootstrap_options = c("striped")) %>%
+  column_spec(c(3,5),  background = "green")%>%
+  row_spec(c(0,8), bold = T,color = "black", background = "gray") 
+
+```
+
+]
+
+$$\begin{equation}
+\bar{X}=\sum_{i=1}^n{(X_i\cdot w_i)}=\sum_{i=1}^n{\left( X_i \cdot \frac{f_i}{\sum{f_i}}\right)}=82.62(\text { 千克 })
+\end{equation}$$
+
+---
+
+## 算数平均数：总结1
+
+算数平均数
+$\bar{X}$的几条性质：
+
+.pull-left[
+
+- 所有的定量数据都有算术平均数。
+
+- 计算算术平均数时使用了所有数据。
+
+- 一组样本数据只有一个均值。
+
+- 简单算术平均数的大小只与变量值的大小有关。
+
+- 加权算术平均数受各组组中值（变量值）大小，以及各组变量值出现的频数（权数）的影响。
+
+]
+
+.pull-right[
+
+- 各变量值与均值的离差之和等于零。
+    
+> 简单算数平均数：
+$\sum{X_i-\bar{X}} = 0$
+
+> 加权算数平均数：
+$\sum{\left[(X_i-\bar{X})f_i \right]} = 0$
+
+
+
+- 各变量值与均值的离差平方和等于最小值。
+
+> 简单算数平均数：
+$\sum{(X_i-\bar{X})^2} = min$
+
+> 加权算数平均数：
+$\sum{\left[ (X_i-\bar{X})^2 f_i \right]} = 0$
+
+]
+
+
+---
+
+## 算数平均数：总结2
+
+- 根据原始数据和分组资料计算的结果一般不会完全相等，根据分组数据只能得到近似结果。
+
+- 只有各组数据在组内呈对称或均匀分布时，根据分组资料的计算结果才会与原始数据的计算结果一致。
+
+```{r}
+# list data
+set.seed(123)
+n <- 50
+hours <- round(rnorm(n, mean = 15, sd = 5), digits = 0)
+names(hours) <- str_c("W", 1:n)
+
+# binned data
+hours_df <- tibble(workers = str_c("W", 1:n),
+                   hours = hours)
+
+Xi <- c(7.5, 12.5, 17.5, 22.5, 27.5)
+hours_bin <- hours_df %>%
+  mutate(X = cut(hours, c(0, 10, 15,20,25,Inf))) %>% 
+  group_by(X) %>% 
+  summarize(f=n())  %>%
+  mutate(X =str_replace(X,"\\(0", "[5"))  %>%
+  mutate(X =str_replace(X,"Inf", "30")) %>%
+  add_column(Xi = Xi, .before = "f")  %>%
+  mutate(Xf = Xi *f)
+
+mean_hours <- sum(hours_bin$Xf)/n
+
+
+```
+
+---
+
+## （示例）算数平均数：未整理数据 VS 分组整理数据
+
+**案例数据**：某企业的工会随机调查了50名工人2020年6月加班的小时数，原始数据（左下）和整理数据（右下）结果分别如下：
+
+.pull-left[
+
+- 原始未整理数据：
+
+```{r}
+hours
+```
+
+- 简单算数平均数：
+$\bar{X} = \frac{\sum{X_i}}{n}=$ `r round(mean(hours), 2)`
+
+]
+
+
+
+.pull-right[
+
+- 分组整理数据：
+
+```{r}
+hours_bin %>%
+  janitor::adorn_totals("row") %>%
+  kable( align = "c") %>%
+  kable_styling() %>%
+  row_spec(c(0,6), bold = T,color = "black", background = "gray") 
+
+```
+
+- 加权算数平均数：
+$\bar{X} = \frac{\sum{(X_i}\cdot f_i)}{\sum{f_i}}=$ `r round(mean_hours,2)`
+
+]
+
+---
+
+## 调和平均数：概念和形式
+
+**调和平均数**：以变量值的倒数为基础计算的平均数，即标志值的倒数的平均数的倒数，亦称倒数平均数，一般记为
+$\bar{X}_H$。
+
+.pull-left[
+
+**表现形式**：
+
+- 逆向指标的算数平均指标的倒数形式。
+
+- 算术平均指标的变形形式。
+
+]
+
+.pull-right[
+
+**计算公式**：
+
+$$\begin{align}
+\bar{X}=\frac{\sum{(X_i f_i)}}{\sum{f_i}}=\frac{\sum{(X_i f_i)}}{\sum \left[\frac{(X_i f_i)}{X_i}  \right]} =\frac{\sum{f_i}} {\sum \frac{m_i}{X_i}}=\bar{X}_{H} 
+\end{align}$$
+
+]
+
+
+其中：
+
+- 
+$m_i=X_i \cdot f_i, f_i=\frac{m_i}{X_i}$。
+
+- 
+$m_i$是一种特定权数，它不是各组变量值出现的次数，而是各组标志值总量（注意不是“总体标志总量”！！！）。
+
+
+---
+
+## 调和平均数：概念和形式
+
+**案例说明**：设有一种蔬菜，早、中、晚的价格分别为每千克0.5元、0.2元和0.1元。.red[第一个人]早、中、晚各买1千克的菜，.red[第二个人]早、中、晚各买1元钱的菜。比较两人所卖菜的平均价格。
+
+$$\begin{equation}
+\text { 平均份格 }=\frac{\text { 购买额 }}{\text { 购买量 }}
+\end{equation}$$
+
+- 第一个人平均购买价格：
+
+$$\begin{equation}
+\bar{X}=\frac{0.5+0.2+0.1}{1+1+1}=0.267(\text { 元 })
+\end{equation}$$
+
+- 第二个人平均购买价格：
+
+$$\begin{equation}
+\bar{X_H}=\frac{1+1+1}{1 / 0.5+1 / 0.2+1 / 0.1}=\frac{3}{17}=0.18(\text { 元 })
+\end{equation}$$
+
+---
+
+## 调和平均数的计算：主要步骤
+
+
+.pull-left[
+> 简单调和平均数：
+$\bar{X}_{H} =\frac{n} {\sum \frac{1}{X_i}}$
+]
+
+.pull-right[
+> 加权调和平均数：
+$\bar{X}_{H} =\frac{\sum{m_i}} {\sum \frac{m_i}{X_i}}$
+]
+
+**计算步骤**：
+
+a. 先计算各个**变量值**的倒数
+$\frac{1}{X_i}$。
+
+b. 计算**变量值的倒数**的算数平均数。
+
+.pull-left[
+> 简单调和平均数：
+$\frac{\sum(\frac{1}{X_i})}{n}$
+]
+
+.pull-right[
+> 加权调和平均数：
+$\frac{\sum(\frac{m_i}{X_i})}{\sum{m_i}}$
+]
+
+c. 再计算**变量值的倒数的算数平均数** 的倒数。
+
+.pull-left[
+> 简单调和平均数：
+$\bar{X_H} = \frac{n}{\sum(\frac{1}{X_i})}$
+
+]
+
+.pull-right[
+>加权调和平均数：
+$\bar{X_H} =  \frac{\sum{m_i}}{\sum(\frac{m_i}{X_i})}$
+]
+
+---
+
+## （示例）简单调和平均数的计算：未分组数据
+
+```{r}
+worker_efficiency1 <- c(10,12,15, 20, 30)
+names(worker_efficiency1) <- str_c("W", 1:5)
+
+worker_efficiency2 <- c(6,5,4, 3, 2)
+names(worker_efficiency2) <- str_c("W", 1:5)
+```
+
+
+.pull-left[
+
+**示例计算1（正向指标情形）**：某车间5位工人的劳动生产率（.red[件/小时]）资料如下，请分别计算全部工人单位时间内的平均劳动生产率是多少？
+
+```{r}
+worker_efficiency1
+```
+
+- **计算分析**：因为是正向指标，可以直接使用简单算数平均数计算得到。
+
+$$\begin{align}
+\bar{X} &=\frac{\sum X_i}{n} \\
+&=\frac{10+12+15+20+30}{5} \\
+&=\frac{87}{5}=17.4 \text { 件 / 小时 }
+\end{align}$$
+
+]
+
+
+.pull-right[
+
+**示例计算2（逆向指标指标情形）**：某车间5位工人的劳动生产率（.red[分钟/件]）资料如下，请分别计算全部工人单位时间内的平均劳动生产率是多少？
+
+```{r}
+worker_efficiency2
+```
+
+- **计算分析**：因为是正向指标，可以直接使用简单算数平均数计算得到。
+
+$$\begin{align}
+\bar{X}_{H} &=\frac{1}{\frac{\sum 1 / X_i}{n}} \\
+&=\frac{1}{(1/ 6+1 / 5+1 / 4+1 / 3+1 / 2) / 5} \\
+&=\frac{1}{1.45 / 5}=\frac{1}{0.29}=3.45 \text { 小时 } / 件
+\end{align}$$
+
+]
+
+
+---
+
+## （示例）加权调和平均数的计算：分组数据A
+
+**案例说明**：某公司有四个企业，工作完成程度（ratio_do，%）及计划产值（value_plan）如下，请计算全部四个企业的平均工作完成程度？
+
+```{r}
+tbl_plan <- tibble(firms = c("甲", "乙","丙","丁"),
+       ratio_do = seq(90,120, 10),
+       value_plan = seq(100, 400, 100))  %>%
+  mutate(value_do = ratio_do *value_plan/100,
+         m = value_do)
+
+```
+
+```{r}
+tbl_plan %>%
+  select(firms, ratio_do, value_plan) %>%
+  mutate(Xf= ratio_do * value_plan/100) %>%
+  janitor::adorn_totals("row") %>%
+  mutate(ratio_do = ifelse(firms=="Total", NA, ratio_do)) %>%
+  kable(align =  "c") %>%
+  kable_styling() %>%
+  row_spec(c(0,5), bold = T,color = "black", background = "gray") 
+
+```
+
+**分析过程**：此题可以直接使用**加权算术平均数**公式计算。其中：工作完成程度（ratio_do）为正指标
+$X_i$，计划产值（Value_plan）为权重
+$f_i$。
+
+
+$$\begin{equation}
+\bar{X}=\frac{\sum {(X_i f_i)}}{\sum {f_i}}=\frac{1100}{1000} \times 100\%=110 \%
+\end{equation}$$
+
+---
+
+## （示例）加权调和平均数的计算：分组数据B
+
+**案例说明**：某公司有四个企业，工作完成程度（ratio_do，%）及实际产值（value_do）如下，请计算全部四个企业的平均工作完成程度？
+
+
+```{r}
+tbl_plan %>%
+  select(firms, ratio_do, value_do) %>%
+  mutate("1/X" = 100/ratio_do,
+         "m/X" = value_do*`1/X`) %>%
+  janitor::adorn_totals("row") %>%
+  mutate("1/X" = ifelse(firms=="Total", NA, `1/X`)) %>%
+  mutate(ratio_do = ifelse(firms=="Total", NA, ratio_do)) %>%
+  kable(align =  "c") %>%
+  kable_styling() %>%
+  row_spec(c(0,5), bold = T,color = "black", background = "gray") 
+
+```
+
+**分析过程**：此题需要使用**加权调和平均数**公式计算。其中：工作完成程度（ratio_do）为正指标
+$X_i$，实际产值（Value_do）为.red[特殊权重]
+$m_i$。
+
+
+$$\begin{equation}
+\bar{X}==\frac{\sum m_i}{\sum \left(\frac{1}{X_i} m_i \right)}=\frac{1100}{1000} \times 100 \%=110 \%
+\end{equation}$$
+
+---
+
+## 调和平均数：总结
+
+
+- 如果数列中有一标志值等于零，则无法计算调和平均数。
+
+- 较之算术平均数，调和平均数受极端值的影响要小。
+
+---
+
+## 几何平均数：概念与类型
+
+**几何平均数（Geometric Mean）**：对
+$n$个变量值连乘之积开
+$n$次方根，主要用于计算平均速度和平均比率。
+
+**一般公式**：
+
+$$\bar{X_G} = \sqrt[n]{X_1 \cdot X_2 \cdots X_n} = \sqrt[n]{{\prod_{i=1}^n{X_i}}}$$
+
+
+**适合条件**：变量值为相乘关系
+
+**计算类型**：
+
+- 简单几何平均数
+
+- 加权几何平均数
+
+
+---
+
+## 简单几何平均数的计算
+
+（方法1）直接开根号：
+
+$$\bar{X_G} = \sqrt[n]{X_1 \cdot X_2 \cdots X_n} = \sqrt[n]{{\prod_{i=1}^n{X_i}}}$$
+
+（方法2）利用反对数求解：
+
+$$\begin{align}
+\bar{X_G} &= \left(\prod_{i=1}^n{X_i} \right)^{\frac{1}{n}} \\
+log(\bar{X_G}) &= \frac{1}{n} \cdot log\left(\prod_{i=1}^n{X_i}\right) 
+= \frac{1}{n} \cdot \sum_{i =1} ^n{\left(log{X_i} \right)} \\
+\bar{X_G} &= arclog\left(\frac{1}{n} \cdot \sum_{i =1} ^n{\left(log{X_i} \right)} \right) 
+= 10^{\left(\frac{1}{n} \cdot \sum_{i =1} ^n{\left(log{X_i} \right)} \right)}
+\end{align}$$
+
+---
+
+## （示例）简单几何平均数的计算
+
+**案例说明**：某地区工业产品产量在2013-2018年间的产量（output，亿吨）和逐年发展速度<sup>*</sup>（speed，%）。求该地区五年间的平均发展速度是多少？
+
+```{r}
+tbl_output<-  tibble(year = 2013:2018,
+                    output = c(9.80, 10.54, 10.80, 10.87, 11.16, 11.41)) %>%
+  mutate(speed_raw = output/lag(output),
+         speed =100*speed_raw,
+         log_speed= log10(speed))
+seq_prod <- prod(tbl_output$speed_raw, na.rm = T)
+sum_log <- sum(tbl_output$log_speed, na.rm = T)
+
+mean_prod <- formatC(100*seq_prod^(1/5), digits = 4, format = "f")
+mean_log <-formatC(10^(sum_log/5), digits = 4, format = "f")
+
+```
+
+
+```{r}
+tbl_output %>%
+  select(year, output, speed) %>%
+  janitor::adorn_totals("row") %>%
+  mutate(speed = ifelse(year=="Total", NA, round(speed, 4)))  %>%
+  kable(align =  "c") %>%
+  kable_styling() %>%
+  row_spec(c(0,7), bold = T,color = "black", background = "gray") 
+
+```
+
+---
+
+## （示例）简单几何平均数的计算
+
+.pull-left[
+**解题分析**：
+
+- 方法1：对发展速度（speed）直接连乘开根号。 
+
+- 方法2：对发展速度（speed）取对数（log_speed），再连加对数，最后求反对数。
+
+]
+
+.pull-right[
+
+```{r}
+tbl_output %>%
+  select(year, output, speed, log_speed) %>%
+  janitor::adorn_totals("row") %>%
+  mutate(speed = ifelse(year=="Total", NA, formatC(speed, digits = 4, format = "f")),
+         log_speed = formatC(log_speed,digits = 4,format =  "f" ))  %>%
+  kable(align =  "c") %>%
+  kable_styling() %>%
+  row_spec(c(0,7), bold = T,color = "black", background = "gray") 
+```
+]
+
+.pull-left[
+
+$$\begin{align}\bar{X_G} &=  \sqrt[n]{{\prod_{i=1}^n{X_i}}}\\
+& =\sqrt[n]{`r formatC(seq_prod, digits=4, format='f')`} \\
+& = `r mean_prod`
+\end{align}$$
+
+]
+
+
+.pull-right[
+
+$$\begin{align}
+\bar{X_G}
+&= arclog\left(\frac{1}{n} \cdot \sum_{i =1} ^n{\left(log{X_i} \right)} \right) \\
+& =  10^{\left(\frac{1}{n} \cdot \sum_{i =1} ^n{\left(log{X_i} \right)} \right)} = 10^{\left( \frac{1}{5}\cdot `r formatC(sum_log, digits=4,format='f')` \right) } \\
+& = `r formatC(mean_log, digits=4,format='f')`
+\end{align}$$
+
+]
+
+---
+
+## 加权几何平均数的计算
+
+（方法1）直接开根号：
+
+$$\bar{X_G} = \sqrt[(f_1+f_2+\cdots +f_n)]{X_1^{f_1} \cdot X_2^{f_2} \cdots X_n^{f_n}} = \sqrt[\sum_{i=1}^n{f_i}]{{\prod_{i=1}^n{\left( X_i^{f_i}\right)}}}$$
+
+（方法2）利用反对数求解：
+
+$$\begin{align}
+\bar{X_G} &=   \sqrt[\sum{f_i}]{\prod_{i=1}^n{\left( X_i^{f_i}\right)}}  \\
+log(\bar{X_G} ) &= \frac{1}{\sum{f_i}} \cdot \sum_{i =1} ^n{\left(log{X_i^{f_i}} \right)} 
+= \frac{1}{\sum{f_i}} \cdot \sum_{i =1} ^n{\left(f_i \cdot logX_i\right)}\\
+\bar{X_G} &= arclog \left(\frac{1}{\sum{f_i}} \cdot \sum_{i =1} ^n{\left(f_i \cdot logX_i\right)} \right) 
+= 10^{\left(\frac{1}{\sum{f_i}} \cdot \sum_{i =1} ^n{\left(f_i \cdot logX_i\right)} \right) }
+\end{align}$$
+
+---
+
+## （示例）加权几何平均数的计算
+
+**案例说明**：某投资银行公布了最近25年间（
+$n=25$）银行年利率的逐年发展速度分组<sup>*</sup>（speed）和每个分组利率的年数（years）。求该地区25年间的平均发展速度是多少？
+
+```{r}
+tbl_rate <-  tibble(speed = c(1.03, 1.05, 1.08, 1.10, 1.15),
+                    years = c(1, 4, 8, 10, 2)) %>%
+  mutate(power = speed^years,
+         log_speed= log10(speed),
+         f_log_speed = years *log_speed)
+n_years <- sum(tbl_rate$years)
+seq_prod <- prod(tbl_rate$power, na.rm = T)
+sum_log <- sum(tbl_rate$f_log_speed, na.rm = T)
+
+mean_prod <- seq_prod^(1/n_years)
+mean_log <- 10^(sum_log/n_years)
+
+
+```
+
+
+```{r}
+tbl_rate %>%
+  select(speed, years) %>%
+  janitor::adorn_totals("row") %>%
+  kable(align =  "c", digits = c(2,0)) %>%
+  kable_styling() %>%
+  row_spec(c(0,6), bold = T,color = "black", background = "gray") 
+
+```
+
+---
+
+## （示例）简单几何平均数的计算
+
+.pull-left[
+**解题分析**：
+
+- 方法1：对发展速度（speed）进行权重
+$f_i$的幂指数计算，再连乘，最后再开根号。 
+
+- 方法2：对发展速度（speed）取对数（log_speed），再乘以对应权重
+$f_i$，然后加总，最后求反对数。
+
+]
+
+.pull-right[
+
+```{r}
+tbl_rate %>%
+  janitor::adorn_totals("row") %>%
+  mutate(power = ifelse(speed=="Total", NA, formatC(power, digits = 4, format = "f")),
+         log_speed = ifelse(speed=="Total", NA,formatC(log_speed,digits = 4,format =  "f" )),
+         f_log_speed = formatC(f_log_speed, digits = 4, format = "f"))  %>%
+  kable(align =  "c") %>%
+  kable_styling() %>%
+  row_spec(c(0,6), bold = T,color = "black", background = "gray") 
+```
+]
+
+.pull-left[
+
+$$\begin{align}
+\overline{X_{\mathrm{g}}}&
+= \sqrt[\sum_{i=1}^n{f_i}]{{\prod_{i=1}^n{\left( X_i^{f_i}\right)}}}\\
+&=\sqrt[25]{1.03^{1 *} 1.05^{4} * 1.08^{8} * 1.10^{10 *}+1.15^{2}}\\
+&=\sqrt[25]{`r formatC(seq_prod, digits=4, format='f')`}=`r formatC(mean_prod, digits=4, format='f')`
+\end{align}$$
+
+]
+
+
+.pull-right[
+
+$$\begin{align}
+\overline{X_G} &= arclog \left(\frac{1}{\sum{f_i}} \cdot \sum_{i =1} ^n{\left(f_i \cdot logX_i\right)} \right) \\
+&= 10^{\left(\frac{1}{\sum{f_i}} \cdot \sum_{i =1} ^n{\left(f_i \cdot logX_i\right)} \right) } \\
+& = 10^{\left( \frac{1}{25}\cdot `r formatC(sum_log, digits=4,format='f')` \right) }  = `r formatC(mean_log, digits=4,format='f')`
+\end{align}$$
+
+]
+
+---
+
+## 几何平均数：总结
+
+- 几何平均数
+$\bar{X_G}$适用于反映特定现象的平均水平，即现象的总标志值是各单位标志值的连乘积。
+
+- 如果数列中有一个标志值等于零或负值，就无法计算几何平均数
+$\bar{X_G}$。
+
+- 受极端值的影响较算数平均数
+$\bar{X}$和调和平均数
+$\bar{X_H}$小。
+
+---
+
+## 平均数总结1
+
+- 位置平均数和数值平均数的**图形关系**：
+
+```{r, eval=T,fig.show = "hold", out.width = "33%", out.height="360px",fig.align = "c"}
+include_graphics("../pic/chpt04-mean-sum-rel1.png")
+include_graphics("../pic/chpt04-mean-sum-rel2.png")
+include_graphics("../pic/chpt04-mean-sum-rel3.png")
+```
+
+---
+
+## 平均数总结2
+
+- 位置平均数和数值平均数的**卡尔·皮尔逊经验公式**：
+
+$$\begin{align}
+\left|\bar{X}-M_{0}\right|=3\left|\bar{X}-M_{e}\right| 
+\end{align}$$
+
+```{r, eval=T,fig.show = "hold", out.width = "33%", out.height="260px",fig.align = "c"}
+include_graphics("../pic/chpt04-mean-sum-form-rel1.png")
+include_graphics("../pic/chpt04-mean-sum-form-rel2.png")
+include_graphics("../pic/chpt04-mean-sum-form-rel3.png")
+```
+
+$$\begin{align}
+M_{0} =3 M_{e}-2 \bar{X}; \quad \quad \quad 
+\bar{X}=\frac{1}{2}\left(3 M_{e}-M_{o}\right); \quad \quad \quad 
+M_{e}=\frac{1}{3}\left(M_{o}+2 \bar{X}\right)
+\end{align}$$
+
 
 ---
 layout: false
