@@ -59,6 +59,7 @@ name:chapter
 
 [4.4 离散程度的度量](#variance)
 
+[4.5 分布形态的度量](#distribution)
 
 ---
 layout: false
@@ -262,8 +263,7 @@ $$计划完成相对指标 = \frac{实际平均水平}{计划平均水平}\times
 - 以**相对指标**下达任务，具体计算公式为：
 
 $$\begin{align}
-计划完成相对指标 &= \frac{实际为基数的百分数}{计划为基数的百分数}\times 100\% \\
-&= \frac{1 \pm 实际增减百分数}{1  \pm 计划增减百分数}\times 100\% 
+计划完成相对指标 = \frac{实际为基数的百分数}{计划为基数的百分数}\times 100\% = \frac{1 \pm 实际增减百分数}{1  \pm 计划增减百分数}\times 100\% 
 \end{align}$$
 
 ---
@@ -271,6 +271,8 @@ $$\begin{align}
 ### （示例）计算计划完成相对指标：以**总量指标**为基础
 
 **问题**：设某公司某年计划工业总产值为200万元，实际完成220万元，则计划完成程度为多少？
+
+--
 
 **答案**：
 
@@ -286,7 +288,7 @@ $$\begin{align}
 
 **答案**：
 
-$实际单位成本-计划单位成本=180-200=-20（元）$
+$$实际单位成本-计划单位成本=180-200=-20（元）$$
 
 计算结果表明该企业化肥单位成本实际比计划降低了10%，平均每吨化肥节约生产费用20元。
 
@@ -354,7 +356,6 @@ $$\begin{equation}
 
 **例题**：某地区按五年计划规定，最后一年国民生产总值应达到520亿元，实际国民生产总值如下表所示：
 
-</br>
 
 ```{r}
 long_plan <- readxl::read_excel("../data/mid-long-plan.xlsx",col_names = T,sheet = 1)
@@ -1232,7 +1233,7 @@ drink <- data.frame(brand = drink_list, row.names=NULL)
 
 **案例说明**：某饮料便利店一天内不同品牌饮料的销售情况如下表所示。请计算众数是什么？
 
-```{r}
+```{r, chunk-mode-drink}
 drink %>%
   janitor::tabyl(brand) %>%
   arrange(n) %>%
@@ -1296,7 +1297,7 @@ bin_income <- data.frame("收入水平" = bins,
 
 ```
 
-**案例说明**：某饮料便利店一天内不同品牌饮料的销售情况如下表所示。请计算众数是什么？
+**案例说明**：
 
 .pull-left[
 
@@ -3639,7 +3640,7 @@ names(worker_efficiency2) <- str_c("W", 1:5)
 
 .pull-left[
 
-**示例计算1（正向指标情形）**：某车间5位工人的劳动生产率（.red[件/小时]）资料如下，请分别计算全部工人单位时间内的平均劳动生产率是多少？
+**示例计算1（正向指标情形）**：某车间5位工人的劳动生产率（.red[件/小时]）资料如下，请分别计算全部工人的平均劳动生产率是多少？
 
 ```{r}
 worker_efficiency1
@@ -3658,7 +3659,7 @@ $$\begin{align}
 
 .pull-right[
 
-**示例计算2（逆向指标指标情形）**：某车间5位工人的劳动生产率（.red[分钟/件]）资料如下，请分别计算全部工人单位时间内的平均劳动生产率是多少？
+**示例计算2（逆向指标指标情形）**：某车间5位工人的劳动生产率（.red[分钟/件]）资料如下，请分别计算全部工人的平均劳动生产率是多少？
 
 ```{r}
 worker_efficiency2
@@ -3989,7 +3990,7 @@ $\bar{X_H}$小。
 
 ---
 
-## 平均数总结1
+## 平均数：总结1
 
 - 位置平均数和数值平均数的**图形关系**：
 
@@ -4001,7 +4002,7 @@ include_graphics("../pic/chpt04-mean-sum-rel3.png")
 
 ---
 
-## 平均数总结2
+## 平均数：总结2
 
 - 位置平均数和数值平均数的**卡尔·皮尔逊经验公式**：
 
@@ -4027,7 +4028,9 @@ layout: false
 class: inverse, center, middle, duke-softblue
 name: variance
 
+
 # 4.4 离散程度的度量
+
 
 ---
 layout: true
@@ -4045,8 +4048,1106 @@ layout: true
 <a href="#variance"> 4.4 离散程度的度量 </a> </span></div> 
 
 ---
+background-image: url("../pic/chpt04-nav-05-variance.png")
+background-size: contain
 
-## 本节内容
+## 内容导航
+
+---
+
+## 离散趋势概述：概念内涵
+
+
+- 是数据分布的一个重要特征
+
+- 反映各变量值远离其中心值的程度（离散程度）
+
+- 从另一个侧面说明了集中趋势测度值的代表程度
+
+- 不同类型的数据有不同的离散程度测度值
+
+
+---
+
+## 离散趋势概述：概念内涵
+
+.pull-left[
+
+```{r, out.height= "250px"}
+include_graphics("../pic/chpt04-variance-view1.png")
+```
+
+]
+
+.pull-right[
+
+```{r, out.height= "250px"}
+include_graphics("../pic/chpt04-variance-view1.png")
+```
+
+]
+
+---
+
+## 异众比率：概念和特征
+
+**异众比率（variation ratio）**：是对分类数据离散程度的测度，具体表现为非众数组的频数占总频数的比例，一般记为
+$V_r$。
+
+**异众比率的特征**：用于衡量众数的代表性
+
+**计算公式**：
+
+$$\begin{align}
+V_{r}=\frac{\sum f_{i}-f_{m}}{\sum f_{i}}=1-\frac{f_{m}}{\sum f_{i}}
+\end{align}$$
+
+---
+
+## （示例）异众比率的计算
+
+**案例数据**：不同品牌饮料的频数分布如下，请计算该数据集的异众比率是多少
+
+.pull-left[
+
+```{r, ref.label="chunk-mode-drink"}
+
+```
+
+]
+
+.pull-right[
+**解题分析**：
+
+- 
+$$\begin{align}
+V_{r} 
+&=\frac{\sum f_{i}-f_{m}}{\sum f_{i}} 
+=1-\frac{f_{m}}{\sum f_{i}} \\
+& =\frac{50-15}{50}=1-\frac{15}{50} \\
+&=0.7=70 \%
+\end{align}$$
+
+- 在所调查的50人当中，购买碳酸饮料以外的人数占70%，异众比率比较大。因此，用“碳酸饮料”代表消费者购买饮料品牌的状况，其代表性不是很好。
+
+]
+
+---
+
+## 四分位差：概念和特征
+
+四分位差（quartile deviation）：主要用于对顺序尺度/比率尺度数据离散程度的测度，也称为内距或四分间距，它是上四分位数（四分之三位数）与下四分位数（四分之一位数）之差，一般记为
+$Q_d$：
+
+$$Q_d = Q_3 – Q_1$$
+
+**四分位差的特征**：
+
+- 反映了中间50%数据的离散程度
+
+- 不受极端值的影响
+
+- 用于衡量中位数的代表性
+
+---
+
+## （示例）四分位差的计算：原始未整理数据
+
+
+```{r}
+# read raw data
+df_computer<- readxl::read_xlsx("../data/case-3.6-computer-sales.xlsx",sheet = 1) %>%
+  mutate(month = rep(1:4, each=30),
+         day =stringr::str_pad(rep(1:30,times = 4),width = 2, pad = "0"))
+
+# bin data set
+bin_computer <- df_computer %>%
+  mutate(groups = cut(sales, c( seq(140,240, 10)), include.lowest =T, right =F)) %>% 
+  group_by(groups) %>% 
+  summarize(f=n())  %>% 
+  ungroup() %>%
+  mutate(M = seq(145,235, 10),
+         Mf = M *f) %>%
+  add_column(index = 1:nrow(.), .before = "groups")
+
+# calculate df
+n <- sum(bin_computer$f)
+mean <- sum(df_computer$sales)/n
+sd <- sd(df_computer$sales)
+mean_bin <- sum(bin_computer$Mf)/n
+
+```
+
+
+```{r}
+# computer case: quantile prepare
+# for raw dataset
+Q1 <- quantile(df_computer$sales,probs=0.25)
+Q3 <- quantile(df_computer$sales,probs=0.75)
+Qd <- Q3- Q1 
+
+min <- min(df_computer$sales)
+max <- max(df_computer$sales)
+range <- max- min
+
+```
+
+
+.pull-left[
+
+**案例数据**：某电脑销售公司在4个月120天（
+$n=120$）的电脑销售台数的数据记录如下，请计算该数据集的**四分位差**是多少？
+
+```{r}
+df_computer$sales
+```
+
+]
+
+.pull-right[
+
+**解题步骤**：
+
+- 计算数据集的四分之一位数：
+$Q_1 = `r Q1`$。
+
+- 计算数据集的四分之三位数：
+$Q_3 = `r Q3`$。
+
+- 最后计算得到四分位差：
+$Q_d = Q_3- Q_1 =`r Qd`$
+
+
+]
+
+
+---
+
+## （示例）四分位差的计算：单项式数列
+
+**案例数据**：甲城市家庭对住房状况评价的频数分布如下，请计算该数据集的四分位差是多少？
+
+.pull-left[
+
+```{r}
+sat_cumsum %>%
+  add_column(lable =c(1:5,NA), .before = "satisfication") %>%
+  kable(align = "c", caption = "甲城市住房满意度评价统计表") %>%
+  kable_styling() %>%
+  row_spec(c(0,6), bold = T, color = "black", background = "gray") %>%
+  row_spec(2, bold = T, color = "white", background = "orange") %>%
+  row_spec(3, bold = T, color = "white", background = "red") 
+
+```
+
+
+
+]
+
+.pull-right[
+
+**解题分析**：设非常不满意为1，不满意为2，一般为3，满意为4， 非常满意为5。 已知：
+$Q_1 = 不满意 = 2$；
+$Q_3  = 一般 = 3$。则四分位差为：
+
+$$Q_d = Q_3 -  Q_1= 3 – 2  = 1$$
+]
+
+---
+
+## 极差：概念和特征
+
+**极差（range）**：是一组数据的最大值与最小值之差，一般记为
+$R$，计算公式为：
+
+$$R = Max(X_i) - Min(X_i)$$
+
+
+**极差的特征**：
+
+- 离散程度的最简单测度值
+
+- 易受极端值影响
+
+- 未考虑数据的分布
+
+---
+
+## （示例）极差的计算：未整理原始数据
+
+.pull-left[
+
+**案例数据**：某电脑销售公司在4个月120天（
+$n=120$）的电脑销售台数的数据记录如下，请计算该数据集的**极差**是多少？
+
+```{r}
+df_computer$sales
+```
+
+]
+
+.pull-right[
+
+**解题步骤**：
+
+- 先排序数据，找到最小值和最大值。
+
+```{r}
+sort(df_computer$sales)
+
+```
+
+- 最后计算得到四分位差：
+$R = Max(X_i)- Min(X_i) =`r max` - `r min` = `r range`$
+]
+
+---
+
+## 平均差：概念和特征
+
+**平均差（mean deviation）**：是各变量值与其平均数离差绝对值的平均数，一般记为
+$M_d$。计算公式根据数据情况分为：
+
+.pull-left[
+- 未分组数据：
+
+$$\begin{align}
+M_{\mathrm{d}}=\frac{\sum_{i=1}^{n}\left|X_{i}-\bar{X}\right|}{n}
+\end{align}$$
+
+]
+
+.pull-right[
+- 组距分组数据：
+
+$$\begin{align}
+M_{\mathrm{d}}=\frac{\sum_{i=1}^{k}\left(\left|M_{i}-\bar{X}\right| f_{i}\right)}{\sum{f_i}}
+\end{align}$$
+
+]
+
+**平均差的特征**：
+
+- 能全面反映一组数据的离散程度。
+
+- 数学性质较差，实际中应用较少。
+
+---
+
+## （示例）平均差的计算：原始未整理数据1
+
+
+**案例数据**：某电脑销售公司在4个月120天（
+$n=120$）的电脑销售台数的数据记录如下，请计算该数据集的**四分位差**是多少？
+
+```{r}
+# case computer: mean deviation prepare
+
+## for raw dataset
+abs_demean <- abs(df_computer$sales-mean)
+md_raw <- sum(abs_demean)/n
+
+## for bin dataset
+md_bin_computer <- bin_computer %>%
+  mutate(demean = M-mean_bin,
+         abs_demean = abs(demean),
+         demean_f = demean *f,
+         abs_demean_f = abs_demean *f)
+
+sum_md <- sum(md_bin_computer$abs_demean_f)
+n <- sum(bin_computer$f)
+md_bin <- sum_md/n
+
+```
+
+
+```{r}
+df_computer$sales
+```
+
+---
+
+## （示例）平均差的计算：原始未整理数据2
+
+**解题步骤**：
+
+.pull-left[
+
+
+- 计算数据集的均值：
+$\bar{X} = \frac{\sum{X_i}}{n} =  `r mean`$。
+
+- 计算所有数据的离中心差的绝对值：
+$|X_i -\bar{X}|$，及其求和项
+$\sum_{i=1}^{n}\left|X_{i}-\bar{X}\right| = `r sum(abs_demean)`$。
+
+- 最后利用公式计算得到平均差：
+
+$$\begin{align}
+M_{\mathrm{d}}
+&=\frac{\sum_{i=1}^{n}\left|X_{i}-\bar{X}\right|}{n} \\
+&=\frac{`r sum(abs_demean)`}{120} =`r md_raw`
+\end{align}$$
+
+]
+
+.pull-right[
+
+```{r}
+abs_demean
+```
+
+]
+
+---
+
+## （示例）平均差的计算：组距分组数据1
+
+**案例数据**：A同学将某电脑销售公司在4个月120天（
+$n=120$）的电脑销售台数的原始数据，并进行如下的组距式分组统计。其中f表示落在各组的天数。请计算该数据集的**平均差**是多少？
+
+```{r}
+bin_computer %>%
+  select(index, groups, f) %>%
+  janitor::adorn_totals("row") %>%
+  knitr::kable(align = "c") %>% 
+  kable_styling(full_width = T) %>%
+  row_spec(c(0,11), background = "gray")
+
+```
+
+
+---
+
+## （示例）平均差的计算：组距分组数据2
+
+
+**解题步骤**：具体计算表见下一页ppt。
+
+- 计算各组组中值M：
+$M_i$，以及组中值与权重的乘积Mf：
+$M_if_i$。然后计算得出均值：
+$\bar{X}=\frac{\sum{M_if_i}}{\sum{f_i}}=`r formatC(mean_bin, digits =0, format= "f")`$。
+- 计算得到离中心差demean：
+$M_i-\bar{X}$，及其绝对值abs_demean
+$|M_i-\bar{X}|$。
+
+- 计算离中心差与权重的乘积demean_f：
+$(M_i-\bar{X})f_i$，及其绝对值abs_demean_f：
+$|(M_i-\bar{X})|f_i$
+
+- 最后，利用公式计算加总项，进一步计算得到平均差。
+
+$$\begin{align}
+M_{\mathrm{d}} =\frac{\sum_{i=1}^{k}\left(\left|M_{i}-\bar{X}\right| f_{i}\right)}{\sum{f_i}}
+= \frac{`r sum_md`}{120} = `r md_bin`
+\end{align}$$
+
+- 含义：与销售量平均数相比，日销售量之间平均相差`r md_bin`台。
+
+
+---
+
+## （示例）平均差的计算：组距分组数据3
+
+```{r}
+md_bin_computer %>%
+  select(index, groups,M, f, Mf, demean,abs_demean, demean_f,abs_demean_f) %>%
+  janitor::adorn_totals("row") %>%
+  knitr::kable(align = "c", caption = "平均差计算需要用到计算表") %>% 
+  kable_styling(full_width = T) %>%
+  row_spec(c(0,11), background = "gray")
+```
+
+---
+
+## 方差和标准差：概念和特征
+
+方差（variance）和标准差（standard deviation）：是数据离散程度的最常用测度指标，反映了各变量值与均值的平均差异。
+
+- 根据总体数据计算的，称为总体方差（记为
+$\sigma^2$）以及总体标准差（记为
+$\sigma^2$）。
+
+- 根据样本数据计算的，称为样本方差（记为
+$S^2$）以及样本标准差（记为
+$S$）。
+
+.pull-left[
+
+- 对于未整理原始样本数据：
+
+$$\begin{align}
+S^{2}&=\frac{\sum_{i=1}^{n}\left(X_{i}-\bar{X}\right)^{2}}{n-1} \\
+S&=\sqrt{\frac{\sum_{i=1}^{n}\left(x_{i}-\bar{X}\right)^{2}}{n-1}}
+\end{align}$$
+
+]
+
+.pull-right[
+
+- 对于组距式分组样本数据：
+
+$$\begin{align}
+S^{2} &=\frac{\sum_{i=1}^{k}\left(\left(M_{i}-\bar{X}\right)^{2} f_{i}\right)}{n-1} \\
+S &=\sqrt{\frac{\sum_{i=1}^{k}\left(\left(M_{i}-\bar{X}\right)^{2} f_{i} \right)}{n-1}}
+\end{align}$$
+
+]
+
+---
+
+## （示例）计算：原始未整理数据1
+
+**案例数据**：某电脑销售公司在4个月120天（
+$n=120$）的电脑销售台数的数据记录如下，请计算该数据集的**样本方差**和**样本标准差**分别是多少？
+
+```{r}
+# case computer: sample deviation prepare
+
+## for raw dataset
+sum_sd_raw <- sum((df_computer$sales - mean)^2)
+s2_raw <- (sd(df_computer$sales))^2
+s_raw <- sd(df_computer$sales)
+
+## for bin dataset
+sd_bin_computer <- bin_computer %>%
+  mutate(demean = M-mean_bin,
+         power2 = demean^2,
+         power2_f = power2 *f)
+
+sum_sd_bin <- sum(sd_bin_computer$power2_f)
+n <- sum(bin_computer$f)
+s2_bin <- sum_sd_bin/(n-1)
+s_bin <- sqrt(s2_bin)
+
+```
+  
+
+```{r}
+df_computer$sales
+```
+
+
+---
+
+## （示例）计算：原始未整理数据2
+
+**解题步骤**：
+
+- 计算数据集的均值：
+$\bar{X} = \frac{\sum{X_i}}{n} =  `r mean`$。
+
+- 计算所有数据的离中心差：
+$X_i -\bar{X}$，及其平方项
+$(X_i -\bar{X})^2$。
+
+- 计算离中心差平方项的求和项
+$\sum_{i=1}^{n}\left((X_{i}-\bar{X})^2\right) = `r sum_sd_raw`$。
+
+- 最后利用公式计算得到样本方差和样本标准差：
+
+.pull-left[
+$$\begin{align}
+S^{2}
+&=\frac{\sum_{i=1}^{n}\left(X_{i}-\bar{X}\right)^{2}}{n-1} \\
+&= \frac{`r sum_sd_raw`}{`r n-1`} 
+= `r formatC(s2_raw, digits = 4, format = 'f' )`
+\end{align}$$
+
+]
+
+.pull-right[
+$$\begin{align}
+S
+&=\sqrt{\frac{\sum_{i=1}^{n}\left(X_{i}-\bar{X}\right)^{2}}{n-1}} \\
+&= \sqrt{\frac{`r sum_sd_raw`}{`r n-1`} }
+= `r formatC(s_raw, digits = 4, format = 'f' )`
+\end{align}$$
+
+]
+
+- 含义：日销售量平均数为`r formatC(mean, digits =0, format='f')`台，日销售量与平均数之间的一个标准差为`r formatC(s_raw, digits =0, format='f')`台。
+
+
+---
+
+## （示例）计算：组距分组数据1
+
+**案例数据**：A同学将某电脑销售公司在4个月120天（
+$n=120$）的电脑销售台数的原始数据，并进行如下的组距式分组统计。其中f表示各组的天数。请计算该数据集的**样本方差**和**样本标准**分别是多少？
+
+```{r}
+bin_computer %>%
+  select(index, groups, f) %>%
+  janitor::adorn_totals("row") %>%
+  knitr::kable(align = "c") %>% 
+  kable_styling(full_width = T) %>%
+  row_spec(c(0,11), background = "gray")
+
+```
+
+
+---
+
+## （示例）计算：组距分组数据2
+
+
+**解题步骤**：具体计算表见下一页ppt。
+
+- 计算各组组中值M：
+$M_i$，以及组中值与权重的乘积Mf：
+$M_if_i$。然后计算得出分组数据的均值：
+$\bar{X}=\frac{\sum{M_if_i}}{\sum{f_i}}=`r formatC(mean_bin, digits =0, format= "f")`$。
+- 计算得到离中心差demean：
+$M_i-\bar{X}$，以及离中心差的平方项power2：
+${(X_{i}-\bar{X})}^2f_i$，再计算离中心差平方项与权重的乘积power2_f：
+${(X_{i}-\bar{X})}^2f_i$，然后得到求和项
+$\sum_{i=1}^{n}{\left((M_{i}-\bar{X})^2f_i\right)} =`r sum_sd_bin`$ 。
+- 最后利用公式计算得到样本方差和样本标准差：
+
+.pull-left[
+$$\begin{align}
+S^{2}
+&=\frac{\sum_{i=1}^{n}{\left(\left(M_{i}-\bar{X}\right)^{2}f_i\right)}}{n-1} \\
+&= \frac{`r sum_sd_bin`}{`r n-1`} 
+= `r formatC(s2_bin, digits = 4, format = 'f' )`
+\end{align}$$
+
+]
+
+.pull-right[
+
+$$\begin{align}
+S
+&=\sqrt{\frac{\sum_{i=1}^{n}{\left(\left(M_{i}-\bar{X}\right)^{2}f_i\right)}}{n-1}} \\
+&= \sqrt{\frac{`r sum_sd_bin`}{`r n-1`} }
+= `r formatC(s_bin, digits = 4, format = 'f' )`
+\end{align}$$
+
+]
+
+- 含义：日销售量平均数为`r formatC(mean_bin, digits =0, format='f')`台，日销售量与平均数之间的一个标准差为`r formatC(s_bin, digits =0, format='f')`台。
+
+
+---
+
+## （示例）计算：组距分组数据3
+
+```{r}
+sd_bin_computer %>%
+  select(index, groups,M, f, Mf, demean,power2, power2_f) %>%
+  janitor::adorn_totals("row") %>%
+  knitr::kable(align = "c", caption = "方差/标准差计算需要用到计算表") %>% 
+  kable_styling(full_width = T) %>%
+  row_spec(c(0,11), background = "gray")
+```
+
+---
+
+## 标准分数
+
+**标准分数（standard score）**：也称标准化值，记为
+$Z_i$，计算公式为：
+
+$$Z_i=\frac{(X_i-\bar{X})}{S_{X}}$$
+
+**标准分数的特征**：
+
+- 对某一个值在一组数据中相对位置的度量。
+
+- 可用于判断一组数据是否有离群点(outlier)。
+
+- 用于对变量的标准化处理。
+
+标准化值
+$Z_i$只是将原始数据
+$X_i$进行了线性变换，它并没有改变一个数据在该组数据中的位置，也没有改变该组数分布的形状，而只是使该组数据均值为0，标准差为1。因此也被称为**标准化变换**。
+
+---
+
+## 变异系数：概念和作用
+
+**变异系数（coefficient of variation）**：是用相对数表示的变异指标，又称**标志变动系数**。根据分子的不同，又具体分为：
+
+
+- 全距变异系数：
+$V_R= \frac{R}{\bar{X}}$
+
+- 平均差变异系数：
+$V_{AD}= \frac{R}{\bar{X}}$
+
+- 标准差变异系数：
+$V_{S}= \frac{S}{\bar{X}}$
+
+
+**变异系数的作用**：抽象掉标志值大小及计量单位的影响。
+
+---
+
+## （示例）计算几类变异系数
+
+```{r}
+v_r <- formatC(range/mean, digits = 4, format ='f')
+v_ad <- formatC(md_raw/mean, digits = 4, format ='f')
+v_s <- formatC(s_raw/mean, digits = 4, format ='f')
+```
+
+
+**案例数据**：某电脑销售公司在4个月120天（
+$n=120$）的电脑销售台数的数据记录如下，请计算该数据集的**全距变异系数**、**平均差变异系数**和**标准差变异系数**分别是多少？
+
+.pull-left[
+
+```{r}
+df_computer$sales
+```
+
+]
+
+.pull-right[
+
+**解题分析**：
+
+- 根据前面已经得到的相关结算结果：数据集的均值
+$\bar{X} =`r mean`$；全距
+$R=`r range`$；平均差
+$AD =`r md_raw`$；样本标准差
+$S =`r s_raw`$。然后，利用公式分别计算得到几类变异系数。
+
+- 全距变异系数：
+$V_R= \frac{R}{\bar{X}}=\frac{`r range`}{`r mean`} =`r v_r`$
+
+- 平均差变异系数：
+$V_{AD}= \frac{R}{\bar{X}}=\frac{`r md_raw`}{`r mean`} =`r v_ad`$
+
+- 标准差变异系数：
+$V_{S}= \frac{S}{\bar{X}}=\frac{`r s_raw`}{`r mean`} =`r v_s`$
+
+]
+
+---
+
+## （示例）计算标准差变异系数
+
+```{r}
+set.seed(5678)
+n_team <- 10
+team_a <- round(rnorm(n_team ,70,8), 0)
+team_b <- round(rnorm(n_team ,20,4),0)
+mean_a <- mean(team_a)
+s_a <-sd(team_a)
+v_sa <- formatC(s_a/mean_a, digits =4, format ='f')
+mean_b <- mean(team_b)
+s_b <-sd(team_b)
+v_sb <- formatC(s_b/mean_b, digits =4, format ='f')
+
+```
+
+---
+
+## （示例）计算标准差变异系数
+
+**案例数据**：某工厂有甲、乙两个工人小组，每个小组各有`r n_team`个工人，两个小组的日产量数据分别如下。请你通过一些计算，比较那个小组的产量更稳定？
+
+.pull-left[
+- 甲组工人的日产量（件/天）数据：
+
+```{r}
+team_a
+```
+
+]
+
+.pull-right[
+- 乙组工人的日产量（件/天）数据：
+
+```{r}
+team_b
+```
+
+]
+
+---
+
+## （示例）计算标准差变异系数
+
+**解题分析**：
+
+.pull-left[
+甲组工人的日产量（件/天）数据：
+
+```{r}
+team_a
+```
+
+- 产量均值
+$\bar{X_甲}=\frac{\sum{X_i}}{n}=`r mean_a`$；产量标准差
+$S_甲=\sqrt{\frac{\sum{(X_i -\bar{X}^2)}}{n-1}}=`r s_a`$。
+]
+
+.pull-right[
+乙组工人的日产量（件/天）数据：
+
+```{r}
+team_b
+```
+
+- 产量均值
+$\bar{X_乙}=\frac{\sum{X_i}}{n}=`r mean_b`$；产量标准差
+$S_乙=\sqrt{\frac{\sum{(X_i -\bar{X}^2)}}{n-1}}=`r s_b`$。
+
+]
+
+显然，从标准差来看甲组离散程度大于乙组
+$S_甲 > S_乙$，但是单纯从标准差大小来断定工人产量稳定性，是不恰当的。因为我们还可以看到，甲组的均值也高于乙组
+$\bar{X}_甲 > \bar{X}_乙$，这意味着甲组的效率更高。因此，我们需要进一步计算变异系数指标来加以比较。可以发现，甲组要更优。
+
+$$V_{S甲}= \frac{S_甲}{\bar{X}_甲}=`r v_sa` < V_{S乙}= \frac{S乙}{\bar{X}_乙}=`r v_sb`$$
+
+
+
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name: distribution
+
+
+# 4.5 分布形态的度量
+
+### 偏态及其测度
+
+### 峰态及其测度
+
+???
+
+本节参考资源：
+
+- [Skewness and Kurtosis in R Programming](https://www.geeksforgeeks.org/skewness-and-kurtosis-in-r-programming/)
+
+- [Skewness And Kurtosis In Statistics](https://predictivehacks.com/skewness-and-kurtosis-in-statistics/)
+
+---
+layout: true
+
+<div class="my-header-h2"></div>
+
+<div class="watermark1"></div>
+
+<div class="watermark2"></div>
+
+<div class="watermark3"></div>
+
+<div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter"> 第04章 数据的概括性度量 </a>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="#distribution"> 4.5 分布形态的度量 </a> </span></div> 
+
+---
+background-image: url("../pic/chpt04-nav-06-distribution.png")
+background-size: contain
+
+## 内容导航
+
+---
+
+## 偏态及其测度
+
+**偏态（skewness）**：对数据分布偏斜程度的测度<sup>*</sup>。
+
+**偏态系数SK的特征**：
+
+.pull-left[
+- 
+$SK=0$为对称分布
+
+- 
+$SK> 0$为右偏分布
+
+- $SK< 0$为左偏分布
+]
+
+.pull-right[
+- 
+$|SK|>1$，被称为高度偏态分布；
+
+- 
+$0.5<|SK| \leq 1$，被认为是中等偏态分布；
+
+- 
+$SK \simeq 0$，偏斜程度就越低 。
+]
+
+.footnote[.red[**注释**]：<sup>*</sup> 具体定义和计算公式可以参看 第03章 3.3节内容。]
+
+---
+
+## 偏态系数的计算
+
+- 根据原始数据计算：
+
+$$\begin{align}
+SK = \frac{n}{(n-1)(n-2)}\frac{ \sum_{i=1}^n{(X_i-\bar{X})^3}}{S_X^3}
+\end{align}$$
+
+
+- 根据分组数据计算：
+
+$$\begin{align}
+SK = \frac{1}{\sum{f_i}} \cdot \frac{\sum_{i=1}^n{\left((M_i-\bar{X})^3 \cdot f_i\right)}}{S_X^3}
+\end{align}$$
+
+> 其中：
+$n$表示总次数；
+$f_i$表示各组次数；
+$M_i$表示各组组中值；
+$S_X$表示样本标准差
+$S_X =\sqrt{\frac{\sum_1^n{(X_i- \bar{X})^2}}{n-1}}$。
+
+
+---
+
+## （示例）偏态系数的计算：未分组原始数据
+
+```{r}
+
+dist_bin_computer <-bin_computer %>%
+  mutate(demean = M- mean_bin,
+         power2 = demean^2,
+         power2_f = power2*f,
+         power3 = demean^3,
+         power3_f = power3*f,
+         power4 = demean^4,
+         power4_f = power4*f)
+# sample sd
+s_x <- sqrt(sum(dist_bin_computer $power2_f)/(n-1))
+
+# SK
+sk <- moments::skewness(df_computer$sales)
+sum_sk <- sum(dist_bin_computer $power3_f)
+sk_bin <- sum_sk /(n*s_x^3)
+
+# KT
+kt <- moments::kurtosis(df_computer$sales)
+sum_kt <- sum(dist_bin_computer $power4_f)
+kt_bin <- sum_kt /(n*s_x^4)
+
+```
+
+.pull-left[
+
+**案例数据**：某电脑销售公司在4个月120天（
+$n=120$）的电脑销售台数的数据记录如下，请计算该数据集的**偏度系数**SK是多少？
+
+```{r, chunk-list-sales}
+df_computer$sales
+```
+
+]
+
+.pull-right[
+
+**解题步骤**：
+
+- 计算数据的均值
+$\bar{X} = \frac{\sum{X_i}}{n}=`r formatC(mean, digits=4, format="f")`$。
+
+- 计算数据的样本标准差
+$S_X =\sqrt{\frac{\sum_{i=1}^n{(X_i- \bar{X})^2}}{n-1}}=`r formatC(sd, digits=4, format="f")`$。
+
+- 利用公式计算得出偏度系数SK。
+
+]
+
+$$\begin{align}
+SK = \frac{n}{(n-1)(n-2)}\frac{ \sum_{i=1}^n{(X_i-\bar{X})^3}}{S_X^3}
+=\frac{120}{(119\times 118)} \frac{`r sum_sk`}{`r s_x^3`}
+= `r formatC(sk, digits =4, format="f")`
+\end{align}$$
+
+---
+
+## （示例）偏态系数的计算：分组后组距式数据
+
+**案例数据**：A同学将某电脑销售公司在4个月120天（
+$n=120$）的电脑销售台数的原始数据（见前例），并进行如下的组距式分组统计。其中f表示落在各组的天数。请计算所有数据的**偏度系数**SK是多少？
+
+
+```{r}
+dist_bin_computer  %>%
+  select(index, groups, f) %>%
+  janitor::adorn_totals("row") %>%
+  knitr::kable(align = "c") %>% 
+  kable_styling(full_width = T) %>%
+  row_spec(c(0,11), background = "gray")
+```
+
+
+---
+## （示例）偏态系数的计算：分组后组距式数据
+
+
+**解题步骤**：具体计算表见下一页ppt。
+
+- 计算各组组中值M：
+$M_i$，然后计算得出均值：
+$\bar{X}=\frac{\sum{M_if_i}}{\sum{f_i}}=`r formatC(mean_bin, digits =0, format= "f")`$。
+
+- 计算得到离中心差demean：
+$M_i-\bar{X}$。
+
+- 对离中心差分别计算2次方项power2：
+$(M_i-\bar{X})^2$和3次方项power3：
+$(M_i-\bar{X})^3$。以及各自幂指数项与权重f的乘积，power2_f：
+$(M_i-\bar{X})^2f_i$和3次方项power3_f：
+$(M_i-\bar{X})^3f_i$。
+
+- 分别进行行汇总，得到各项的加总项。
+
+- 计算出分组后数据的样本标准差
+$S_X =\sqrt{\frac{\sum_1^n{(M_i- \bar{X})^2}}{n-1}}$
+
+- 最后，利用公式进一步计算得到偏度系数SK。
+
+$$\begin{align}
+SK = \frac{1}{\sum{f_i}} \cdot \frac{\sum_{i=1}^n{\left((M_i-\bar{X})^3 \cdot f_i\right)}}{S_X^3}
+= \frac{1}{120} \cdot \frac{`r formatC(sum_sk,digits=0, format='f')`}{`r formatC(s_x^3,digits=4, format='f')`} 
+= `r formatC(sk_bin,digits=4, format='f')`
+\end{align}$$
+
+---
+
+## （示例）偏态系数的计算：分组后组距式数据
+
+```{r}
+dist_bin_computer  %>%
+  select(index:power3_f) %>%
+  janitor::adorn_totals("row") %>%
+  knitr::kable(align = "c", caption = "偏态系数计算需要用到计算表") %>% 
+  kable_styling(full_width = T) %>%
+  row_spec(c(0,11), background = "gray")
+```
+
+
+---
+
+## 峰态系数的计算
+
+
+- 根据原始数据计算：
+
+$$\begin{align}
+KT = \frac{n(n+1)}{(n-1)(n-2)(n-3)} \frac{\sum_{i=1}^n{(X_i-\bar{X})^4}}{S_X^4} - \frac{3(n-1)^2}{(n-2)(n-3)}
+\end{align}$$
+
+
+- 根据分组数据计算：
+
+$$\begin{align}
+KT = \frac{\sum_{i=1}^n{\left((M_i-\bar{X})^4 \cdot f_i\right)} }{(\sum{f_i})\cdot S_X^4}
+\end{align}$$
+
+> 其中：
+$n$表示总次数；
+$f_i$表示各组次数；
+$M_i$表示各组组中值；
+$S_X$表示样本标准差
+$S_X =\sqrt{\frac{\sum_1^n{(X_i- \bar{X})^2}}{n-1}}$。
+
+---
+
+## （示例）峰态系数的计算：未分组原始数据
+
+.pull-left[
+
+**案例数据**（同前）：某电脑销售公司在4个月120天（
+$n=120$）的电脑销售台数的数据记录如下，请计算该数据集的**峰度系数**KT是多少？
+
+```{r}
+df_computer$sales
+```
+
+]
+
+.pull-right[
+
+**解题步骤**：
+
+- 计算数据的均值
+$\bar{X} = \frac{\sum{X_i}}{n}=`r formatC(mean, digits=4, format="f")`$。
+
+- 计算数据的样本标准差
+$S_X =\sqrt{\frac{\sum_{i=1}^n{(X_i- \bar{X})^2}}{n-1}}=`r formatC(sd, digits=4, format="f")`$。
+
+- 利用公式计算得出峰度系数KT。
+
+]
+
+$$\begin{align}
+KT &= \frac{n(n+1)}{(n-1)(n-2)(n-3)} \frac{\sum_{i=1}^n{(X_i-\bar{X})^4}}{S_X^4} - \frac{3(n-1)^2}{(n-2)(n-3)}\\
+& =\frac{120\times 121}{(119\times 118 \times 117)} \frac{`r sum_kt`}{`r s_x^4`} - \frac{3\times 119^2}{118 \times 117}
+= `r formatC(kt, digits =4, format="f")`
+\end{align}$$
+
+
+---
+
+## （示例）峰态系数的计算：分组后组距式数据
+
+**案例数据**：A同学将某电脑销售公司在4个月120天（
+$n=120$）的电脑销售台数的原始数据（见前例），并进行如下的组距式分组统计。其中f表示落在各组的天数。请计算所有数据的**峰态系数**KT是多少？
+
+
+```{r}
+dist_bin_computer  %>%
+  select(index, groups, f) %>%
+  janitor::adorn_totals("row") %>%
+  knitr::kable(align = "c") %>% 
+  kable_styling(full_width = T) %>%
+  row_spec(c(0,11), background = "gray")
+```
+
+
+---
+## （示例）峰态系数的计算：分组后组距式数据
+
+
+**解题步骤**：具体计算表见下一页ppt。
+
+- 计算各组组中值M：
+$M_i$，然后计算得出均值：
+$\bar{X}=\frac{\sum{M_if_i}}{\sum{f_i}}=`r formatC(mean_bin, digits =0, format= "f")`$。
+
+- 计算得到离中心差demean：
+$M_i-\bar{X}$。对离中心差分别计算2次方项power2：
+$(M_i-\bar{X})^2$和4次方项power4：
+$(M_i-\bar{X})^4$。以及各自幂指数项与权重f的乘积，power2_f：
+$(M_i-\bar{X})^2f_i$和4次方项power4_f：
+$(M_i-\bar{X})^4f_i$。
+
+- 分别进行行汇总，得到各项的加总项。计算出分组后数据的样本标准差
+$S_X =\sqrt{\frac{\sum_1^n{(M_i- \bar{X})^2}}{n-1}}$
+
+- 最后，利用公式进一步计算得到峰度系数KT。
+
+$$\begin{align}
+SK = \frac{\sum_{i=1}^n{\left((M_i-\bar{X})^4 \cdot f_i\right)} }{(\sum{f_i})\cdot S_X^4}
+= \frac{1}{120} \cdot \frac{`r formatC(sum_kt,digits=0, format='f')`}{`r formatC(s_x^4,digits=4, format='f')`} 
+= `r formatC(kt_bin,digits=4, format='f')`
+\end{align}$$
+
+---
+
+## （示例）峰态系数的计算：分组后组距式数据
+
+```{r}
+dist_bin_computer  %>%
+  select(index:power2_f, power4, power4_f) %>%
+  janitor::adorn_totals("row") %>%
+  knitr::kable(align = "c", caption = "峰态系数计算需要用到计算表") %>% 
+  kable_styling(full_width = T) %>%
+  row_spec(c(0,11), background = "gray")
+```
 
 ---
 layout:false

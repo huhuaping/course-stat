@@ -3,7 +3,7 @@
 /* adjust font size */
 
 .remark-slide-content {
-    font-size: 22px;
+    font-size: 23px;
     padding: 1em 4em 1em 4em;
 }
 
@@ -59,7 +59,7 @@ div.my-header-h2 {
     position: fixed;
     top: 0px;
     left: 0px;
-    height: 86.92913px;
+    height: 80px;
     width: 100%;
 }
 
@@ -72,6 +72,7 @@ div.my-header-h2 {
   text-shadow: 0px 0px;
   text-align: center;
   z-index: 5;
+  font-size: 40px;
 }
 
 
