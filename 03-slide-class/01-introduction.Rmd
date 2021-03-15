@@ -9,6 +9,7 @@ output:
       - duke-blue
       - hygge-duke
       - ../mycss/my-custom-for-video.css
+      - ../mycss/notes-tips.css
     nature:
       highlightStyle: github
       highlightLines: true
@@ -56,7 +57,6 @@ name: chapter01
 
 # 第1章 导论
 
-
 [1.1 为什么学习统计学](#why)
 
 [1.2 变量和数据](#vars)
@@ -70,15 +70,8 @@ name: chapter01
 [1.6 统计分析的基本过程](#workflow)
 
 ---
-
-## 参考教材
-
-贾俊平.统计学(第7版).北京:中国人民大学出版社,2018. ISBN:9787300253510
-
-[京东链接](https://item.jd.com/26695537115.html)
-
----
-class: inverse, center, middle, duke-softblue
+layout: false
+class: center, middle, duke-orange
 name: why
 
 # 1.1 为什么学习统计学
@@ -146,7 +139,7 @@ smry %>%
   spread(key=cat,value=value) %>%
   select(gender, `申请数`, `录用率`) %>%
   datatable(caption = "录用女性的六大部门") %>%
-  formatPercentage(c(3), digits = 2)
+  formatPercentage(c(3), digits =0)
 
 ```
 
@@ -161,7 +154,7 @@ smry %>%
 ```{r simpsontable, echo=FALSE, warning = FALSE}
 
 simpson %>% 
-  datatable(caption = "录用女性的六大部门") %>%
+  datatable(caption = "聚焦六大招聘部门") %>%
   formatPercentage(c(3,5), 0)
 
 ```
@@ -231,13 +224,13 @@ smry_weight%>%
 load("../data-analysis//berkeley.Rdata")
 
 berkeley %>%
-  rename("女性申请数" ="women.apply" ,
-         "总录用率"= "total.admit"   , 
-         "总申请数" ="number.apply") %>%
+  rename("女性申请数" ="women.apply", 
+         "总申请数" ="number.apply" ,
+         "总录用数"= "total.admit"  ) %>%
   add_column("部门"=1:dim(.)[1], .before = "女性申请数") %>%
   datatable(caption = "39个部门的录用情况",
             options = list(dom = "tip", pageLength=5
-                           ))
+                           )) 
 
 ```
 
@@ -294,7 +287,8 @@ lines( x = c(0,xlu), y = coef[1]+c(0,xlu)*coef[2])
 
 **信念偏见效应**：如果你让人们决定一个特定的论点是否在逻辑上是有效的，我们往往会受到结论可信度的影响，即使我们不应该这样做。
 
-这是一个有效的**论据**，其**结论**是可信的：：
+.pull-left[
+一个有效的**论据**，其**结论**是可信的：：
 
 - 没有香烟很便宜（前提1）
 
@@ -302,13 +296,19 @@ lines( x = c(0,xlu), y = coef[1]+c(0,xlu)*coef[2])
 
 - 因此，有些令人上瘾的东西不是香烟（结论）
 
-这是一个有效的**论据**，但其**结论**是不可信的：
+]
+
+.pull-right[
+
+一个有效的**论据**，但其**结论**是不可信的：
 
 - 没有令人上瘾的东西很便宜（前提1）
 
 - 有些香烟很便宜（前提2）
 
 - 因此，有些香烟不会上瘾（结论）
+]
+
 
 ---
 
@@ -395,7 +395,7 @@ C. 其他观点
 
 ---
 layout: false
-class: center, middle, inverse
+class: center, middle, duke-orange
 name: vars
 
 # 1.2 变量和数据
@@ -476,7 +476,7 @@ A.按性质不同可分为：
 ]
 
 ---
-class: duke-softblue
+
 ### 随堂测验（2min）
 
 请分别说出如下情形分别属于那种变量类型？
@@ -525,7 +525,7 @@ rainfall_show[1:50]
 
 
 ---
-class: duke-softblue
+
 ### 课堂讨论（2min）：
 
 非随机变量（non-random variable）实际存在么？
@@ -706,15 +706,26 @@ background-image: url("../pic/chpt01-spss-var-view.png")
 
 ### 纽约机场数据库：变量视图
 
-只看2013年1月的数据。
+.pull-left[
 
 ```{r,comment="", echo=TRUE}
 require("nycflights13") 
 data(flights)                     # 导入数据集
 flights_jan <- flights %>%
   filter(month == 1)              # 只看2013年1月的数据
-str(flights_jan, max.level =5, list.len =10)
+
 ```
+
+]
+
+
+.pull-right[
+
+```{r}
+glimpse(flights_jan)
+```
+
+]
 
 ---
 
@@ -731,7 +742,6 @@ head(flights_jan,500) %>%    # 只看前500条数据
 ```
 
 ---
-class:duke-softblue
 
 ## 数据和信息的关系
 
@@ -749,7 +759,6 @@ include_graphics("../pic/chpt01-data-info-DIKW.png",dpi ="120")
 参考资料：https://www.guru99.com/difference-information-data.html
 
 ---
-class: duke-softblue
 
 ## 数据与信息的关系
 
@@ -784,7 +793,7 @@ class: duke-softblue
 
 
 ---
-class: duke-softblue
+
 
 ## 数据与信息的关系
 
@@ -812,7 +821,7 @@ class: duke-softblue
 
 ---
 layout: false
-class: center, middle, inverse
+class: center, middle, duke-orange
 name: scale
 
 # 1.3 数据的计量层次
@@ -877,8 +886,8 @@ layout: true
     - 婚姻状况(已婚、未婚、离婚、分居）
 
 ---
-class: duke-softblue
-### 名义数据举例
+
+### （示例）名义数据举例
 
 变量及可能取值VS数据集
 
@@ -903,7 +912,7 @@ nominal %>%
 
 ---
 
-## 序数数据(ordinal data)
+## 顺序数据(ordinal data)
 
 - 变量的不同取值有顺序差异，即存在自然顺序
 
@@ -935,8 +944,8 @@ include_graphics("../pic/ordinal-show2.png")
 ]
 
 ---
-class: duke-green
-### 序数数据举例
+
+### （示例）顺序数据举例
 
 .pull-left[
 
@@ -975,7 +984,7 @@ glimpse(temperature)
 ```
 
 
-
+.footnote[**说明**：H表示Happy；V表示very；U表示unhappy。三个字母可以组合表达不同含义。]
 
 ---
 
@@ -997,8 +1006,8 @@ glimpse(temperature)
     
     
 ---
-class: duke-orange
-### 区间数据举例：起飞延误时长与星期几有关系么？
+
+### （示例）区间数据举例：起飞延误时长与星期几有关系么？
 
 ```{r}
 flights_jfk <-
@@ -1052,8 +1061,8 @@ flights_jfk %>%
 
 
 ---
-class: duke-orange
-### 区间数据举例：起飞延误时长与星期几有关系么？
+
+### （示例）区间数据举例：起飞延误时长与星期几有关系么？
 
 
 ```{r}
@@ -1071,9 +1080,8 @@ flights_jfk %>%
 
 
 ---
-class: duke-orange
-### 区间数据举例：起飞延误时长与星期几有关系么？
 
+### （示例）区间数据举例：起飞延误时长与星期几有关系么？
 
 
 ```{r}
@@ -1092,7 +1100,7 @@ smry_delay %>%
 
 ---
 
-## 比率数据(ratio data)：
+## 比率数据(ratio data)
 
 比率数据(ratio data)的取值存在自然顺序、可以比较大小（加减）、乘除比率有实际意义。
 
@@ -1112,7 +1120,7 @@ $X_1/X_2$）
 
 ---
 
-## 数据层次小结:数据运算可能性
+## （总结）数据层次与数据运算可能性
 
 
 ```{r}
@@ -1129,7 +1137,7 @@ scale_smry %>%
 
 ---
 layout: false
-class: inverse, middle, center
+class: center, middle, duke-orange
 name: time
 
 # 1.4 数据的时间状态
@@ -1339,7 +1347,7 @@ steel_wide %>%
 
 ---
 layout: false
-class: center, middle, inverse
+class: center, middle, duke-orange
 name: system
 
 # 1.5 统计学的体系
@@ -1439,6 +1447,7 @@ include_graphics("../pic/chpt01-inferential-stat.png", dpi = 100)
 
 - **样本容量**：构成样本的元素的数目称为样本容量或样本量 (sample size)
 
+
 ---
 
 ### 参数和统计量
@@ -1459,11 +1468,11 @@ $\mu,\sigma^2,\Phi,\gamma,\cdots$
 - **定义**：用来描述样本特征的概括性数字度量，它是根据样本数据计算出来的一些量，是样本的函数
 
 - **重要统计量**：所关心的样本统计量有样本均值(
-$\bar{x}$)、样本方差(
-$s^2$) 等
+$\bar{X}$)、样本方差(
+$S^2$) 等
 
-- **记号**：样本统计量通常用小写英文字母来表示
-$\bar{x},s^2,w,v,\cdots$
+- **记号**：样本统计量通常用英文字母来表示
+$\bar{X},s^2,w,v,\cdots$
 
 ---
 
@@ -1475,7 +1484,7 @@ tab_cmpr <- as_tibble(list(  "参数" = c("数据元", "总体期望", '总体�
                           "par" = c("X", "\\( \\mu \\)", 'P', '\\( \\sigma^2 \\)', '\\( \\sigma \\)','N',"\\( \\rho \\)"),
        
          "统计量" = c("数据元", "样本均值", '样本比率', '样本方差', '样本标准差','样本观测数',"样本相关系数"),
-                   "stat" = c("x", "\\( \\bar{x} \\)", 'p', '\\( s^2 \\)', 's','n',"r"))) 
+                   "stat" = c("X", "\\( \\bar{X} \\)", 'p', '\\( S^2 \\)', 'S','n',"r"))) 
 
 datatable(tab_cmpr)
           
@@ -1488,13 +1497,13 @@ datatable(tab_cmpr)
 
 ### 参数和统计量
 
-```{r}
-include_graphics("../pic/chpt01-inferential-stat-sampling.png",dpi =160)
+```{r, out.width= '650px'}
+include_graphics("../pic/chpt01-inferential-stat-sampling.png")
 ```
 
 ---
 
-### 参数和统计量(实验演示)
+### （演示）样本VS总体视角
 
 .pull-left[
 - 总体（
@@ -1518,7 +1527,40 @@ $[y_i, x_i],n$）
 
 ---
 
-### 参数和统计量(实验演示)
+### （演示）样本VS总体视角1
+
+```{r, fig.cap= "一份样本数据"}
+include_graphics("../pic/chpt01-curve-points.png", dpi=200)
+```
+
+---
+
+### （演示）样本VS总体视角2
+
+```{r, fig.cap= "A同学的视界：一条直线"}
+include_graphics("../pic/chpt01-curve-L.png", dpi=200)
+```
+
+---
+
+### （演示）样本VS总体视角3
+
+```{r, fig.cap= "B同学的视界：一条抛物线"}
+include_graphics("../pic/chpt01-curve-U.png", dpi=200)
+```
+
+---
+
+### （演示）样本VS总体视角4
+
+```{r, fig.cap= "C同学的视界：一条S型曲线"}
+include_graphics("../pic/chpt01-curve-S.png", dpi=200)
+```
+
+
+---
+
+### （实验演示）参数VS统计量2
 
 总共162名同学参与随机抽样；每个同学都随机抽取
 $n=10$个数据点。
@@ -1541,7 +1583,7 @@ $n=10$个数据点。
 
 ---
 
-### 参数和统计量(实验演示)
+### （实验演示）参数VS统计量3
 
 
 总体参数有哪些？
@@ -1573,7 +1615,7 @@ $Y_i = \hat{\beta}_0+ \hat{\beta}_1 X_i + e_i$
 
 ---
 layout: false
-class: center, middle, inverse
+class: center, middle, duke-orange
 name: workflow
 
 # 1.6 统计分析的基本过程
@@ -1598,6 +1640,9 @@ layout: true
 
 ## 统计分析的基本过程
 
+.pull-left[
+基本过程包括：
+
 - 实际问题：发现问题
 
 - 收集数据：取得数据
@@ -1606,18 +1651,83 @@ layout: true
 
 - 分析数据：利用统计方法分析数据
 
-- 解释数据:	结果的说明
+- 解释数据：结果的说明
 
 - 得到结论：从数据分析中得出客观结论
+]
 
+.pull-right[
+
+```{r}
+include_graphics("../pic/chpt01-data-purpose-clearity-message.png")
+```
+
+
+]
+
+---
+
+## 统计分析需要具备的能力1
+
+
+**A.基础背景教育**：
+
+- 知识：高等数学、概率论与数理统计、商业经济统计、科学哲学...
+
+- 技能1：前沿阅读：学术期刊academic journal（[西农电子期刊数据库](https://lib.nwsuaf.edu.cn/dzzy/qwdzqk/index.htm)；开源期刊库[arXiv.org](https://arxiv.org/)）、RSS订阅（[统计学之都](https://cosx.org/)；[R-bloggers](https://www.r-bloggers.com/)）、[google学术](https://scholar.google.com/schhp?hl=zh-CN&as_sdt=0,5)...
+
+- 技能2：知识管理：Onenote、印象笔记、Mindmanage（思维导图）...
+
+**B.广泛数据获取**：
+
+- 知识：实验设计、调研经历、数据爬虫
+
+> 技能：大学生创新创业训练、开源数据库（国内微观调研数据库、国外[google dataset search](https://datasetsearch.research.google.com/)）、问卷星、Chrome开发工具、HTML标记语言、CSS语言、Regex语言、docker操作、Selenium/RSelenium
+
+---
+
+## 统计分析需要具备的能力2
+
+
+**C.系统数据管理**：
+
+- 知识：数据库查询语言、连续整合或协作系统（CI）
+
+- 技能：SQL、DBI、[RSQLite](http://dept.stat.lsa.umich.edu/~jerrick/courses/stat701/notes/sql.html)；git语言及[GitHub自动化托管](https://github.com/)。
+
+**D.数据可视化**：
+
+- 知识：现代图形理论、传统/现代编程语言
+
+- 技能：Microsoft Excel、SPSS、
+
+**E.数据建模分析**
+
+- 知识：数据清洗、数据变换、非结构化数据处理、平行运算、计量建模、深度学习与人工智能...
+
+- 技能：Hadoop、Machine Learning and AI、交互制图技术（[R Graph Gallery](https://www.r-graph-gallery.com/interactive-charts.html)）、[shinny APP](https://shiny.rstudio.com/)、books（[Interpretable Machine Learning](https://christophm.github.io/interpretable-ml-book/)）
+
+---
+
+## 统计分析需要具备的能力3
+
+**F.报告写作交流**
+
+- 知识：学术道德规范、科技论文规则、高效写作工具、论文发表、学术研讨交流
+
+- 技能：传统写作排版（Word、Latex语言）、现代标记写作语言（Markdown/Rmarkdown）、文献管理工具（Endnote、Zotero）、可复现图文技术、演讲汇报slide（Powerpoint、Xaringan）、个人网站（hugo语言、blogdown）
+
+**G.技术技巧之外**
+
+- 知识：对智慧和科学的好奇心、生活或商业上的感知与睿智
+
+- 技能：沟通技能、团队协作
 
 ---
 
 ## 统计分析过程：纽约案例
 
-航班延误背后的故事：纽约繁忙的天空
-
-[数据来源nycflights13](https://github.com/hadley/nycflights13)
+**航班延误背后的故事**：纽约繁忙的天空。[数据来源nycflights13](https://github.com/hadley/nycflights13)
 
 This package contains information about all flights that departed from NYC (e.g. EWR, JFK and LGA) in 2013: 336,776 flights in total. To help understand what causes delays, it also includes a number of other useful datasets. This package provides the following data tables.
 

@@ -30,7 +30,7 @@
 /* Table width = 100% max-width */
 
 .remark-slide table{
-    width: 90%;
+    width: 100%;
 }
 
 /* Change the background color to white for shaded rows (even rows) */
