@@ -1,0 +1,96 @@
+---
+title: "研究分析综合报告"
+author: "huhuaping"
+date: "`r Sys.Date()`"
+output: 
+  bookdown::word_document2: 
+    fig_caption:  true
+    toc: yes
+    toc_depth: 4
+    reference_docx: ../template/create-template.docx
+  bookdown::html_document2:
+    number_sections: yes
+    toc: yes
+    fig_caption:  true
+    toc_float: yes
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    fig_caption:  true
+    includes:
+      in_header: ../latex/header.tex
+      before_body: ../latex/preamble.tex
+    toc: yes
+    toc_depth: 5
+    number_sections: no
+    keep_tex: true
+always_allow_html: yes
+documentclass: article
+classoption: [(landscape,a4paper),(portrait,a4paper)]
+fontsize: "12pt"
+thanks: "感谢经济管理学院数量经济学教研室同仁的大力支持！"
+pagestyle: "headings"
+knit: (function(inputFile, encoding) { 
+      out_dir <- '../public';
+      rmarkdown::render(inputFile,
+                        encoding=encoding, 
+                        output_file=file.path(dirname(inputFile), out_dir, 'lab-exercise-06-reporter.docx')) })
+         
+---
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+source("../R/set-global.R")
+```
+
+
+# 作业说明
+
+《统计学原理》课程的一个基本教学目标是：同学们能以小组合作方式独立完成一份**综合研究分析报告**。主要训练环节包括：
+
+- 实际问题：发现问题
+
+- 收集数据：取得数据
+
+- 处理数据：整理与图表展示 
+
+- 分析数据：利用统计方法分析数据
+
+- 解释数据：结果的说明
+
+- 得到结论：从数据分析中得出客观结论
+
+
+# 作业要求
+
+## 作业内容
+
+a. 通过组员讨论，自行确定研究议题。（**要求**：必须金融或经济学议题）。
+
+b. 两人一组独立完成全部上述训练环节。（**要求**：自愿组队，通过老师发布的腾讯共享文档，确定组队名单）
+
+
+## 需要提交的材料
+
+本次作业需要提交的最终材料包括：
+
+- 综合分析报告1份（.docx格式，请参考老师提供的一个模板）。
+
+- 密切相关的参考文献（**学术期刊**文章）中英文各1篇（.pdf格式）。
+
+- 原始数据（包括做图做表内容）1份（.xlsx格式）。
+
+## 作业提交方式
+
+本次作业**提交方式**为学校平台系统提交，具体为：
+
+> 西农网站首页登陆**信息综合服务平台** $\Rightarrow$进入**在线综合教育平台**$\Rightarrow$进入《统计学原理》[课程](https://eol.nwafu.edu.cn/meol/jpk/course/layout/newpage/index.jsp?courseId=42427)$\Rightarrow$进入**课程学习**栏目$\Rightarrow$进入**课程作业**子栏目$\Rightarrow$查看或提交作业。
+
+## 作业截至时间
+
+本次作业的最终截至时间为：本学期末。
+
+**注意**：
+- 团队成员每个人都需要提交作业。
+  作业可以多次提交，最后一次提交将会完全覆盖之前的提交。
+- 系统准点会自动关闭，请按时提交。
+
+

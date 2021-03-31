@@ -44,7 +44,6 @@ source("../R/set-global.R")
 source("../R/external-math-equation.R")
 ```
 
-
 ---
 class: center, middle, duke-softblue
 name: chapter02
@@ -59,7 +58,7 @@ name: chapter02
 
 ### [2.3 抽样设计](#sampling)
 
-### [2.4 抽样设计](#error)
+### [2.4 抽样分布和抽样误差](#error)
 
 ]
 
@@ -81,6 +80,10 @@ class: center, middle, duke-orange
 name: sources
 
 # 2.1 数据来源与形式
+
+数据来源
+
+数据载体和形态
 
 ---
 layout: true
@@ -242,6 +245,16 @@ class: center, middle, duke-orange
 name: collection
 
 # 2.2 数据收集
+
+陈述现实难点（problem）
+
+提出研究问题（question）
+
+数据搜集步骤
+
+收集二手数据
+
+收集一手数据
 
 ---
 layout: true
@@ -1014,6 +1027,18 @@ class: center, middle, duke-orange
 name: sampling
 
 # 2.3 抽样设计
+
+抽样的逻辑
+
+抽样的要素
+
+概率抽样
+
+非概率抽样
+
+抽样方案和实施
+
+抽样误差
 
 ---
 layout: true
@@ -2328,6 +2353,187 @@ include_graphics("../pic/chpt02-non-probability-sampling-2.png")
 
 - 第六，最重要的一条经验就是多沟通。与相关各方尽可能就抽样设计，抽样实施的目标达成一致。
 
+---
+
+## 抽样误差（误差来源1）
+
+
+抽样方法搜集数据，误差来源可能会出现在多个阶段：
+
+- 第一，在**发起阶段**，由研究者带来的误差。理论假设不好，概念界定不清，对样本要求不明确。
+
+- 第二，在**设计阶段**，由设计者带来的误差。比如测量工具选的不对，实施策略选的不对，抽样设计也有问题。
+
+- 第三，在**抽样阶段**，由抽样员带来的误差。如果末端抽样框的界定不明确，抽样过程监管也不明确，就有可能产生随机性误差。
+
+- 第四，在**访问阶段**，由访问员带来的误差。如果访员作弊、作假，轻易地接受拒访，诱导性提问，不规范的提问，也会造成随机误差、应答误差，甚至系统误差。
+
+---
+
+## 抽样误差（误差来源2）
+
+
+
+- 第五，在**访问阶段**，由受访者带来的误差。
+
+    - 如果受访者拒绝访问，或者没有能力作答，作假、作弊、随意作答、回忆误差，也会造成随机误差、应答误差。
+    
+- 第六，在**数据清理阶段**，由数据管理者带来的误差。
+    
+    - 如果数据的管理者编制的数据录入程序有问题，编码有问题，清理程序有问题，管理程序也有问题，也就有可能会前功尽弃，既可能产生随机误差，也可能产生系统误差。
+
+- 第七，在**数据分析阶段**，由分析者带来的误差。
+
+    - 如果分析者分析工具选择不当，模型建构不当，对数据有误读，也会造成研究误差。
+
+---
+
+## 抽样误差（误差类型）
+
+涉及到调查活动的有三个阶段，也就是**设计阶段**、**抽样阶段**和**访问阶段**。这三个阶段涉及到的误差主要有：
+
+- 第一，覆盖性误差，与抽样设计和抽样活动有关。
+
+- 第二，抽样性误差，是抽样活动造成的误差。
+
+- 第三，应答性误差，指访问阶段产生的误差。
+
+- 第四，测量性误差，指测量、测量工具产生的误差。
+
+---
+
+## 抽样误差（A覆盖性误差）
+
+**覆盖性误差**，主要指因抽样方制作不当带来的误差。它属于抽样设计和抽样活动有关一类误差。
+
+- 如果抽样方与研究总体不一致，就会产生误差。
+
+    - 假定CGSS使用电话号码作为抽样框，就会出现覆盖性误差。
+    - 覆盖不足产生的误差：比如有些人没有电话，就会被抽样方忽略，太穷的、太富的都有可能没有电话，或者呢，有电话，却不在电话簿的列表中。
+    - 覆盖过度产生的误差：比如很多人有多部电话，这些人就有可能被过度代表
+
+- 任何抽样方法都不可避免地会带来误差。
+    - 忽略样本特征而随意选择抽样方法，就会直接带来误差。
+    - 即使让抽样方正确地反映了研究总体，抽样活动不可避免地也会带来误差。
+
+
+> 入学机会的地区不平等研究案例。假设我们对高中毕业生采用家户抽样方法，能抽到毕业生，但是却比直接抽取高中毕业生的学校所产生的误差要大得多。
+
+---
+
+## 抽样误差（B主要变量的抽样误差）
+
+ **主要变量的抽样误差**，由变量特征带来的。
+
+- 每一个变量 都有自己的抽样误差
+
+- **主要变量的抽样误差**一般是指的**均值**的误差，用**均值的标准误**
+$\sigma_{\bar{x}}$来代表误差。
+
+- **主要变量的抽样误差**也能用相对误差来表示，比如说**均值的变异系数**
+$V_{\bar{x}}$。
+
+---
+
+## 抽样误差（C应答性误差）
+
+访问阶段的误差也会涉及到抽样误差，尤其是**应答性误差**。它属于访问阶段活动有关一类误差。
+
+
+- **样本无应答**：又叫**单人无应答**，是指如果受访者对整个访问无论是问卷，还是访谈，都不回答的情形。简言之，就是无法从样本得到任何应答，比如说受访人拒访， 或者根本联系不上。
+
+- **选项无应答**：又叫访题无应答，指受访者接受了访问，可能对某些访题不提供应答。
+
+看起来这样的误差属于纯粹的访问误差，实际上不一定，也可以被认为是抽样误差的一种，比如，某些访题涉及到**稀有应答**，在抽样设计中，就需要予以考虑。
+
+
+
+---
+
+exclude: true
+
+## 误差计算
+
+本学期稍后学习！
+
+（千呼万唤、望穿秋水你们的《概率论与数理统计》啊！！！）
+
+???
+
+我们了解了误差的来源， 也在头脑中有了警醒，在抽样和访问中会努力减少误差来源和误差，
+我们也知道了在社会调查与研究中，研究误差指的是具体变量，
+由样本值推论到总体值时可能的差距，那么误差怎么计算呢？ 在讨论误差计算之前，我重复一遍，
+所有误差来源产生的误差，最后都会反映在样本与总体之间的差距上。
+问题是，什么样的差距呢？ 为此，在统计上专门有术语，统计量，用来表达这些差距，
+包括偏差、均方误差，还有比如说样本均值，样本方差，样本标准物， 标准差，总体均值，总体方差
+等等。注意，这些统计量指的是具体变量的统计量， 要比较的，也是具体变量的统计量。
+还有不要忘记了，如果我们把抽样方法也当做是工具， 那么误差的来源只有两类，一类呢，是工具的误差，
+一类是既有工具，也有人为因素的误差。
+如果我们按照某一抽样方案反复抽样， 用样本估计值的数学期望，与待估参数进行比较，
+它们之间的离差就可能是抽样方案造成的误差， 我们称之为偏差，bias，用离差表示。
+还记得样本估计量？在抽样的逻辑中讲过，在用同一个抽样方案反复抽样中，
+如果把每一次的偏差记下来，就构成了一个分布，样本估计量 的分布，这里算的不是样本分布，是统计量的分布，
+就是偏差。
+可是如果有各种方案，就会有多种估计值，其中还会有
+人为因素的影响，这个时候，就既有偏差又有误差，我们统称之为误差， error，用均方误差来表示。
+至于为什么要用离差，为什么要用均方误差，社会科学各学科的统计课程会告诉大家。
+在误差中，由抽样活动导致的样本随机性 所造成的样本统计量与总体统计量之间的差异，被叫做
+抽样误差。在抽样中呢，抽样误差是一个一般性的概念，包含着不同的统计量， 用于刻画变量变异性的分布。
+如果误差不是由样本的随机性带来的，而是由其它的因素带来的，比如说 抽样框误差，测量误差，访问误差等等。
+这些误差呢，被统称为非抽样误差。
+对抽样而言，我们关注的重点是抽样误差。
+我们知道统计量是用来刻画变量变异性分布的， 那么各种统计量的含义究竟指什么呢？
+了解各种统计量的含义之前我们先介绍与统计量密切有关的两个概念，第一，参数值。
+参数值，专门用来刻画总体某个变量变异性分布的状态，
+比如总体均值，总体方差，总体比例，总体比率， 最常用到的是总体均值，总体方差
+和总体比例。比例与比率还不一样。
+比例，是指总量为一，p与q的之间的关系， 比率呢，又叫占比，指相对份额。第二，估计量。
+估计量专门用来刻画样本某个变量变异性分布的状态，
+通常也称统计量，统计值，估计量，在不同的场合有不同的说法。
+常见的估计量比如说，样本均值，样本方差，样本比例。
+这样，大家就要有一个概念，只要是讲参数值， 指的就是对总体的刻画，如果讲估计量呢，指的就是对样本的刻画。
+在讨论中我们一再强调刻画的是 变量变异性的分布，那么在一般意义上如何概括变异性的分布呢？
+最常见的刻画， 是对集中趋势和离散趋势的刻画，还记得在抽样的逻辑中，讨论收入
+分布时候的情形？随着样本量的增加，样本估计量的平均值越来越
+向总体平均值收敛，对了，刻画变量变异性集中趋势的
+就是均值，分布越集中，同质性也就越强，反之，异质性也就越强。均值代表的是
+要素的同质性程度或者异质性程度，这里给出的是总体均值的计算方法。
+这个公式呢，应该容易理解，x拔代表均值，n代表总体要素数，
+xi呢，代表一个具体的要素，把总体要素的变异值加总， 除以n，就是总体均值。
+样本均值的计算方法一样。为了避免小样本条件下样本量对样本均值的影响，
+在除法的分母部分，通常还要用样本量减去一，
+可是仅仅知道了均值，并不能全面了解变量变异性分布的状态， 我们还需要了解其异质性，也就是离散趋势，
+进而检验集中趋势是不是真实的，以及有多集中，这就需要用方差来刻画。
+当知道了均值以后，每一个要素的变量值与均值之间都有一个关系值，
+在样本中呢，观察值与平均值之间的差，又叫离差。
+这个关系值，要么相等， 要么大于或者小于，如果用要素变量值减去变量均值，
+可能得到的结果有三类，零，正数， 负数。如果把这些结果加总，关系值
+的正负属性就会搅乱真正的关系属性。为了避免这个问题， 我们对每个关系值进行平方，就得到了每个要素与均值之间关系
+值的平方，如果把这些关系值加总再除以总体要素n，
+是不是就得到了一个要素值与均值之间差距的平方值？
+这就是总体方差，表达要素在某个变量上与总体之间距离的程度，
+当然方差越大，离散程度也就越大，方差越小呢，离散程度也就越小。同样，
+我们也可以计算样本方差，把方差开方，就是每个要素与总体均值之间的距离，无论正负，
+无论正负，同理呢，也用于样本， 当然在刻画样品估计量分布的时候，还有一些统计量，
+比如说，四分位差，极值等等。不过知道均值、方差和标准差是最重要的。
+对抽样而言，重要的是样本估计量方差， 又称之为估计量方差，统计量方差。在抽样的逻辑中，
+我们提过，那么这个方差到底是什么意思呢？ 举一个例子，假设有一个总体，由三个人组成，他们的年龄分别是两岁，四岁和六岁，
+现在假设从中有放回的随机抽取样本，
+里边包含了两个个体，也就是样本容量等于二。假设一共抽了九次，
+就得到了九组样本，这九组样本分别是二二，二四，
+二六，四二，四四，四六，六二，六四和六六。
+其实这是简化至极的例子，不太好。为什么呢？一般抽样不会这么抽，三个抽两个，
+同时又是一个极好的例子，很容易告诉我们方差从哪里来。
+如果我们按照实践来， 譬如假设有一百八十个人抽三十个人，实践上是相符了，但是
+对于方差的说明却复杂了。我们用这个例子是希望让大家知道方差从哪里来， 就好了。我们用图表来看，这边是样本，
+我一共抽了九组，这边呢，是样本均值，大家看均值的差异有多大，
+这是呢总体均值。是四，如果选两个四组样本，
+看看估计量方差，假设第一个选这四组，
+那么它们的方差就是0.6667，如果选这四组呢？
+这一组的方差就是2.6667，这里大家就知道内部
+的差异有多大了。用这个例子我们希望说明，均值与方差， 对理解内部差异性，异质性，是非常重要的估计量。
+误差计算，还涉及到其它估计量， 对初学者而言呢，理解均值、方差、标准差也就足够了。
+误差计算就讲到这里，谢谢大家。
 
 ---
 layout: false
@@ -2335,6 +2541,12 @@ class: center, middle, duke-orange
 name: error
 
 # 2.4 抽样分布和抽样误差
+
+离散和连续随机变量
+
+总体和样本特征
+
+抽样误差计算
 
 ---
 layout: true
@@ -2588,7 +2800,6 @@ curve(pnorm(x),
 ---
 layout: false
 
----
 
 ## 连续随机变量：正态分布（二元联合正态）
 
@@ -2739,7 +2950,122 @@ legend("topright",
 
 ---
 
-## 样本分布
+## 总体的特征：总体期望和总体方差
+
+随机变量
+$Y$有6种可能取值
+$\{ 1,2,3,4,5,6\}$，那么每种可能取值的概率分别为：
+
+```{r}
+pdfdata <- rbind("事件Y_i"=as.character(1:6), "概率p"=c("1/6","1/6","1/6","1/6","1/6","1/6"), "累积概率"=c("1/6","2/6","3/6","4/6","5/6","1"))
+
+exp_y <- mean(1:6)
+var_y <- (sd(1:6))^2*10/9
+pdfdata %>%
+  head(2) %>%
+  knitr::kable()
+```
+
+总体期望
+$\mu_Y$和总体方差
+$\sigma^2_Y$：
+
+$$\begin{align}
+E(Y) & \equiv \mu_Y= \sum_1^6{(Y_i\cdot p(Y_i))} = \frac{1}{6}\sum_1^6{Y_i} = \frac{1}{6} \times 21 = `r formatC(exp_y, 2, format='f')` \\
+Var(Y)& \equiv \sigma^2_Y= E\left(Y_i - E(Y)\right)^2=E\left(Y_i - \mu \right)^2 
+= \sum_1^6{\left((Y_i-\mu)p(Y_i)\right)}\\
+& = \frac{1}{6}\left[(1-3.5)^2+ (2-3.5)^2+ \cdots + (6-3.5)^2\right] \\
+& = `r formatC(var_y, 2, format='f')`
+\end{align}$$
+
+---
+
+## 样本的特征：样本均值和样本方差
+
+```{r}
+set.seed(8321)
+demo <- sample(1:6, 8, replace = T)
+
+bar_y <- mean(demo)
+s2_y <- (sd(demo))^2
+
+```
+从上述总体中**有放回**地随机抽选8次，得到1份样本容量
+$n=8$的如下样本数据：
+
+```{r}
+demo
+```
+
+样本均值
+$\bar{y}$和样本方差
+$s^2_y$分别表达并计算为：
+
+
+$$\begin{align}
+\bar{y} &=\frac{1}{n} \sum_{i=1}^{n} y_{i} 
+= \frac{1}{8}\left[5+1+\cdots +3 \right] 
+= `r formatC(bar_y, 3, format='f')` \\
+s^{2}_y &=\frac{\sum_{i=1}^{n}\left(y_{i}-\bar{y}\right)^{2}}{n-1} \\
+&= \frac{1}{8-1} \times \left[(5- 4.125)^2 + (1-4.125)^2 + \cdots + (3-4.125)^2\right] \\
+& = `r formatC(s2_y, 4, format='f')`
+\end{align}$$
+
+---
+
+## 样本的特征：样本均值和样本方差
+
+因此，我们可以不断从前述总体
+$Y \in \{1,2,3,4,5,6\}$中进行有放回的随机抽样。下表展示了10份随机样本
+$y$，每份样本的容量都相同
+$n=8$。每份样本的均值
+$\bar{y}$见列`bar_y`，样本方差
+$s^2_y$见列`s2_y`。
+
+```{r}
+set.seed(7321)
+
+demo_more <- tibble(sample =1:10) %>%
+  mutate(y = map(sample, .f = function(x){sample(1:6, 8, replace = T)})) %>%
+  mutate(bar_y = map_dbl(y, mean),
+         s2_y = map_dbl(y, .f = function(x){(sd(x))^2})) %>%
+  janitor::adorn_totals()
+
+demo_more %>%
+  datatable(options = list(dom = "tip", pageLength =  6)) %>%
+  formatRound(3:4, c(2, 4))
+```
+
+---
+
+## 总体和样本特征的关系
+
+根据**中心极限定理**和**大数定理**，我们可以推导得到总体与样本特征的如下关系：
+
+$$\begin{align}
+E(\bar{y}) &= \mu_Y  \tag{eq.1} \\
+Var(\bar{y}) & = \frac{\sigma^2_Y}{n} \tag{eq.2} \\
+E\left(Var(\bar{y}) \right) &= \widehat{Var}(\bar{y}) \equiv \frac{s^2}{n} \tag{eq.3}
+\end{align}$$
+
+其中，
+$s^2 =\frac{\sum_1^n{(y_i - \bar{y})^2}}{n-1}$表示随机样本的样本标准差。以上方程蕴含着如下结论：
+
+- 方程1表明：随机变量
+$\bar{y}$的**期望**是随机变量
+$Y$的**期望**的**无偏估计量**（unbiased estimator）。
+
+- 方程2表明：随机变量
+$\bar{y}$的**方差**与随机变量
+$Y$的**方差**存在以上关系。
+
+- 方程3表明：随机变量
+$\bar{y}$的**方差**的无偏估计量可以通过样本数据计算得到，其结果为
+$\widehat{Var}(\bar{y}) \equiv \frac{s^2}{n}$。
+
+---
+
+## 抽样分布：骰子游戏
 
 **随机样本（random sampling）**是从总体中随机抽取个体的集合。
 
@@ -2747,12 +3073,15 @@ legend("topright",
 $\{1,2,3,4,5,6\}$，如果随机投掷2次，可以得到2次结果的数值加总：
 
 ```{r, echo=T}
-sum(sample(1:6, 2, replace = T))
+set.seed(520)
+toll_2 <- sample(1:6, 2, replace = T)
+toll_2
+sum(toll_2)
 ```
 
 ---
 
-## 样本分布
+## 抽样分布：骰子游戏
 
 .pull-left[
 
@@ -2797,7 +3126,7 @@ $$\begin{align}
 
 ---
 
-## 样本分布
+## 抽样分布：骰子游戏
 
 ```{r, out.height='550px'}
 # Vector of outcomes
@@ -2809,38 +3138,19 @@ PS <- c(1:6, 5:1) / 36
 # plot the distribution of S
 barplot(PS, 
         ylim = c(0, 0.2), 
+        names.arg=2:12,
         xlab = "投掷2次的结果加总S", 
         ylab = "p", 
         col = "steelblue", 
         space = 0, 
-        main = "随机投掷2次的频率分布")
+        main = "投掷2次的频率分布")
+
+
 ```
 
 ---
 
-## 样本分布：均值和方差
-
-假定随机样本
-${Y_1,\dots,Y_n}$是独立随机抽取自正态分布总体
-$Y \sim \mathcal{N}(\mu_Y,\sigma_Y^2)$，那么前述随机样本数据的均值
-$\overline{Y}$将服从如下正态分布：
-
-$$\overline{Y} \sim \mathcal{N}(\mu_Y, \sigma_Y^2/n) \tag{2.4} $$
-
-其中：
-
-$$ E(\overline{Y}) = E\left(\frac{1}{n} \sum_{i=1}^n Y_i \right) = \frac{1}{n} E\left(\sum_{i=1}^n Y_i\right) = \frac{1}{n} \sum_{i=1}^n E\left(Y_i\right) = \frac{1}{n} \cdot n \cdot \mu_Y = \mu_Y $$
-
-$$\begin{align*}
-  \text{Var}(\overline{Y}) =& \text{Var}\left(\frac{1}{n} \sum_{i=1}^n Y_i \right) \\
-  =& \frac{1}{n^2} \sum_{i=1}^n \text{Var}(Y_i) + \frac{1}{n^2} \sum_{i=1}^n \sum_{j=1, j\neq i}^n \text{cov}(Y_i,Y_j) \\
-  =& \frac{\sigma^2_Y}{n} 
-  = \sigma_{\overline{Y}}^2
-\end{align*}$$
-
----
-
-## 样本分布：均值和方差
+## 抽样分布：骰子游戏
 
 ```{r, out.height='550px'}
 # set sample size and number of samples
@@ -2860,6 +3170,7 @@ hist(sample.avgs,
      col = "steelblue" , 
      freq = F, 
      breaks = 20,
+     xlab = '抽样均值',
      main = "10000份随机样本（每份样本n=10）均值的直方图")
 
 # overlay the theoretical distribution of sample averages on top of the histogram
@@ -2872,7 +3183,7 @@ curve(dnorm(x, sd = 1/sqrt(n)),
 
 ---
 
-## 样本分布：均值和方差
+## 抽样分布：骰子游戏
 
 ```{r, out.height='550px'}
 # number of repetitions
@@ -2903,188 +3214,1620 @@ curve(dchisq(x, df = DF),
       add = T)
 ```
 
+---
+
+## 抽样误差：均值和方差
+
+假定随机样本
+${y_1,\dots,y_n}$是独立随机抽取自正态分布总体
+$Y \sim \mathcal{N}(\mu_Y,\sigma_Y^2)$，那么前述随机样本数据的均值
+$\overline{y}$将服从如下正态分布：
+
+$$\overline{y} \sim \mathcal{N}(\mu_Y, \sigma_Y^2/n) \tag{2.4} $$
+
+其中：
+
+$$E(\overline{y}) \equiv \mu_{\bar{y}} = E\left(\frac{1}{n} \sum_{i=1}^n y_i \right) = \frac{1}{n} E\left(\sum_{i=1}^n y_i\right) = \frac{1}{n} \sum_{i=1}^n E\left(y_i\right) = \frac{1}{n} \cdot n \cdot \mu_Y = \mu_Y$$
+
+$$\begin{align*}
+  \text{Var}(\overline{y}) 
+  & \equiv \sigma^2_{\bar{y}} 
+  = \text{Var}\left(\frac{1}{n} \sum_{i=1}^n y_i \right) \\
+  &= \frac{1}{n^2} \sum_{i=1}^n \text{Var}(y_i) + \frac{1}{n^2} \sum_{i=1}^n \sum_{j=1, j\neq i}^n \text{cov}(y_i,y_j) 
+  = \frac{\sigma^2_Y}{n}
+\end{align*}$$
 
 ---
 
-## 抽样误差（误差来源1）
+## 抽样误差：中心极限定理
 
+> 然而，实际中我们往往并不知道总体方差
+$\sigma^2_Y$。此时，上述方差公式是不能够计算的。
 
-抽样方法搜集数据，误差来源可能会出现在多个阶段：
+**有限总体中心极限定理**（The finite population Central Limit Theorem）对于随机变量
+$\bar{y}$的意义在于：我们可以用样本方差
+$s^2_y$来近似替代总体方差
+$\sigma^2_Y$。也即：
 
-- 第一，在**发起阶段**，由研究者带来的误差。理论假设不好，概念界定不清，对样本要求不明确。
-
-- 第二，在**设计阶段**，由设计者带来的误差。比如测量工具选的不对，实施策略选的不对，抽样设计也有问题。
-
-- 第三，在**抽样阶段**，由抽样员带来的误差。如果末端抽样框的界定不明确，抽样过程监管也不明确，就有可能产生随机性误差。
-
-- 第四，在**访问阶段**，由访问员带来的误差。如果访员作弊、作假，轻易地接受拒访，诱导性提问，不规范的提问，也会造成随机误差、应答误差，甚至系统误差。
-
----
-
-## 抽样误差（误差来源2）
-
-
-
-- 第五，在**访问阶段**，由受访者带来的误差。
-
-    - 如果受访者拒绝访问，或者没有能力作答，作假、作弊、随意作答、回忆误差，也会造成随机误差、应答误差。
-    
-- 第六，在**数据清理阶段**，由数据管理者带来的误差。
-    
-    - 如果数据的管理者编制的数据录入程序有问题，编码有问题，清理程序有问题，管理程序也有问题，也就有可能会前功尽弃，既可能产生随机误差，也可能产生系统误差。
-
-- 第七，在**数据分析阶段**，由分析者带来的误差。
-
-    - 如果分析者分析工具选择不当，模型建构不当，对数据有误读，也会造成研究误差。
+$$\begin{align*}
+  \text{Var}(\overline{y}) 
+  & \equiv \sigma^2_{\bar{y}}
+  =  \frac{\sigma^2_Y}{n} \\
+  \widehat{Var}(\overline{y}) 
+  & \equiv \hat{\sigma}_{\bar{y}}
+  =  \frac{s^2_y}{n}
+\end{align*}$$
 
 ---
 
-## 抽样误差（误差类型）
+## 抽样误差：中心极限定理
 
-涉及到调查活动的有三个阶段，也就是**设计阶段**、**抽样阶段**和**访问阶段**。这三个阶段涉及到的误差主要有：
+如果样本容量
+$n$很小，随机变量
+$\bar{y}$的可能分布会是多种多样的。**有限总体中心极限定理**表明，随着样本容量
+$n$的不断增大，随机变量
+$\bar{y}$的分布会越来越稳定，并趋向于**正态分布**（normal distribution），从而有：
 
-- 第一，覆盖性误差，与抽样设计和抽样活动有关。
-
-- 第二，抽样性误差，是抽样活动造成的误差。
-
-- 第三，应答性误差，指访问阶段产生的误差。
-
-- 第四，测量性误差，指测量、测量工具产生的误差。
-
----
-
-## 抽样误差（A覆盖性误差）
-
-**覆盖性误差**，主要指因抽样方制作不当带来的误差。它属于抽样设计和抽样活动有关一类误差。
-
-- 如果抽样方与研究总体不一致，就会产生误差。
-
-    - 假定CGSS使用电话号码作为抽样框，就会出现覆盖性误差。
-    - 覆盖不足产生的误差：比如有些人没有电话，就会被抽样方忽略，太穷的、太富的都有可能没有电话，或者呢，有电话，却不在电话簿的列表中。
-    - 覆盖过度产生的误差：比如很多人有多部电话，这些人就有可能被过度代表
-
-- 任何抽样方法都不可避免地会带来误差。
-    - 忽略样本特征而随意选择抽样方法，就会直接带来误差。
-    - 即使让抽样方正确地反映了研究总体，抽样活动不可避免地也会带来误差。
-
-
-> 入学机会的地区不平等研究案例。假设我们对高中毕业生采用家户抽样方法，能抽到毕业生，但是却比直接抽取高中毕业生的学校所产生的误差要大得多。
-
----
-
-## 抽样误差（B主要变量的抽样误差）
-
- **主要变量的抽样误差**，由变量特征带来的。
-
-- 每一个变量 都有自己的抽样误差
-
-- **主要变量的抽样误差**一般是指的**均值**的误差，用**均值的标准误**
-$\sigma_{\bar{x}}$来代表误差。
-
-- **主要变量的抽样误差**也能用相对误差来表示，比如说**均值的变异系数**
-$V_{\bar{x}}$。
-
----
-
-## 抽样误差（C应答性误差）
-
-访问阶段的误差也会涉及到抽样误差，尤其是**应答性误差**。它属于访问阶段活动有关一类误差。
-
-
-- **样本无应答**：又叫**单人无应答**，是指如果受访者对整个访问无论是问卷，还是访谈，都不回答的情形。简言之，就是无法从样本得到任何应答，比如说受访人拒访， 或者根本联系不上。
-
-- **选项无应答**：又叫访题无应答，指受访者接受了访问，可能对某些访题不提供应答。
-
-看起来这样的误差属于纯粹的访问误差，实际上不一定，也可以被认为是抽样误差的一种，比如，某些访题涉及到**稀有应答**，在抽样设计中，就需要予以考虑。
-
+$$\begin{align}
+  \bar{y} & \sim \mathcal{N}(\mu_{\bar{y}}, \sigma^2_{\bar{y}}) \\
+  \frac{\bar{y} - \mu_{\bar{y}}}{\sigma_{\bar{y}}} 
+  = \frac{\bar{y} - \mu_{\bar{y}}}{\sqrt{Var({\bar{y}})}} 
+  & \sim \mathcal{Z}(0,1) 
+\end{align}$$
 
 
 ---
 
-## 误差计算
+## 抽样误差：置信区间
 
-本学期稍后学习！
+如果随机变量
+$\bar{y}$的总体方差
+${Var}(\bar{y})$未知，则无法使用上述正态分布
+$\mathcal{N}$或者标准正态
+$\mathcal{Z}$分布，进行有关置信区间的样本推断。幸运的是，我们可以构造出如下服从t分布的随机变量：
 
-（千呼万唤、望穿秋水你们的《概率论与数理统计》啊！！！）
+$$\begin{align}
+  \frac{\bar{y} - \mu_{\bar{y}}}{\hat{\sigma}_{\bar{y}}} 
+  = \frac{\bar{y} - \mu_{\bar{y}}}{\sqrt{\widehat{Var}(\bar{y})}} 
+  = \frac{\bar{y} - \mu_{\bar{y}}}{s_{y}/\sqrt{n}}
+  & \sim t(n-1)
+\end{align}$$
+
+因此可以进一步得到参数
+$\mu_{\bar{y}}$的
+$1-\alpha$置信区间：
+
+$$\begin{align}
+\bar{y} - t_{1-\alpha / 2} \sqrt{\widehat{Var}(\bar{y})} 
+\leq  
+\mu_{\bar{y}} 
+\leq 
+\bar{y} + t_{1-\alpha / 2} \sqrt{\widehat{Var}(\bar{y})}
+\end{align}$$
+
+
+
+对于有放回的简单随机抽样，参数
+$\mu_{\bar{y}}$的
+$1-\alpha$置信区间具体为：
+
+$$\begin{align}
+\bar{y} - t_{\alpha / 2} \sqrt{\left(\frac{N-n}{N}\right)\left(\frac{s^{2}}{n}\right)}
+\leq  
+\mu_{\bar{y}}
+\leq 
+\bar{y} + t_{\alpha / 2} \sqrt{\left(\frac{N-n}{N}\right)\left(\frac{s^{2}}{n}\right)}
+\end{align}$$
+
+
+
+
+---
+
+## 抽样误差：简单随机抽样
+
+对于**无放回**的简单随机抽样方案，采用**无偏估计法**（unbiased estimator）下的均值
+$\bar{y}_{\mathrm{st}}$和方差
+$\widehat{\operatorname{var}}\left(\bar{y}_{\mathrm{st}}\right)$分别为：
+
+$$\begin{align}
+\hat{\mu}
+&=\frac{1}{n} \sum_{i=1}^{n} {y_i} =\bar{y} \\
+\widehat{\operatorname{Var}}\left(\hat{\mu}\right)
+&=\frac{N-n}{N} \cdot \frac{s_y^{2}}{n}
+\end{align}$$
+
+
+```{block, type = 'note' , echo=T}
+
+上述方差公式中，
+$s^2_y = \frac{\sum_{i=1}^{n}{(y_i - \bar{y})^2}}{n-1}$。而
+$\frac{N-n}{N}$又被称为**有限总体校正比值**（finite population correction）：
+
+- 如果采用**有放回**的简单随机抽样，则上述方差公式需要去掉**有限总体校正比值**。
+
+- 如果采用**无放回**的简单随机抽样，但是n相对于N非常小，则上述方差公式中**有限总体校正比值**会接近于1，因此也可以忽略。
+
+```
 
 ???
 
-我们了解了误差的来源， 也在头脑中有了警醒，在抽样和访问中会努力减少误差来源和误差，
-我们也知道了在社会调查与研究中，研究误差指的是具体变量，
-由样本值推论到总体值时可能的差距，那么误差怎么计算呢？ 在讨论误差计算之前，我重复一遍，
-所有误差来源产生的误差，最后都会反映在样本与总体之间的差距上。
-问题是，什么样的差距呢？ 为此，在统计上专门有术语，统计量，用来表达这些差距，
-包括偏差、均方误差，还有比如说样本均值，样本方差，样本标准物， 标准差，总体均值，总体方差
-等等。注意，这些统计量指的是具体变量的统计量， 要比较的，也是具体变量的统计量。
-还有不要忘记了，如果我们把抽样方法也当做是工具， 那么误差的来源只有两类，一类呢，是工具的误差，
-一类是既有工具，也有人为因素的误差。
-如果我们按照某一抽样方案反复抽样， 用样本估计值的数学期望，与待估参数进行比较，
-它们之间的离差就可能是抽样方案造成的误差， 我们称之为偏差，bias，用离差表示。
-还记得样本估计量？在抽样的逻辑中讲过，在用同一个抽样方案反复抽样中，
-如果把每一次的偏差记下来，就构成了一个分布，样本估计量 的分布，这里算的不是样本分布，是统计量的分布，
-就是偏差。
-可是如果有各种方案，就会有多种估计值，其中还会有
-人为因素的影响，这个时候，就既有偏差又有误差，我们统称之为误差， error，用均方误差来表示。
-至于为什么要用离差，为什么要用均方误差，社会科学各学科的统计课程会告诉大家。
-在误差中，由抽样活动导致的样本随机性 所造成的样本统计量与总体统计量之间的差异，被叫做
-抽样误差。在抽样中呢，抽样误差是一个一般性的概念，包含着不同的统计量， 用于刻画变量变异性的分布。
-如果误差不是由样本的随机性带来的，而是由其它的因素带来的，比如说 抽样框误差，测量误差，访问误差等等。
-这些误差呢，被统称为非抽样误差。
-对抽样而言，我们关注的重点是抽样误差。
-我们知道统计量是用来刻画变量变异性分布的， 那么各种统计量的含义究竟指什么呢？
-了解各种统计量的含义之前我们先介绍与统计量密切有关的两个概念，第一，参数值。
-参数值，专门用来刻画总体某个变量变异性分布的状态，
-比如总体均值，总体方差，总体比例，总体比率， 最常用到的是总体均值，总体方差
-和总体比例。比例与比率还不一样。
-比例，是指总量为一，p与q的之间的关系， 比率呢，又叫占比，指相对份额。第二，估计量。
-估计量专门用来刻画样本某个变量变异性分布的状态，
-通常也称统计量，统计值，估计量，在不同的场合有不同的说法。
-常见的估计量比如说，样本均值，样本方差，样本比例。
-这样，大家就要有一个概念，只要是讲参数值， 指的就是对总体的刻画，如果讲估计量呢，指的就是对样本的刻画。
-在讨论中我们一再强调刻画的是 变量变异性的分布，那么在一般意义上如何概括变异性的分布呢？
-最常见的刻画， 是对集中趋势和离散趋势的刻画，还记得在抽样的逻辑中，讨论收入
-分布时候的情形？随着样本量的增加，样本估计量的平均值越来越
-向总体平均值收敛，对了，刻画变量变异性集中趋势的
-就是均值，分布越集中，同质性也就越强，反之，异质性也就越强。均值代表的是
-要素的同质性程度或者异质性程度，这里给出的是总体均值的计算方法。
-这个公式呢，应该容易理解，x拔代表均值，n代表总体要素数，
-xi呢，代表一个具体的要素，把总体要素的变异值加总， 除以n，就是总体均值。
-样本均值的计算方法一样。为了避免小样本条件下样本量对样本均值的影响，
-在除法的分母部分，通常还要用样本量减去一，
-可是仅仅知道了均值，并不能全面了解变量变异性分布的状态， 我们还需要了解其异质性，也就是离散趋势，
-进而检验集中趋势是不是真实的，以及有多集中，这就需要用方差来刻画。
-当知道了均值以后，每一个要素的变量值与均值之间都有一个关系值，
-在样本中呢，观察值与平均值之间的差，又叫离差。
-这个关系值，要么相等， 要么大于或者小于，如果用要素变量值减去变量均值，
-可能得到的结果有三类，零，正数， 负数。如果把这些结果加总，关系值
-的正负属性就会搅乱真正的关系属性。为了避免这个问题， 我们对每个关系值进行平方，就得到了每个要素与均值之间关系
-值的平方，如果把这些关系值加总再除以总体要素n，
-是不是就得到了一个要素值与均值之间差距的平方值？
-这就是总体方差，表达要素在某个变量上与总体之间距离的程度，
-当然方差越大，离散程度也就越大，方差越小呢，离散程度也就越小。同样，
-我们也可以计算样本方差，把方差开方，就是每个要素与总体均值之间的距离，无论正负，
-无论正负，同理呢，也用于样本， 当然在刻画样品估计量分布的时候，还有一些统计量，
-比如说，四分位差，极值等等。不过知道均值、方差和标准差是最重要的。
-对抽样而言，重要的是样本估计量方差， 又称之为估计量方差，统计量方差。在抽样的逻辑中，
-我们提过，那么这个方差到底是什么意思呢？ 举一个例子，假设有一个总体，由三个人组成，他们的年龄分别是两岁，四岁和六岁，
-现在假设从中有放回的随机抽取样本，
-里边包含了两个个体，也就是样本容量等于二。假设一共抽了九次，
-就得到了九组样本，这九组样本分别是二二，二四，
-二六，四二，四四，四六，六二，六四和六六。
-其实这是简化至极的例子，不太好。为什么呢？一般抽样不会这么抽，三个抽两个，
-同时又是一个极好的例子，很容易告诉我们方差从哪里来。
-如果我们按照实践来， 譬如假设有一百八十个人抽三十个人，实践上是相符了，但是
-对于方差的说明却复杂了。我们用这个例子是希望让大家知道方差从哪里来， 就好了。我们用图表来看，这边是样本，
-我一共抽了九组，这边呢，是样本均值，大家看均值的差异有多大，
-这是呢总体均值。是四，如果选两个四组样本，
-看看估计量方差，假设第一个选这四组，
-那么它们的方差就是0.6667，如果选这四组呢？
-这一组的方差就是2.6667，这里大家就知道内部
-的差异有多大了。用这个例子我们希望说明，均值与方差， 对理解内部差异性，异质性，是非常重要的估计量。
-误差计算，还涉及到其它估计量， 对初学者而言呢，理解均值、方差、标准差也就足够了。
-误差计算就讲到这里，谢谢大家。
+证明过程参看：Thompson S K.  2012. Sampling[M]. 第3ed版., Wiley,Hoboken, N.J.. 第2.6节
+
+
 
 ---
+
+exclude: true
+
+## case：田野甲虫数量案例
+
+```{r}
+size <- c(234, 256, 128, 245,211, 240, 202,267)
+
+set.seed(2121)
+index_sample <- sample(1:100, size = 8)
+
+beetles <- tibble(field = index_sample,
+                     beetles = size)
+
+N <- 100
+n <- 8
+mu <- mean(beetles$beetles)
+s2 <- (sd(beetles$beetles))^2
+var_mu <- (N-n)/(N*n)*s2
+
+tao <- N*mu
+var_tao <- N^2*var_mu
+t_tbl <- qt(0.975, n-1)
+
+```
+
+---
+
+## （示例）田野甲虫数量案例
+
+.pull-left[
+
+**案例说明**：为估计出一片农地中甲虫的总数。研究人员将农地细分为100个大小相等的区块。
+
+研究者决定采用**简单随机抽样**方案，随机抽选了其中的8个区块（编号见列`field`），并分别统计出其中的甲虫数量（见列`beetles`）。最终抽样统计表见右：
+
+]
+
+.pull-right[
+
+```{r}
+beetles %>%
+  kable(caption = "简单随机抽样结果")
+```
+
+
+]
+
+---
+
+## （示例）简单随机抽样下估计期望和方差：计算结果
+
+根据案例，容易计算得到：全部区块数量
+$N= `r N`$；抽选区块数量
+$n = `r n`$。抽选区块下甲虫数量的样本方差为
+$s^2_y = \frac{\sum_{i=1}^{n}{(y_i - \bar{y})^2}}{n-1}=`r formatC(s2, 2, format ='f')`$。
+
+因此根据简单随机抽样**无偏估计法**下的计算公式，分别可以计算得到估计的均值
+$\hat{\mu}$和方差
+$\widehat{var}(\hat{\mu})$分别为：
+
+$$\begin{align}
+\hat{\mu}
+&=\frac{1}{n} \sum_{i=1}^{n} {y_i} =\bar{y} 
+=`r formatC(mu, 2, format = 'f')` \\
+\widehat{\operatorname{Var}}\left(\hat{\mu}\right)
+&=\frac{N-n}{N} \cdot \frac{s_y^{2}}{n} \\
+& =\frac{100-8}{100} \cdot \frac{`r formatC(s2, 2, format = 'f')`}{8} 
+= `r formatC(var_mu, 4, format = 'f')`
+\end{align}$$
+
+---
+
+## （示例）简单随机抽样下估计期望和方差：计算结果
+
+根据上述计算，给定
+$\alpha = 0.05$下，平均每个区块甲虫数
+$\mu_{\bar{y}}$的置信区间计算结果为：
+
+$$\begin{align}
+\hat{\mu} - t_{1-\alpha / 2} \sqrt{\widehat{Var}(\hat{\mu})} 
+\leq  
+& \mu_{\bar{y}} 
+\leq 
+\hat{\mu}  + t_{1-\alpha / 2} \sqrt{\widehat{Var}(\hat{\mu})} \\
+`r formatC(mu, 2, format='f')` - `r formatC(t_tbl, 2, format='f')` \times \sqrt{`r formatC(var_mu, 4, format='f')`}
+\leq
+& \mu_{\bar{y}} 
+\leq
+`r formatC(mu, 2, format='f')` + `r formatC(t_tbl, 2, format='f')` \times \sqrt{`r formatC(var_mu, 4, format='f')`}\\
+`r formatC(mu-t_tbl*sqrt(var_mu), 2, format='f')`
+\leq
+& \mu_{\bar{y}} 
+\leq
+`r formatC(mu+t_tbl*sqrt(var_mu), 2, format='f')`
+\end{align}$$
+
+
+> .red[**思考提问**]：全部地块的甲虫数量和置信区间是多少？
+
+
+.footnote[
+.red[**说明**]：此时，t查表值为
+$t_{1-\alpha/2}(n-1) = t_{0.975}(8-1)= `r formatC(t_tbl, 2, format='f')`$。
+
+]
+
+???
+
+---
+
+## 必要样本数
+
+> 不管采用哪种抽样方法，在哪一层抽样，在哪个阶段抽样，
+到底要抽多少样本合适啊？
+
+假定
+$\hat{\sigma}$是参数
+$\sigma$的无偏、正态估计量。则有
+
+$$\begin{align}
+\frac{\hat{\theta}-\theta}{\sqrt{\operatorname{Var}(\hat{\theta})}} & \sim \mathcal{Z}(0,1) \\
+P\left(\frac{|\hat{\theta}-\theta|}{\sqrt{\operatorname{Var}(\hat{\theta})}}>\mathcal{Z}_{1-\alpha / 2}\right) & =\alpha \\
+P\left(|\hat{\theta}-\theta|>\mathcal{Z}_{1-\alpha / 2} \cdot \sqrt{\operatorname{Var}(\hat{\theta})}\right) &=\alpha 
+\end{align}$$
+
+---
+
+## 必要样本数
+
+令
+$d=|\bar{y} - \mu|$为**抽样极限误差**，则**简单随机抽样**（不放回）方案下**必要样本数**的计算公式为：
+
+$$\begin{align}
+P\left(|\bar{y}-\mu_{\bar{y}}|>\mathcal{Z}_{1-\alpha / 2} \cdot \sqrt{\frac{N-n}{N} \cdot \frac{\sigma^{2}}{n}}\right) & =\alpha \\
+\mathcal{Z}_{1-\alpha / 2} \sqrt{\frac{N-n}{N} \cdot \frac{\sigma^{2}}{n}} & \equiv d \\
+n &=\frac{1}{\frac{d^{2}}{\mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigma^{2}}+\frac{1}{N}}
+\end{align}$$
+
+---
+
+## （示例）简单随机抽样方案下必要样本数的计算
+
+```{r}
+z_tbl <- qnorm(0.975,mean = 0,sd = 1)
+d <- 1000
+N <- 100
+
+obs_needed <- function(N, d, z, s2){
+  n <- 1/(d^2/(N^2*z^2*s2) +1/N)
+}
+n_needed <-  obs_needed(N =N, d =d, z = z_tbl, s2 =s2)
+
+```
+
+
+在前述甲虫数量案例中，给定
+$\alpha = 0.05$下，且抽样极限误差不超过1000只，请计算简单随机抽样方案下的必要样本数？
+
+**解答**：根据案例已知
+$N=100$，抽样极限误差为
+$d =1000$，给定
+$\alpha = 0.05$下
+$\mathcal{Z}_{1-\alpha/2}=\mathcal{Z}_{0.975}=`r formatC(z_tbl, 2, format ='f')`$。
+
+因为我们不知道总体方差
+$\sigma^2_{\bar{y}}$，但是可以使用样本方差
+$s^2_{\bar{y}}=`r formatC(s2, 2, format ='f')`$进行替代
+
+$$\begin{align}
+n &=\frac{1}{\frac{d^{2}}{N^{2} \cdot \mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigma^{2}}+\frac{1}{N}} 
+=\frac{1}{\frac{d^{2}}{N^{2} \cdot \mathcal{Z}_{1-\alpha / 2}^{2} \cdot s^{2}_{\bar{y}}}+\frac{1}{N}} \\
+& =\frac{1}{\frac{(1000)^{2}}{(100)^{2} \cdot(1.96)^{2} \cdot 1932.70}+\frac{1}{100}}= `r formatC(n_needed, 2, format ='f')` 
+\doteq `r ceiling(n_needed)`
+\end{align}$$
+
+---
+
+## 抽样误差：分层抽样
+
+.pull-left[
+
+```{r, out.height= '300px'}
+include_graphics("../pic/chpt02-sampling-stratified.png")
+```
+
+]
+
+.pull-right[
+
+- 分层数量：
+$L=4$；各个分层的单位数：
+$N_1=200, N_2=100,N_3=N_4=50$；全体单位总数
+$N=\sum_{h=1}^L{N_h}=200+100+50+50=400$。
+
+- 各个分层的抽样单位数：
+$n_1=20, n_2=10,n_3=n_4=5$；全部抽样总数
+$n=\sum_{h=1}^h{n_L}=20+10+5+5=40$。
+
+]
+
+
+---
+
+## 抽样误差：分层抽样
+
+分层抽样的均值
+$\hat{\mu}_{\mathrm{st}}$和方差
+$\widehat{\operatorname{Var}}\left(\hat{\mu}_{\mathrm{st}}\right)$分别为：
+
+$$\begin{align}
+\hat{\mu}_{\mathrm{st}}
+&=\frac{1}{N} \sum_{h=1}^{L} N_{h} \bar{y}_{h} \\
+\widehat{\operatorname{var}}\left(\hat{\mu}_{\mathrm{st}}\right)
+&=\sum_{h=1}^{L}\left(\frac{N_{h}}{N}\right)^{2}\left(\frac{N_{h}-n_{h}}{N_{h}}\right) \frac{s_{h}^{2}}{n_{h}}
+\end{align}$$
+
+其中：
+
+- 
+$L$分层数量；
+$N_h$表示第
+$h$个分层的所有单位数，其中
+$h \in \{ 1, 2, \cdots, L\}$；
+$N=N_1 +N_2 + \cdots+N_L$为所有单位数。
+$n_h$表示第
+$h$个分层的抽样数；
+$n=n_1 +n_2 + \cdots+n_L$为所有抽样单位总数。
+
+- 各个分层的样本方差为：
+$s_{h}^{2}=\frac{1}{n_{h}-1} \sum_{i=1}^{n_{h}}\left(y_{h i}-\bar{y}_{h}\right)^{2}$；
+$\bar{y}_{h}$表示各个分层的样本均值。
+
+---
+
+exclude: true
+
+## case：家庭观看电视时长案例
+
+```{r, message=FALSE}
+TVhour<- read_table2('../data/TVhour.txt',col_names = T,
+                     col_types = cols(Hour=col_double())) %>%
+  mutate(Stratification = mgsub::mgsub(Area, 1:3, c("Town A", "Town B", "Rural Area C"))) 
+
+Nh <- c(155, 62, 93)
+N <- sum(Nh)
+
+smry_df <- TVhour %>%
+  select(-Area) %>%
+  group_by(Stratification) %>%
+  nest() %>%
+  mutate(n_h = map_dbl(data, nrow),
+         mean_h =map_dbl(data, .f = function(x){mean(x$Hour)}),
+         sd_h = map_dbl(data, .f = function(x){sd(x$Hour)})) %>%
+  rename( "sampling"="data") %>%
+  add_column(N_h = Nh, .before = "mean_h") %>%
+  ungroup() %>%
+  mutate(var_p1 = (N_h/N)^2,
+         var_p2 = (N_h - n_h)/N_h,
+         var_p3 = sd_h^2/n_h,
+         var_all = var_p1*var_p2 *var_p3,
+         mean_all = N_h*mean_h)
+  
+var_st <- sum(smry_df$var_all)
+y_st <- sum(smry_df$mean_all)/N
+
+```
+
+---
+
+## （示例）家庭观看电视时长案例
+
+**案例说明**：一家广告公司为了有针对性地在某个县投放电视广告，公司决定进行抽样调查，以估计该县家庭每周观看电视的平均小时数。该县有两个镇区A和镇区B，还有农村区域C。A区建在一家工厂周围，大多数家庭都有带学龄儿童的工厂工人。B区主要是退休人员，C区主要是农民。A区有155户，B区有62户，C区有93户。公司决定从A区抽选20户，B区抽选8户，C区抽选12户。具体抽样结果如下：
+
+```{r}
+# show sampling data
+smry_df %>%
+  select(1:4) %>%
+  kable()
+```
+
+---
+
+## （示例）分层抽样下的抽样误差：计算结果
+
+各分层的计算表如下：
+
+```{r TV_calc}
+# show sampling data
+smry_df %>%
+  select(-sampling) %>%
+  datatable(options = list(dom = 't', pageLength =3,
+                           scrollX =T)) %>%
+  formatRound(4:10,2)
+  
+```
+
+根据该分层抽样，估计的总体均值（该县住户平均收看电视时间）结果为：
+
+$$\begin{aligned}
+\hat{\mu}_{s t} &=\frac{1}{N}\left(N_{1} \bar{y}_{1}+N_{2} \bar{y}_{2}+N_{3} \bar{y}_{3}\right) \\
+&=\frac{1}{155+62+93}[(155 \times 33.9)+(62 \times 25.12)+(93 \times 19.0)] \\
+&=27.7
+\end{aligned}$$
+
+---
+
+## （示例）分层抽样下的抽样误差：计算结果
+
+各分层的计算表如下：
+
+```{r, ref.label='TV_calc'}
+
+```
+
+
+根据该分层抽样，上述关于的总体均值估计（住户平均收看电视时间）的方差为：
+
+$$\begin{align}
+\widehat{Var} \left(\hat{\mu}_{s t}\right) 
+=\sum_{h=1}^{3}\left(\frac{N_{h}}{N}\right)^{2}\left(\frac{N_{h}-n_{h}}{N_{h}}\right) \frac{s_{h}^{2}}{n_{h}}
+=\frac{1}{(310)^{2}}\left[\left((155)^{2} \cdot \frac{(155-20)}{155} \cdot \frac{(5.95)^{2}}{20}\right) \\ + \left((62)^{2} \cdot \frac{(62-8)}{62} \cdot \frac{(15.25)^{2}}{8}\right)\right. \left.+\left((93)^{2} \cdot \frac{(93-12)}{93} \cdot \frac{(9.36)^{2}}{12}\right)\right]
+=1.97
+\end{align}$$
+
+---
+
+## （示例）分层抽样下的抽样误差：计算结果
+
+各分层的计算表如下：
+
+```{r, ref.label='TV_calc'}
+
+```
+
+```{r}
+n <- 40
+df <- n-1
+alpha <- 0.05
+t <- qt(p = (1-alpha/2), df = df)
+```
+
+
+根据该分层抽样，上述关于的总体均值估计（住户平均收看电视时间）的95%置信区间为（t查表值为
+$t_{1-0.05/2}(`r df`)=`r formatC(t,2, format='f')`$）<sup>*</sup>：
+
+$$\begin{aligned}
+& \hat{\mu}_{s t} \pm t_{1-\alpha/2}(df) \cdot \sqrt{\widehat{Var} \left(\hat{\mu}_{st}\right)} \\
+=& 27.7 \pm `r formatC(t,2, format='f')` \times \sqrt{1.97} 
+= 27.7 \pm `r formatC(t*sqrt(1.97),2, format='f')`
+\end{aligned}$$
+
+.footnote[ 
+说明： <sup>*</sup> 如果不是等比例分层抽取，那么自由度的确定需要用到一个计算公式]
+
+???
+
+$$\begin{align}
+\qquad d=\left(\sum_{h=1}^{L} a_{h} s_{h}^{2}\right)^{2} / \sum_{h=1}^{L} \frac{\left(a_{h} s_{h}^{2}\right)^{2}}{\left(n_{h}-1\right)} 
+\text {, and, } a_{h}=\frac{N_{h}\left(N_{h}-n_{h}\right)}{n_{h}}
+\end{align}$$
+
+
+
+---
+
+exclude: true
+
+## 测试原ppt案例
+
+```{r}
+check <- readxl::read_xlsx('../data/check.xlsx') 
+
+N <- sum(check$N_h)
+
+smry_df <- check %>%
+  mutate(var_p1 = (N_h/N)^2,
+         var_p2 = (N_h - n_h)/N_h,
+         var_p3 = sd_h^2/n_h,
+         var_all = var_p1*var_p2 *var_p3,
+         mean_all = N_h*mean_h)
+  
+var_st <- sum(smry_df$var_all)
+y_st <- sum(smry_df$mean_all)/N
+
+var_st^0.5
+```
+
+---
+
+## 抽样误差：系统抽样和整群抽样的关系
+
+.pull-left[
+
+```{r, out.height= '300px', fig.cap="系统抽样示例"}
+include_graphics("../pic/chpt02-sampling-systematic.png")
+```
+
+]
+
+.pull-right[
+```{r, out.height= '300px', fig.cap="整群抽样示例"}
+include_graphics("../pic/chpt02-sampling-cluster.png")
+```
+]
+
+
+从表面上看，**系统抽样（systematic sampling）**和**整群抽样（cluster sampling）**非常不同。实际上，这两种方式具有相同的抽样结构：
+
+- 利用**主要抽样单位（PSU）**划分群组，而每个主要抽样单位又是由**次要抽样单位（SSU）**组成。
+- 如果主要抽样单位（PSU）被随机抽中，则其所有次要单位（SSU）的
+$y$值将都会被抽中。
+
+---
+
+## 抽样误差：系统抽样和整群抽样的关系
+
+.pull-left[
+
+```{r, out.height= '300px', fig.cap="系统抽样示例"}
+include_graphics("../pic/chpt02-sampling-systematic-psu.gif")
+```
+
+- 该案例共有25个主要抽样单位（PSU）：每个5*5中型方框都有25个小格。
+
+- 着色色区块是一次典型的随机抽取的**系统抽样**结果，共抽取样本数
+$n=16$。
+
+- 只有1个主要抽样单位（PSU）被随机抽中：每个5*5中型方框的第1个小格都被抽中，共16个。
+
+]
+
+.pull-right[
+```{r, out.height= '300px', fig.cap="整群抽样示例"}
+include_graphics("../pic/chpt02-sampling-cluster-psu.gif")
+```
+
+- 该案例共有50个主要抽样单位（PSU）：共有50个2*4型方框。
+
+- 着色色区块是一次典型的随机抽取的**整群抽样**结果，共抽取样本数
+$n=8$。
+
+- 只有1个主要抽样单位（PSU）被随机抽中：第1个2*4型方框的全部小格都被抽中，共8个。
+
+]
+
+
+
+
+---
+
+## （示例）系统抽样和整群抽样的关系
+
+**案例说明**：下面展示的是“三采一”的系统采样：我们从前三个主要抽样单元（PSU）中随机选择一个，然后再连续地每隔三个选择一个。
+
+```{r}
+
+include_graphics("../pic/chpt02-sampling-queue.gif")
+
+```
+
+
+从主要抽样单位PSU {1,2,3}中随机选择一个值。例如，如果选择2，那么我们将选择上图中所有的红叉个体![](../pic/chpt02-sampling-queue-redx.gif)的{2，5，8，8，11 14}。
+
+- 抽样得到的样本数据{2、5、8、11、14}，只是我们随机选定了1个主要抽样单位（PSU）红叉![](../pic/chpt02-sampling-queue-redx.gif)，因而所有具有该主要抽样单位的全部个体都被抽中（全部红叉）。
+- 实际上，只抽选1个主要抽样单位（PSU）的情况并不少见，例如以上“三采一”的系统样本。我们只采样3个主要抽样单位（分别是绿点![](../pic/chpt02-sampling-queue-greendot.gif)、红叉![](../pic/chpt02-sampling-queue-redx.gif)、蓝短线![](../pic/chpt02-sampling-queue-bluedash.gif)）的1个而已。
+
+---
+
+## 抽样误差：系统抽样和整群抽样（记号表达）
+
+
+我们约定系统抽样和整群抽样的记号表达体系如下：
+
+- 
+$N$表示总体中的主要抽样单元（PSU）的数量；
+$n$表示样本中的主要抽样单元（PSU）的数量；
+$M_i$表示第
+$i$个主要抽样单元（PSU）中.red[次要抽样单元]（SSU）的数量；
+$M=\sum_{i=1}^N M_i$表示总体中的所有次要抽样单元（SSU）的数量；
+
+- $y_{ij}$表示第
+$i$个主要抽样单元（PSU）中第
+$j$次要抽样单元（SSU）的个体的变量值。
+$y_i = \sum_{j=1}^{M_i} y_{ij}$表示第
+$i$个主要抽样单元（PSU）下所有个体的变量值之和。
+
+- 主要抽样单元（PSU）的均值记为
+$\mu_1$，次要抽样单元（SSU）的均值记为
+$\mu$，二者的计算公式分别为：
+
+
+$$\begin{align}
+\mu_1 &= \frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{M_{i}} y_{i j}=\frac{1}{N} \sum_{i=1}^{N} y_{i} \\
+\mu &= \frac{1}{M} \sum_{i=1}^{N} \sum_{j=1}^{M_{i}} y_{i j}=\frac{1}{M} \sum_{i=1}^{N} y_{i}
+\end{align}$$
+
+---
+
+## （示例）系统抽样的记号表达
+
+.pull-left[
+
+```{r, out.height= '400px', fig.cap="系统抽样示例"}
+include_graphics("../pic/chpt02-sampling-systematic-notation.gif")
+```
+
+]
+
+.pull-right[
+- 总体的主要抽样单元（PSU）的数量
+$N=25$：每个5*5中型方框的全部小格， 共25个。
+
+- 样本中的主要抽样单元（PSU）的数量
+$n=2$：每个5*5中型方框的都抽中了2个着色小格。
+
+- 每个主要抽样单元（PSU）中.red[次要抽样单元]（SSU）的数量
+$M_i=16$：所有5*5中型方框，共有16个。
+
+]
+
+---
+
+## （示例）整群抽样的记号表达
+
+.pull-left[
+```{r, out.height= '400px', fig.cap="整群抽样示例"}
+include_graphics("../pic/chpt02-sampling-cluster-notation.gif")
+```
+
+]
+
+.pull-right[
+
+- 总体的主要抽样单元（PSU）的数量
+$N=50$：每个2*4中型方框， 共50个。
+
+- 样本中的主要抽样单元（PSU）的数量
+$n=10$：随机抽中的2\*4中型方框，共抽中10个2\*4中型着色方框。
+
+- 每个主要抽样单元（PSU）中.red[次要抽样单元]（SSU）的数量
+$M_i=8$：每个2*4中型方框中的8个小格。
+
+]
+
+---
+
+## 抽样误差：系统抽样的抽样误差计算
+
+在“1-in-n”系统抽样方案下，估计**次要抽样单元（SSU）**的均值
+$\hat{\mu}_{sy}$和方差
+$\widehat{Var}\left(\hat{\mu}_{sy}\right)$分别为：
+
+$$\begin{align}
+\hat{\mu}_{sy} &=\bar{y}_{sy}=\frac{1}{n}\sum_{i=1}^{n} \bar{y}_{i}
+\end{align}$$
+
+$$\begin{align}
+\widehat{Var}(\hat{\mu}_{sy}) &=\frac{M-n \cdot \bar{M}}{M\cdot n} \cdot \frac{1}{(n-1)} \cdot \sum_{i=1}^{n}\left(\bar{y}_{i}-\hat{\mu}\right)^{2} \\
+&= \frac{M-n \cdot \bar{M}}{M\cdot n} \cdot s^2_{\bar{y}_i}
+\end{align}$$
+
+其中：
+- 
+$\bar{y}_{i}=\frac{y_{i}}{M_{i}}=\frac{\sum_{j=1}^{M_{i}} y_{i j}}{M_{i}}; i \in 1,2, \ldots, n$
+- $\bar{M}=M_{1}=M_{2}=\ldots=M_{n}$
+
+- 主要抽样单位（PSU）数量为
+$N$；样本中的主要抽样单位（PSU）数量为
+$n$；第
+$i$个主要抽样单位下的次要抽样单位的数量为
+$M_i(i \in 1,2,\cdots, N)$；总体的全部次要抽样单位（SSU）数量
+$M = \sum_{i =1}^{50} M_i$
+
+---
+
+exclude: true
+
+## case：渡船汽车载客量案例
+
+```{r, warning=FALSE}
+set.seed(56304)
+person <- ceiling(rnorm(400, 4, 1.5))
+ferry <- tibble(id = 1:length(person),
+                persons = person)
+#table(ferry$persons)
+
+Mi <- 8
+N <- 50
+n <- 10
+M <- Mi*N
+
+set.seed(1210)
+random_start<- sample(x = 1:50, size = 10)
+
+df_systematic <- sapply(random_start,FUN =  function(x){seq(from =x, by =50, length.out =8)}) %>%
+  as_tibble() %>%
+  add_column(element =str_c("E", 1:8), .before = "V1") %>%
+  gather(key = "select", value = "id",V1:V10) %>%
+  mutate(select = str_replace(select, "V", "sample_")) %>%
+  left_join(., ferry, by="id") %>%
+  select(select, element, everything())
+
+calc_systematic <- df_systematic %>%
+  mutate(out = str_c(id,"(",persons, ")")) %>%
+  nest(-select) %>%
+  mutate(out = map(data,.f = function(x){x$out})) %>%
+  mutate(mean = map_dbl(data,.f = function(x){mean(x$persons)}))
+
+mu_sy <- mean(calc_systematic$mean)
+s2_bar_y <- (sd(calc_systematic$mean))^2
+var_sy <- (M-n*Mi)/(M*n) *s2_bar_y
+
+```
+
+---
+
+## （示例）渡船汽车载客量案例
+
+.pull-left[
+
+**案例说明**：载有汽车横渡海湾的渡轮是按载客量而不是按人收取费用的。轮渡公司希望估算8月份每辆车的平均载人数。该公司知道去年有400辆车乘坐轮渡（见右表）。
+
+```{r,echo=TRUE}
+table(ferry$persons)
+```
+
+
+公司想对其中80辆车进行采样，为了便于估计系统样本的方差，研究人员决定选择使用**系统抽样**方法，反复抽取10份样本，每份样本都包含8量汽车的记录数据。
+
+]
+
+.pull-right[
+
+```{r}
+ferry %>%
+  #select(-data) %>%
+  DT::datatable(options = list(dom ="tip", pageLength =8))
+```
+
+]
+
+
+
+---
+
+## （示例）系统抽样下估计期望和方差：抽样结果
+
+公司决定采用
+$1-in-50(400 / 8)$的系统抽样方案，也即：
+
+- 从1到50的序号中，不重复随机选择10个序号：`r paste0(random_start,collapse = "、")`；
+- 然后分别以这10个序号作为起始点，每隔50个抽取1个单位，每份样本都会抽取得到8个单位；
+- 最终共获得10份系统抽样样本（每份样本含8个个体）。抽样结果如下（括号内为车内人数）：
+
+```{r}
+calc_systematic %>%
+  select(-data) %>%
+  DT::datatable(options = list(dom ="tip", pageLength =5)) %>%
+  formatRound(3, 2)
+```
+
+---
+
+## （示例）系统抽样下估计期望和方差：计算结果
+
+根据案例，容易计算得到：主要抽样单位（PSU）数量
+$N= `r N`$；样本中的主要抽样单位（PSU）数量
+$n = `r n`$；第
+$i$个主要抽样单位下的次要抽样单位的数量
+$M_i = 8(i \in 1,2,\cdots, 50)$；总体的全部次要抽样单位（SSU）数量
+$M = \sum_{i =1}^{50} M_i =8 \times 50 =400$
+
+$$\begin{align}
+\hat{\mu}_{sy} &=\frac{1}{n}\sum_{i=1}^{n} \bar{y}_{i}=`r formatC(mu_sy,digits =2, format='f' )` \\
+\end{align}$$
+
+$$\begin{align}
+\widehat{Var}(\hat{\mu}_{sy}) &=\frac{M-n \cdot \bar{M}}{M\cdot n} \cdot \frac{1}{(n-1)} \cdot \sum_{i=1}^{n}\left(\bar{y}_{i}-\hat{\mu}\right)^{2} 
+= \frac{M-n \cdot \bar{M}}{M\cdot n} \cdot s^2_{\bar{y}_i} \\
+&=\frac{400-10 \times 8}{400 \times 10} \cdot  `r formatC(s2_bar_y, digits =4, format='f')`
+= `r formatC(var_sy, digits =4, format='f')`
+\end{align}$$
+
+
+- 其中：
+$\bar{y}_{i}=\frac{y_{i}}{M_{i}}=\frac{\sum_{j=1}^{M_{i}} y_{i j}}{M_{i}}; i \in 1,2, \ldots, n$；以及
+$\bar{M}=M_{1}=M_{2}=\ldots=M_{n}$
+
+
+---
+
+## 抽样误差：整群抽样的抽样误差计算方法1
+
+为了次要抽样单元（SSU）均值和方差，我们可以采用**无偏估计法**（unbiased estimator）：
+
+$$\begin{align}
+\hat{\mu} &=  \frac{N}{M} \cdot \frac{\sum_{i=1}^{n} y_{i}}{n} \\
+\widehat{Var}(\hat{\mu}) &=\frac{N(N-n) }{M^2} \cdot \frac{s_{u}^{2}}{n}
+\end{align}$$
+
+
+
+其中：
+
+- $s_{u}^{2}=\frac{1}{n-1} \sum_{i=1}^{n}\left(y_{i}-\bar{y}\right)^{2}$
+- 
+$N$表示总体中的主要抽样单元（PSU）的数量；
+$n$表示样本中的主要抽样单元（PSU）的数量；
+$M_i$表示第
+$i$个主要抽样单元（PSU）中.red[次要抽样单元]（SSU）的数量；
+$M$表示总体中的所有次要抽样单元（SSU）的数量；
+- $y_{ij}$表示第
+$i$个主要抽样单元（PSU）中第
+$j$次要抽样单元（SSU）的个体的变量值。
+$y_i = \sum_{j=1}^{M_i} y_{ij}$表示第
+$i$个主要抽样单元（PSU）下所有个体的变量值之和。
+
+???
+- 主要抽样单元（PSU）均值和方差：
+
+$$\begin{align}
+\bar{y} &=\frac{\sum_{i=1}^{n} y_{i}}{n} \\
+\operatorname{Var}(\bar{y}) &=\frac{(N-n) }{N} \cdot \frac{s_{u}^{2}}{n}
+\end{align}$$
+
+
+---
+
+## 抽样误差：整群抽样的抽样误差计算方法2
+
+此外，当群组变量值总和与群组单位数呈正相关关系时，使用**比率估计法**（ratio estimator）比使用无偏估计更好。此时，估计的**次要抽样单元（SSU）**均值
+$\hat{\mu}_{r}$和方差
+$\widehat{Var}\left(\hat{\mu}_{r}\right)$分别为：
+
+
+$$\begin{align}
+\hat{\mu}_{r}& =r =\frac{\sum_{i=1}^n {y_i}}{M} = \frac{\sum_{i=1}^n {y_i}}{\sum_{i=1}^n{M_i}}\\
+\widehat{Var}\left(\hat{\mu}_{r}\right) &=\frac{N(N-n)}{n(n-1)} \cdot \frac{1}{M^{2}} \sum_{i=1}^{n}\left(y_{i}-r M_{i}\right)^{2}
+\end{align}$$
+
+其中：
+
+- $s_{u}^{2}=\frac{1}{n-1} \sum_{i=1}^{n}\left(y_{i}-\bar{y}\right)^{2}$
+- 
+$N$表示总体中的主要抽样单元（PSU）的数量；
+$n$表示样本中的主要抽样单元（PSU）的数量；
+$M_i$表示第
+$i$个主要抽样单元（PSU）中.red[次要抽样单元]（SSU）的数量；
+$M$表示总体中的所有次要抽样单元（SSU）的数量；
+- $y_{ij}$表示第
+$i$个主要抽样单元（PSU）中第
+$j$次要抽样单元（SSU）的个体的变量值。
+$y_i = \sum_{j=1}^{M_i} y_{ij}$表示第
+$i$个主要抽样单元（PSU）下所有个体的变量值之和。
+
+
+---
+
+exclude: true
+
+## case：家庭休假支出案例
+
+```{r}
+cluster_id <- sample(1:400, size = 24)
+vocation <- read_table2("../data/Vacation.txt") %>%
+  rename_all( ~c("number.households", "total.budget")) %>%
+  add_column(cluster = cluster_id, .before = "number.households")
+
+sum_y <- sum(vocation$total.budget)
+sum_m <- sum(vocation$number.households)
+r <- sum_y /sum_m
+
+vocation <- vocation %>%
+  mutate(part_sqr = (total.budget -r*number.households)^2)
+
+M <- 3100
+N <- 400
+n <- 24
+sum_sqr <- sum(vocation$part_sqr)
+
+var_r <- N*(N-n)/(n*M^2*(n-1)) *sum_sqr
+
+mu <- mean(vocation$total.budget)*N/M
+s_u <- sd(vocation$total.budget)
+var_mu <- (N*(N-n)/(M^2*n))*(s_u)^2
+
+```
+
+---
+
+## （示例）家庭休假支出案例
+
+
+.pull-left[
+
+**案例说明**：社会学家想要估计某个城市中每个家庭的平均年休假预算。据统计，这个城市有3100户。
+
+社会学家将整个城市划分为400个街区，并将其视为400个集群。然后，他随机抽样了24个集群，采访了该集群中的每个家庭。
+
+整群抽样的结果见右边数据表：
+
+]
+
+.pull-right[
+
+```{r}
+vocation %>%
+  janitor::adorn_totals(where = "row") %>%
+  select(-part_sqr) %>%
+  DT::datatable(options = list(dom = "tip", pageLength = 8))
+```
+
+]
+
+---
+
+## （示例）整群抽样下的抽样误差：相关性分析
+
+初步分析抽样的各群组我们可以发现，主要抽样单元（PSU）的**变量总值**
+$y_i$（各群组内全部家庭的旅游支出总和）与主要抽样单元（PSU）的**单位规模**
+$M_i$（各群组的家庭数）存在高度正相关关系。
+
+```{r}
+vocation %>%
+  ggplot(aes(x= number.households, y = total.budget)) +
+  geom_point( color= "blue") +
+  scale_x_continuous(breaks = seq(2,16, 2)) +
+  scale_y_continuous(breaks = seq(4000,28000, 4000))
+```
+
+---
+
+## （示例）整群抽样下的抽样误差：回归分析
+
+利用`R`软件进行回归分析，可以进一步发现二者呈现显著线性关系。
+
+```{r, results='asis', eval=TRUE}
+mod <- formula(total.budget ~ number.households)
+out_lx <- xmerit::lx.est(lm.mod =  mod, lm.dt = vocation, style = 'srm',opt = c('s','t','p'))
+
+```
+
+---
+
+## （示例）整群抽样下的抽样误差：比率估计法
+
+根据整群抽样数据，我们可以计算得到次要抽样单元（SSU）的均值为：
+
+$$\begin{align}
+\hat{\mu}_{r}=r=\frac{\sum_{i=1}^{n} y_{i}}{\sum_{i=1}^{n} M_{i}}=\frac{259240}{169}=1533.96 \\
+\widehat{Var}\left(\hat{\mu}_{r}\right)=\frac{N(N-n)}{n \cdot M^{2}} \cdot \frac{1}{n-1} \sum_{i=1}^{n}\left(y_{i}-r M_{i}\right)^{2}
+\end{align}$$
+
+因为已知：
+$M=`r M`;N=`r N`;n=`r n`$，次要抽样单元（SSU）的方差计算结果为：
+
+$$\begin{align}
+\widehat{Var}\left(\hat{\mu}_{r}\right)&=\frac{N(N-n)}{n \cdot M^{2}} \cdot \frac{1}{n-1} \sum_{i=1}^{n}\left(y_{i}-r M_{i}\right)^{2} \\
+&=\frac{`r N`\times(`r N`-`r n`)}{`r n` \times `r M^2`} \times \frac{1}{`r n`-1} \times `r sum_sqr` \\
+&= \frac{`r N*(N-n)`}{`r n*M^2`} \times \frac{1}{`r n-1` } \times `r sum_sqr` 
+= `r var_r`
+\end{align}$$
+
+---
+
+## （示例）整群抽样下的抽样误差：无偏估计法
+
+容易计算：
+$M=`r M`;N=`r N`;n=`r n`$，以及
+$s_{u}^{2}=\frac{1}{n-1} \sum_{i=1}^{n}\left(y_{i}-\bar{y}\right)^{2}=`r (sd(vocation$total.budget))^2`$。因此，次要抽样单元（SSU）的均值和方差计算结果分别为：
+
+$$\begin{align}
+\hat{\mu} &=\frac{N}{M}\cdot  \frac{\sum_{i=1}^{n} y_{i}}{n}  = \frac{400}{3100} \cdot \frac{259240}{24}  
+=1393.81
+\end{align}$$
+
+$$\begin{align}
+\widehat{Var}(\hat{\mu}) &=\frac{N(N-n)}{M^{2} \cdot n} \cdot \frac{1}{n-1} \sum_{i=1}^{n}\left(y_{i}-\bar{y}\right)^{2} \\
+&=\frac{400(400-24)}{(3100)^{2} \cdot 24} \cdot s_{u}^{2} 
+=\frac{400(400-24)}{(3100)^{2} \cdot 24}\times `r s_u^2` 
+= `r var_mu`
+\end{align}$$
+
+---
+
+## 抽样误差：整群抽样两个误差估计方法的比较
+
+- 当群组变量值总和与群组单位数大小成正比时，使用比率估计比使用无偏估计更好。因为无偏估计法的方差会非常大，估计结果非常不满意。
+
+> 我们可以简单使用的随机抽样的公式来计算方差吗？——抱歉不行！
+
+- 如果采用简单随机抽样，那么就应该相对应使用简单随机抽样公式计算方差，而且必须通过简单随机抽样收集数据。注意：如果不按照抽样方案计算方差，这会是一个很大的错误！
+
+---
+
+exclude: true
+
+```{r}
+vocation %>%
+  janitor::adorn_totals(where = "row") %>%
+  #select(-sum_sqr) %>%
+  DT::datatable(options = list(dom = "tip", pageLength = 9))
+```
+
+
+---
+
+## 抽样误差：整群抽样的抽样误差计算方法3
+
+有时候，群组被抽中的概率
+$p_i$就等于群组单位数占总体单位数的比率，也即
+$p_{i}=M_{i} /M$。我们一般称的这种情形为**主要抽样单元**（PSU）满足**比例概率条件**（probabilities proportional to size, pps）。那么，在满足pps条件下进行的整群抽样，估计**次要抽样单元（SSU）**的均值
+$\hat{\mu}_{p}$和方差
+$\widehat{Var}\left(\hat{\mu}_{p}\right)$分别为：
+
+$$\begin{align}
+\hat{\mu}_{p} &=\frac{1}{n} \sum_{i=1}^{n}\left(\frac{y_{i}}{M_{i}}\right) \\
+\widehat{Var}\left(\hat{\mu}_{p}\right) &=\frac{1}{n(n-1)} \sum_{i=1}^{n}\left(\bar{y}_{i}-\hat{\mu}_{p}\right)^{2}
+\end{align}$$
+
+其中：
+
+
+- 
+$\bar{y}_{i}=\frac{y_{i}}{M_{i}}$表示第
+$i$个群组的抽样均值。
+
+- $n$表示样本中的主要抽样单元（PSU）的数量；
+$M_i$表示第
+$i$个主要抽样单元（PSU）中.red[次要抽样单元]（SSU）的数量；
+$M$表示总体中的所有次要抽样单元（SSU）的数量。
+
+- $y_{ij}$表示第
+$i$个主要抽样单元（PSU）中第
+$j$次要抽样单元（SSU）的个体的变量值。
+$y_i = \sum_{j=1}^{M_i} y_{ij}$表示第
+$i$个主要抽样单元（PSU）下所有个体的变量值之和。
+
+---
+exclude: true
+
+## case：请求计算机援助案例
+
+```{r}
+num_employees <- c(1000, 650, 2100, 860, 2840,
+                   1910, 390, 3200, 1500,1200)
+
+set.seed(54332)
+par_ratio <- runif(10, 0.6,0.7)
+
+num_requires <- ceiling(par_ratio*num_employees)
+
+computer <- tibble(cluster =1 :10,
+                  employees = num_employees,
+                  requires = num_requires)
+n <- 3
+set.seed(1233)
+sample_computer <- computer %>%
+  sample_n(size = 3, replace = T) %>%
+  arrange(cluster) 
+
+
+calc_computer <- sample_computer %>%
+  mutate(ratio = requires / employees)
+
+mu_p <- mean(calc_computer$ratio) 
+
+calc_computer <- calc_computer %>%
+  mutate(minus = ratio - mu_p,
+         sqr = minus^2)
+
+var_p <- (1/n)*(sd(calc_computer$ratio))^2
+
+```
+
+---
+
+## （示例）请求计算机援助案例
+
+
+**案例说明**：一家大型公司共有10个部门，每个部门的员工人数各不相同（见下左表）。IT部门主管计划对该公司的3个部门进行随机抽样，以估计该公司平均每个部门的计算机帮助请求数。然后，他采用**可重复抽样**的比例概率整群抽样法（pps），随机抽取了三个部门的样本数据（见下右表）：
+
+.pull-left[
+
+```{r}
+computer %>%
+  #select(-ratio) %>%
+  janitor::adorn_totals(where = "row") %>%
+  DT::datatable(options = list(dom = "tip", pageLength = 6))
+```
+
+]
+
+.pull-right[
+
+```{r}
+sample_computer %>%
+  #select(-ratio) %>%
+  DT::datatable(options = list(dom = "t", pageLength = 6))
+```
+
+]
+
+---
+
+## （示例）整群抽样下的抽样误差：计算结果
+
+
+```{r}
+calc_computer %>%
+  janitor::adorn_totals(where = "row") %>%
+  DT::datatable(options = list(dom = "t", pageLength = 6)) %>%
+  formatRound(c(4:6), digits = c(4,4,6))
+```
+
+依据抽样数据，我们知道
+$n =`r n`$，容易计算得到
+$\bar{y}_i = \frac{y_i}{M_i}$，并进一步计算得到估计的均值
+$\hat{\mu}_{p}$，然后再计算出方差
+$\widehat{Var}(\hat{\mu}_{p})$：
+
+
+$$\begin{align}
+\hat{\mu}_{p} &=\frac{1}{n} \sum_{i=1}^{n} \frac{y_{i}}{M_{i}} = mean(\bar{y}_i) =\bar{\bar{y}_i}=`r formatC(mu_p, digits =4, format='f')` \\
+\widehat{Var}\left(\hat{\mu}_{p}\right) &=\frac{1}{n(n-1)} \cdot \sum_{i=1}^{n}\left(\bar{y}_{i}-\hat{\mu}_{p}\right)^{2}
+= \frac{1}{n} \cdot s^2(\bar{y}_i) 
+=`r formatC(var_p, digits =6, format='f')`
+\end{align}$$
+
+
+---
+
+## 抽样误差：多阶段抽样
+
+
+
+```{r, out.height= '450px', fig.cap="两阶段抽样示例1：10个PSU，4个SSU/PSU"}
+include_graphics("../pic/chpt02-sampling-mutiple-stage-demo1.gif")
+```
+
+
+
+
+---
+
+## 抽样误差：多阶段抽样
+
+```{r, out.height= '450px', fig.cap="两阶段抽样示例2：20个PSU，2个SSU/PSU"}
+include_graphics("../pic/chpt02-sampling-mutiple-stage-demo2.gif")
+```
+
+
+---
+
+## 抽样误差：多阶段抽样的符号约定
+
+多阶段抽样下，一些重要的符号约定如下：
+
+- 
+$N$表示总体中的全部群组数量；
+$n$表示随机抽样后抽选得到的群组数量；
+$M_i$表示总体中，第
+$i$个群组中的单位数量；
+$m_i$表示随机抽中的第
+$i$个群组中的单位数量；
+$M=\sum_{i=1}^N {M_i}$表示总体中的所有单位数量；
+
+- 
+$y_{ij}$表示随机抽中的第
+$i$个群组中的第
+$j$个单位的变量值；
+$\bar{y}_i = \frac{1}{m_i}\sum_{j=1}^{m_i}y_{jij}$表示被抽中的第
+$i$个群组的样本均值。 
+$\hat{y}_{i}=M_{i} \frac{\sum_{j=1}^{m_{i}} y_{i j}}{m_{i}}=M_{i} \bar{y}_{i}$表示对总体中第
+$i$个群组的变量总值的估计值。
+
+---
+
+## 抽样误差：多阶段抽样下的抽样误差计算方法1
+
+多阶段抽样下，**次要抽样单元（SSU）**均值
+$\hat{\mu}$和方差
+$\widehat{Var}\left(\hat{\mu}\right)$的**无偏估计法**（unbiased estimator）计算公式分别为：
+
+$$\begin{align}
+\hat{\mu}=\frac{N}{M} \cdot \frac{\sum_{i=1}^{n} \hat{y}_{i}}{n}
+=\frac{N}{M} \cdot \frac{\sum_{i=1}^{n} M_{i} \bar{y}_{i}}{n}
+\end{align}$$
+
+
+$$\begin{align}
+\widehat{Var}(\hat{\mu})=\frac{N(N-n)}{M^2} \cdot \frac{s_{u}^{2}}{n}+\frac{N}{nM^2} \sum_{i=1}^{n} M_{i}\left(M_{i}-m_{i}\right) \frac{s_{i}^{2}}{m_{i}}
+\end{align}$$
+
+两个样本方差，其中
+$s_{u}^{2}$表示主要抽样单位（PSU）的样本方差；而
+$s_i^2$表示被抽中的第
+$i$个群组的样本方差。
+
+$$\begin{align}
+s_{u}^{2}&=\frac{1}{n-1} \sum_{i=1}^{n}\left(\hat{y}_{i}-\frac{\sum_{i=1}^{n} \hat{y}_{i}}{n}\right)^{2}\\ s_{i}^{2}&=\frac{1}{m_{i}-1} \sum_{j=1}^{m_{i}}\left(y_{i j}-\bar{y}_{i}\right)^{2}
+\end{align}$$
+
+]
+
+---
+
+## 抽样误差：多阶段抽样下的抽样误差计算方法2
+
+> 对于两阶段抽样方案：第一阶段和第二阶段都采用简单随机抽样。
+- 如果总体的次要抽样单元（SSU）总数
+$M$不可知，则不能使用前述的**无偏估计法**。
+- 此外，如果群组的变量加总值（sum value）与群组的个体数量（element size）与呈比率关系，则应该采用下述**比率估计法**。
+
+对于这样的多阶段抽样方案，**次要抽样单元（SSU）**均值
+$\hat{\mu}_r$和方差
+$\widehat{Var}\left(\hat{\mu}_r\right)$的**比率估计法**（ratio estimator）计算公式分别为：
+
+
+$$\begin{align}
+\hat{\mu}_{r} &= \hat{r}= \frac{\sum_{i=1}^{n} \hat{y}_{i}}{\sum_{i=1}^{n} M_{i}} = \frac{\sum_{i=1}^{n} M_{i} \bar{y}_{i}}{\sum_{i=1}^{n} M_{i}}
+\end{align}$$
+
+$$\begin{align}
+\widehat{Var}\left(\hat{\mu}_{r}\right) &=\frac{N(N-n)}{n M^2} \cdot \frac{1}{n-1} \sum_{i=1}^{n}\left(\hat{y}_{i}-M_{i} \hat{r}\right)^{2}+\frac{N}{n M^2} \sum_{i=1}^{n} M_{i}\left(M_{i}-m_{i}\right) \frac{s_{i}^{2}}{m_{i}}
+\end{align}$$
+
+---
+
+exclude: true
+
+## case：连锁餐厅满意度案例
+
+
+```{r}
+
+employees <- c(54, 48, 68, 70,52, 62, 41,53,64, 43)
+pct <- 0.2
+
+set.seed(2121)
+index_sample <- sample(1:120, size = 10)
+
+set.seed(013)
+#set.seed(01321)
+restaurant <- tibble(tot_worker = employees) %>%
+  add_column(id = index_sample, .before = "tot_worker") %>%
+  mutate(sel_worker = ceiling(tot_worker*pct)) %>%
+  mutate(satisfaction = sapply(sel_worker, FUN =  function(x){sample(3:7, size=x, replace = T)})) 
+
+calc_restaurant <-  restaurant  %>%
+  mutate(mean = map_dbl(satisfaction, mean),
+         variance = map_dbl(satisfaction,.f =  function(x){(sd(x))^2})) %>%
+  mutate(y_hat = tot_worker*mean)
+
+bar_hat_y <- mean(calc_restaurant$y_hat)
+
+s2_u <- (sd(calc_restaurant$y_hat))^2
+
+N <- 120
+n <- 10
+M <- 6860
+
+mu_ms <- N/M*mean(calc_restaurant$y_hat)
+sum_y_hat <- sum(calc_restaurant$y_hat)
+sum_Mi_n <- sum(calc_restaurant$tot_worker)
+mu_r <- sum_y_hat/sum_Mi_n
+
+calc_restaurant <-  calc_restaurant %>%
+  mutate(sum_right = tot_worker*(tot_worker - sel_worker)/sel_worker*variance) %>%
+  mutate(sum1_yi_sqr =( y_hat-tot_worker*mu_r)^2,
+         sum2_si_sqr =  sum_right)
+# calc var_mu
+tot_sum <- sum(calc_restaurant$sum_right)
+var_ms <- N*(N-n)/(n*M^2)*s2_u +N/(n*M^2)*tot_sum
+
+# calc var_r
+tot_sum1 <- sum(calc_restaurant$sum1_yi_sqr)
+tot_sum2 <- sum(calc_restaurant$sum2_si_sqr)
+var_r <- N*(N-n)/(n*M^2*(n-1))*tot_sum1 +N/(n*M^2)*tot_sum2
+
+```
+
+---
+
+## （示例）连锁餐厅满意度案例
+
+**案例说明**：一家餐饮连锁店想估计员工对工作的平均满意度（ 里克特量表1-7分制）。该连锁店共有120家餐厅，连锁店的全体员工总数为6860人。
+研究人员决定使用**两阶段随机抽样**方案，第一阶段采用简单随机抽样来采样10家餐厅（被抽中的序号见列`id`，餐厅总员工数见列`tot_worker`）。然后，第二阶段也使用简单随机抽样对这些餐厅中约20％的员工（被抽中的员工数量见列`sel_worker`）进行抽样和工作满意度采访（见列`satisfaction`）。最终抽样数据结果如下：
+
+```{r}
+restaurant %>%
+  datatable(options = list(dom = "tip", pageLength =5))
+```
+
+
+
+
+---
+
+## （示例）多阶段抽样的抽样误差：基本计算量
+
+根据案例数据，容易得到：
+
+.pull-left[
+
+- 所有餐厅数量为
+$N =120$。
+
+- 简单随机抽样选中的餐厅数量为
+$n = 10$。
+
+- 第
+$i$个餐厅的总员工数为
+$M_i =$ `total_worker`列。
+
+- 随机抽中的第
+$i$个餐厅中的被抽中的员工数量为
+$m_i=$ `sel_worker`列。
+
+- 连锁店全体员工的总人数为
+$M=\sum_{i=1}^N {M_i}=6860$。
+
+]
+
+.pull-right[
+
+- 随机抽中的第
+$i$个餐厅中的平均工作满意度评分为
+$\bar{y}_i=$ `mean`列，工作满意度的样本方差
+$s^2_i=$ `variance`列。
+
+- 估计得到的第
+$i$个酒店的加总满意度评分为
+$\hat{y}_i=$ `y_hat`列，10家被抽中酒店估计的平均加总满意度评分为
+$\bar{\hat{y}}=\frac{\sum_{i=1}^{n} \hat{y}_{i}}{n}= `r formatC(bar_hat_y, 2, format ='f')`$。
+
+]
+
+---
+
+## （示例）多阶段抽样的抽样误差：无偏估计法的计算量1
+
+我们可以根据**无偏估计法**的相关理论公式，得到如下的计算表：
+
+```{r}
+calc_restaurant %>%
+  #rename("$M_i$"= "tot_worker") %>%
+  select(-sum1_yi_sqr, -sum2_si_sqr) %>%
+  datatable(options = list(dom = "tip", 
+                           pageLength =8,
+                           autoWidth = TRUE,
+                           scrollX = TRUE)) %>%
+  formatRound(c(5:8), digits = c(2,2,1,1))
+```
+
+---
+
+## （示例）多阶段抽样的抽样误差：无偏估计法的计算量2
+
+从而容易计算得到到如下两个**无偏估计法**需要用到的样本方差：
+
+$$\begin{align}
+s_{u}^{2}&=\frac{1}{n-1} \sum_{i=1}^{n}\left(\hat{y}_{i}-\frac{\sum_{i=1}^{n} \hat{y}_{i}}{n}\right)^{2} =\frac{1}{n-1} \sum_{i=1}^{n}\left(\hat{y}_{i}-\bar{\hat{y}}\right)^{2}=`r formatC(s2_u, 2, format ='f')`\\ 
+s_{i}^{2}&=\frac{1}{m_{i}-1} \sum_{j=1}^{m_{i}}\left(y_{i j}-\bar{y}_{i}\right)^{2}=\text{variance}
+\end{align}$$
+
+> 上述
+$s_{i}^{2}$计算结果见前页ppt的计算表中的`variance`列。
+
+---
+
+## （示例）多阶段抽样的抽样误差：无偏估计法的结果
+
+因此，采用**无偏估计法**估计得到的酒店满意度的均值和方差分别为：
+
+$$\begin{align}
+\hat{\mu}=\frac{N}{M} \cdot \frac{\sum_{i=1}^{n} \hat{y}_{i}}{n}
+=\frac{N}{M} \cdot \bar{\hat{y}} = \frac{`r N`}{`r M`} \times `r round(bar_hat_y,2)`=`r formatC(mu_ms, 2,format= 'f')`
+\end{align}$$
+
+
+$$\begin{align}
+\widehat{Var}(\hat{\mu}) &=\frac{N(N-n)}{M^2} \cdot \frac{s_{u}^{2}}{n}+\frac{N}{nM^2} \sum_{i=1}^{n} M_{i}\left(M_{i}-m_{i}\right) \frac{s_{i}^{2}}{m_{i}} \\
+& = \frac{120(120-10)}{10\times 6860^2} \times `r formatC(s2_u, 2,format='f')`+\frac{120}{10\times 6860 ^2} \times `r formatC(tot_sum,2, format='f')` \\
+&= `r formatC(var_ms,4, format='f')`
+\end{align}$$
+
+上述求和项内部个值计算结果见前页ppt的计算表，其中：
+- 
+$M_{i}\left(M_{i}-m_{i}\right) \frac{s_{i}^{2}}{m_{i}}$见计算表中的`sum_right`列；
+
+---
+
+## （示例）多阶段抽样的抽样误差：比率估计法的计算量1
+
+我们可以根据**比率估计法**的相关理论公式，得到如下的计算表：
+
+```{r}
+calc_restaurant %>%
+  #rename("$M_i$"= "tot_worker") %>%
+  select(-sum_right) %>%
+  datatable(options = list(dom = "tip", 
+                           pageLength =8,
+                           autoWidth = TRUE,
+                           scrollX = TRUE)) %>%
+  formatRound(c(5:9), digits = c(2,2,1,1,1))
+```
+
+
+---
+
+## （示例）多阶段抽样的抽样误差：比率估计法的计算量2
+
+容易计算得到到如下**比率估计法**需要用到的样本方差：
+
+$$\begin{align}
+s_{i}^{2}&=\frac{1}{m_{i}-1} \sum_{j=1}^{m_{i}}\left(y_{i j}-\bar{y}_{i}\right)^{2}=\text{variance}
+\end{align}$$
+
+> 上述
+$s_{i}^{2}$计算结果见前页ppt的计算表中的`variance`列。
+
+---
+
+## （示例）多阶段抽样的抽样误差：比率估计法的结果
+
+因此，采用**比率估计法**估计得到的酒店满意度的均值和方差分别为：
+
+
+$$\begin{align}
+\hat{\mu}_{r} = \hat{r}
+= \frac{\sum_{i=1}^{n} \hat{y}_{i}}{\sum_{i=1}^{n} M_{i}}
+= \frac{`r formatC(sum_y_hat, 2, format="f")`}{`r sum_Mi_n`} 
+=`r formatC(mu_r, 2 , format='f')`
+\end{align}$$
+
+$$\begin{align}
+\widehat{Var}\left(\hat{\mu}_{r}\right) &=\frac{N(N-n)}{n M^2} \cdot \frac{1}{n-1} \sum_{i=1}^{n}\left(\hat{y}_{i}-M_{i} \hat{r}\right)^{2}+\frac{N}{n M^2} \sum_{i=1}^{n} M_{i}\left(M_{i}-m_{i}\right) \frac{s_{i}^{2}}{m_{i}} \\
+&=  \frac{120(120-10)}{10\times 6860^2} \times \frac{1}{10-1} \times `r formatC(tot_sum1, 2,format='f')`+\frac{120}{10\times 6860 ^2} \times `r formatC(tot_sum2,2, format='f')` \\
+&= `r formatC(var_r,4, format='f')`
+\end{align}$$
+
+> 上述两个求和项内部个值计算结果见前页ppt的计算表，其中：
+- 
+$\left(\hat{y}_{i}-M_{i} \hat{r}\right)^{2}$见计算表中的`sum1_yi_sqr`列；
+- 
+$M_{i}\left(M_{i}-m_{i}\right) \frac{s_{i}^{2}}{m_{i}}$见计算表中的`sum2_si_sqr`列。
+
+---
+
+## 抽样误差：多阶段抽样下的抽样误差计算方法3
+
+> 对于两阶段抽样方案：第一阶段采用比例概率抽样法（PPS），第二阶段采用简单随机抽样法：
+- 那么抽样误差计算应该使用**比例概率估计法**（pps估计法，具体为.red[Hansen-Hurwitz estimator]）。
+
+对于这样的多阶段抽样方案，**次要抽样单元（SSU）**均值
+$\hat{\mu}_p$和方差
+$\widehat{Var}\left(\hat{\mu}_p\right)$的**比例概率估计法**（pps estimator）计算公式分别为：
+
+$$\begin{align}
+\hat{\mu}_{p} =  \frac{1}{n} \cdot \sum_{i=1}^{n} {\frac{\hat{y}_{i}}{M_i}} 
+=\frac{1}{n} \cdot \sum_{i=1}^{n} {\frac{\bar{y}_{i}*M_i}{M_i}} = \frac{1}{n} \cdot \sum_{i=1}^{n} {\bar{y}_i}
+\end{align}$$
+
+$$\begin{align}
+\widehat{Var}\left(\hat{\mu}_{p}\right) &=\frac{1}{n(n-1)} \cdot  \sum_{i=1}^{n}\left(\bar{y}_{i}-\hat{\mu}_{p} \right)^{2}
+\end{align}$$
+
+---
+
+exclude: true
+
+## case：学生书本支出案例
+
+```{r}
+N <- 36
+n <- 4
+
+set.seed(2121)
+index_sample <- sample(1:N, size = n)
+
+textbook <- tibble(major = index_sample,
+                   tot_students = c(10, 20, 30, 15),
+                   sel_students = c(4, 8, 12, 6),
+                   expenses = list(c(326,400,423,443),
+                                   c(278,312,450,350,227,438,512,403),
+                                   c(512,256,332,402,512,309,411,610,422,630,550,470),
+                                   c(426,312,512,440,342,533)))
+
+calc_textbook <-  textbook  %>%
+  mutate(mean = map_dbl(expenses, mean),
+         variance = map_dbl(expenses,.f =  function(x){(sd(x))^2})) %>%
+  mutate(y_hat = tot_students*mean)
+
+# calc mu_p
+mu_p <- mean(calc_textbook$mean)
+
+calc_textbook <-  calc_textbook %>%
+  mutate(sum_sqr = ( mean-mu_p)^2)
+
+# calc var_p
+s2_bar_yi <-( sd(calc_textbook$mean))^2
+tot_sum <- sum(calc_textbook$sum_sqr)
+var_p <- 1/(n*(n-1))*tot_sum
+
+```
+
+---
+
+## （示例）学生书本支出案例
+
+
+**案例说明**：一个学院共有36个专业（`major`）。研究者想估算出上学期学生在教科书上花费（`expenses`）的平均金额。由于每个专业的规模差异很大，因此采用的两阶段抽样方案，其中第一阶段采用的是pps抽样，第二阶段是简单随机抽样。最终抽样数据结果如下：
+
+```{r}
+textbook %>%
+  datatable(options = list(dom = "t", pageLength =5))
+```
+
+---
+
+## （示例）多阶段抽样的抽样误差：PPS估计法的计算表
+
+我们可以根据**比例概率估计法**的相关理论公式，得到如下的计算表：
+
+```{r}
+calc_textbook %>%
+  #rename("$M_i$"= "tot_worker") %>%
+  #select(-sum_right) %>%
+  datatable(options = list(dom = "t", 
+                           pageLength =8,
+                           autoWidth = TRUE,
+                           scrollX = TRUE)) %>%
+  formatRound(c(5:8), digits = 2)
+```
+
+> 建议使用html浏览本课件，此表可以往右拉动，可以查看更多计算列。
+
+---
+
+## （示例）多阶段抽样的抽样误差：PPS估计法的结果
+
+因此，采用**比例概率估计法**估计得到学生书本支出的均值和方差分别为：
+
+$$\begin{align}
+\hat{\mu}_{p} =  \frac{1}{n} \cdot \sum_{i=1}^{n} {\frac{\hat{y}_{i}}{M_i}} 
+=\frac{1}{n} \cdot \sum_{i=1}^{n} {\frac{\bar{y}_{i}*M_i}{M_i}} = \frac{1}{n} \cdot \sum_{i=1}^{n} {\bar{y}_i} 
+= \bar{\bar{y_i}}
+= `r formatC(mu_p, 2, format ='f')`
+\end{align}$$
+
+$$\begin{align}
+\widehat{Var}\left(\hat{\mu}_{p}\right) =\frac{1}{n(n-1)} \cdot  \sum_{i=1}^{n}\left(\bar{y}_{i}-\hat{\mu}_{p} \right)^{2}
+&= \frac{1}{n} \cdot s^2_{\bar{y_i}} \\
+& = \frac{1}{4} \times `r formatC(s2_bar_yi, 4, format ='f')`
+= `r formatC(var_p, 4, format ='f')`
+\end{align}$$
+
+
+> 上述计算结果的中间步骤计算值见前页ppt的计算表。
+其中：
+- 
+$\bar{y}_i$见计算表中的`mean`列；
+- 
+$\hat{y}_i$见计算表中的`y_hat`列。
+
+
+---
+
+exclude: true
 
 ## 必要样本数
 
@@ -3188,6 +4931,16 @@ class: center, middle, duke-orange
 name: tidy
 
 # 2.5 数据整理
+
+工作流程
+
+工作记录
+
+数据库化
+
+数据检索
+
+数据安全
 
 ---
 layout: true
@@ -3321,6 +5074,14 @@ class: center, middle, duke-orange
 name: clean
 
 # 2.6 数据清洗
+
+工作内容
+
+清洗记录
+
+备份安全
+
+清洗举例
 
 ---
 layout: true
@@ -3765,6 +5526,13 @@ class: center, middle, duke-orange
 name: database
 
 # 2.7 数据的数据库化
+
+数据库化的类型
+
+一手资料的数据库化
+
+二手资料的数据库化
+
 
 ---
 layout: true
@@ -4689,6 +6457,10 @@ class: center, middle, duke-orange
 name: quality
 
 # 2.8 数据质量
+
+数据质量内涵与评估
+
+影响数据质量的主要原因
 
 ---
 layout: true
