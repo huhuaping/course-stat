@@ -19,6 +19,8 @@
     <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
     <link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
     <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
     <link rel="stylesheet" href="../mycss/my-custom-for-video.css" type="text/css" />
     <link rel="stylesheet" href="../mycss/notes-tips.css" type="text/css" />
   </head>
@@ -40,7 +42,7 @@ class: center,middle
 
 ### huhuaping01@hotmail.com
 
-### 2021-03-01
+### 2021-04-09
 
 
 
@@ -435,8 +437,8 @@ background-size: contain
 
 
 
-<div id="htmlwidget-27c777d5eb7e0a497b55" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-27c777d5eb7e0a497b55">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],["第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年"],[1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12],[3.5,3.5,4,3.8,4,3.8,4,4,5,5,5,4,4,4,4,5,5,5,5,6,6,6,6,7]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>序号<\/th>\n      <th>年份<\/th>\n      <th>月份<\/th>\n      <th>产量<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-40a5820b7a4a94f39058" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-40a5820b7a4a94f39058">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],["第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年"],[1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12],[3.5,3.5,4,3.8,4,3.8,4,4,5,5,5,4,4,4,4,5,5,5,5,6,6,6,6,7]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>序号<\/th>\n      <th>年份<\/th>\n      <th>月份<\/th>\n      <th>产量<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 
 **问题**：请用水平法计算提前多少天完成计划任务？
@@ -459,8 +461,8 @@ background-size: contain
 根据水平法，只需要连续一个**自然年**（12个月）达到年计划产量，就算完成任务产量56万吨
 `\(^\ast\)`。容易计算得到，12个月滚动累加的结果如下：
 
-<div id="htmlwidget-3a88a02e6ccb323f8ba1" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3a88a02e6ccb323f8ba1">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],["第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年"],[1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12],[3.5,3.5,4,3.8,4,3.8,4,4,5,5,5,4,4,4,4,5,5,5,5,6,6,6,6,7],[null,null,null,null,null,null,null,null,null,null,null,49.6,50.1,50.6,50.6,51.8,52.8,54,55,57,58,59,60,63]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>序号<\/th>\n      <th>年份<\/th>\n      <th>月份<\/th>\n      <th>产量<\/th>\n      <th>滚动累加<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f7e2af61e651d0ed9f64" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f7e2af61e651d0ed9f64">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],["第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第4年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年","第5年"],[1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12],[3.5,3.5,4,3.8,4,3.8,4,4,5,5,5,4,4,4,4,5,5,5,5,6,6,6,6,7],[null,null,null,null,null,null,null,null,null,null,null,49.6,50.1,50.6,50.6,51.8,52.8,54,55,57,58,59,60,63]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>序号<\/th>\n      <th>年份<\/th>\n      <th>月份<\/th>\n      <th>产量<\/th>\n      <th>滚动累加<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ]
 
@@ -890,6 +892,7 @@ background-size: contain
 
 - 主要用于分类数据，也可用于顺序数据和数值型数据。
 
+
 ---
 
 ## （示例）众数的表现形式：河流长度
@@ -1223,6 +1226,103 @@ M_{0}=X_{U} - \frac{\Delta_{2}}{\Delta_{1}+\Delta_{2}} \cdot d
 
 - 
 `\(d\)`表示众数组的**组距**（width）。
+
+]
+
+
+---
+
+exclude: true
+
+## 众数计算：组距式数列
+
+
+
+.panelset[
+.panel[.panel-name[图形示意]
+
+.pull-left[
+
+&lt;img src="../pic/chpt04-mode-binned1.png" width="1171" height="250px" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+&lt;img src="../pic/chpt04-mode-binned2.png" width="1261" height="250px" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-left[
+
+- 
+`\(X_{L}\)`表示组下限（Lower limits）；
+`\(X_{U}\)`表示组上限（Upper limits）；
+- 
+`\(d\)`表示众数组的**组距**（width）；
+`\(x\)`表示待求解的组距部分。
+
+]
+
+.pull-right[
+- 
+`\(\Delta_{1}\)`表示众数组与**前一组**的频次之差；
+`\(\Delta_{2}\)`表示众数组与**后一组**的频次之差；
+]
+
+]
+
+.panel[.panel-name[上限公式]
+
+.pull-left[
+
+&lt;img src="../pic/chpt04-mode-binned1.png" width="1171" height="250px" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+&lt;img src="../pic/chpt04-mode-binned2.png" width="1261" height="250px" style="display: block; margin: auto;" /&gt;
+]
+
+
+给定上限值，则采用**上限插值公式**：
+
+.small[
+`$$\begin{equation}
+\Rightarrow \frac{x}{d-x}=\frac{\Delta_{1}}{\Delta_{2}} \Rightarrow x=\frac{\Delta_{1} \cdot d}{\Delta_{1}+\Delta_{2}}  \Rightarrow \mathrm{M}_{0}=X_{4 U}-(d-x)=X_{4 U}-\frac{\Delta_{2} \cdot d}{\Delta_{1}+\Delta_{2}}
+\end{equation}$$`
+]
+
+
+]
+
+.panel[.panel-name[下限公式]
+
+.pull-left[
+
+&lt;img src="../pic/chpt04-mode-binned1.png" width="1171" height="250px" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+&lt;img src="../pic/chpt04-mode-binned2.png" width="1261" height="250px" style="display: block; margin: auto;" /&gt;
+]
+
+
+
+给定下限值，则采用**下限插值公式**：
+
+.small[
+`$$\begin{align}
+\Rightarrow \frac{x}{d-x}=\frac{\Delta_{1}}{\Delta_{2}} \Rightarrow x=\frac{\Delta_{1} \cdot d}{\Delta_{1}+\Delta_{2}}   \Rightarrow \mathrm{M}_{0}=\mathrm{X}_{4 L}+\frac{\Delta_{1} \cdot d}{\Delta_{1}+\Delta_{2}}
+\end{align}$$`
+]
+
+
+
+]
+
 
 ]
 

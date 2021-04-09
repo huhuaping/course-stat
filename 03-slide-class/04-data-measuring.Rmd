@@ -35,7 +35,7 @@ class: center,middle
 
 ```{r global_options, echo=F,message=FALSE,warning=F}
 source("../R/set-global.R")
-
+source("../R/xaringan-chromote-print.R")
 ```
 
 
@@ -834,6 +834,7 @@ $M_o$。
 
 - 主要用于分类数据，也可用于顺序数据和数值型数据。
 
+
 ---
 
 ## （示例）众数的表现形式：河流长度
@@ -1055,6 +1056,123 @@ $\Delta_{2}$表示众数组与**后一组**的频次之差；
 
 - 
 $d$表示众数组的**组距**（width）。
+
+]
+
+
+---
+
+exclude: true
+
+## 众数计算：组距式数列
+
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+.panelset[
+.panel[.panel-name[图形示意]
+
+.pull-left[
+
+```{r, out.height='250px'}
+include_graphics("../pic/chpt04-mode-binned1.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r, out.height='250px'}
+include_graphics("../pic/chpt04-mode-binned2.png", error = FALSE)
+
+```
+]
+
+.pull-left[
+
+- 
+$X_{L}$表示组下限（Lower limits）；
+$X_{U}$表示组上限（Upper limits）；
+- 
+$d$表示众数组的**组距**（width）；
+$x$表示待求解的组距部分。
+
+]
+
+.pull-right[
+- 
+$\Delta_{1}$表示众数组与**前一组**的频次之差；
+$\Delta_{2}$表示众数组与**后一组**的频次之差；
+]
+
+]
+
+.panel[.panel-name[上限公式]
+
+.pull-left[
+
+```{r, out.height='250px'}
+include_graphics("../pic/chpt04-mode-binned1.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r, out.height='250px'}
+include_graphics("../pic/chpt04-mode-binned2.png", error = FALSE)
+
+```
+]
+
+
+给定上限值，则采用**上限插值公式**：
+
+.small[
+$$\begin{equation}
+\Rightarrow \frac{x}{d-x}=\frac{\Delta_{1}}{\Delta_{2}} \Rightarrow x=\frac{\Delta_{1} \cdot d}{\Delta_{1}+\Delta_{2}}  \Rightarrow \mathrm{M}_{0}=X_{4 U}-(d-x)=X_{4 U}-\frac{\Delta_{2} \cdot d}{\Delta_{1}+\Delta_{2}}
+\end{equation}$$
+]
+
+
+]
+
+.panel[.panel-name[下限公式]
+
+.pull-left[
+
+```{r, out.height='250px'}
+include_graphics("../pic/chpt04-mode-binned1.png", error = FALSE)
+
+```
+
+]
+
+.pull-right[
+
+```{r, out.height='250px'}
+include_graphics("../pic/chpt04-mode-binned2.png", error = FALSE)
+
+```
+]
+
+
+
+给定下限值，则采用**下限插值公式**：
+
+.small[
+$$\begin{align}
+\Rightarrow \frac{x}{d-x}=\frac{\Delta_{1}}{\Delta_{2}} \Rightarrow x=\frac{\Delta_{1} \cdot d}{\Delta_{1}+\Delta_{2}}   \Rightarrow \mathrm{M}_{0}=\mathrm{X}_{4 L}+\frac{\Delta_{1} \cdot d}{\Delta_{1}+\Delta_{2}}
+\end{align}$$
+]
+
+
+
+]
+
 
 ]
 
