@@ -4130,19 +4130,21 @@ sum_y <- sum(vocation$total.budget)
 sum_m <- sum(vocation$number.households)
 r <- sum_y /sum_m
 
-vocation <- vocation %>%
-  mutate(part_sqr = (total.budget -r*number.households)^2)
+vocation_r <- vocation %>%
+  mutate(r_Mi = r*number.households,
+    part_sqr = (total.budget -r_Mi)^2)
 
 M <- 3100
 N <- 400
 n <- 24
-sum_sqr <- sum(vocation$part_sqr)
+sum_sqr <- sum(vocation_r$part_sqr)
 
 var_r <- N*(N-n)/(n*M^2*(n-1)) *sum_sqr
 
 mu <- mean(vocation$total.budget)*N/M
 s_u <- sd(vocation$total.budget)
 var_mu <- (N*(N-n)/(M^2*n))*(s_u)^2
+
 
 ```
 
@@ -4166,7 +4168,7 @@ var_mu <- (N*(N-n)/(M^2*n))*(s_u)^2
 ```{r}
 vocation %>%
   janitor::adorn_totals(where = "row") %>%
-  select(-part_sqr) %>%
+  #select(-part_sqr) %>%
   DT::datatable(options = list(dom = "tip", pageLength = 8))
 ```
 
@@ -4223,7 +4225,23 @@ $$\begin{align}
 
 ---
 
+## （示例）整群抽样下的抽样误差：比率估计法
+
+前述**比率估计法**需要用到的计算表如下所示：
+
+```{r}
+vocation_r %>%
+  janitor::adorn_totals(where = "row") %>%
+  DT::datatable(options = list(dom = "tip", pageLength = 9)) %>%
+  formatRound(c(4:5), digits = c(2,2))
+```
+
+
+---
+
 ## （示例）整群抽样下的抽样误差：无偏估计法
+
+作为对比，下面我们再采用**无偏估计法**公示进行计算。
 
 容易计算：
 $M=`r M`;N=`r N`;n=`r n`$，以及
@@ -5437,7 +5455,7 @@ CGSS2015 %>%
   select(one_of(vars_sel)) %>%
   sample_n(40) %>%
   datatable(#caption = "CGSS2015回答情况一瞥(第20~25个样本)",
-            options = list(pageLength =4, dom ="tip" ))
+            options = list(pageLength =8, dom ="tip" ))
 ```
 
 
@@ -5466,7 +5484,7 @@ CGSS2015 %>%
   select(one_of(vars_sel)) %>%
   filter( id %in% row_sel) %>%
   datatable(caption = "变量重新命名前",
-            options = list(pageLength =5, dom = "tip"))
+            options = list(pageLength =8, dom = "tip"))
 ```
 ]
 
@@ -5476,7 +5494,7 @@ CGSS2015 %>%
 dt_sub %>%
   filter( id %in% row_sel)  %>%
   datatable(caption = "变量重新命名后",
-            options = list(pageLength =5, dom = "tip"))
+            options = list(pageLength =8, dom = "tip"))
 ```
 
 ]
