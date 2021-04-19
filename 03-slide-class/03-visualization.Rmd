@@ -3,18 +3,21 @@ output:
   xaringan::moon_reader:
     seal: false
     lib_dir: libs
-    css: 
+    css:
+      - ../mycss/my-theme.css 
+      - ../mycss/my-font.css
+      - ../mycss/my-custom-for-video-roomy.css
+      - ../mycss/notes-tips.css
       - default
-      - default-fonts
       - duke-blue
       - hygge-duke
-      - ../mycss/my-custom-for-video.css
-      - ../mycss/notes-tips.css
+      
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
       ratio: "16:9"
+
 ---
 background-image: url("../pic/slide-front-page.jpg")
 class: center,middle
@@ -35,7 +38,7 @@ class: center,middle
 
 ```{r global_options, echo=F,message=FALSE,warning=F}
 source("../R/set-global.R")
-
+options(width = 70)
 ```
 
 
@@ -43,33 +46,47 @@ source("../R/set-global.R")
 source("../R/external-math-equation.R")
 ```
 
+```{r xaringan-logo, echo=FALSE}
+require('xaringanExtra')
+
+xaringanExtra::use_tachyons()
+
+xaringanExtra::use_panelset()
+
+xaringanExtra::use_logo(
+  image_url = "../pic/logo/nwafu-logo-circle-wb.png",
+  height = '70px',
+  position = xaringanExtra::css_position(top='0.2em',left="1em")
+)
+```
 
 ---
-class: inverse, center, middle
+class:  center, middle, duke-orange,hide_logo
+
 # 第三章 数据的图表展示
 
 
-[3.1 数据的预处理](#prepare)
+### [3.1 数据的预处理](#prepare)
 
-[3.2 品质数据的整理与显示](#quality)
+### [3.2 品质数据的整理与显示](#quality)
 
-[3.3 数值型数据的整理与显示](#quantity)
+### [3.3 数值型数据的整理与显示](#quantity)
 
-[3.4 合理使用图表](#nice)
+### [3.4 合理使用图表](#nice)
 
 
 ---
 layout: false
-class: inverse, center, middle, duke-softblue
+class: center, middle, duke-softblue,hide_logo
 name: prepare
 
 # 3.1 数据的预处理
 
-数据清洗（data cleaning ）
+### 数据清洗（data cleaning ）
 
-数据变换（data transformation）
+### 数据变换（data transformation）
 
-数据子集(data subset)
+### 数据子集(data subset)
 
 
 ---
@@ -89,6 +106,412 @@ layout: true
 
 ---
 
+## 数据预处理的主要内容
+
+- 数据审核：检查数据中的错误
+
+- 数据筛选：找出符合条件的数据
+
+- 数据排序：升序和降序；寻找数据的基本特征
+
+- 数据透视：按需要汇总
+
+---
+
+## 数据预处理：数据审核
+
+对于**原始数据(raw data)**需要进行：
+
+**完整性审核**：
+
+- 应调查的单位或个体是否有遗漏
+
+- 所有的调查项目或变量是否填写齐全
+
+**准确性审核**：
+
+- 数据是否真实反映实际情况，内容是否符合实际
+
+- 数据是否有错误，计算是否正确等
+
+---
+
+## 数据预处理：数据审核
+
+对于**二手数据(second hand data)**需要进行：
+
+**适用性审核**：
+
+- 弄清楚数据的来源、数据的口径以及有关的背景材料
+
+- 确定数据是否符合自己分析研究的需要
+
+**时效性审核**：
+
+- 尽可能使用最新的数据
+
+- 确认是否有必要做进一步的加工整理
+
+---
+
+## 数据预处理：数据筛选
+
+**数据预处理**：当数据中的错误不能予以纠正，或者有些数据不符合调查的要求而又无法弥补时，需要对数据进行筛选。
+
+数据筛选的内容：
+
+- 将某些不符合要求的数据或有明显错误的数据予以剔除
+
+- 将符合某种特定条件的数据筛选出来，而不符合特定条件的数据予以剔除
+
+---
+
+## 数据预处理：数据排序
+
+数据排序的**作用**：
+
+- 按一定顺序将数据排列，以发现一些明显的特征或趋势，找到解决问题的线索
+
+- 排序有助于对数据检查纠错，以及为重新归类或分组等提供依据
+
+- 在某些场合，排序本身就是分析的目的之一
+
+- 排序可借助于计算机完成
+
+---
+
+## 数据预处理：数据透视表
+
+数据透视表（pivot table）的作用：
+
+- 可以从复杂的数据中提取有用的信息
+
+- 可以对数据表的重要信息按使用者的习惯或分析要求进行汇总和作图
+
+- 形成一个符合需要的交叉表(列联表)
+
+- 在利用数据透视表时，数据源表中的首行必须有列标题
+
+---
+
+## 数据预处理：Excel中的数据透视表
+
+利用`Excel`软件创建数据透视表的主要步骤：
+
+- 第1步：在Excel工作表中建立数据清单
+
+- 第2步：选中数据清单中的任意单元格，并选择【数据】菜单中的【数据透视表和数据透视图】
+
+- 第3步：确定数据源区域
+
+- 第4步：在【向导—3步骤之3】中选择数据透视表的输出位置。然后选择【布局】
+
+- 第5步：在【向导—布局】对话框中，依次将”分类变量“拖至左边的“行”区域，上边的“列”区域，将需要汇总的“变量” 拖至“数据区域”
+
+- 第6步：然后单击【确定】，自动返回【向导—3步骤之3】对话框。然后单击【完成】，即可输出数据透视表 
+
+---
+
+## （演示）Excel数据预处理：数据准备
+
+利用Excel进行数据准备，主要工作包括：
+
+- 读取或导入其他数据格式（例如`.txt`或`.csv`格式）
+
+- 删除说明性内容
+
+- 数据表形式（long data VS wide data）
+
+- 数值表达方式（labels VS values）
+
+- 备注重要信息
+
+---
+
+## （演示）导入其他数据格式：Excel操作
+
+.panelset[
+.panel[.panel-name[a.数据菜单]
+
+```{r}
+include_graphics("../pic/chpt03-excel-prepare-import-csv1.png", error = FALSE)
+```
+
+]
+
+.panel[.panel-name[b.选择文件]
+
+```{r, out.width='80%'}
+include_graphics("../pic/chpt03-excel-prepare-import-csv2.png", error = FALSE)
+```
+
+]
+
+.panel[.panel-name[c.数据引导]
+
+```{r, out.width='60%'}
+include_graphics("../pic/chpt03-excel-prepare-import-csv3.png", error = FALSE)
+```
+
+]
+
+
+]
+
+---
+
+## （演示）删除说明性内容：Excel操作
+
+.left-column[
+### a.删除前
+]
+
+.right-column[
+
+```{r, out.height='450px'}
+include_graphics("../pic/chpt03-excel-prepare-remove-notation1.png", error = FALSE)
+```
+
+]
+
+---
+
+## （演示）删除说明性内容：Excel操作
+
+.left-column[
+### a.删除前
+
+### b.删除后
+]
+
+.right-column[
+
+```{r, out.height='450px'}
+include_graphics("../pic/chpt03-excel-prepare-remove-notation2.png", error = FALSE)
+```
+
+]
+
+
+
+---
+exclude: true
+
+## （演示）删除说明性内容：Excel操作
+
+.panelset[
+.panel[.panel-name[a.删除前]
+
+```{r, out.height='400px'}
+include_graphics("../pic/chpt03-excel-prepare-remove-notation1.png", error = FALSE)
+```
+
+]
+
+.panel[.panel-name[b.删除后]
+
+```{r, out.height='400px'}
+include_graphics("../pic/chpt03-excel-prepare-remove-notation2.png", error = FALSE)
+```
+
+]
+
+]
+
+---
+
+## （演示）数据表现形式：Excel操作
+
+.left-column[
+### 1)扁平形式
+]
+
+.right-column[
+
+
+```{r, out.height='420px'}
+include_graphics("../pic/chpt03-excel-prepare-format1-wide.png", error = FALSE)
+```
+
+- 一个病人的数据，由一行就能够完全进行表达。
+
+]
+
+---
+
+## （演示）数据表现形式：Excel操作
+
+.left-column[
+### 1)扁平形式
+
+### 2)窄长形式
+]
+
+.pt0[
+
+.right-column[
+
+
+```{r, out.height='420px'}
+include_graphics("../pic/chpt03-excel-prepare-format2-long.png", error = FALSE)
+```
+
+- 一个病人的数据，需要多行才能进行完整表达。
+
+]
+
+]
+
+
+---
+exclude: true
+
+## （演示）数据表现形式：Excel操作
+
+.panelset[
+.panel[.panel-name[a.扁平形式]
+
+```{r, out.height='40%'}
+include_graphics("../pic/chpt03-excel-prepare-format1-wide.png", error = FALSE)
+```
+
+> 一个病人的数据，由一行就能够完全进行表达。
+
+]
+
+.panel[.panel-name[b.窄长形式]
+
+```{r, out.height='40%'}
+include_graphics("../pic/chpt03-excel-prepare-format2-long.png", error = FALSE)
+```
+
+> 一个病人的数据，需要多行才能进行完整表达。
+
+]
+
+]
+
+---
+
+## 数据清洗：Excel常用操作1
+
+- **查找/替换**：
+
+- **提取文本字符**：
+
+    - 从左侧：`=LEFT(text, [num_chars])`
+    - 从右侧：`=RIGHT(text, [num_chars])`
+    - 从指定位置：`=MID(text,start_num,num_chars)`
+
+- **正确大小写**：
+
+    - 全部小写：`=LOWER(text)`
+    - 全部大写：`=UPPER(text)`
+    - 首字母大写：`=PROPER(text)`
+    - 自定义大小写：`=UPPER(LEFT(A2,1)&LOWER(MID(A2,2,60)`
+    
+---
+
+## 数据清洗：Excel常用操作2
+
+
+- **删除重复值**：
+
+- **合并文本内容**：`=[Cell 1]&[Cell 2]`
+
+- **清除空格**：`=TRIM( text )`
+
+- **清除非打印字符**：`=CLEAN( text )`
+
+
+---
+
+## （演示）Excel数据清洗：查找/替换
+
+```{r, out.height='100%'}
+include_graphics("../pic/chpt03-excel-prepare-find-1.png", error = FALSE)
+```
+
+---
+
+## （演示）Excel数据清洗：提取文本字符
+
+
+```{r, out.height='200px'}
+include_graphics("../pic/chpt03-excel-prepare-extract-1.png", error = FALSE)
+```
+
+
+```{r, out.height='200px'}
+include_graphics("../pic/chpt03-excel-prepare-extract-2.png", error = FALSE)
+```
+
+---
+
+## （演示）Excel数据清洗：自定义大小写
+
+```{r, out.height='100%'}
+include_graphics("../pic/chpt03-excel-prepare-cap.png", error = FALSE)
+```
+
+---
+
+## （演示）Excel数据清洗：删除重复值
+
+```{r, out.height='100%'}
+include_graphics("../pic/chpt03-excel-prepare-duplicate.png", error = FALSE)
+```
+
+
+---
+
+## （演示）Excel数据审核：
+
+```{r}
+img_pct <- "450px"
+```
+
+
+.panelset[
+.panel[.panel-name[a.选择区域]
+
+```{r, out.height=img_pct}
+include_graphics("../pic/chpt03-excel-prepare-check-1.png", error = FALSE)
+```
+
+]
+
+.panel[.panel-name[b.设定类型]
+
+```{r, out.height=img_pct}
+include_graphics("../pic/chpt03-excel-prepare-check-2.png", error = FALSE)
+```
+
+]
+
+.panel[.panel-name[c.设置范围]
+
+```{r, out.height=img_pct}
+include_graphics("../pic/chpt03-excel-prepare-check-3.png", error = FALSE)
+```
+
+]
+
+.panel[.panel-name[d.设置提示]
+
+```{r, out.height=img_pct}
+include_graphics("../pic/chpt03-excel-prepare-check-4.png", error = FALSE)
+```
+
+]
+
+]
+
+
+---
+
+exclude: true
+
 ### 数据清洗：清单
 
 以**调查问卷数据**的清洗为例：
@@ -102,8 +525,9 @@ layout: true
 - 错误性的清洗：主要是清洗调查环节的错误，比如样本错误、应答人错误、应答方式错误。
 
 ---
+exclude: true
 
-### 数据清洗：案例（变量视图）
+### 案例：家庭税收情况
 
 
 ```{r}
@@ -117,47 +541,84 @@ names_chn <-c("样本编号","客户编号", "性别", "雇佣情况", "收入",
 vars_list<- tibble(`序号`= 1:length(names_chn),`变量名`=names_eng, `变量含义` = names_chn)
 ```
 
+
+---
+
+### 案例：家庭税收情况
+
+**案例说明**：一项家庭税收情况调查，一共收集了样本数
+$n=`r str_c("", nrow(customer_data))`$个家庭在`r  ncol(customer_data)`个变量上的基本情况。
+
+.scroll-output[
+
+```{r}
+glimpse(customer_data)
+```
+
+]
+
+
+---
+
+### （税收案例）变量视图
+
 ```{r}
 vars_list %>% 
-  datatable(caption = str_c("变量数k=", nrow(.)),
-    options = list(pageLength = 6, dom = "tip"))
+  datatable(options = list(pageLength = 10, dom = "tip"))
 ```
 
 ---
 
-### 数据清洗：案例（数据视图）
+### （税收案例）数据视图
+
+数据包含的样本数
+$n=`r str_c("", nrow(customer_data))`$，下表展示了前500行。
+
+```{r}
+customer_data %>% 
+  select(-custid,-housing_type) %>%
+  head(500) %>%
+  arrange(id) %>%
+  datatable(options = list(pageLength = 8, 
+                           dom = "tip",
+                           scrollX=TRUE,
+                           scrollY=TRUE))
+
+```
+
+---
+
+### （税收案例）数据清洗问题——存在混合编码
+
+
+.panelset[
+.panel[.panel-name[a.变量取值]
+
+`gas_usage`变量表示用油支出，样本数据中的分布情况如下：
 
 
 ```{r}
-
-customer_data %>% 
-  select(-custid) %>%
-  head(500) %>%
-  arrange(id) %>%
-  datatable(caption = str_c("样本数n=", nrow(customer_data)),
-            options = list(pageLength = 5, dom = "tip"))
+table(customer_data$gas_usage,useNA ="always"  )
 ```
 
----
+]
 
-### 数据清洗：案例（问题——编码混乱）
+.panel[.panel-name[b.编码问题]
 
-`gas_usage`变量表示用油支出。数据编码存在两个问题：
+根据“数据集说明”，我们容易发现`gas_usage`变量数据存在混合编码问题：
 
-- 混合了数值和字符：
-    - 1表示包含在电子支付中；2表示包含在出租或分户中；3表示没有用油
-    - 004-999表示用油支出数（美元）
+- 混合了数值（number）和字符（string）：
+    - 1表示包含在电子支付中；2表示包含在出租或分户中；3表示没有用油；
+    - 004-999表示用油支出数（美元）。
 
-- 有缺失值
-    - NA表示缺失
+- 有缺失值：
+    - `NA`表示缺失。
 
-```{r }
-summary(customer_data$gas_usage)
-```
+]
 
----
+.panel[.panel-name[c.处理办法]
 
-### 数据清洗：案例（办法——构建新变量）
+我们需要把原来的变量`gass_usage`提取构建为4个新变量：`gas_usage_new`、`gas_with_rent`、 `gas_with_electricity`、`no_gas_bill`。
 
 ```{r}
 # Treating the gas_usage variable
@@ -171,33 +632,55 @@ list_sel <- c("id", "gas_usage", "gas_usage_new","gas_with_rent", "gas_with_elec
 customer_data %>%
   select(one_of(list_sel)) %>%
   head(500) %>%
-  datatable(options = list(pageLength = 5, dom = "tip"))
+  datatable(options = list(pageLength = 5, 
+                           dom = "tip",
+                           scrollX =TRUE))
 ```
+
+]
+
+]
 
 ---
 
-### 数据清洗：案例（问题——数据范围失常）
+### （税收案例）数据清洗问题——数据范围失常
 
-- age 年龄。存在取值为0，或大于100的情形
-- income 收入。存在取值<=0。
+.panelset[
+.panel[.panel-name[a.年龄范围]
 
+ 我们容易发现，年龄变量`age`存在取值为0，或大于100的情形。
+ 
+```{r}
+table(customer_data[,c("age")], useNA = "always")
+```
+
+]
+
+.panel[.panel-name[b.收入范围]
+
+此外，我们还发现收入变量`income`存在取值小于0的情形。
+
+.scroll-box-14[
 
 ```{r}
-summary(customer_data[,c("age", "income")])
+table(customer_data[,c("income")], useNA = "always")
 ```
 
----
+]
 
-### 数据清洗：案例（办法：处理异常值数据范围失常）
+]
 
-- age取值为0，则转换为缺失值NA
-- income取值为0，则转换为缺失值NA
+.panel[.panel-name[c.处理办法]
+
+- age取值等于0，则转换为缺失值`NA`
+- income取值小于0，则转换为缺失值`NA`
 
 ```{r}
 # Treating the age and income variables
 customer_data <- customer_data %>%
    mutate(age_new = na_if(age, 0),
-          income_new = ifelse(income < 0.001, NA, income))
+          income_new = ifelse(income < 0.001, "NA", income) ,
+          age_new = ifelse(age_new==0, "NA", age_new))
 
 list_sel <- c("id", "age", "age_new","income","income_new")
 customer_data %>%
@@ -207,48 +690,78 @@ customer_data %>%
   datatable(options = list(pageLength = 5, dom = "tip"))
 ```
 
+]
+
+]
+
+
 ---
 
-### 数据清洗：案例（办法1：处理缺失值）
+### （税收案例）数据清洗问题——存在缺失值
+
+.panelset[
+.panel[.panel-name[a.简单删除法]
 
 处理缺失值最简单粗暴的办法就是直接删除行或列，但是这样也会直接去掉很多样本信息：
 
 - 行删除(row delete)
 - 列删除(column delete)
 
+
 ```{r}
 include_graphics("../pic/chpt03-removingNAs.png")
 ```
 
+]
 
----
 
-### 数据清洗：案例（办法2：给缺失值加标签）
+.panel[.panel-name[b.填加标签法]
 
-对于分类变量的缺失值，可以直接加一个特定标签（level）
+.pull-left[
 
-```{r}
-include_graphics("../pic/chpt03-missingCats.png", dpi= 100)
+对于**分类变量**的缺失值，可以直接加一个特定标签（level）。
+]
+
+.pull-right[
+
+```{r, out.height='400px'}
+include_graphics("../pic/chpt03-missingCats.png")
 ```
 
----
+]
 
-### 数据清洗：案例（办法3：给缺失值补值）
 
-对于数值型变量的缺失值，可以给缺失值进行**补值**：
+]
+
+.panel[.panel-name[c.数值替换法]
+
+.pull-left[
+
+对于**数值型变量**的缺失值，可以给缺失值进行**补值**：
 
 - 用均值代替
+
 - 使用各种插值办法
 
----
 
-### 数据清洗：案例（办法3：给缺失值补值）
+补值后，一定要记得新增加1个变量，指明哪些样本进行了补值操作！
 
-```{r}
-include_graphics("../pic/chpt03-addIsBad.png",dpi=100)
+]
+
+.pull-right[
+
+```{r, out.height='400px'}
+include_graphics("../pic/chpt03-addIsBad.png")
 ```
 
-> 补值后，一定要记得新增加1个变量，指明哪些样本进行了补值操作！
+]
+
+
+
+]
+
+]
+
 
 ---
 
@@ -755,14 +1268,14 @@ spl_state %>%
 
 ---
 layout: false
-class: inverse, center, middle, duke-softblue
+class: center, middle, duke-softblue,hide_logo
 name: quality
 
 # 3.2 品质数据的整理与展示
 
-- 3.2.1 分类数据的整理与图示
+### 分类数据的整理与图示
 
-- 3.2.2 顺序数据的整理与图示
+### 顺序数据的整理与图示
 
 
 
@@ -1009,7 +1522,7 @@ layout: true
 
 ---
 layout: false
-class: inverse, center, middle
+class: center, middle, duke-softblue ,hide_logo
 name: quantity
 
 # 3.3 数值型数据的整理与展示
@@ -1734,15 +2247,15 @@ Scatterplots and Best Fit Lines. [see links](https://bookdown.org/dli/rguide/sca
 
 ---
 layout: false
-class: inverse, center, middle
+class: center, middle, duke-softblue ,hide_logo
 name: nice
 
 # 3.4 合理使用图表
 
 
-鉴别图形优劣的准则
+### 鉴别图形优劣的准则
 
-统计表的设计
+### 统计表的设计
 
 ---
 layout: true

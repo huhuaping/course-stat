@@ -3,7 +3,7 @@
 /* adjust font size */
 
 .remark-slide-content {
-    font-size: 23px;
+    font-size: 28px;
     padding: 1em 4em 1em 4em;
 }
 
@@ -67,7 +67,7 @@ div.my-header-h2 {
 .remark-slide-content h1,h2, h3,h4,h5{
   position: relative;
   top: 0px;
-  margin: 15px 0px 50px;
+  margin: 5px 0px 50px;
   width: 99%;
   text-shadow: 0px 0px;
   text-align: center;
