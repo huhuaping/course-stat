@@ -13,7 +13,7 @@ output:
       - hygge-duke
       
     nature:
-      highlightStyle: github
+      highlightStyle: tango
       highlightLines: true
       countIncrementalSlides: false
       ratio: "16:9"
@@ -765,9 +765,8 @@ include_graphics("../pic/chpt03-addIsBad.png")
 
 ---
 
-### 数据清洗：案例（办法3：缺失值补值工具）
+### （税收案例）数据清洗问题——R补值工具
 
-采用`R`包`vtreat`，最数据集进行自动补值处理：
 
 ```{r}
 varlist <- setdiff(colnames(customer_data), c("custid", "health_ins"))
@@ -780,36 +779,36 @@ training_prepared <- prepare(treatment_plan, customer_data)
 
 ```
 
-.pull-left[
+.panelset[
+.panel[.panel-name[a.处理前变量]
 
 处理前数据集`customer_data`的变量：
 
-.scroll-box-14[
+
 ```{r}
 names(customer_data)
 ```
+
 ]
-]
 
-.pull-right[
 
-处理后`training_prepared`的变量：
+.panel[.panel-name[b.处理后变量]
 
-.scroll-box-14[
+采用`R`包`vtreat`进行自动补值后新数据集`training_prepared`的变量：
 
+.scroll-box-10[
 ```{r}
 names(training_prepared)
 ```
 
 ]
 
-]
 
----
+] <!---end panel 3--->
 
-### 数据清洗：案例（办法3：缺失值补值工具）
+.panel[.panel-name[c.处理前数据]
 
-补值工具**处理前**的数据缺失情况：
+**处理前**的数据缺失情况（4个变量，前6行）：
 
 ```{r}
 htmissing <- which(is.na(customer_data$housing_type))
@@ -819,16 +818,16 @@ columns_to_look_at <- c("id", "is_employed", "num_vehicles",
                                         
 customer_data[htmissing, columns_to_look_at] %>% 
   head() %>%
-  datatable()
+  datatable(options = list(scrollX =TRUE))
 
- 
 ```
 
----
+]
 
-### 数据清洗：案例（办法3：缺失值补值工具）
 
-补值工具**处理后**的数据补齐情况：
+.panel[.panel-name[d.处理后数据]
+
+补值工具**处理后**的数据补齐情况（前6行）：
 
 ```{r}
 columns_to_look_at <- c("id", "is_employed", "is_employed_isBAD",
@@ -837,25 +836,31 @@ columns_to_look_at <- c("id", "is_employed", "is_employed_isBAD",
                                         
 training_prepared[htmissing, columns_to_look_at] %>%  
   head() %>%
-  datatable() %>%
+  datatable(options = list(scrollX =TRUE)) %>%
   formatRound(columns = c(2,4), digits = 2)
 ```
 
+]
 
+]
 
 
 ---
 
-### 数据变换：清单
+### （税收案例）数据变换
 
-数据变换主要目的是为让数据能更适合于建模分析（modeling）。主要变换操作包括：
+数据变换主要目的是为让数据能更适合于建模分析（modeling）。
 
-- 中位数/均值变换
+主要变换操作包括：
 
-- 对数化变换
+- 中位数（median）变换
+
+- 均值（mean）变换
+
+- 对数化（log）变换
 $ln(X_i)$：
 
-- 标准化变换
+- 标准化（sd）变换
 $\frac{(X_i -\bar{X})}{S_{X}}$
 
 - 把**连续变量**转换为**离散变量**
@@ -863,115 +868,59 @@ $\frac{(X_i -\bar{X})}{S_{X}}$
 
 ---
 
-### 数据变换：案例（收入变量：原始数据）
+### （税收案例）数据变换：原始收入变量
 
-假设各个州的**收入的中位数**数据集如下：
+假设我们还有51个州的**收入的中位数**数据集（`median_income_table`）：
 
 ```{r}
 median_income_table <- read_rds("../data-analysis/median_income.RDS")
 median_income_table %>%
-  datatable(options = list(pageLength = 5, dom = "tip"))
+  datatable(options = list(pageLength = 8, dom = "tip"))
 
 ```
 
 ---
 
-### 数据变换A：案例（收入变量：中位数变换后）
+### （税收案例）数据变换：收入变量的中位数变换
 
-把收入的州数据集（`median_income_table`）与前面的案例数据集（`training_prepared`）组合起来，并对收入进行中位数变换
-$income\_normalized  =\frac{income_i}{median\_income}$：
+.panelset[
+.panel[.panel-name[a.变换公式]
 
-```{r}
+现在我们可以，通过如下步骤进行收入的**中位数**变换：
+
+- 把收入的州数据集（`median_income_table`）与前面的案例数据集（`training_prepared`）匹配起来
+
+- 对收入进行中位数变换
+$income\_normalized  =\frac{income_i}{median\_income}$。
+
+]
+
+.panel[.panel-name[b.R计算过程]
+
+下面展示的是用`R`软件进行前述的匹配和计算过程：
+
+```{r, echo=TRUE, comment=">"}
+
+mean_income <- round(mean(training_prepared$income, na.rm = T),2)
+sd_income <- round(sd(training_prepared$income, na.rm = T),2)
 
 training_prepared <-  training_prepared %>%
-  left_join(., median_income_table, by="state_of_res") %>%
-  mutate(income_normalized = income/median_income) 
-
-vars_sel <- c("id","income", "median_income", "income_normalized")
-
-training_prepared %>%
-  select(one_of(vars_sel)) %>%
-  head(500) %>%
-  datatable(options = list(pageLength = 5 , dom = "tip")) %>%
-  formatRound(columns = c(4), digits =4)
+  left_join(., median_income_table, by="state_of_res") %>% #<<
+  mutate(income_byMedian = income/median_income, #<<
+         income_byMean = income/mean_income,
+         income_bySd = (income- mean_income)/sd_income,
+         income_byLog10 =log10(income))
 
 ```
 
----
+]
 
-### 数据变换A：案例（收入变量：中位数变换前后）
+.panel[.panel-name[c.变换结果]
 
-- 变换前收入变量(`income`)的情况
+最终得到收入的**中位数**变换结果：
 
 ```{r}
-
-summary(training_prepared$income)
-```
-
-- 中位数变换后收入变量(`income_normalized`)的情况
-
-```{r}
-summary(training_prepared$income_normalized)
-```
-
----
-
-### 数据变换A：案例（年龄变量：均值变换前后）
-
-```{r, message=F, error=FALSE,warning=F}
-mean_age <- round(mean(training_prepared$age, na.rm = T),2)
-sd_age <- round(sd(training_prepared$age, na.rm = T),2)
-```
-
-
-同理，我们也可以用均值来处理变换操作。例如
-$age\_normalized = \frac{age_i}{\overline{age}}$，其中年龄的均值
-$\overline{age}=$ `r mean_age`岁。
-
-```{r, message=F, error=FALSE,warning=F}
-training_prepared <- training_prepared %>%
-  mutate(age_normalized = age/mean_age,
-         age_scaled = (age- mean_age)/sd_age,
-         Ln_income =log10(income))
-
-vars_sel <- c("id","age",  "age_normalized")
-training_prepared %>%
-  select(one_of(vars_sel)) %>%
-  head(500) %>%
-  datatable(options = list(pageLength = 5 , dom = "tip")) %>%
-  formatRound(columns = c(3), digits =4)
-
-
-```
-
----
-
-### 数据变换A：案例（年龄变量：均值变换前后）
-
-- 变换前年龄变量(`age`)的情况
-
-```{r}
-
-summary(training_prepared$age)
-```
-
-- **均值**变换后年龄变量(`age_normalized`)的情况
-
-```{r}
-summary(training_prepared$age_normalized)
-```
-
----
-
-### 数据变换B：案例（年龄变量：标准化变换）
-
-下面我们进一步用标准化操作，对年龄变量进行变换
-$age\_scaled= \frac{age_i - \overline{age}}{sd_{age}}$，其中年龄的均值
-$\overline{age}=$ `r mean_age`岁；年龄的标准差
-$sd_{age}=$ `r sd_age`岁。
-
-```{r}
-vars_sel <- c("id","age",  "age_scaled")
+vars_sel <- c("id","income", "median_income", "income_byMedian")
 training_prepared %>%
   select(one_of(vars_sel)) %>%
   head(500) %>%
@@ -979,139 +928,331 @@ training_prepared %>%
   formatRound(columns = c(3), digits =4)
 ```
 
----
+]
 
-### 数据变换B：案例（年龄变量：标准化变换前后）
-
-- 变换前年龄变量(`age`)的情况
-
-```{r}
-
-summary(training_prepared$age)
-```
-
-- **标准化**变换后年龄变量(`age_scaled`)的情况
-
-```{r}
-summary(training_prepared$age_scaled)
-```
+]
 
 ---
 
-### 数据变换B：案例（标准化变换：批量处理）
+### （税收案例）数据变换：收入变量的均值变换
 
-对于数据集的数值型变量(age,income,num_veicles,gas_usage)，我们可以同时进行**标准化**变换。从而为下一步建模分析做准备：
+.panelset[
+.panel[.panel-name[a.变换公式]
+
+现在我们可以，通过如下步骤进行收入的均值变换：
+
+- 对收入进行中位数变换
+$income\_byMean  =\frac{income_i}{\overline{income}}$。
+
+]
+
+.panel[.panel-name[b.R计算过程]
+
+下面展示的是用`R`计算过程：
+
+```{r, echo=TRUE, comment=">", eval=FALSE}
+
+mean_income <- round(mean(training_prepared$income, na.rm = T),2)
+sd_income <- round(sd(training_prepared$income, na.rm = T),2)
+
+training_prepared <-  training_prepared %>%
+  left_join(., median_income_table, by="state_of_res") %>% 
+  mutate(income_byMedian = income/median_income, 
+         income_byMean = income/mean_income, #<<
+         income_bySd = (income- mean_income)/sd_income,
+         income_byLog10 =log10(income))
+
+```
+
+]
+
+.panel[.panel-name[c.变换结果]
+
+最终得到收入的**均值变换**结果：
 
 ```{r}
+vars_sel <- c("id","income", "income_byMedian", "income_byMean")
+training_prepared %>%
+  select(one_of(vars_sel)) %>%
+  head(500) %>%
+  datatable(options = list(pageLength = 5 , dom = "tip")) %>%
+  formatRound(columns = c(3:4), digits =4)
+```
+
+]
+
+]
+
+
+---
+
+### （税收案例）数据变换：收入变量的标准化变换
+
+.panelset[
+.panel[.panel-name[a.变换公式]
+
+现在我们可以，通过如下步骤进行收入的**标准化**变换：
+
+- 对收入进行标准化变换
+$income\_bySd  =\frac{income_i-\overline{income}}{sd\_income}$。
+
+]
+
+.panel[.panel-name[b.R计算过程]
+
+下面展示的是用`R`计算过程：
+
+```{r, echo=TRUE, comment=">", eval=FALSE}
+
+mean_income <- round(mean(training_prepared$income, na.rm = T),2)
+sd_income <- round(sd(training_prepared$income, na.rm = T),2)
+
+training_prepared <-  training_prepared %>%
+  left_join(., median_income_table, by="state_of_res") %>% 
+  mutate(income_byMedian = income/median_income, 
+         income_byMean = income/mean_income, 
+         income_bySd = (income- mean_income)/sd_income, #<<
+         income_byLog10 =log10(income))
+
+```
+
+]
+
+.panel[.panel-name[c.变换结果]
+
+最终得到收入的**标准化**变换结果：
+
+```{r}
+vars_sel <- c("id","income", "income_byMedian", "income_byMean", "income_bySd")
+training_prepared %>%
+  select(one_of(vars_sel)) %>%
+  head(500) %>%
+  datatable(options = list(pageLength = 5 , dom = "tip")) %>%
+  formatRound(columns = c(3:5), digits =4)
+```
+
+]
+
+]
+
+---
+
+### （税收案例）数据变换：收入变量的对数化变换
+
+.panelset[
+.panel[.panel-name[a.变换公式]
+
+现在我们可以，通过如下步骤进行收入的**对数化**变换：
+
+- 对收入进行**对数化**变换
+$income\_byLog10  =log_{10}^{(income_i)}$。
+
+]
+
+.panel[.panel-name[b.R计算过程]
+
+下面展示的是用`R`计算过程：
+
+```{r, echo=TRUE, comment=">", eval=FALSE}
+
+mean_income <- round(mean(training_prepared$income, na.rm = T),2)
+sd_income <- round(sd(training_prepared$income, na.rm = T),2)
+
+training_prepared <-  training_prepared %>%
+  left_join(., median_income_table, by="state_of_res") %>% 
+  mutate(income_byMedian = income/median_income, 
+         income_byMean = income/mean_income, 
+         income_bySd = (income- mean_income)/sd_income, 
+         income_byLog10 =log10(income)) #<<
+
+```
+
+]
+
+.panel[.panel-name[c.变换结果]
+
+最终得到收入的**对数化**变换结果：
+
+```{r}
+vars_sel <- c("id","income", "income_byMedian", "income_byMean", "income_bySd", "income_byLog10")
+training_prepared %>%
+  select(one_of(vars_sel)) %>%
+  head(500) %>%
+  datatable(options = list(pageLength = 5 , dom = "tip")) %>%
+  formatRound(columns = c(3:6), digits =4)
+```
+
+]
+
+]
+
+
+---
+
+### （税收案例）数据变换：收入变换前后分布的比较
+
+.panelset[
+.panel[.panel-name[a.原变量]
+
+```{r, fig.cap= "年收入的直方图",warning=FALSE, message=FALSE}
+
+training_prepared %>%
+  ggplot(aes(x=income))+
+  geom_histogram(bins = 30, fill = "blue") +
+  labs(x="变换前的变量income", y= "频数")
+
+```
+
+]
+
+.panel[.panel-name[b.中位数变换]
+
+```{r, warning=FALSE, message=FALSE}
+training_prepared %>%
+  ggplot(aes(x=income_byMedian))+
+  geom_histogram(bins = 30, fill = "blue") +
+  labs(x="变换后的变量income_byMedian", y= "频数")
+
+```
+
+]
+
+.panel[.panel-name[c.均值变换]
+
+```{r, warning=FALSE, message=FALSE}
+training_prepared %>%
+  ggplot(aes(x=income_byMean))+
+  geom_histogram(bins = 30, fill = "blue") +
+  labs(x="变换后的变量income_byMean", y= "频数")
+
+```
+
+]
+
+.panel[.panel-name[d.标准化]
+
+```{r, warning=FALSE, message=FALSE}
+training_prepared %>%
+  ggplot(aes(x=income_bySd))+
+  geom_histogram(bins = 30, fill = "blue") +
+  labs(x="变换后的变量income_bySd", y= "频数")
+
+```
+
+]
+
+.panel[.panel-name[e.对数化]
+
+```{r, warning=FALSE, message=FALSE}
+training_prepared %>%
+  ggplot(aes(x=income_byLog10))+
+  geom_histogram(bins = 30, fill = "blue") +
+  labs(x="变换后的变量income_byLog10", y= "频数")
+
+```
+
+]
+
+]
+
+
+---
+
+### （税收案例）数据变换：批量标准化处理
+
+.panelset[
+.panel[.panel-name[a.编写R代码]
+
+对于数据集的数值型变量（`age`,`income`,`num_veicles`,`gas_usage`），我们可以同时进行批量**标准化**变换。从而为下一步建模分析做准备。
+
+如下是利用`R`软件函数`scale()`进行批量标准化处理的代码：
+
+```{r, echo=T}
 dataf <- training_prepared[, c("age", "income", "num_vehicles", "gas_usage")]
 
-dataf_scaled <- scale(dataf, center=TRUE, scale=TRUE)
-                                        
-means <- attr(dataf_scaled, 'scaled:center')
+dataf_scaled <- scale(dataf, center=TRUE, scale=TRUE) #<<
+```
 
-sds <- attr(dataf_scaled, 'scaled:scale')
+]
+
+.panel[.panel-name[b.原数据集]
+
+```{r}
+dataf %>%
+  as_tibble() %>%
+  head(500) %>%
+  add_column(id = 1:nrow(.), .before = "age") %>%
+  datatable(options = list(pageLength = 5 , dom = "tip")) 
+```
+
+]
+
+.panel[.panel-name[c.批处理后数据集]
 
 
+```{r}
 dataf_scaled %>%
   as_tibble() %>%
   head(500) %>%
   add_column(id = 1:nrow(.), .before = "age") %>%
   datatable(options = list(pageLength = 5 , dom = "tip")) %>%
-  formatRound(columns = c(2:5), digits =4)
+  formatRound(columns = c(2:5), digits =2)
 ```
+
+]
+
+]
 
 ---
 
-### 数据变换C：案例（收入变量：对数化变换）
+### （税收案例）数据变换：批量变换为分类变量
 
-下面我们进一步用**对数化**操作，对收入变量进行变换
-$Ln\_income= log_{10}{(income_i)}$。
+.panelset[
 
-```{r}
-vars_sel <- c("id","income",  "Ln_income")
-training_prepared %>%
-  select(one_of(vars_sel)) %>%
-  head(500) %>%
-  datatable(options = list(pageLength = 5 , dom = "tip")) %>%
-  formatRound(columns = c(3), digits =4)
-```
+.panel[.panel-name[a.编写R代码]
 
----
+我们还可以把**连续变量**年龄(`age`)，变换为**分类变量**(`age_range`和`age_cat`)。其中分割依据为`brks <- c(0, 18, 45, 65, Inf)`。
 
-### 数据变换C：案例（收入变量：对数化变换前后）
-
-- 变换前收入变量(`income`)的情况
-
-```{r}
-
-summary(training_prepared$income)
-```
-
-- **对数化**变换后收入变量(`Ln_income`)的情况
-
-```{r}
-summary(training_prepared$Ln_income)
-```
-
----
-
-### 数据变换C：案例（收入变量：对数化变换前的分布）
-
-变换前收入变量(`income`)的分布情况：
-
-```{r}
-training_prepared %>%
-  ggplot(aes(x= income)) +
-  geom_density() +
-  labs(x="income（年收入）", y= "密度")
-  
-```
-
----
-
-### 数据变换C：案例（收入变量：对数化变换后的分布）
-
-**对数化**变换后收入变量(`Ln_income`)的分布情况：
-
-```{r, warning=FALSE, message=FALSE}
-
-training_prepared %>%
-  ggplot(aes(x= Ln_income)) +
-  geom_density() +
-  labs(x="Ln_income（年收入）", y= "密度")
-
-```
-
----
-
-### 数据变换D：案例（年龄连续变量：变换为分类变量）
-
-我们可以把年龄(age)**连续变量**，变换为**分类变量**(age_range和age_cat)。其中分割依据为`brks <- c(0, 18,45, 65, Inf)`。
-
-```{r}
-brks <- c(0, 18,45, 65, Inf)
+```{r, echo=TRUE}
+brks <- c(0, 18,45, 65, Inf) #<<
 
 training_prepared <- training_prepared %>%
-  mutate(age_range = cut(age, breaks = brks, include.lowest = T),
-         age_cat = cut(age, breaks = brks, include.lowest = T, labels = FALSE))
-
-vars_sel <- c("id","age",  "age_range", "age_cat")
-training_prepared %>%
-  select(one_of(vars_sel)) %>%
-  head(500) %>%
-  datatable(options = list(pageLength = 5 , dom = "tip")) 
+  select(id, age) %>%
+  filter(!is.na(age)) %>%
+  mutate(age_range = cut(age, breaks = brks,  #<<
+                         include.lowest = T),
+         age_cat = cut(age, breaks = brks,  #<<
+                       include.lowest = T, labels = FALSE))
 
 ```
 
+]
+
+.panel[.panel-name[b.变换结果]
+
+```{r}
+vars_sel <- c("id","age",  "age_range", 
+              "age_cat")
+training_prepared %>%
+  select(one_of(vars_sel)) %>%
+  head(500) %>%
+  mutate(age_range = str_replace(age_range,"]", "}")) %>%
+  datatable(options = list(pageLength = 5 , 
+                           dom = "tip")) 
+```
+
+]
+
+]
 
 
 ---
 
-### 数据子集：清单
+### 数据子集：概念
 
 **数据子集**（data subset）是对数据集进行抽样（sampling）的过程，形成的数据子集一般用于后续的建模分析。
 
-- 训练集（training subset）：主要用于参数估计，得到一个最终的估计模型。
+- 训练集（training subset）：主要用于参数估计，得到一个最终估计模型。
 
 - 测试集（test subset）：主要用于对估计模型的预测准确性进行评估。
 
@@ -1125,12 +1266,12 @@ include_graphics("../pic/chpt03-test_train_split.png",dpi =90)
 
 ---
 
-### 数据子集：案例（设置样本数量）
+### （税收案例）数据子集：设置子集样本数量
 
-```{r}
+```{r chunk-random}
 set.seed(25643)
 customer_data <- customer_data %>%
-  mutate(gp =round(runif(nrow(.)),2))
+  mutate(gp =round(runif(nrow(.)),2)) #<<
 pct <- 0.1
 
 customer_test <- subset(customer_data, gp <= pct)
@@ -1143,8 +1284,12 @@ n_train <- nrow(customer_train)
 
 ```
 
-对全部数据集`custom_data`（样本数n=`r n_all`），我们可以生成名为`gp`的新列，采用[0,1]的**均匀随机分布**（uniform distribution），对应的R函数为`runif(n)`
 
+.panelset[
+
+.panel[.panel-name[a.子集样本数]
+
+对全部数据集`custom_data`（样本数n=`r n_all`），我们可以生成名为`gp`的新列，采用[0,1]的**均匀随机分布**（uniform distribution），对应的R函数为`runif(n)`
 
 
 假定我们希望数据子集的容量分别为：
@@ -1153,14 +1298,38 @@ n_train <- nrow(customer_train)
 $n_{train} =$ `r percent(1-pct)` X `r n_all` =`r n_train`个。
 
 - **测试集**样本数
-$n_{train} =$ `r percent(pct)` X `r n_all` =`r n_test`个。
+$n_{test} =$ `r percent(pct)` X `r n_all` =`r n_test`个。
+
+]
+
+.panel[.panel-name[b.编写R代码]
+
+```{r, echo=T}
+set.seed(25643)
+customer_data <- customer_data %>%
+  mutate(gp =round(runif(nrow(.)),2)) #<<
+pct <- 0.1
+
+customer_test <- subset(customer_data, gp <= pct)
+customer_train <- subset(customer_data, gp > pct)
+
+n_all <- nrow(customer_data)
+n_test <- nrow(customer_test)
+
+n_train <- nrow(customer_train)
+```
+
+]
+
+]
 
 
 ---
 
-### 数据子集：案例（全部数据）
+### （税收案例）数据子集：比较三个数据集
 
-这是全部数据集：
+.panelset[
+.panel[.panel-name[a.全部数据集]
 
 ```{r}
 vars_sel <- c("id","gp","age", "income", "num_vehicles", "gas_usage")
@@ -1172,11 +1341,9 @@ customer_data %>%
 
 ```
 
----
+]
 
-### 数据子集：案例（训练集）
-
-这是训练集：
+.panel[.panel-name[b.训练数据集]
 
 ```{r}
 vars_sel <- c("id","gp","age", "income", "num_vehicles", "gas_usage")
@@ -1188,11 +1355,9 @@ customer_train %>%
 
 ```
 
----
+]
 
-### 数据子集：案例（测试集）
-
-这是测试集：
+.panel[.panel-name[c.测试数据集]
 
 ```{r}
 vars_sel <- c("id","gp","age", "income", "num_vehicles", "gas_usage")
@@ -1204,51 +1369,56 @@ customer_test %>%
 
 ```
 
+]
+
+]
+
 ---
 
-### 数据子集：按所在州等比例随机抽取
+### （税收案例）数据子集：等比例随机抽取
 
-下面我们抽取数据集的10%作为子集，其中要求按所在州（`state_of_res`）来等比例分配：
+.panelset[
+.panel[.panel-name[a.抽取规则]
 
-```{r}
+下面我们随机抽取数据集的10%作为子集，其中要求按所在州（`state_of_res`）来等比例分配：
+
+```{r, echo=TRUE}
 vars_sel <- c("id","state_of_res","age", "sex","income")
 
 spl_state <- customer_data %>%
   select(one_of(vars_sel)) %>%
-  group_by(state_of_res) %>%
-  sample_frac(0.1) %>%
+  group_by(state_of_res) %>% #<<
+  sample_frac(0.1) %>% #<<
   arrange(id) 
-
-spl_state %>%
-  datatable(caption = str_c("数据样本量n=", nrow(.)),
-    options = list(pageLength = 5, dom = "tip"))
-
 ```
 
----
+]
 
-### 数据子集：按所在州等比例随机抽取
-
-
-
-.pull-left[
-
-**抽取前**的所在州样本分布：
+.panel[.panel-name[b.抽取结果]
 
 ```{r}
-  customer_data %>%
-  select(one_of(vars_sel)) %>%
-  group_by(state_of_res) %>%
-   summarize(n=n()) %>%
-  datatable(caption = str_c("全部数据-样本量n=", nrow(customer_data)),
+spl_state %>%
+  datatable(caption = str_c("数据样本量n=", nrow(.)),
     options = list(pageLength = 5, dom = "tip"))
 ```
 
 ]
 
-.pull-right[
+.panel[.panel-name[c.按州**抽取**前]
 
-按每个州**抽取后**的所在州样本分布：
+```{r}
+  customer_data %>%
+  select(one_of(vars_sel)) %>%
+  group_by(state_of_res) %>%
+  summarize(n=n()) %>%
+  add_column(index = 1:nrow(.), .before = "state_of_res") %>%
+  datatable(caption = str_c("抽取前各州样本数量n=", nrow(customer_data)),
+    options = list(pageLength = 5, dom = "tip"))
+```
+
+]
+
+.panel[.panel-name[d.按州**抽取**后]
 
 ```{r}
   customer_data %>%
@@ -1258,10 +1428,13 @@ spl_state %>%
   #head(500) %>%
   arrange(id) %>%
   summarize(n=n()) %>%
-  datatable(caption = str_c("抽取后-数据样本量n=", nrow(spl_state)),
+  add_column(index = 1:nrow(.), .before = "state_of_res") %>%
+  datatable(caption = str_c("抽取后各州样本数量n=", nrow(spl_state)),
     options = list(pageLength = 5, dom = "tip"))
  
 ```
+
+]
 
 ]
 
