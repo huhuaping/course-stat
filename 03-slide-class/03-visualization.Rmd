@@ -1493,92 +1493,296 @@ layout: true
 
 - 比率(ratio) ：不同类别数值个数的比值
 
+---
+exclude: true
+
+### 案例：饮料销售
+
+```{r}
+drink <- read.xlsx("../data/textbook/example/case-3-3-drink.xlsx") %>%
+  as_tibble() %>%
+  add_column(index = 1:nrow(.), .before = "gender")
+
+smry_type <- drink %>%
+  group_by(brand) %>%
+  summarise(n = n())
+
+smry_v2 <- drink %>%
+  group_by(gender,brand) %>%
+  summarise(n = n()) 
+```
+
 
 ---
 
-### （案例）饮料销售：原始数据
+## （案例）饮料销售
 
-一家市场调查公司为研究不同品牌饮料的市场占有率，对随机抽取的一家超市进行了调查。调查员在某天对50名顾客购买饮料的品牌进行了记录，如果一个顾客购买某一品牌的饮料，就将这一饮料的品牌名字记录一次。
+.panelset[
+.panel[.panel-name[a.案例说明]
+
+**案例**：一家市场调查公司为研究不同品牌饮料的市场占有率，对随机抽取的一家超市进行了调查。
+
+调查员在某天对50名顾客购买饮料的品牌进行了记录，如果一个顾客购买某一品牌的饮料，就将这一饮料的品牌名字记录一次。
+
+]
+
+.panel[.panel-name[b.原始数据]
 
 下边就是记录的原始数据：
 
-
-```{block, type='notes', echo=T}
-
-待完成：提供一张xls形态的原始数据表。
-
+```{r}
+drink %>%
+  datatable(options = list(pageLength = 6,
+                           dom = "tip"))
 ```
+
+]
+
+]
+
 
 ---
 
-### （案例）饮料销售：列出类别
+### （案例）饮料销售：单变量制表（饮料类别）
 
-根据原始数据，我们可以整理并列出所有类别：
+.panelset[
+.panel[.panel-name[a.类别分组]
 
-```{block, type='notes', echo=T}
+根据原始数据，我们可以整理并列出所有饮料类别：
 
-待完成：整理并列出所有类别表。
-
+```{r}
+  drink %>%
+  janitor::tabyl(brand) %>%
+  #janitor::adorn_totals(where = c("row")) %>%
+  #janitor::adorn_pct_formatting()%>%
+  select(-percent,-n) %>%
+  datatable(options = list(dom = "t"))
 ```
+
+]
+
+.panel[.panel-name[b.频次表]
+
+统计得到各饮料类别的购买人数（频次）：
+
+```{r}
+  drink %>%
+  janitor::tabyl(brand) %>%
+  janitor::adorn_totals(where = c("row")) %>%
+  #janitor::adorn_pct_formatting()%>%
+  select(-percent) %>%
+  datatable(options = list(dom = "t"))
+```
+
+]
+
+.panel[.panel-name[c.频率表]
+
+进一步统计得到各饮料类别的购买人数占比（频率）：
+
+```{r}
+  drink %>%
+  janitor::tabyl(brand) %>%
+  janitor::adorn_totals(where = c("row")) %>%
+  janitor::adorn_pct_formatting()%>%
+  #select(-percent,-n) %>%
+  datatable(options = list(dom = "t"))
+```
+
+]
+
+]
 
 ---
 
-### （案例）饮料销售：计算统计量
+### （案例）饮料销售：双变量制表（饮料类别VS性别）
 
-对各类别进行统计量的计算，并得到如下分配数据表：
+.panelset[
+.panel[.panel-name[a.交叉分组]
 
-```{block, type='notes', echo=T}
+根据原始数据，我们可以对饮料类别和性别进行交叉分组：
 
-待完成：对各类别进行统计量的计算，并得到分配数据表。
+```{r}
+  drink %>%
+  janitor::tabyl(brand, gender) %>%
+  mutate_if(., is.numeric, ~NA ) %>%
+  datatable(options = list(dom = "t"))
 
 ```
 
+]
+
+.panel[.panel-name[b.频次表]
+
+统计得到交叉分组下的购买人数（频次）：
+
+```{r}
+drink %>%
+  janitor::tabyl(brand, gender) %>%
+  #mutate_if(., is.numeric, ~NA ) %>%
+  janitor::adorn_totals(where = c("row", "col")) %>%
+  datatable(options = list(dom = "t"))
+
+```
+
+]
+
+.panel[.panel-name[c1.列频率表]
+
+进一步统计得到交叉分组下购买人数占比（频率）及其**列合计**：
+
+```{r}
+
+drink %>%
+  janitor::tabyl(brand, gender) %>%
+  #mutate_if(., is.numeric, ~NA ) %>%
+  janitor::adorn_totals(where = c("row", "col")) %>%
+  janitor::adorn_percentages(c( "col")) %>%
+  janitor::adorn_pct_formatting() %>%
+  #janitor::adorn_ns() %>%
+  datatable(options = list(dom = "t"))
+
+```
+
+]
+
+.panel[.panel-name[c2.行频率表]
+
+同时，也可统计得到交叉分组下购买人数占比（频率）及其**行合计**：
+
+```{r}
+
+drink %>%
+  janitor::tabyl(brand, gender) %>%
+  #mutate_if(., is.numeric, ~NA ) %>%
+  janitor::adorn_totals(where = c("row", "col")) %>%
+  janitor::adorn_percentages(c( "row")) %>%
+  janitor::adorn_pct_formatting() %>%
+  #janitor::adorn_ns() %>%
+  datatable(options = list(dom = "t"))
+
+```
+
+]
+
+.panel[.panel-name[d.复合表]
+
+最后，还可以同时统计交叉分组的人数和占比（列合计）：
+
+```{r}
+drink %>%
+  janitor::tabyl(brand, gender) %>%
+  #mutate_if(., is.numeric, ~NA ) %>%
+  janitor::adorn_totals(where = c("row", "col")) %>%
+  janitor::adorn_percentages(c( "col")) %>%
+  janitor::adorn_pct_formatting() %>%
+  janitor::adorn_ns() %>%
+  datatable(options = list(dom = "t"))
+
+```
+
+]
+
+]
 
 ---
 
 ## 分类数据：统计制图1（条形/柱状图）
 
-条形/柱状图（bar Chart）：用宽度相同的条形的高度或长短来表示各类别数据的图形。
+**条形/柱状图**：用宽度相同的条形的高度或长短来表示各类别数据的图形。
 
-作用：主要用于反映分类数据的频数分布
+- 各类别可以放在纵轴，称为**条形图**(bar Chart)
 
-绘图形式：
+- 各类别也可以放在横轴，称为**柱形图**(column chart)
 
-1. 单式条形图
 
-2. 复式条形图
-    - 分类变量在不同时间或不同空间上有多个取值
-    - 对比分类变量的取值在不同时间或不同空间上的差异或变化趋势
+**作用**：主要用于反映分类数据的频数分布。
 
-绘制要点：
 
-- 各类别可以放在纵轴，称为条形图(bar Chart)
+**形式**：单式条形图/复式条形图。
 
-- 也可以放在横轴，称为柱形图(column chart)
 
----
+.footnote[复式条形图主要用于：
+- 分类变量在不同时间或不同空间上有多个取值
+- 对比分类变量的取值在不同时间或不同空间上的差异或变化趋势]
 
-### （案例）饮料销售：绘制柱状图
 
-根据分配数据表，我们可以绘制出如下柱状图：
 
-```{block, type='notes', echo=T}
-
-待完成：根据分配数据表，绘制一张柱状图。
-
-```
 
 ---
 
-### （案例）饮料销售：绘制条形图
+### （案例）饮料销售：单变量柱状图/条形图
 
-根据分配数据表，我们可以绘制出如下条形图：
+.panelset[
+.panel[.panel-name[a.柱状图]
 
-```{block, type='notes', echo=T}
+根据饮料类型购买次数的分配数据表，我们可以绘制出如下**柱状图**：
 
-待完成：根据分配数据表，绘制一张条形图。
+```{r}
+smry_type %>%
+  ggplot(aes(x=reorder(brand, -n),n , fill=brand)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label=n)) +
+  labs(x= "饮料类型", y = '频次n')
+```
+
+
+]
+
+.panel[.panel-name[b.条形图]
+
+根据饮料类型购买次数的分配数据表，还可以绘制出如下**条形图**：
+
+```{r}
+smry_type %>%
+  ggplot(aes(x=reorder(brand, -n),n , fill=brand)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label=n)) +
+  labs(x= "饮料类型", y = '频次n') +
+  coord_flip()
+```
+]
+]
+
+---
+
+### （案例）饮料销售：多变量柱状图/条形图
+
+.panelset[
+.panel[.panel-name[a.双变量柱状图]
+
+根据饮料类型（brand）和性别（gender）交叉分组下的购买次数表，可以绘制出如下**柱状图**：
+
+
+```{r}
+smry_v2 %>%
+  ggplot(aes(x=reorder(brand, -n),n , fill=gender)) +
+  geom_bar(stat = "identity",
+           position = position_dodge(width = 0.9)) +
+  geom_text(aes(label=n), hjust=-0.5) +
+  labs(x= "饮料类型", y = '频次n') 
+```
+
+]
+
+.panel[.panel-name[b.双变量条形图]
+
+根据饮料类型（brand）和性别（gender）交叉分组下的购买次数表，可以绘制出如下**条形图**：
+
+```{r}
+smry_v2 %>%
+  ggplot(aes(x=reorder(brand, -n),n , fill=gender)) +
+  geom_bar(stat = "identity",
+           position = position_dodge(width = 0.9)) +
+  geom_text(aes(label=n), hjust=-0.5) +
+  labs(x= "饮料类型", y = '频次n')  +
+  coord_flip()
 
 ```
+
+]
+
+]
 
 ---
 
