@@ -39,6 +39,7 @@ class: center,middle
 ```{r global_options, echo=F,message=FALSE,warning=F}
 source("../R/set-global.R")
 options(width = 70)
+global_size <- 18 # for ggplot2 font size
 ```
 
 
@@ -263,7 +264,7 @@ include_graphics("../pic/chpt03-excel-prepare-import-csv3.png", error = FALSE)
 ## （演示）删除说明性内容：Excel操作
 
 .left-column[
-### a.删除前
+#### a.删除前
 ]
 
 .right-column[
@@ -279,9 +280,9 @@ include_graphics("../pic/chpt03-excel-prepare-remove-notation1.png", error = FAL
 ## （演示）删除说明性内容：Excel操作
 
 .left-column[
-### a.删除前
+#### a.删除前
 
-### b.删除后
+#### b.删除后
 ]
 
 .right-column[
@@ -1515,7 +1516,7 @@ smry_v2 <- drink %>%
 
 ---
 
-## （案例）饮料销售
+### （案例）饮料销售
 
 .panelset[
 .panel[.panel-name[a.案例说明]
@@ -1706,83 +1707,113 @@ drink %>%
 - 分类变量在不同时间或不同空间上有多个取值
 - 对比分类变量的取值在不同时间或不同空间上的差异或变化趋势]
 
+---
+
+### （案例）饮料销售：单变量柱状图/条形图
+
+.left-column[
+#### a.柱状图
+]
+
+.right-column[
+
+根据饮料类型购买次数的数据表，我们可以绘制出如下**柱状图**：
+
+```{r}
+p <- smry_type %>%
+  ggplot(aes(x=reorder(brand, -n),n , fill=brand)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label=n, y=n/2)) +
+  labs(x= "饮料类型", y = '频次n') +
+  theme(text=element_text(size=global_size),
+        axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 0, l = 0)))
+
+p
+```
 
 
+]
 
 ---
 
 ### （案例）饮料销售：单变量柱状图/条形图
 
-.panelset[
-.panel[.panel-name[a.柱状图]
+.left-column[
+#### a.柱状图
 
-根据饮料类型购买次数的分配数据表，我们可以绘制出如下**柱状图**：
-
-```{r}
-smry_type %>%
-  ggplot(aes(x=reorder(brand, -n),n , fill=brand)) +
-  geom_bar(stat = "identity") +
-  geom_text(aes(label=n)) +
-  labs(x= "饮料类型", y = '频次n')
-```
-
-
+#### b.条形图
 ]
 
-.panel[.panel-name[b.条形图]
+.right-column[
 
-根据饮料类型购买次数的分配数据表，还可以绘制出如下**条形图**：
+
+根据饮料类型购买次数的数据表，还可以绘制出如下**条形图**：
 
 ```{r}
-smry_type %>%
-  ggplot(aes(x=reorder(brand, -n),n , fill=brand)) +
-  geom_bar(stat = "identity") +
-  geom_text(aes(label=n)) +
-  labs(x= "饮料类型", y = '频次n') +
+p +
   coord_flip()
 ```
+
 ]
-]
+
 
 ---
 
 ### （案例）饮料销售：多变量柱状图/条形图
 
-.panelset[
-.panel[.panel-name[a.双变量柱状图]
+.left-column[
+#### a.双变量柱状图
+]
+
+.right-column[
+
 
 根据饮料类型（brand）和性别（gender）交叉分组下的购买次数表，可以绘制出如下**柱状图**：
 
 
 ```{r}
-smry_v2 %>%
+p <- smry_v2 %>%
   ggplot(aes(x=reorder(brand, -n),n , fill=gender)) +
   geom_bar(stat = "identity",
            position = position_dodge(width = 0.9)) +
-  geom_text(aes(label=n), hjust=-0.5) +
-  labs(x= "饮料类型", y = '频次n') 
+  geom_text(aes(y=n/2,label=n),position = position_dodge(0.9)) +
+  labs(x= "饮料类型", y = '频次n') +
+  scale_y_continuous(breaks = seq(1, 10, by = 2) ,
+                     limits = c(0, 10)) +
+  theme(text=element_text(size=global_size),
+        axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 0, l = 0)))
+
+p
 ```
 
 ]
 
-.panel[.panel-name[b.双变量条形图]
+
+---
+
+### （案例）饮料销售：多变量柱状图/条形图
+
+.left-column[
+#### a.双变量柱状图
+
+#### b.双变量条形图
+]
+
+.right-column[
 
 根据饮料类型（brand）和性别（gender）交叉分组下的购买次数表，可以绘制出如下**条形图**：
 
 ```{r}
-smry_v2 %>%
-  ggplot(aes(x=reorder(brand, -n),n , fill=gender)) +
-  geom_bar(stat = "identity",
-           position = position_dodge(width = 0.9)) +
-  geom_text(aes(label=n), hjust=-0.5) +
-  labs(x= "饮料类型", y = '频次n')  +
+p +
   coord_flip()
 
 ```
 
 ]
 
-]
+
 
 ---
 
@@ -1798,7 +1829,8 @@ smry_v2 %>%
 
 ---
 
-## 分类数据：统计制图1（饼图）
+## 分类数据：统计制图2（饼图）
+
 
 饼图（pie Chart）：也称圆形图，是用圆形及圆内扇形的角度来表示数值大小的图形。
 
@@ -1812,15 +1844,158 @@ smry_v2 %>%
 
 ---
 
-### （案例）饮料销售：绘制饼图
+### （案例）饮料销售：绘制饼图（频次1）
 
-根据分配数据表，我们可以绘制出如下饼图：
 
-```{block, type='notes', echo=T}
+```{r}
+df_pie <- smry_type %>%
+  arrange(desc(n)) %>%
+  mutate(brand = factor(brand, rev(as.character(brand)))) %>%
+  mutate(prop = n / sum(.$n) *100) %>%
+  mutate(ypos = cumsum(n)- 0.5*n )  
 
-待完成：根据分配数据表，绘制一张饼图。
 
 ```
+
+.left-column[
+#### a.次数饼图1
+]
+
+.right-column[
+
+根据分配数据表，我们可以绘制出如下**次数**饼图：
+
+```{r}
+df_pie %>%
+  ggplot(aes(x='',y=n, fill=reorder(brand, n))) +
+  geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0) +
+  theme_void() +
+  #theme(legend.position="none") +
+  geom_text(aes(label = paste0(round(n), " ")), 
+           position = position_stack(vjust = 0.5),
+            size=6) +
+  scale_fill_brewer(palette="Set1") +
+  guides(fill = guide_legend(reverse = TRUE, title = "饮料类别"))  +
+  theme(text=element_text(size=global_size))
+```
+
+]
+
+---
+
+### （案例）饮料销售：绘制饼图（频次2）
+
+.left-column[
+#### a.次数饼图1
+
+#### b.次数饼图2
+
+]
+
+.right-column[
+
+可以进一步调整**次数**饼图的图例和标签数值显示：
+
+```{r}
+library(ggrepel)
+df_pie %>%
+  ggplot( aes(1, n, fill =reorder(brand, -prop))) +
+  geom_col(color = 'black', 
+           position = position_stack(reverse = TRUE), 
+           show.legend = F) +
+  geom_text_repel(aes(x = 1.4, y = ypos, 
+                      label = glue::glue("{brand},{n}")), 
+                  nudge_x = -.3, 
+                  segment.size = 0,
+                  segment.alpha =0,
+                  show.legend = FALSE) +
+  coord_polar('y') +
+  theme_void() +
+  theme(text=element_text(size=global_size))
+```
+
+]
+
+---
+
+### （案例）饮料销售：绘制饼图（占比）
+
+.left-column[
+#### a.次数饼图1
+
+#### b.次数饼图2
+
+#### c.占比饼图1
+
+]
+
+.right-column[
+
+可以进一步调整**占比**饼图的图例和标签数值显示：
+
+```{r}
+df_pie %>%
+  ggplot(aes(x='',y=n, fill=brand)) +
+  geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0) +
+  theme_void() +
+  #theme(legend.position="none") +
+  geom_text(aes(label = paste0(round(prop), "%")), 
+           position = position_stack(vjust = 0.5),
+            size=6) +
+  scale_fill_brewer(palette="Set1") +
+  guides(fill = guide_legend(reverse = TRUE, title = "饮料类别"))  +
+  theme(text=element_text(size=global_size))
+```
+
+]
+
+---
+
+### （案例）饮料销售：绘制饼图（占比2）
+
+.left-column[
+#### a.次数饼图1
+
+#### b.次数饼图2
+
+#### c.占比饼图1
+
+#### d.占比饼图2
+
+]
+
+.right-column[
+
+根据分配数据表，我们可以绘制出如下**次数**饼图：
+
+```{r}
+library(ggrepel)
+df_pie %>%
+  ggplot( aes(1, n, fill = reorder(brand, -prop))) +
+  geom_col(color = 'black', 
+           position = position_stack(reverse = TRUE), 
+           show.legend = F) +
+  geom_text_repel(aes(x = 1.4, y = ypos, 
+                      label = glue::glue("{brand},{prop}%")), 
+                  nudge_x = -.25, 
+                  segment.size = 0,
+                  segment.alpha =0,
+                  show.legend = FALSE) +
+  coord_polar('y') +
+  theme_void() +
+  theme(text=element_text(size=global_size))
+```
+
+]
+
+---
+
+### （案例）饮料销售：绘制饼图
+
+
+
 
 ---
 

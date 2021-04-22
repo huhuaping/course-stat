@@ -3,7 +3,7 @@
 /* adjust font size */
 
 .remark-slide-content {
-    font-size: 28px;
+    font-size: 26px;
     padding: 1em 4em 1em 4em;
 }
 
@@ -62,19 +62,6 @@ div.my-header-h2 {
     height: 80px;
     width: 100%;
 }
-
-
-.remark-slide-content h1,h2, h3,h4,h5{
-  position: relative;
-  top: 0px;
-  margin: 5px 0px 50px;
-  width: 99%;
-  text-shadow: 0px 0px;
-  text-align: center;
-  z-index: 5;
-  font-size: 40px;
-}
-
 
 div.my-footer {
     background-color: #272822;
