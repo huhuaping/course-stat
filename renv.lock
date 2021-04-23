@@ -83,7 +83,7 @@
       "Package": "Rcpp",
       "Version": "1.0.6",
       "Source": "Repository",
-      "Repository": "MRAN",
+      "Repository": "CRAN",
       "Hash": "dbb5e436998a7eba5a9d682060533338"
     },
     "V8": {
@@ -284,7 +284,7 @@
       "Package": "fansi",
       "Version": "0.4.2",
       "Source": "Repository",
-      "Repository": "MRAN",
+      "Repository": "CRAN",
       "Hash": "fea074fb67fe4c25d47ad09087da847d"
     },
     "farver": {
@@ -1134,9 +1134,15 @@
     },
     "xmerit": {
       "Package": "xmerit",
-      "Version": "0.0.0.9000",
-      "Source": "unknown",
-      "Hash": "77dfcca5eca21dd73a10a261541d1c09"
+      "Version": "0.0.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "huhuaping",
+      "RemoteRepo": "xmerit",
+      "RemoteRef": "master",
+      "RemoteSha": "3426a1b50c2a46294c01246a5574b4165383acde",
+      "Hash": "4ccef78ee846ccd39e70906e7d3b2ea7"
     },
     "xml2": {
       "Package": "xml2",
