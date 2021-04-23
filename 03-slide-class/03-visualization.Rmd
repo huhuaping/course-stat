@@ -43,7 +43,7 @@ global_size <- 18 # for ggplot2 font size
 ```
 
 
-```{r ex-math-eq}
+```{r ex-math-eq, eval=FALSE}
 source("../R/external-math-equation.R")
 ```
 
@@ -1865,7 +1865,7 @@ df_pie <- smry_type %>%
 
 根据分配数据表，我们可以绘制出如下**次数**饼图：
 
-```{r}
+```{r, fig.cap="图a.饮料销售量分布（有图例）"}
 df_pie %>%
   ggplot(aes(x='',y=n, fill=reorder(brand, n))) +
   geom_bar(stat="identity", width=1) +
@@ -1877,7 +1877,7 @@ df_pie %>%
             size=6) +
   scale_fill_brewer(palette="Set1") +
   guides(fill = guide_legend(reverse = TRUE, title = "饮料类别"))  +
-  theme(text=element_text(size=global_size))
+  theme(text=element_text(size=global_size)) 
 ```
 
 ]
@@ -1897,8 +1897,8 @@ df_pie %>%
 
 可以进一步调整**次数**饼图的图例和标签数值显示：
 
-```{r}
-library(ggrepel)
+```{r, fig.cap="图b.饮料销售量分布（无图例）"}
+
 df_pie %>%
   ggplot( aes(1, n, fill =reorder(brand, -prop))) +
   geom_col(color = 'black', 
@@ -1909,7 +1909,8 @@ df_pie %>%
                   nudge_x = -.3, 
                   segment.size = 0,
                   segment.alpha =0,
-                  show.legend = FALSE) +
+                  show.legend = FALSE,
+                  size = 7) +
   coord_polar('y') +
   theme_void() +
   theme(text=element_text(size=global_size))
@@ -1934,7 +1935,7 @@ df_pie %>%
 
 可以进一步调整**占比**饼图的图例和标签数值显示：
 
-```{r}
+```{r, fig.cap="图c.饮料销售占比（有图例）"}
 df_pie %>%
   ggplot(aes(x='',y=n, fill=brand)) +
   geom_bar(stat="identity", width=1) +
@@ -1970,8 +1971,8 @@ df_pie %>%
 
 根据分配数据表，我们可以绘制出如下**次数**饼图：
 
-```{r}
-library(ggrepel)
+```{r, fig.cap="图d.饮料销售占比（无图例）"}
+
 df_pie %>%
   ggplot( aes(1, n, fill = reorder(brand, -prop))) +
   geom_col(color = 'black', 
@@ -1982,7 +1983,8 @@ df_pie %>%
                   nudge_x = -.25, 
                   segment.size = 0,
                   segment.alpha =0,
-                  show.legend = FALSE) +
+                  show.legend = FALSE,
+                  size = 7) +
   coord_polar('y') +
   theme_void() +
   theme(text=element_text(size=global_size))
@@ -2010,9 +2012,40 @@ df_pie %>%
 
 ---
 
+exclude: true
+
 ## （案例）住房满意度：原始数据
 
-在一项城市住房问题的研究中，研究人员在甲乙两个城市各抽样调查300户，其中的一个问题是：
+```{r}
+char <-c("非常不满意","不满意","一般","满意","非常满意")
+reps <- c(24L, 108L,93L, 45L,30L) 
+
+sat_list <- rep(char, reps)
+
+sat <- data.frame(satisfication = sat_list, row.names=NULL) %>%
+  mutate(satisfication = factor(satisfication, levels = char))
+
+cum_sat <- sat %>%
+  janitor::tabyl(satisfication) %>%
+  #janitor::adorn_totals("row") %>%
+  #janitor::adorn_pct_formatting() %>%
+  #as_tibble() %>%
+  mutate(min_cum_n = cumsum(n),
+         min_cum_p = cumsum(percent),
+         max_cum_n =rev( cumsum(n))) %>%
+  janitor::adorn_totals("row") %>%
+  mutate(percent = percent(percent),
+         min_cum_p = percent(min_cum_p) )
+
+```
+
+---
+
+## （案例）住房满意度：原始数据
+
+**案例说明**：在一项城市住房问题的研究中，研究人员在甲乙两个城市各抽样调查`r length(sat_list)`户，其中的一个问题是：
+
+.large[
 
 ```
 您对您家庭目前的住房状况是否满意？
@@ -2021,7 +2054,15 @@ df_pie %>%
 
 ```
 
+]
+
+
 下边就是记录的原始数据：
+
+
+
+
+
 
 
 ```{block, type='notes', echo=T}

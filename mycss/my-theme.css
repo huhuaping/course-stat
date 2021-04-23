@@ -14,3 +14,15 @@ table {
 .right-column {
   padding-top: 0px;
 }
+
+.figure {
+  font-size: 80%;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.caption {
+  font-size: 90%;
+  margin-top: 0px;
+  padding-top: 0px;
+}
