@@ -2001,13 +2001,19 @@ df_pie %>%
 
 ---
 
-## 顺序数据：计算的统计量
+## 顺序数据：计算统计量
 
-累积频数(cumulative frequencies)：各类别频数的逐级累加。
+对于顺序型分组（上小下大）数据，主要的统计指标包括：
 
-累积频率(cumulative percentages)：各类别频率(百分比)的逐级累加。
+- **累积频数**（cumulative frequencies）：各类别频数的逐级累加。
 
-向上/向下累积：
+- **累积频率**（cumulative percentages）：各类别频率(百分比)的逐级累加。具体又包括
+
+对于以上累积统计指标，又分别包括
+
+    - 较小制累积（频数/频率）：又称为向上累积或以下累积，本组及以下次数/频率的逐级累加。
+    
+    - 较大制累积（频数/频率）：又称为向下累积或以上累积，本组及以上次数/频率的逐级累加。
 
 
 ---
@@ -2022,28 +2028,40 @@ reps <- c(24L, 108L,93L, 45L,30L)
 
 sat_list <- rep(char, reps)
 
-sat <- data.frame(satisfication = sat_list, row.names=NULL) %>%
+sat <- data.frame(groups=LETTERS[1:5],
+                  satisfication = sat_list,
+                  row.names=NULL) %>%
   mutate(satisfication = factor(satisfication, levels = char))
 
-cum_sat <- sat %>%
+cum_calc <- sat %>%
   janitor::tabyl(satisfication) %>%
-  #janitor::adorn_totals("row") %>%
-  #janitor::adorn_pct_formatting() %>%
-  #as_tibble() %>%
   mutate(min_cum_n = cumsum(n),
          min_cum_p = cumsum(percent),
-         max_cum_n =rev( cumsum(n))) %>%
-  janitor::adorn_totals("row") %>%
-  mutate(percent = percent(percent),
-         min_cum_p = percent(min_cum_p) )
+         max_cum_n =rev( cumsum(rev(n))),
+         max_cum_p =rev( cumsum(rev(percent)))) 
+  
+cum_format<-  cum_calc %>%
+  mutate(min_cum_p = percent(min_cum_p,accuracy = 0.1),
+         max_cum_p = percent(max_cum_p,accuracy = 0.1)) %>%
+  janitor::adorn_totals(.,where = "row",fill = "-",na.rm = TRUE, 
+                        name = "Total", all_of(c("n","percent"))) %>%
+  janitor::adorn_pct_formatting(.,digits = 1,
+                                rounding ="half to even",
+                                affix_sign = TRUE,
+                                all_of(c("percent"))) 
 
 ```
 
 ---
 
-## （案例）住房满意度：原始数据
+## （案例）住房满意度：案例数据
 
-**案例说明**：在一项城市住房问题的研究中，研究人员在甲乙两个城市各抽样调查`r length(sat_list)`户，其中的一个问题是：
+.panelset[
+
+.panel[.panel-name[1)案例说明]
+
+
+**案例说明**：在一项城市住房满意度问题的研究中，研究人员在甲城市抽样调查`r length(sat_list)`家庭户，其中的一个问题是：
 
 .large[
 
@@ -2056,35 +2074,75 @@ cum_sat <- sat %>%
 
 ]
 
+]
 
-下边就是记录的原始数据：
+.panel[.panel-name[2)案例数据表]
 
-
-
-
-
+下边就是收集到的不同满意度评价水平的频次和频率数据表：
 
 
-```{block, type='notes', echo=T}
-
-待完成：提供一张xls形态的原始数据表。
+```{r}
+cum_format %>%
+  select(1:3) %>%
+  add_column(groups= c(LETTERS[1:5],"-"),.before = "satisfication" ) %>%
+  datatable(options = list(dom="t"))
 
 ```
+]
+
+]
 
 ---
 
 ## （案例）住房满意度：计算统计量并制表
 
 
-根据上述原始数据，计算相关统计量：
+
+.panelset[
+
+.panel[.panel-name[1)较小制累积表]
+
+我们可以计算得到**较小制**下的累积频次和频率，并制表：
 
 
-```{block, type='notes', echo=T}
-
-待完成：提供一张统计量计算的数据表。
+```{r}
+cum_format %>%
+  select(1:5) %>%
+  add_column(groups= c(LETTERS[1:5],"-"),.before = "satisfication" ) %>%
+  datatable(options = list(dom="t"))
 
 ```
+]
 
+.panel[.panel-name[2)较小制累积表]
+
+我们也可以计算得到**较大制**下的累积频次和频率，并制表：
+
+
+```{r}
+cum_format %>%
+  select(1:3,6,7) %>%
+  add_column(groups= c(LETTERS[1:5],"-"),.before = "satisfication" ) %>%
+  datatable(options = list(dom="t"))
+
+```
+]
+
+.panel[.panel-name[3)较小制和较大制对比]
+
+我们可以对比观测**较小制**和**较大制**下的累积频次和频率：
+
+
+```{r}
+cum_format %>%
+  #select(1:5) %>%
+  add_column(groups= c(LETTERS[1:5],"-"),.before = "satisfication" ) %>%
+  datatable(options = list(dom="t"))
+
+```
+]
+
+]
 
 ---
 
