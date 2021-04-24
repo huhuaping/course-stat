@@ -2096,8 +2096,6 @@ cum_format %>%
 
 ## （案例）住房满意度：计算统计量并制表
 
-
-
 .panelset[
 
 .panel[.panel-name[1)较小制累积表]
@@ -2146,6 +2144,164 @@ cum_format %>%
 
 ---
 
+## （案例）住房满意度：绘制累计频次/频率图
+
+.panelset[
+
+.panel[.panel-name[1)较小累积频次]
+
+```{r}
+cum_calc %>%
+  ggplot(aes(x=satisfication, y= min_cum_n, group=1)) +
+  geom_line(color = "blue") +
+  geom_point(color = "red") + 
+  geom_text(aes(label = glue::glue("{min_cum_n}")),
+                  size = 4, vjust=-1)  +
+  lims(y=c(0,350)) +
+  theme(axis.text.x = element_text(angle=45, hjust = 1),
+        text=element_text(size=global_size)) +
+  labs(x = "满意度satisfaction", y = "累积人数（较小制）")
+  
+```
+
+]
+
+.panel[.panel-name[2)较小累积频率]
+
+```{r}
+cum_calc %>%
+  ggplot(aes(x=satisfication, y= min_cum_p, group=1)) +
+  geom_line(color = "blue") +
+  geom_point(color = "red") + 
+  geom_text(aes(label = glue::glue("{100*min_cum_p}%")),
+                  size = 4, vjust=-0.8)  +
+  #lims(y=c(0,350)) +
+  scale_y_continuous(limits = c(0,1.1),
+                     breaks = seq(0, 1.1, 0.2),
+    labels = scales::percent_format(accuracy = 1)) +
+  theme(axis.text.x = element_text(angle=45, hjust = 1),
+        text=element_text(size=global_size)) +
+  labs(x = "满意度satisfaction", y = "累积频率（较小制）")
+  
+```
+
+]
+
+.panel[.panel-name[3)较大累积频次]
+
+```{r}
+cum_calc %>%
+  ggplot(aes(x=satisfication, y= max_cum_n, group=1)) +
+  geom_line(color = "blue") +
+  geom_point(color = "red") + 
+  geom_text(aes(label = glue::glue("{max_cum_n}")),
+                  size = 4, vjust=-1)  +
+  lims(y=c(0,350)) +
+  theme(axis.text.x = element_text(angle=45, hjust = 1),
+        text=element_text(size=global_size)) +
+  labs(x = "满意度satisfaction", y = "累积人数（较小制）")
+  
+```
+
+]
+
+.panel[.panel-name[4)较大累积频率]
+
+```{r}
+cum_calc %>%
+  ggplot(aes(x=satisfication, y= max_cum_p, group=1)) +
+  geom_line(color = "blue") +
+  geom_point(color = "red") + 
+  geom_text(aes(label = glue::glue("{100*max_cum_p}%")),
+                  size = 4, vjust=-0.8)  +
+  #lims(y=c(0,150)) +
+  scale_y_continuous(limits=c(0,1.1),
+                     breaks = seq(0,1.1, 0.2),
+                     labels = scales::percent_format(accuracy = 1)) +
+  theme(axis.text.x = element_text(angle=45, hjust = 1),
+        text=element_text(size=global_size)) +
+  labs(x = "满意度satisfaction", y = "累积频率（较大制）")
+  
+```
+
+]
+
+]
+
+---
+exclude: true 
+
+### my ggplot theme
+
+参考：
+
+- [Changing fonts in ggplot2](https://stackoverflow.com/questions/34522732/changing-fonts-in-ggplot2)
+
+- `extrafont` pkg [on github](https://github.com/wch/extrafont)
+
+```{r}
+library("extrafont")
+
+#font_import() # run once, just import fonts families locally
+loadfonts(device = "win") # load fonts families
+
+# Vector of font family names
+#fonts_abeled<- as_tibble(fonts())
+
+# Show entire table
+#fonttable()
+
+```
+
+```{r, eval=FALSE}
+#install.packages("showtext")
+library("showtext")
+# https://fonts.google.com/featured/Superfamilies
+font_add_google("Montserrat", "Montserrat")
+font_add_google("Roboto", "Roboto")
+```
+
+
+```{r}
+theme_fonts <- function(){
+  #theme_gray()+
+  theme(text = element_text(family = "KaiTi"),
+        axis.text = element_text(size = 14),
+        axis.title.x = 
+          element_text(size = 16),
+        axis.title.y = 
+          element_text(size = 16)
+        )
+}
+
+
+```
+
+---
+
+### test chart
+
+
+```{r,message=F, warning=F}
+cum_calc %>%
+  ggplot(aes(x=satisfication, y= max_cum_p, group=1)) +
+  geom_line(color = "blue") +
+  geom_point(color = "red") + 
+  geom_text(aes(label = glue::glue("{100*max_cum_p}%")),
+                  size = 4, vjust=-0.8)  +
+  #lims(y=c(0,150)) +
+  scale_y_continuous(limits=c(0,1.1),
+                     breaks = seq(0,1.1, 0.2),
+                     labels = scales::percent_format(accuracy = 1)) +
+  theme(axis.text.x = element_text(angle=45, hjust = 1.1)) + 
+  theme_fonts() +
+  labs(x = "满意度satisfaction", y = "累积频率（较大制）") 
+  
+  
+```
+
+---
+
 ## 顺序数据：统计制图（环形图）
 
 环形图(doughnut chart)：环形图中间有一个“空洞”，样本或总体中的每一部分数据用环中的一段表示。
@@ -2164,12 +2320,42 @@ cum_format %>%
 
 根据上述计算统计量和制表，绘制如下环形图：
 
-```{block, type='notes', echo=T}
+```{block, type='notes', echo=F}
 
 待完成：提供一张环形图。
 
+绘制要点在于：
+
+- geom_rect
+
+- aes()
+
+- geom_text()
+
 ```
 
+
+
+```{r, fig.cap="图d.饮料销售占比（无图例）"}
+
+df_nut <- cum_calc %>%
+  mutate(ymin = c(0, min_cum_p[-nrow(.)]))  
+
+
+df_nut %>%
+  ggplot( aes(ymax=min_cum_p, ymin=ymin, xmax=4, xmin=3, 
+              fill =satisfication)) +
+  geom_rect() +
+  xlim(c(2, 4)) +
+  geom_text(aes(x = 3.5, y = (ymin+ min_cum_p)/2 , 
+                      label = glue::glue("{100*percent}%")),
+            size = 5) +
+  coord_polar(theta="y") + # Try to remove that to understand how the chart is built initially
+  theme_void() +
+  theme(text=element_text(size=global_size))
+
+
+```
 
 ---
 layout: false
