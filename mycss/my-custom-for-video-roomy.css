@@ -3,7 +3,7 @@
 /* adjust font size */
 
 .remark-slide-content {
-    font-size: 26px;
+    font-size: 28px;
     padding: 1em 4em 1em 4em;
 }
 
@@ -204,15 +204,6 @@ pre {
 .scroll-output {
   height: 80%;
   overflow-y: scroll;
-}
-
-/* adjust headers */
-
-.remark-slide-content.h2 {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  text-align: center;
 }
 
 

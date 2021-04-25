@@ -15,6 +15,8 @@ table {
   padding-top: 0px;
 }
 
+/* figure title and caption text font size */
+
 .figure {
   font-size: 80%;
   margin-bottom: 0px;
@@ -25,4 +27,39 @@ table {
   font-size: 90%;
   margin-top: 0px;
   padding-top: 0px;
+}
+
+/* pagraph margin */
+p {
+    display: block;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+/* bullet list margin */
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 0.1em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 50px;
+}
+
+li > p {
+    display: block;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-size: 90%;
+}
+
+/* panel tabs width and font-size */
+ul.panel-tabs {
+  width: 99%;
+  font-size: 95%;
 }

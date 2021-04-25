@@ -1832,15 +1832,17 @@ p +
 ## 分类数据：统计制图2（饼图）
 
 
-饼图（pie Chart）：也称圆形图，是用圆形及圆内扇形的角度来表示数值大小的图形。
+**饼图**（pie Chart）：也称圆形图，是用圆形及圆内扇形的角度来表示数值大小的图形。
 
-用途：主要用于表示样本或总体中各组成部分所占的比例，用于研究结构性问题。
+**用途**：用于表示样本或总体中各组成部分所占的比例，用于研究结构性问题。
 
-绘制要点：
+**绘制要点**：
 
-- 样本或总体中各部分所占的百分比用圆内的各个扇形角度表示
+- 样本或总体中各部分所占的频次/百分比用圆内的各个扇形角度表示。
 
-- 这些扇形的中心角度，按各部分数据百分比乘以3600确定
+- 扇形块的中心角度，进行**极坐标变换**（按各部分数据占比乘以3600确定）。
+
+- 排列顺序、标签值显示。
 
 ---
 
@@ -1992,29 +1994,28 @@ df_pie %>%
 
 ]
 
----
-
-### （案例）饮料销售：绘制饼图
-
-
-
 
 ---
 
-## 顺序数据：计算统计量
+## 顺序数据：统计量和图表
 
 对于顺序型分组（上小下大）数据，主要的统计指标包括：
 
 - **累积频数**（cumulative frequencies）：各类别频数的逐级累加。
 
-- **累积频率**（cumulative percentages）：各类别频率(百分比)的逐级累加。具体又包括
+- **累积频率**（cumulative percentages）：各类别频率(百分比)的逐级累加。
 
-对于以上累积统计指标，又分别包括
+对于以上累积统计指标，又分别包括：
 
-    - 较小制累积（频数/频率）：又称为向上累积或以下累积，本组及以下次数/频率的逐级累加。
-    
-    - 较大制累积（频数/频率）：又称为向下累积或以上累积，本组及以上次数/频率的逐级累加。
+- **较小制累积**（频数/频率）：又称为向上累积或以下累积，本组及以下次数/频率的逐级累加。
 
+- **较大制累积**（频数/频率）：又称为向下累积或以上累积，本组及以上次数/频率的逐级累加。
+
+制表和绘图分别有：
+
+- 累积频数/频率表等
+
+- 累积频数/频率图、环形图等
 
 ---
 
@@ -2028,8 +2029,7 @@ reps <- c(24L, 108L,93L, 45L,30L)
 
 sat_list <- rep(char, reps)
 
-sat <- data.frame(groups=LETTERS[1:5],
-                  satisfication = sat_list,
+sat <- data.frame(satisfication = sat_list,
                   row.names=NULL) %>%
   mutate(satisfication = factor(satisfication, levels = char))
 
@@ -2050,6 +2050,27 @@ cum_format<-  cum_calc %>%
                                 affix_sign = TRUE,
                                 all_of(c("percent"))) 
 
+# two cities
+reps2 <- c(21L, 99L,78L, 64L,38L) 
+sat_list2 <- rep(char, reps2)
+
+city_list <-rep(c("甲城市", "乙城市"), each = c(sum(reps), sum(reps2)))
+
+sat2 <- data.frame(city= city_list,
+                   satisfication = c(sat_list,sat_list2),
+                   row.names=NULL) %>%
+  mutate(satisfication = factor(satisfication, levels = char))
+
+cum_calc2 <- sat2 %>%
+  group_by(city,satisfication) %>%
+  summarise(n= n()) %>%
+  group_by(city) %>%
+  mutate(percent = n/sum(n)) %>%
+  #ungroup() %>%
+  mutate(min_cum_n = cumsum(n),
+         min_cum_p = cumsum(percent),
+         max_cum_n =rev( cumsum(rev(n))),
+         max_cum_p =rev( cumsum(rev(percent)))) 
 ```
 
 ---
@@ -2107,7 +2128,8 @@ cum_format %>%
 cum_format %>%
   select(1:5) %>%
   add_column(groups= c(LETTERS[1:5],"-"),.before = "satisfication" ) %>%
-  datatable(options = list(dom="t"))
+  datatable(options = list(dom="t")) 
+  
 
 ```
 ]
@@ -2135,7 +2157,8 @@ cum_format %>%
 cum_format %>%
   #select(1:5) %>%
   add_column(groups= c(LETTERS[1:5],"-"),.before = "satisfication" ) %>%
-  datatable(options = list(dom="t"))
+  datatable(options = list(dom="t",
+                           scrollX=TRUE))
 
 ```
 ]
@@ -2239,7 +2262,7 @@ exclude: true
 
 - `extrafont` pkg [on github](https://github.com/wch/extrafont)
 
-```{r}
+```{r, eval=F}
 library("extrafont")
 
 #font_import() # run once, just import fonts families locally
@@ -2278,6 +2301,7 @@ theme_fonts <- function(){
 ```
 
 ---
+exclude: true
 
 ### test chart
 
@@ -2294,7 +2318,7 @@ cum_calc %>%
                      breaks = seq(0,1.1, 0.2),
                      labels = scales::percent_format(accuracy = 1)) +
   theme(axis.text.x = element_text(angle=45, hjust = 1.1)) + 
-  theme_fonts() +
+  #theme_fonts() +
   labs(x = "满意度satisfaction", y = "累积频率（较大制）") 
   
   
@@ -2302,11 +2326,11 @@ cum_calc %>%
 
 ---
 
-## 顺序数据：统计制图（环形图）
+## （案例）住房满意度：绘制环形图
 
-环形图(doughnut chart)：环形图中间有一个“空洞”，样本或总体中的每一部分数据用环中的一段表示。
+**环形图**(doughnut chart)：环形图中间有一个“空洞”，样本或总体中的每一部分数据用环中的一段表示。
 
-用途：用于结构比较研究；用于展示分类和顺序数据。
+**用途**：用于结构比较研究；用于展示分类和顺序数据。
 
 与饼图的联系与区别：
 
@@ -2318,15 +2342,13 @@ cum_calc %>%
 
 ## （案例）住房满意度：绘制环形图
 
-根据上述计算统计量和制表，绘制如下环形图：
-
 ```{block, type='notes', echo=F}
 
 待完成：提供一张环形图。
 
 绘制要点在于：
 
-- geom_rect
+- geom_rect 或者geom_col
 
 - aes()
 
@@ -2334,13 +2356,30 @@ cum_calc %>%
 
 ```
 
+.panelset[
+
+.panel[.panel-name[1)补充数据]
+
+**案例说明**：继续前述甲城市满意度的研究，为了综合比较城市家庭满意度。研究者继续收集并获得了乙城市家庭的满意度评价数据。甲乙两个城市的家庭住户满意度数据如下表所示：
 
 
-```{r, fig.cap="图d.饮料销售占比（无图例）"}
+```{r}
+cum_calc2 %>% 
+  select(city:percent) %>%
+  mutate(percent = scales::percent(percent, accuracy = 0.1)) %>%
+  datatable(options = list(dom = "tip",
+                           pageLength = "5"))
+```
 
+]
+
+
+.panel[.panel-name[2)甲城市]
+
+
+```{r, fig.cap="图a.甲城市评价分布",out.height='90%'}
 df_nut <- cum_calc %>%
-  mutate(ymin = c(0, min_cum_p[-nrow(.)]))  
-
+  mutate(ymin = c(0, min_cum_p[-nrow(.)]))  # label position 
 
 df_nut %>%
   ggplot( aes(ymax=min_cum_p, ymin=ymin, xmax=4, xmin=3, 
@@ -2352,10 +2391,84 @@ df_nut %>%
             size = 5) +
   coord_polar(theta="y") + # Try to remove that to understand how the chart is built initially
   theme_void() +
-  theme(text=element_text(size=global_size))
-
+  labs(x=NULL, y=NULL) +
+  theme(text=element_text(size=global_size),
+        plot.margin = unit(c(0, 0.5, 0, 0.5), "line"))
 
 ```
+
+]
+
+.panel[.panel-name[3)乙城市]
+
+
+```{r, fig.cap="图b.乙城市评价分布",out.height='90%'}
+
+df_nut <- cum_calc2 %>%
+  filter(city =="乙城市") %>%
+  mutate(ymin = c(0, min_cum_p[-nrow(.)]))  # label position 
+
+df_nut %>%
+  ggplot( aes(ymax=min_cum_p, ymin=ymin, xmax=4, xmin=3, 
+              fill =satisfication)) +
+  geom_rect() +
+  xlim(c(2, 4)) +
+  geom_text(aes(x = 3.5, y = (ymin+ min_cum_p)/2 , 
+                      label = glue::glue("{scales::percent(percent, accuracy=0.1)}")),
+            size = 5) +
+  coord_polar(theta="y") + # Try to remove that to understand how the chart is built initially
+  theme_void()+ 
+  labs(x=NULL, y=NULL) +
+  theme(text=element_text(size=global_size),
+        plot.margin = unit(c(0, 0.5, 0, 0.5), "line"))
+
+```
+
+]
+
+
+.panel[.panel-name[4)两个城市]
+
+<!---我们可以将甲乙两个城市进行综合对比，绘制环形图：--->
+
+```{r, fig.cap="图c.两个城市评价分布对比",out.height='90%'}
+df_nut2 <- cum_calc2 %>%
+  group_by(city) %>%
+  mutate(city = factor(city, levels = unique(city)),
+    ymin = dplyr::lead(max_cum_p, n=1,default = 0)) %>%
+  ungroup() %>%
+  arrange(city, satisfication)
+
+df_nut2 %>%
+  ggplot(aes(x = city, y = percent,
+             fill = satisfication, color = city)) +
+  geom_col() +
+  scale_color_manual(values=c("red", "blue")) +
+  scale_fill_viridis_d() +
+  geom_text_repel(aes( y =0.5* (ymin+ max_cum_p) , 
+                      label = glue::glue("{scales::percent(percent, accuracy = 0.1)}")),
+            size = 6,
+            nudge_x = 0.2) +
+  coord_polar("y") +
+  theme_void() +
+  labs(x=NULL, y=NULL) +
+  theme(text=element_text(size=global_size),
+        plot.margin = unit(c(0, 0.5, 0, 0.5), "line"))
+
+```
+
+
+]
+
+]
+
+
+???
+
+绘图参考：
+
+- [Creating a multiple pie/donut chart](https://biostats.w.uib.no/creating-a-multiple-pie-donut-chart/)
+
 
 ---
 layout: false
@@ -2386,9 +2499,9 @@ layout: true
 ## 数据分组：概念和作用
 
 
-概念：把同质总体中的具有不同特点的单位分开，从而正确地认识事物的本质及其规律性。 
+**数据分组**：把同质总体中的具有不同特点的单位分开，从而正确地认识事物的本质及其规律性。 
 
-作用：
+**数据分组的作用**：
 
 - 类型分组：揭露社会经济现象的类型，反映各类型的特点。
 
@@ -2400,9 +2513,8 @@ layout: true
 
 ## 数据分组：选择分组标志
 
-选择分组标志的原则和方法:
 
-原则：
+选择分组标志的**原则**：
 
 - 科学性
 
@@ -2410,79 +2522,210 @@ layout: true
 
 - 互斥性 
 
-方法：
+选择分组标志的**方法**：
 
-- 根据研究问题的目的来选择
+- 根据研究问题的目的来选择。
 
-- 要选择最能反映被研究现象本质特征的标志 
+- 要选择最能反映被研究现象本质特征的标志。
 
-- 要结合现象所处的具体历史条件或经济条件来选择
+- 要结合现象所处的具体历史条件或经济条件来选择。
 
 ---
 
 ## 数据分组：数据分组类型
 
-按分组标志的特征分：
+**A.按分组标志的特征分**：
 
-- 品质标志分组：反映事物属性差异 
-    a. 简单分组：如人口按性别分组。
-    b. 复杂分组：如人口按职业分组。
+- 品质标志分组：反映事物属性差异
 
-- 数量标志分组 ：反映事物数量差异
-    a. 单项式数量分组：运用于变量变动幅度小、项目少的分组。
-    b. 组距式分组：运用于变量变动幅度大、项目多的分组。
+    - 简单分组：如人口按性别分组。
+    - 复杂分组：如人口按职业分组。
 
-按总体所选择标志的个数分：
+- 数量标志分组：反映事物数量差异
+
+    - 单项式数量分组：运用于变量变动幅度小、项目少的分组。
+    - 组距式分组：运用于变量变动幅度大、项目多的分组。
+
+**B.按总体所选择标志的个数分**：
 
 - 单一分组：按一个标志对总体进行分组。
 
 - 复合分组：按两个或两个以上标志对同一总体进行分组。
 
 ---
+exclude: true
 
-## （示例）数据分组类型：按数量标志分组
+## 案例：多种分组
 
+```{r}
+set.seed(123456)
 
-```{block, type='notes', echo=T}
+bin_cat1 <-tibble("性别"=c("男","女"),
+                 "人数"=ceiling(runif(2, 100,150)))
 
-待完成：提供单项式分组和组距式分组。
+bin_cat2 <-tibble("职业"=c("急诊科医师","乡村医师","急诊护士","手术室护士","护理员","放射线之技术人员","配膳员","卫生检查员","医用气体工","医院炊事","医院勤杂工","清洁工")) %>%
+  mutate("人数"=ceiling(runif(nrow(.), 100,150)))
 
+bin_sigle <-tibble("日产量"=sample(10:20,size = 5,
+                                replace = FALSE ),
+                 "职工人数"=ceiling(runif(5, 100,150))) %>%
+  arrange(.[,1])
+
+bin_group <-tibble("年龄"=c("18岁以下", "19-25岁",
+                          "26-35岁", "36-45岁","45岁以上"),
+                 "职工人数"=ceiling(rnorm(5, 1000,100)))
+
+bin_compose <- tibble("学科"=rep(c("理科生", "文科生"),each = 4),
+       "学历"=rep(c("本科生", "专科生"),times = 4),
+       "性别"=rep(c("男生", "女生","男生", "女生"),each = 2),
+       "人数" =ceiling(runif(8, 100,150))) 
 ```
 
 ---
 
-## （示例）数据分组类型：按分组标志个数
+## （示例）数据分组类型：按标志特征分组1
 
 
-```{block, type='notes', echo=T}
+.panelset[
+.panel[.panel-name[1)品质-简单分组]
 
-待完成：提供单一分组和复合分组。
+```{r one-gender}
+bin_cat1 %>%
+  mutate("人数"=NA) %>%
+  datatable(options = list(dom="t"))
 
 ```
+
+]
+
+.panel[.panel-name[2)品质-复杂分组]
+
+```{r}
+bin_cat2 %>%
+  mutate("人数"=NA) %>%
+  datatable(options = list(dom="tip", pageLength=6))
+```
+
+]
+
+]
+
+---
+
+## （示例）数据分组类型：按标志特征分组2
+
+.panelset[
+
+.panel[.panel-name[3)数量-单项式分组]
+
+```{r one-single}
+bin_sigle %>%
+  mutate("职工人数"=NA) %>%
+  datatable()
+```
+
+]
+
+.panel[.panel-name[4)数量-组距分组]
+
+
+```{r one-group}
+bin_group %>%
+  mutate("职工人数"=NA) %>%
+  datatable()
+```
+
+]
+
+]
+
+---
+
+## （示例）数据分组类型：按标志个数分组
+
+
+.panelset[
+.panel[.panel-name[1)单一分组]
+
+.fl.w-third.pa2[
+```{r, ref.label="one-gender"}
+```
+]
+
+--
+
+.fl.w-third.pa2[
+```{r, ref.label="one-single"}
+```
+]
+
+--
+
+.fl.w-third.pa2[
+```{r, ref.label="one-group"}
+```
+]
+
+]
+
+.panel[.panel-name[2)复合分组]
+
+```{r}
+bin_compose %>%
+  mutate("人数"=NA) %>%
+  datatable()
+```
+
+
+]
+
+
+]
+
+
 
 ---
 
 ## 分配数列：概念和类型
 
-分配数列：统计总体按照某一标志分组以后，用以反映总体各单位分配情况的统计数列，称为分配数列，又可称次数分配或次数分布。
+**分配数列**：统计总体按照某一标志分组以后，用以反映总体各单位分配情况的统计数列，称为分配数列，又可称次数分配或次数分布。
 
-- 品质型分配数列：
+- **品质型分配数列**。
 
-- 数值型分配数列：
+- **数值型分配数列**。根据分组情况，具体又分为：
 
-    a. 单项变量数列：按每个变量值分别列组编制数列，适用于不连续变量或变量能以整数表示，其变动范围不大时。 
-    b. 组距变量数列：按组距分组编制数列。适用于连续变量或变量可用小数表示，其变动范围。
+    - 单项变量数列：按每个变量值分别列组编制数列。适用于不连续变量或变量能以整数表示，其变动范围不大时。 
+    - 组距变量数列：按组距分组编制数列。适用于连续变量或变量可用小数表示，其变动范围。
 
 ---
 
 ## （示例）分配数列的类型：数值型分配数列
 
 
-```{block, type='notes', echo=T}
+.panelset[
 
-待完成：提供两个数值型分配数列。
+.panel[.panel-name[1)单项式分配数列]
 
+```{r}
+bin_sigle %>%
+  #mutate("职工人数"=NA) %>%
+  datatable()
 ```
+
+]
+
+.panel[.panel-name[2)组距式分配数列]
+
+
+```{r}
+bin_group %>%
+  #mutate("职工人数"=NA) %>%
+  datatable()
+```
+
+]
+
+]
 
 ---
 

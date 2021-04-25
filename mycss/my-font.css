@@ -6,7 +6,7 @@
 
 body { 
   font-family:'Songti SC', serif, 'KaiTi', '楷体','Droid Serif', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei' ; 
-  line-height: 2em;
+  line-height: 2.5em;
 }
 /*h1, h2, h3 {
   font-family: 'Yanone Kaffeesatz';
@@ -15,7 +15,7 @@ body {
 
 .remark-code, .remark-inline-code { 
   font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace; 
-  line-height: 1em;
+  line-height: 1.5em;
   font-size: 70%;
   /* background: #F5F5F5; /* lighter */
   background: #e7e8e2; /* darker */
@@ -23,7 +23,7 @@ body {
   padding: 4px;
 }
 
-
+/* adjust headers */
 
 h1, h2, h3 h4,h5{
   font-family: 'Ma Shan Zheng', cursive,'楷体';
@@ -34,7 +34,7 @@ h1, h2, h3 h4,h5{
   z-index: 5;
 }
 
-.remark-slide-content h1,h2,h3{
+.remark-slide-content h1,h2{
   font-family: 'Ma Shan Zheng', cursive,'楷体';
   font-weight: normal;
   position: relative;
@@ -57,7 +57,7 @@ h1, h2, h3 h4,h5{
   text-shadow: 0px 0px;
   text-align: center;
   z-index: 5;
-  font-size: 36;
+  font-size: 38;
 }
 
 .remark-slide-content h4{
@@ -87,4 +87,9 @@ h1, h2, h3 h4,h5{
   font-family: 'Ma Shan Zheng', cursive,'楷体';
   text-shadow: 0 0 0px #666666;
   font-size: 30px;
+}
+
+.left-column h4 {
+  font-size: 110%;
+  text-align: left;
 }
