@@ -2265,7 +2265,7 @@ exclude: true
 ```{r, eval=F}
 #install.packages("extrafont")
 library("extrafont")
-font_import()
+#font_import()
 #font_import() # run once, just import fonts families locally
 # windowsFonts()
 # load all fonts families

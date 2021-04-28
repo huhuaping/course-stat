@@ -1,66 +1,4 @@
 ---
-output:
-  xaringan::moon_reader:
-    seal: false
-    lib_dir: libs
-    css:
-      - ../mycss/my-theme.css 
-      - ../mycss/my-font.css
-      - ../mycss/my-custom-for-video-roomy.css
-      - ../mycss/notes-tips.css
-      - default
-      - duke-blue
-      - hygge-duke
-    nature:
-      highlightStyle: tango
-      highlightLines: true
-      countIncrementalSlides: false
-      ratio: "16:9"
-
----
-background-image: url("../pic/slide-front-page.jpg")
-class: center,middle
-
-# 统计学原理(Statistic)
-
-<!---    chakra: libs/remark-latest.min.js --->
-
-### 胡华平
-
-### 西北农林科技大学
-
-### 经济管理学院数量经济教研室
-
-### huhuaping01@hotmail.com
-
-### `r Sys.Date()`
-
-```{r global_options, echo=F,message=FALSE,warning=F}
-source("../R/set-global.R")
-options(width = 70)
-global_size <- 18 # for ggplot2 font size
-```
-
-
-```{r ex-math-eq, eval=FALSE}
-source("../R/external-math-equation.R")
-```
-
-```{r xaringan-logo, echo=FALSE}
-require('xaringanExtra')
-
-xaringanExtra::use_tachyons()
-
-xaringanExtra::use_panelset()
-
-xaringanExtra::use_logo(
-  image_url = "../pic/logo/nwafu-logo-circle-wb.png",
-  height = '70px',
-  position = xaringanExtra::css_position(top='0.2em',left="1em")
-)
-```
-
----
 title: graph demo
 output:
   xaringan::moon_reader:
@@ -169,8 +107,45 @@ layout: true
 
 
 ---
+exclude: true
 
-## （演示）预设模板
+## 准备：字体
+
+准备字体库
+
+```{r, eval=FALSE}
+library("showtext")
+#showtext_auto(FALSE)
+#font_families()
+# https://fonts.google.com/featured/Superfamilies
+font_add_google("Noto Serif SC", "Noto Serif SC")
+font_add_google("Ma Shan Zheng", "Ma Shan Zheng")
+showtext_auto()
+```
+
+```{r, eval = TRUE}
+#install.packages("extrafont")
+library("extrafont")
+#font_import() # run once, just import fonts families locally
+# windowsFonts()
+# load all fonts families
+loadfonts(device = "win", quiet = TRUE) 
+
+# Vector of font family names
+#fonts_abeled<- as_tibble(fonts())
+
+# Show entire table
+#fonttable()
+
+```
+
+
+---
+exclude: true
+
+## 准备：数据
+
+准备数据
 
 ```{r}
 df <- data.frame(
@@ -178,9 +153,19 @@ df <- data.frame(
   yval=c(3, 5, 6, 9),
   group=c("A","B","A","B")
 )
+
+# par colors
+color_demo <- "red"
+margin_demo<- c(2,2,2,2)
 ```
 
+---
+exclude: true
+
+## 准备：画图模板
+
 ```{r}
+
 theme_demo <- function(){
   theme(#text = element_text(family = "KaiTi"),
         axis.text = element_text(size = 14),
@@ -197,7 +182,7 @@ theme_demo <- function(){
   panel.grid.minor = element_line(size = 0.25, linetype = 'solid',
                                 colour = "pink"),
   # margin
-  plot.margin = unit(c(1,1,1,1), "cm")
+  plot.margin = unit(margin_demo, "cm")
         )
 }
 
@@ -211,22 +196,20 @@ theme_clean <- function(){
     axis.ticks = element_blank()
   )
 }
+
+
 ```
 
 
-```{r}
-library("showtext")
-#showtext_auto(FALSE)
-#font_families()
-# https://fonts.google.com/featured/Superfamilies
-font_add_google("Noto Serif SC", "Noto Serif SC")
-font_add_google("Ma Shan Zheng", "Ma Shan Zheng")
-showtext.auto()
-```
 
 ---
 
-### 画布 background
+### 绘图区 panel
+
+
+.panelset[
+
+.panel[.panel-name[a.画布区]
 
 ```{r}
 
@@ -234,51 +217,61 @@ bg_1 <- df %>%
   ggplot(aes(x = xval, y=yval)) +
   #geom_point() +
   lims(x = c(0,10), y = c(0, 10)) +
-  geom_text(aes(5,y=Inf, label = "画布background"), 
-            family = "Ma Shan Zheng",
-            vjust =-1) +
+  geom_text(aes(5,y=Inf, label = "画布区background"), 
+            family = "FangSong", size =8, 
+            vjust =-1, color = color_demo) +
   theme_demo() +
   theme_clean()  +
-  theme(panel.background = element_blank()) +
-  #annotate("text",x = 5, y = 11, label = "background") +
+  theme(panel.background = element_blank(),
+        plot.background = element_rect(color = color_demo, linetype = "dashed"))  +
   coord_cartesian(clip = "off")
 
 bg_1
 ```
 
+]
 
----
 
-### 绘图区 panel
 
-.panelset[
-.panel[.panel-name[a.绘图区]
+.panel[.panel-name[b.绘图区]
 
 ```{r}
-panel_1 <- p1 +
-  geom_text(aes(5,5, label = "绘图区panel")) +
-  #geom_text(aes(x = rep(), label = "panel")) +
+
+panel_1 <-  df %>%
+  ggplot(aes(x = xval, y=yval)) +
+  #geom_point() +
+  lims(x = c(0,10), y = c(0, 10)) +
+  geom_text(aes(5,y=Inf, label = "画布区background"), 
+            family = "FangSong", size =8, 
+            vjust =-1) +
+  geom_text(aes(5,y=5, label = "绘图区panel"), 
+            family = "FangSong",size =8, 
+            vjust =-1, color = color_demo) +
   theme_demo() +
-  theme_clean() 
+  theme_clean() +
+  theme(panel.background = element_rect(color = color_demo,linetype = "dashed"))  +
+  coord_cartesian(clip = "off")
+
+
 panel_1
 ```
 ]
 
-.panel[.panel-name[b.主网格]
+.panel[.panel-name[c.主网格]
 
 ```{r}
 panel_2 <-  df %>%
   ggplot(aes(x = xval, y=yval)) +
-  lims(x = c(0,10), y = c(0, 10)) +
+  #lims(x = c(0,10), y = c(0, 10)) +
   theme_demo() +
-  theme(
-    #axis.ticks.length = unit(-0.3, "lines")
-  ) +
-  scale_x_continuous(breaks = seq(0,10,2),minor_breaks = NULL) +
-  scale_y_continuous(breaks = seq(0,10,2),minor_breaks = NULL) +
+  scale_x_continuous(breaks = seq(0,10,2),minor_breaks = NULL,
+                     limits = c(0,10), expand = c(0, 0)) +
+  scale_y_continuous(breaks = seq(0,10,2),minor_breaks = NULL,
+                     limits = c(0,10), expand = c(0, 0)) +
   labs(x ="", y = "",title = "主网格线major grid") +
   theme(axis.text = element_blank(),
-        axis.ticks = element_blank())
+        axis.ticks = element_blank(),
+        plot.title = element_text(color = color_demo))
   
 panel_2
 
@@ -286,12 +279,14 @@ panel_2
 
 ]
 
-.panel[.panel-name[c.次网格]
+.panel[.panel-name[d.次网格]
 
 ```{r}
 panel_3 <- panel_2 +
-  scale_x_continuous(minor_breaks = seq(0,10,0.5)) +
-  scale_y_continuous(minor_breaks = seq(0,10,0.5)) +
+  scale_x_continuous(breaks = seq(0,10,2), minor_breaks = seq(0,10,0.5),
+                     limits = c(0,10), expand = c(0, 0)) +
+  scale_y_continuous(breaks = seq(0,10,2), minor_breaks = seq(0,10,0.5),
+                     limits = c(0,10), expand = c(0, 0)) +
   labs(x ="", y = "",title = "次网格线 minor grid")
 
 panel_3
@@ -303,76 +298,292 @@ panel_3
 
 ---
 
-### 坐标轴 axis
-
-```{r}
-axis_1 <-  panel_2 +
-  theme(axis.ticks = element_line()) +
-  labs(title = "轴主标记 major ticks")
-axis_1  
-```
-
-```{r}
-# need pkg ggalt
-# https://yonicd.github.io/ggalt/index.html
-#devtools::install_github("hrbrmstr/ggalt")
-library(ggalt)
-axis_2 <-  axis_1  +
-  scale_x_continuous(breaks = seq(0,10,2),
-                     minor_breaks = seq(0,10,0.5)) +
-  ggalt::annotation_ticks() +
-  labs(title = "轴次标记 minor ticks")
-axis_2  
-```
-
-
-
-```{r}
-p <-  df %>%
-  ggplot(aes(x = xval, y=yval)) +
-  lims(x = c(0,10), y = c(0, 10)) +
-  theme_demo() +
-  theme(
-    #axis.ticks.length = unit(-0.3, "lines")
-  ) +
-  scale_x_continuous(breaks = seq(0,10,2),minor_breaks = NULL) +
-  scale_y_continuous(breaks = seq(0,10,2),minor_breaks = NULL) +
-  labs(x ="", y = "",title = "轴记号 axis ticks") +
-  theme(axis.text = element_blank(),
-        panel.grid.major = element_blank())
-  
-p
-
-```
-
-  
----
-
-### 网格线 panel grid
+### 坐标轴1 axis
 
 .panelset[
+.panel[.panel-name[a.主轴x]
 
+```{r}
+axis_px1 <-  panel_2 +
+  labs(title = "主轴 axis x bottom") +
+  theme(axis.line.x.bottom =  element_line(color = color_demo),
+        panel.grid.major =   element_blank(),
+        plot.title = element_text(color = color_demo)) 
+axis_px1
+```
+
+]
+
+.panel[.panel-name[b.左Y轴]
+
+```{r}
+axis_py1 <-  panel_2 +
+  labs(title = "主轴 axis Y left") +
+  theme(axis.line.y.left = element_line(color = color_demo),
+        panel.grid.major =   element_blank(),
+        plot.title = element_text(color = color_demo)) 
+axis_py1  
+```
+
+]
+
+.panel[.panel-name[c.右Y轴]
+
+```{r}
+axis_py1 <-  panel_2 +
+  labs(title = "主轴 axis Y right") +
+  theme(axis.line.y.right =  element_line(color = color_demo),
+        panel.grid.major =   element_blank(),
+        plot.title = element_text(color = color_demo)) 
+axis_py1  
+```
+
+]
 
 ]
 
 ---
 
-### 轴记号 axsis ticks
+### 坐标轴2 axis
+
+.panelset[
+
+.panel[.panel-name[d.轴主标记]
 
 ```{r}
-p3 <-  df %>%
-  ggplot(aes(x = xval, y=yval)) +
-  lims(x = c(0,10), y = c(0, 10)) +
-  theme_demo() +
-  theme(
-    #axis.ticks.length = unit(-0.3, "lines")
-  ) +
-  scale_x_continuous(breaks = seq(0,10,2), minor_breaks = seq(0,10,0.5)) +
-  scale_y_continuous(breaks = seq(0,10,2), minor_breaks = seq(0,10,0.5)) +
-  labs(x ="axis x title", y = "axis y title") 
-p3
+axis_1 <-  panel_2 +
+  labs(title = "轴主标记 major ticks") +
+  theme(axis.ticks = element_line(color = color_demo),
+        panel.grid.major =   element_blank(),
+        plot.title = element_text(color = color_demo)) 
+axis_1  
 ```
 
+
+
+]
+
+.panel[.panel-name[e.轴次标记]
+
+
+```{r}
+# Adding minor tick marks to the x axis in ggplot2 (with no labels)
+# https://stackoverflow.com/questions/14490071/adding-minor-tick-marks-to-the-x-axis-in-ggplot2-with-no-labels
+insert_minor <- function(major_labs, n_minor) {
+  labs <- c( sapply( major_labs, function(x) c(x, rep("", n_minor) ) ) )
+  labs[1:(length(labs)-n_minor)]
+}
+
+axis_2 <-  df %>%
+  ggplot(aes(x = xval, y=yval)) + 
+  #geom_line() +
+  #lims(x = c(0,10), y = c(0, 10)) +
+  scale_x_continuous(breaks = seq(0,10,0.5), 
+                     #minor_breaks = seq(0,10,2),
+                     labels = insert_minor(major_labs =  seq(0, 10, by=2), n_minor = 3), 
+                     limits = c(0,10), expand = c(0,0)) +
+  scale_y_continuous(breaks = seq(0,10,0.5), 
+                     minor_breaks = seq(0,10,2),
+                     labels = insert_minor( seq(0, 10, by=2), 3 ), 
+                     limits = c(0,10), expand = c(0,0)) +
+  theme_demo() +
+  labs(title = "轴次标记 minor ticks") +
+  theme(axis.ticks = element_line(color = color_demo),
+        plot.title = element_text(color = color_demo),
+        panel.grid.major =  element_blank(), 
+        panel.grid.minor =  element_blank(),
+        axis.title.x =  element_blank(),
+        axis.title.y =  element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank())
+
+axis_2
+```
+]
+
+
+.panel[.panel-name[f.轴标签值1]
+
+```{r}
+axis_3 <-  axis_1 +
+  labs(title = "轴标签值 axis label") +
+  theme(axis.text = element_text(size = 14,color = color_demo),
+        axis.title.x = element_text(size = 16),
+        axis.title.y = element_text(size = 16),
+        axis.ticks = element_line(),
+        panel.grid.major =   element_blank(),
+        plot.title = element_text(color = color_demo),
+        plot.margin = unit(margin_demo, "cm")
+        ) 
+axis_3 
+```
+
+]
+
+.panel[.panel-name[g.轴标签值2]
+
+```{r}
+axis_4 <-  df %>%
+  ggplot(aes(x = xval, y=yval)) + 
+  #geom_line() +
+  #lims(x = c(0,10), y = c(0, 10)) +
+  scale_x_continuous(breaks = seq(0,10,0.5), 
+                     #minor_breaks = seq(0,10,2),
+                     labels = insert_minor(major_labs =  seq(0, 10, by=2), n_minor = 3), 
+                     limits = c(0,10), expand = c(0,0)) +
+  scale_y_continuous(breaks = seq(0,10,0.5), 
+                     minor_breaks = seq(0,10,2),
+                     labels = insert_minor( seq(0, 10, by=2), 3 ), 
+                     limits = c(0,10), expand = c(0,0)) +
+  theme_demo() +
+  labs(title = "轴标签值 axis label") +
+  theme(axis.ticks = element_line(color = color_demo),
+        plot.title = element_text(color = color_demo),
+        panel.grid.major =  element_blank(), 
+        panel.grid.minor =  element_blank(),
+        axis.title.x =  element_blank(),
+        axis.title.y =  element_blank(),
+        axis.text.x = element_text(color = color_demo),
+        axis.text.y = element_text(color = color_demo),
+        plot.margin = unit(margin_demo, "cm")
+        )
+
+axis_4
+```
+
+]
+
+]
+
+
+
+---
+
+### 图形类型 geom_xx
+
+.panelset[
+.panel[.panel-name[a.点图1]
+
+```{r}
+geom_p1 <- axis_4 +
+  geom_point(color = color_demo, size = 4)  +
+  labs(title = "图形类型 geom_point") +
+  #theme_demo()+
+  theme(plot.title = element_text(color = color_demo),
+        panel.grid.major =  element_blank(), 
+        panel.grid.minor =  element_blank(),
+        axis.title.x =  element_blank(),
+        axis.title.y =  element_blank(),
+        axis.text.x = element_text(color = "black"),
+        axis.text.y = element_text(color = "black"),
+        axis.ticks.x = element_line(color = "black"),
+        axis.ticks.y  = element_line(color = "black"),
+        plot.margin = unit(margin_demo, "cm")
+        )
+geom_p1
+```
+
+]
+
+.panel[.panel-name[b.点图2]
+
+```{r}
+geom_p2 <- axis_4 +
+  geom_point(aes(pch = as.character(xval)),
+             color = color_demo, 
+             size = 4,
+             show.legend = FALSE)  +
+  labs(title = "图形类型 geom_point (point type)") +
+  #theme_demo()+
+  theme(plot.title = element_text(color = color_demo),
+        panel.grid.major =  element_blank(), 
+        panel.grid.minor =  element_blank(),
+        axis.title.x =  element_blank(),
+        axis.title.y =  element_blank(),
+        axis.text.x = element_text(color = "black"),
+        axis.text.y = element_text(color = "black"),
+        axis.ticks.x = element_line(color = "black"),
+        axis.ticks.y  = element_line(color = "black"),
+        plot.margin = unit(margin_demo, "cm")
+        )
+geom_p2
+```
+
+]
+
+.panel[.panel-name[c.线图1]
+
+```{r}
+geom_p3 <- axis_4 +
+  geom_line(color = color_demo)  +
+  labs(title = "图形类型 geom_line") +
+  #theme_demo()+
+  theme(plot.title = element_text(color = color_demo),
+        panel.grid.major =  element_blank(), 
+        panel.grid.minor =  element_blank(),
+        axis.title.x =  element_blank(),
+        axis.title.y =  element_blank(),
+        axis.text.x = element_text(color = "black"),
+        axis.text.y = element_text(color = "black"),
+        axis.ticks.x = element_line(color = "black"),
+        axis.ticks.y  = element_line(color = "black"),
+        plot.margin = unit(margin_demo, "cm")
+        )
+geom_p3
+```
+]
+
+.panel[.panel-name[d.线图2]
+
+```{r}
+geom_p4 <- axis_4 +
+  geom_line(color = color_demo, linetype = "dashed")  +
+  labs(title = "图形类型 geom_line") +
+  #theme_demo()+
+  theme(plot.title = element_text(color = color_demo),
+        panel.grid.major =  element_blank(), 
+        panel.grid.minor =  element_blank(),
+        axis.title.x =  element_blank(),
+        axis.title.y =  element_blank(),
+        axis.text.x = element_text(color = "black"),
+        axis.text.y = element_text(color = "black"),
+        axis.ticks.x = element_line(color = "black"),
+        axis.ticks.y  = element_line(color = "black"),
+        plot.margin = unit(margin_demo, "cm")
+        )
+geom_p4
+```
+
+]
+
+]
+
+
+---
+
+### 变量数值 data value
+
+```{r}
+value_p1 <- axis_4 +
+  geom_point(size = 3,
+             show.legend = FALSE) +
+  geom_text(aes(label = yval), color = color_demo,
+            size = 5, hjust = -1)  +
+  labs(title = "变量数值 data value") +
+  #theme_demo()+
+  theme(plot.title = element_text(color = color_demo),
+        panel.grid.major =  element_blank(), 
+        panel.grid.minor =  element_blank(),
+        axis.title.x =  element_blank(),
+        axis.title.y =  element_blank(),
+        axis.text.x = element_text(color = "black"),
+        axis.text.y = element_text(color = "black"),
+        axis.ticks.x = element_line(color = "black"),
+        axis.ticks.y  = element_line(color = "black"),
+        plot.margin = unit(margin_demo, "cm")
+        )
+value_p1
+```
 
 ---
 layout:false
