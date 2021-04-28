@@ -11,7 +11,6 @@ output:
       - default
       - duke-blue
       - hygge-duke
-      
     nature:
       highlightStyle: tango
       highlightLines: true
@@ -1237,9 +1236,10 @@ vars_sel <- c("id","age",  "age_range",
 training_prepared %>%
   select(one_of(vars_sel)) %>%
   head(500) %>%
-  mutate(age_range = str_replace(age_range,"]", "}")) %>%
+  mutate(age_range = str_replace(age_range,"]", "\U298C")) %>%
   datatable(options = list(pageLength = 5 , 
-                           dom = "tip")) 
+                           dom = "tip"))
+ 
 ```
 
 ]
@@ -2263,10 +2263,13 @@ exclude: true
 - `extrafont` pkg [on github](https://github.com/wch/extrafont)
 
 ```{r, eval=F}
+#install.packages("extrafont")
 library("extrafont")
-
+font_import()
 #font_import() # run once, just import fonts families locally
-loadfonts(device = "win") # load fonts families
+# windowsFonts()
+# load all fonts families
+loadfonts(device = "win", quiet = TRUE) 
 
 # Vector of font family names
 #fonts_abeled<- as_tibble(fonts())
@@ -2276,12 +2279,17 @@ loadfonts(device = "win") # load fonts families
 
 ```
 
-```{r, eval=FALSE}
+```{r, eval=F}
+# https://cran.rstudio.com/web/packages/showtext/vignettes/introduction.html
 #install.packages("showtext")
 library("showtext")
 # https://fonts.google.com/featured/Superfamilies
-font_add_google("Montserrat", "Montserrat")
-font_add_google("Roboto", "Roboto")
+font_add_google("Noto Serif SC", "Noto Serif SC")
+font_add_google("Ma Shan Zheng", "Ma Shan Zheng")
+
+# CJK Fonts
+#font_install(source_han_serif(lang = "CN"))
+font_families()
 ```
 
 
@@ -2477,7 +2485,11 @@ name: quantity
 
 # 3.3 数值型数据的整理与展示
 
+### 数据分组的图表展示
 
+### 数据未分组的图表展示
+
+### 统计报表的设计
 
 ---
 layout: true
@@ -4377,8 +4389,6 @@ name: nice
 
 ### 鉴别图形优劣的准则
 
-### 统计表的设计
-
 ---
 layout: true
 
@@ -4393,6 +4403,125 @@ layout: true
 <div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter02"> 第03章 数据的图表展示 </a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 <a href="#nice"> 3.4 合理使用图表 </a> </span></div> 
+
+---
+
+## 制图体系和要素
+
+
+---
+
+## （演示）
+
+```{r}
+df <- data.frame(
+  xval = c(1,3,6,8 ),
+  yval=c(3, 5, 6, 9),
+  group=c("A","B","A","B")
+)
+```
+
+```{r}
+theme_demo <- function(){
+  theme(#text = element_text(family = "KaiTi"),
+        axis.text = element_text(size = 14),
+        axis.title.x = element_text(size = 16),
+        axis.title.y = element_text(size = 16),
+        # color system
+        # see http://sape.inf.usi.ch/quick-reference/ggplot2/colour
+        plot.background = element_rect(fill = "cornsilk"),
+        panel.background = element_rect(fill = "lightblue",
+                                colour = "lightblue",
+                                size = 0.5, linetype = "solid"),
+  panel.grid.major = element_line(size = 0.5, linetype = 'solid',
+                                colour = "white"), 
+  panel.grid.minor = element_line(size = 0.25, linetype = 'solid',
+                                colour = "azure3"),
+  # margin
+  plot.margin = unit(c(1,1,1,1), "cm")
+        )
+}
+
+theme_clean <- function(){
+  theme(
+    panel.grid.major =  element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.text = element_blank(),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.ticks = element_blank()
+  )
+}
+```
+
+
+```{r}
+library("showtext")
+#showtext_auto(FALSE)
+#font_families()
+# https://fonts.google.com/featured/Superfamilies
+font_add_google("Noto Serif SC", "Noto Serif SC")
+font_add_google("Ma Shan Zheng", "Ma Shan Zheng")
+
+```
+
+---
+
+### 画布
+
+```{r}
+showtext.auto()
+p1 <- df %>%
+  ggplot(aes(x = xval, y=yval)) +
+  #geom_point() +
+  lims(x = c(0,10), y = c(0, 10)) +
+  geom_text(aes(5,y=Inf, label = "画布background"), 
+            family = "Ma Shan Zheng",
+            vjust =-1) +
+  theme_demo() +
+  theme_clean()  +
+  theme(panel.background = element_blank()) +
+  #annotate("text",x = 5, y = 11, label = "background") +
+  coord_cartesian(clip = "off")
+
+p1
+```
+
+
+---
+
+### 绘图区
+
+
+```{r}
+p2 <- p1 +
+  geom_text(aes(5,5, label = "panel")) +
+  #geom_text(aes(x = rep(), label = "panel")) +
+  theme_demo() +
+  theme_clean() 
+p2
+```
+
+  
+---
+
+### 网格线
+
+```{r}
+p3 <-  df %>%
+  ggplot(aes(x = xval, y=yval)) +
+  lims(x = c(0,10), y = c(0, 10)) +
+  theme_demo() +
+  theme(
+    #axis.ticks.length = unit(-0.3, "lines")
+  ) +
+  scale_x_continuous(breaks = seq(0,10,2), minor_breaks = seq(0,10,0.5)) +
+  scale_y_continuous(breaks = seq(0,10,2), minor_breaks = seq(0,10,0.5)) +
+  labs(x ="axis x title", y = "axis y title") 
+p3
+```
+
+
 
 ---
 

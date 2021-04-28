@@ -1,0 +1,382 @@
+---
+output:
+  xaringan::moon_reader:
+    seal: false
+    lib_dir: libs
+    css:
+      - ../mycss/my-theme.css 
+      - ../mycss/my-font.css
+      - ../mycss/my-custom-for-video-roomy.css
+      - ../mycss/notes-tips.css
+      - default
+      - duke-blue
+      - hygge-duke
+    nature:
+      highlightStyle: tango
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+
+---
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+
+# 统计学原理(Statistic)
+
+<!---    chakra: libs/remark-latest.min.js --->
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### `r Sys.Date()`
+
+```{r global_options, echo=F,message=FALSE,warning=F}
+source("../R/set-global.R")
+options(width = 70)
+global_size <- 18 # for ggplot2 font size
+```
+
+
+```{r ex-math-eq, eval=FALSE}
+source("../R/external-math-equation.R")
+```
+
+```{r xaringan-logo, echo=FALSE}
+require('xaringanExtra')
+
+xaringanExtra::use_tachyons()
+
+xaringanExtra::use_panelset()
+
+xaringanExtra::use_logo(
+  image_url = "../pic/logo/nwafu-logo-circle-wb.png",
+  height = '70px',
+  position = xaringanExtra::css_position(top='0.2em',left="1em")
+)
+```
+
+---
+title: graph demo
+output:
+  xaringan::moon_reader:
+    seal: false
+    lib_dir: libs
+    css:
+      - ../mycss/my-theme.css 
+      - ../mycss/my-font.css
+      - ../mycss/my-custom-for-video-roomy.css
+      - ../mycss/notes-tips.css
+      - default
+      - duke-blue
+      - hygge-duke
+    nature:
+      highlightStyle: tango
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+
+---
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+
+# 统计学原理(Statistic)
+
+<!---    chakra: libs/remark-latest.min.js --->
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### `r Sys.Date()`
+
+```{r global_options, echo=F,message=FALSE,warning=F}
+source("../R/set-global.R")
+options(width = 70)
+global_size <- 18 # for ggplot2 font size
+```
+
+
+```{r ex-math-eq, eval=FALSE}
+source("../R/external-math-equation.R")
+```
+
+```{r xaringan-logo, echo=FALSE}
+require('xaringanExtra')
+
+xaringanExtra::use_tachyons()
+
+xaringanExtra::use_panelset()
+
+xaringanExtra::use_logo(
+  image_url = "../pic/logo/nwafu-logo-circle-wb.png",
+  height = '70px',
+  position = xaringanExtra::css_position(top='0.2em',left="1em")
+)
+```
+
+---
+class:  center, middle, duke-orange,hide_logo
+
+# 第三章 数据的图表展示
+
+
+### [3.1 数据的预处理](#prepare)
+
+### [3.2 品质数据的整理与显示](#quality)
+
+### [3.3 数值型数据的整理与显示](#quantity)
+
+### [3.4 合理使用图表](#nice)
+
+
+---
+layout: false
+class: center, middle, duke-softblue ,hide_logo
+name: nice
+
+# 3.4 合理使用图表
+
+
+### 鉴别图形优劣的准则
+
+---
+layout: true
+
+<div class="my-header-h2"></div>
+
+<div class="watermark1"></div>
+
+<div class="watermark2"></div>
+
+<div class="watermark3"></div>
+
+<div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter02"> 第03章 数据的图表展示 </a>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="#nice"> 3.4 合理使用图表 </a> </span></div> 
+
+---
+
+## 制图体系和要素
+
+
+---
+
+## （演示）预设模板
+
+```{r}
+df <- data.frame(
+  xval = c(1,3,6,8 ),
+  yval=c(3, 5, 6, 9),
+  group=c("A","B","A","B")
+)
+```
+
+```{r}
+theme_demo <- function(){
+  theme(#text = element_text(family = "KaiTi"),
+        axis.text = element_text(size = 14),
+        axis.title.x = element_text(size = 16),
+        axis.title.y = element_text(size = 16),
+        # color system
+        # see http://sape.inf.usi.ch/quick-reference/ggplot2/colour
+        plot.background = element_rect(fill = "cornsilk"),
+        panel.background = element_rect(fill = "lightblue",
+                                colour = "lightblue",
+                                size = 0.5, linetype = "solid"),
+  panel.grid.major = element_line(size = 0.5, linetype = 'solid',
+                                colour = "white"), 
+  panel.grid.minor = element_line(size = 0.25, linetype = 'solid',
+                                colour = "pink"),
+  # margin
+  plot.margin = unit(c(1,1,1,1), "cm")
+        )
+}
+
+theme_clean <- function(){
+  theme(
+    panel.grid.major =  element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.text = element_blank(),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.ticks = element_blank()
+  )
+}
+```
+
+
+```{r}
+library("showtext")
+#showtext_auto(FALSE)
+#font_families()
+# https://fonts.google.com/featured/Superfamilies
+font_add_google("Noto Serif SC", "Noto Serif SC")
+font_add_google("Ma Shan Zheng", "Ma Shan Zheng")
+showtext.auto()
+```
+
+---
+
+### 画布 background
+
+```{r}
+
+bg_1 <- df %>%
+  ggplot(aes(x = xval, y=yval)) +
+  #geom_point() +
+  lims(x = c(0,10), y = c(0, 10)) +
+  geom_text(aes(5,y=Inf, label = "画布background"), 
+            family = "Ma Shan Zheng",
+            vjust =-1) +
+  theme_demo() +
+  theme_clean()  +
+  theme(panel.background = element_blank()) +
+  #annotate("text",x = 5, y = 11, label = "background") +
+  coord_cartesian(clip = "off")
+
+bg_1
+```
+
+
+---
+
+### 绘图区 panel
+
+.panelset[
+.panel[.panel-name[a.绘图区]
+
+```{r}
+panel_1 <- p1 +
+  geom_text(aes(5,5, label = "绘图区panel")) +
+  #geom_text(aes(x = rep(), label = "panel")) +
+  theme_demo() +
+  theme_clean() 
+panel_1
+```
+]
+
+.panel[.panel-name[b.主网格]
+
+```{r}
+panel_2 <-  df %>%
+  ggplot(aes(x = xval, y=yval)) +
+  lims(x = c(0,10), y = c(0, 10)) +
+  theme_demo() +
+  theme(
+    #axis.ticks.length = unit(-0.3, "lines")
+  ) +
+  scale_x_continuous(breaks = seq(0,10,2),minor_breaks = NULL) +
+  scale_y_continuous(breaks = seq(0,10,2),minor_breaks = NULL) +
+  labs(x ="", y = "",title = "主网格线major grid") +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank())
+  
+panel_2
+
+```
+
+]
+
+.panel[.panel-name[c.次网格]
+
+```{r}
+panel_3 <- panel_2 +
+  scale_x_continuous(minor_breaks = seq(0,10,0.5)) +
+  scale_y_continuous(minor_breaks = seq(0,10,0.5)) +
+  labs(x ="", y = "",title = "次网格线 minor grid")
+
+panel_3
+```
+
+]
+
+]
+
+---
+
+### 坐标轴 axis
+
+```{r}
+axis_1 <-  panel_2 +
+  theme(axis.ticks = element_line()) +
+  labs(title = "轴主标记 major ticks")
+axis_1  
+```
+
+```{r}
+# need pkg ggalt
+# https://yonicd.github.io/ggalt/index.html
+#devtools::install_github("hrbrmstr/ggalt")
+library(ggalt)
+axis_2 <-  axis_1  +
+  scale_x_continuous(breaks = seq(0,10,2),
+                     minor_breaks = seq(0,10,0.5)) +
+  ggalt::annotation_ticks() +
+  labs(title = "轴次标记 minor ticks")
+axis_2  
+```
+
+
+
+```{r}
+p <-  df %>%
+  ggplot(aes(x = xval, y=yval)) +
+  lims(x = c(0,10), y = c(0, 10)) +
+  theme_demo() +
+  theme(
+    #axis.ticks.length = unit(-0.3, "lines")
+  ) +
+  scale_x_continuous(breaks = seq(0,10,2),minor_breaks = NULL) +
+  scale_y_continuous(breaks = seq(0,10,2),minor_breaks = NULL) +
+  labs(x ="", y = "",title = "轴记号 axis ticks") +
+  theme(axis.text = element_blank(),
+        panel.grid.major = element_blank())
+  
+p
+
+```
+
+  
+---
+
+### 网格线 panel grid
+
+.panelset[
+
+
+]
+
+---
+
+### 轴记号 axsis ticks
+
+```{r}
+p3 <-  df %>%
+  ggplot(aes(x = xval, y=yval)) +
+  lims(x = c(0,10), y = c(0, 10)) +
+  theme_demo() +
+  theme(
+    #axis.ticks.length = unit(-0.3, "lines")
+  ) +
+  scale_x_continuous(breaks = seq(0,10,2), minor_breaks = seq(0,10,0.5)) +
+  scale_y_continuous(breaks = seq(0,10,2), minor_breaks = seq(0,10,0.5)) +
+  labs(x ="axis x title", y = "axis y title") 
+p3
+```
+
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-fan.gif")
+class: inverse,center
+# 本章结束
+
