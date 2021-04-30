@@ -25,6 +25,9 @@ table {
 
 .caption {
   font-size: 90%;
+  font-family: 'Ma Shan Zheng', cursive,'楷体';
+  color: red;
+  font-weight: bold;
   margin-top: 0px;
   padding-top: 0px;
 }
@@ -63,4 +66,12 @@ li > p {
 ul.panel-tabs {
   width: 99%;
   font-size: 95%;
+}
+
+.rotate-45d { -webkit-transform: rotate( 45deg ); transform: rotate( 45deg ); }
+.rotate-90d { -webkit-transform: rotate( 90deg ); transform: rotate( 90deg ); }
+
+.rotate-text {
+   width: 25px;
+   transform: rotate(90deg);
 }

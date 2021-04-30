@@ -51,13 +51,6 @@
       "Repository": "CRAN",
       "Hash": "21e1cb313a641634215226782a49e5a1"
     },
-    "KernSmooth": {
-      "Package": "KernSmooth",
-      "Version": "2.23-17",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "bbff70c8c0357b5b88238c83f680fcd3"
-    },
     "MASS": {
       "Package": "MASS",
       "Version": "7.3-53",
@@ -106,13 +99,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "3c172c3eba3972c896b73361bfa323d0"
-    },
-    "ash": {
-      "Package": "ash",
-      "Version": "1.0-15",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "e16751c399be6260ddf41f8148a3f8ef"
     },
     "askpass": {
       "Package": "askpass",
@@ -244,13 +230,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "2b7d10581cc730804e9ed178c8374bd6"
-    },
-    "data.table": {
-      "Package": "data.table",
-      "Version": "1.14.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "d1b8b1a821ee564a3515fa6c6d5c52dc"
     },
     "dbplyr": {
       "Package": "dbplyr",
@@ -403,18 +382,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "eee36211f74e4dbc80eae9d504b58f0b"
-    },
-    "ggalt": {
-      "Package": "ggalt",
-      "Version": "0.6.2",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "ggalt",
-      "RemoteUsername": "hrbrmstr",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "e46e54bbf800ab6aff88f32097d1a42fd43c097e",
-      "Hash": "ce835458b163ba6b4a65d0209c236d1a"
     },
     "ggplot2": {
       "Package": "ggplot2",
@@ -781,13 +748,6 @@
       "Repository": "CRAN",
       "Hash": "463642747f81879e6752485aefb831cf"
     },
-    "plotly": {
-      "Package": "plotly",
-      "Version": "4.9.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "f6b85d9e4ed88074ea0ede1aa74bb00e"
-    },
     "plyr": {
       "Package": "plyr",
       "Version": "1.8.6",
@@ -829,13 +789,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "14dc9f7a3c91ebb14ec5bb9208a07061"
-    },
-    "proj4": {
-      "Package": "proj4",
-      "Version": "1.0-10.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "d25527f72f808fa6a8865b7b0cc4d26c"
     },
     "promises": {
       "Package": "promises",

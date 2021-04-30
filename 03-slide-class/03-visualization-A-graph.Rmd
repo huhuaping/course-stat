@@ -113,7 +113,7 @@ exclude: true
 
 准备字体库
 
-```{r, eval=FALSE}
+```{r, eval=T}
 library("showtext")
 #showtext_auto(FALSE)
 #font_families()
@@ -121,9 +121,11 @@ library("showtext")
 font_add_google("Noto Serif SC", "Noto Serif SC")
 font_add_google("Ma Shan Zheng", "Ma Shan Zheng")
 showtext_auto()
+
+font_love <- "Ma Shan Zheng"
 ```
 
-```{r, eval = TRUE}
+```{r, eval = F}
 #install.packages("extrafont")
 library("extrafont")
 #font_import() # run once, just import fonts families locally
@@ -167,30 +169,44 @@ exclude: true
 ```{r}
 
 theme_demo <- function(){
-  theme(#text = element_text(family = "KaiTi"),
-        axis.text = element_text(size = 14),
-        axis.title.x = element_text(size = 16),
-        axis.title.y = element_text(size = 16),
-        # color system
-        # see http://sape.inf.usi.ch/quick-reference/ggplot2/colour
-        plot.background = element_rect(fill = "cornsilk"),
-        panel.background = element_rect(fill = "lightblue",
-                                colour = "lightblue",
-                                size = 0.5, linetype = "solid"),
-  panel.grid.major = element_line(size = 0.5, linetype = 'solid',
-                                colour = "white"), 
-  panel.grid.minor = element_line(size = 0.25, linetype = 'solid',
-                                colour = "pink"),
-  # margin
-  plot.margin = unit(margin_demo, "cm")
-        )
+  theme(text = element_text(family = font_love),
+    axis.text = element_text(size = 14),
+    axis.text.x = element_text(size = 16,
+                               margin = margin(t = 10, r = 0, 
+                                                b = 0, l = 0)),
+    axis.text.y = element_text(size = 16,
+                                margin = margin(t = 0, r = 10, 
+                                                b = 0, l = 0)),
+    axis.title.x = element_text(size = 16,
+                                margin = margin(t = 15, r = 0, 
+                                                b = 0, l = 0)),
+    axis.title.y = element_text(size = 16,
+                                margin = margin(t = 0, r = 15, 
+                                                b = 0, l = 0)),
+    # color system
+    # see http://sape.inf.usi.ch/quick-reference/ggplot2/colour
+    plot.background = element_rect(fill = "cornsilk"),
+    panel.background = element_rect(fill = "lightblue",
+                            colour = "lightblue",
+                            size = 0.5, linetype = "solid"),
+    panel.grid.major = element_line(size = 0.5, 
+                                    linetype = 'solid',
+                                    colour = "white"), 
+    panel.grid.minor = element_line(size = 0.25, 
+                                    linetype = 'solid',
+                                    colour = "pink"),
+    plot.title = element_text(hjust =0.5, face = "bold", size = 18),
+    # margin
+    plot.margin = unit(margin_demo, "cm")
+    )
 }
 
 theme_clean <- function(){
   theme(
     panel.grid.major =  element_blank(),
     panel.grid.minor = element_blank(),
-    axis.text = element_blank(),
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
     axis.title.x = element_blank(),
     axis.title.y = element_blank(),
     axis.ticks = element_blank()
@@ -218,12 +234,13 @@ bg_1 <- df %>%
   #geom_point() +
   lims(x = c(0,10), y = c(0, 10)) +
   geom_text(aes(5,y=Inf, label = "画布区background"), 
-            family = "FangSong", size =8, 
+            family = "Ma Shan Zheng", size =8, 
             vjust =-1, color = color_demo) +
   theme_demo() +
   theme_clean()  +
   theme(panel.background = element_blank(),
-        plot.background = element_rect(color = color_demo, linetype = "dashed"))  +
+        plot.background = element_rect(color = color_demo, linetype = "dashed")
+        )  +
   coord_cartesian(clip = "off")
 
 bg_1
@@ -242,14 +259,16 @@ panel_1 <-  df %>%
   #geom_point() +
   lims(x = c(0,10), y = c(0, 10)) +
   geom_text(aes(5,y=Inf, label = "画布区background"), 
-            family = "FangSong", size =8, 
+            family = "Ma Shan Zheng", 
+            size =8, 
             vjust =-1) +
   geom_text(aes(5,y=5, label = "绘图区panel"), 
-            family = "FangSong",size =8, 
+            family = "Ma Shan Zheng",size =8, 
             vjust =-1, color = color_demo) +
   theme_demo() +
   theme_clean() +
-  theme(panel.background = element_rect(color = color_demo,linetype = "dashed"))  +
+  theme(panel.background = element_rect(color = color_demo,linetype = "dashed")
+        )  +
   coord_cartesian(clip = "off")
 
 
@@ -271,6 +290,8 @@ panel_2 <-  df %>%
   labs(x ="", y = "",title = "主网格线major grid") +
   theme(axis.text = element_blank(),
         axis.ticks = element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
         plot.title = element_text(color = color_demo))
   
 panel_2
@@ -301,12 +322,14 @@ panel_3
 ### 坐标轴1 axis
 
 .panelset[
-.panel[.panel-name[a.主轴x]
+.panel[.panel-name[a.下横轴X]
 
 ```{r}
 axis_px1 <-  panel_2 +
   labs(title = "主轴 axis x bottom") +
   theme(axis.line.x.bottom =  element_line(color = color_demo),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
         panel.grid.major =   element_blank(),
         plot.title = element_text(color = color_demo)) 
 axis_px1
@@ -314,11 +337,25 @@ axis_px1
 
 ]
 
-.panel[.panel-name[b.左Y轴]
+.panel[.panel-name[b.上横轴x]
+
+```{r}
+axis_px2 <-  panel_2 +
+  labs(title = "上横轴 axis x top") +
+  guides(x.sec = "axis", y.sec = "axis") +
+  theme(axis.line.x.top =  element_line(color = color_demo),
+        panel.grid.major =   element_blank(),
+        plot.title = element_text(color = color_demo)) 
+axis_px2
+```
+
+]
+
+.panel[.panel-name[c.左纵轴Y]
 
 ```{r}
 axis_py1 <-  panel_2 +
-  labs(title = "主轴 axis Y left") +
+  labs(title = "左纵轴 axis Y left") +
   theme(axis.line.y.left = element_line(color = color_demo),
         panel.grid.major =   element_blank(),
         plot.title = element_text(color = color_demo)) 
@@ -327,11 +364,12 @@ axis_py1
 
 ]
 
-.panel[.panel-name[c.右Y轴]
+.panel[.panel-name[d.右纵轴Y]
 
 ```{r}
 axis_py1 <-  panel_2 +
-  labs(title = "主轴 axis Y right") +
+  labs(title = "右纵轴 axis Y right") +
+  guides(x.sec = "axis", y.sec = "axis") +
   theme(axis.line.y.right =  element_line(color = color_demo),
         panel.grid.major =   element_blank(),
         plot.title = element_text(color = color_demo)) 
@@ -408,9 +446,13 @@ axis_2
 axis_3 <-  axis_1 +
   labs(title = "轴标签值 axis label") +
   theme(axis.text = element_text(size = 14,color = color_demo),
-        axis.title.x = element_text(size = 16),
-        axis.title.y = element_text(size = 16),
-        axis.ticks = element_line(),
+        axis.text.x = element_text(size = 16,
+                                   margin = margin(t = 10, r = 0, 
+                                                    b = 0, l = 0)),
+        axis.text.y = element_text(size = 16,
+                                    margin = margin(t = 0, r = 10, 
+                                                    b = 0, l = 0)),
+        axis.ticks = element_line(color = "black"),
         panel.grid.major =   element_blank(),
         plot.title = element_text(color = color_demo),
         plot.margin = unit(margin_demo, "cm")
@@ -437,7 +479,7 @@ axis_4 <-  df %>%
                      limits = c(0,10), expand = c(0,0)) +
   theme_demo() +
   labs(title = "轴标签值 axis label") +
-  theme(axis.ticks = element_line(color = color_demo),
+  theme(axis.ticks = element_line(color = "black"),
         plot.title = element_text(color = color_demo),
         panel.grid.major =  element_blank(), 
         panel.grid.minor =  element_blank(),
@@ -453,8 +495,64 @@ axis_4
 
 ]
 
+
 ]
 
+---
+
+### 坐标轴3 axis
+
+.panelset[
+
+.panel[.panel-name[h.横标题]
+
+```{r}
+xtitle_px <- axis_4 +
+  labs(x = "横轴X标题 axis X title") +
+  theme(axis.title.x = element_text(color = color_demo),
+        axis.text.x = element_text(color = "black"),
+        axis.text.y = element_text(color = "black"))
+
+xtitle_px
+```
+
+
+]
+
+
+.panel[.panel-name[h.左纵轴标题]
+
+```{r}
+
+xtitle_py1 <- xtitle_px +
+  labs(y = "左纵轴Y标题", x = "", title = "左纵轴Y标题 axis Y left title") +
+  theme(axis.title.y = element_text(color = color_demo, 
+                                    angle = -90))
+
+xtitle_py1
+```
+
+]
+
+
+.panel[.panel-name[h.右纵轴标题]
+
+
+```{r}
+xtitle_py2 <- xtitle_py1 +
+  scale_y_continuous( sec.axis = sec_axis( trans=~.*0.5, 
+                                           name="右纵轴Y标题")) +
+  labs(title = "右纵轴Y标题 axis Y right title") +
+  theme(axis.title.y.right =  element_text(color = color_demo),
+        axis.title.y.left =  element_text(color = "black"))
+
+xtitle_py2
+```
+
+]
+
+
+]
 
 
 ---
@@ -584,6 +682,131 @@ value_p1 <- axis_4 +
         )
 value_p1
 ```
+
+---
+
+### 图例 legend
+
+.panelset[
+.panel[.panel-name[a.图例靠右]
+
+```{r}
+legend_p1 <- axis_4 +
+  geom_point(aes(pch = as.character(xval)),
+             #color = color_demo, 
+             size = 4)  +
+  labs(title = "图例靠右 legend right",
+       pch = "点类型") +
+  #theme_demo()+
+  theme(plot.title = element_text(color = color_demo),
+        panel.grid.major =  element_blank(), 
+        panel.grid.minor =  element_blank(),
+        axis.title.x =  element_blank(),
+        axis.title.y =  element_blank(),
+        axis.text.x = element_text(color = "black"),
+        axis.text.y = element_text(color = "black"),
+        axis.ticks.x = element_line(color = "black"),
+        axis.ticks.y  = element_line(color = "black"),
+        #plot.margin = unit(margin_demo, "cm"),
+        legend.background = element_rect(color = color_demo) 
+        )
+legend_p1
+```
+
+]
+
+
+.panel[.panel-name[b.图例靠下]
+
+```{r}
+legend_p2  <- legend_p1 +
+  labs(title = "图例靠下 legend bottom") +
+  theme(legend.position = "bottom")
+
+legend_p2
+```
+
+
+]
+
+]
+
+---
+
+### 图注 footnote和图题 caption
+
+.panelset[
+.panel[.panel-name[a.图注]
+
+```{r}
+cap_p1 <- legend_p1 +
+  labs(title = "图注 plot footnote",
+       caption = "数据来源：@hhp") +
+  theme(plot.caption = element_text(color = color_demo, 
+                                    hjust = 0, size = 14),
+        legend.background = element_rect(color = "white")) +
+  coord_cartesian(clip = "off")
+
+cap_p1
+```
+
+]
+
+.panel[.panel-name[b.图题]
+
+```{r, fig.cap="图3-0:plot caption演示"}
+cap_p2 <- cap_p1 +
+  labs(title = "") +
+  theme(plot.title = element_text(color = color_demo, 
+                                    hjust = 0.5),
+        plot.caption = element_text(color = "black", 
+                                    hjust = 0)) 
+cap_p2
+```
+
+]
+
+]
+
+
+---
+
+## 样式测试
+
+.fl.w-20.pa2[
+#### 左边的竖直说明标题
+
+表明推按
+]
+
+.fl.w-80.pa2[
+
+```{r}
+value_p1
+```
+
+]
+
+
+---
+
+### 表格规范
+
+```{r}
+library("flextable")
+ft <- flextable(head(iris))
+ft <- footnote( ft, i = 1, j = 1:3,
+            value = as_paragraph(
+              c("This is footnote one",
+                "This is footnote two",
+                "This is footnote three")
+            ),
+            ref_symbols = c("a", "b", "c"),
+            part = "header")
+ft <- valign(ft, valign = "bottom", part = "header")
+autofit(ft)
+```
+
 
 ---
 layout:false
