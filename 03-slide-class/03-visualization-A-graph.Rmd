@@ -768,32 +768,21 @@ cap_p2
 
 ]
 
-
 ---
 
-## 样式测试
-
-.fl.w-20.pa2[
-#### 左边的竖直说明标题
-
-表明推按
-]
-
-.fl.w-80.pa2[
-
-```{r}
-value_p1
-```
-
-]
-
-
----
+class: flextable
 
 ### 表格规范
 
-```{r}
+表格要素包括：表序号（numbering）、表题（title）、表头（header）、主体（body）和表注（footer）等部分构成。
+
+
+```{r,tab.cap='表3-2：iris dataset数据集', message=FALSE, warning=FALSE}
 library("flextable")
+
+flextable::set_flextable_defaults(font.size = 16,
+                                  font.family =font_love)
+
 ft <- flextable(head(iris))
 ft <- footnote( ft, i = 1, j = 1:3,
             value = as_paragraph(
@@ -802,11 +791,22 @@ ft <- footnote( ft, i = 1, j = 1:3,
                 "This is footnote three")
             ),
             ref_symbols = c("a", "b", "c"),
-            part = "header")
+            part = "header",inline=T)
 ft <- valign(ft, valign = "bottom", part = "header")
-autofit(ft)
-```
 
+library(officer)
+def_par <- officer::fp_par(text.align = "center")
+
+ft <- style(x = ft, pr_p = def_par,  part ="body") 
+ft <- style(x = ft, pr_p = def_par,  part ="header") 
+
+ft <-padding(ft, padding.bottom = 1, padding.top = 1,part = "footer")
+
+ft <- color(ft, color = "red", part = "footer")
+  
+autofit(ft)
+
+```
 
 ---
 layout:false

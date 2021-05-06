@@ -32,6 +32,14 @@ table {
   padding-top: 0px;
 }
 
+/* table caption for flextable */
+
+.flextable caption {
+   color: red;
+   font-size: 90%;
+   font-family: 'Ma Shan Zheng', cursive,'楷体';
+}
+
 /* pagraph margin */
 p {
     display: block;
@@ -75,3 +83,4 @@ ul.panel-tabs {
    width: 25px;
    transform: rotate(90deg);
 }
+
