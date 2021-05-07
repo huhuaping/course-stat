@@ -7,7 +7,7 @@ output:
       - ../mycss/my-theme.css 
       - ../mycss/my-font.css
       - ../mycss/my-custom-for-video-roomy.css
-      - ../mycss/notes-tips.css
+      - ../mycss/text-box.css
       - default
       - duke-blue
       - hygge-duke
@@ -111,7 +111,88 @@ background-size: contain
 
 ---
 
-## 本节内容
+## 总量指标的概念和作用
+
+**总量指标**，又称为**绝对指标**，是反映社会经济现象一定时间、地点、条件下总的规模、水平的统计指标。
+
+> 总量指标表现形式是绝对数，也可表现为绝对差数。
+
+> 例：2009年我国财政收入6.8万亿元，比上年增收近8000亿元。
+
+**作用**：
+
+- 总量指标能反映一个国家的基本国情和国力，反映某部门、单位等人、财、的基本数据 。
+- 总量指标是进行决策和科学管理的依据之一 。 
+- 总量指标是计算相对指标和平均指标的基础。
+
+---
+
+## 总量指标的分类
+
+按其反映的**内容**不同可分为：
+
+- **总体单位总量**：度量总体的单位数数量。例如，全班学生总人数。
+
+- **总体标志总量**：度量总体中某个标志值总和的量。例如全班所有学生的总成绩。
+
+--
+
+按其反映的**时间状况**不同可分为：
+
+- **时期指标**：反映现象在某一时期发展过程的总数量。可连续计数，与时间长短有关，是累计结果。
+
+> 例如：一定时期的产品产量、产值、商品销售量、工资总额等。
+
+- **时点指标**：反映现象在某一时刻的状况。间断计数，与时间间隔无关，不能累计。
+
+> 例如：特定时刻上，人口数、企业数、商品库存数、流动资金额。
+
+---
+
+## 总量指标的计算
+
+计算总量指标时需要考虑：
+
+- 现象的同类性。 
+
+- 明确的统计含义。
+
+- 计量单位必须一致。
+
+```{block, type='puzzle', echo=T}
+**幽默故事**：
+
+钱是这样贬值的：
+
+10元=10角×10角
+    =1元×1元
+    =1元
+```
+
+---
+
+### 总量指标的计量单位
+
+总量指标计量单位主要有三种形式： 
+
+A.**实物单位**：
+
+- 自然单位：辆、双、头、根、个…… 
+- 度量衡单位：吨、米、克、立方米…… 
+- 双重单位：公里/小时、吨/台（起重机）、吨/（立方米\*座\*年）……
+- 复合单位：吨公里（货运量）、千瓦小时（度）……
+
+B.**价值单位**(货币单位)：
+
+- 货币单位有现行价格和不变价格之分。
+- 价值单位使不能直接相加的产品产量过渡到能够加总。 
+
+C.**劳动单位**：
+
+- 工时：工人数和劳动时数的乘积。
+- 台时：设备台数和开动时数的乘积。
+  
+
 
 ---
 layout: false
@@ -231,15 +312,121 @@ background-size: contain
 
 - 在比较二个相对数时，是否适宜相除再求一个相对数，应视情况而定。若除出来有实际意义，则除；若不宜相除，只宜相减求差数，用百分点表示之。
 
->百分点：即百分比中相当于百分之一的单位。
+> 百分点：即百分比中相当于百分之一的单位。
 
+---
+exclude: true
+
+## （案例）钢产量
+
+```{r}
+df<- tibble(period = rep(LETTERS[1:3], each =2) ,
+       year = c(1949,1950,1978,1979,1986,1987),
+       prod = c(15.8, 61, 3178, 3448, 5220, 5628)) %>%
+  group_by(period) %>%
+  mutate(prod_l1 = lag(prod),
+         increase = prod - prod_l1 ,
+         speed = prod/prod_l1,
+         ratio = increase/prod_l1,
+         Q_one_pct = round(increase/(100*ratio),2 ) )
+
+df_format <-  df %>%
+  mutate(speed = scales::percent(speed, accuracy = 0.01),
+         ratio = scales::percent(ratio, accuracy = 0.01))
+  
+```
 
 ---
 
-### （示例）相对指标与总量指标巧妙结合
+### （案例）钢产量：相对指标与总量指标巧妙结合
+
+.panelset[
+.panel[.panel-name[a.案例说明]
+
+**案例数据**：我国三个时期两个年份的钢产量数据如下：
+
+```{r, eval=T}
+names_chn <- c("时期", "年份", "钢产量(万吨)", "上1年产量",
+               "产量变化", "发展速度%","增长率%",
+               "增长1%的绝对值")
+df %>%
+  rename_at(vars(names(.)), ~ all_of(names_chn)) %>%
+  select(1:3) %>%
+  datatable(options = list(dom = "t")) 
+```
 
 
-```{block, type='notes', echo=T}
+]
+
+.panel[.panel-name[b.计算指标]
+
+根据以上数据，我们可以计算出：
+
+$$产量变化 \Delta =Q_{t_1} - Q_{t_0}$$ 
+
+$$发展速度\% \quad Speed = 100*Q_{t_1} / Q_{t_0}$$
+
+$$增长率\% \quad Ratio  =100*(Q_{t_1} - Q_{t_0})/Q_{t_0}=100*\Delta/Q_{t_0}$$
+$$增长1\%的绝对值 = \Delta / Ratio = Q_{t_0}/100$$
+
+]
+
+.panel[.panel-name[c.计算表1]
+
+
+根据上述指标公式，可以计算得到：
+
+```{r, eval=T}
+names_chn <- c("时期", "年份", "钢产量(万吨)", "上1年产量",
+               "产量变化", "发展速度%","增长率%",
+               "增长1%的绝对值")
+df %>%
+  rename_at(vars(names(.)), ~ all_of(names_chn)) %>%
+  datatable(options = list(dom = "t"))  %>%
+  formatRound(columns = c(8),digits = 2) %>%
+  formatPercentage(columns = c(6,7), digits = 2)#%>%
+  #ungroup() %>%
+  #unite(col = date,1:2, sep = "_")# %>%
+  #gather()
+```
+
+]
+
+.panel[.panel-name[d.计算表2]
+
+前述计算表，也可进一步变形为：
+
+```{r}
+level_eng <- c("prod", "increase", "speed", "ratio", "Q_one_pct")
+level_chn <- c("钢产量(万吨)", "产量变化", "发展速度%",
+               "增长率%","增长1%的绝对值")
+df_format %>%
+  ungroup() %>%
+  unite(col = "Date", period:year, sep = "-" ) %>%
+  select(-prod_l1) %>%
+  gather(key = "vars", value = "value", -Date) %>%
+  spread(key = Date, value = value) %>%
+  mutate(vars = mgsub::mgsub(vars, level_eng, level_chn))%>%
+  mutate(vars = factor(vars, levels = level_chn )) %>%
+  arrange(vars) %>%
+  #rename_at(vars(names(.)), ~ all_of(names_chn)) %>%
+  datatable(options = list(dom = "t"))
+```
+
+]
+
+]
+
+---
+
+## 计算结果
+
+
+
+
+
+
+```{block, type='notes', echo=F}
 
 待完成：提供数据表，展示相对指标与总量指标的结合应用。
 

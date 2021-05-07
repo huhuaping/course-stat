@@ -116,6 +116,8 @@ exclude: true
 ```{r, eval=T}
 library("showtext")
 #showtext_auto(FALSE)
+font_install(source_han_serif())
+font_families()
 #font_families()
 # https://fonts.google.com/featured/Superfamilies
 font_add_google("Noto Serif SC", "Noto Serif SC")
@@ -220,7 +222,7 @@ theme_clean <- function(){
 
 ---
 
-### 绘图区 panel
+### 制图体系：绘图区 panel
 
 
 .panelset[
@@ -319,7 +321,7 @@ panel_3
 
 ---
 
-### 坐标轴1 axis
+### 制图体系：坐标轴1 axis
 
 .panelset[
 .panel[.panel-name[a.下横轴X]
@@ -382,7 +384,7 @@ axis_py1
 
 ---
 
-### 坐标轴2 axis
+### 制图体系：坐标轴2 axis
 
 .panelset[
 
@@ -500,7 +502,7 @@ axis_4
 
 ---
 
-### 坐标轴3 axis
+### 制图体系：坐标轴3 axis
 
 .panelset[
 
@@ -508,7 +510,8 @@ axis_4
 
 ```{r}
 xtitle_px <- axis_4 +
-  labs(x = "横轴X标题 axis X title") +
+  labs(x = "横轴X标题 axis X title",
+       title = "下横轴X标题 axis X bottom title") +
   theme(axis.title.x = element_text(color = color_demo),
         axis.text.x = element_text(color = "black"),
         axis.text.y = element_text(color = "black"))
@@ -557,7 +560,7 @@ xtitle_py2
 
 ---
 
-### 图形类型 geom_xx
+### 制图体系：图形类型 geom_xx
 
 .panelset[
 .panel[.panel-name[a.点图1]
@@ -659,7 +662,7 @@ geom_p4
 
 ---
 
-### 变量数值 data value
+### 制图体系：变量数值 data value
 
 ```{r}
 value_p1 <- axis_4 +
@@ -685,7 +688,7 @@ value_p1
 
 ---
 
-### 图例 legend
+### 制图体系：图例 legend
 
 .panelset[
 .panel[.panel-name[a.图例靠右]
@@ -733,7 +736,7 @@ legend_p2
 
 ---
 
-### 图注 footnote和图题 caption
+### 制图体系：图注 footnote和图题 caption
 
 .panelset[
 .panel[.panel-name[a.图注]
@@ -754,7 +757,7 @@ cap_p1
 
 .panel[.panel-name[b.图题]
 
-```{r, fig.cap="图3-0:plot caption演示"}
+```{r, fig.cap="图3-1:plot caption演示"}
 cap_p2 <- cap_p1 +
   labs(title = "") +
   theme(plot.title = element_text(color = color_demo, 
@@ -772,7 +775,7 @@ cap_p2
 
 class: flextable
 
-### 表格规范
+### 制表体系
 
 表格要素包括：表序号（numbering）、表题（title）、表头（header）、主体（body）和表注（footer）等部分构成。
 

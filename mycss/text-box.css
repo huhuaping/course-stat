@@ -1,7 +1,7 @@
 
 /* -----------div tips------------- */
 
-div.puzzle, div.fyi, div.demo, div.note,div.case {
+div.puzzle, div.fyi, div.demo, div.notes,div.case {
   padding: 0.1em;
   margin: 0.1em 0;
   padding-left: 100px;
@@ -28,7 +28,7 @@ div.demo {
   background-image: url("img/demo2-laptop-code.png");
 }
 
-div.note {
+div.notes {
   background-image: url("img/note1-clipboard.png");
 }
 
