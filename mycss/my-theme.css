@@ -23,6 +23,12 @@ table {
   padding-bottom: 0px;
 }
 
+caption {
+  padding-bottom: 5px;
+  font-weight: bold;
+  font-family: 'Ma Shan Zheng', cursive,'楷体';
+}
+
 .caption {
   font-size: 90%;
   font-family: 'Ma Shan Zheng', cursive,'楷体';
@@ -84,3 +90,29 @@ ul.panel-tabs {
    transform: rotate(90deg);
 }
 
+
+/* footnote position and font-size */
+
+span.footnote {
+    position: absolute;
+    bottom: 1em;
+    padding-right: 0.5em;
+    font-size: 70%;
+    color: red;
+}
+
+/* blockquote */
+
+blockquote {
+    display: block;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: 10px;
+    margin-inline-end: 10px;
+}
+
+blockquote > p {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  font-size: 90%;
+}

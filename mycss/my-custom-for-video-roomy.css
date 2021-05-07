@@ -168,7 +168,13 @@ div.my-footer a {
 pre {
   background: #FFBB33;
   max-width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto; 
+  margin-top: 0pt;
+  margin-bottom: 0pt;
+  border-top: 0px;
+  padding-top: 0pt;
+  padding-bottom: 0pt;
+  padding-left: 10pt;
 }
 
 /***set vertical scroll***/
