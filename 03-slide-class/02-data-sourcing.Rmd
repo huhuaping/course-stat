@@ -3,14 +3,14 @@ output:
   xaringan::moon_reader:
     seal: false
     lib_dir: libs
-    css: 
+    css:
+      - ../mycss/my-theme.css 
+      - ../mycss/my-font.css
+      - ../mycss/my-custom-for-video-roomy.css
+      - ../mycss/text-box.css
       - default
-      - default-fonts
       - duke-blue
       - hygge-duke
-      - ../mycss/my-custom-for-video.css
-      - ../mycss/notes-tips.css
-      - ../mycss/text-box.css
     nature:
       highlightStyle: github
       highlightLines: true
@@ -36,7 +36,8 @@ class: center,middle
 
 ```{r global_options, echo=F,message=FALSE,warning=F}
 source("../R/set-global.R")
-
+options(width = 70)
+#source("../R/xaringan-chromote-print.R")
 ```
 
 
@@ -44,8 +45,23 @@ source("../R/set-global.R")
 source("../R/external-math-equation.R")
 ```
 
+
+```{r xaringan-logo, echo=FALSE}
+require('xaringanExtra')
+
+xaringanExtra::use_tachyons()
+
+xaringanExtra::use_panelset()
+
+xaringanExtra::use_logo(
+  image_url = "../pic/logo/nwafu-logo-circle-wb.png",
+  height = '70px',
+  position = xaringanExtra::css_position(top='0.2em',left="1em")
+)
+```
+
 ---
-class: center, middle, duke-softblue
+class: center, middle, duke-orange,hide_logo
 name: chapter02
 
 # 第二章 数据收集、整理和清洗
@@ -76,14 +92,14 @@ name: chapter02
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-softblue,hide_logo
 name: sources
 
 # 2.1 数据来源与形式
 
-数据来源
+### 数据来源
 
-数据载体和形态
+### 数据载体和形态
 
 ---
 layout: true
@@ -241,20 +257,20 @@ class: duke-orange
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-softblue,hide_logo
 name: collection
 
 # 2.2 数据收集
 
-陈述现实难点（problem）
+### 陈述现实难点（problem）
 
-提出研究问题（question）
+### 提出研究问题（question）
 
-数据搜集步骤
+### 数据搜集步骤
 
-收集二手数据
+### 收集二手数据
 
-收集一手数据
+### 收集一手数据
 
 ---
 layout: true
@@ -302,6 +318,10 @@ layout: true
 
 > **例子**：与该国其他地区相比，过去十年中X区的选民投票率一直在稳定下降。根据组织Y进行的调查，在25岁以下的人群和低收入人群中，投票率最低。已经进行了一些有效的尝试，以使这些团体参与其他地区的活动，在最近的两次选举中，政党A和B增加了在X区域的竞选活动，但是这些干预措施尚未对投票率产生任何重大影响。
 
+---
+
+## 陈述现实难点（problem）：如何陈述1
+
 - **对于理论研究难点**，具体关注和考虑科学，社会，地理或历史背景等方面：关于该问题的已知信息是什么？难点是否仅限于特定时间段或地理区域？这个难点在学术文献中是如何定义和辩论的？
 
 > **例子**：在过去的十年中，“零工经济”（Zero hour）已成为劳动力市场中越来越重要的部分。30岁以下的年轻人更有可能从事自由、合同或零小时工作安排，而不是传统的全职工作（full time）。关于这种转变的原因和后果的研究集中在收入、工作时间和就业条件的客观衡量上，但是很少有研究探索年轻人对零工经济的主观经验。
@@ -315,6 +335,10 @@ layout: true
 对于**实际研究难点**，重要性往往与特定难点直接相关，这个特定难点如何更广泛地影响组织、机构、社会团体或社会。因此，可以问：如果不解决难点将会怎样？谁会感到后果？难点是否具有更广泛的相关性（例如，在其他情况下是否也发现了类似的难点）？
 
 > **例子**：低投票率与社会凝聚力和公民参与度之间存在负相关关系，在许多欧洲民主国家中，这一点正日益引起人们的关注。当特定的公民群体缺乏政治代表权时，随着时间的流逝，他们很可能会被更多地排斥在外，从而导致人们对民主制度的信任度下降。解决该问题将为X区域带来实际好处，并有助于理解这一普遍现象。
+
+---
+
+## 陈述现实难点（problem）：如何陈述2
 
 对于**理论研究难点**，有时理论难点会产生明显的实际后果，但有时它们的相关性并不那么明显。要确定难点为何重要，可以问：解决难点将如何增进对议题的理解？它对未来的研究有什么好处？这个难点对社会有直接或间接的影响吗？
 
@@ -380,13 +404,21 @@ layout: true
 
 ---
 
-## （示例）如何有效地陈述现实难点
+### （示例）如何有效地陈述现实难点
 
 **现实难点**：与该国其他地区相比，在过去十年中，X区的选民投票率一直在下降。
 
 **背景情形**（已知的内容）：根据组织Y进行的调查，在25岁以下的人群和低收入人群中，投票率最低【引用具体数字】。有关Z国投票模式的文献表明，这反映了更广泛的趋势，但是该地区的人口统计信息使其成为一个更重要的问题【请使用来源进行扩展和解释】。已经进行了一些成功的尝试来提高其他区域的投票率，但是类似的干预措施尚未在X区域产生任何重大影响【引用来源】。需要就该地区参与的具体障碍以及影响青年和低收入人群的有效战略开展更多研究。
 
+---
+
+### （示例）如何有效地陈述现实难点
+
 **相关性**（为什么重要）：低投票率与社会凝聚力和公民参与度之间存在负相关关系，在许多欧洲民主国家，政党和公民社会组织正在日益关注这一领域【提供实例和引用来源】。当特定的公民群体缺乏政治代表权时，随着时间的推移，他们很可能会被更多地排斥在外，从而导致对民主机构的信任受到削弱，并在治理上带来困难【扩大并提供资料解释】。解决这一难点将使各政党有洞察力来调整其政策和竞选策略，改善X地区居民的民主包容性，并有助于对选民行为的当前趋势有更细微的了解。
+
+---
+
+### （示例）如何有效地陈述现实难点
 
 **目的和目标**（您将要做什么）：这项研究的目的是调查有效的参与策略，以增加X区投票者的投票率。它将通过调查和访谈来确定不参与投票的最重要因素，并进行实验以衡量不同策略对投票意图的影响。
 
@@ -546,7 +578,7 @@ $(\checkmark)$ 在过去十年中，经济和政治因素如何影响英国的�
 
 ---
 
-## （示例）提出好的研究问题（question）
+### （示例）提出好的研究问题（question）
 
 ```{block, type="case", echo=T}
 
@@ -559,7 +591,9 @@ $(\checkmark)$ 在过去十年中，经济和政治因素如何影响英国的�
 
 ```
 
---
+---
+
+### （示例）提出好的研究问题（question）
 
 ```{block, type="case", echo=T}
 
@@ -576,7 +610,7 @@ $(\checkmark)$ 在过去十年中，经济和政治因素如何影响英国的�
 
 ---
 
-## （示例）提出好的研究问题（question）
+### （示例）提出好的研究问题（question）
 
 ```{block, type="case", echo=T}
 
@@ -589,7 +623,9 @@ $(\checkmark)$ 在过去十年中，经济和政治因素如何影响英国的�
 
 ```
 
---
+---
+
+### （示例）提出好的研究问题（question）
 
 ```{block, type="case", echo=T}
 
@@ -615,16 +651,22 @@ $(\checkmark)$ 在过去十年中，经济和政治因素如何影响英国的�
 
 **研究数据**：是处理为结构化的、有变量、数值、变量、属性标签的数据。
 
+---
+
+## 研究数据怎么来？
+
 
 根据研究数据的持续性，来源有：
 
-1. 已经存在的数据。公开数据、正式出版数据、发布的数据，都可以直接使用。
+1.已经存在的数据。公开数据、正式出版数据、发布的数据，都可以直接使用。
 
-    - 政府各类统计数据。包括经济、就业、人口、健康、教育、产业等等数据。
-    - 上市公司公开数据。根据相关法律，公司的财务数据、生产数据应该公开。
-    - 研究机构或者研究者个人公开的数据。
+- 政府各类统计数据。包括经济、就业、人口、健康、教育、产业等等数据。
 
-2. 将要产生的数据。是系统采集的、不断在推进补充的数据。
+- 上市公司公开数据。根据相关法律，公司的财务数据、生产数据应该公开。
+
+- 研究机构或者研究者个人公开的数据。
+
+2.将要产生的数据。是系统采集的、不断在推进补充的数据。
 
 
 ---
@@ -681,10 +723,20 @@ $(\checkmark)$ 在过去十年中，经济和政治因素如何影响英国的�
 
 - 如果您有多个目标，则可以使用混合方法来收集两种类型的数据。
 
+---
 
->**（示例）**：您正在研究员工对大型组织中直接经理的看法。
+### （示例）如何定义研究目标
+
+```{block, type = "case", echo =T}
+
+
+**（示例）**：您正在研究员工对大型组织中直接经理的看法。
+
 - 您的首要目标是评估不同部门和办公室地点对经理的看法是否存在显着差异。
+
 - 您的第二个目标是从员工那里收集有意义的反馈意见，以探索有关管理人员如何改进的新想法。
+
+```
 
 
 ---
@@ -695,7 +747,7 @@ $(\checkmark)$ 在过去十年中，经济和政治因素如何影响英国的�
 
 根据您要收集的数据，确定最适合您的研究的方法。
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_tools <- read_delim("../data/data-collection-tool.txt",delim = ";")
 #DT::datatable(df_tools,options = list(pageLength =6, dom = "t"))
 df_tools %>%
@@ -704,7 +756,6 @@ df_tools %>%
   kable_styling(full_width = T) %>%
   column_spec(1, width = "2em")
 ```
-
 
 
 ---
@@ -762,7 +813,7 @@ df_tools %>%
 
 ---
 layout: false
-class: middle,right
+class: middle,right, hide_logo
 background-size: contain
 background-image: url("../pic/chpt02-search-google.png")
 
@@ -770,7 +821,7 @@ background-image: url("../pic/chpt02-search-google.png")
 
 ---
 layout: false
-class: middle,left
+class: middle,left, hide_logo
 background-size: contain
 background-image: url("../pic/chpt02-search-google-scholar.png")
 
@@ -779,7 +830,7 @@ background-image: url("../pic/chpt02-search-google-scholar.png")
 
 ---
 layout: false
-class: center,top
+class: center,top, hide_logo
 background-size: contain
 background-image: url("../pic/chpt02-search-google-book.png")
 
@@ -1023,22 +1074,20 @@ investigation %>%
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-softblue,hide_logo
 name: sampling
 
 # 2.3 抽样设计
 
-抽样的逻辑
+### 抽样的逻辑
 
-抽样的要素
+### 抽样的要素
 
-概率抽样
+### 概率/非概率抽样
 
-非概率抽样
+### 抽样方案和实施
 
-抽样方案和实施
-
-抽样误差
+### 抽样误差
 
 ---
 layout: true
@@ -2537,16 +2586,16 @@ xi呢，代表一个具体的要素，把总体要素的变异值加总， 除�
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-softblue,hide_logo
 name: error
 
 # 2.4 抽样分布和抽样误差
 
-离散和连续随机变量
+### 离散和连续随机变量
 
-总体和样本特征
+### 总体和样本特征
 
-抽样误差计算
+### 抽样误差计算
 
 ---
 layout: true
@@ -2649,7 +2698,6 @@ $P(k=5\vert n = 10, p = 0.5)$，具体计算R函数及其结果为：
 
 ```{r, echo = T} 
 p_k5 <- dbinom(x = 5,size = 10, prob = 0.5) 
-
 p_k5
 ```
 
@@ -3385,7 +3433,7 @@ t_tbl <- qt(0.975, n-1)
 
 ---
 
-## （示例）田野甲虫数量案例
+### （示例）田野甲虫数量案例
 
 .pull-left[
 
@@ -3407,7 +3455,7 @@ beetles %>%
 
 ---
 
-## （示例）简单随机抽样下估计期望和方差：计算结果
+### （示例）简单随机抽样下估计期望和方差：计算结果
 
 根据案例，容易计算得到：全部区块数量
 $N= `r N`$；抽选区块数量
@@ -3430,7 +3478,7 @@ $$\begin{align}
 
 ---
 
-## （示例）简单随机抽样下估计期望和方差：计算结果
+### （示例）简单随机抽样下估计期望和方差：计算结果
 
 根据上述计算，给定
 $\alpha = 0.05$下，平均每个区块甲虫数
@@ -3498,7 +3546,7 @@ n &=\frac{1}{\frac{d^{2}}{\mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigma^{2}}+\frac
 
 ---
 
-## （示例）简单随机抽样方案下必要样本数的计算
+### （示例）简单随机抽样方案下必要样本数的计算
 
 ```{r}
 z_tbl <- qnorm(0.975,mean = 0,sd = 1)
@@ -3627,7 +3675,7 @@ y_st <- sum(smry_df$mean_all)/N
 
 ---
 
-## （示例）家庭观看电视时长案例
+### （示例）家庭观看电视时长案例
 
 **案例说明**：一家广告公司为了有针对性地在某个县投放电视广告，公司决定进行抽样调查，以估计该县家庭每周观看电视的平均小时数。该县有两个镇区A和镇区B，还有农村区域C。A区建在一家工厂周围，大多数家庭都有带学龄儿童的工厂工人。B区主要是退休人员，C区主要是农民。A区有155户，B区有62户，C区有93户。公司决定从A区抽选20户，B区抽选8户，C区抽选12户。具体抽样结果如下：
 
@@ -3640,7 +3688,7 @@ smry_df %>%
 
 ---
 
-## （示例）分层抽样下的抽样误差：计算结果
+### （示例）分层抽样下的抽样误差：计算结果
 
 各分层的计算表如下：
 
@@ -3664,7 +3712,7 @@ $$\begin{aligned}
 
 ---
 
-## （示例）分层抽样下的抽样误差：计算结果
+### （示例）分层抽样下的抽样误差：计算结果
 
 各分层的计算表如下：
 
@@ -3684,7 +3732,7 @@ $$\begin{align}
 
 ---
 
-## （示例）分层抽样下的抽样误差：计算结果
+### （示例）分层抽样下的抽样误差：计算结果
 
 各分层的计算表如下：
 
@@ -3709,8 +3757,7 @@ $$\begin{aligned}
 = 27.7 \pm `r formatC(t*sqrt(1.97),2, format='f')`
 \end{aligned}$$
 
-.footnote[ 
-说明： <sup>*</sup> 如果不是等比例分层抽取，那么自由度的确定需要用到一个计算公式]
+.footnote[说明： <sup>*</sup> 如果不是等比例分层抽取，那么自由度的确定需要用到一个计算公式]
 
 ???
 
@@ -3751,14 +3798,14 @@ var_st^0.5
 
 .pull-left[
 
-```{r, out.height= '300px', fig.cap="系统抽样示例"}
+```{r, out.height= '250px', fig.cap="系统抽样示例"}
 include_graphics("../pic/chpt02-sampling-systematic.png")
 ```
 
 ]
 
 .pull-right[
-```{r, out.height= '300px', fig.cap="整群抽样示例"}
+```{r, out.height= '250px', fig.cap="整群抽样示例"}
 include_graphics("../pic/chpt02-sampling-cluster.png")
 ```
 ]
@@ -3776,7 +3823,7 @@ $y$值将都会被抽中。
 
 .pull-left[
 
-```{r, out.height= '300px', fig.cap="系统抽样示例"}
+```{r, out.height= '250px', fig.cap="系统抽样示例"}
 include_graphics("../pic/chpt02-sampling-systematic-psu.gif")
 ```
 
@@ -3790,7 +3837,7 @@ $n=16$。
 ]
 
 .pull-right[
-```{r, out.height= '300px', fig.cap="整群抽样示例"}
+```{r, out.height= '250px', fig.cap="整群抽样示例"}
 include_graphics("../pic/chpt02-sampling-cluster-psu.gif")
 ```
 
@@ -3808,7 +3855,7 @@ $n=8$。
 
 ---
 
-## （示例）系统抽样和整群抽样的关系
+### （示例）系统抽样和整群抽样的关系
 
 **案例说明**：下面展示的是“三采一”的系统采样：我们从前三个主要抽样单元（PSU）中随机选择一个，然后再连续地每隔三个选择一个。
 
@@ -3856,7 +3903,7 @@ $$\begin{align}
 
 ---
 
-## （示例）系统抽样的记号表达
+### （示例）系统抽样的记号表达
 
 .pull-left[
 
@@ -3880,7 +3927,7 @@ $M_i=16$：所有5*5中型方框，共有16个。
 
 ---
 
-## （示例）整群抽样的记号表达
+### （示例）整群抽样的记号表达
 
 .pull-left[
 ```{r, out.height= '400px', fig.cap="整群抽样示例"}
@@ -3974,13 +4021,13 @@ var_sy <- (M-n*Mi)/(M*n) *s2_bar_y
 
 ---
 
-## （示例）渡船汽车载客量案例
+### （示例）渡船汽车载客量案例
 
 .pull-left[
 
 **案例说明**：载有汽车横渡海湾的渡轮是按载客量而不是按人收取费用的。轮渡公司希望估算8月份每辆车的平均载人数。该公司知道去年有400辆车乘坐轮渡（见右表）。
 
-```{r,echo=TRUE}
+```{r,echo=F}
 table(ferry$persons)
 ```
 
@@ -4003,7 +4050,7 @@ ferry %>%
 
 ---
 
-## （示例）系统抽样下估计期望和方差：抽样结果
+### （示例）系统抽样下估计期望和方差：抽样结果
 
 公司决定采用
 $1-in-50(400 / 8)$的系统抽样方案，也即：
@@ -4021,7 +4068,7 @@ calc_systematic %>%
 
 ---
 
-## （示例）系统抽样下估计期望和方差：计算结果
+### （示例）系统抽样下估计期望和方差：计算结果
 
 根据案例，容易计算得到：主要抽样单位（PSU）数量
 $N= `r N`$；样本中的主要抽样单位（PSU）数量
@@ -4057,10 +4104,6 @@ $$\begin{align}
 \hat{\mu} &=  \frac{N}{M} \cdot \frac{\sum_{i=1}^{n} y_{i}}{n} \\
 \widehat{Var}(\hat{\mu}) &=\frac{N(N-n) }{M^2} \cdot \frac{s_{u}^{2}}{n}
 \end{align}$$
-
-
-
-其中：
 
 - $s_{u}^{2}=\frac{1}{n-1} \sum_{i=1}^{n}\left(y_{i}-\bar{y}\right)^{2}$
 - 
@@ -4098,9 +4141,6 @@ $$\begin{align}
 \widehat{Var}\left(\hat{\mu}_{r}\right) &=\frac{N(N-n)}{n(n-1)} \cdot \frac{1}{M^{2}} \sum_{i=1}^{n}\left(y_{i}-r M_{i}\right)^{2}
 \end{align}$$
 
-其中：
-
-- $s_{u}^{2}=\frac{1}{n-1} \sum_{i=1}^{n}\left(y_{i}-\bar{y}\right)^{2}$
 - 
 $N$表示总体中的主要抽样单元（PSU）的数量；
 $n$表示样本中的主要抽样单元（PSU）的数量；
@@ -4150,7 +4190,7 @@ var_mu <- (N*(N-n)/(M^2*n))*(s_u)^2
 
 ---
 
-## （示例）家庭休假支出案例
+### （示例）家庭休假支出案例
 
 
 .pull-left[
@@ -4176,13 +4216,13 @@ vocation %>%
 
 ---
 
-## （示例）整群抽样下的抽样误差：相关性分析
+### （示例）整群抽样下的抽样误差：相关性分析
 
 初步分析抽样的各群组我们可以发现，主要抽样单元（PSU）的**变量总值**
 $y_i$（各群组内全部家庭的旅游支出总和）与主要抽样单元（PSU）的**单位规模**
 $M_i$（各群组的家庭数）存在高度正相关关系。
 
-```{r}
+```{r, out.height= "400px"}
 vocation %>%
   ggplot(aes(x= number.households, y = total.budget)) +
   geom_point( color= "blue") +
@@ -4192,7 +4232,7 @@ vocation %>%
 
 ---
 
-## （示例）整群抽样下的抽样误差：回归分析
+### （示例）整群抽样下的抽样误差：回归分析
 
 利用`R`软件进行回归分析，可以进一步发现二者呈现显著线性关系。
 
@@ -4204,7 +4244,7 @@ out_lx <- xmerit::lx.est(lm.mod =  mod, lm.dt = vocation, style = 'srm',opt = c(
 
 ---
 
-## （示例）整群抽样下的抽样误差：比率估计法
+### （示例）整群抽样下的抽样误差：比率估计法
 
 根据整群抽样数据，我们可以计算得到次要抽样单元（SSU）的均值为：
 
@@ -4225,7 +4265,7 @@ $$\begin{align}
 
 ---
 
-## （示例）整群抽样下的抽样误差：比率估计法
+### （示例）整群抽样下的抽样误差：比率估计法
 
 前述**比率估计法**需要用到的计算表如下所示：
 
@@ -4239,7 +4279,7 @@ vocation_r %>%
 
 ---
 
-## （示例）整群抽样下的抽样误差：无偏估计法
+### （示例）整群抽样下的抽样误差：无偏估计法
 
 作为对比，下面我们再采用**无偏估计法**公示进行计算。
 
@@ -4296,14 +4336,10 @@ $$\begin{align}
 \widehat{Var}\left(\hat{\mu}_{p}\right) &=\frac{1}{n(n-1)} \sum_{i=1}^{n}\left(\bar{y}_{i}-\hat{\mu}_{p}\right)^{2}
 \end{align}$$
 
-其中：
-
-
 - 
 $\bar{y}_{i}=\frac{y_{i}}{M_{i}}$表示第
 $i$个群组的抽样均值。
-
-- $n$表示样本中的主要抽样单元（PSU）的数量；
+$n$表示样本中的主要抽样单元（PSU）的数量；
 $M_i$表示第
 $i$个主要抽样单元（PSU）中.red[次要抽样单元]（SSU）的数量；
 $M$表示总体中的所有次要抽样单元（SSU）的数量。
@@ -4353,7 +4389,7 @@ var_p <- (1/n)*(sd(calc_computer$ratio))^2
 
 ---
 
-## （示例）请求计算机援助案例
+### （示例）请求计算机援助案例
 
 
 **案例说明**：一家大型公司共有10个部门，每个部门的员工人数各不相同（见下左表）。IT部门主管计划对该公司的3个部门进行随机抽样，以估计该公司平均每个部门的计算机帮助请求数。然后，他采用**可重复抽样**的比例概率整群抽样法（pps），随机抽取了三个部门的样本数据（见下右表）：
@@ -4381,7 +4417,7 @@ sample_computer %>%
 
 ---
 
-## （示例）整群抽样下的抽样误差：计算结果
+### （示例）整群抽样下的抽样误差：计算结果
 
 
 ```{r}
@@ -4560,7 +4596,7 @@ var_r <- N*(N-n)/(n*M^2*(n-1))*tot_sum1 +N/(n*M^2)*tot_sum2
 
 ---
 
-## （示例）连锁餐厅满意度案例
+### （示例）连锁餐厅满意度案例
 
 **案例说明**：一家餐饮连锁店想估计员工对工作的平均满意度（ 里克特量表1-7分制）。该连锁店共有120家餐厅，连锁店的全体员工总数为6860人。
 研究人员决定使用**两阶段随机抽样**方案，第一阶段采用简单随机抽样来采样10家餐厅（被抽中的序号见列`id`，餐厅总员工数见列`tot_worker`）。然后，第二阶段也使用简单随机抽样对这些餐厅中约20％的员工（被抽中的员工数量见列`sel_worker`）进行抽样和工作满意度采访（见列`satisfaction`）。最终抽样数据结果如下：
@@ -4575,7 +4611,7 @@ restaurant %>%
 
 ---
 
-## （示例）多阶段抽样的抽样误差：基本计算量
+### （示例）多阶段抽样的抽样误差：基本计算量
 
 根据案例数据，容易得到：
 
@@ -4616,7 +4652,7 @@ $\bar{\hat{y}}=\frac{\sum_{i=1}^{n} \hat{y}_{i}}{n}= `r formatC(bar_hat_y, 2, fo
 
 ---
 
-## （示例）多阶段抽样的抽样误差：无偏估计法的计算量1
+### （示例）多阶段抽样的抽样误差：无偏估计法的计算量1
 
 我们可以根据**无偏估计法**的相关理论公式，得到如下的计算表：
 
@@ -4633,7 +4669,7 @@ calc_restaurant %>%
 
 ---
 
-## （示例）多阶段抽样的抽样误差：无偏估计法的计算量2
+### （示例）多阶段抽样的抽样误差：无偏估计法的计算量2
 
 从而容易计算得到到如下两个**无偏估计法**需要用到的样本方差：
 
@@ -4647,7 +4683,7 @@ $s_{i}^{2}$计算结果见前页ppt的计算表中的`variance`列。
 
 ---
 
-## （示例）多阶段抽样的抽样误差：无偏估计法的结果
+### （示例）多阶段抽样的抽样误差：无偏估计法的结果
 
 因此，采用**无偏估计法**估计得到的酒店满意度的均值和方差分别为：
 
@@ -4669,7 +4705,7 @@ $M_{i}\left(M_{i}-m_{i}\right) \frac{s_{i}^{2}}{m_{i}}$见计算表中的`sum_ri
 
 ---
 
-## （示例）多阶段抽样的抽样误差：比率估计法的计算量1
+### （示例）多阶段抽样的抽样误差：比率估计法的计算量1
 
 我们可以根据**比率估计法**的相关理论公式，得到如下的计算表：
 
@@ -4687,7 +4723,7 @@ calc_restaurant %>%
 
 ---
 
-## （示例）多阶段抽样的抽样误差：比率估计法的计算量2
+### （示例）多阶段抽样的抽样误差：比率估计法的计算量2
 
 容易计算得到到如下**比率估计法**需要用到的样本方差：
 
@@ -4700,7 +4736,7 @@ $s_{i}^{2}$计算结果见前页ppt的计算表中的`variance`列。
 
 ---
 
-## （示例）多阶段抽样的抽样误差：比率估计法的结果
+### （示例）多阶段抽样的抽样误差：比率估计法的结果
 
 因此，采用**比率估计法**估计得到的酒店满意度的均值和方差分别为：
 
@@ -4785,7 +4821,7 @@ var_p <- 1/(n*(n-1))*tot_sum
 
 ---
 
-## （示例）学生书本支出案例
+### （示例）学生书本支出案例
 
 **案例说明**：一个学院共有36个专业（`major`）。研究者想估算出上学期学生在教科书上花费（`expenses`）的平均金额。由于每个专业的规模差异很大，因此采用的两阶段抽样方案，其中第一阶段采用的是pps抽样，第二阶段是简单随机抽样。最终抽样数据结果如下：
 
@@ -4796,7 +4832,7 @@ textbook %>%
 
 ---
 
-## （示例）多阶段抽样的抽样误差：PPS估计法的计算表
+### （示例）多阶段抽样的抽样误差：PPS估计法的计算表
 
 我们可以根据**比例概率估计法**的相关理论公式，得到如下的计算表：
 
@@ -4811,11 +4847,13 @@ calc_textbook %>%
   formatRound(c(5:8), digits = 2)
 ```
 
-> 建议使用html浏览本课件，此表可以往右拉动，可以查看更多计算列。
+.footnote[
+建议使用html浏览本课件，此表可以往右拉动，可以查看更多计算列。
+]
 
 ---
 
-## （示例）多阶段抽样的抽样误差：PPS估计法的结果
+### （示例）多阶段抽样的抽样误差：PPS估计法的结果
 
 因此，采用**比例概率估计法**估计得到学生书本支出的均值和方差分别为：
 
@@ -4944,20 +4982,20 @@ exclude: true
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-softblue,hide_logo
 name: tidy
 
 # 2.5 数据整理
 
-工作流程
+### 工作流程
 
-工作记录
+### 工作记录
 
-数据库化
+### 数据库化
 
-数据检索
+### 数据检索
 
-数据安全
+### 数据安全
 
 ---
 layout: true
@@ -5087,18 +5125,18 @@ layout: true
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-softblue,hide_logo
 name: clean
 
 # 2.6 数据清洗
 
-工作内容
+### 工作内容
 
-清洗记录
+### 清洗记录
 
-备份安全
+### 备份安全
 
-清洗举例
+### 清洗举例
 
 ---
 layout: true
@@ -5539,16 +5577,16 @@ dt_sub %>%
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-softblue,hide_logo
 name: database
 
 # 2.7 数据的数据库化
 
-数据库化的类型
+### 数据库化的类型
 
-一手资料的数据库化
+### 一手资料的数据库化
 
-二手资料的数据库化
+### 二手资料的数据库化
 
 
 ---
@@ -6470,14 +6508,14 @@ names_eng <- get.vars(data = basic_vars, block = block, what = "short_eng")
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-softblue,hide_logo
 name: quality
 
 # 2.8 数据质量
 
-数据质量内涵与评估
+### 数据质量内涵与评估
 
-影响数据质量的主要原因
+### 影响数据质量的主要原因
 
 ---
 layout: true

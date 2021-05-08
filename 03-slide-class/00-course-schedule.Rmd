@@ -3,13 +3,14 @@ output:
   xaringan::moon_reader:
     seal: false
     lib_dir: libs
-    css: 
+    css:
+      - ../mycss/my-theme.css 
+      - ../mycss/my-font.css
+      - ../mycss/my-custom-for-video-roomy.css
+      - ../mycss/text-box.css
       - default
-      - default-fonts
       - duke-blue
       - hygge-duke
-      - ../mycss/my-custom-for-video.css
-      - ../mycss/notes-tips.css
     nature:
       highlightStyle: github
       highlightLines: true
@@ -33,9 +34,11 @@ class: center,middle
 
 ### `r Sys.Date()`
 
+
 ```{r global_options, echo=F,message=FALSE,warning=F}
 source("../R/set-global.R")
-
+options(width = 70)
+#source("../R/xaringan-chromote-print.R")
 ```
 
 
@@ -43,8 +46,22 @@ source("../R/set-global.R")
 source("../R/external-math-equation.R")
 ```
 
+```{r xaringan-logo, echo=FALSE}
+require('xaringanExtra')
+
+xaringanExtra::use_tachyons()
+
+xaringanExtra::use_panelset()
+
+xaringanExtra::use_logo(
+  image_url = "../pic/logo/nwafu-logo-circle-wb.png",
+  height = '70px',
+  position = xaringanExtra::css_position(top='0.2em',left="1em")
+)
+```
+
 ---
-class: center, middle,inverse
+class: center, middle, duke-orange,hide_logo
 name:chapter
 
 # 第00章：课程说明
@@ -63,7 +80,7 @@ name:chapter
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-orange,hide_logo
 name: comu
 
 # 0.1 师生互动
@@ -188,7 +205,7 @@ include_graphics("../pic/chpt00-course-university-resource.png")
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-orange,hide_logo
 name: text
 
 # 0.2 教材资料
@@ -240,7 +257,7 @@ include_graphics("../pic/chpt00-book-jia-7th.jpg")
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-orange,hide_logo
 name: software
 
 # 0.3 软件材料
@@ -300,7 +317,7 @@ layout: true
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-orange,hide_logo
 name: eval
 
 # 0.4 考核方式
@@ -332,7 +349,7 @@ layout: true
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-orange,hide_logo
 name: theory
 
 # 0.5 理论课内容
@@ -384,7 +401,7 @@ layout: true
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-orange,hide_logo
 name: lab
 
 # 0.6 实验课安排

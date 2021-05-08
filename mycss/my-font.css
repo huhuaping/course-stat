@@ -20,8 +20,9 @@ body {
   /* background: #F5F5F5; /* lighter */
   background: #e7e8e2; /* darker */
   border-radius: 0px;
-  padding: 2px;
+  padding: 0px;
 }
+
 
 .remark-inline-code { 
   font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace; 
@@ -120,5 +121,4 @@ div.dataTables_paginate,  div.dataTables_info{
 
 sup {
   color: red;
-  
 }

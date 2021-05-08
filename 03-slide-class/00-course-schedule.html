@@ -5,9 +5,11 @@
     <meta charset="utf-8" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
     <link href="libs/remark-css/duke-blue.css" rel="stylesheet" />
     <link href="libs/remark-css/hygge-duke.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
     <script src="libs/htmlwidgets/htmlwidgets.js"></script>
     <script src="libs/jquery/jquery.min.js"></script>
     <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
@@ -17,8 +19,10 @@
     <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
     <link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
     <script src="libs/crosstalk/js/crosstalk.min.js"></script>
-    <link rel="stylesheet" href="../mycss/my-custom-for-video.css" type="text/css" />
-    <link rel="stylesheet" href="../mycss/notes-tips.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -45,8 +49,43 @@ class: center,middle
 
 
 
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 70px;
+z-index: 0;
+background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:0.2em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
 ---
-class: center, middle,inverse
+class: center, middle, duke-orange,hide_logo
 name:chapter
 
 # 第00章：课程说明
@@ -65,7 +104,7 @@ name:chapter
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-orange,hide_logo
 name: comu
 
 # 0.1 师生互动
@@ -180,7 +219,7 @@ layout: true
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-orange,hide_logo
 name: text
 
 # 0.2 教材资料
@@ -230,7 +269,7 @@ layout: true
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-orange,hide_logo
 name: software
 
 # 0.3 软件材料
@@ -290,7 +329,7 @@ layout: true
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-orange,hide_logo
 name: eval
 
 # 0.4 考核方式
@@ -322,7 +361,7 @@ layout: true
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-orange,hide_logo
 name: theory
 
 # 0.5 理论课内容
@@ -374,7 +413,7 @@ layout: true
 
 ---
 layout: false
-class: center, middle, duke-orange
+class: center, middle, duke-orange,hide_logo
 name: lab
 
 # 0.6 实验课安排
@@ -401,8 +440,8 @@ layout: true
 
 
 
-<div id="htmlwidget-66eaa45cc6cff4f07ba0" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-66eaa45cc6cff4f07ba0">{"x":{"filter":"none","data":[["1","2","3","4","5","6"],["Lab 1","Lab 2","Lab 3","Lab 4","Lab 5","Lab 6"],["Excel 基础","数据收集和整理","图表制作进阶1","图表制作进阶2","相关和回归分析","综合统计分析报告"],[3,3,3,3,2,2],["第11周","第12周","第13周","第14周","第15周","第16周"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>序号<\/th>\n      <th>实验主题<\/th>\n      <th>学时<\/th>\n      <th>周次<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1be34c119883bb35eb12" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1be34c119883bb35eb12">{"x":{"filter":"none","data":[["1","2","3","4","5","6"],["Lab 1","Lab 2","Lab 3","Lab 4","Lab 5","Lab 6"],["Excel 基础","数据收集和整理","图表制作进阶1","图表制作进阶2","相关和回归分析","综合统计分析报告"],[3,3,3,3,2,2],["第11周","第12周","第13周","第14周","第15周","第16周"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>序号<\/th>\n      <th>实验主题<\/th>\n      <th>学时<\/th>\n      <th>周次<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 .footnote[.red[**注意**：&lt;sup&gt;*&lt;/sup&gt; 
 - 实验作业发布和提交全部在学校**在线教育综合平台**完成！请尽快登陆课程网站，确认自己登陆进去。
