@@ -1,0 +1,2311 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>05-regression.utf8</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css/hygge-duke.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/jquery/jquery.min.js"></script>
+    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding/datatables.js"></script>
+    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <link href="libs/tabwid/tabwid.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+
+# 统计学原理(Statistic)
+
+&lt;!---    chakra: libs/remark-latest.min.js ---&gt;
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### 2021-05-13
+
+
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 70px;
+z-index: 0;
+background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:0.2em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+---
+class: center, middle, duke-orange,hide_logo
+name:chapter
+
+# 第五章 相关和回归分析
+
+
+### [5.1 变量间关系的度量](#measure)
+
+### [5.2 一元线性回归](#regression)
+
+### [5.3 估计和预测](#estimation)
+
+### [5.4 残差分析](#residual)
+
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: absolute
+
+# 5.1 变量间关系的度量
+
+### 变量间的关系
+
+### 相关关系的描述与测度
+
+### 相关系数的显著性检验
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter"&gt; 第05章 相关和回归分析 &lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#absolute"&gt; 5.1 变量间关系的度量 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+### （示例）变量间的关系：经济学专业解读
+
+&lt;img src="../pic/chpt05-intro-1-econ.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “我们数据不少，做了很严格的回归，但异常值略多略多，符合理论的数值反而难找……”
+
+---
+
+### （示例）变量间的关系：金融学专业解读
+
+&lt;img src="../pic/chpt05-intro-2-fin.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “我们的数据多如牛毛，无孔不入。即使做完回归，也会发现异常值和符合理论的数值多得不忍直视。”
+
+---
+
+### （示例）变量间的关系：土木工程专业解读
+
+&lt;img src="../pic/chpt05-intro-3-engine.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “我们得要设计余量，所以理论设计得远高于实际承受……”
+
+---
+
+### （示例）变量间的关系：物理学专业解读
+
+&lt;img src="../pic/chpt05-intro-4-physics.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “我们的理论和数据严丝合缝，bingo！”
+
+---
+
+### （示例）变量间的关系：环境科学专业解读
+
+&lt;img src="../pic/chpt05-intro-5-eniron.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “我们的理论和数据大致吻合，就是……应用范围有点蛋疼。”
+
+---
+
+### （示例）变量间的关系：历史学专业解读
+
+&lt;img src="../pic/chpt05-intro-6-history.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “数据虽然很多，可我们能用理论把他们统统连起来！”
+
+---
+
+### （示例）变量间的关系：政治学专业解读
+
+&lt;img src="../pic/chpt05-intro-7-politics.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “世界大势一日三变，尽管我们数据不少，可……我们的理论跟数据趋势是反着来的……”
+
+---
+
+### （示例）变量间的关系：社会学专业解读
+
+&lt;img src="../pic/chpt05-intro-8-sociology.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “学海无涯苦作舟。那么多数据，那么多理论，慢慢学，恩……”
+
+---
+
+### （示例）变量间的关系：数学专业解读
+
+&lt;img src="../pic/chpt05-intro-9-math.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “数据很少，但能建立理论～”
+
+---
+
+### （示例）变量间的关系：新闻学专业解读
+
+&lt;img src="../pic/chpt05-intro-10-journalism.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; （示例）“只有一个数据，也能建立理论……”
+
+---
+
+### （示例）变量间的关系：哲学专业解读
+
+&lt;img src="../pic/chpt05-intro-11-philosophy.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “没有数据，依然建立理论……”
+
+
+---
+
+### （示例）变量间的关系：文学批评专业解读
+
+&lt;img src="../pic/chpt05-intro-12-literary.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “如图所示，你懂的……”
+
+---
+
+## 变量间的关系：函数关系
+
+两个变量若存在是一一对应的确定关系，则称之为二者具有**函数关系**。
+
+&lt;div class="notes"&gt;
+&lt;p&gt;设有两个变量 &lt;span class="math inline"&gt;\(X\)&lt;/span&gt;和 &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;，变量 &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;随变量 &lt;span class="math inline"&gt;\(X\)&lt;/span&gt;一起变化，并完全依赖于 &lt;span class="math inline"&gt;\(X\)&lt;/span&gt;，当变量 &lt;span class="math inline"&gt;\(X\)&lt;/span&gt;取某个数值时， &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;依确定的关系取相应的值，则称 &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;是 &lt;span class="math inline"&gt;\(X\)&lt;/span&gt;的函数，记为 &lt;span class="math inline"&gt;\(Y = f(X)\)&lt;/span&gt;，其中 &lt;span class="math inline"&gt;\(X\)&lt;/span&gt;称为自变量， &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;称为因变量。&lt;/p&gt;
+&lt;/div&gt;
+
+
+
+&gt; 从**几何学**角度来看，数据集各观测点会落在一条曲线上。
+
+---
+
+### （示例）函数关系
+
+某种商品的销售额
+`\(Y\)`与销售量
+`\(X\)`之间的关系可表示为(
+`\(P\)`为单价)：
+
+`$$Y_i = P_i\cdot X_i$$`
+
+圆的面积
+`\(S\)`与半径
+`\(R\)`之间的关系可表示为：
+
+`$$S = \pi R^2$$`
+
+企业的原材料消耗额
+`\(Y\)`与产量
+`\(X1\)` 、单位产量消耗
+`\(X2\)` 、原材料价格
+`\(X3\)`之间的关系可表示为：
+
+`$$Y = X_1 \cdot X_2 \cdot X_3$$`
+
+---
+
+## 变量间的关系：相关关系(correlation)
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-measure-rel.png" alt="相关关系的类型" width="90%" /&gt;
+&lt;p class="caption"&gt;相关关系的类型&lt;/p&gt;
+&lt;/div&gt;
+
+
+---
+
+### （示例）相关关系
+
+&lt;div class="case"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;父亲身高 &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;与子女身高 &lt;span class="math inline"&gt;\(X\)&lt;/span&gt;之间的关系&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;收入水平 &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;与受教育程度 &lt;span class="math inline"&gt;\(X\)&lt;/span&gt;之间的关系&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;粮食单位面积产量 &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;与施肥量 &lt;span class="math inline"&gt;\(X1\)&lt;/span&gt; 、降雨量 &lt;span class="math inline"&gt;\(X2\)&lt;/span&gt;、温度 &lt;span class="math inline"&gt;\(X3\)&lt;/span&gt;之间的关系&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;商品的消费量 &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;与居民收入 &lt;span class="math inline"&gt;\(X\)&lt;/span&gt;之间的关系&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;商品销售额 &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;与广告费支出 &lt;span class="math inline"&gt;\(X\)&lt;/span&gt;之间的关系&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+
+---
+
+## 相关关系的描述与测度：问题与假定
+
+相关分析要解决的问题：
+
+- 变量之间是否存在关系？
+
+- 如果存在关系，它们之间是什么样的关系？
+
+- 变量之间的关系强度如何？
+
+- 样本所反映的变量之间的关系能否代表总体变量之间的关系？
+
+相关分析中的总体假定：
+
+- 两个变量之间是线性关系
+
+- 两个变量都是随机变量
+
+---
+
+## 相关关系的描述与测度：散点图
+
+.fl.w-50[
+
+&lt;img src="../pic/chpt05-scatter-p0.png" width="583" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.fl.w-50[
+
+&lt;img src="../pic/chpt05-scatter-p1.png" width="583" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## 相关关系的描述与测度：散点图
+
+
+.fl.w-50[
+
+&lt;img src="../pic/chpt05-scatter-n0.png" width="583" style="display: block; margin: auto;" /&gt;
+
+]
+
+--
+
+.fl.w-50[
+
+&lt;img src="../pic/chpt05-scatter-n1.png" width="583" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+## 相关关系的描述与测度：散点图
+
+.fl.w-50[
+
+&lt;img src="../pic/chpt05-scatter-nonline.png" width="584" style="display: block; margin: auto;" /&gt;
+
+]
+
+--
+
+.fl.w-50[
+
+&lt;img src="../pic/chpt05-scatter-independence.png" width="584" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+## 相关关系的描述与测度：散点图
+
+&lt;img src="../pic/chpt05-scatter-all-cases.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+### （示例）两类油价的散点图
+
+&lt;img src="../pic/chpt05-scatter-oil-price.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+### （示例）传染病与认知水平的散点图
+
+&lt;img src="../pic/chpt05-scatter-disease.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 相关关系的描述与测度：相关系数
+
+**相关系数**(correlation coefficient)：是度量变量之间关系强度的一个统计量。
+
+- 它是对两个变量之间线性相关强度的一种度量。
+
+- 一般称为**简单相关系数**，也称为**线性相关系数**(linear correlation coefficient) 。
+
+- 或称为**Pearson相关系数**(Pearson’s correlation coefficient) 。
+
+相关系数记号表达：
+
+- 若相关系数是根据总体全部数据计算的，称为总体相关系数，记为
+`\(\rho\)`。
+
+- 若是根据样本数据计算的，则称为样本相关系数，简称为相关系数，记为
+`\(r\)`。
+
+
+---
+
+## 相关关系的描述与测度：计算公式
+
+.mb1.bg-light-blue[
+简单相关系数的大FF计算公式：
+
+`$$\begin{align}
+r &amp; = \frac{n \sum X_i Y_i -\sum X_i \sum Y_i}{\sqrt{n \sum X_i^{2}-\left(\sum X_i\right)^{2}} \cdot \sqrt{n \sum Y_i^{2}-\left(\sum Y_i\right)^{2}}}
+\end{align}$$`
+
+]
+
+.mb1.bg-light-blue[
+简单相关系数的小ff计算公式：
+
+`$$\begin{align}
+r &amp; = \frac{ \sum{\left( (X_i - \overline{X})(Y_i - \overline{Y})\right ) } }{\sqrt{\sum{(X_i - \overline{X})^2 }\sum{(Y_i - \overline{Y})^2}}} 
+= \frac{S S_{XY}}{\sqrt{S S_{XX}} \sqrt{S S_{YY}}}
+= \frac{\sum{x_iy_i}}{\sqrt{\sum{x_i^2}\sum{y_i^2}}}
+
+\end{align}$$`
+
+]
+
+
+.mb1.bg-lightest-blue[
+
+其中：
+
+`$$\begin{align}
+S S_{X X} =\sum_{i=1}^{n}\left(X_{i}-\overline{X}\right)^{2}  ;\quad 
+S S_{Y Y} =\sum_{i=1}^{n}\left(Y_{i}-\overline{Y}\right)^{2}  ;\quad 
+S S_{X Y}=\sum_{i=1}^{n}\left(X_{i}-\overline{X}\right)\left(Y_{i}-\overline{Y}\right)
+\end{align}$$`
+
+]
+
+
+---
+
+## 相关关系的描述与测度：特征
+
+简单相关系数的特征：
+
+**性质1**：
+`\(r\)`的取值范围是
+`\([-1,1]\)`，
+`\(|r|\)`越趋于1表示相关关系越强；
+`\(|r|\)`越趋于0表示相关关系越弱。
+
+
+- 如果
+`\(|r|=1\)`，为完全相关。其中
+`\(r =1\)`，为完全正相关；
+`\(r =-1\)`，为完全负正相关
+
+- 如果
+`\(r = 0\)`，不存在线性相关关系
+
+- 如果
+`\(-1&lt;r&lt;0\)`，为负相关；如果
+`\(0&lt;r&lt;1\)`，为正相关。
+
+
+**性质2**：r具有对称性。即
+`\(X\)`与
+`\(Y\)`之间的相关系数和
+`\(Y\)`与
+`\(X\)`之间的相关系数相等，即
+`\(r_{XY}= r_{YX}\)`。
+
+---
+
+## 相关关系的描述与测度：特征
+
+简单相关系数的特征：
+
+**性质3**：
+`\(r\)`数值大小与
+`\(X\)`和
+`\(Y\)`原点及尺度无关，即改变
+`\(X\)`和
+`\(Y\)`的数据原点及计量尺度，并不改变
+`\(r\)`数值大小。
+
+**性质4**：仅仅是
+`\(X\)`与
+`\(Y\)`之间线性关系的一个度量，它不能用于描述非线性关系。这意为着，
+`\(r=0\)`只表示两个变量之间不存在线性相关关系，并不说明变量之间没有任何关系
+
+**性质5**：
+`\(r\)`虽然是两个变量之间线性关系的一个度量，却不一定意味着
+`\(X\)`与
+`\(Y\)`一定有因果关系。
+
+---
+
+## 相关关系的描述与测度：解释
+
+
+&lt;div class="fyi"&gt;
+&lt;p&gt;下面给出实证研究时，对相关系数的经验解释：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;当 &lt;span class="math inline"&gt;\(|r|&amp;lt;0.8\)&lt;/span&gt;时，可视为两个变量之间高度相关。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;当 &lt;span class="math inline"&gt;\(0.5&amp;lt;|r|&amp;lt;0.8\)&lt;/span&gt;时，可视为中度相关。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;当 &lt;span class="math inline"&gt;\(0.3&amp;lt;|r|&amp;lt;0.5\)&lt;/span&gt;时，视为低度相关。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;当 &lt;span class="math inline"&gt;\(|r|&amp;lt;0.3\)&lt;/span&gt;时，说明两个变量之间的相关程度极弱，可视为不相关。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;而且上述解释必须建立在对相关系数的显著性进行检验的基础之上。&lt;/p&gt;
+&lt;/div&gt;
+
+
+
+---
+
+## 偏相关系数
+
+
+**偏相关系数**（partial correlation coefficient）：
+一个不依赖于
+`\(X_{2i}\)`的，对
+`\(X_{3i}\)`和
+`\(Y_i\)`的影响的一种相关系数。
+
+- 保持
+`\(X_{3i}\)`不变，
+`\(Y_i\)`和
+`\(X_{2i}\)`之间的相关系数：
+
+`$$\begin {align} 
+r_{12 \cdot 3}=\frac{r_{12}-r_{13} r_{23}}{\sqrt{\left(1-r_{13}^{2}\right)\left(1-r_{23}^{2}\right)}}
+\end {align}$$`
+
+- 保持
+`\(X_{2i}\)`不变，
+`\(Y_i\)`和
+`\(X_{3i}\)`之间的相关系数：
+
+`$$\begin {align} 
+r_{13.2}=\frac{r_{13}-r_{12} r_{23}}{\sqrt{\left(1-r_{12}^{2}\right)\left(1-r_{23}^{2}\right)}}
+\end {align}$$`
+
+- 保持
+`\(Y_i\)`不变，
+`\(X_{2i}\)`和
+`\(X_{3i}\)`之间的相关系数：
+
+`$$\begin {align} 
+r_{23.1}=\frac{r_{23}-r_{12} r_{13}}{\sqrt{\left(1-r_{12}^{2}\right)\left(1-r_{13}^{2}\right)}}
+\end {align}$$`
+
+---
+
+## 简单相关系数
+
+
+**简单相关系数**（simple correlation coefficient）：
+
+
+- 
+`\(Y_i\)`和
+`\(X_{2i}\)`之间的相关系数：
+
+`$$\begin {align} 
+r_{12}=\frac{\sum y_{i} x_{2 i}}{\sqrt{\sum y_{i}^{2}} \sqrt{\sum x_{2 i}^{2}}}
+\end {align}$$`
+
+- 
+`\(Y_i\)`和
+`\(X_{3i}\)`之间的相关系数：
+
+`$$\begin {align} 
+r_{13}=\frac{\sum y_{i} x_{3 i}}{\sqrt{\sum y_{i}^{2}} \sqrt{\sum x_{3 i}^{2}}}
+\end {align}$$`
+
+- 
+`\(X_{2i}\)`和
+`\(X_{3i}\)`之间的相关系数：
+
+`$$\begin {align} 
+r_{23}=\frac{\sum x_{2 i} x_{3 i}}{\sqrt{\sum x_{2 i}^{2}} \sqrt{\sum x_{3 i}^{2}}}
+\end {align}$$`
+
+---
+
+## 相关系数的显著性检验
+
+**相关系数的显著性检验**，是指检验两个变量之间是否存在线性相关关系。
+
+相关系数的显著性检验方法包括：
+
+- 等价于对回归斜率系数
+`\(\beta_1\)`的检验（仅针对一元回归）
+
+- 采用R. A. Fisher提出的t检验
+
+---
+
+## 相关系数的显著性检验
+
+相关系数的显著性检验步骤：
+
+1）提出假设：
+`\(H_0: \rho =0; H_1: \rho \neq 0\)`
+
+2）计算样本统计量
+
+`$$T^{\ast} = |r|\sqrt{\frac{n-2}{1-r^2}} \quad \sim t(n-2)$$`
+
+3）给定显著性水平
+`\(\alpha\)`，确定t理论分布值
+`\(t_{1-\alpha/2}(n-2)\)`。
+
+4）得到假设检验结论：
+
+- 若
+`\(T^{\ast}&gt; t_{1-\alpha/2}(n-2)\)`，则拒绝
+`\(H_0\)`，认为显著存在相关关系；
+
+- 若
+`\(T^{\ast} &lt; t_{1-\alpha/2}(n-2)\)`，则无法拒绝
+`\(H_0\)`，认为相关关系不显著。
+
+---
+
+exclude: true
+
+## （案例）银行贷款
+
+
+
+
+
+
+
+
+
+---
+
+### （案例）银行贷款：案例数据
+
+**案例说明**：某银行共有25家分行，分行及所在地区的相关变量数据如下表所示。
+
+<div id="htmlwidget-78a393258ff38ea476e4" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-78a393258ff38ea476e4">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],[0.9,1.1,4.8,3.2,7.8,2.7,1.6,12.5,1,2.6,0.3,4,0.8,3.5,10.2,3,0.2,0.4,1,6.8,11.6,1.6,1.2,7.2,3.2],[67.3,111.3,173,80.8,199.7,16.2,107.4,185.4,96.1,72.8,64.2,132.2,58.6,174.6,263.5,79.3,14.8,73.5,24.7,139.4,368.2,95.7,109.6,196.2,102.2],[6.8,19.8,7.7,7.2,16.5,2.2,10.7,27.1,1.7,9.1,2.1,11.2,6,12.7,15.6,8.9,0.6,5.9,5,7.2,16.8,3.8,10.3,15.8,12],[5,16,17,10,19,1,17,18,10,14,11,23,14,26,34,15,2,11,4,28,32,10,14,16,10],[51.9,90.9,73.7,14.5,63.2,2.2,20.2,43.8,55.9,64.3,42.7,76.7,22.8,117.1,146.7,29.9,42.1,25.3,13.4,64.3,163.9,44.5,67.9,39.7,97.1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>ID.bank<\/th>\n      <th>loan.bad<\/th>\n      <th>loan.surplus<\/th>\n      <th>loan.receivable<\/th>\n      <th>loan.numbers<\/th>\n      <th>investment.fixed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":7,"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[7,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+.footnote[**说明**：上述变量的含义分别是ID.bank（分行编号）、loan.bad（不良贷款）、loan.surplus（各项贷款余额
+）、loan.receivable（本年累计应收贷款）、loan.numbers（贷款项目个数）、investment.fixed（本年固定资产投资额）。]
+
+---
+
+### （案例）银行贷款：不良贷款VS贷款余额的散点图
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-30-1.png" alt="不良贷款VS贷款余额散点图"  /&gt;
+&lt;p class="caption"&gt;不良贷款VS贷款余额散点图&lt;/p&gt;
+&lt;/div&gt;
+
+
+
+---
+
+### （案例）银行贷款：不良贷款VS贷款余额的相关系数（大FF）
+
+.left-column[
+
+#### 1)大FF计算表
+
+]
+
+.right-column[
+
+<div id="htmlwidget-73abfa75825fae4bb8f6" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-73abfa75825fae4bb8f6">{"x":{"filter":"none","caption":"<caption>大FF计算表<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26"],["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","Total"],[0.9,1.1,4.8,3.2,7.8,2.7,1.6,12.5,1,2.6,0.3,4,0.8,3.5,10.2,3,0.2,0.4,1,6.8,11.6,1.6,1.2,7.2,3.2,93.2],[67.3,111.3,173,80.8,199.7,16.2,107.4,185.4,96.1,72.8,64.2,132.2,58.6,174.6,263.5,79.3,14.8,73.5,24.7,139.4,368.2,95.7,109.6,196.2,102.2,3006.7],[60.57,122.43,830.4,258.56,1557.66,43.74,171.84,2317.5,96.1,189.28,19.26,528.8,46.88,611.1,2687.7,237.9,2.96,29.4,24.7,947.92,4271.12,153.12,131.52,1412.64,327.04,17080.14],[4529.29,12387.69,29929,6528.64,39880.09,262.44,11534.76,34373.16,9235.21,5299.84,4121.64,17476.84,3433.96,30485.16,69432.25,6288.49,219.04,5402.25,610.09,19432.36,135571.24,9158.49,12012.16,38494.44,10444.84,516543.37],[0.81,1.21,23.04,10.24,60.84,7.29,2.56,156.25,1,6.76,0.09,16,0.64,12.25,104.04,9,0.04,0.16,1,46.24,134.56,2.56,1.44,51.84,10.24,660.1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>ID.bank<\/th>\n      <th>Y<\/th>\n      <th>X<\/th>\n      <th>XY<\/th>\n      <th>X_sqr<\/th>\n      <th>Y_sqr<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":7,"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[7,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render"],"jsHooks":[]}</script>
+
+]
+
+---
+
+### （案例）银行贷款：不良贷款VS贷款余额的相关系数（大FF）
+
+.left-column[
+
+#### 1)大FF计算表
+
+#### 2)r计算式1
+
+]
+
+.right-column[
+
+`$$\begin{align}
+r &amp; = \frac{n \sum X_i Y_i -\sum X_i \sum Y_i}{\sqrt{n \sum X_i^{2}-\left(\sum X_i\right)^{2}} \cdot \sqrt{n \sum Y_i^{2}-\left(\sum Y_i\right)^{2}}} \\
+&amp; = \frac{25 \times 17080.14 - 3006.7 \times 93.2}{\sqrt{25 \times 516543.37-\left(3006.7\right)^2} \cdot \sqrt{25 \times 660.1-\left( 93.2\right)^{2}}}  \\
+&amp; = 0.8436
+\end{align}$$`
+
+]
+
+---
+
+### （案例）银行贷款：不良贷款VS贷款余额的相关系数（小ff）
+
+.left-column[
+
+#### 1)小ff计算表
+
+]
+
+.right-column[
+
+<div id="htmlwidget-2861cd1d6a84d6d7b53b" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2861cd1d6a84d6d7b53b">{"x":{"filter":"none","caption":"<caption>小ff计算表<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26"],["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","Total"],[0.9,1.1,4.8,3.2,7.8,2.7,1.6,12.5,1,2.6,0.3,4,0.8,3.5,10.2,3,0.2,0.4,1,6.8,11.6,1.6,1.2,7.2,3.2,93.2],[67.3,111.3,173,80.8,199.7,16.2,107.4,185.4,96.1,72.8,64.2,132.2,58.6,174.6,263.5,79.3,14.8,73.5,24.7,139.4,368.2,95.7,109.6,196.2,102.2,3006.7],[-52.968,-8.968,52.732,-39.468,79.432,-104.068,-12.868,65.132,-24.168,-47.468,-56.068,11.932,-61.668,54.332,143.232,-40.968,-105.468,-46.768,-95.568,19.132,247.932,-24.568,-10.668,75.932,-18.068,-6.3948846218409e-14],[-2.828,-2.628,1.072,-0.528,4.072,-1.028,-2.128,8.772,-2.728,-1.128,-3.428,0.272,-2.928,-0.228,6.472,-0.728,-3.528,-3.328,-2.728,3.072,7.872,-2.128,-2.528,3.472,-0.528,5.32907051820075e-15],[2805.609024,80.4250240000001,2780.663824,1557.723024,6309.442624,10830.148624,165.585424,4242.177424,584.092224,2253.211024,3143.620624,142.372624,3802.942224,2951.966224,20515.405824,1678.377024,11123.499024,2187.245824,9133.242624,366.033424,61470.276624,603.586624,113.806224,5765.668624,326.452624,154933.5744],[7.997584,6.906384,1.149184,0.278784,16.581184,1.056784,4.528384,76.947984,7.441984,1.272384,11.751184,0.0739840000000001,8.573184,0.0519839999999999,41.886784,0.529984,12.446784,11.075584,7.441984,9.437184,61.968384,4.528384,6.390784,12.054784,0.278784,312.6504],[149.793504,23.567904,56.528704,20.839104,323.447104,106.981904,27.383104,571.337904,65.930304,53.543904,192.201104,3.245504,180.563904,-12.387696,926.997504,29.824704,372.091104,155.643904,260.709504,58.773504,1951.720704,52.280704,26.968704,263.635904,9.53990399999999,5871.1624]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>ID.bank<\/th>\n      <th>Y<\/th>\n      <th>X<\/th>\n      <th>x<\/th>\n      <th>y<\/th>\n      <th>x_sqr<\/th>\n      <th>y_sqr<\/th>\n      <th>xy<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":7,"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[7,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render"],"jsHooks":[]}</script>
+
+]
+
+---
+
+### （案例）银行贷款：不良贷款VS贷款余额的相关系数
+
+.left-column[
+
+#### 1)小ff计算表
+
+#### 2)r计算式2
+
+]
+
+.right-column[
+
+`$$\begin{align}
+r &amp; = \frac{ \sum{\left( (X_i - \overline{X})(Y_i - \overline{Y})\right ) } }{\sqrt{\sum{(X_i - \overline{X})^2 (Y_i - \overline{Y})^2}}} \\
+&amp; = \frac{\sum{x_i y_i}}{\sqrt{\sum{x_i^2}\sum{y_i^2}}} \\
+&amp; = \frac{5871.16}{\sqrt{ 154933.57 \times 312.65}} \\
+&amp; = 0.8436
+\end{align}$$`
+
+]
+
+---
+
+### （案例）银行贷款：相关系数矩阵(Pearson)
+
+
+```r
+corl_pearson&lt;- round(cor(df_loan[,-1], method = "pearson"),4) 
+corl_pearson[upper.tri(corl_pearson)]&lt;- NA
+```
+
+
+
+&lt;template id="ad6d3fee-973c-454e-8764-1b5182d01b13"&gt;&lt;style&gt;
+.tabwid table{
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-spacing: 0;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-c26e454a{border-collapse:collapse;}.cl-c2640c7e{font-family:'Arial';font-size:19pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c2640c7f{font-family:'Arial';font-size:19pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(255, 0, 0, 1.00);background-color:transparent;}.cl-c2640c80{font-family:'Arial';font-size:19pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(255, 165, 0, 1.00);background-color:transparent;}.cl-c2640c81{font-family:'Arial';font-size:19pt;font-weight:normal;font-style:normal;text-decoration:none;background-color:transparent;}.cl-c2643334{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c2648154{width:157.8pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2648155{width:135.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2648156{width:123pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2648157{width:93.4pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2648158{width:148.3pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2648159{width:135.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264815a{width:93.4pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264815b{width:157.8pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264815c{width:123pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264815d{width:148.3pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264815e{width:157.8pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264a88c{width:148.3pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264a88d{width:123pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264a88e{width:93.4pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264a88f{width:135.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264a890{width:123pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264a891{width:157.8pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264a892{width:135.7pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264a893{width:93.4pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264a894{width:148.3pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264a895{width:157.8pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264a896{width:135.7pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264cf6a{width:123pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264cf6b{width:148.3pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c264cf6c{width:93.4pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-c26e454a'&gt;&lt;caption class="Table Caption"&gt;Pearson相关系数矩阵&lt;/caption&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-c264a895"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt; &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264cf6c"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;loan.bad&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264cf6a"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;loan.surplus&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264cf6b"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;loan.receivable&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264a896"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;loan.numbers&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264a895"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;investment.fixed&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-c2648154"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;loan.bad&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2648157"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;1.0000&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2648156"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c81"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2648158"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c81"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2648155"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c81"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2648154"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c81"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-c264815b"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;loan.surplus&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264815a"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7f"&gt;0.8436&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264815c"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;1.0000&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264815d"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c81"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2648159"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c81"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264815b"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c81"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-c264815e"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;loan.receivable&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264a88e"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c80"&gt;0.7315&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264a88d"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;0.6788&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264a88c"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;1.0000&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264a88f"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c81"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264815e"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c81"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-c264815e"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;loan.numbers&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264a88e"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c80"&gt;0.7003&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264a88d"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7f"&gt;0.8484&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264a88c"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;0.5858&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264a88f"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;1.0000&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264815e"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c81"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-c264a891"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;investment.fixed&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264a893"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;0.5185&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264a890"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c80"&gt;0.7797&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264a894"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;0.4724&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264a892"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c80"&gt;0.7466&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c264a891"&gt;&lt;p class="cl-c2643334"&gt;&lt;span class="cl-c2640c7e"&gt;1.0000&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
+&lt;div class="flextable-shadow-host" id="c1344b50-b2b7-47fa-8b84-c8921c4a72a7"&gt;&lt;/div&gt;
+&lt;script&gt;
+var dest = document.getElementById("c1344b50-b2b7-47fa-8b84-c8921c4a72a7");
+var template = document.getElementById("ad6d3fee-973c-454e-8764-1b5182d01b13");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+&lt;/script&gt;
+
+---
+
+### （案例）银行贷款：相关系数矩阵(Spearman)
+
+
+```r
+corl_spearman&lt;- round(cor(df_loan[,-1], method = "spearman"),4) 
+corl_spearman[upper.tri(corl_spearman)] &lt;- NA
+```
+
+
+&lt;template id="47f01673-0295-4d92-8ac9-f1cb6e88667f"&gt;&lt;style&gt;
+.tabwid table{
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-spacing: 0;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-c29d69d8{border-collapse:collapse;}.cl-c293a7fe{font-family:'Arial';font-size:19pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c293a7ff{font-family:'Arial';font-size:19pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(255, 0, 0, 1.00);background-color:transparent;}.cl-c293a800{font-family:'Arial';font-size:19pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(255, 165, 0, 1.00);background-color:transparent;}.cl-c293a801{font-family:'Arial';font-size:19pt;font-weight:normal;font-style:normal;text-decoration:none;background-color:transparent;}.cl-c293cd06{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c293f5ba{width:157.8pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c293f5bb{width:135.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c293f5bc{width:123pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c293f5bd{width:93.4pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c293f5be{width:148.3pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c293f5bf{width:135.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c293f5c0{width:93.4pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c293f5c1{width:157.8pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c293f5c2{width:123pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c293f5c3{width:148.3pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c293f5c4{width:157.8pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2941cca{width:148.3pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2941ccb{width:123pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2941ccc{width:93.4pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2941ccd{width:135.7pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2941cce{width:123pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2941ccf{width:157.8pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2941cd0{width:135.7pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2941cd1{width:93.4pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2941cd2{width:148.3pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2941cd3{width:157.8pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c2941cd4{width:135.7pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c29443e4{width:123pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c29443e5{width:148.3pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c29443e6{width:93.4pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-c29d69d8'&gt;&lt;caption class="Table Caption"&gt;Spearman相关系数矩阵&lt;/caption&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-c2941cd3"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt; &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c29443e6"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;loan.bad&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c29443e4"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;loan.surplus&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c29443e5"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;loan.receivable&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2941cd4"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;loan.numbers&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2941cd3"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;investment.fixed&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-c293f5ba"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;loan.bad&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c293f5bd"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;1.0000&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c293f5bc"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a801"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c293f5be"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a801"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c293f5bb"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a801"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c293f5ba"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a801"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-c293f5c1"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;loan.surplus&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c293f5c0"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7ff"&gt;0.8339&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c293f5c2"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;1.0000&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c293f5c3"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a801"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c293f5bf"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a801"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c293f5c1"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a801"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-c293f5c4"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;loan.receivable&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2941ccc"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a800"&gt;0.7331&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2941ccb"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;0.8148&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2941cca"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;1.0000&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2941ccd"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a801"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c293f5c4"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a801"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-c293f5c4"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;loan.numbers&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2941ccc"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a800"&gt;0.7172&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2941ccb"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7ff"&gt;0.8559&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2941cca"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;0.7393&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2941ccd"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;1.0000&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c293f5c4"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a801"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-c2941ccf"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;investment.fixed&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2941cd1"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;0.4407&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2941cce"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a800"&gt;0.6582&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2941cd2"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;0.5469&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2941cd0"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a800"&gt;0.5975&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-c2941ccf"&gt;&lt;p class="cl-c293cd06"&gt;&lt;span class="cl-c293a7fe"&gt;1.0000&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
+&lt;div class="flextable-shadow-host" id="8fc692c7-e6f8-4130-858d-2b5feb96b123"&gt;&lt;/div&gt;
+&lt;script&gt;
+var dest = document.getElementById("8fc692c7-e6f8-4130-858d-2b5feb96b123");
+var template = document.getElementById("47f01673-0295-4d92-8ac9-f1cb6e88667f");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+&lt;/script&gt;
+
+---
+
+### （案例）银行贷款：相关系数显著性检验(手算)
+
+对于前述`loan.surplus`与`loan.bad`进行相关系数显著性检验（Pearson）：
+
+- 1）提出假设：
+`\(H_0: \rho =0; H_1: \rho \neq 0\)`
+
+- 2）计算样本统计量：
+
+`$$\begin{align}
+T^{\ast} = |r|\sqrt{\frac{n-2}{1-r^2}} 
+=0.84 \times \sqrt{\frac{25-2}{1-0.84^2}}
+= 7.53
+\end{align}$$`
+
+- 3）给定显著性水平
+`\(\alpha=0.05\)`，确定t理论分布值
+`\(t_{1-\alpha/2}(n-2)=t_{1-0.05/2}(25-2)=t_{0.975}(23)=2.07\)`。
+
+- 4）得到假设检验结论：因为t样本统计量大于t理论查表值，也即
+
+`$$\left[T^{\ast}= 7.53\right] &gt; \left[t_{0.975}(23) =2.07\right]$$`
+
+因此拒绝原假设
+`\(H_0\)`，认为变量`loan.surplus`（贷款余额）与`loan.bad`（不良贷款）显著存在相关关系。
+
+
+---
+
+### （案例）银行贷款：相关系数显著性检验(R软件)
+
+我们可以使用R软件函数`cor.test()`对上述两个变量进行相关系数显著性检验：
+
+
+```r
+cor.test(df_rel1$loan.surplus, df_rel1$loan.bad,
+         method = "pearson")
+```
+
+```
+
+	Pearson's product-moment correlation
+
+data:  df_rel1$loan.surplus and df_rel1$loan.bad
+t = 8, df = 23, p-value = 0.0000001
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.67 0.93
+sample estimates:
+ cor 
+0.84 
+```
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: basic
+
+# 5.2 回归分析的基本思想
+
+### 相关关系VS因果关系
+
+### 若干重要概念
+
+### 回归直线的拟合优度
+
+### 显著性检验
+
+### 利用Excel进行回归分析
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter"&gt; 第05章 相关和回归分析 &lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#basic"&gt; 5.2 回归分析的基本思想 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 线性回归分析
+
+从一组样本数据出发，确定变量之间的数学关系式。
+
+对这些关系式的可信程度进行各种统计检验，并从影响某一特定变量的诸多变量中找出哪些变量的影响显著，哪些不显著。
+
+利用所求的关系式，根据一个或几个变量的取值来预测或控制另一个特定变量的取值，并给出这种预测或控制的精确程度。
+
+
+---
+
+## 相关关系：边际相关与条件相关1
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-causality-margin.png" alt="边际相关但是条件独立" width="90%" /&gt;
+&lt;p class="caption"&gt;边际相关但是条件独立&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 相关关系：边际相关与条件相关2
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-causality-margin-2.png" alt="边际独立但是条件相关" width="90%" /&gt;
+&lt;p class="caption"&gt;边际独立但是条件相关&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 相关关系VS因果关系
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-causality-chocolate.png" alt="巧克力消费量与诺贝尔奖数量" width="60%" /&gt;
+&lt;p class="caption"&gt;巧克力消费量与诺贝尔奖数量&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 相关关系VS因果关系：性别的作用
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-causality-drug-gender1.png" alt="治疗康复表" width="95%" /&gt;
+&lt;p class="caption"&gt;治疗康复表&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-causality-drug-gender-graph1.png" alt="因果关系图" width="60%" /&gt;
+&lt;p class="caption"&gt;因果关系图&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 相关关系VS因果关系：血压的作用
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-causality-drug-pressure-tab.png" alt="治疗康复表" width="100%" /&gt;
+&lt;p class="caption"&gt;治疗康复表&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-causality-drug-pressure-graph.png" alt="因果关系图" width="60%" /&gt;
+&lt;p class="caption"&gt;因果关系图&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## （案例）微型家庭总体
+
+&lt;!---新数据表---&gt;
+
+
+
+---
+
+### （案例）假想总体：60个家庭的收支数据（直观列表）
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt2-1-60families-pop.png" alt="60个家庭的收入和支出情况：假设的总体" width="754" /&gt;
+&lt;p class="caption"&gt;60个家庭的收入和支出情况：假设的总体&lt;/p&gt;
+&lt;/div&gt;
+
+???
+提问：
+
+- 总体是什么？
+
+- 有多少总体单位？
+
+---
+
+### （案例）假想总体：60个家庭的收支数据（扁数据形态）
+
+
+<div id="htmlwidget-96573dcddcccb3071f51" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-96573dcddcccb3071f51">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8"],["X","Y1","Y2","Y3","Y4","Y5","Y6","Y7"],[80,55,60,65,70,75,null,null],[100,65,70,74,80,85,88,null],[120,79,84,90,94,98,null,null],[140,80,93,95,103,108,113,115],[160,102,107,110,116,118,125,null],[180,110,115,120,130,135,140,null],[200,120,136,140,144,145,null,null],[220,135,137,140,152,157,160,162],[240,137,145,155,165,175,189,null],[260,150,152,175,178,180,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Mark<\/th>\n      <th>G1<\/th>\n      <th>G2<\/th>\n      <th>G3<\/th>\n      <th>G4<\/th>\n      <th>G5<\/th>\n      <th>G6<\/th>\n      <th>G7<\/th>\n      <th>G8<\/th>\n      <th>G9<\/th>\n      <th>G10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":9,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[9,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+???
+**扁数据形态**：“非标准”数据形态（但很直观）
+
+---
+
+### （案例）假想总体：60个家庭的收支数据（长数据形态）
+
+<div id="htmlwidget-e26019a279ef66996771" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e26019a279ef66996771">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60],[1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,10,10,10],[80,80,80,80,80,100,100,100,100,100,100,120,120,120,120,120,140,140,140,140,140,140,140,160,160,160,160,160,160,180,180,180,180,180,180,200,200,200,200,200,220,220,220,220,220,220,220,240,240,240,240,240,240,260,260,260,260,260,260,260],[55,60,65,70,75,65,70,74,80,85,88,79,84,90,94,98,80,93,95,103,108,113,115,102,107,110,116,118,125,110,115,120,130,135,140,120,136,140,144,145,135,137,140,152,157,160,162,137,145,155,165,175,189,150,152,175,178,180,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>group<\/th>\n      <th>X<\/th>\n      <th>Y<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+???
+**长数据形态**：标准数据形态（但不直观）。
+
+---
+
+## 重要概念：无条件概率和无条件期望
+
+**无条件概率**：
+
+- 定义：不受
+`\(X_i\)`变量取值影响下，
+`\(Y_i\)`出现的可能性。
+
+- 记号：离散变量
+`\(P(Y_i)\)`；连续变量
+`\(g(Y)\)`
+
+**无条件期望**：
+
+- 定义：不受
+`\(X_i\)`变量取值影响下，变量
+`\(Y_i\)`的期望值。
+
+- 记号：
+`\(g(Y_i)\)`表示连续变量的概率密度函数（cdf）
+
+`$$\begin{align}
+E(Y) &amp;= \sum_1^N{Y_i \cdot P(Y_i)} &amp;&amp;\text{(discrete vars)} \\
+E(Y) &amp;= \int{Y_i \cdot g(Y_i)dY} &amp;&amp;\text{(continue vars)} 
+\end{align}$$`
+
+---
+
+### （示例）无条件概率和无条件期望的示例计算
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt2-1-60fams-unconditional-mean.png" alt="无条件概率和无条件期望" width="90%" /&gt;
+&lt;p class="caption"&gt;无条件概率和无条件期望&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+### （示例）无条件期望的计算过程
+
+`$$\begin{align}
+E(Y) &amp;= \sum_1^N{Y_i \cdot P(Y_i)} \\
+     &amp;= \sum_1^{60}\left( 55*\frac{1}{60} + 60*\frac{1}{60} + \cdots + 191*\frac{1}{60} \right) \\
+     &amp;=\frac{1}{60}\sum_1^{60}Y_i\\
+     &amp;=\frac{7272}{60}\\
+     &amp;=121.2
+\end{align}$$`
+
+---
+
+## 重要概念：条件概率和条件期望
+
+**条件概率**：
+
+- 定义：给定变量
+`\(X_i\)`的取值条件下，
+`\(Y_i\)`出现的可能性。
+
+- 记号：离散变量
+`\(P(Y_i|X_i)\)`；连续变量
+`\(g(Y|X)\)`
+
+
+**条件期望**：
+
+- 在给定变量
+`\(X_i\)`的取值条件下，
+`\(Y_i\)`的期望值。
+
+- 记号：
+`\(g(Y|X)\)`表示连续变量的条件概率密度函数（cdf）
+
+`$$\begin{align}
+E(Y|X_i) &amp;= \sum_1^N{(Y_i|X_i) \cdot P(Y_i|X_i)} &amp;&amp;\text{(discrete vars)} \\
+E(Y|X_i) &amp;= \int{(Y|X) \cdot g(Y|X)dY} &amp;&amp;\text{(continue vars)} \end{align}$$`
+
+---
+
+### （示例）条件概率和条件期望的计算
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt2-1-60fams-conditional-mean.png" alt="条件概率和条件期望" width="90%" /&gt;
+&lt;p class="caption"&gt;条件概率和条件期望&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+### （示例）条件期望的计算过程
+
+`$$\begin{align}
+E(Y|80) &amp;= \sum_1^N{Y_i \cdot P(Y_i|X=80)} \\
+     &amp;= \sum_1^{5}\left( 55*\frac{1}{5} + 60*\frac{1}{5} + \cdots + 75*\frac{1}{5} \right) \\
+     &amp;=\frac{1}{5}\sum_1^{5}Y_i\\
+     &amp;=\frac{325}{5}\\
+     &amp;=65
+\end{align}$$`
+
+---
+
+### （示例）假想总体的全部数据展示
+
+
+
+
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-52-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### （示例）给定不同X水平下Y条件期望值
+
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-53-1.png" style="display: block; margin: auto;" /&gt;
+
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; var &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; G1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; G2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; G3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; G4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; G5 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; G6 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; G7 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; G8 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; G9 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; G10 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 120 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 180 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 220 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 240 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 260 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; E(Y|X) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 89 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 101 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 113 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 125 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 137 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 149 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 161 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 173 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### （示例）给定不同X水平下Y条件期望值
+
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-55-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+给定
+`\(X=120\)`水平下
+`\(Y\)`条件期望值
+`\(E(Y|X_i=120)\)`= 89
+
+---
+
+### （示例）X均值和Y的无条件期望值
+
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-56-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+X的均值
+`\(\bar{X}\)`
+=173.67和Y的无条件期望值
+`\(E(Y)=\)`
+121.20
+
+---
+
+## 重要概念：总体回归线（PRL）
+
+- 几何：给定X值时Y的条件期望值的轨迹。
+
+- 统计：实质上就是Y对X的回归。
+
+总体回归曲线(Population Regression Curve，PRC)：条件期望值的轨迹表现为一条曲线(Curve)。
+
+总体回归线(Population Regression Line，PRL)：条件期望值的轨迹表现为一条直线(Line)。
+
+---
+
+## 重要概念：总体回归线（PRL）
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-57-1.png" alt="总体回归线PRL" width="90%" /&gt;
+&lt;p class="caption"&gt;总体回归线PRL&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 重要概念：总体回归函数（PRF）
+
+总体回归函数（Population Regression Function，PRF）：它是对总体回归曲线(PRC)的数学函数表现形式。
+
+如果不知道总体回归曲线的具体形式，则总体回归函数PRF表达为如下隐函数形式（PRF）：
+
+`$$\begin{align}
+E(Y|X_i) &amp; = f(X_i)  &amp;&amp; \text{(PRF)}
+\end{align}$$`
+
+如果总体回归曲线是直线形式，则总体回归函数PRF表达为如下显函数形式（PRF_L）：
+
+`$$\begin{align}
+E(Y|X_i) &amp;= \beta_1 +\beta_2X_i &amp;&amp; \text{(PRF_L)}
+\end{align}$$`
+
+- 
+`\(\beta_1,\beta_2\)`分别称为截距(intercept)和斜率系数(slope coefficient)。
+
+- 
+`\(\beta_1,\beta_2\)`称为总体参数或回归系数(regression coefficients)。
+
+- 
+`\(\beta_1,\beta_2\)`为未知但却是固定的参数。
+
+---
+
+## 重要概念：总体回归函数（PRF）
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-58-1.png" alt="总体回归线PRL与总体回归函数PRF" width="90%" /&gt;
+&lt;p class="caption"&gt;总体回归线PRL与总体回归函数PRF&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 重要概念：总体回归模型（PRM）
+
+**总体回归模型**（Population Regression model, PRM）：把总体回归函数表达成**随机设定**形式。
+
+如果总体回归函数为隐函数，则**总体回归模型**记为：
+
+`$$\begin{align}
+Y_i &amp;=  E(Y|X_i) + u_i \\
+    &amp;=  f(X_i) +u_i
+\end{align}$$`
+
+如果总体回归函数为线性函数，则**总体回归模型**记为：
+
+`$$\begin{align}
+Y_i &amp;=  E(Y|X_i) + u_i \\
+    &amp;= \beta_1 +\beta_2X_i + u_i
+\end{align}$$`
+
+- 总体回归模型（PRM）属于**计量经济学模型**，而总体回归函数（PRF）是**数量经济学模型**（或数学模型）。
+
+- 总体回归模型（PRM）能充分表达的是现实世界中
+`\(Y_i\)`变量的行为特征。
+
+
+---
+
+## 重要概念：随机干扰项
+
+总体回归模型（PRM）设定下，
+`\(Y_i\)`将由两个部分组成。
+
+- 特定家庭的支出（
+`\(Y_i\)`） = 系统性部分（
+`\(E(Y|X_i)\)` + 随机部分（
+`\(u_i\)`）
+
+- 特定家庭的支出（
+`\(Y_i\)`） = 系统性部分（
+`\(\beta_1+\beta_2X_i\)`） + 随机部分（
+`\(u_i\)`）
+
+
+**随机干扰项**：
+
+- 也被称为随机误差项(stochastic error term)：总体回归函数中忽略掉的但又影响着Y的全部变量的替代物，它是
+`\(Y_i\)`与条件期望（
+`\(E(Y|X_i)\)`）的离差。
+
+`$$\begin{align}
+u_i &amp;= Y_i - E(Y|X_i) 
+\end{align}$$`
+
+---
+
+## 重要概念：随机干扰项
+
+随机干扰项的来源：
+
+- 理论的含糊：除了主变量之外，还有其它变量的影响，但不清楚，只能用𝜇_𝑖代替它们。（家庭收入以外？）
+
+- 数据的不充分：可能知道被忽略的变量，但不能得到这些变量的数量信息。（如家庭财富数据不可得）
+
+- 核心变量与其它变量：其它变量全部或其中一些合起来影响还是很小的。（如子女、教育、性别、宗教等）
+
+- 人类行为的内在随机性。（客观存在、固有的）
+
+- 变量被“移花接木”而产生测量误差（如弗里德曼的持久收入和消费）
+
+- 节省原则：为了保持一个尽可能简单的回归模型
+
+- 错误的函数形式：有时根据数据及经验无法确定一个正确的函数形式 （多元回归尤其如此）
+
+---
+
+## 重要概念：随机干扰项
+
+
+.pull-left[
+为何是“随机的”？
+
+- 测不准？（误差）
+
+- 测错了？（误导）
+
+- 免不了!（内在性）
+
+]
+
+.pull-right[
+
+拥抱随机世界
+
+- 风筝：
+`\(Y_i\)`
+
+- 风筝线：
+`\(E(Y|X_i)\)`
+
+- 风：
+`\(u_i\)`
+
+]
+
+
+---
+
+## 重要概念：理解PRM和PRF的关系
+
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-59-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+若给定一个特定家庭
+`\((X_i=120, Y_i=79)\)`，则条件期望为
+`\(E(Y|120)=89\)`
+
+
+---
+
+## 重要概念：理解PRM和PRF的关系
+
+若给定
+`\(X_i=\)` 120 ，则5个家庭的真实消费支出分别为：
+
+`$$\begin{align}
+(Y_1|X=120) = 79 &amp;= \beta_1 + \beta_2 \cdot 120 +u_1\\
+(Y_2|X=120) = 84 &amp;= \beta_1 + \beta_2 \cdot 120 +u_2\\
+(Y_3|X=120) = 90 &amp;= \beta_1 + \beta_2 \cdot 120 +u_3\\
+(Y_4|X=120) = 94 &amp;= \beta_1 + \beta_2 \cdot 120 +u_4\\
+(Y_5|X=120) = 98 &amp;= \beta_1 + \beta_2 \cdot 120 +u_5
+\end{align}$$`
+
+
+---
+
+## 重要概念：理解PRM和PRF的关系
+
+主要结论：
+
+- 总体期望刻画总体的“趋势”，总体回归线让“趋势”直观化。
+
+- 个体随机性是不可避免的，总会“游离”于“趋势”之外。
+
+- 随机干扰项
+`\(u_i\)`𝑖携带了随机个体的“游离”信息。
+
+- 总体回归模型既“提取”了趋势和规律性，又“维系”着个体随机性，从而更好地表达了“真实世界”。
+
+课后思考：
+
+- 如果是无限总体，总体的规律性在理论上也是可以被严格表达出来么？
+
+- 如果不告诉你总体，你怎么知道“触碰”到的是“真实的”趋势/规律？
+
+- 从假想的60个家庭的微型总体中，“随便”抽取10个家庭的数据，你还能看到“直线”趋势么？
+
+
+---
+
+## 重要概念：“线性”的含义
+
+“线性回归模型”中“线性”一词的含义
+
+- **变量“线性”模型**：因变量对于自变量是线性的。
+
+- **参数“线性”模型**：因变量对于参数是线性的。
+
+---
+
+### （测试题）“线性”的含义
+
+下列模型分别属于哪一类？请指出来：
+
+`$$\begin{align}
+Y_i &amp;= \beta_1 + \beta_2 X_i +u_i &amp;&amp; \text{(mod1)}
+\end{align}$$`
+
+`$$\begin{align}
+Y_i &amp;= \beta_1 + \beta_2 X_i + \beta_3 X_i^2 +u_i &amp;&amp; \text{(mod2)}
+\end{align}$$`
+
+`$$\begin{align}
+Y_i &amp;= \beta_1 + \beta_2 X_i + \beta_3 X_i^2 + \beta_4 X_i^3 +u_i &amp;&amp; \text{(mod3)}
+\end{align}$$`
+
+`$$\begin{align}
+Y_i &amp;= \beta_1 + \beta_2 \frac{1}{X_i} +u_i &amp;&amp; \text{(mod4)}
+\end{align}$$`
+
+
+`$$\begin{align}
+Y_i &amp;= \beta_1 + \beta_2 ln(X_i) +u_i &amp;&amp; \text{(mod5)} \\
+\end{align}$$`
+
+
+
+`$$\begin{align}
+ln(Y_i) &amp;= \beta_1 + \beta_2 X_i +u_i &amp;&amp; \text{(mod6)}
+\end{align}$$`
+
+---
+
+### （测试题）“线性”的含义
+
+下列模型分别属于哪一类？请指出来：
+
+`$$\begin{align}
+ln(Y_i) &amp;= \beta_1 - \beta_2 \frac{1}{X_i} +u_i &amp;&amp; \text{(mod7)} 
+\end{align}$$`
+
+
+`$$\begin{align}
+ln(Y_i) &amp;= ln(\beta_1) + \beta_2 ln(X_i) +u_i &amp;&amp; \text{(mod8)} 
+\end{align}$$`
+
+
+`$$\begin{align}
+Y_i &amp;= \frac{1}{1+e^{(\beta_1 + \beta_2 X_{2i}  +u_i) }} &amp;&amp; \text{(mod9)}
+\end{align}$$`
+
+
+`$$\begin{align}
+Y_i &amp;= \beta_1 +(0.75-\beta_1)e^{-\beta_2(X_i-2)} +u_i &amp;&amp; \text{(mod10)}
+\end{align}$$`
+
+
+`$$\begin{align}
+Y_i &amp;= \beta_1 + \beta_2^3 X_i +u_i &amp;&amp; \text{(mod11)} 
+\end{align}$$`
+
+---
+
+## 重要概念：样本回归线(SRL)
+
+**样本(Sample)**：
+
+- 从总体中随机抽取得到的数据。
+
+**样本回归线**(Sample Regression Line，SRL)：
+
+- 是通过拟合**样本数据**得到的一条曲线（或直线）。换言之，这条线由拟合值
+`\(\hat{Y}_i\)`连接而成。
+
+- 
+`\(\hat{Y}_i\)`是对条件期望值
+`\(Y|X_i\)`的拟合。
+
+- 拟合方法有很多，例如采用OLS方法对样本数据进行拟合。
+
+    - 尽可能拟合数据
+    - 用什么方法拟合？
+    - 曲线是什么形态？
+
+
+---
+
+## 重要概念：样本回归函数(SRF)
+
+**样本回归函数**(Sample Regression Function，SRF)：是样本回归曲线的数学函数形式，可是是线性的或非线性。如果是直线则可以写成：
+
+`$$\begin{align}
+\hat{Y}_i =\hat{\beta}_1 + \hat{\beta}_2X_i
+\end{align}$$`
+
+对比总体回归函数（PRF）：
+
+`$$\begin{align}
+E(Y|X_i) =\beta_1 + \beta_2X_i
+\end{align}$$`
+
+可以认为：
+
+- 
+`\(\hat{Y}_i\)`是对
+`\(E(Y|X_i)\)`的估计量。
+
+- 
+`\(\hat{\beta}_1\)`是对
+`\(\beta_1\)`的估计量。
+
+- 
+`\(\hat{\beta}_2\)`是对
+`\(\beta_2\)`的估计量。
+
+---
+
+### （示例）第一份随机样本：抽样
+
+
+
+
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-61-1.png" style="display: block; margin: auto;" /&gt;
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; var &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n5 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n6 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n7 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n8 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n9 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n10 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 120 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 180 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 220 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 240 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 260 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Y &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 93 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 107 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 157 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 165 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 185 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### （示例）第一份随机样本：数据
+
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-63-1.png" style="display: block; margin: auto;" /&gt;
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; var &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n5 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n6 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n7 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n8 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n9 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n10 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 120 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 180 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 220 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 240 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 260 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Y &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 93 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 107 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 157 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 165 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 185 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### （示例）第一份随机样本：SRL
+
+
+
+
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-66-1.png" style="display: block; margin: auto;" /&gt;
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; var &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n5 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n6 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n7 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n8 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n9 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n10 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 120 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 180 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 220 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 240 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 260 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Y &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 93 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 107 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 157 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 165 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 185 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### （示例）第一份随机样本：SRF
+
+根据第一份随机样本拟合得到的**样本回归函数**SRF：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;+13.38&amp;&amp;+0.64X\\ \end{alignedat} \end{equation}$$`
+
+样本数据如下：
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; var &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n5 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n6 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n7 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n8 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n9 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n10 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 120 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 180 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 220 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 240 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 260 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Y &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 93 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 107 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 157 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 165 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 185 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+### （示例）第二份随机样本：抽样
+
+
+
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-71-1.png" style="display: block; margin: auto;" /&gt;
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; var &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n5 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n6 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n7 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n8 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n9 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n10 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 120 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 180 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 220 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 240 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 260 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Y &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 55 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 108 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 125 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 135 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 135 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 155 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 178 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+### （示例）第二份随机样本：数据
+
+
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-73-1.png" style="display: block; margin: auto;" /&gt;
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; var &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n5 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n6 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n7 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n8 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n9 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n10 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 120 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 180 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 220 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 240 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 260 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Y &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 55 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 108 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 125 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 135 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 135 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 155 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 178 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### （示例）第二份随机样本：SRL
+
+
+
+
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-76-1.png" style="display: block; margin: auto;" /&gt;
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; var &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n5 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n6 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n7 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n8 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n9 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n10 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 120 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 180 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 220 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 240 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 260 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Y &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 55 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 108 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 125 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 135 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 135 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 155 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 178 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### （示例）第二份随机样本：SRF
+
+根据第二份随机样本拟合得到的**样本回归函数**SRF：
+
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;+14.59&amp;&amp;+0.61X\\ \end{alignedat} \end{equation}$$`
+
+
+样本数据如下：
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; var &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n5 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n6 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n7 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n8 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n9 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n10 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 120 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 180 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 220 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 240 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 260 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Y &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 55 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 108 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 125 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 135 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 135 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 155 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 178 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### （示例）两份样本同时出现：
+
+
+
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-81-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## 重要概念：样本回归模型（SRM）
+
+样本回归模型（Sample Regression Model，SRM）：把样本回归函数表现为**“随机”**形式。
+
+- 如果样本回归函数为隐函数，则样本回归模型可记为：
+
+`$$\begin{align}
+Y_i &amp;= g(X_i) +e_i 
+\end{align}$$`
+
+- 如果样本回归函数表现为直线，则样本回归模型可记为：
+
+`$$\begin{align}
+Y_i &amp;= \hat{\beta}_1 +\hat{\beta}_2X_i +e_i &amp;&amp; \text{(SRM_L)}
+\end{align}$$`
+
+其中，
+`\(e_i\)`表示残差（Residual）
+
+---
+
+## 重要概念：残差
+
+残差（Residual）：
+
+- 定义：是样本回归函数与Y的样本观测值之间的离差。
+
+- 记号：
+
+`$$\begin{align}
+e_i  &amp;= Y_i - \hat{Y}_i \\
+     &amp;= Y_i - (\hat{\beta}_1 +\hat{\beta}_2X_i) 
+\end{align}$$`
+
+---
+
+## 重要概念：理解SRF和SRM的关系
+
+&lt;img src="05-regression_files/figure-html/unnamed-chunk-82-1.png" style="display: block; margin: auto;" /&gt;
+
+给定
+`\(x_i=\)` 240，样本2的观测值
+`\(Y_i=\)` 240；拟合值
+`\(\hat{Y}_i=\)` 161.6；残差
+`\(e_i=Y_i- \hat{Y}_i=\)` -6.6。
+
+---
+
+## 重要概念：样本回归与总体回归的比较
+
+&lt;img src="../pic/chpt2-1-PRL-SRL.png" width="651" style="display: block; margin: auto;" /&gt;
+
+--
+
+为何不同？继承性和变异性
+
+
+---
+
+## 重要概念：样本回归与总体回归的比较
+
+.pull-left[
+总体回归函数PRF:
+
+`$$\begin{align}
+E(Y|X_i) &amp;= \beta_1 +\beta_2X_i &amp;&amp; \text{(PRF)}
+\end{align}$$`
+
+总体回归模型PRM:
+
+`$$\begin{align}
+Y_i &amp;=  \beta_1 +\beta_2X_i + u_i &amp;&amp; \text{(PRM)}
+\end{align}$$`
+
+]
+
+
+.pull-right[
+样本回归函数SRF:
+
+`$$\begin{align}
+\hat{Y}_i =\hat{\beta}_1 + \hat{\beta}_2X_i &amp;&amp; \text{(SRF)}
+\end{align}$$`
+
+样本回归模型SRM:
+
+`$$\begin{align}
+Y_i &amp;= \hat{\beta}_1 + \hat{\beta}_2X_i +e_i &amp;&amp; \text{(SRM)}
+\end{align}$$`
+
+]
+
+--
+
+思考：
+
+- PRF无法直接观测，只能用SRF近似替代
+
+- 估计值与观测值之间存在偏差
+
+- SRF又是怎样决定的呢?
+
+
+---
+
+## 重要概念：样本回归与总体回归的比较
+
+
+总结：
+
+- 随机抽样数据继承了总体的特征。
+
+- 利用随机样本进行数据拟合是对总体规律的“反向追踪”。
+
+- 样本回归模型中的残差是拟合不完全的产物。
+
+--
+
+思考：
+
+- 怎样来判定对随机样本的一次数据拟合是更优的？
+
+- 存不存在一种“最优”的拟合方法？
+
+--
+
+课后作业：
+
+- 请把162名同学的拟合线进行平均化处理（截距和斜率取均值），绘制得到一条“回归线”。
+
+- 你认为是这根平均化的“回归线”与真相更逼近么？
+
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-fan.gif")
+class: inverse,center
+# 本章结束
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

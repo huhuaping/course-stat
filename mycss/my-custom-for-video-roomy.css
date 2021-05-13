@@ -172,9 +172,10 @@ pre {
   margin-top: 0pt;
   margin-bottom: 0pt;
   border-top: 0px;
-  padding-top: 10pt;
-  padding-bottom: 10pt;
-  padding-left: 10pt;
+  padding-top: 5pt;
+  padding-bottom: 5pt;
+  padding-left: 5pt;
+  padding-right: 5pt;
 }
 
 /***set vertical scroll***/

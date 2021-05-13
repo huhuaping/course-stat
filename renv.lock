@@ -231,6 +231,13 @@
       "Repository": "CRAN",
       "Hash": "2b7d10581cc730804e9ed178c8374bd6"
     },
+    "data.table": {
+      "Package": "data.table",
+      "Version": "1.14.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "d1b8b1a821ee564a3515fa6c6d5c52dc"
+    },
     "dbplyr": {
       "Package": "dbplyr",
       "Version": "1.4.4",
@@ -321,6 +328,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "77bd60a6157420d4ffa93b27cf6a58b8"
+    },
+    "flextable": {
+      "Package": "flextable",
+      "Version": "0.6.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "789adf172256facbc92cb3ef6ab71ee1"
     },
     "fmsb": {
       "Package": "fmsb",
@@ -580,6 +594,13 @@
       "Repository": "CRAN",
       "Hash": "d0a62b247165aabf397fded504660d8a"
     },
+    "latex2exp": {
+      "Package": "latex2exp",
+      "Version": "0.5.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "f96b4c78546d415fa21c99e83629543a"
+    },
     "lattice": {
       "Package": "lattice",
       "Version": "0.20-41",
@@ -705,6 +726,18 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "be6319388852d6cb3571ea89d9d1634f"
+    },
+    "officer": {
+      "Package": "officer",
+      "Version": "0.3.18",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "officer",
+      "RemoteUsername": "davidgohel",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "925354146c0bc6c2e8644f93ba4d5a840d506883",
+      "Hash": "bfc4005e84f3e2a0c053690545bde965"
     },
     "openssl": {
       "Package": "openssl",
