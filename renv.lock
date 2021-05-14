@@ -82,8 +82,7 @@
     "Rcpp": {
       "Package": "Rcpp",
       "Version": "1.0.6",
-      "Source": "Repository",
-      "Repository": "CRAN",
+      "Source": "unknown",
       "Hash": "dbb5e436998a7eba5a9d682060533338"
     },
     "Rttf2pt1": {
@@ -311,8 +310,7 @@
     "fansi": {
       "Package": "fansi",
       "Version": "0.4.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
+      "Source": "unknown",
       "Hash": "fea074fb67fe4c25d47ad09087da847d"
     },
     "farver": {

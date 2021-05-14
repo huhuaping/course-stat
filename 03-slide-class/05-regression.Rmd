@@ -68,13 +68,19 @@ name:chapter
 # 第五章 相关和回归分析
 
 
-### [5.1 变量间关系的度量](#measure)
+### [5.1 变量间关系的度量](#corl)
 
-### [5.2 一元线性回归](#regression)
+### [5.2 回归分析的基本思想](#oncept)
 
-### [5.3 估计和预测](#estimation)
+### [5.3 OLS方法与参数估计](#ols)
 
-### [5.4 残差分析](#residual)
+### [5.4 假设检验](#hypthesis)
+
+### [5.5 拟合优度与残差分析](#goodness)
+
+### [5.6 回归预测分析](#forecast)
+
+### [5.7 回归报告解读](#report)
 
 ---
 layout: false
@@ -2465,6 +2471,291 @@ $$\begin{align}
 \end{align}$$
 
 ---
+exclude:true
+
+## （案例）教育程度与时均工资
+
+```{r, message=FALSE, warning=FALSE}
+data_wage <- as_tibble(read.xlsx("../data/extra/Table-3-2-edu-wage.xlsx", sheet = 1))
+n <- dim(data_wage)[1]
+
+lm.wage <- lm(formula = "Y~X", data_wage)
+
+
+
+calc_tbl <- data_wage %>%
+  mutate(FF_XY = X*Y, FF_X_sqr = X^2, FF_Y_sqr = Y^2,
+         ff_x = X-mean(X), ff_y = Y-mean(Y),
+         ff_xy=ff_x*ff_y, ff_x_sqr=ff_x^2, ff_y_sqr=ff_y^2, 
+         Y_hat= fitted(lm.wage),
+         e_i = residuals(lm.wage), 
+         e_i_star =e_i/sd(e_i),
+         e_i_star_st = MASS::studres(lm.wage),
+         e_i_sqr = e_i^2)  %>%
+  rbind(colSums(.)) %>%  
+  mutate(obs=replace(obs, obs==91, "sum")) 
+
+k <- dim(calc_tbl)[2]
+
+FF_ff <- calc_tbl %>%
+  filter(obs=="sum") %>%
+  mutate_if(is.numeric, funs(round(., digits = 3)))
+
+b2 <- lm.wage$coefficients[2]
+b1 <- lm.wage$coefficients[1]
+mean_X <- (FF_ff$X)/n
+mean_Y <- (FF_ff$Y)/n
+dev <- (FF_ff$e_i_sqr)/(n-2)
+dev_b2 <- dev/FF_ff$ff_x_sqr
+dev_b1 <- dev_b2*(FF_ff$FF_X_sqr/n)
+S_b1 <- sqrt(dev_b1)
+S_b2 <- sqrt(dev_b2)
+TSS <- sum((data_wage$Y -mean(data_wage$Y))^2)
+RSS <- FF_ff$e_i_sqr
+ESS <- TSS -RSS
+r2  <- ESS/TSS
+r <- cor(data_wage$X, data_wage$Y)
+cov_XY <- cov(data_wage$X, data_wage$Y)
+S_X <- sd(data_wage$X)
+S_Y <- sd(data_wage$Y)
+t_0.975 <- qt(0.975, n-2)
+chisq_0.025 <- qchisq(0.025,n-2)
+chisq_0.975 <- qchisq(0.975,n-2)
+t_b1 <- b1/S_b1
+t_b2 <- b2/S_b2
+f_ESS <- 1
+f_RSS <- n-2
+f_TSS <- n-1
+f_0.95 <- qf(0.95,f_ESS,f_RSS)
+f_test <- (ESS/f_ESS)/(RSS/f_RSS)
+# forecast
+X_0 <- 20
+Y_0_hat <- b1+b2*X_0
+t_0.95 <- qt(0.95,n-2)
+S2_Y0h <- dev*(1/n+(X_0-mean_X)^2/(FF_ff$ff_x_sqr))
+Y_exp_lft <- Y_0_hat - t_0.95*(sqrt(S2_Y0h))
+Y_exp_rht <- Y_0_hat + t_0.95*(sqrt(S2_Y0h))
+S2_Y0h_mns <- dev*(1+1/n+(X_0-mean_X)^2/(FF_ff$ff_x_sqr))
+Y_ind_lft <- Y_0_hat - t_0.95*(sqrt(S2_Y0h_mns))
+Y_ind_rht <- Y_0_hat + t_0.95*(sqrt(S2_Y0h_mns))
+
+```
+
+```{r}
+head.name <- c("obs","$X_i$","$Y_i$","$X_iY_i$", "$X_i^2$", "$Y_i^2$", "$x_i$", "$y_i$", "$x_iy_i$","$x_i^2$","$y_i^2$","$\\hat{Y}_i$","$e_i$","$e_{i, sd}^{\\ast}$","$e_{i, st}^{\\ast}$","$e_i^2$")  
+
+show_tbl <- calc_tbl  %>% 
+  rename_at(vars(names(.)), ~ head.name)
+
+```
+
+
+---
+
+### （案例）计算表FF和ff
+
+```{r, warning=F, message=FALSE}
+show_tbl %>%
+  select(1:11) %>%
+  mutate_if(is.numeric, ~formatC(., digits = 2, format = "f")) %>%
+  kable(align = "c")  %>%
+  kable_styling(full_width = T, font_size= 20)
+```
+
+---
+
+### （案例）计算回归系数
+
+公式1: （Favorite Five，FF形式）
+
+```{r, results= "asis"}
+cat(
+  "$$\\begin{align}",
+  "\\hat{\\beta}_2 &=\\frac{n\\sum{X_iY_i}-\\sum{X_i}\\sum{Y_i}}{n\\sum{X_i^2}-\\left ( \\sum{X_i} \\right)^2}\\\\",
+str_c(
+  "&=\\frac{",n,"\\ast",FF_ff$FF_XY,"-",FF_ff$X, "\\ast",FF_ff$Y,"}{",n,"\\ast",FF_ff$FF_X_sqr,"-",FF_ff$X,"^2}",
+  "=",round(b2,4)
+  ),
+"\\end{align}$$",
+sep="\n"
+)
+```
+
+
+```{r, results= "asis"}
+cat(
+  "$$\\begin{align}",
+  "\\hat{\\beta_1} &= \\bar{Y} - \\hat{\\beta}_2 \\bar{X}",
+  str_c(
+    "=",round(mean_Y,4),"-",round(b2,4),"\\ast",mean_X,
+    "=",round(b1,4)),
+  "\\end{align}$$",
+  sep="\n"
+)
+```
+
+---
+
+### （案例）计算回归系数
+
+公式2：（离差形式，favorite five，ff形式）
+
+
+```{r, results= "asis"}
+cat(
+  "$$\\begin{align}",
+  "\\hat{\\beta}_2 =\\frac{\\sum{x_iy_i}}{\\sum{x_i^2}}",
+str_c(
+  "=\\frac{",FF_ff$ff_xy,
+  "}{",FF_ff$ff_x_sqr,"}",
+  "=",round(b2,4)
+  ),
+"\\end{align}$$",
+sep="\n"
+)
+```
+
+
+```{r, results= "asis"}
+cat(
+  "$$\\begin{align}",
+   
+  "\\hat{\\beta_1} = \\bar{Y} - \\hat{\\beta}_2 \\bar{X}",
+  str_c(
+    "=",round(mean_Y,4),"-",round(b2,4),"\\ast",mean_X,
+    "=",round(b1,4)),
+  "\\end{align}$$",
+  sep="\n"
+)
+```
+
+---
+
+### （案例）样本回归方程SRF
+
+```{r, results="asis"}
+cat(
+  "$$\\begin{align}",
+  "\\hat{Y}_i= \\hat{\\beta}_1 + \\hat{\\beta}_2 X_i",
+  str_c(
+    "=", round(b1,4),"+",round(b2,4),"X_i"
+  ),
+  "\\end{align}$$",
+  sep = "\n"
+)
+```
+
+---
+
+### （案例）样本回归线SRL
+
+```{r, warning=FALSE,message=FALSE}
+
+p0 <- ggplot(data=data_wage, aes(X, Y)) +
+  geom_point(color= "blue", shape=1, size=3) +
+  labs(x= "教育年数X", y = "时均工资Y") +
+  scale_x_continuous(breaks=seq(0,20, by=6), limits = c(0,20)) +
+  scale_y_continuous(breaks=seq(0,15, by=3), limits = c(0,15)) +
+  theme(text = element_text(size=16)) 
+  
+p0
+```
+
+---
+
+### （案例）样本回归线SRL
+
+```{r,  warning=FALSE,message=FALSE}
+
+text1 <- TeX("$\\hat{Y_i}=\\hat{\\beta}_1+\\hat{\\beta}_2X_i$")
+text2 <- TeX(str_c("$\\hat{Y}=", round(b1,4), 
+                   "+", round(b2,4),"X_i$"))
+p1 <- ggplot(data=data_wage, aes(X, Y)) +
+  geom_point(color= "blue", shape=1, size=3) +
+  labs(x= "教育年数X", y = "时均工资Y") +
+  scale_x_continuous(breaks=seq(0,20, by=6), limits = c(0,20)) +
+  scale_y_continuous(breaks=seq(0,15, by=3), limits = c(0,15))  +
+  #stat_smooth(method = "lm", se=FALSE)
+  geom_abline(intercept = b1, slope = b2,color="green") +
+  geom_text(aes(x=5,y=14),label=text1,size=5) +
+  geom_text(aes(x=5,y=12),label=text2,size=5) +
+  theme(text = element_text(size=16)) 
+
+p1
+
+```
+
+
+---
+
+### （案例）计算得到拟合值和残差
+
+.pull-left[
+
+```{r}
+show_tbl %>%
+  select(c(1:3,12:13)) %>%
+  #mutate_if(is.numeric, funs(formatC(., digits = 4, format = "f"))) %>%
+  kable(digits =c(0,0,4,4,4) ) %>%  
+  kable_styling(font_size=20)
+```
+
+]
+
+.pull-right[
+
+根据以上样本回归方程，可以计算得到
+$Y_i$的回归拟合值
+$\hat{Y}_i$，以及回归残差
+$e_i$。
+
+$$\begin{align}
+\hat{Y}_i &=\hat{\beta}_1 +\hat{\beta}_2X_i\\
+e_i &= Y_i - \hat{Y}_i
+\end{align}$$
+]
+
+
+---
+
+### （案例）计算回归误差方差和标准差
+
+回归误差方差
+$\hat{\sigma}^2$
+
+```{r, results="asis"}
+cat(
+  "$$\\begin{align}",
+  "\\hat{\\sigma}^2= \\frac{\\sum{e_i^2}} {(n-2)}",
+  str_c(
+    "=\\frac{", FF_ff$e_i_sqr,"}{",n-2,"}",
+    "=", round(dev,4)
+  ),
+  "\\end{align}$$",
+  sep = "\n"
+)
+
+```
+
+回归误差标准差
+$\hat{\sigma}$：
+
+```{r, results="asis"}
+cat(
+  "$$\\begin{align}",
+  "\\hat{\\sigma}=\\sqrt{\\frac{\\sum{e_i^2}}{(n-2)}}",
+  str_c(
+    "=\\sqrt{", round(dev,4),"}",
+    "=", round(sqrt(dev),4)
+  ),
+  "\\end{align}$$",
+  sep = "\n"
+)
+
+```
+
+
+---
 
 ## OLS参数估计：“估计值”与“估计量”
 
@@ -2926,6 +3217,51 @@ $$\begin{cases}
 
 ---
 
+###（案例）计算回归系数的样本方差
+
+对于“教育程度案例”，利用FF-ff计算表，以及我们已算出的如下计算量：
+
+- 回归误差方差：
+$\hat{\sigma}^2=$ `r formatC(dev,4, format="f")`。
+
+则可以进一步计算出，回归系数的样本方差的标准差分别为：
+
+```{r, results="asis"}
+cat(
+  "$$\\begin{align}",
+  "S^2_{\\hat{\\beta}_2} &= \\frac{\\hat{\\sigma}^2} {\\sum{x_i^2}}",
+  str_c(
+    "=\\frac{", round(dev,4),"}{",FF_ff$ff_x_sqr,"}",
+    "=", round(dev_b2,4),"\\\\"),
+  "S_{\\hat{\\beta}_2} &= \\sqrt{\\frac{\\hat{\\sigma}^2} {\\sum{x_i^2}}}", 
+  str_c("=","\\sqrt{",round(dev_b2,4),"}",
+  "=", round(sqrt(dev_b2),4)
+  ),
+  "\\end{align}$$",
+  sep = "\n"
+)
+```
+
+```{r, results="asis"}
+cat(
+  "$$\\begin{align}",
+  "S^2_{\\hat{\\beta}_1} &= \\frac{\\sum{X_i^2}} {n} \\frac{\\hat{\\sigma}^2} {\\sum{x_i^2}}",
+  str_c(
+    "=\\frac{",FF_ff$FF_X_sqr, "}{", n,"}",
+    "\\frac{", round(dev,4),"}{",FF_ff$ff_x_sqr,"}",
+    "=", round(dev_b1,4),"\\\\"),
+  "S_{\\hat{\\beta}_1} &= \\sqrt{\\frac{\\sum{X_i^2}}{n}\\frac{\\hat{\\sigma}^2} {\\sum{x_i^2}}}", 
+  str_c("=","\\sqrt{",round(dev_b1,4),"}",
+  "=", round(sqrt(dev_b1),4)
+  ),
+  "\\end{align}$$",
+  sep = "\n"
+)
+```
+
+
+---
+
 ## 区间估计：斜率系数
 
 $$\begin{align}
@@ -3074,7 +3410,7 @@ $$\left[ (n-2) \frac{\hat{\sigma}^{2}}{\chi_{1-\alpha/2}^{2}}, \quad (n-2) \frac
 
 ---
 
-### （示例）教育程度与时均工资回归：主模型
+### （案例）主模型
 
 我们继续利用样本数据对**教育和工资案例**进行分析。
 
@@ -3094,87 +3430,10 @@ $$\begin{align}
 
 ---
 
-### （示例）教育程度与时均工资回归：FF-ff计算表
-
-```{r, message=FALSE, warning=FALSE}
-data_wage <- as_tibble(read.xlsx("../data/extra/Table-3-2-edu-wage.xlsx", sheet = 1))
-n <- dim(data_wage)[1]
-
-lm.wage <- lm(formula = "Y~X", data_wage)
-
-calc_tbl <- data_wage %>%
-  mutate(FF_XY = X*Y, FF_X_sqr = X^2, FF_Y_sqr = Y^2,
-         ff_x = X-mean(X), ff_y = Y-mean(Y),
-         ff_xy=ff_x*ff_y, ff_x_sqr=ff_x^2, ff_y_sqr=ff_y^2, 
-         Y_hat= fitted(lm.wage),
-         e_i = residuals(lm.wage), e_i_sqr = e_i^2)  %>%
-  rbind(colSums(.)) %>%  mutate(obs=replace(obs, obs==91, "sum")) 
-
-k <- dim(calc_tbl)[2]
-
-FF_ff <- calc_tbl %>%
-  filter(obs=="sum") %>%
-  mutate_if(is.numeric, funs(round(., digits = 3)))
-
-b2 <- lm.wage$coefficients[2]
-b1 <- lm.wage$coefficients[1]
-mean_X <- (FF_ff$X)/n
-mean_Y <- (FF_ff$Y)/n
-dev <- (FF_ff$e_i_sqr)/(n-2)
-dev_b2 <- dev/FF_ff$ff_x_sqr
-dev_b1 <- dev_b2*(FF_ff$FF_X_sqr/n)
-S_b1 <- sqrt(dev_b1)
-S_b2 <- sqrt(dev_b2)
-TSS <- sum((data_wage$Y -mean(data_wage$Y))^2)
-RSS <- FF_ff$e_i_sqr
-ESS <- TSS -RSS
-r2  <- ESS/TSS
-r <- cor(data_wage$X, data_wage$Y)
-cov_XY <- cov(data_wage$X, data_wage$Y)
-S_X <- sd(data_wage$X)
-S_Y <- sd(data_wage$Y)
-t_0.975 <- qt(0.975, n-2)
-chisq_0.025 <- qchisq(0.025,n-2)
-chisq_0.975 <- qchisq(0.975,n-2)
-t_b1 <- b1/S_b1
-t_b2 <- b2/S_b2
-f_ESS <- 1
-f_RSS <- n-2
-f_TSS <- n-1
-f_0.95 <- qf(0.95,f_ESS,f_RSS)
-f_test <- (ESS/f_ESS)/(RSS/f_RSS)
-# forecast
-X_0 <- 20
-Y_0_hat <- b1+b2*X_0
-t_0.95 <- qt(0.95,n-2)
-S2_Y0h <- dev*(1/n+(X_0-mean_X)^2/(FF_ff$ff_x_sqr))
-Y_exp_lft <- Y_0_hat - t_0.95*(sqrt(S2_Y0h))
-Y_exp_rht <- Y_0_hat + t_0.95*(sqrt(S2_Y0h))
-S2_Y0h_mns <- dev*(1+1/n+(X_0-mean_X)^2/(FF_ff$ff_x_sqr))
-Y_ind_lft <- Y_0_hat - t_0.95*(sqrt(S2_Y0h_mns))
-Y_ind_rht <- Y_0_hat + t_0.95*(sqrt(S2_Y0h_mns))
-```
+### （案例）相关计算量
 
 
-```{r, warning=F, message=FALSE}
-head.name <- c("obs","$X_i$","$Y_i$","$X_iY_i$", "$X_i^2$", "$Y_i^2$", "$x_i$", "$y_i$", "$x_iy_i$","$x_i^2$","$y_i^2$","$\\hat{Y}_i$","$e_i$","$e_i^2$")  
-
-show_tbl <- calc_tbl  %>% 
-  rename_at(vars(names(.)), ~ head.name)
-
-show_tbl %>%
-  select(1:11) %>%
-  mutate_if(is.numeric, ~formatC(., digits = 2, format = "f")) %>%
-  kable(align = "c")  %>%
-  kable_styling(full_width = T, font_size= 20)
-```
-
----
-
-### （示例）教育程度与时均工资回归
-
-
-我们之前已算出：
+我们之前已算出“教育程度案例”中的如下计算量：
 
 - 回归系数：
 $\hat{\beta}_1 =$ `r formatC(b1,4, format="f")`；
@@ -3202,7 +3461,7 @@ $t_{\alpha / 2}(n-2)=t_{0.05 / 2}(11)=$ `r formatC(t_0.975,4, format="f")`
 
 ---
 
-### （示例）教育程度与时均工资回归
+### （案例）回归系数的区间估计
 
 下面我们进一步计算回归系数的置信区间：
 
@@ -3248,7 +3507,7 @@ sep="\n"
  
 ---
 
-### （示例）教育程度与时均工资回归
+### （案例）随机干扰项方差的区间估计
 
 - 给定
 $\alpha=0.05,\quad (1-\alpha) 100 \%=95 \%$
@@ -3729,7 +3988,7 @@ $RSS$表示**残差差平方和**
 
 ---
 
-### （俘虏）：平方和分解证明过程
+### （附录）：平方和分解证明过程
 
 $$\begin{align}
 \sum{y_i^2} &= \sum{(\hat{y}_i e_i)^2} \\
@@ -4085,6 +4344,38 @@ $r$只能表明变量间的线性关联强度。
 
 ---
 
+### （案例）计算相关系数和判定系数
+
+对于“教育程度与时均工资案例”，根据FF-ff计算表和方差分解ANOVA表，可以分别计算得到样本相关系数和模型判定系数。
+
+样本相关系数
+$r$：
+
+```{r, results="asis"}
+cat(
+  "$$\\begin{align}",
+  str_c("r =\\frac{S_{XY}^2}{S_X\\ast S_Y}=","\\frac{",round(cov_XY,4),"}{",round(S_X,4),"\\ast",round(S_Y,4),"} =",round(r,4),"\\\\"),
+  "\\end{align}$$",
+  sep = "\n"
+)
+```
+
+回归方程的判定系数
+$r^2$：
+
+```{r, results="asis"}
+cat(
+  "$$\\begin{align}",
+  str_c("r^2 &= 1- \\frac{RSS}{TSS}=",1,"-\\frac{",round(RSS,4),"}{",round(TSS,4),"} =",round(r2,4),"\\\\"),
+  "\\end{align}$$",
+  sep = "\n"
+)
+```
+
+二者关系
+
+---
+
 ## 拟合优度：小结与思考
 
 **内容小结**：
@@ -4104,6 +4395,208 @@ $R^2 = r^2_{(X_i,Y_i)}$。注意，在多元回归中则不存在这种关系。
 ???
 参考答案：还可以有**均方误差和**（MSE）
 $MSE=RSS/n= 1/n\sum{(Y_i - \hat{Y}_i})^2$，以及**均方误差根**（RMSE）等。
+
+---
+
+## 残差分析：定义和作用
+
+**残差**(residual)：是因变量的观测值与根据估计的回归方程求出的估计值之差，用
+$e_i$表示。
+
+$$e_i = Y_i - \hat{Y_i}$$
+
+对模型的残差进行分析，主要目的包括：
+
+- 反映用估计的回归方程去预测而引起的误差。
+
+- 可用于确定有关随机干扰项
+$\mu_i$的假定是否成立。
+
+- 用于检测有影响的观测值。
+
+---
+
+## 残差分析：皮尔逊标准化残差
+
+**标准化残差**(standardized residual)：是对残差进行某种标准化变换。具体计算方法有**皮尔逊标准化残差**和**学生化标准残差**两种。
+
+最常用的皮尔逊标准化残差（Pearson residual/.red[internally studentized residuals]）的计算公式如下：
+
+$$\begin{align}
+e_{i, sd}^{\ast}= \frac{e_i}{s_{e_i}} 
+= \frac{(Y_i - \hat{Y_i})}{\sqrt{\frac{\sum{(e_i-\bar{e})^2}}{n-1}}}
+\end{align}$$
+
+---
+
+## 残差分析：皮尔逊标准化残差
+
+**学生化标准残差**（Studentized Residuals/.red[externally studentized residual]/deleted Studentized residual/semi-studentized residuals/jackknifed residuals），是对残差的另一种特殊标准化变换（例如考虑到了X的影响力）。
+
+**学生化标准残差**的计算公式有两个<sup>*</sup>：
+
+$$\begin{align}
+e_{i,st}^{\ast} &= \frac{e_i}{\sqrt{MSE_{(i)}(1-h_{ii})}} \\
+e_{i,st}^{\ast}& = e_{i, sd}^{\ast}\left( \frac{n-m-2}{n-m-1-e_{i, sd}^{\ast 2}}\right)^2
+\end{align}$$
+
+> 其中：
+$MSE_{(i)}$是指删除第
+$i$个观测值进行建模的**均方误差**（MSE）；
+$h_{ii}$指删除第
+$i$个观测值进行建模的第
+$i$个**影响权重**（leverage）。
+$m=k-1$为回归元个数。
+
+.footnote[
+说明：
+1）学生化残差的第一个计算公式计算起来比较麻烦和复杂。需要分别进行(n-1)次线性回归，然后依次计算相关
+$MSE_{(i)}$和
+$h_ii$。2）学生化残差的第二个计算公式相对简单，只需要利用原来的回归模型及其标准化残差
+$e_{i, sd}^{\ast}$。
+
+]
+
+???
+
+理论参看：
+
+- [Studentized Residuals](https://online.stat.psu.edu/stat462/node/247/)
+
+- [Using Leverages to Help Identify Extreme X Values](https://online.stat.psu.edu/stat462/node/171/)
+
+操作参看：
+- [Is studentized residuals v/s standardized residuals in lm model](https://stats.stackexchange.com/questions/204708/is-studentized-residuals-v-s-standardized-residuals-in-lm-model)
+
+---
+
+## 残差分析：残差图
+
+**残差图**(residual plot)：用于呈现残差数据
+$e_i$的分布情况的统计图图形，主要包括：
+
+
+- 关于
+$X_i$的残差散点图。
+
+- 关于
+$Y_i$的残差散点图（或者关于
+$\hat{Y_i}$）。
+
+- 关于样本序号的残差散点图或标准化残差散点图。
+
+---
+
+### （示例）残差图的模拟演示
+
+
+```{r, out.width= "75%"}
+include_graphics("../pic/extra/chpt8-diagnose-ei.png")
+```
+
+???
+残差序列
+$e_i$（或者标准化残差序列
+$e_i^{\ast}$）与相关变量（包括
+$X_i; Y_i;\hat{Y_i}$以及样本序号）之间**散点图**的若干假想分布模式。
+
+---
+
+### （案例）皮尔逊标准化残差
+
+.pull-left[
+
+```{r, eval=T}
+show_tbl %>%
+  select(c(1:3,12:14)) %>%
+  mutate_at(vars(contains("e_")), funs(formatC(., digits = 4, format = "f"))) %>%
+  kable( ) %>%  
+  kable_styling(font_size=20)
+```
+
+
+]
+
+.pull-right[
+
+- 根据样本回归方程，可以计算得到
+$Y_i$的回归拟合值
+$\hat{Y}_i$，以及回归残差
+$e_i$。
+
+$$\begin{align}
+\hat{Y}_i &=\hat{\beta}_1 +\hat{\beta}_2X_i\\
+e_i &= Y_i - \hat{Y}_i
+\end{align}$$
+
+- 进一步地计算得到**皮尔逊标准化残差**
+$e_{i, sd}^{\ast}$：
+
+$$\begin{align}
+e_{i, sd}^{\ast}= \frac{e_i}{s_{e_i}} 
+= \frac{(Y_i - \hat{Y_i})}{\sqrt{\frac{\sum{(e_i-\bar{e})^2}}{n-1}}}
+\end{align}$$
+
+]
+
+
+---
+
+### （案例）学生化标准残差
+
+.pull-left[
+
+```{r, eval=T}
+show_tbl %>%
+  select(c(1:3,12:15)) %>%
+  mutate_at(vars(contains("e_")), funs(formatC(., digits = 4, format = "f"))) %>%
+  kable() %>%  
+  kable_styling(font_size=20)
+
+```
+
+
+]
+
+.pull-right[
+
+- 根据样本回归方程，可以计算得到
+$Y_i$的回归拟合值
+$\hat{Y}_i$，以及回归残差
+$e_i$，以及前述的**皮尔逊标准化残差**
+$e_{i, sd}^{\ast}$。
+
+- 进而可以使用如下公式计算得到**学生化标准残差**
+$e_{i,st}^{\ast}$：
+
+$$\begin{align}
+e_{i,st}^{\ast}& = e_{i, sd}^{\ast}\left( \frac{n-k-2}{n-k-1-e_{i, sd}^{\ast 2}}\right)^2
+\end{align}$$
+
+]
+
+---
+
+### （案例）皮尔逊标准化残差散点图
+
+```{r}
+resid_tbl <- calc_tbl %>%
+  select(all_of(c("obs", "X", "Y")), all_of(contains("e_i")))
+
+resid_tbl %>%
+  ggplot(aes(X, e_i)) +
+  geom_point() +
+  #labs(x = ) +
+  theme(text = element_text(size=18),
+        axis.title.x = element_text(size = 16,
+                                margin = margin(t = 15, r = 0, 
+                                                b = 0, l = 0)),
+        axis.title.y = element_text(size = 16,
+                                margin = margin(t = 0, r = 15, 
+                                                b = 0, l = 0)))
+```
+
+
 
 ---
 layout: false
@@ -4576,7 +5069,7 @@ layout: false
 class: center, middle, duke-softblue,hide_logo
 name: report
 
-# 5.7 回归报告解读与分析
+# 5.7 回归报告解读
 
 ### 方程表达式
 
@@ -4597,7 +5090,7 @@ layout: true
 
 <div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter"> 第05章 相关和回归分析 </a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-<a href="#report"> 5.7 回归报告解读与分析 </a> </span></div>
+<a href="#report"> 5.7 回归报告解读 </a> </span></div>
 
 ---
 
