@@ -1217,7 +1217,7 @@ include_graphics("../pic/chpt01-1-data-series-M1.png", dpi=120)
 ### 案例：鸡蛋价格与鸡蛋产量
 
 ```{r}
-eggs <- as_tibble(read.xlsx("../data/Table-1-1-eggs.xlsx"))
+eggs <- as_tibble(read.xlsx("../data/extra/Table-1-1-eggs.xlsx"))
 eggs %>%
   select(STATE, Y1, X1) %>%
   datatable(options = list(pageLength=5, dom="tip"),
@@ -1287,7 +1287,7 @@ $n=q\ast t$。
 
 
 ```{r}
-steel <- as.tibble(read.xlsx("../data/Table-1-2-steel.xlsx"))
+steel <- as.tibble(read.xlsx("../data/extra/Table-1-2-steel.xlsx"))
 steel_wide <-steel %>%
   filter(company =="US"| company =="GE") %>%
   gather(key= "var", value="value",I:C) %>%
