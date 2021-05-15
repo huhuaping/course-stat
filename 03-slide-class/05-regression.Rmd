@@ -889,7 +889,7 @@ corl_pearson[upper.tri(corl_pearson)]<- NA
 ```
 
 
-```{r, eval=T, warning=FALSE}
+```{r, warning=FALSE}
 # rowname to column
 tbl_flex <- corl_pearson %>%  
   as.data.frame() %>%
@@ -920,7 +920,7 @@ corl_spearman<- round(cor(df_loan[,-1], method = "spearman"),4)
 corl_spearman[upper.tri(corl_spearman)] <- NA
 ```
 
-```{r, eval=T, warning=FALSE}
+```{r, warning=FALSE}
 # rowname to column
 tbl_flex <- corl_spearman %>%  
   as.data.frame() %>%
@@ -1530,7 +1530,7 @@ $E(Y|120)=89$
 ## 重要概念：理解PRM和PRF的关系
 
 若给定
-$X_i=$ `r X_spc` ，则5个家庭的真实消费支出分别为：
+$X_i=`r X_spc`$，则5个家庭的真实消费支出分别为：
 
 $$\begin{align}
 (Y_1|X=120) = 79 &= \beta_1 + \beta_2 \cdot 120 +u_1\\
@@ -1984,8 +1984,8 @@ p_SRL_SRF
 ```
 
 给定
-$x_i=$ `r x_spc_spl2`，样本2的观测值
-$Y_i=$ `r x_spc_spl2`；拟合值
+$x_i=`r x_spc_spl2`$，样本2的观测值
+$Y_i=`r x_spc_spl2`$；拟合值
 $\hat{Y}_i=$ `r Y_spc_fit`；残差
 $e_i=Y_i- \hat{Y}_i=$ `r Y_spc_spl2 -Y_spc_fit`。
 
@@ -4506,7 +4506,7 @@ $X_i; Y_i;\hat{Y_i}$以及样本序号）之间**散点图**的若干假想分�
 
 .pull-left[
 
-```{r, eval=T}
+```{r}
 show_tbl %>%
   select(c(1:3,12:14)) %>%
   mutate_at(vars(contains("e_")), funs(formatC(., digits = 4, format = "f"))) %>%
@@ -4546,7 +4546,7 @@ e_{i, sd}^{\ast}= \frac{e_i}{s_{e_i}}
 
 .pull-left[
 
-```{r, eval=T}
+```{r}
 show_tbl %>%
   select(c(1:3,12:15)) %>%
   mutate_at(vars(contains("e_")), funs(formatC(., digits = 4, format = "f"))) %>%

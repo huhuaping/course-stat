@@ -1,0 +1,567 @@
+---
+params:
+  hideslide: TRUE
+output:
+  xaringan::moon_reader:
+    seal: false
+    lib_dir: libs
+    css:
+      - default
+      - ../mycss/my-theme.css 
+      - ../mycss/my-font.css
+      - ../mycss/my-custom-for-video-roomy.css
+      - ../mycss/text-box.css
+      - duke-blue
+      - hygge-duke
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+exclude: `r params$hideslide`
+
+# 统计学原理(Statistic)
+
+<!---    chakra: libs/remark-latest.min.js --->
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### `r Sys.Date()`
+
+```{r , echo=F,message=FALSE,warning=F, eval=!params$hideslide}
+source("../R/set-global.R")
+source("../R/xfun.R", encoding = "UTF-8")
+source("../R/external-math-equation.R")
+options(width = 70)
+#source("../R/xaringan-chromote-print.R")
+```
+
+
+```{r , echo=FALSE, eval=!params$hideslide}
+require('xaringanExtra')
+
+xaringanExtra::use_tachyons()
+
+xaringanExtra::use_panelset()
+
+xaringanExtra::use_logo(
+  image_url = "../pic/logo/nwafu-logo-circle-wb.png",
+  height = '70px',
+  position = xaringanExtra::css_position(top='0.2em',left="1em")
+)
+```
+
+---
+
+class: center, middle, duke-orange,hide_logo
+name: chapter
+exclude: `r params$hideslide`
+
+# 第五章 相关和回归分析
+
+
+### [5.1 变量间关系的度量](#corl)
+
+### [5.2 回归分析的基本思想](#concept)
+
+### [5.3 OLS方法与参数估计](#ols)
+
+### [5.4 假设检验](#hypthesis)
+
+### [5.5 拟合优度与残差分析](#goodness)
+
+### [5.6 回归预测分析](#forecast)
+
+### [5.7 回归报告解读](#report)
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: forecast
+
+# 5.6 回归预测分析
+
+### 均值预测
+
+### 个值预测
+
+### 置信带
+
+---
+layout: true
+
+<div class="my-header-h2"></div>
+
+<div class="watermark1"></div>
+
+<div class="watermark2"></div>
+
+<div class="watermark3"></div>
+
+<div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter"> 第05章 相关和回归分析 </a>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="#forecast"> 5.6 回归预测分析 </a> </span></div> 
+
+---
+
+## 回归预测：引子
+
+预测未来事件的一些惯常说法
+
+- 算命术士：
+
+    - “客官印堂发黑，明日必有凶象!”
+
+- 天气预报播报词：
+
+    - 预测西安明天是小雨，概率为95%。
+    
+    - 预测西安明天是小雨转阴，概率为95%。
+    
+    - 预测西安明天是天晴或阴天或雨天，概率为100%！
+
+- 简要解析：
+    
+    - 人们在预测什么事件？
+    
+    - 预测多少个事件？它们发生的关系？
+    
+    - 预测如何令人信服？
+
+---
+
+## 回归预测：两类预测
+
+一元回归模型下：
+
+$$Y_i = \beta_1 + \beta_2X_i +u_i$$
+
+预测什么？
+
+**均值预测**(mean prediction)：
+
+- 给定
+$X_0$，预测Y的条件均值
+$E(Y|X=X_0)$
+
+
+**个值预测**(individual prediction)：
+
+- 给定
+$X_0$，预测对应于
+$X0$的Y的个别值
+$(Y_0|X_0)$
+
+---
+
+### （示例）样本内预测
+
+```{r}
+dpi_pred <-  220
+include_graphics("../pic/extra/chpt4-forecast-demo-01-insample.png", dpi= dpi_pred)
+```
+
+---
+
+### （示例）样本外预测
+
+```{r}
+include_graphics("../pic/extra/chpt4-forecast-demo-02-outsample.png" , dpi= dpi_pred)
+```
+
+
+---
+
+### （示例）均值预测
+
+```{r}
+include_graphics("../pic/extra/chpt4-forecast-demo-03-exp.png", dpi= dpi_pred)
+```
+
+---
+
+### （示例）个值预测
+
+```{r}
+include_graphics("../pic/extra/chpt4-forecast-demo-04-ind.png", dpi= dpi_pred)
+```
+
+---
+exclude:true
+
+## （案例）教育程度与时均工资
+
+```{r}
+source("Rscript/case-edu-wage.R", encoding = "UTF-8")
+```
+
+---
+
+## 回归预测：预测分析的关键
+
+拿什么来预测？——样本数据？样本回归线？样本拟合值？
+
+样本外拟合值
+$\hat{Y}_0|X=X_0$：
+
+- 可以证明：样本外拟合值
+  $\hat{Y}_0|X=X_0$是**均值**
+  $E(Y|X=X_0)$的一个.blue[**BLUE**]
+
+- 也可以证明：样本外拟合值
+  $\hat{Y}_0|X=X_0$是**个值**
+  $(Y_0|X=X_0)$的一个.blue[**BLUE**]
+
+工资案例中，给定
+$X_0=$ `r X_0`，则可以得到样本外拟合值：
+
+```{r, results="asis"}
+cat(
+  "\\begin{align}",
+  "\\hat{Y}_{0}=\\hat{\\beta}_{1}+\\hat{\\beta}_{2} X_{0}",
+  str_c("=",round(b1,4),"+",round(b2,4),"\\ast",X_0),
+  str_c("=",round(Y_0_hat, 4)),
+  "\\end{align}",
+  sep="\n"
+  )
+```
+
+
+---
+
+## 回归预测：预测分析的关键
+
+```{r}
+include_graphics("../pic/extra/chpt4-forecast-demo-05-fitted.png", dpi= dpi_pred)
+```
+
+---
+
+## 均值预测
+
+在**N-CLRM**假设和**OLS**方法下，可以证明（证明过程略）给定
+$X_0$下的拟合值
+$\hat{Y}_0$服从如下正态分布：
+
+$$\begin {align} 
+\hat{Y}_{0} \sim \mathrm{N}\left(\mu_{\hat{Y}_{0}}, \sigma_{\hat{Y}_{0}}^{2}\right)
+\end {align}$$
+
+$$\begin {align} 
+\mu_{\hat{Y}_{0}}=E\left(\hat{Y}_{0}\right)=E\left(\hat{\beta}_{1}+\hat{\beta}_{2} X_{0}\right)=\beta_{1}+\beta_{2} X_{0}=E(Y | X_{0})
+\end {align}$$
+
+$$\begin {align} 
+\operatorname{var}\left(\hat{Y}_{0}\right)=\sigma_{\hat{Y}_{0}}^{2}=\sigma^{2}\left[\frac{1}{n}+\frac{\left(X_{0}-\overline{X}\right)^{2}}{\sum x_{i}^{2}}\right]
+ \end {align}$$
+
+$$\begin {align} 
+\hat{Y}_{0} \sim N\left(E(Y | X_{0}), \sigma^{2}\left[\frac{1}{n}+\frac{\left(X_{0}-\overline{X}\right)^{2}}{\sum x_{i}^{2}}\right]\right)
+\end {align}$$
+
+---
+
+## 均值预测
+
+对
+$\hat{Y}_{0}$构造**t统计量**：
+
+$$\begin {align} 
+T &=\frac{\hat{Y}_{0}-\mathrm{E}(\mathrm{Y} | \mathrm{X}_{0})}{S_{\hat{Y}_{0}}} \sim t(n-2)
+&& \Leftarrow S_{\hat{Y}_{0}}=\sqrt{\hat{\sigma}^{2}\left[\frac{1}{n}+\frac{\left(X_{0}-\overline{X}\right)^{2}}{\sum x_{i}^{2}}\right]}
+\end {align}$$
+
+得到**均值**
+$E(Y|X=X_0)$置信区间为：
+
+$$\begin {align} 
+\operatorname{Pr}\left[\hat{Y}_{0}-t_{1-\alpha / 2}(n-2) \cdot S_{\hat{Y}_{0}} \leq E(Y | X_{0}) \leq \hat{Y}_{0}+t_{1-\alpha / 2}(n-2) \cdot S_{\hat{Y}_{0}}\right]=1-\alpha
+\end {align}$$
+ 
+$$\begin {align} 
+\operatorname{Pr}\left[\hat{\beta}+\hat{\beta}_{2} X_{0}-t_{1-\alpha / 2}(n-2) \cdot S_{\hat{Y}_{0}} \leq E(Y | X_{0}) \leq \hat{\beta}+\hat{\beta}_{2} X_{0}+t_{1- \alpha / 2}(n-2) \cdot S_{\hat{Y}_{0}}\right]=1-\alpha
+\end {align}$$
+
+---
+
+### （案例）教育程度和时均工资：均值预测
+
+给定
+$X_0=$ `r X_0`时，根据早前计算结果：
+$\hat{\sigma}^2=$ `r formatC(dev, 4, format="f")`；
+$\bar{X}=$ `r formatC(mean_X, 4, format="f")`；
+$\sum{x_i^2}=$ `r formatC(FF_ff$ff_x_sqr, 4, format="f")`。因此可以得到：
+
+```{r, results="asis"}
+cat(
+  "\\begin{align}",
+  "S^2_{\\hat{Y}_{0}} &=\\hat{\\sigma}^{2}\\left[\\frac{1}{n}+\\frac{\\left(X_{0}-\\overline{X}\\right)^{2}}{\\sum x_{i}^{2}}\\right] ",
+  str_c("=",round(dev,4), "\\left( \\frac{1}{",n,"}+","\\frac{(",round(X_0,4),"-",round(mean_X,4),")^2}{",round(FF_ff$ff_x_sqr,4), "}", "\\right)"),
+  str_c("=",round(S2_Y0h,4), "; \\quad"),
+  str_c("S_{\\hat{Y}_{0}} = \\sqrt{S^2_{\\hat{Y}_{0}}}=",
+        round(sqrt(S2_Y0h),4)
+        ),
+  "\\end{align}",
+  sep="\n"
+)
+```
+
+
+```{r, results="asis"}
+cat(
+  "\\begin{align}",
+  "\\hat{Y}_{0}=\\hat{\\beta}_{1}+\\hat{\\beta}_{2} X_{0}",
+  str_c("=",round(b1,4),"+",round(b2,4),"\\ast",X_0),
+  str_c("=",round(Y_0_hat, 4)),
+  "\\end{align}",
+  sep="\n"
+  )
+```
+
+因此，可以计算得到**均值**
+$E(Y|X=20)$置信区间为：
+
+```{r, results="asis"}
+cat(
+  "\\begin{align}",
+  "\\hat{\\beta}+\\hat{\\beta}_{2} X_{0}-t_{1-\\alpha / 2}(n-2) \\cdot S_{\\hat{Y}_{0}} \\leq  & E(Y | X_{0}) \\leq \\hat{\\beta}+\\hat{\\beta}_{2} X_{0}+t_{1- \\alpha / 2}(n-2) \\cdot S_{\\hat{Y}_{0}} \\\\",
+  str_c(round(Y_0_hat,4),"-",round(t_0.95, 4),"\\ast",round(sqrt(S2_Y0h),4), 
+        "\\leq & E(Y|X_0=",X_0,")\\leq", 
+        round(Y_0_hat,4),"+",round(t_0.95, 4),"\\ast",round(sqrt(S2_Y0h),4)
+        ),"\\\\",
+  str_c(round(Y_exp_lft,4), 
+        "\\leq & E(Y|X_0=",X_0,")\\leq", 
+        round(Y_exp_rht,4)
+        ),
+  "\\end{align}",
+  sep="\n"
+)
+```
+
+---
+
+### （案例）教育程度和时均工资：均值预测
+
+```{r}
+include_graphics("../pic/extra/chpt4-forecast-demo-06-interval-exp.png", dpi= dpi_pred)
+```
+
+---
+
+## 个值预测
+
+在**N-CLRM**假设和**OLS**方法下，可以证明（证明过程略）给定
+$X_0$下的个别值
+$Y_0=\beta_1+\beta_2X_0 +u_0$服从如下正态分布：
+
+$$\begin {align} 
+Y_{0} &\sim \mathrm{N}\left(\mu_{Y_{0}}, \sigma_{Y_{0}}^{2}\right) \\
+\mu_{Y_{0}}&=E\left(Y_{0}\right)=E\left(\beta_{1}+\beta_{2} X_{0}\right)=\beta_{1}+\beta_{2} X_{0} \\
+Var(Y_{0}) &=Var{(u_0)}=\sigma^{2}
+\end {align}$$
+
+
+$$\begin {align} 
+Y_{0} \sim N\left(\beta_{1}+\beta_{2} X_{0}, \sigma^{2} \right)
+\end {align}$$
+
+---
+
+## 个值预测
+
+进一步可以构造新的随机变量
+$(Y_0-\hat{Y}_0)$，其将服从如下正态分布：
+
+$$\begin {align} 
+Y_{0} & \sim N\left(\beta_{1}+\beta_{2} X_{0}, \sigma^{2} \right)\\
+\hat{Y}_{0} & \sim N\left( \beta_{1}+\beta_{2} X_{0}, \sigma^{2}\left[\frac{1}{n}+\frac{\left(X_{0}-\overline{X}\right)^{2}}{\sum x_{i}^{2}}\right]\right) 
+\end {align}$$
+
+$$\begin {align} 
+Y_{0} - \hat{Y}_{0} & \sim N\left( 0, \sigma^{2}\left[1 + \frac{1}{n}+\frac{\left(X_{0}-\overline{X}\right)^{2}}{\sum x_{i}^{2}}\right]\right) \\
+Y_{0} - \hat{Y}_{0} & \sim N\left( 0, \sigma^{2}_{Y_{0} - \hat{Y}_{0}} \right)
+\end {align}$$
+
+
+---
+
+## 个值预测
+
+对
+$Y_{0} - \hat{Y}_{0}$构造**t统计量**：
+
+$$\begin {align} 
+T &=\frac{(Y_{0} - \hat{Y}_{0})}{S_{(Y_{0} - \hat{Y}_{0})}} \sim t(n-2)
+&& \Leftarrow S_{(Y_{0} - \hat{Y}_{0})}
+=\sqrt{\hat{\sigma}^{2}\left[1+\frac{1}{n}+\frac{\left(X_{0}-\overline{X}\right)^{2}}{\sum x_{i}^{2}}\right]}
+\end {align}$$
+
+得到**个值**
+$Y_{0}$置信区间为：
+
+$$\begin {align} 
+\operatorname{Pr}\left[\hat{Y}_{0}-t_{1-\alpha / 2}(n-2) \cdot S_{(Y_{0} - \hat{Y}_{0})} \leq Y_{0} \leq \hat{Y}_{0}+t_{1-\alpha / 2}(n-2) \cdot S_{(Y_{0} - \hat{Y}_{0})}\right]=1-\alpha
+\end {align}$$
+ 
+$$\begin {align} 
+\operatorname{Pr}\left[\hat{\beta}+\hat{\beta}_{2} X_{0}-t_{1-\alpha / 2}(n-2) \cdot S_{(Y_{0} - \hat{Y}_{0})} 
+\leq Y_{0} \leq 
+\hat{\beta}+\hat{\beta}_{2} X_{0}+t_{1- \alpha / 2}(n-2) \cdot S_{(Y_{0} - \hat{Y}_{0})}\right]=1-\alpha
+\end {align}$$
+
+
+---
+
+### （案例）教育程度和时均工资：个值预测
+
+给定
+$X_0=$ `r X_0`时，根据早前计算结果：
+$\hat{\sigma}^2=$ `r formatC(dev, 4, format="f")`；
+$\bar{X}=$ `r formatC(mean_X, 4, format="f")`；
+$\sum{x_i^2}=$ `r formatC(FF_ff$ff_x_sqr, 4, format="f")`。因此可以得到：
+
+```{r, results="asis"}
+cat(
+  "\\begin{align}",
+  "S^2_{(Y_{0} - \\hat{Y}_{0})} &=\\hat{\\sigma}^{2}\\left[1+\\frac{1}{n}+\\frac{\\left(X_{0}-\\overline{X}\\right)^{2}}{\\sum x_{i}^{2}}\\right] ",
+  str_c("=",round(dev,4), "\\left( 1+ \\frac{1}{",n,"}+","\\frac{(",round(X_0,4),"-",round(mean_X,4),")^2}{",round(FF_ff$ff_x_sqr,4), "}", "\\right)"),
+  str_c("=",round(S2_Y0h_mns,4)),"\\\\",
+  str_c("S_{\\hat{Y}_{0}} &= \\sqrt{S^2_{\\hat{Y}_{0}}}=",
+        round(sqrt(S2_Y0h_mns),4)
+        ),
+  "\\end{align}",
+  sep="\n"
+)
+```
+
+
+```{r, results="asis"}
+cat(
+  "\\begin{align}",
+  "\\hat{Y}_{0}=\\hat{\\beta}_{1}+\\hat{\\beta}_{2} X_{0}",
+  str_c("=",round(b1,4),"+",round(b2,4),"\\ast",X_0),
+  str_c("=",round(Y_0_hat, 4)),
+  "\\end{align}",
+  sep="\n"
+  )
+```
+
+因此，可以计算得到**个值**
+$(Y_0|X=20)$置信区间为：
+
+```{r, results="asis"}
+cat(
+  "\\begin{align}",
+  "\\hat{\\beta}+\\hat{\\beta}_{2} X_{0}-t_{1-\\alpha / 2}(n-2) \\cdot S_{(Y_{0} - \\hat{Y}_{0})} \\leq  & Y_0 | X=X_0) \\leq \\hat{\\beta}+\\hat{\\beta}_{2} X_{0}+t_{1- \\alpha / 2}(n-2) \\cdot S_{(Y_{0} - \\hat{Y}_{0})} \\\\",
+  str_c(round(Y_0_hat,4),"-",round(t_0.95, 4),"\\ast",round(sqrt(S2_Y0h_mns),4), 
+        "\\leq & Y_0|X_0=",X_0,")\\leq", 
+        round(Y_0_hat,4),"+",round(t_0.95, 4),"\\ast",round(sqrt(S2_Y0h_mns),4)
+        ),"\\\\",
+  str_c(round(Y_ind_lft,4), 
+        "\\leq & Y_0|X_0=",X_0,")\\leq", 
+        round(Y_ind_rht,4)
+        ),
+  "\\end{align}",
+  sep="\n"
+)
+```
+
+---
+
+### （案例）教育程度和时均工资：个值预测
+
+```{r}
+include_graphics("../pic/extra/chpt4-forecast-demo-09-interval-ind.png", dpi= dpi_pred)
+```
+
+---
+
+## 置信带
+
+**置信带**(confidence interval)：对所有的X值，分别进行**均值**和**个值**分别进行预测，就能得到：
+
+- 均值预测的置信带——总体回归函数的置信带
+
+- 个值预测的置信带
+
+- 预测如何可信？
+    
+    - 均值预测置信区间
+    
+    - 均值预测置信带
+
+- 样本内置信带。——检验可靠性
+
+- 样本外置信带。——预测未来值范围
+
+
+---
+
+## 置信带
+
+```{r}
+include_graphics("../pic/extra/chpt4-forecast-demo-08-band-exp.png", dpi= dpi_pred)
+```
+
+---
+
+## 置信带
+
+```{r}
+include_graphics("../pic/extra/chpt4-forecast-demo-10-band-ind.png", dpi= dpi_pred)
+```
+
+---
+
+## 置信带
+
+如何理解置信带？
+
+- 谁更宽？——均值预测更准确
+
+- 何处最窄？—— 中心点
+$(\bar{X}, \bar{Y})=$ `r str_c("(",mean_X,",", formatC(mean_Y,2,format="f"),")")`是历史信息的集中代表。
+
+---
+
+## 回归预测：总结与思考
+
+**内容总结**：
+
+- 回归预测基于一套坚实严密的“底座”：OLS估计方法、CLRM假设、BLUE估计性质
+
+- 均值预测置信带和个值预测置信带，是对预测可信度的形象表达。
+
+- （同等条件下）均值预测比个值预测更准确（置信带宽窄）
+
+
+**课堂思考**：
+
+- 同样是95%置信度区间，两个人的认识是一样的么？
+
+**课后作业**：工资与教育案例扩展
+
+- 请计算置信度
+$100(1−\alpha)=95\%$下，
+$X_0=20$时均值的置信区间。
+与
+$100(1−\alpha)=90\%$时相比，有什么差异？
+
+- 99%更值得可信么？
+
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-fan.gif")
+class: inverse,center
+# 本节结束
+

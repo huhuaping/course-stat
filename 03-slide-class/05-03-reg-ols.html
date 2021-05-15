@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>05-03-reg-ols.utf8</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css/hygge-duke.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+exclude: false
+
+# 统计学原理(Statistic)
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### 2021-05-15
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 70px;
+z-index: 0;
+background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:0.2em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+---
+class: center, middle, duke-orange,hide_logo
+name:chapter
+exclude: false
+
+# 第五章 相关和回归分析
+
+
+### [5.1 变量间关系的度量](#corl)
+
+### [5.2 回归分析的基本思想](#oncept)
+
+### [5.3 OLS方法与参数估计](#ols)
+
+### [5.4 假设检验](#hypthesis)
+
+### [5.5 拟合优度与残差分析](#goodness)
+
+### [5.6 回归预测分析](#forecast)
+
+### [5.7 回归报告解读](#report)
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: ols
+
+# 5.3 OLS方法与参数估计
+
+### 普通最小二乘法（OLS）
+
+### 参数估计
+
+### 估计精度
+
+### 区间估计
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter"&gt; 第05章 相关和回归分析 &lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#ols"&gt; 5.3 OLS方法与参数估计 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 普通最小二乘法（OLS）：引子
+
+我们如何估计回归函数中的系数？
+
+.pull-left[
+
+总体回归：
+`$$\begin{cases}
+  \begin{align}
+  E(Y|X_i) &amp;= \beta_1 +\beta_2X_i &amp;&amp; \text{(PRF)} \\
+  Y_i &amp;=  \beta_1 +\beta_2X_i + u_i &amp;&amp; \text{(PRM)}
+  \end{align}
+\end{cases}$$`
+
+]
+
+.pull-right[
+样本回归：
+`$$\begin{cases}
+  \begin{align}
+  \hat{Y}_i &amp; =\hat{\beta}_1 + \hat{\beta}_2X_i &amp;&amp; \text{(SRF)} \\
+  Y_i &amp;= \hat{\beta}_1 + \hat{\beta}_2X_i +e_i &amp;&amp; \text{(SRM)}
+  \end{align}
+\end{cases}$$`
+
+]
+
+
+首先需要回答的问题是，我们该如何估计得出样本回归函数中的系数？事实上，方法有多种多样：
+
+- 图解法：比较粗糙，但提供了基本的视觉认知
+
+- 最小二乘法(order lease squares, OLS)：最常用的方法
+
+- 最大似然法(maximum likelihood, ML)
+
+- 矩估计方法(Moment method, MM)
+
+---
+
+## 普通最小二乘法（OLS）：回顾和比较
+
+.pull-left[
+.pa2.bg-lightest-blue[
+总体回归函数PRF:
+
+`$$\begin{align}
+E(Y|X_i) &amp;= \beta_1 +\beta_2X_i 
+\end{align}$$`
+
+总体回归模型PRM:
+
+`$$\begin{align}
+Y_i &amp;=  \beta_1 +\beta_2X_i + u_i 
+\end{align}$$`
+]
+
+]
+
+.pull-right[
+
+.pa2.bg-light-blue[
+样本回归函数SRF:
+
+`$$\begin{align}
+\hat{Y}_i =\hat{\beta}_1 + \hat{\beta}_2X_i 
+\end{align}$$`
+
+样本回归模型SRM:
+
+`$$\begin{align}
+Y_i &amp;= \hat{\beta}_1 + \hat{\beta}_2X_i +e_i 
+\end{align}$$`
+
+]
+
+]
+
+--
+
+思考：
+
+- PRF无法直接观测，只能用SRF近似替代
+
+- 估计值与观测值之间存在偏差
+
+- SRF又是怎样决定的呢?
+
+---
+
+## 普通最小二乘法（OLS）：原理
+
+认识普通最小二乘法的原理：一个图示
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/extra/chpt3-OLS-demo.png" alt="最小二乘法的原理" width="469" /&gt;
+&lt;p class="caption"&gt;最小二乘法的原理&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 普通最小二乘法（OLS）：原理
+
+OLS的基本原理：残差平方和最小化。
+
+`$$\begin{align}
+e_i  &amp;= Y_i - \hat{Y}_i \\
+     &amp;= Y_i - (\hat{\beta}_1 +\hat{\beta}_2X_i) 
+\end{align}$$`
+
+
+`$$\begin{align}
+Q  &amp;= \sum{e_i^2} \\
+   &amp;= \sum{(Y_i - \hat{Y}_i)^2} \\
+   &amp;= \sum{\left( Y_i - (\hat{\beta}_1 +\hat{\beta}_2X_i) \right)^2} \\
+   &amp;\equiv f(\hat{\beta}_1,\hat{\beta}_2)
+\end{align}$$`
+
+
+`$$\begin{align}
+Min(Q)  &amp;= Min \left ( f(\hat{\beta}_1,\hat{\beta}_2) \right)
+\end{align}$$`
+
+---
+
+### （示例） 普通最小二乘法（OLS）的一个数值试验
+
+假设存在下面所示的4组观测值
+`\((X_i, Y_i)\)`：
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/extra/chpt3-OLS-compare1.png" alt="数值试验：数据" width="2504" /&gt;
+&lt;p class="caption"&gt;数值试验：数据&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+### （示例） 普通最小二乘法（OLS）的一个数值试验
+
+假设随便猜想了如下两个SRF，完成下表计算，并分析哪个SRF给出的
+`\((\hat{\beta}_1, \hat{\beta}_2)\)`要更好？
+
+`$$\begin{align}
+SRF1：\hat{Y}_{1i} &amp; = \hat{\beta}_1 +\hat{\beta}_2X_i = 1.572 + 1.357X_i \\
+SRF2：\hat{Y}_{2i} &amp; = \hat{\beta}_1 +\hat{\beta}_2X_i = 3.0 + 1.0X_i 
+\end{align}$$`
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/extra/chpt3-OLS-compare2.png" alt="数值试验：计算" width="821" /&gt;
+&lt;p class="caption"&gt;数值试验：计算&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 参数估计：回归参数的OLS点估计
+
+最小化求解：
+
+`$$\begin{align}
+Min(Q)  &amp;= Min \left ( f(\hat{\beta}_1,\hat{\beta}_2) \right)\\
+ &amp;= Min\left(\sum{\left( Y_i - (\hat{\beta}_1 +\hat{\beta}_2X_i) \right)^2} \right) \\
+  &amp;= Min \sum{\left( Y_i - \hat{\beta}_1 - \hat{\beta}_2X_i \right)^2}
+\end{align}$$`
+
+
+方程组变形，得到**正规方程组**：
+
+`$$\begin{align}
+\left \{
+  \begin{split}
+   \sum{\left[ \hat{\beta}_1 - (Y_i -\hat{\beta}_2X_i) \right]}  &amp;=0 \\
+   \sum{\left[ X_i^2\hat{\beta}_2 - (Y_i-\hat{\beta}_1 )X_i \right ] }&amp;=0 
+   \end{split}
+\right. 
+\end{align}$$`
+
+`$$\begin{align}
+\left \{
+  \begin{split}
+   \sum{Y_i} - n\hat{\beta}_1- (\sum{X_i})\hat{\beta}_2 &amp;=0 \\
+   \sum{X_iY_i}-(\sum{X_i})\hat{\beta}_1 -  (\sum{X_i^2})\hat{\beta}_2 &amp;=0 
+   \end{split}
+\right.
+\end{align}$$`
+
+---
+
+## 参数估计：回归参数的OLS点估计
+
+进而得到回归系数的计算公式1（Favorite Five，FF）：
+
+`$$\begin{align}
+  \left \{
+  \begin{split}
+  \hat{\beta}_2 &amp;=\frac{n\sum{X_iY_i}-\sum{X_i}\sum{Y_i}}{n\sum{X_i^2}-\left ( \sum{X_i} \right)^2}\\
+  \hat{\beta}_1 &amp;=\frac{n\sum{X_i^2Y_i}-\sum{X_i}\sum{X_iY_i}}{n\sum{X_i^2}-\left ( \sum{X_i} \right)^2}
+  \end{split} 
+  \right.
+  &amp;&amp;\text{(FF solution)}
+\end{align}$$`
+
+---
+
+## 参数估计：回归参数的OLS点估计
+
+此外我们也可以得到如下的离差公式(favorite five，ff)
+
+`$$\begin{align}
+\left \{
+  \begin{split}
+  \hat{\beta}_2 &amp;=\frac{\sum{x_iy_i}}{\sum{x_i^2}}\\
+  \hat{\beta}_1 &amp;=\bar{Y}_i-\hat{\beta}_2\bar{X}_i
+  \end{split} 
+\right.  
+  &amp;&amp; \text{(ff solution)}
+\end{align}$$`
+
+其中离差计算
+`\(x_i=X_i-\bar{X};\  y_i=Y_i - \bar{Y}\)`。
+
+---
+
+### （测试题）
+
+以下式子为什么是等价的？你能推导出来么？
+
+`$$\begin{align}
+\left\{
+  \begin{split}
+    \sum{x_iy_i} &amp;= \sum{\left[ (X_i-\bar{X})(Y_i-\bar{Y})\right]} 
+    &amp;&amp;= \sum{X_iY_i} - \frac{1}{n}\sum{X_i}\sum{Y_i} \\
+    \sum{x_i^2} &amp;= \sum{(X_i- \bar{X})^2} 
+    &amp;&amp;= \sum{X_i^2} -\frac{1}{n} \left( \sum{X_i} \right)^2
+  \end{split}
+\right.
+\end{align}$$`
+
+---
+
+## 参数估计：随机干扰项参数的OLS点估计
+
+PRM公式变形：
+
+`$$\begin{alignedat}{2}
+&amp;\left.
+  \begin{split}
+   Y_i &amp;&amp;= \beta_1 - &amp;&amp;\beta_2X_i +u_i  \ &amp;&amp; \text{(PRM)} \Rightarrow \\
+   \hat{Y} &amp;&amp;= \beta_1 - &amp;&amp;\beta_2\bar{X} +\bar{u} &amp;&amp; \\   
+  \end{split}
+\right \} \Rightarrow \\
+ &amp; y_i = \beta_2x_i +(u_i- \bar{u})  
+\end{alignedat}$$`
+
+残差公式变形：
+
+`$$\begin{alignedat}{2}
+ &amp;\left. 
+  \begin{split}
+    &amp; e_i = y_i - \hat{\beta}_2x_i \\
+    &amp; e_i = \beta_2x_i +(u_i- \bar{u}) -\hat{\beta}_2x_i 
+  \end{split}
+\right \}  \Rightarrow \\
+&amp; e_i =-(\hat{\beta}_2- \beta_2)x_i + (u_i- \hat{u})
+\end{alignedat}$$`
+
+---
+
+## 参数估计：随机干扰项参数的OLS点估计
+
+求解残差平方和：
+
+`$$\begin{alignedat}{2}
+  &amp; \sum{e_i^2} &amp;&amp; = (\hat{\beta}_2 - \beta_2)^2\sum{x_i^2} + \sum{(u-\bar{u})^2} - 2(\hat{\beta}_2 - \beta_2)\sum{x_i(u-\bar{u})}  
+\end{alignedat}$$`
+
+求残差平方和的期望：
+
+`$$\begin{align}
+E(\sum{e_i^2}) &amp;= 
+ \sum{x_i^2 E \left[ (\hat{\beta}_2 - \beta_2)^2 \right ]}+ E\left[ \sum{(u-\bar{u})^2} \right ]\\
+&amp;+ 2E \left[ (\hat{\beta}_2 - \beta_2)\sum{x_i(u-\bar{u})} \right ] \\
+&amp; \equiv   A + B + C \\
+&amp; = \sigma^2 + (n-1)\sigma^2 -2\sigma^2 \\
+&amp; = (n-2)\sigma^2 
+\end{align}$$`
+
+---
+
+## 参数估计：随机干扰项参数的OLS点估计
+
+**回归误差方差**（Deviation of Regression Error）：
+
+- 采用OLS方法下，总体回归模型PRM中随机干扰项
+`\(u_i\)`的总体方差的无偏估计量，记为
+`\(E(\sigma^2) \equiv \hat{\sigma}^2\)`，简单地记为
+`\(\hat{\sigma}^2\)`。
+
+`$$\begin{align}
+\hat{\sigma}^2=\frac{\sum{e_i^2}}{n-2}
+\end{align}$$`
+
+--
+
+**回归误差标准差**（Standard Deviation of Regression Error）：有时候也记为**se**。
+
+`$$\begin{align}
+\hat{\sigma}=\sqrt{\frac{\sum{e_i^2}}{n-2}}
+\end{align}$$`
+
+???
+- 采用OLS方法下，总体回归模型PRM中随机干扰项
+`\(u_i\)`的总体标准差的无偏估计量，记为
+`\(E(\sigma) \equiv \hat{\sigma}\)`，代数表达式一般简单地记为
+`\(\hat{\sigma}\)`
+
+---
+
+### （附录）A过程证明
+
+`$$\begin{align}
+A &amp; = \sum{x_i^2 E \left[ (\hat{\beta}_2 - \beta_2)^2 \right ]} \\
+  &amp; = \sum{ \left[ x_i^2 \cdot var(\hat{\beta}_2) \right] } \\
+  &amp; = var(\hat{\beta}_2) \cdot \sum{x_i^2}  \\
+  &amp; = \frac{\sigma^2}{\sum{ x_i^2}} \cdot \sum{ x_i^2}  \\
+  &amp; = \sigma^2
+\end{align}$$`
+
+---
+
+### （附录）B过程证明
+
+`$$\begin{align}
+B  = E \left[ \sum{(u-\bar{u})^2} \right ] 
+  &amp; = E(\sum{u_i^2}) - 2E \left[ \sum{(u_i\bar{u})} \right] +nE(\bar{u}^2) \\
+  &amp; = n \cdot Var(u_i) - 2E \left[ \sum{(u_i \cdot \frac{\sum{u_i}}{n} )}  \right]  + nE(\frac{\sum{u_i}}{n})^2 \\
+  &amp; = n \sigma^2 - 2E \left[ \frac{\sum{u_i}}{n} \sum{u_i} \right] + E\left[ \frac{(\sum{u_i})^2}{n} \right]\\
+  &amp; = n \sigma^2- E\left[ (\sum{u_i})^2/{n} \right] 
+  = n \sigma^2  -  \frac{E(u_i^2) + E(u_2^2) + \cdots +  E(u_n^2) )}{n} \\
+  &amp; =  n \sigma^2 -  \frac{nVar{u_i}}{n} 
+   =  n \sigma^2 -  \sigma^2 =  (n-1) \sigma^2
+\end{align}$$`
+
+---
+
+### （附录）C过程证明
+
+`$$\begin{align}
+C &amp;= - 2E \left[ (\hat{\beta}_2 - \beta_2)\sum{x_i(u_i-\bar{u})} \right ] \\
+  &amp;= - 2E \left[ \frac{\sum{x_iu_i}}{\sum{x_i^2}} \left( \sum{x_iu_i}-\bar{u}\sum{x_i} \right) \right ] \\
+  &amp;= - 2E \left[ \frac{ \left( \sum{x_iu_i} \right)^2}{\sum{x_i^2}}  \right ]  \\
+  &amp;= -2E \left[(\hat{\beta}_2 - \beta_2)^2 \right] = -2\sigma^2
+\end{align}$$`
+
+--
+
+- 其中：
+
+`$$\begin{align}
+\hat{\beta}_2 &amp; = \sum{k_iY_i} = \sum{k_i(\beta_1 +\beta_2X_i +u_i)}   = \beta_1\sum{k_i} +\beta_2 \sum{k_iX_i}+\sum{k_iu_i}  
+= \beta_2 +\sum{k_iu_i} \\
+\hat{\beta}_2 - \beta_2 &amp; = \sum{k_iu_i} = \frac{ \sum{x_iu_i} }{\sum{x_i^2}}
+\end{align}$$`
+
+---
+exclude:true
+
+## （案例）教育程度与时均工资
+
+
+```
+Warning: `funs()` was deprecated in dplyr 0.8.0.
+Please use a list of either functions or lambdas: 
+
+  # Simple named list: 
+  list(mean = mean, median = median)
+
+  # Auto named with `tibble::lst()`: 
+  tibble::lst(mean, median)
+
+  # Using lambdas
+  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+```
+
+
+
+
+---
+
+### （案例）计算表FF和ff
+
+&lt;table class="table" style="font-size: 20px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; obs &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(X_i\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(Y_i\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(X_iY_i\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(X_i^2\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(Y_i^2\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(x_i\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(y_i\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(x_iy_i\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(x_i^2\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(y_i^2\)` &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.46 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 26.74 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 36.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 19.86 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -6.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -4.22 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25.31 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 36.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.79 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.77 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40.39 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 49.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 33.29 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -5.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -2.90 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 14.52 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8.44 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.98 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 47.83 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 64.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 35.74 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -4.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -2.70 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10.78 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.27 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 65.99 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 81.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 53.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -3.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.34 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.03 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.80 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.32 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 73.18 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 53.56 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -2.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.36 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.71 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.84 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6.58 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 72.43 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 121.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 43.35 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -2.09 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.09 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.37 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.82 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 93.82 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 144.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 61.12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -0.86 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.73 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 13.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.84 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 101.86 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 169.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 61.39 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -0.84 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -0.84 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.70 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 14.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11.02 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 154.31 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 196.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 121.49 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.35 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.70 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.51 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 15.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10.67 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 160.11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 225.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 113.93 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10.84 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 173.38 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 256.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 117.42 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.16 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8.65 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.67 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 13.62 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 231.46 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 289.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 185.37 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.94 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 24.70 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 24.41 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 13.53 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 243.56 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 324.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 183.09 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.86 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 29.14 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 36.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 23.58 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; sum &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 156.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 112.77 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1485.04 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2054.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1083.38 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 131.79 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 182.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 105.12 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### （案例）计算回归系数
+
+公式1: （Favorite Five，FF形式）
+
+`$$\begin{align}
+\hat{\beta}_2 &amp;=\frac{n\sum{X_iY_i}-\sum{X_i}\sum{Y_i}}{n\sum{X_i^2}-\left ( \sum{X_i} \right)^2}\\
+&amp;=\frac{13\ast1485.04-156\ast112.771}{13\ast2054-156^2}=0.7241
+\end{align}$$`
+
+
+`$$\begin{align}
+\hat{\beta_1} &amp;= \bar{Y} - \hat{\beta}_2 \bar{X}
+=8.6747-0.7241\ast12=-0.0145
+\end{align}$$`
+
+---
+
+### （案例）计算回归系数
+
+公式2：（离差形式，favorite five，ff形式）
+
+
+`$$\begin{align}
+\hat{\beta}_2 =\frac{\sum{x_iy_i}}{\sum{x_i^2}}
+=\frac{131.786}{182}=0.7241
+\end{align}$$`
+
+
+`$$\begin{align}
+\hat{\beta_1} = \bar{Y} - \hat{\beta}_2 \bar{X}
+=8.6747-0.7241\ast12=-0.0145
+\end{align}$$`
+
+---
+
+### （案例）样本回归方程SRF
+
+`$$\begin{align}
+\hat{Y}_i= \hat{\beta}_1 + \hat{\beta}_2 X_i
+=-0.0145+0.7241X_i
+\end{align}$$`
+
+---
+
+### （案例）样本回归线SRL
+
+&lt;img src="05-03-reg-ols_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### （案例）样本回归线SRL
+
+&lt;img src="05-03-reg-ols_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### （案例）计算得到拟合值和残差
+
+.pull-left[
+
+&lt;table class="table" style="font-size: 20px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; obs &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(X_i\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(Y_i\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(\hat{Y}_i\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(e_i\)` &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.127 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.716 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.200 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.829 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.092 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.366 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.857 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.564 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.899 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.173 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.735 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.320 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.512 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; sum &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 156 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 112.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 112.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right[
+
+根据以上样本回归方程，可以计算得到
+`\(Y_i\)`的回归拟合值
+`\(\hat{Y}_i\)`，以及回归残差
+`\(e_i\)`。
+
+`$$\begin{align}
+\hat{Y}_i &amp;=\hat{\beta}_1 +\hat{\beta}_2X_i\\
+e_i &amp;= Y_i - \hat{Y}_i
+\end{align}$$`
+]
+
+
+---
+
+### （案例）计算回归误差方差和标准差
+
+回归误差方差
+`\(\hat{\sigma}^2\)`
+
+`$$\begin{align}
+\hat{\sigma}^2= \frac{\sum{e_i^2}} {(n-2)}
+=\frac{9.693}{11}=0.8812
+\end{align}$$`
+
+回归误差标准差
+`\(\hat{\sigma}\)`：
+
+`$$\begin{align}
+\hat{\sigma}=\sqrt{\frac{\sum{e_i^2}}{(n-2)}}
+=\sqrt{0.8812}=0.9387
+\end{align}$$`
+
+
+---
+
+## OLS参数估计：“估计值”与“估计量”
+
+理解OLS方法下的“估计值”与“估计量”
+
+回归系数的计算公式1（Favorite Five，FF）：
+
+`$$\begin{align}
+  \left \{
+  \begin{split}
+  \hat{\beta}_2 &amp;=\frac{n\sum{X_iY_i}-\sum{X_i}\sum{Y_i}}{n\sum{X_i^2}-\left ( \sum{X_i} \right)^2}\\
+  \hat{\beta_1} &amp;=\frac{n\sum{X_i^2Y_i}-\sum{X_i}\sum{X_iY_i}}{n\sum{X_i^2}-\left ( \sum{X_i} \right)^2}
+  \end{split} 
+  \right.
+  &amp;&amp;\text{(FF solution)}
+\end{align}$$`
+
+
+- 如果给出的参数估计结果是由一个具体样本资料计算出来的，它是一个“估计值”，或者“点估计”，是参数估计量的一个具体数值；
+
+- 如果把上式看成参数估计的一个表达式，那么，则它是
+`\((X_i,Y_i)\)`的函数，而
+`\(Y_i\)`是随机变量，所以参数估计也是随机变量，在这个角度上，称之为“估计量”。
+
+---
+
+## OLS参数估计：SRF和SRM的特征
+
+OLS估计量是纯粹由可观测的(即样本)量(指X和Y)表达的，因此它们很容易计算。
+
+它们是点估计量(point estimators)，即对于给定样本，每个估计量仅提供有关总体参数的一个(点)值&lt;sup&gt;*&lt;/sup&gt;。
+
+一旦从样本数据得到OLS估计值，便容易画出样本回归线。
+
+.footnote[注：我们以后还将考虑区间估计量(interval Estimators)]
+
+---
+
+## OLS参数估计：SRF和SRM的特征
+
+- 特征1：样本回归线一定会经过样本均值点
+`\((\bar{X}, \bar{Y})\)`：
+
+`$$\begin{align}
+\bar{Y} = \hat{\beta}_1 +\hat{\beta}_2\bar{X}
+\end{align}$$`
+
+- 特征2：
+`\(Y_i\)`的**估计值**(
+`\(\hat{Y}_i\)`)的均值(
+`\(\bar{\hat{Y_i}}\)`)等于Y的样本均值(
+`\(\bar{Y}\)`)
+
+`$$\begin{align}
+\hat{Y_i} &amp;= \hat{\beta}_1 +\hat{\beta}_2\bar{X} \\
+&amp; =(\bar{Y} - \hat{\beta}_2\bar{X}) + \hat{\beta_2}X_i \\
+&amp; = \bar{Y} - \hat{\beta}_2(X_i - \bar{X}) 
+\end{align}$$`
+
+`$$\begin{align}
+&amp;\Rightarrow  1/n\sum{\hat{Y_i}} =  1/n\sum{\bar{Y} - \hat{\beta}_2(X_i - \bar{X})} \\
+&amp;\Rightarrow  \bar{\hat{Y_i}}  = \bar{Y}
+\end{align}$$`
+
+---
+
+## OLS参数估计：SRF和SRM的特征
+
+- 特征3：残差的均值(
+`\(\bar{e_i}\)`)为零：
+
+`$$\begin{align}
+\sum{\left[ \hat{\beta}_1 - (Y_i -\hat{\beta}_2X_i) \right]}  &amp;=0 \\
+\sum{\left[ Y_i- \hat{\beta}_1 - \hat{\beta}_2X_i) \right]}  &amp;=0 \\
+\sum{( Y_i- \hat{Y}_i )} &amp;=0 \\
+\sum{e_i}  &amp;=0 \\
+\bar{e_i} &amp;=0
+\end{align}$$`
+
+---
+
+## OLS参数估计：SRF和SRM的特征
+
+- 特征4：SRM和SRF可以写成离差形式：
+
+`$$\begin{align}
+&amp; \left.
+  \begin{split}
+  Y_i &amp;&amp; = \hat{\beta}_1 + \hat{\beta}_2X_i + e_i \\
+  \bar{Y} &amp;&amp;= \hat{\beta}_1 + \hat{\beta}_2\bar{X}
+  \end{split}
+\right \} \Rightarrow \\
+&amp; Y_i - \bar{Y} =\hat{\beta_2}(X_i - \bar{X}) + e_i \Rightarrow  \\
+&amp; y_i=\hat{\beta_2}x_i +e_i \  &amp;&amp;\text{(SRM-dev)}
+\end{align}$$`
+
+`$$\begin{align}
+&amp; \left.
+  \begin{split}
+  \hat{Y}_i &amp;&amp; = \hat{\beta}_1 + \hat{\beta}_2X_i\\
+  \bar{Y} &amp;&amp;= \hat{\beta}_1 + \hat{\beta}_2\bar{X}
+  \end{split}
+\right \} \Rightarrow \\
+&amp; \hat{Y}_i - \bar{Y} =\hat{\beta_2}(X_i - \bar{X})  \Rightarrow  \\
+&amp; \hat{y}_i=\hat{\beta_2}x_i \  &amp;&amp;\text{(SRF-dev)} 
+\end{align}$$`
+
+---
+
+## OLS参数估计：SRF和SRM的特征
+
+- 特征5：残差(
+`\(e_i\)`)和
+`\(Y_i\)`的拟合值(
+`\(\hat{Y_i}\)`)不相关
+
+`$$\begin{align}
+Cov(e_i, \hat{Y_i}) &amp;= E \left[ \left( e_i-E(e_i)\right )\cdot \left( \hat{Y_i}-E(\hat{Y_i})\right ) \right]
+= E(e_i \cdot \hat{y_i}) \\
+&amp; = \sum(e_i \cdot \hat{\beta_2}x_i) \\
+&amp; = \sum{ \left[ (y_i-\hat{\beta_2}x_i) \cdot \hat{\beta_2}x_i \right]} \\
+&amp; = \hat{\beta_2}\sum \left[ (y_i-\hat{\beta_2}x_i)\cdot x_i \right]\\
+&amp; = \hat{\beta_2}\sum \left[ (y_ix_i-\hat{\beta_2}x_i^2)  \right]\\
+&amp; = \hat{\beta_2}\sum{x_iy_i}-\hat{\beta}_2^2\sum{x_i^2}  &amp;&amp; \Leftarrow \hat{\beta_2} = \frac{\sum{x_iy_i}}{x_i^2} \\
+&amp; = \hat{\beta}_2^2\sum{x_i^2}-  \hat{\beta_2}^2\sum{x_i^2}   = 0
+\end{align}$$`
+
+
+- 特征6：残差(
+`\(e_i\)`)和自变量(
+`\(X_i\)`)不相关
+
+---
+
+## OLS参数估计：离差公式
+
+- 离差定义与符号：
+
+`$$\begin{align}
+x_i &amp;= X_i - \bar{X} \\
+y_i &amp;= Y_i - \bar{Y} \\
+\hat{y}_i &amp;= \hat{Y}_i - \bar{\hat{Y}}_i = \hat{Y}_i - \bar{Y}
+\end{align}$$`
+
+- PRM及其离差形式：
+
+`$$\begin{align}
+&amp; \left.
+  \begin{split}
+  Y_i &amp;&amp; = \beta_1 + \beta_2X_i + u_i \\
+  \bar{Y} &amp;&amp;= \beta_1 + \beta_2\bar{X} + \bar{u}
+  \end{split}
+\right \} \Rightarrow \\
+&amp; Y_i - \bar{Y} =\beta_2x_i + (u_i- \bar{u}) \Rightarrow  \\
+&amp; y_i=\hat{\beta_2}x_i + (u_i- \bar{u})  \  &amp;&amp;\text{(PRM-dev)}
+\end{align}$$`
+
+---
+
+## OLS参数估计：离差公式
+
+--
+.pull-left[
+- SRM及其离差形式：
+`$$\begin{align}
+&amp; \left.
+  \begin{split}
+  Y_i &amp;&amp; = \hat{\beta}_1 + \hat{\beta}_2X_i + e_i \\
+  \bar{Y} &amp;&amp;= \hat{\beta}_1 + \hat{\beta}_2\bar{X}
+  \end{split}
+\right \} \Rightarrow \\
+&amp; Y_i - \bar{Y} =\hat{\beta_2}(X_i - \bar{X}) + e_i \Rightarrow  \\
+&amp; y_i=\hat{\beta_2}x_i +e_i 
+\end{align}$$`
+]
+
+--
+.pull-right[
+- SRF及其离差形式：
+
+`$$\begin{align}
+&amp; \left.
+  \begin{split}
+  \hat{Y}_i &amp;&amp; = \hat{\beta}_1 + \hat{\beta}_2X_i\\
+  \bar{Y} &amp;&amp;= \hat{\beta}_1 + \hat{\beta}_2\bar{X}
+  \end{split}
+\right \} \Rightarrow \\
+&amp; \hat{Y}_i - \bar{Y} =\hat{\beta_2}(X_i - \bar{X})  \Rightarrow  \\
+&amp; \hat{y}_i=\hat{\beta_2}x_i \   
+\end{align}$$`
+]
+
+--
+
+- 残差的离差形式：
+
+`$$\begin{align}
+ y_i=\hat{\beta_2}x_i +e_i  &amp;&amp;\text{(SRM-dev)} \ \Rightarrow  \\
+ e_i =y_i - \hat{\beta_2}x_i \  &amp;&amp;\text{(residual-dev)}
+\end{align}$$`
+
+
+---
+
+## OLS参数估计：思考与讨论
+
+**内容小结**：
+
+- 普通最小二乘方法（OLS）采用“铅垂线距离平方和最小化”的思想，来拟合一条样本回归线，进而求解出模型参数估计量。
+
+- 大家需要很熟练地记住OLS参数估计量公式，以及它们的几大重要特征！
+
+**思考讨论**：
+
+- OLS采用的“铅垂线距离平方和最小化”这一方案，凭什么它被奉为计量分析的经典方法？你觉得还有其他可行替代方案么？
+
+- 回归标准误差
+`\(se\)`的现实含义是什么？回归参数估计与随机干扰项的方差估计有什么内在联系么？
+
+- OLS方法的几个特征，是不是使它“天生丽质”、“娘胎里生下来就含着金钥匙”？为什么能这么说？
+
+???
+可以是“垂线距离平方和最小化”么？如果是距离的3次方或4次方之和，又会怎样？距离的绝对值之和可以么？对于这些方案，你有什么想法？
+
+---
+
+## 估计精度：引子
+
+我们已经使用OLS方法分别得到总体回归模型(PRM)的3个重要参数（实际不止3个）的点估计量：
+
+`$$\begin{align}
+Y_i &amp;=  \beta_1 +\beta_2X_i + u_i  \\
+\hat{\beta}_2 &amp;=\frac{\sum{x_iy_i}}{\sum{x_i^2}} ; \quad
+\hat{\beta}_1 =\bar{Y}_i-\hat{\beta}_2\bar{X}_i ; \quad
+\hat{\sigma}^2 =\frac{\sum{e_i^2}}{n-2}
+\end{align}$$`
+
+&gt;问题是：我们如何知道OLS方法点估计量是否可靠？OLS方法的点估计量是否稳定？ OLS方法的点估计量是否可信？
+
+因此，我们需要找到一种表达OLS方法估计稳定性或估计精度的指标！
+
+- 点估计量的**方差**（variance）和**标准差**（standard deviation）就是衡量估计稳定性或估计精度的一类重要指标！
+
+---
+
+## 估计精度：斜率系数的方差和样本方差
+
+.pull-left[
+斜率系数（
+`\(\hat{\beta}_2\)`）的**总体方差**（
+`\(\sigma^2_{\hat{\beta}_2}\)`）和**总体标准差**（
+`\(\sigma_{\hat{\beta}_2}\)`）：
+
+`$$\begin{align}
+Var(\hat{\beta}_2) \equiv \sigma_{\hat{\beta}_2}^2  &amp; =\frac{\sigma^2}{\sum{x_i^2}} \\
+\sigma_{\hat{\beta}_2} &amp;=\sqrt{\frac{\sigma^2}{\sum{x_i^2}}} 
+\end{align}$$`
+
+- 其中，
+`\(Var(u_i) \equiv \sigma^2\)`表示随机干扰项
+`\(u_i\)`的总体方差。
+
+]
+
+.pull-right[
+斜率系数（
+`\(\hat{\beta}_2\)`）的**样本方差**（
+`\(S^2_{\hat{\beta}_2}\)`）和**样本标准差**（
+`\(S_{\hat{\beta}_2}\)`）：
+
+`$$\begin{align}
+S_{\hat{\beta}_2}^2 &amp;=\frac{\hat{\sigma}^2}{\sum{x_i^2}} \\
+S_{\hat{\beta}_2} &amp;=\sqrt{\frac{\hat{\sigma}^2}{\sum{x_i^2}}}
+\end{align}$$`
+
+- 其中，
+`\(E(\sigma^2) = \hat{\sigma}^2 = \frac{\sum{e_i^2}}{n-2}\)`表示对随机干扰项（
+`\(u_i\)`）的总体方差的**无偏估计量**。
+]
+
+---
+
+### （附录）证明过程1
+
+**步骤1**
+`\(\hat{\beta}_2\)`的变形：
+
+`$$\begin{align}
+\hat{\beta}_2 &amp;=\frac{\sum{x_iy_i}}{\sum{x_i^2}}= \frac{\sum{\left[ x_i (Y_i -\bar{Y}) \right]} }{\sum{x_i^2}}  \\
+&amp; = \frac{\sum{ x_iY_i}- \sum{ x_i \bar{Y} } }{\sum{x_i^2}}    \\
+&amp; = \frac{\sum{x_iY_i}- \bar{Y}\sum{x_i} }{\sum{x_i^2}}  &amp;&amp; \leftarrow \left[ \sum{x_i}=\sum{(X_i -\bar{X})} = 0 \right]  \\
+&amp; = \sum{ \left(\frac{x_i}{\sum{x_i^2}} \cdot Y_i \right) }   &amp;&amp; \leftarrow  \left[ k_i \equiv \frac{x_i}{\sum{x_i^2}} \right]\\
+&amp; = \sum{k_iY_i}
+\end{align}$$`
+
+&gt; - 其中，
+`\(k_i \equiv \frac{x_i}{\sum{x_i^2}}\)`。
+
+---
+
+### （附录）证明过程2
+
+**步骤2**：计算
+`\(\hat{\beta}_2\)`的**总体方差**（
+`\(\sigma^2_{\hat{\beta}_2}\)`）：
+
+`$$\begin{align}
+\sigma^2_{\hat{\beta}_2} &amp; \equiv Var(\hat{\beta}_2) 
+ = Var(\sum{k_iY_i} ) \\
+&amp; = \sum{\left( k_i^2Var(Y_i) \right)} \\
+&amp; = \sum{\left( k_i^2Var(\beta_1 +\beta_2X_i +u_i) \right)} \\
+&amp; = \sum{ \left( k_i^2Var(u_i) \right)}  &amp;&amp; \leftarrow \left[ k_i  \equiv \frac{x_i}{\sum{x_i^2}} \right]\\
+&amp; = \sum{ \left( \left(\frac{x_i}{\sum{x_i^2}} 
+                 \right)^2 \cdot \sigma^2 
+          \right)} \\
+&amp; = \frac{\sigma^2}{\sum{x_i^2}}
+\end{align}$$`
+
+&gt; 其中，
+`\(Var(u_i) \equiv \sigma^2\)`表示随机干扰项
+`\(u_i\)`的总体方差。
+
+---
+
+## 估计精度：截距系数的方差和样本方差
+
+.pull-left[
+截距系数（
+`\(\hat{\beta}_1\)`）的**总体方差**（
+`\(\sigma^2_{\hat{\beta}_1}\)`）和**总体标准差**（
+`\(\sigma_{\hat{\beta}_1}\)`）：
+
+
+`$$\begin{align}
+Var(\hat{\beta}_1) \equiv \sigma_{\hat{\beta}_1}^2  &amp;=\frac{\sum{X_i^2}}{n} \cdot \frac{\sigma^2}{\sum{x_i^2}} \\
+\sigma_{\hat{\beta}_1} &amp; =\sqrt{\frac{\sum{X_i^2}}{n} \cdot \frac{\sigma^2}{\sum{x_i^2}}}
+\end{align}$$`
+
+
+&gt; - 其中，
+`\(Var(u_i) \equiv \sigma^2\)`表示随机干扰项
+`\(u_i\)`的总体方差。
+
+]
+
+.pull-right[
+截距系数（
+`\(\hat{\beta}_1\)`）的**样本方差**（
+`\(S^2_{\hat{\beta}_1}\)`）和**样本标准差**（
+`\(S_{\hat{\beta}_1}\)`）：
+
+`$$\begin{align}
+S_{\hat{\beta}_1}^2 &amp;=\frac{\sum{X^2_i}}{n} \cdot \frac{\hat{\sigma}^2}{\sum{x_i^2}} \\
+S_{\hat{\beta}_1} &amp;=\sqrt{\frac{\sum{X^2_i}}{n} \cdot \frac{\hat{\sigma}^2}{\sum{x_i^2}}}
+\end{align}$$`
+
+&gt; - 其中，
+`\(E(\sigma^2) = \hat{\sigma}^2 = \frac{\sum{e_i^2}}{n-2}\)`表示对随机干扰项（
+`\(u_i\)`）的总体方差的**无偏估计量**。
+
+]
+
+---
+
+### （附录）证明过程1
+
+**步骤1**
+`\(\hat{\beta}_1\)`的变形：
+
+`$$\begin{align}
+\hat{\beta_1} &amp; = \bar{Y}_i-\hat{\beta}_2\bar{X}_i &amp;&amp; \leftarrow \left[ \hat{\beta}_2= \sum{k_iY_i} \right] \\
+&amp; = \frac{1}{n} \sum{Y_i} - \sum{\left( k_iY_i \cdot \bar{X} \right)} \\
+&amp; = \sum{\left( (\frac{1}{n} - k_i\bar{X}) \cdot Y_i  \right)}   &amp;&amp; \leftarrow \left[ w_i \equiv \frac{1}{n} - k_i\bar{X} \right]\\     
+&amp; = \sum{w_iY_i}
+\end{align}$$`
+
+&gt; - 其中：令
+`\(w_i \equiv \frac{1}{n} - k_i\bar{X}\)`
+
+---
+
+### （附录）证明过程2
+
+**步骤2**计算
+`\(\hat{\beta}_1\)`的**总体方差**（
+`\(\sigma^2_{\hat{\beta}_1}\)`）：
+
+`$$\begin{align}
+\sigma^2_{\hat{\beta}_1} &amp; \equiv  Var(\hat{\beta_1})  = Var(\sum{w_iY_i}) \\
+&amp; = \sum{\left( w_i^2Var(\beta_1 +\beta_2X_i + u_i) \right)} &amp;&amp; \leftarrow \left[w_i \equiv \frac{1}{n} - k_i\bar{X} \right]\\
+&amp; = \sum{\left( 
+            \left( \frac{1}{n} - k_i\bar{X} \right)^2Var(u_i) 
+         \right)} \\
+&amp; = \sigma^2 \cdot \sum{ \left( \frac{1}{n^2} - \frac{2 \bar{X} k_i}{n} + k_i^2 \bar{X}^2 \right) }  &amp;&amp; \leftarrow \left[ \sum{k_i} = \sum{\left( \frac{x_i}{\sum{x_i^2}} \right)= \frac{\sum{x_i}} {\sum{x_i^2}}}=0 \right] \\
+&amp; = \sigma^2 \cdot \left( \frac{1}{n} + \bar{X}^2\sum{k_i^2} \right)  &amp;&amp; \leftarrow \left[ k_i \equiv \frac{x_i}{\sum{x_i^2}} \right]\\
+&amp; = \sigma^2 \cdot \left( \frac{1}{n} + \bar{X}^2\sum{ \left( \frac{x_i}{\sum{x_i^2}} \right) ^2} \right) 
+\end{align}$$`
+
+---
+
+### （附录）证明过程2（续）
+
+
+**步骤2**计算
+`\(\hat{\beta}_1\)`的**总体方差**（
+`\(\sigma^2_{\hat{\beta}_1}\)`）（续前）：
+
+`$$\begin{align}
+&amp; = \sigma^2 \cdot \left( \frac{1}{n} + \bar{X}^2  \frac{\sum{x_i^2}}{\left( \sum{x_i^2} \right)^2}  \right) \\
+&amp; = \sigma^2 \cdot \left( \frac{1}{n} +   \frac{ \bar{X}^2 } { \sum{x_i^2} }  \right) \\
+&amp; =  \frac{\sum{x_i^2} + n\bar{X}^2} {n\sum{x_i^2}} \cdot \sigma^2 &amp;&amp; \leftarrow  \left[ \sum{x_i^2} + n\bar{X}^2 = \sum{(X_i-\bar{X})^2} + n\bar{X}^2 = \sum{X_i^2}\right]\\
+&amp; = \frac{\sum{X_i^2}}{n} \cdot \frac{\sigma^2}{\sum{x_i^2}}
+\end{align}$$`
+
+---
+
+## 估计精度：小结与思考
+
+现在做一个**内容小结**：
+
+- 为了衡量OLS方法的点估计量是否稳定或是否可信，我们一般采用方差和标准差指标来表达。
+
+- 大家应熟记**斜率**和**截距**估计量的**总体方差**和**样本方差**最终公式。
+
+请大家**思考**如下问题：
+
+
+- 总体方差和样本方差都是确定的数么？
+
+- 二者分别受那些因素的影响？二者又有什么联系？
+
+- 证明过程中，约定的
+`\(k_i\)`和
+`\(w_i\)`，有什么特征？
+
+--
+
+.pull-left[
+
+`$$\begin{cases}
+  \begin{align}
+  \sum{k_i}  &amp; =0 \\
+   \sum{k_iX_i} &amp; = 1
+  \end{align}
+\end{cases}$$`
+
+]
+
+.pull-right[
+
+`$$\begin{cases}
+  \begin{align}
+  \sum{w_i}  &amp; =1 \\
+   \sum{w_iX_i} &amp; = 0
+  \end{align}
+\end{cases}$$`
+
+]
+
+---
+
+###（案例）计算回归系数的样本方差
+
+对于“教育程度案例”，利用FF-ff计算表，以及我们已算出的如下计算量：
+
+- 回归误差方差：
+`\(\hat{\sigma}^2=\)` 0.8812。
+
+则可以进一步计算出，回归系数的样本方差的标准差分别为：
+
+`$$\begin{align}
+S^2_{\hat{\beta}_2} &amp;= \frac{\hat{\sigma}^2} {\sum{x_i^2}}
+=\frac{0.8812}{182}=0.0048\\
+S_{\hat{\beta}_2} &amp;= \sqrt{\frac{\hat{\sigma}^2} {\sum{x_i^2}}}
+=\sqrt{0.0048}=0.0696
+\end{align}$$`
+
+`$$\begin{align}
+S^2_{\hat{\beta}_1} &amp;= \frac{\sum{X_i^2}} {n} \frac{\hat{\sigma}^2} {\sum{x_i^2}}
+=\frac{2054}{13}\frac{0.8812}{182}=0.765\\
+S_{\hat{\beta}_1} &amp;= \sqrt{\frac{\sum{X_i^2}}{n}\frac{\hat{\sigma}^2} {\sum{x_i^2}}}
+=\sqrt{0.765}=0.8746
+\end{align}$$`
+
+
+---
+
+## 区间估计：斜率系数
+
+`$$\begin{align}
+\hat{\beta}_2 &amp; \sim N(\mu_{\hat{\beta}_2}, \sigma^2_{\hat{\beta}_2})
+&amp;&amp; \leftarrow \left[ \mu_{\hat{\beta}_2}= \beta_2; \quad
+\sigma^2_{\hat{\beta}_2} = \frac{\sigma^{2}}{\sum x_{i}^{2}} \right]
+\end{align}$$`
+
+`$$\begin {align} 
+&amp;Z=\frac{\left(\hat{\beta}_{2}-\beta_{2}\right)}{\sqrt{\operatorname{var}\left(\hat{\beta}_{2}\right)}}
+=\frac{\left(\hat{\beta}_{2}-\beta_{2}\right)}{\sqrt{\sigma_{\beta_{2}}^{2}}}
+=\frac{\hat{\beta}_{2}-\beta_{2}}{\sigma_{\hat{\beta}_{2}}}
+=\frac{\left(\hat{\beta}_{2}-\beta_{2}\right)}{\sqrt{\frac{\sigma^{2}}{\sum x_{i}^{2}}}} &amp;&amp; \leftarrow Z \sim N(0, 1)
+\end {align}$$`
+
+
+`$$\begin{align} 
+T&amp;=\frac{\left(\hat{\beta}_{2}-\beta_{2}\right)}{\sqrt{S_{\beta_{2}}^{2}}}
+=\frac{\hat{\beta}_{2}-\beta_{2}}{\sqrt{S_{\beta_{2}}^{2}}}
+=\frac{\hat{\beta}_{2}-\beta_{2}}{S_{\hat{\beta}_{2}}}
+&amp;&amp; \leftarrow T \sim t(n-2)
+ \end{align}$$`
+
+`$$\begin{align} 
+S^2_{\hat{\beta}_2} =\frac{\hat{\sigma}^{2}}{\sum x_{i}^{2}}
+; \quad
+\hat{\sigma}^{2}=\frac{\sum e_{i}^{2}}{n-2}
+ \end{align}$$`
+ 
+`$$\begin{align} 
+\operatorname{Pr}\left[-t_{\alpha / 2,(n-2)} \leq \mathrm{T} \leq t_{\alpha / 2,(n-2)}\right]=1-\alpha
+ \end{align}$$`
+ 
+
+---
+
+## 区间估计：斜率系数
+
+
+`$$\begin {align} 
+\operatorname{Pr}\left[-t_{\alpha / 2,(n-2)} \leq \frac{\hat{\beta}_{2}-\beta_{2}}{S_{\hat{\beta}_{2}}} \leq t_{\alpha / 2 ,(n-2)}\right]=1-\alpha
+ \end {align}$$`
+ 
+`$$\begin {align} 
+\operatorname{Pr}\left[\hat{\beta}_{2}-t_{\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{2}} \leq \beta_{2} \leq \hat{\beta}_{2}+t_{\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{2}}\right]=1-\alpha
+ \end {align}$$`
+
+因此，
+`\(\beta_2\)`的
+`\(100(1-\alpha)\%\)`置信上限和下限分别为：
+
+`$$\hat{\beta}_{2} \pm t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}}$$`
+
+`\(\beta_2\)`的
+`\(100(1-\alpha)\%\)`置信区间为：
+
+`$$\left[ \hat{\beta}_{2} - t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}}, \quad \hat{\beta}_{2} + t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}} \right]$$`
+
+
+---
+
+## 区间估计：截距系数
+
+`$$\begin{align}
+\hat{\beta}_1 &amp; \sim N(\mu_{\hat{\beta}_1}, \sigma^2_{\hat{\beta}_1})
+&amp;&amp; \leftarrow \left[ \mu_{\hat{\beta}_1}= \beta_1; \quad
+\sigma^2_{\hat{\beta}_1} = \frac{\sum{X_i^2}}{n} \frac{\sigma^{2}}{\sum x_{i}^{2}} \right]
+\end{align}$$`
+
+`$$\begin {align} 
+&amp;Z=\frac{\left(\hat{\beta}_{1}-\beta_{1}\right)}{\sqrt{\operatorname{var}\left(\hat{\beta}_{1}\right)}}
+=\frac{\left(\hat{\beta}_{1}-\beta_{1}\right)}{\sqrt{\sigma_{\beta_{1}}^{2}}}
+=\frac{\hat{\beta}_{1}-\beta_{1}}{\sigma_{\hat{\beta}_{1}}}
+=\frac{\left(\hat{\beta}_{1}-\beta_{1}\right)}{\sqrt{\frac{\sum{X^2_i}}{n} \cdot \frac{\sigma^{2}}{\sum x_{i}^{2}}}} &amp;&amp; \leftarrow Z \sim N(0, 1)
+\end {align}$$`
+
+`$$\begin{align} 
+T&amp;=\frac{\left(\hat{\beta}_{1}-\beta_{1}\right)}{S^2_{\hat{\beta}_1}}
+=\frac{\hat{\beta}_{1}-\beta_{1}}{\sqrt{S_{\beta_{1}}^{2}}}
+=\frac{\hat{\beta}_{1}-\beta_{1}}{S_{\hat{\beta}_{1}}}
+&amp;&amp; \leftarrow T \sim t(n-2)
+ \end{align}$$`
+ 
+`$$\begin{align} 
+S^2_{\hat{\beta}_1} =\frac{\sum{X_i^2}}{n} \cdot \frac{\hat{\sigma}^{2}}{\sum x_{i}^{2}}
+; \quad 
+\hat{\sigma}^{2}=\frac{\sum e_{i}^{2}}{n-2}
+ \end{align}$$`
+ 
+`$$\begin{align} 
+\operatorname{Pr}\left[-t_{\alpha / 2,(n-2)} \leq \mathrm{T} \leq t_{\alpha / 2,(n-2)}\right]=1-\alpha
+ \end{align}$$`
+ 
+
+---
+
+## 区间估计：截距系数
+
+`$$\begin {align} 
+\operatorname{Pr}\left[-t_{\alpha / 2,(n-2)} \leq \frac{\hat{\beta}_{1}-\beta_{1}}{S_{\hat{\beta}_{1}}} \leq t_{\alpha / 2 ,(n-2)}\right]=1-\alpha
+ \end {align}$$`
+ 
+`$$\begin {align} 
+\operatorname{Pr}\left[\hat{\beta}_{1}-t_{\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{1}} \leq \beta_{1} \leq \hat{\beta}_{1}+t_{\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{1}}\right]=1-\alpha
+ \end {align}$$`
+
+因此，
+`\(\beta_1\)`的
+`\(100(1-\alpha)\%\)`置信上限和下限分别为：
+
+`$$\hat{\beta}_{1} \pm t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}}$$`
+
+`\(\beta_1\)`的
+`\(100(1-\alpha)\%\)`置信区间为：
+
+`$$\left[ \hat{\beta}_{1} - t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}}, \quad \hat{\beta}_{1} + t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}} \right]$$`
+
+---
+
+## 区间估计：随机干扰项的方差
+
+`$$\begin {align} 
+\chi^{2} &amp; =(n-2) \frac{\hat{\sigma}^{2}}{\sigma^{2}}
+&amp;&amp;\leftarrow \quad \chi^{2} \sim \chi^{2}(n-2)
+ \end {align}$$`
+
+`$$\begin {align} 
+\operatorname{Pr}\left(\chi_{\alpha / 2}^{2} \leq \chi^{2} \leq \chi_{\alpha / 2}^{2}\right)=1-\alpha
+\end {align}$$`
+
+`$$\begin {align} 
+\operatorname{Pr}\left(\chi_{\alpha / 2}^{2} \leq 
+(n-2) \frac{\hat{\sigma}^{2}}{\sigma^{2}} \leq \chi_{1-\alpha / 2}^{2}\right)=1-\alpha
+\end {align}$$`
+
+
+`$$\begin {align} 
+\operatorname{Pr}\left[(n-2) \frac{\hat{\sigma}^{2}}{\chi_{1-\alpha/2}^{2}} \leq \sigma^{2} \leq (n-2) \frac{\hat{\sigma}^{2}}{\chi_{\alpha / 2}^{2}}\right]=1-\alpha
+ \end {align}$$`
+ 
+因此，
+`\(\sigma^2\)`的
+`\(100(1-\alpha)\%\)`为：
+
+`$$\left[ (n-2) \frac{\hat{\sigma}^{2}}{\chi_{1-\alpha/2}^{2}}, \quad (n-2) \frac{\hat{\sigma}^{2}}{\chi_{\alpha / 2}^{2}}\right]$$`
+
+---
+
+### （案例）主模型
+
+我们继续利用样本数据对**教育和工资案例**进行分析。
+
+&gt; **教育和工资案例**的总体回归模型（PRM）如下：
+
+`$$\begin{align}
+Wage_i &amp; = \beta_1 + \beta_2 Edu_i +u_i \\
+Y_i &amp; = \beta_1 + \beta_2 X_i +u_i \\
+\end{align}$$`
+
+&gt; **教育和工资案例**的总体回归模型（SRM）如下：
+
+`$$\begin{align}
+\widehat{Wage}_i &amp; = \hat{\beta}_1 + \hat{\beta}_2 Edu_i +e_i \\
+\hat{Y}_i &amp; = \hat{\beta}_1 + \hat{\beta}_2 X_i + e_i \\
+\end{align}$$`
+
+---
+
+### （案例）相关计算量
+
+
+我们之前已算出“教育程度案例”中的如下计算量：
+
+- 回归系数：
+`\(\hat{\beta}_1 =\)` -0.0145；
+`\(\hat{\beta}_2 =\)` 0.7241；
+`\(\hat{\sigma}^2=\)` 0.8812 。
+
+- 回归误差方差：
+`\(\hat{\sigma}^2=\)` 0.8812。
+
+
+- 回归系数的样本方差:
+`\(S^2_{\hat{\beta}_1} = \frac{\sum{X_i^2}}{n} \cdot \frac{\hat{\sigma}^2} {\sum{x_i^2}}=\)` 0.7650；
+`\(S^2_{\hat{\beta}_2} = \frac{\hat{\sigma}^2} {\sum{x_i^2}}=\)` 0.0048;
+
+- 回归系数的样本标准差:
+`\(S_{\hat{\beta}_1} =\)` 0.8746；
+`\(S_{\hat{\beta}_2} =\)` 0.0696。
+
+
+给定
+`\(\alpha=0.05,\quad (1-\alpha) 100 \%=95 \%\)`，我们可以查t分布表得到理论参照值：
+`\(t_{\alpha / 2}(n-2)=t_{0.05 / 2}(11)=\)` 2.2010
+
+
+
+---
+
+### （案例）回归系数的区间估计
+
+下面我们进一步计算回归系数的置信区间：
+
+那么，截距参数
+`\(\beta_1\)`的95%置信区间为：
+
+`$$\begin{align}
+\hat{\beta}_{1} - t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}} \quad \leq &amp; \beta_1 \leq \quad \hat{\beta}_{1} + t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}} \\
+-0.0145-2.201\ast0.8746\quad \leq &amp; \beta_1 \quad \leq-0.0145+2.201\ast0.8746\\
+-1.9395\quad \leq &amp; \beta_1 \quad \leq1.9106\\
+\end{align}$$`
+
+那么，斜率参数
+`\(\beta_2\)`的95%置信区间为：
+
+`$$\begin{align}
+\hat{\beta}_{2} - t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}} \quad \leq &amp; \beta_2 \leq \quad \hat{\beta}_{2} + t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}} \\
+0.7241-2.201\ast0.0696\quad \leq &amp; \beta_2 \quad \leq0.7241+2.201\ast0.0696\\
+0.5709\quad \leq &amp; \beta_2 \quad \leq0.8772\\
+\end{align}$$`
+
+
+ 
+---
+
+### （案例）随机干扰项方差的区间估计
+
+- 给定
+`\(\alpha=0.05,\quad (1-\alpha) 100 \%=95 \%\)`
+
+- 查卡方分布表可知：
+
+    - `\(\chi^2_{\alpha / 2}(n-2)=\chi^2_{0.05 / 2}(11)=\chi^2_{0.025}(11)=\)` 3.8157
+
+    - `\(\chi^2_{1-\alpha / 2}(n-2)=\chi^2_{1-0.05 / 2}(11)=\chi^2_{0.975}(11)=\)` 21.9200
+
+
+们之前已算出回归误差方差
+`\(\hat{\sigma}^2=\frac{\sum{e_i^2}}{n-2}=\)` 0.8812
+。因此可以算出
+`\(\sigma^2\)`的95%置信区间为：
+
+
+`$$\begin {align}\\
+(n-2) \frac{\hat{\sigma}^{2}}{\chi_{\alpha}^{2}} \leq \sigma^{2} \leq(n-2) \frac{\hat{\sigma}^{2}}{\chi_{1-\alpha / 2}^{2}}\\
+11\ast \frac{0.8812}{21.92} \leq \sigma^2 \leq11\ast \frac{0.8812}{3.8157}\\
+0.4422\leq \sigma^2 \leq2.5403\\
+\end {align}$$`
+
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-fan.gif")
+class: inverse,center
+# 本节结束
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
