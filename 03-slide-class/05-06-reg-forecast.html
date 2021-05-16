@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>05-06-reg-forecast.utf8</title>
+    <title>05-06-reg-forecast.knit</title>
     <meta charset="utf-8" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
@@ -10,10 +10,10 @@
     <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
     <link href="libs/panelset/panelset.css" rel="stylesheet" />
     <script src="libs/panelset/panelset.js"></script>
-    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
-    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
-    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
-    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
+    <link rel="stylesheet" href="D:/github/course-stat/mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="D:/github/course-stat/mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="D:/github/course-stat/mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="D:/github/course-stat/mycss/text-box.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -34,7 +34,7 @@ exclude: FALSE
 
 ### huhuaping01@hotmail.com
 
-### 2021-05-15
+### 2021-05-16
 
 
 
@@ -92,7 +92,7 @@ exclude: FALSE
 
 ### [5.5 拟合优度与残差分析](#goodness)
 
-### [5.6 回归预测分析](#forecast)
+### [.white[5.6 回归预测分析]](#forecast)
 
 ### [5.7 回归报告解读](#report)
 
@@ -103,11 +103,13 @@ name: forecast
 
 # 5.6 回归预测分析
 
-### 均值预测
+### [.white[回归预测]](#forecast-basic)
 
-### 个值预测
+### [.white[均值预测]](#forecast-mean)
 
-### 置信带
+### [.white[个值预测]](#forecast-ind)
+
+### [.white[置信带]](#forecast-band)
 
 ---
 layout: true
@@ -125,6 +127,7 @@ layout: true
 &lt;a href="#forecast"&gt; 5.6 回归预测分析 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
 
 ---
+name: forecast-basic
 
 ## 回归预测：引子
 
@@ -205,6 +208,19 @@ exclude:true
 ## （案例）教育程度与时均工资
 
 
+```
+Warning: `funs()` was deprecated in dplyr 0.8.0.
+Please use a list of either functions or lambdas: 
+
+  # Simple named list: 
+  list(mean = mean, median = median)
+
+  # Auto named with `tibble::lst()`: 
+  tibble::lst(mean, median)
+
+  # Using lambdas
+  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+```
 
 ---
 
@@ -223,15 +239,17 @@ exclude:true
   `\(\hat{Y}_0|X=X_0\)`是**个值**
   `\((Y_0|X=X_0)\)`的一个.blue[**BLUE**]
 
+.fl.w-100.pa2.bg-lightest-blue[
 工资案例中，给定
-`\(X_0=\)` 20，则可以得到样本外拟合值：
+`\(X_0=20\)`，则可以得到样本外拟合值：
 
-`\begin{align}
-\hat{Y}_{0}=\hat{\beta}_{1}+\hat{\beta}_{2} X_{0}
-=-0.0145+0.7241\ast20
-=14.4675
-\end{align}`
+`$$\begin{align}
+\hat{Y}_{0}&amp;=\hat{\beta}_{1}+\hat{\beta}_{2} X_{0}\\
+&amp;=-0.01 + 0.72 \times 20\\
+&amp;=14.4675
+\end{align}$$`
 
+]
 
 ---
 
@@ -240,6 +258,7 @@ exclude:true
 &lt;img src="../pic/extra/chpt4-forecast-demo-05-fitted.png" width="777" style="display: block; margin: auto;" /&gt;
 
 ---
+name: forecast-mean
 
 ## 均值预测
 
@@ -327,6 +346,7 @@ S_{\hat{Y}_{0}} = \sqrt{S^2_{\hat{Y}_{0}}}=0.6145
 &lt;img src="../pic/extra/chpt4-forecast-demo-06-interval-exp.png" width="778" style="display: block; margin: auto;" /&gt;
 
 ---
+name:forecast-ind
 
 ## 个值预测
 
@@ -432,6 +452,7 @@ S_{\hat{Y}_{0}} &amp;= \sqrt{S^2_{\hat{Y}_{0}}}=1.122
 &lt;img src="../pic/extra/chpt4-forecast-demo-09-interval-ind.png" width="781" style="display: block; margin: auto;" /&gt;
 
 ---
+name:forecast-band
 
 ## 置信带
 

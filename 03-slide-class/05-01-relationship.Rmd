@@ -1,6 +1,6 @@
 ---
 params:
-  hideslide: FALSE
+  hideslide: TRUE
 output:
   xaringan::moon_reader:
     seal: false
@@ -68,7 +68,7 @@ exclude: `r params$hideslide`
 # 第五章 相关和回归分析
 
 
-### [5.1 变量间关系的度量](#corl)
+### [.white[5.1 变量间关系的度量]](#corl)
 
 ### [5.2 回归分析的基本思想](#concept)
 
@@ -996,6 +996,6 @@ cor.test(df_rel1$loan.surplus, df_rel1$loan.bad,
 
 ---
 layout:false
-background-image: url("../pic/thank-you-gif-funny-fan.gif")
+background-image: url("../pic/thank-you-gif-funny-little-yellow.gif")
 class: inverse,center
 # 本节结束

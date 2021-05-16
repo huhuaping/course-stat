@@ -59,6 +59,11 @@ xaringanExtra::use_logo(
 )
 ```
 
+```{r, eval=FALSE}
+params < NULL
+params$hideslide <- TRUE
+```
+
 
 ---
 class: center, middle, duke-orange,hide_logo

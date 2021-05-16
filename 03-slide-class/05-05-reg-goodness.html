@@ -36,7 +36,7 @@ exclude: FALSE
 
 ### huhuaping01@hotmail.com
 
-### 2021-05-15
+### 2021-05-16
 
 
 
@@ -92,7 +92,7 @@ exclude: FALSE
 
 ### [5.4 假设检验](#hypthesis)
 
-### [5.5 拟合优度与残差分析](#goodness)
+### [.white[5.5 拟合优度与残差分析]](#goodness)
 
 ### [5.6 回归预测分析](#forecast)
 
@@ -106,9 +106,9 @@ name: goodness
 
 # 5.5 拟合优度与残差分析
 
-### 拟合优度
+### [拟合优度](#goodness-r2)
 
-### 残差分析
+### [残差分析](#goodness-ei)
 
 ---
 
@@ -127,6 +127,7 @@ layout: true
 &lt;a href="#goodness"&gt; 5.5 拟合优度与残差分析 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
 
 ---
+name: goodness-r2
 
 ## 拟合优度：引子
 
@@ -146,29 +147,40 @@ layout: true
 ## 拟合优度：测量指标
 
 
-**拟合优度**（Goodness of fit）：判断样本回归线对一组数据拟合优劣水平的度量。
+**拟合优度**（Goodness of fit）：度量样本回归线对一组数据拟合优劣水平。
 
-**判定系数**（coefficient of determination）：一种利用平方和分解，考察样本回归线对数据拟合效果的总度量。一元回归中，一般记为
-`\(r^2\)`；多元回归中，一般记为
+**判定系数**（coefficient of determination）：一种利用平方和分解，考察样本回归线对数据拟合效果的总度量。
+
+- 一元回归中，一般记为
+`\(r^2\)`；
+
+- 多元回归中，一般记为
 `\(R^2\)`。
 
+---
+
+## （示例）拟合优度的直观理解
+
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="../pic/extra/chpt3-fitness-venn.png" alt="维恩图看拟合优度" width="549" /&gt;
+&lt;img src="../pic/extra/chpt3-fitness-venn.png" alt="维恩图看拟合优度" width="95%" /&gt;
 &lt;p class="caption"&gt;维恩图看拟合优度&lt;/p&gt;
 &lt;/div&gt;
+
 
 ---
 
 ## 拟合优度：测量指标
 
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="../pic/extra/chpt2-1-PRL-SRL.png" alt="平方和分解看拟合优度" width="651" /&gt;
+&lt;img src="../pic/extra/chpt2-1-PRL-SRL.png" alt="平方和分解看拟合优度" width="80%" /&gt;
 &lt;p class="caption"&gt;平方和分解看拟合优度&lt;/p&gt;
 &lt;/div&gt;
 
 ---
 
 ## 拟合优度：判定系数
+
+基于前述的方差分解ANOVA表，我们可以用如下公式计算**判定系数**。
 
 判定系数
 `\(r^2\)`计算公式1：
@@ -326,6 +338,7 @@ r^2 &amp;= 1- \frac{RSS}{TSS}=1-\frac{9.693}{105.1183} =0.9078\\
 `\(MSE=RSS/n= 1/n\sum{(Y_i - \hat{Y}_i})^2\)`，以及**均方误差根**（RMSE）等。
 
 ---
+name: goodness-ei
 
 ## 残差分析：定义和作用
 
@@ -358,15 +371,20 @@ e_{i, sd}^{\ast}= \frac{e_i}{s_{e_i}}
 
 ---
 
-## 残差分析：皮尔逊标准化残差
+## 残差分析：学生化标准化残差
 
 **学生化标准残差**（Studentized Residuals/.red[externally studentized residual]/deleted Studentized residual/semi-studentized residuals/jackknifed residuals），是对残差的另一种特殊标准化变换（例如考虑到了X的影响力）。
+
+---
+
+## 残差分析：学生化标准化残差
 
 **学生化标准残差**的计算公式有两个&lt;sup&gt;*&lt;/sup&gt;：
 
 `$$\begin{align}
-e_{i,st}^{\ast} &amp;= \frac{e_i}{\sqrt{MSE_{(i)}(1-h_{ii})}} \\
+e_{i,st}^{\ast} &amp;= \frac{e_i}{\sqrt{MSE_{(i)}(1-h_{ii})}} \tag{eq.01}\\
 e_{i,st}^{\ast}&amp; = e_{i, sd}^{\ast}\left( \frac{n-m-2}{n-m-1-e_{i, sd}^{\ast 2}}\right)^2
+\tag{eq.02}
 \end{align}$$`
 
 &gt; 其中：
@@ -592,7 +610,7 @@ e_{i, sd}^{\ast}= \frac{e_i}{s_{e_i}}
 
 .pull-left[
 
-&lt;table class="table" style="font-size: 20px; margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="font-size: 22px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; obs &lt;/th&gt;
@@ -723,13 +741,13 @@ e_{i, sd}^{\ast}= \frac{e_i}{s_{e_i}}
    &lt;td style="text-align:left;"&gt; 0.6220 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; sum &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 156 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 112.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 112.8 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 0.0000 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; -0.0000 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 0.0601 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: red !important;"&gt; sum &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: red !important;"&gt; 156 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: red !important;"&gt; 112.8 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: red !important;"&gt; 112.8 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: red !important;"&gt; 0.0000 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: red !important;"&gt; -0.0000 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: red !important;"&gt; 0.0601 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -742,24 +760,53 @@ e_{i, sd}^{\ast}= \frac{e_i}{s_{e_i}}
 - 根据样本回归方程，可以计算得到
 `\(Y_i\)`的回归拟合值
 `\(\hat{Y}_i\)`，以及回归残差
-`\(e_i\)`，以及前述的**皮尔逊标准化残差**
+`\(e_i\)`，以及前述**皮尔逊标准化残差**
 `\(e_{i, sd}^{\ast}\)`。
 
 - 进而可以使用如下公式计算得到**学生化标准残差**
 `\(e_{i,st}^{\ast}\)`：
 
 `$$\begin{align}
-e_{i,st}^{\ast}&amp; = e_{i, sd}^{\ast}\left( \frac{n-k-2}{n-k-1-e_{i, sd}^{\ast 2}}\right)^2
+e_{i,st}^{\ast}&amp; = e_{i, sd}^{\ast}\left( \frac{n-m-2}{n-m-1-e_{i, sd}^{\ast 2}}\right)^2
 \end{align}$$`
 
 ]
 
 ---
 
-### （案例）皮尔逊标准化残差散点图
+### （案例）皮尔逊标准化残差散点图1
 
-&lt;img src="05-05-reg-goodness_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="05-05-reg-goodness_files/figure-html/unnamed-chunk-11-1.png" alt="残差对样本编号作图" width="90%" /&gt;
+&lt;p class="caption"&gt;残差对样本编号作图&lt;/p&gt;
+&lt;/div&gt;
 
+---
+
+### （案例）皮尔逊标准化残差散点图2
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="05-05-reg-goodness_files/figure-html/unnamed-chunk-12-1.png" alt="残差对自变量X作图" width="90%" /&gt;
+&lt;p class="caption"&gt;残差对自变量X作图&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+### （案例）皮尔逊标准化残差散点图3
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="05-05-reg-goodness_files/figure-html/unnamed-chunk-13-1.png" alt="残差对因变量Y作图" width="90%" /&gt;
+&lt;p class="caption"&gt;残差对因变量Y作图&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+### （案例）皮尔逊标准化残差散点图4
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="05-05-reg-goodness_files/figure-html/unnamed-chunk-14-1.png" alt="标准化残差对样本编号作图" width="90%" /&gt;
+&lt;p class="caption"&gt;标准化残差对样本编号作图&lt;/p&gt;
+&lt;/div&gt;
 
 ---
 layout:false

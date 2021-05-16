@@ -70,7 +70,7 @@ exclude: `r params$hideslide`
 
 ### [5.1 变量间关系的度量](#corl)
 
-### [5.2 回归分析的基本思想](#concept)
+### [.white[5.2 回归分析的基本思想]](#concept)
 
 ### [5.3 OLS方法与参数估计](#ols)
 
@@ -988,7 +988,7 @@ kable(sample2_t)
 
 ---
 
-### （示例）两份样本同时出现：
+### （示例）两份样本同时出现
 
 ```{r,warning=FALSE}
 sample_all<- rbind(sample1, sample2) %>%
@@ -1101,6 +1101,9 @@ include_graphics("../pic/extra/chpt2-1-PRL-SRL.png", dpi=120)
 ## 重要概念：样本回归与总体回归的比较
 
 .pull-left[
+
+.fl.ma2.pa2.bg-lightest-blue[
+
 总体回归函数PRF:
 
 $$\begin{align}
@@ -1115,8 +1118,12 @@ Y_i &=  \beta_1 +\beta_2X_i + u_i && \text{(PRM)}
 
 ]
 
+]
+
 
 .pull-right[
+
+.fl.ma2.pa2.bg-light-green[
 样本回归函数SRF:
 
 $$\begin{align}
@@ -1128,6 +1135,7 @@ $$\begin{align}
 $$\begin{align}
 Y_i &= \hat{\beta}_1 + \hat{\beta}_2X_i +e_i && \text{(SRM)}
 \end{align}$$
+]
 
 ]
 
@@ -1173,6 +1181,6 @@ Y_i &= \hat{\beta}_1 + \hat{\beta}_2X_i +e_i && \text{(SRM)}
 
 ---
 layout:false
-background-image: url("../pic/thank-you-gif-funny-fan.gif")
+background-image: url("../pic/thank-you-gif-funny-little-yellow.gif")
 class: inverse,center
 # 本节结束

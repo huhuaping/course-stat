@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>05-03-reg-ols.utf8</title>
+    <title>05-03-reg-ols.knit</title>
     <meta charset="utf-8" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
@@ -12,10 +12,10 @@
     <script src="libs/panelset/panelset.js"></script>
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
-    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
-    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
-    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
+    <link rel="stylesheet" href="D:/github/course-stat/mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="D:/github/course-stat/mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="D:/github/course-stat/mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="D:/github/course-stat/mycss/text-box.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -34,7 +34,7 @@ exclude: false
 
 ### huhuaping01@hotmail.com
 
-### 2021-05-15
+### 2021-05-16
 
 
 
@@ -85,7 +85,7 @@ exclude: false
 
 ### [5.2 回归分析的基本思想](#oncept)
 
-### [5.3 OLS方法与参数估计](#ols)
+### [.white[5.3 OLS方法与参数估计]](#ols)
 
 ### [5.4 假设检验](#hypthesis)
 
@@ -103,13 +103,13 @@ name: ols
 
 # 5.3 OLS方法与参数估计
 
-### 普通最小二乘法（OLS）
+### [普通最小二乘法（OLS）](#ols-method)
 
-### 参数估计
+### [参数估计](#ols-estimate)
 
-### 估计精度
+### [估计精度](#ols-sd)
 
-### 区间估计
+### [区间估计](#ols-interval)
 
 ---
 layout: true
@@ -127,6 +127,7 @@ layout: true
 &lt;a href="#ols"&gt; 5.3 OLS方法与参数估计 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
 
 ---
+name: ols-method
 
 ## 普通最小二乘法（OLS）：引子
 
@@ -267,7 +268,7 @@ Min(Q)  &amp;= Min \left ( f(\hat{\beta}_1,\hat{\beta}_2) \right)
 
 ### （示例） 普通最小二乘法（OLS）的一个数值试验
 
-假设随便猜想了如下两个SRF，完成下表计算，并分析哪个SRF给出的
+假设猜想两个SRF，完成下表计算，并分析哪个SRF给出的
 `\((\hat{\beta}_1, \hat{\beta}_2)\)`要更好？
 
 `$$\begin{align}
@@ -282,10 +283,11 @@ SRF2：\hat{Y}_{2i} &amp; = \hat{\beta}_1 +\hat{\beta}_2X_i = 3.0 + 1.0X_i
 &lt;/div&gt;
 
 ---
+name: ols-estimate
 
 ## 参数估计：回归参数的OLS点估计
 
-最小化求解：
+- 最小化求解：
 
 `$$\begin{align}
 Min(Q)  &amp;= Min \left ( f(\hat{\beta}_1,\hat{\beta}_2) \right)\\
@@ -293,8 +295,7 @@ Min(Q)  &amp;= Min \left ( f(\hat{\beta}_1,\hat{\beta}_2) \right)\\
   &amp;= Min \sum{\left( Y_i - \hat{\beta}_1 - \hat{\beta}_2X_i \right)^2}
 \end{align}$$`
 
-
-方程组变形，得到**正规方程组**：
+- 方程组变形，得到**正规方程组**：
 
 `$$\begin{align}
 \left \{
@@ -519,7 +520,7 @@ Please use a list of either functions or lambdas:
 
 ### （案例）计算表FF和ff
 
-&lt;table class="table" style="font-size: 20px; margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="font-size: 22px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:center;"&gt; obs &lt;/th&gt;
@@ -706,17 +707,17 @@ Please use a list of either functions or lambdas:
    &lt;td style="text-align:center;"&gt; 23.58 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; sum &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 156.00 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 112.77 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1485.04 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 2054.00 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1083.38 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 131.79 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 182.00 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 105.12 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: red !important;"&gt; sum &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: red !important;"&gt; 156.00 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: red !important;"&gt; 112.77 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: red !important;"&gt; 1485.04 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: red !important;"&gt; 2054.00 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: red !important;"&gt; 1083.38 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: red !important;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: red !important;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: red !important;"&gt; 131.79 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: red !important;"&gt; 182.00 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: red !important;"&gt; 105.12 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -769,13 +770,13 @@ Please use a list of either functions or lambdas:
 
 ### （案例）样本回归线SRL
 
-&lt;img src="05-03-reg-ols_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="05-03-reg-ols_files/figure-html/unnamed-chunk-14-1.png" width="95%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ### （案例）样本回归线SRL
 
-&lt;img src="05-03-reg-ols_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="05-03-reg-ols_files/figure-html/unnamed-chunk-15-1.png" width="95%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -887,11 +888,11 @@ Please use a list of either functions or lambdas:
    &lt;td style="text-align:right;"&gt; 0.512 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; sum &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 156 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 112.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 112.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: red !important;"&gt; sum &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: red !important;"&gt; 156 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: red !important;"&gt; 112.8 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: red !important;"&gt; 112.8 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: red !important;"&gt; 0.000 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -935,7 +936,7 @@ e_i &amp;= Y_i - \hat{Y}_i
 
 ---
 
-## OLS参数估计：“估计值”与“估计量”
+## 参数估计：“估计值”与“估计量”
 
 理解OLS方法下的“估计值”与“估计量”
 
@@ -960,7 +961,7 @@ e_i &amp;= Y_i - \hat{Y}_i
 
 ---
 
-## OLS参数估计：SRF和SRM的特征
+## 参数估计：SRF和SRM的特征
 
 OLS估计量是纯粹由可观测的(即样本)量(指X和Y)表达的，因此它们很容易计算。
 
@@ -972,7 +973,7 @@ OLS估计量是纯粹由可观测的(即样本)量(指X和Y)表达的，因此�
 
 ---
 
-## OLS参数估计：SRF和SRM的特征
+## 参数估计：SRF和SRM的特征
 
 - 特征1：样本回归线一定会经过样本均值点
 `\((\bar{X}, \bar{Y})\)`：
@@ -1000,7 +1001,7 @@ OLS估计量是纯粹由可观测的(即样本)量(指X和Y)表达的，因此�
 
 ---
 
-## OLS参数估计：SRF和SRM的特征
+## 参数估计：SRF和SRM的特征
 
 - 特征3：残差的均值(
 `\(\bar{e_i}\)`)为零：
@@ -1015,7 +1016,7 @@ OLS估计量是纯粹由可观测的(即样本)量(指X和Y)表达的，因此�
 
 ---
 
-## OLS参数估计：SRF和SRM的特征
+## 参数估计：SRF和SRM的特征
 
 - 特征4：SRM和SRF可以写成离差形式：
 
@@ -1043,7 +1044,7 @@ OLS估计量是纯粹由可观测的(即样本)量(指X和Y)表达的，因此�
 
 ---
 
-## OLS参数估计：SRF和SRM的特征
+## 参数估计：SRF和SRM的特征
 
 - 特征5：残差(
 `\(e_i\)`)和
@@ -1068,7 +1069,7 @@ Cov(e_i, \hat{Y_i}) &amp;= E \left[ \left( e_i-E(e_i)\right )\cdot \left( \hat{Y
 
 ---
 
-## OLS参数估计：离差公式
+## 参数估计：离差公式
 
 - 离差定义与符号：
 
@@ -1093,7 +1094,7 @@ y_i &amp;= Y_i - \bar{Y} \\
 
 ---
 
-## OLS参数估计：离差公式
+## 参数估计：离差公式
 
 --
 .pull-left[
@@ -1138,7 +1139,7 @@ y_i &amp;= Y_i - \bar{Y} \\
 
 ---
 
-## OLS参数估计：思考与讨论
+## 参数估计：思考与讨论
 
 **内容小结**：
 
@@ -1159,6 +1160,7 @@ y_i &amp;= Y_i - \bar{Y} \\
 可以是“垂线距离平方和最小化”么？如果是距离的3次方或4次方之和，又会怎样？距离的绝对值之和可以么？对于这些方案，你有什么想法？
 
 ---
+name: ols-sd
 
 ## 估计精度：引子
 
@@ -1182,10 +1184,12 @@ Y_i &amp;=  \beta_1 +\beta_2X_i + u_i  \\
 ## 估计精度：斜率系数的方差和样本方差
 
 .pull-left[
-斜率系数（
-`\(\hat{\beta}_2\)`）的**总体方差**（
-`\(\sigma^2_{\hat{\beta}_2}\)`）和**总体标准差**（
-`\(\sigma_{\hat{\beta}_2}\)`）：
+
+.fl.pa2.bg-lightest-blue[
+斜率系数(
+`\(\hat{\beta}_2\)`)的**总体方差**(
+`\(\sigma^2_{\hat{\beta}_2}\)`)和**总体标准差**(
+`\(\sigma_{\hat{\beta}_2}\)`)：
 
 `$$\begin{align}
 Var(\hat{\beta}_2) \equiv \sigma_{\hat{\beta}_2}^2  &amp; =\frac{\sigma^2}{\sum{x_i^2}} \\
@@ -1195,14 +1199,16 @@ Var(\hat{\beta}_2) \equiv \sigma_{\hat{\beta}_2}^2  &amp; =\frac{\sigma^2}{\sum{
 - 其中，
 `\(Var(u_i) \equiv \sigma^2\)`表示随机干扰项
 `\(u_i\)`的总体方差。
+]
 
 ]
 
 .pull-right[
-斜率系数（
-`\(\hat{\beta}_2\)`）的**样本方差**（
-`\(S^2_{\hat{\beta}_2}\)`）和**样本标准差**（
-`\(S_{\hat{\beta}_2}\)`）：
+.fl.pa2.bg-light-green[
+斜率系数(
+`\(\hat{\beta}_2\)`)的**样本方差**(
+`\(S^2_{\hat{\beta}_2}\)`)和**样本标准差**(
+`\(S_{\hat{\beta}_2}\)`)：
 
 `$$\begin{align}
 S_{\hat{\beta}_2}^2 &amp;=\frac{\hat{\sigma}^2}{\sum{x_i^2}} \\
@@ -1212,6 +1218,7 @@ S_{\hat{\beta}_2} &amp;=\sqrt{\frac{\hat{\sigma}^2}{\sum{x_i^2}}}
 - 其中，
 `\(E(\sigma^2) = \hat{\sigma}^2 = \frac{\sum{e_i^2}}{n-2}\)`表示对随机干扰项（
 `\(u_i\)`）的总体方差的**无偏估计量**。
+]
 ]
 
 ---
@@ -1261,10 +1268,11 @@ S_{\hat{\beta}_2} &amp;=\sqrt{\frac{\hat{\sigma}^2}{\sum{x_i^2}}}
 ## 估计精度：截距系数的方差和样本方差
 
 .pull-left[
-截距系数（
-`\(\hat{\beta}_1\)`）的**总体方差**（
-`\(\sigma^2_{\hat{\beta}_1}\)`）和**总体标准差**（
-`\(\sigma_{\hat{\beta}_1}\)`）：
+.fl.pa2.bg-lightest-blue[
+截距系数(
+`\(\hat{\beta}_1\)`)的**总体方差**(
+`\(\sigma^2_{\hat{\beta}_1}\)`)和**总体标准差**(
+`\(\sigma_{\hat{\beta}_1}\)`)：
 
 
 `$$\begin{align}
@@ -1273,27 +1281,28 @@ Var(\hat{\beta}_1) \equiv \sigma_{\hat{\beta}_1}^2  &amp;=\frac{\sum{X_i^2}}{n} 
 \end{align}$$`
 
 
-&gt; - 其中，
+- 其中，
 `\(Var(u_i) \equiv \sigma^2\)`表示随机干扰项
-`\(u_i\)`的总体方差。
-
+`\((u_i)\)`的总体方差。
+]
 ]
 
 .pull-right[
-截距系数（
-`\(\hat{\beta}_1\)`）的**样本方差**（
-`\(S^2_{\hat{\beta}_1}\)`）和**样本标准差**（
-`\(S_{\hat{\beta}_1}\)`）：
+.fl.pa2.bg-light-green[
+截距系数
+`\((\hat{\beta}_1)\)`的**样本方差**
+`\((S^2_{\hat{\beta}_1})\)`和**样本标准差**
+`\((S_{\hat{\beta}_1})\)`：
 
 `$$\begin{align}
 S_{\hat{\beta}_1}^2 &amp;=\frac{\sum{X^2_i}}{n} \cdot \frac{\hat{\sigma}^2}{\sum{x_i^2}} \\
 S_{\hat{\beta}_1} &amp;=\sqrt{\frac{\sum{X^2_i}}{n} \cdot \frac{\hat{\sigma}^2}{\sum{x_i^2}}}
 \end{align}$$`
 
-&gt; - 其中，
-`\(E(\sigma^2) = \hat{\sigma}^2 = \frac{\sum{e_i^2}}{n-2}\)`表示对随机干扰项（
-`\(u_i\)`）的总体方差的**无偏估计量**。
-
+- 其中，
+`\(E(\sigma^2) = \hat{\sigma}^2 = \frac{\sum{e_i^2}}{n-2}\)`表示对随机干扰项
+`\((u_i)\)`的总体方差的**无偏估计量**。
+]
 ]
 
 ---
@@ -1420,6 +1429,7 @@ S_{\hat{\beta}_1} &amp;= \sqrt{\frac{\sum{X_i^2}}{n}\frac{\hat{\sigma}^2} {\sum{
 
 
 ---
+name: ols-interval
 
 ## 区间估计：斜率系数
 

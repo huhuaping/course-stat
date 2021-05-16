@@ -1,6 +1,6 @@
 ---
 params:
-  hideslide: FALSE
+  hideslide: TRUE
 output:
   xaringan::moon_reader:
     seal: false
@@ -77,7 +77,7 @@ exclude: `r params$hideslide`
 
 ### [5.4 假设检验](#hypthesis)
 
-### [5.5 拟合优度与残差分析](#goodness)
+### [.white[5.5 拟合优度与残差分析]](#goodness)
 
 ### [5.6 回归预测分析](#forecast)
 
@@ -91,9 +91,9 @@ name: goodness
 
 # 5.5 拟合优度与残差分析
 
-### 拟合优度
+### [拟合优度](#goodness-r2)
 
-### 残差分析
+### [残差分析](#goodness-ei)
 
 ---
 
@@ -112,6 +112,7 @@ layout: true
 <a href="#goodness"> 5.5 拟合优度与残差分析 </a> </span></div> 
 
 ---
+name: goodness-r2
 
 ## 拟合优度：引子
 
@@ -131,27 +132,38 @@ layout: true
 ## 拟合优度：测量指标
 
 
-**拟合优度**（Goodness of fit）：判断样本回归线对一组数据拟合优劣水平的度量。
+**拟合优度**（Goodness of fit）：度量样本回归线对一组数据拟合优劣水平。
 
-**判定系数**（coefficient of determination）：一种利用平方和分解，考察样本回归线对数据拟合效果的总度量。一元回归中，一般记为
-$r^2$；多元回归中，一般记为
+**判定系数**（coefficient of determination）：一种利用平方和分解，考察样本回归线对数据拟合效果的总度量。
+
+- 一元回归中，一般记为
+$r^2$；
+
+- 多元回归中，一般记为
 $R^2$。
 
-```{r, fig.cap="维恩图看拟合优度"}
-include_graphics("../pic/extra/chpt3-fitness-venn.png", dpi =100)
+---
+
+## （示例）拟合优度的直观理解
+
+```{r, fig.cap="维恩图看拟合优度", out.width= "95%"}
+include_graphics("../pic/extra/chpt3-fitness-venn.png")
 ```
+
 
 ---
 
 ## 拟合优度：测量指标
 
-```{r, fig.cap="平方和分解看拟合优度"}
-include_graphics("../pic/extra/chpt2-1-PRL-SRL.png", dpi=120)
+```{r, fig.cap="平方和分解看拟合优度", out.width= "80%"}
+include_graphics("../pic/extra/chpt2-1-PRL-SRL.png")
 ```
 
 ---
 
 ## 拟合优度：判定系数
+
+基于前述的方差分解ANOVA表，我们可以用如下公式计算**判定系数**。
 
 判定系数
 $r^2$计算公式1：
@@ -308,6 +320,7 @@ $R^2 = r^2_{(X_i,Y_i)}$。注意，在多元回归中则不存在这种关系。
 $MSE=RSS/n= 1/n\sum{(Y_i - \hat{Y}_i})^2$，以及**均方误差根**（RMSE）等。
 
 ---
+name: goodness-ei
 
 ## 残差分析：定义和作用
 
@@ -340,15 +353,20 @@ e_{i, sd}^{\ast}= \frac{e_i}{s_{e_i}}
 
 ---
 
-## 残差分析：皮尔逊标准化残差
+## 残差分析：学生化标准化残差
 
 **学生化标准残差**（Studentized Residuals/.red[externally studentized residual]/deleted Studentized residual/semi-studentized residuals/jackknifed residuals），是对残差的另一种特殊标准化变换（例如考虑到了X的影响力）。
+
+---
+
+## 残差分析：学生化标准化残差
 
 **学生化标准残差**的计算公式有两个<sup>*</sup>：
 
 $$\begin{align}
-e_{i,st}^{\ast} &= \frac{e_i}{\sqrt{MSE_{(i)}(1-h_{ii})}} \\
+e_{i,st}^{\ast} &= \frac{e_i}{\sqrt{MSE_{(i)}(1-h_{ii})}} \tag{eq.01}\\
 e_{i,st}^{\ast}& = e_{i, sd}^{\ast}\left( \frac{n-m-2}{n-m-1-e_{i, sd}^{\ast 2}}\right)^2
+\tag{eq.02}
 \end{align}$$
 
 > 其中：
@@ -462,7 +480,8 @@ show_tbl %>%
   select(c(1:3,12:15)) %>%
   mutate_at(vars(contains("e_")), funs(formatC(., digits = 4, format = "f"))) %>%
   kable() %>%  
-  kable_styling(font_size=20)
+  kable_styling(font_size=22) %>%
+  row_spec(row = 14, color = "red", bold = T)
 
 ```
 
@@ -474,30 +493,32 @@ show_tbl %>%
 - 根据样本回归方程，可以计算得到
 $Y_i$的回归拟合值
 $\hat{Y}_i$，以及回归残差
-$e_i$，以及前述的**皮尔逊标准化残差**
+$e_i$，以及前述**皮尔逊标准化残差**
 $e_{i, sd}^{\ast}$。
 
 - 进而可以使用如下公式计算得到**学生化标准残差**
 $e_{i,st}^{\ast}$：
 
 $$\begin{align}
-e_{i,st}^{\ast}& = e_{i, sd}^{\ast}\left( \frac{n-k-2}{n-k-1-e_{i, sd}^{\ast 2}}\right)^2
+e_{i,st}^{\ast}& = e_{i, sd}^{\ast}\left( \frac{n-m-2}{n-m-1-e_{i, sd}^{\ast 2}}\right)^2
 \end{align}$$
 
 ]
 
 ---
 
-### （案例）皮尔逊标准化残差散点图
+### （案例）皮尔逊标准化残差散点图1
 
-```{r}
+```{r, out.width="90%", fig.cap="残差对样本编号作图"}
 resid_tbl <- calc_tbl %>%
-  select(all_of(c("obs", "X", "Y")), all_of(contains("e_i")))
+  select(all_of(c("obs", "X", "Y")), all_of(contains("e_i"))) %>%
+  filter(obs!="sum") %>%
+  mutate(obs = as.numeric(obs))
 
 resid_tbl %>%
-  ggplot(aes(X, e_i)) +
-  geom_point() +
-  #labs(x = ) +
+  ggplot(aes(obs, e_i)) +
+  geom_point(size=2, color = "blue") +
+   scale_x_continuous(breaks = 1:13) +
   theme(text = element_text(size=18),
         axis.title.x = element_text(size = 16,
                                 margin = margin(t = 15, r = 0, 
@@ -507,10 +528,69 @@ resid_tbl %>%
                                                 b = 0, l = 0)))
 ```
 
+---
+
+### （案例）皮尔逊标准化残差散点图2
+
+```{r, out.width="90%", fig.cap="残差对自变量X作图"}
+resid_tbl %>%
+  ggplot(aes(X, e_i)) +
+  geom_point(size=2, color = "blue") +
+  scale_x_continuous(breaks = 5:19) +
+  theme(text = element_text(size=18),
+        axis.title.x = element_text(size = 16,
+                                margin = margin(t = 15, r = 0, 
+                                                b = 0, l = 0)),
+        axis.title.y = element_text(size = 16,
+                                margin = margin(t = 0, r = 15, 
+                                                b = 0, l = 0)))
+```
+
+---
+
+### （案例）皮尔逊标准化残差散点图3
+
+```{r, out.width="90%", fig.cap="残差对因变量Y作图"}
+resid_tbl %>%
+  ggplot(aes(Y, e_i)) +
+  geom_point(size=2, color = "blue") +
+  #labs(x = ) +
+  theme(text = element_text(size=18),
+        axis.title.x = element_text(size = 16,
+                                margin = margin(t = 15, r = 0, 
+                                                b = 0, l = 0)),
+        axis.title.y = element_text(size = 16,
+                                margin = margin(t = 0, r = 15, 
+                                                b = 0, l = 0)))
+
+```
+
+---
+
+### （案例）皮尔逊标准化残差散点图4
+
+```{r, out.width="90%", fig.cap="标准化残差对样本编号作图"}
+
+resid_tbl %>%
+  ggplot(aes(x = obs)) +
+  geom_point(aes(y = e_i, shape = "ei",color = "ei"),size=2) +
+   geom_point(aes(y = e_i_star, shape = "ei_star", color = "ei_star"),size=2) +
+  scale_x_continuous(breaks = 1:13) +
+  theme(text = element_text(size=18),
+        axis.title.x = element_text(size = 16,
+                                margin = margin(t = 15, r = 0, 
+                                                b = 0, l = 0)),
+        axis.title.y = element_text(size = 16,
+                                margin = margin(t = 0, r = 15, 
+                                                b = 0, l = 0))) +
+  labs(y = "",color = "", shape ="") +
+  scale_color_manual(values = c("ei" = 'blue','ei_star' = 'red')) + 
+scale_shape_manual(values = c('ei' = 17, 'ei_star' = 16))
+```
 
 ---
 layout:false
-background-image: url("../pic/thank-you-gif-funny-fan.gif")
+background-image: url("../pic/thank-you-gif-funny-little-yellow.gif")
 class: inverse,center
 # 本节结束
 

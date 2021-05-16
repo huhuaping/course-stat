@@ -81,7 +81,7 @@ exclude: `r params$hideslide`
 
 ### [5.6 回归预测分析](#forecast)
 
-### [5.7 回归报告解读](#report)
+### [.white[5.7 回归报告解读]](#report)
 
 ---
 layout: false
@@ -136,7 +136,7 @@ $$Y_i = \beta_1 + \beta_2X_i +u_i$$
 
 ## 回归分析的形式（多行方程表达法）
 
-**形式1：多行方程表达法**（整理好的**精炼报告**）：根据统计软件的原始报告，往往是选取最关键的信息，经过整理并以多行**样本回归方程**（SRF）的形式呈现，**精炼报告**的形式一般为：
+**形式1：多行方程表达法**（整理好的**精炼报告**）：根据统计软件的原始报告，选取最关键的信息，经过整理并以多行**样本回归方程**（SRF）的形式呈现。例如：
 
 ```{r, results="asis"}
 fun_report_eq(lm.mod = mod_wage, lm.dt = data_wage,
@@ -153,6 +153,17 @@ $t^{\ast}_{\hat{\beta}_i},i \in 1,2,\cdots, k$）
 - 第3行(se)表示回归系数对应的**样本标准误差**（
 $S_{\hat{\beta}_i},i \in 1,2,\cdots, k$）
 
+---
+
+## 回归分析的形式（多行方程表达法）
+
+**形式1：多行方程表达法**（整理好的**精炼报告**）：根据统计软件的原始报告，选取最关键的信息，经过整理并以多行**样本回归方程**（SRF）的形式呈现。例如：
+
+```{r, results="asis"}
+fun_report_eq(lm.mod = mod_wage, lm.dt = data_wage,
+              lm.n = 3)
+```
+
 - 第4行(fitness)表示回归模型**拟合情况**和**统计检验**的简要信息，其中
 $R^2$表示**判定系数**，
 $\bar{R}^2$表示**调整判定系数**，F表示模型整体显著性检验中的**样本F统计量值**（
@@ -167,7 +178,9 @@ $F^{\ast}$）,p表示样本F统计量值对应的概率值。
 ```{r }
 require("broom")
 out_lm <- summary(lm(mod_wage,data_wage))
-kable(broom::tidy(lm(mod_wage,data_wage)), align= "c")
+kable(broom::tidy(lm(mod_wage,data_wage)),
+      caption = "表格列示法",
+      align= "c")
 ```
 
 --
@@ -197,11 +210,12 @@ $Pr(t = t^{\ast}_{\hat{\beta}_i})=p$
 include_graphics("../pic/chpt05-reg-excel-report-view.png")
 ```
 
+
 ---
 
 ### （示例）Excel软件原始报告：参数估计
 
-```{r}
+```{r, fig.height= 8, fig.cap="Excel回归分析的参数估计结果"}
 include_graphics("../pic/chpt05-reg-excel-report-estimate.png")
 ```
 
@@ -209,7 +223,7 @@ include_graphics("../pic/chpt05-reg-excel-report-estimate.png")
 
 ### （示例）Excel软件原始报告：拟合优度
 
-```{r}
+```{r, out.width="80%", fig.cap="Excel回归分析的拟合优度"}
 include_graphics("../pic/chpt05-reg-excel-report-goodness.png")
 ```
 
@@ -217,7 +231,7 @@ include_graphics("../pic/chpt05-reg-excel-report-goodness.png")
 
 ### （示例）Excel软件原始报告：方差分解
 
-```{r}
+```{r, fig.cap="Excel回归分析的ANOVA表结果"}
 include_graphics("../pic/chpt05-reg-excel-report-anova.png")
 ```
 
@@ -225,7 +239,7 @@ include_graphics("../pic/chpt05-reg-excel-report-anova.png")
 
 ### （示例）Excel软件原始报告：残差表
 
-```{r}
+```{r, out.width= "50%",fig.cap="Excel回归分析的预测和残差结果"}
 include_graphics("../pic/chpt05-reg-excel-report-ei.png")
 ```
 
@@ -233,10 +247,25 @@ include_graphics("../pic/chpt05-reg-excel-report-ei.png")
 
 ### （示例）Excel软件原始报告：残差图
 
-```{r}
+```{r, fig.cap="Excel回归分析的残差图"}
 include_graphics("../pic/chpt05-reg-excel-residual.png")
 ```
 
+---
+
+### （示例）Excel软件操作步骤：配置数据分析模块
+
+```{r,out.width="80%",fig.cap="Excel“数据分析”模块的配置"}
+include_graphics("../pic/chpt05-reg-excel-config.png")
+```
+
+---
+
+### （示例）Excel软件操作步骤：回归分析的操作步骤
+
+```{r,out.width="99%",fig.cap="Excel“回归分析”的操作步骤"}
+include_graphics("../pic/chpt05-reg-excel-steps.png")
+```
 
 ---
 
@@ -382,7 +411,7 @@ out_lm
 
 ---
 layout:false
-background-image: url("../pic/thank-you-gif-funny-fan.gif")
+background-image: url("../pic/thank-you-gif-funny-little-yellow.gif")
 class: inverse,center
 # 本节结束
 

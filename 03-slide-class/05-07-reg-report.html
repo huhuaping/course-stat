@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>05-07-reg-report.utf8</title>
+    <title>05-07-reg-report.knit</title>
     <meta charset="utf-8" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
@@ -10,10 +10,10 @@
     <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
     <link href="libs/panelset/panelset.css" rel="stylesheet" />
     <script src="libs/panelset/panelset.js"></script>
-    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
-    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
-    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
-    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
+    <link rel="stylesheet" href="D:/github/course-stat/mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="D:/github/course-stat/mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="D:/github/course-stat/mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="D:/github/course-stat/mycss/text-box.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -34,7 +34,7 @@ exclude: FALSE
 
 ### huhuaping01@hotmail.com
 
-### 2021-05-15
+### 2021-05-16
 
 
 
@@ -94,7 +94,7 @@ exclude: FALSE
 
 ### [5.6 回归预测分析](#forecast)
 
-### [5.7 回归报告解读](#report)
+### [.white[5.7 回归报告解读]](#report)
 
 ---
 layout: false
@@ -130,6 +130,19 @@ exclude:true
 ## （案例）教育程度与时均工资
 
 
+```
+Warning: `funs()` was deprecated in dplyr 0.8.0.
+Please use a list of either functions or lambdas: 
+
+  # Simple named list: 
+  list(mean = mean, median = median)
+
+  # Auto named with `tibble::lst()`: 
+  tibble::lst(mean, median)
+
+  # Using lambdas
+  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+```
 
 ---
 
@@ -147,7 +160,7 @@ exclude:true
 
 ## 回归分析的形式（多行方程表达法）
 
-**形式1：多行方程表达法**（整理好的**精炼报告**）：根据统计软件的原始报告，往往是选取最关键的信息，经过整理并以多行**样本回归方程**（SRF）的形式呈现，**精炼报告**的形式一般为：
+**形式1：多行方程表达法**（整理好的**精炼报告**）：根据统计软件的原始报告，选取最关键的信息，经过整理并以多行**样本回归方程**（SRF）的形式呈现。例如：
 
 `$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;-0.01&amp;&amp;+0.72X\\ &amp;\text{(t)}&amp;&amp;(-0.0165)&amp;&amp;(10.4065)\\&amp;\text{(se)}&amp;&amp;(0.8746)&amp;&amp;(0.0696)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9078;&amp;&amp; \bar{R^2}=0.8994\\&amp; &amp;&amp; F^{\ast}=108.29;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
 
@@ -161,6 +174,14 @@ exclude:true
 - 第3行(se)表示回归系数对应的**样本标准误差**（
 `\(S_{\hat{\beta}_i},i \in 1,2,\cdots, k\)`）
 
+---
+
+## 回归分析的形式（多行方程表达法）
+
+**形式1：多行方程表达法**（整理好的**精炼报告**）：根据统计软件的原始报告，选取最关键的信息，经过整理并以多行**样本回归方程**（SRF）的形式呈现。例如：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;-0.01&amp;&amp;+0.72X\\ &amp;\text{(t)}&amp;&amp;(-0.0165)&amp;&amp;(10.4065)\\&amp;\text{(se)}&amp;&amp;(0.8746)&amp;&amp;(0.0696)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9078;&amp;&amp; \bar{R^2}=0.8994\\&amp; &amp;&amp; F^{\ast}=108.29;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+
 - 第4行(fitness)表示回归模型**拟合情况**和**统计检验**的简要信息，其中
 `\(R^2\)`表示**判定系数**，
 `\(\bar{R}^2\)`表示**调整判定系数**，F表示模型整体显著性检验中的**样本F统计量值**（
@@ -173,6 +194,7 @@ exclude:true
 **形式2：表格列示法**（整理好的**精炼报告**）：根据统计软件的原始报告，往往是选取最关键的信息，经过整理以表格形式呈现，**表格列示法**的形式呈现为：
 
 &lt;table&gt;
+&lt;caption&gt;表格列示法&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:center;"&gt; term &lt;/th&gt;
@@ -225,36 +247,69 @@ exclude:true
 
 &lt;img src="../pic/chpt05-reg-excel-report-view.png" width="4080" style="display: block; margin: auto;" /&gt;
 
+
 ---
 
 ### （示例）Excel软件原始报告：参数估计
 
-&lt;img src="../pic/chpt05-reg-excel-report-estimate.png" width="4029" style="display: block; margin: auto;" /&gt;
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-reg-excel-report-estimate.png" alt="Excel回归分析的参数估计结果" width="4029" /&gt;
+&lt;p class="caption"&gt;Excel回归分析的参数估计结果&lt;/p&gt;
+&lt;/div&gt;
 
 ---
 
 ### （示例）Excel软件原始报告：拟合优度
 
-&lt;img src="../pic/chpt05-reg-excel-report-goodness.png" width="1504" style="display: block; margin: auto;" /&gt;
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-reg-excel-report-goodness.png" alt="Excel回归分析的拟合优度" width="80%" /&gt;
+&lt;p class="caption"&gt;Excel回归分析的拟合优度&lt;/p&gt;
+&lt;/div&gt;
 
 ---
 
 ### （示例）Excel软件原始报告：方差分解
 
-&lt;img src="../pic/chpt05-reg-excel-report-anova.png" width="2824" style="display: block; margin: auto;" /&gt;
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-reg-excel-report-anova.png" alt="Excel回归分析的ANOVA表结果" width="2824" /&gt;
+&lt;p class="caption"&gt;Excel回归分析的ANOVA表结果&lt;/p&gt;
+&lt;/div&gt;
 
 ---
 
 ### （示例）Excel软件原始报告：残差表
 
-&lt;img src="../pic/chpt05-reg-excel-report-ei.png" width="1611" style="display: block; margin: auto;" /&gt;
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-reg-excel-report-ei.png" alt="Excel回归分析的预测和残差结果" width="50%" /&gt;
+&lt;p class="caption"&gt;Excel回归分析的预测和残差结果&lt;/p&gt;
+&lt;/div&gt;
 
 ---
 
 ### （示例）Excel软件原始报告：残差图
 
-&lt;img src="../pic/chpt05-reg-excel-residual.png" width="2149" style="display: block; margin: auto;" /&gt;
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-reg-excel-residual.png" alt="Excel回归分析的残差图" width="2149" /&gt;
+&lt;p class="caption"&gt;Excel回归分析的残差图&lt;/p&gt;
+&lt;/div&gt;
 
+---
+
+### （示例）Excel软件操作步骤：配置数据分析模块
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-reg-excel-config.png" alt="Excel“数据分析”模块的配置" width="80%" /&gt;
+&lt;p class="caption"&gt;Excel“数据分析”模块的配置&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+### （示例）Excel软件操作步骤：回归分析的操作步骤
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-reg-excel-steps.png" alt="Excel“回归分析”的操作步骤" width="99%" /&gt;
+&lt;p class="caption"&gt;Excel“回归分析”的操作步骤&lt;/p&gt;
+&lt;/div&gt;
 
 ---
 
