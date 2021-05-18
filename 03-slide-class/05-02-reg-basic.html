@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>05-02-reg-basic.knit</title>
+    <title>05-02-reg-basic.utf8</title>
     <meta charset="utf-8" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
@@ -21,10 +21,10 @@
     <script src="libs/crosstalk/js/crosstalk.min.js"></script>
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
-    <link rel="stylesheet" href="D:/github/course-stat/mycss/my-theme.css" type="text/css" />
-    <link rel="stylesheet" href="D:/github/course-stat/mycss/my-font.css" type="text/css" />
-    <link rel="stylesheet" href="D:/github/course-stat/mycss/my-custom-for-video-roomy.css" type="text/css" />
-    <link rel="stylesheet" href="D:/github/course-stat/mycss/text-box.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -45,7 +45,7 @@ exclude: FALSE
 
 ### huhuaping01@hotmail.com
 
-### 2021-05-16
+### 2021-05-18
 
 
 
@@ -238,8 +238,8 @@ Using compatibility `.name_repair`.
 ### （案例）假想总体：60个家庭的收支数据（扁数据形态）
 
 
-<div id="htmlwidget-87875daa2ed73133d056" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-87875daa2ed73133d056">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8"],["X","Y1","Y2","Y3","Y4","Y5","Y6","Y7"],[80,55,60,65,70,75,null,null],[100,65,70,74,80,85,88,null],[120,79,84,90,94,98,null,null],[140,80,93,95,103,108,113,115],[160,102,107,110,116,118,125,null],[180,110,115,120,130,135,140,null],[200,120,136,140,144,145,null,null],[220,135,137,140,152,157,160,162],[240,137,145,155,165,175,189,null],[260,150,152,175,178,180,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Mark<\/th>\n      <th>G1<\/th>\n      <th>G2<\/th>\n      <th>G3<\/th>\n      <th>G4<\/th>\n      <th>G5<\/th>\n      <th>G6<\/th>\n      <th>G7<\/th>\n      <th>G8<\/th>\n      <th>G9<\/th>\n      <th>G10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":9,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[9,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ed3b85075a8362804e0a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ed3b85075a8362804e0a">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8"],["X","Y1","Y2","Y3","Y4","Y5","Y6","Y7"],[80,55,60,65,70,75,null,null],[100,65,70,74,80,85,88,null],[120,79,84,90,94,98,null,null],[140,80,93,95,103,108,113,115],[160,102,107,110,116,118,125,null],[180,110,115,120,130,135,140,null],[200,120,136,140,144,145,null,null],[220,135,137,140,152,157,160,162],[240,137,145,155,165,175,189,null],[260,150,152,175,178,180,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Mark<\/th>\n      <th>G1<\/th>\n      <th>G2<\/th>\n      <th>G3<\/th>\n      <th>G4<\/th>\n      <th>G5<\/th>\n      <th>G6<\/th>\n      <th>G7<\/th>\n      <th>G8<\/th>\n      <th>G9<\/th>\n      <th>G10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":9,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[9,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 ???
 **扁数据形态**：“非标准”数据形态（但很直观）
 
@@ -247,8 +247,8 @@ Using compatibility `.name_repair`.
 
 ### （案例）假想总体：60个家庭的收支数据（长数据形态）
 
-<div id="htmlwidget-1829eeafb7d11353dbd0" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1829eeafb7d11353dbd0">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60],[1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,10,10,10],[80,80,80,80,80,100,100,100,100,100,100,120,120,120,120,120,140,140,140,140,140,140,140,160,160,160,160,160,160,180,180,180,180,180,180,200,200,200,200,200,220,220,220,220,220,220,220,240,240,240,240,240,240,260,260,260,260,260,260,260],[55,60,65,70,75,65,70,74,80,85,88,79,84,90,94,98,80,93,95,103,108,113,115,102,107,110,116,118,125,110,115,120,130,135,140,120,136,140,144,145,135,137,140,152,157,160,162,137,145,155,165,175,189,150,152,175,178,180,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>group<\/th>\n      <th>X<\/th>\n      <th>Y<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-0e920fcea78820b56fe7" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0e920fcea78820b56fe7">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60],[1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,10,10,10],[80,80,80,80,80,100,100,100,100,100,100,120,120,120,120,120,140,140,140,140,140,140,140,160,160,160,160,160,160,180,180,180,180,180,180,200,200,200,200,200,220,220,220,220,220,220,220,240,240,240,240,240,240,260,260,260,260,260,260,260],[55,60,65,70,75,65,70,74,80,85,88,79,84,90,94,98,80,93,95,103,108,113,115,102,107,110,116,118,125,110,115,120,130,135,140,120,136,140,144,145,135,137,140,152,157,160,162,137,145,155,165,175,189,150,152,175,178,180,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>group<\/th>\n      <th>X<\/th>\n      <th>Y<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 ???
 **长数据形态**：标准数据形态（但不直观）。
 
@@ -1370,7 +1370,7 @@ Y_i &amp;= \hat{\beta}_1 + \hat{\beta}_2X_i +e_i &amp;&amp; \text{(SRM)}
 
 ---
 layout:false
-background-image: url("../pic/thank-you-gif-funny-fan.gif")
+background-image: url("../pic/thank-you-gif-funny-little-yellow.gif")
 class: inverse,center
 # 本节结束
     </textarea>

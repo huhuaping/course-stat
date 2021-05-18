@@ -1,6 +1,6 @@
 ---
 params:
-  hideslide: FALSE
+  hideslide: TRUE
 output:
   xaringan::moon_reader:
     seal: false
@@ -74,7 +74,7 @@ exclude: `r params$hideslide`
 
 ### [5.3 OLS方法与参数估计](#ols)
 
-### [.white[5.4 假设检验]](#hypthesis)
+### [.white[5.4 假设检验]](#hypothesis)
 
 ### [5.5 拟合优度与残差分析](#goodness)
 

@@ -75,7 +75,7 @@ exclude: `r params$hideslide`
 
 ### [5.3 OLS方法与参数估计](#ols)
 
-### [5.4 假设检验](#hypthesis)
+### [5.4 假设检验](#hypothesis)
 
 ### [5.5 拟合优度与残差分析](#goodness)
 
