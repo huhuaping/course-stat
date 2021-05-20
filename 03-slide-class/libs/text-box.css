@@ -1,0 +1,37 @@
+
+/* -----------div tips------------- */
+
+div.puzzle, div.fyi, div.demo, div.notes,div.case {
+  padding: 0.1em;
+  margin: 0.1em 0;
+  padding-left: 100px;
+  background-size: 80px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  min-height: 100px;
+  color: #1f5386;
+  background-color: #bed3ec;
+  border: solid 2px #dfedff;
+}
+
+/* -----------image icon------------- */
+
+div.puzzle {
+  background-image: url("img/puzzle1-piece.png");
+}
+
+div.fyi {
+ background-image: url("img/fyi2-comments.png");
+}
+
+div.demo {
+  background-image: url("img/demo2-laptop-code.png");
+}
+
+div.notes {
+  background-image: url("img/note1-clipboard.png");
+}
+
+div.case {
+  background-image: url("img/case1-light.png");
+}

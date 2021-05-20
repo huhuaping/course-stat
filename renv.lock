@@ -923,10 +923,14 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "0.13.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "079cb1f03ff972b30401ed05623cbe92"
+      "Version": "0.13.2-38",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "rstudio",
+      "RemoteRepo": "renv",
+      "RemoteRef": "0.13.2-38",
+      "RemoteSha": "10b7a9b4e13ba9b027be629d7c9b4bcf3a7642ed"
     },
     "reprex": {
       "Package": "reprex",

@@ -1,0 +1,252 @@
+
+
+/* adjust font size */
+
+.remark-slide-content {
+    font-size: 28px;
+    padding: 1em 4em 1em 4em;
+}
+
+
+.page-font-16 {
+  font-size: 16px;
+}
+
+.page-font-18 {
+  font-size: 18px;
+}
+
+.page-font-20 {
+  font-size: 20px;
+}
+.page-font-21 {
+  font-size: 21px;
+}
+
+.page-font-24 {
+  font-size: 24px;
+}
+
+/* Table width = 100% max-width */
+
+.remark-slide table{
+    width: 100%;
+}
+
+/* Change the background color to white for shaded rows (even rows) */
+
+.remark-slide thead, .remark-slide tr:nth-child(2n) {
+    background-color: white;
+}
+
+
+/* footer and header */
+
+div.my-header {
+    background-color: #FFFFFF;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#f77a00), color-stop(0%,#f77a00), color-stop(0%,#f77a00), color-stop(74%,#fbd0ac), color-stop(83%,#fbd0ac), color-stop(100%,#fddfc8));
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 86.92913px;
+    width: 100%;
+    text-align: left;
+}
+
+div.my-header-h2 {
+    background-color: #FFFFFF;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#f77a00), color-stop(0%,#f77a00), color-stop(10%,red), color-stop(74%,#fbd0ac), color-stop(83%,#fbd0ac), color-stop(100%,#fddfc8));
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 80px;
+    width: 100%;
+}
+
+div.my-footer {
+    background-color: #272822;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 20px;
+    width: 100%;
+}
+
+div.my-footer span {
+    font-size: 10pt;
+    color: #F7F8FA;
+    position: absolute;
+    left: 15px;
+    top: 0px;
+    line-height: 1.5em;
+}
+
+div.my-footer a {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+
+/***set slide number***/
+
+.remark-slide-number {
+  font-size: 10pt;
+  line-height: 0.5em;
+  margin-bottom: -5px;
+  margin-right: 10px;
+  color: #FFFFFF; /* white */
+  opacity: 1; /* default: 0.5 */
+}
+
+/***water remark image***/
+
+.watermark1::after {
+  content: "";
+  display: block;
+  width: 30%;
+  height: 20%;
+  position: absolute;
+  top: 150px;
+  left: 100px;
+  background-image: url("vlog-nwsuaf.jpg");
+  background-size: 80%;
+  background-position: 0px 20px;
+  background-repeat: no-repeat;
+  opacity: 0.04;  
+  /* Rotate div */
+ -ms-transform: rotate(-45deg); /* IE 9 */
+ -moz-transform: rotate(-45deg); /* firefox */
+ -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+ transform: rotate(-45deg);
+}
+
+
+.watermark2::after {
+  content: "";
+  display: block;
+  width: 30%;
+  height: 20%;
+  position: absolute;
+  top: 250px;
+  left: 500px;
+  background-image: url("vlog-nwsuaf.jpg");
+  background-size: 80%;
+  background-position: 0px 20px;
+  background-repeat: no-repeat;
+  opacity: 0.04;  
+  /* Rotate div */
+ -ms-transform: rotate(-45deg); /* IE 9 */
+ -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+ transform: rotate(-45deg);
+}
+
+.watermark3::after {
+  content: "";
+  display: block;
+  width: 30%;
+  height: 20%;
+  position: absolute;
+  top: 450px;
+  left: 900px;
+  text-align: center;
+  background-image: url("vlog-nwsuaf.jpg");
+  background-size: 80%;
+  background-position: 0px 20px;
+  background-repeat: no-repeat;
+  opacity: 0.04;  
+  /* Rotate div */
+ -ms-transform: rotate(-45deg); /* IE 9 */
+ -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+ transform: rotate(-45deg);
+}
+
+
+
+/***set horizontal scroll***/
+
+pre {
+  background: #FFBB33;
+  max-width: 100%;
+  overflow-x: auto; 
+  margin-top: 0pt;
+  margin-bottom: 0pt;
+  border-top: 0px;
+  padding-top: 5pt;
+  padding-bottom: 5pt;
+  padding-left: 5pt;
+  padding-right: 5pt;
+}
+
+/***set vertical scroll***/
+
+.scroll-box-8 {
+  height:8em;
+  overflow-y: scroll;
+}
+.scroll-box-10 {
+  height:10em;
+  overflow-y: scroll;
+}
+.scroll-box-12 {
+  height:12em;
+  overflow-y: scroll;
+}
+.scroll-box-14 {
+  height:14em;
+  overflow-y: scroll;
+}
+.scroll-box-16 {
+  height:16em;
+  overflow-y: scroll;
+}
+.scroll-box-18 {
+  height:18em;
+  overflow-y: scroll;
+}
+.scroll-box-20 {
+  height:20em;
+  overflow-y: scroll;
+}
+.scroll-output {
+  height: 80%;
+  overflow-y: scroll;
+}
+
+
+.remark-slide-content.roomy {
+  padding: 20px 80px 0 80px;
+  font-size: 2.25rem;
+}
+.remark-slide-content.roomy h1 {
+  font-size: 4rem;
+}
+.remark-slide-content.roomy h2 {
+  font-size: 3rem;
+}
+.remark-slide-content.roomy h3 {
+  font-size: 2.75rem;
+}
+
+.remark-slide-content.roomy h1,
+.remark-slide-content.roomy h2,
+.remark-slide-content.roomy h3 {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+
+/* Two-column layout */
+.left-column {
+  color: #777;
+  width: 20%;
+  height: 92%;
+  float: left;
+}
+.left-column h2:last-of-type, .left-column h3:last-child {
+  color: #fbd0ac;
+}
+.right-column {
+  width: 75%;
+  float: right;
+  padding-top: 0em;
+}
+

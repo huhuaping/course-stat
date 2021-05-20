@@ -1,0 +1,124 @@
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
+@import url('https://fonts.googleapis.com/css2?family=Long+Cang&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+
+body { 
+  font-family:'Songti SC', serif, 'KaiTi', '楷体','Droid Serif', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei' ; 
+  line-height: 2.5em;
+}
+/*h1, h2, h3 {
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: normal;
+} */
+
+.remark-code { 
+  font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace; 
+  line-height: 1.2em;
+  font-size: 70%;
+  /* background: #F5F5F5; /* lighter */
+  background: #e7e8e2; /* darker */
+  border-radius: 0px;
+  padding: 0px;
+}
+
+
+.remark-inline-code { 
+  font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace; 
+  line-height: 1.0em;
+  font-size: 90%;
+  background: #F5F5F5; /* lighter */
+  /* background: #e7e8e2; /* darker */
+  border-radius: 3px;
+  padding: 2px;
+}
+
+/* adjust math font-size */
+
+p > span.MJXc-display {
+  font-size: 90%;
+}
+
+/* adjust headers */
+
+h1, h2, h3 h4,h5{
+  font-family: 'Ma Shan Zheng', cursive,'楷体';
+  font-weight: normal;
+  width: 99%;
+  text-shadow: 0px 0px;
+  text-align: center;
+  z-index: 5;
+}
+
+.remark-slide-content h1,h2{
+  font-family: 'Ma Shan Zheng', cursive,'楷体';
+  font-weight: normal;
+  position: relative;
+  top: 0px;
+  margin: 5px 0px 50px;
+  width: 99%;
+  text-shadow: 0px 0px;
+  text-align: center;
+  z-index: 5;
+  font-size: 40;
+}
+
+.remark-slide-content h3{
+  font-family: 'Ma Shan Zheng', cursive,'楷体';
+  font-weight: normal;
+  position: relative;
+  top: 0px;
+  margin: 5px 0px 50px;
+  width: 99%;
+  text-shadow: 0px 0px;
+  text-align: center;
+  z-index: 5;
+  font-size: 38;
+}
+
+.remark-slide-content h4{
+  font-family: 'Ma Shan Zheng', cursive,'楷体';
+  font-weight: normal;
+  position: relative;
+  top: 0px;
+  margin: 30px 0px 30px;
+  width: 99%;
+  text-shadow: 0px 0px;
+  text-align: center;
+  z-index: 5;
+  font-size: 30;
+}
+
+.duke-softblue h2, .duke-softblue h3 {
+  color: #F5F5F5;
+  font-weight: normal;
+  font-family: 'Ma Shan Zheng', cursive,'楷体';
+  text-shadow: 0 0 0px #666666;
+  font-size: 30px;
+}
+
+.duke-orange h2, .duke-orange h3 {
+  color: #F4F4F4;
+  font-weight: normal;
+  font-family: 'Ma Shan Zheng', cursive,'楷体';
+  text-shadow: 0 0 0px #666666;
+  font-size: 30px;
+}
+
+.left-column h4 {
+  font-size: 110%;
+  text-align: left;
+}
+
+/* adjust datatable footer */
+
+div.dataTables_paginate,  div.dataTables_info{
+  font-size: 50%;
+  padding-top: 0em;
+  margin-top: 0em;
+}
+
+sup {
+  color: red;
+}

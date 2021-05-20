@@ -1,16 +1,15 @@
 ---
 output:
   xaringan::moon_reader:
-    chakra: libs/remark-latest.min.js
-    mathjax: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"
     self_contained: false
+    chakra: libs/remark-latest.min.js
     seal: false
     lib_dir: libs
     css:
-      - ../mycss/my-theme.css 
-      - ../mycss/my-font.css
-      - ../mycss/my-custom-for-video-roomy.css
-      - ../mycss/text-box.css
+      - libs/my-theme.css 
+      - libs/my-font.css
+      - libs/my-custom-for-video-roomy.css
+      - libs/text-box.css
       - default
       - duke-blue
       - hygge-duke
