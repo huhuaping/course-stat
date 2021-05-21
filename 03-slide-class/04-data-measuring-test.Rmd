@@ -6,10 +6,10 @@ output:
     seal: false
     lib_dir: libs
     css:
-      - libs/my-theme.css 
-      - libs/my-font.css
-      - libs/my-custom-for-video-roomy.css
-      - libs/text-box.css
+      - ../mycss/my-theme.css 
+      - ../mycsslibs/my-font.css
+      - ../mycsslibs/my-custom-for-video-roomy.css
+      - ../mycsslibs/text-box.css
       - default
       - duke-blue
       - hygge-duke
