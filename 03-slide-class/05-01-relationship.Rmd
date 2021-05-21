@@ -1,6 +1,6 @@
 ---
 params:
-  hideslide: TRUE
+  hideslide: FALSE
 output:
   xaringan::moon_reader:
     seal: false

@@ -28,7 +28,7 @@ options(servr.daemon = TRUE) # unlock thread when infinite moon render
 
 
 # pkg needed
-
+library('rmarkdown')
 library('bookdown')
 library('knitr')
 library('xlsx')

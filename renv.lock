@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.0.5",
+    "Version": "4.0.3",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -923,14 +923,10 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "0.13.2-38",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "rstudio",
-      "RemoteRepo": "renv",
-      "RemoteRef": "0.13.2-38",
-      "RemoteSha": "10b7a9b4e13ba9b027be629d7c9b4bcf3a7642ed"
+      "Version": "0.13.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "079cb1f03ff972b30401ed05623cbe92"
     },
     "reprex": {
       "Package": "reprex",
@@ -948,16 +944,15 @@
     },
     "rmarkdown": {
       "Package": "rmarkdown",
-      "Version": "2.8.1",
+      "Version": "2.7",
       "Source": "GitHub",
-      "Remotes": "rstudio/sass, rstudio/bslib",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "rmarkdown",
       "RemoteUsername": "rstudio",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "9e19405f3a75dd4d45419b60a3f4d5451e1c391a",
-      "Hash": "1e882aaa085c9a7fd01753ca86b3f8a1"
+      "RemoteRef": "v2.7",
+      "RemoteSha": "17861f3ee4b675805d7115b883688f0f2b7419de",
+      "Hash": "7d98c801487180c118ec1f753f5559ad"
     },
     "rprojroot": {
       "Package": "rprojroot",
