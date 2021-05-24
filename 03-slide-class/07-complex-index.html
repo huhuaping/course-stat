@@ -324,6 +324,19 @@ exclude: true
 ## 指数计算案例
 
 
+```
+Warning: `funs()` was deprecated in dplyr 0.8.0.
+Please use a list of either functions or lambdas: 
+
+  # Simple named list: 
+  list(mean = mean, median = median)
+
+  # Auto named with `tibble::lst()`: 
+  tibble::lst(mean, median)
+
+  # Using lambdas
+  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+```
 
 ---
 
@@ -391,56 +404,56 @@ exclude: true
 &lt;caption&gt;拉氏数量指数计算表&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; 产品名称 &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; 单位 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 产量\(q_0\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 产量\(q_1\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 价格\(p_0\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 价格\(p_1\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; \(q_0p_0\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; \(q_1p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产量\(q_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产量\(q_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 价格\(p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 价格\(p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_0p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_1p_0\) &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 甲 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 吨 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2,200 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6,000,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7,200,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2,200 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,000,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,200,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 乙 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 千米 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 400 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 420 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1,440,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1,512,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 400 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 420 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,440,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,512,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 丙 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 千块 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 20,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 合计 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7,456,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8,732,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,456,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8,732,000 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -465,56 +478,56 @@ I_{q(L)} =\frac{\sum\limits_{i=1}^n q_{1i} p_{0i}}{\sum\limits_{i=1}^n q_{0i} p_
 &lt;caption&gt;拉氏质量指数计算表&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; 产品名称 &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; 单位 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 产量\(q_0\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 产量\(q_1\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 价格\(p_0\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 价格\(p_1\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; \(q_0p_0\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; \(q_0p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产量\(q_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产量\(q_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 价格\(p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 价格\(p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_0p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_0p_1\) &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 甲 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 吨 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2,200 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6,000,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2,200 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,000,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,600,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 乙 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 千米 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 400 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 420 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1,440,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 400 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 420 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,440,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,600,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 丙 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 千块 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 合计 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7,456,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8,216,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,456,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8,216,000 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -575,56 +588,56 @@ I_{{p(L)}}=\frac{\sum\limits_{i=1}^n q_{0i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p
 &lt;caption&gt;帕氏数量指数计算表&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; 产品名称 &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; 单位 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 产量\(q_0\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 产量\(q_1\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 价格\(p_0\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 价格\(p_1\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; \(q_0p_0\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; \(q_1p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产量\(q_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产量\(q_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 价格\(p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 价格\(p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_0p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_1p_1\) &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 甲 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 吨 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2,200 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6,000,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7,200,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2,200 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,920,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 乙 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 千米 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 400 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 420 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1,440,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1,512,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 400 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 420 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,680,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 丙 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 千块 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 20,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 合计 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7,456,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8,732,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8,216,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9,620,000 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -649,56 +662,56 @@ I_{q(P)} =\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p_
 &lt;caption&gt;帕氏质量指数计算表&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; 产品名称 &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; 单位 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 产量\(q_0\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 产量\(q_1\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 价格\(p_0\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 价格\(p_1\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; \(q_0p_0\) &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; \(q_0p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产量\(q_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产量\(q_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 价格\(p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 价格\(p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_1p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_1p_0\) &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 甲 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 吨 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2,200 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6,000,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2,200 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,920,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,200,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 乙 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 千米 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 400 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 420 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1,440,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 400 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 420 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,680,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,512,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 丙 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 千块 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 合计 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7,456,000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8,216,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9,620,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8,732,000 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -772,41 +785,183 @@ I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p
 
 ---
 
-## 加权指数：加权平均指数（拉氏）
+## 加权指数：加权平均指数A（拉氏数量）
 
-.pull-left[
+.pull-left[ .large[
+.bg-light-green[
 `$$\begin{aligned}
 \boldsymbol{I}_{\boldsymbol{q}(L)}  &amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
 &amp;=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{q}_{1i}}{\boldsymbol{q}_{0i}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
-&amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{q} \cdot \boldsymbol{f}_{00}\right)}{\sum\limits_{i=1}^n f_{00}} 
-\\
-&amp;=A_{q(L)} 
+&amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{q_i} \cdot \boldsymbol{f}_{00}\right)}{\sum\limits_{i=1}^n \boldsymbol{f}_{00}} 
+=\boldsymbol{A}_{q(L)} 
 \end{aligned}$$`
+]
+]
 ]
 
 .pull-right[
-`$$\begin{aligned}
-\boldsymbol{I}_{\boldsymbol{p}(L)}  &amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
-&amp;=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{p}_{1i}}{\boldsymbol{p}_{0i}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
-&amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{p} \cdot \boldsymbol{f}_{00}\right)}{\sum\limits_{i=1}^n f_{00}} 
-\\
-&amp;=A_{p(L)} 
-\end{aligned}$$`
 
+![](../mycss/img/face-smile.jpg)
+&gt; 其中：
+- 
+`\(A_q\)`代表加权平均数量指数；
+`\(A_p\)`代表加权平均质量指数；
+`\((L)\)`代表拉氏计算方法。
+- 
+`\(k_q\)`表示个体数量指数；
+`\(k_p\)`表示个体质量指数。
+- 
+`\(0\)`表示基期水平；
+`\(1\)`表示报告期水平；
+`\(i \in (1, 2, \cdots, n)\)`表示商品。
+- 
+`\(\boldsymbol{f}_{00}=q_{0i}p_{0i}\)`表示权重
 ]
 
 ---
 
-## 加权指数：加权平均指数（帕氏）
+## 加权指数：加权平均指数B（拉氏质量）
 
 .pull-left[
+.bg-lightest-blue[ .large[
 `$$\begin{aligned}
-\boldsymbol{I}_{\boldsymbol{q(P)}}  &amp;=\frac{\sum\left(\boldsymbol{q}_{1} \boldsymbol{p}_{1}\right)}{\sum\left(\boldsymbol{q}_{0} \boldsymbol{p}_{1}\right)} \\
-&amp;=\frac{\sum\left[\left(\frac{\boldsymbol{q}_{1}}{\boldsymbol{q}_{\boldsymbol{0}}}\right) \cdot\left(\boldsymbol{q}_{0} \boldsymbol{q}_{1}\right)\right]}{\sum\left(\boldsymbol{q}_{0} \boldsymbol{p}_{1}\right)} \\
-&amp;=\frac{\sum\left(\boldsymbol{k}_{q} \cdot \boldsymbol{f}_{\text {01}}\right)}{\sum \boldsymbol{f}_{01}} \\
-&amp;=\boldsymbol{A}_{\boldsymbol{q(P)}} 
+\boldsymbol{I}_{\boldsymbol{p}(L)}  &amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
+&amp;=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{p}_{1i}}{\boldsymbol{p}_{0i}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
+&amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{p_i} \cdot \boldsymbol{f}_{00}\right)}{\sum\limits_{i=1}^n \boldsymbol{f}_{00}} 
+=\boldsymbol{A}_{p(L)} 
 \end{aligned}$$`
 ]
+]
+]
+
+.pull-right[
+![](../mycss/img/face-normal.jpg)
+&gt; 其中：
+- 
+`\(A_q\)`代表加权平均数量指数；
+`\(A_p\)`代表加权平均质量指数；
+`\((L)\)`代表拉氏计算方法。
+- 
+`\(k_q\)`表示个体数量指数；
+`\(k_p\)`表示个体质量指数。
+- 
+`\(0\)`表示基期水平；
+`\(1\)`表示报告期水平；
+`\(i \in (1, 2, \cdots, n)\)`表示商品。
+- 
+`\(\boldsymbol{f}_{00}=q_{0i}p_{0i}\)`表示权重
+]
+
+---
+
+## 加权指数：加权平均指数C（帕氏数量）
+
+.pull-left[ .large[
+.bg-light-yellow[
+`$$\begin{aligned}
+\boldsymbol{I}_{\boldsymbol{q(P)}}  &amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)} \\
+&amp;=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{q}_{1i}}{\boldsymbol{q}_{\boldsymbol{0i}}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)} \\
+&amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{q_i} \cdot \boldsymbol{f}_{\text {01}}\right)}{\sum\limits_{i=1}^n \boldsymbol{f}_{01}} =\boldsymbol{A}_{\boldsymbol{q(P)}} 
+\end{aligned}$$`
+]
+]
+]
+
+.pull-right[
+![](../mycss/img/face-cry.jpg)
+&gt; 其中：
+- 
+`\(A_q\)`代表加权平均数量指数；
+`\(A_p\)`代表加权平均质量指数；
+`\((P)\)`代表帕氏计算方法。
+- 
+`\(k_q\)`表示个体数量指数；
+`\(k_p\)`表示个体质量指数。
+- 
+`\(0\)`表示基期水平；
+`\(1\)`表示报告期水平；
+`\(i \in (1, 2, \cdots, n)\)`表示商品。
+- 
+`\(\boldsymbol{f}_{01}=q_{0i}p_{1i}\)`表示权重
+]
+
+---
+
+## 加权指数：加权平均指数D（帕氏质量）
+
+.pull-left[ .large[
+.bg-light-pink[
+`$$\begin{aligned}
+\boldsymbol{I}_{\boldsymbol{p(P)}}  &amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)} \\
+&amp;=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{p}_{1i}}{\boldsymbol{p}_{\boldsymbol{0i}}}\right) \cdot\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)} \\
+&amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{p_i} \cdot \boldsymbol{f}_{10}\right)}{\sum \boldsymbol{f}_{10}}
+=\boldsymbol{A}_{\boldsymbol{p(P)}} 
+\end{aligned}$$`
+]
+]
+]
+
+.pull-right[
+![](../mycss/img/face-normal.jpg)
+&gt; 其中：
+- 
+`\(A_q\)`代表加权平均数量指数；
+`\(A_p\)`代表加权平均质量指数；
+`\((P)\)`代表帕氏计算方法。
+- 
+`\(k_q\)`表示个体数量指数；
+`\(k_p\)`表示个体质量指数。
+- 
+`\(0\)`表示基期水平；
+`\(1\)`表示报告期水平；
+`\(i \in (1, 2, \cdots, n)\)`表示商品。
+- 
+`\(\boldsymbol{f}_{10}=q_{1i}p_{0i}\)`表示权重
+]
+
+---
+
+### （案例）企业产值综合指数：基于个体产量指数计算
+
+&lt;table&gt;
+&lt;caption&gt;基于个体产量指数的计算表&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_0p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(k_q\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,000,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.20 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,440,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.05 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.25 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,456,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+（拉氏数量公式）
 
 
 ---

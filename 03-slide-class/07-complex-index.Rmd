@@ -318,7 +318,7 @@ source("Rscript/case-index.R", encoding = "UTF-8")
 
 ### （案例）企业产品综合指数
 
-**案例说明**：某企业生产三种不同的产品，报告期和基期的产量和出厂价格如下标所示。
+**案例说明**：某企业生产三种不同的产品，报告期和基期的产量和出厂价格如下表所示。
 
 ```{r}
 tbl_index %>%
@@ -339,7 +339,7 @@ $I_p$？
 ```{r}
 tbl_index %>%
   select(1:7,10) %>%
-  kable(escape = T,
+  kable(escape = T, align = "c",
         format.args = list(big.mark = ","),
         caption = "拉氏数量指数计算表")
 ```
@@ -363,7 +363,7 @@ $\Delta_q(L) = `r sum_10`-`r sum_00`=`r sum_10-sum_00`$
 ```{r}
 tbl_index %>%
   select(1:8) %>%
-  kable(escape = T,
+  kable(escape = T, align = "c",
         format.args = list(big.mark = ","),
         caption = "拉氏质量指数计算表")
 ```
@@ -422,8 +422,8 @@ $i \in (1, 2, \cdots, n)$表示商品。
 
 ```{r}
 tbl_index %>%
-  select(1:7,10) %>%
-  kable(escape = T,
+  select(1:6,8,9) %>%
+  kable(escape = T, align = "c",
         format.args = list(big.mark = ","),
         caption = "帕氏数量指数计算表")
 ```
@@ -446,8 +446,8 @@ $\Delta_q(P) = `r sum_11`-`r sum_01`=`r sum_11-sum_01`$
 
 ```{r}
 tbl_index %>%
-  select(1:8) %>%
-  kable(escape = T,
+  select(1:6,9:10) %>%
+  kable(escape = T,align = "c",
         format.args = list(big.mark = ","),
         caption = "帕氏质量指数计算表")
 ```
@@ -527,41 +527,159 @@ $f_{01}=q_{0i}p_{1i}; \quad f_{10}=q_{1i}p_{0i}$
 
 ---
 
-## 加权指数：加权平均指数（拉氏）
+## 加权指数：加权平均指数A（拉氏数量）
 
-.pull-left[
+.pull-left[ .large[
+.bg-light-green[
 $$\begin{aligned}
 \boldsymbol{I}_{\boldsymbol{q}(L)}  &=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
 &=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{q}_{1i}}{\boldsymbol{q}_{0i}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
-&=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{q} \cdot \boldsymbol{f}_{00}\right)}{\sum\limits_{i=1}^n f_{00}} 
-\\
-&=A_{q(L)} 
+&=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{q_i} \cdot \boldsymbol{f}_{00}\right)}{\sum\limits_{i=1}^n \boldsymbol{f}_{00}} 
+=\boldsymbol{A}_{q(L)} 
 \end{aligned}$$
+]
+]
 ]
 
 .pull-right[
-$$\begin{aligned}
-\boldsymbol{I}_{\boldsymbol{p}(L)}  &=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
-&=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{p}_{1i}}{\boldsymbol{p}_{0i}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
-&=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{p} \cdot \boldsymbol{f}_{00}\right)}{\sum\limits_{i=1}^n f_{00}} 
-\\
-&=A_{p(L)} 
-\end{aligned}$$
 
+![](../mycss/img/face-smile.jpg)
+> 其中：
+- 
+$A_q$代表加权平均数量指数；
+$A_p$代表加权平均质量指数；
+$(L)$代表拉氏计算方法。
+- 
+$k_q$表示个体数量指数；
+$k_p$表示个体质量指数。
+- 
+$0$表示基期水平；
+$1$表示报告期水平；
+$i \in (1, 2, \cdots, n)$表示商品。
+- 
+$\boldsymbol{f}_{00}=q_{0i}p_{0i}$表示权重
 ]
 
 ---
 
-## 加权指数：加权平均指数（帕氏）
+## 加权指数：加权平均指数B（拉氏质量）
 
 .pull-left[
+.bg-lightest-blue[ .large[
 $$\begin{aligned}
-\boldsymbol{I}_{\boldsymbol{q(P)}}  &=\frac{\sum\left(\boldsymbol{q}_{1} \boldsymbol{p}_{1}\right)}{\sum\left(\boldsymbol{q}_{0} \boldsymbol{p}_{1}\right)} \\
-&=\frac{\sum\left[\left(\frac{\boldsymbol{q}_{1}}{\boldsymbol{q}_{\boldsymbol{0}}}\right) \cdot\left(\boldsymbol{q}_{0} \boldsymbol{q}_{1}\right)\right]}{\sum\left(\boldsymbol{q}_{0} \boldsymbol{p}_{1}\right)} \\
-&=\frac{\sum\left(\boldsymbol{k}_{q} \cdot \boldsymbol{f}_{\text {01}}\right)}{\sum \boldsymbol{f}_{01}} \\
-&=\boldsymbol{A}_{\boldsymbol{q(P)}} 
+\boldsymbol{I}_{\boldsymbol{p}(L)}  &=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
+&=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{p}_{1i}}{\boldsymbol{p}_{0i}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
+&=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{p_i} \cdot \boldsymbol{f}_{00}\right)}{\sum\limits_{i=1}^n \boldsymbol{f}_{00}} 
+=\boldsymbol{A}_{p(L)} 
 \end{aligned}$$
 ]
+]
+]
+
+.pull-right[
+![](../mycss/img/face-normal.jpg)
+> 其中：
+- 
+$A_q$代表加权平均数量指数；
+$A_p$代表加权平均质量指数；
+$(L)$代表拉氏计算方法。
+- 
+$k_q$表示个体数量指数；
+$k_p$表示个体质量指数。
+- 
+$0$表示基期水平；
+$1$表示报告期水平；
+$i \in (1, 2, \cdots, n)$表示商品。
+- 
+$\boldsymbol{f}_{00}=q_{0i}p_{0i}$表示权重
+]
+
+---
+
+## 加权指数：加权平均指数C（帕氏数量）
+
+.pull-left[ .large[
+.bg-light-yellow[
+$$\begin{aligned}
+\boldsymbol{I}_{\boldsymbol{q(P)}}  &=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)} \\
+&=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{q}_{1i}}{\boldsymbol{q}_{\boldsymbol{0i}}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)} \\
+&=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{q_i} \cdot \boldsymbol{f}_{\text {01}}\right)}{\sum\limits_{i=1}^n \boldsymbol{f}_{01}} =\boldsymbol{A}_{\boldsymbol{q(P)}} 
+\end{aligned}$$
+]
+]
+]
+
+.pull-right[
+![](../mycss/img/face-cry.jpg)
+> 其中：
+- 
+$A_q$代表加权平均数量指数；
+$A_p$代表加权平均质量指数；
+$(P)$代表帕氏计算方法。
+- 
+$k_q$表示个体数量指数；
+$k_p$表示个体质量指数。
+- 
+$0$表示基期水平；
+$1$表示报告期水平；
+$i \in (1, 2, \cdots, n)$表示商品。
+- 
+$\boldsymbol{f}_{01}=q_{0i}p_{1i}$表示权重
+]
+
+---
+
+## 加权指数：加权平均指数D（帕氏质量）
+
+.pull-left[ .large[
+.bg-light-pink[
+$$\begin{aligned}
+\boldsymbol{I}_{\boldsymbol{p(P)}}  &=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)} \\
+&=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{p}_{1i}}{\boldsymbol{p}_{\boldsymbol{0i}}}\right) \cdot\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)} \\
+&=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{p_i} \cdot \boldsymbol{f}_{10}\right)}{\sum \boldsymbol{f}_{10}}
+=\boldsymbol{A}_{\boldsymbol{p(P)}} 
+\end{aligned}$$
+]
+]
+]
+
+.pull-right[
+![](../mycss/img/face-normal.jpg)
+> 其中：
+- 
+$A_q$代表加权平均数量指数；
+$A_p$代表加权平均质量指数；
+$(P)$代表帕氏计算方法。
+- 
+$k_q$表示个体数量指数；
+$k_p$表示个体质量指数。
+- 
+$0$表示基期水平；
+$1$表示报告期水平；
+$i \in (1, 2, \cdots, n)$表示商品。
+- 
+$\boldsymbol{f}_{10}=q_{1i}p_{0i}$表示权重
+]
+
+---
+
+### （案例）企业产值综合指数：基于个体产量指数计算
+
+**案例说明**：某企业生产三种不同的产品，报告期产值
+$q_0p_0$和个体产量指数
+$k_q$如下表所示。
+
+```{r}
+options(knitr.kable.NA = '')
+tbl_index %>%
+  select(1:2,7,11) %>%
+  mutate_at(vars(contains("k_q")), funs(num_round(., digits = 2))) %>%
+  kable(escape = T, align = "c",
+        format.args = list(big.mark = ","),
+        caption = "基于个体产量指数的计算表")
+```
+
+（拉氏数量公式）
 
 
 ---
