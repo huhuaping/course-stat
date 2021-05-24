@@ -1,0 +1,572 @@
+---
+params:
+  hideslide: FALSE
+output:
+  xaringan::moon_reader:
+    seal: false
+    lib_dir: libs
+    css:
+      - default
+      - ../mycss/my-theme.css 
+      - ../mycss/my-font.css
+      - ../mycss/my-custom-for-video-roomy.css
+      - ../mycss/text-box.css
+      - duke-blue
+      - hygge-duke
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+exclude: `r params$hideslide`
+
+# 统计学原理(Statistic)
+
+<!---    chakra: libs/remark-latest.min.js --->
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### `r Sys.Date()`
+
+```{r , echo=F,message=FALSE,warning=F, eval=!params$hideslide}
+source("../R/set-global.R")
+source("../R/xfun.R", encoding = "UTF-8")
+source("../R/external-math-equation.R")
+options(width = 70)
+#source("../R/xaringan-chromote-print.R")
+```
+
+
+```{r , echo=FALSE, eval=!params$hideslide}
+require('xaringanExtra')
+
+xaringanExtra::use_tachyons()
+
+xaringanExtra::use_panelset()
+
+xaringanExtra::use_logo(
+  image_url = "../pic/logo/nwafu-logo-circle-wb.png",
+  height = '70px',
+  position = xaringanExtra::css_position(top='0.2em',left="1em")
+)
+```
+
+---
+
+class: center, middle, duke-orange,hide_logo
+name: chapter
+exclude: `r params$hideslide`
+
+# 第七章 指数
+
+
+### [7.1 基本问题](#corl)
+
+### [7.2 总指数编制方法](#concept)
+
+### [7.3 指数体系](#ols)
+
+### [7.4 几种典型的指数](#hypothesis)
+
+### [7.5 综合评价指数](#goodness)
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: report
+
+# 7.1 基本问题
+
+### 指数概念
+
+### 指数分类
+
+### 指数编制中的问题
+
+---
+layout: true
+
+<div class="my-header-h2"></div>
+
+<div class="watermark1"></div>
+
+<div class="watermark2"></div>
+
+<div class="watermark3"></div>
+
+<div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter"> 第07章 指数 </a>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="#report"> 7.1 基本问题 </a> </span></div>
+
+---
+
+## 指数概念：含义
+
+**指数(index number)**：最早起源于测量物价的变动，是测定多项内容数量综合变动的相对数。
+
+- 指数的实质是测定多项内容。
+
+> 例如，零售价格指数反映的是零售市场几百万种商品价格变化的整体状况
+
+- 指数的表现形式为动态相对数。
+
+> 既然是动态相对数，就涉及到指标的基期对比，不同要素基期的选择就成为指数方法需要讨论的问题。
+
+编制指数的方法就是围绕上述两个问题展开的 
+
+---
+
+## 指数分类A
+
+按考察对象可以分为:
+
+- **个体指数**：反映单一项目的变量变动。
+
+> 如一种商品的价格或销售量的变动
+
+- **总指数**：反映多个项目变量的综合变动。
+
+> 如多种商品的价格或销售量的综合变动
+
+---
+
+## 指数分类B
+
+按计算形式可以分为:
+
+- **简单指数(simple index number)**：计入指数的各个项目的重要性视为相同。
+
+- **加权指数(weighted index number)**：计入指数的项目依据重要程度赋予不同的权数
+
+---
+
+## 指数分类C
+
+按指标性质可以分为:
+
+- **数量指数**：反映物量变动水平。
+
+> 如产品产量指数、商品销售量指数等
+
+- **质量指数**:反映事物内含数量的变动水平。
+
+> 如价格指数、产品成本指数等
+
+---
+
+## 指数编制中的问题
+
+- 选择项目：选择代表规格品
+
+- 确定权数：利用已有的信息构造权数；主观权数
+
+- 计算方法：确定适当的方法
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: report
+
+# 7.2 总指数编制方法
+
+### 简单指数
+
+### 加权指数
+
+
+---
+layout: true
+
+<div class="my-header-h2"></div>
+
+<div class="watermark1"></div>
+
+<div class="watermark2"></div>
+
+<div class="watermark3"></div>
+
+<div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter"> 第07章 指数 </a>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="#report"> 7.2 总指数编制方法 </a> </span></div>
+
+---
+
+## 简单指数
+
+- **简单综合指数**
+
+
+$$\begin{align}
+I_{p}=\frac{\sum p_{1}}{\sum p_{0}}; \quad 
+I_{q}=\frac{\sum q_{1}}{\sum q_{0}}
+\end{align}$$
+
+- **简单平均指数**
+
+
+$$\begin{align}
+I_{p}=\frac{\sum \frac{p_{1}}{p_{0}}}{n}; \quad I_{q}=\frac{\sum \frac{q_{1}}{q_{0}}}{n}
+\end{align}$$
+
+---
+
+## 加权指数：同度量因素
+
+**同度量因素**”：指把不能相加的指标过渡为可以相加的因素。
+
+> 例如，社会商品零售价格总指数，单价不能简单相加，以商品销售量为同度量因素，过渡为商品销售额。
+
+**同度量因素**”作用：
+
+- 同度量作用
+
+- 权数作用
+
+$$\begin{align}
+商品销售额 & =商品销售量 \times 价格 \\
+工业总产值&=工业总产量\times 价格
+\end{align}$$
+
+---
+
+## 加权指数：同度量因素
+
+“同度量因素”的确定，可以通过如下方法：
+
+1.根据现象之间的联系确定同度量因素
+
+- 计算数量指数时，应以相应的质量为同度量因素
+
+- 计算质量指数时，应以相应的物量为同度量因素
+
+2.确定同度量因素的所属时期
+
+- 可以都是基期，也可以都是报告期
+
+- 使用不同时期的同度量因素，计算结果和意义不同
+
+- 取决于计算指数的预期目的
+
+---
+
+## 加权指数
+
+**加权综合指数**(weighted aggregative index number)：是通过加权来测定一组项目的综合变动。
+
+根据权数不同，有不同的计算公式：
+
+- **拉氏指数**(Laspeyres index)：数量指数和质量指数
+
+- **帕氏指数**(Paasche Laspeyres index)：数量指数和质量指数
+
+---
+
+## 加权指数：拉氏综合指数
+
+**拉氏综合指数**：1864年德国学者拉斯贝尔斯(Laspeyres)提出的一种价格指数计算方法。
+
+该方法在计算一组商品综合指数时，把**权数**固定在**基期**（0期）。
+
+具体计算公式为：
+
+.pull-left[
+- .red[拉氏]**数量指数**：
+.large[
+$I_{q(L)}=\frac{\sum\limits_{i=1}^n q_{1i} p_{0i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}}$
+]
+]
+
+.pull-right[
+
+- .red[拉氏]**质量指数**：
+.large[
+$I_{{p(L)}}=\frac{\sum\limits_{i=1}^n q_{0i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}}$
+
+]
+]
+
+> 其中：
+- 
+$I_q$代表数量指数；
+$I_p$代表质量指数；
+$(L)$代表拉氏计算方法。
+- 
+$0$表示基期水平；
+$1$表示报告期水平；
+$i \in (1, 2, \cdots, n)$表示商品。
+
+---
+exclude: true
+
+## 指数计算案例
+
+```{r}
+source("Rscript/case-index.R", encoding = "UTF-8")
+```
+
+---
+
+### （案例）企业产品综合指数
+
+**案例说明**：某企业生产三种不同的产品，报告期和基期的产量和出厂价格如下标所示。
+
+```{r}
+tbl_index %>%
+  select(1:6) %>%
+  kable(escape = T,
+        format.args = list(big.mark = ","),
+        caption = "企业生产信息表")
+```
+
+请使用拉氏公式分别计算该企业总产值的数量指数
+$I_q$和质量指数
+$I_p$？
+
+---
+
+### （案例）企业产品综合指数：拉氏数量指数
+
+```{r}
+tbl_index %>%
+  select(1:7,10) %>%
+  kable(escape = T,
+        format.args = list(big.mark = ","),
+        caption = "拉氏数量指数计算表")
+```
+
+根据拉氏**数量**综合指数的计算方法，以及上述计算表，可得到：
+
+$$\begin{align}
+I_{q(L)} =\frac{\sum\limits_{i=1}^n q_{1i} p_{0i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}}
+ =\frac{`r sum_10`}{`r sum_00`} 
+ = `r num_round(I_qL)`
+ = `r round(100*I_qL,2)` \%
+\end{align}$$
+
+因为产品产量增加，使得产值增加了`r scales::percent(I_qL,accuracy = 0.01)`，实现了产值增加额
+$\Delta_q(L) = `r sum_10`-`r sum_00`=`r sum_10-sum_00`$
+
+---
+
+### （案例）企业产品综合指数：拉氏质量指数
+
+```{r}
+tbl_index %>%
+  select(1:8) %>%
+  kable(escape = T,
+        format.args = list(big.mark = ","),
+        caption = "拉氏质量指数计算表")
+```
+
+根据拉氏**质量**综合指数的计算方法，以及上述计算表，可得到：
+
+$$\begin{align}
+I_{{p(L)}}=\frac{\sum\limits_{i=1}^n q_{0i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}}
+ =\frac{`r sum_01`}{`r sum_00`} 
+ = `r num_round(I_pL)`
+ = `r round(100*I_pL,2)` \%
+\end{align}$$
+
+因为产品出厂价格变动，使得产值增加了`r scales::percent(I_pL,accuracy = 0.01)`，实现了产值增加额
+$\Delta_p(L) = `r sum_01`-`r sum_00`=`r sum_01-sum_00`$
+
+---
+
+## 加权指数：帕氏综合指数
+
+**拉氏综合指数**：1874年德国学者帕煦(Pasche)所提出一种指数计算方法。
+
+该方法在计算一组商品综合指数时，把**权数**固定在**报告期**（1期）。
+
+具体计算公式为：
+
+.pull-left[
+- .red[帕氏]**数量指数**：
+.large[
+$I_{q(P)}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p_{1i}}$
+]
+]
+
+.pull-right[
+
+- .red[帕氏]**质量指数**：
+.large[
+$I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p_{0i}}$
+
+]
+]
+
+> 其中：
+- 
+$I_q$代表数量指数；
+$I_p$代表质量指数；
+$(P)$代表拉氏计算方法。
+- 
+$0$表示基期水平；
+$1$表示报告期水平；
+$i \in (1, 2, \cdots, n)$表示商品。
+
+---
+
+### （案例）企业产品综合指数：帕氏数量指数
+
+```{r}
+tbl_index %>%
+  select(1:7,10) %>%
+  kable(escape = T,
+        format.args = list(big.mark = ","),
+        caption = "帕氏数量指数计算表")
+```
+
+根据帕氏**数量**综合指数的计算方法，以及上述计算表，可得到：
+
+$$\begin{align}
+I_{q(P)} =\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p_{1i}}
+ =\frac{`r sum_11`}{`r sum_01`} 
+ = `r num_round(I_qP)`
+ = `r round(100*I_qP,2)` \%
+\end{align}$$
+
+因为产品产量增加，使得产值增加了`r scales::percent(I_qP,accuracy = 0.01)`，实现了产值增加额
+$\Delta_q(P) = `r sum_11`-`r sum_01`=`r sum_11-sum_01`$
+
+---
+
+### （案例）企业产品综合指数：帕氏质量指数
+
+```{r}
+tbl_index %>%
+  select(1:8) %>%
+  kable(escape = T,
+        format.args = list(big.mark = ","),
+        caption = "帕氏质量指数计算表")
+```
+
+根据帕氏**质量**综合指数的计算方法，以及上述计算表，可得到：
+
+$$\begin{align}
+I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p_{0i}}
+ =\frac{`r sum_11`}{`r sum_10`} 
+ = `r num_round(I_pP)`
+ = `r round(100*I_pP,2)` \%
+\end{align}$$
+
+因为产品出厂价格变动，使得产值增加了`r scales::percent(I_pP,accuracy = 0.01)`，实现了产值增加额
+$\Delta_p(L) = `r sum_11`-`r sum_10`=`r sum_11-sum_10`$
+
+---
+
+## 加权指数：拉氏和帕氏指数对比
+
+.pull-left[
+.bg-lightest-blue[
+
+.red[拉氏]**数量指数**：
+$I_{q(L)}=\frac{\sum\limits_{i=1}^n q_{1i} p_{0i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}}$
+
+.red[拉氏]**质量指数**：
+$I_{{p(L)}}=\frac{\sum\limits_{i=1}^n q_{0i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}}$
+
+]
+]
+
+.pull-right[
+
+.bg-light-green[
+.purple[帕氏]**数量指数**：
+$I_{q(P)}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p_{1i}}$
+
+.purple[帕氏]**质量指数**：
+$I_{p(P)}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p_{0i}}$
+
+]
+
+]
+
+---
+
+## 加权指数：加权平均指数
+
+**加权平均指数**：是指以某一时期的总量指标为权数对**个体指数**进行加权平均得到的相对数。
+
+- **个体指数**：包括个体数量指数
+$k_q(i) = \frac{q_{1i}}{q_{0i}}$；以及个体质量指数
+$k_p(i) = \frac{p_{1i}}{p_{0i}}$。
+
+- **加权数**：
+
+```{block, type = "fyi", echo = T}
+
+A.加权数通常是两个有内在联系变量间的乘积。例如：
+
+- 商品销售额(销售价格与销售量的乘积)；
+
+- 农产品总产量(单位面积产量与收获面积的乘积)
+
+
+B.加权数可以是同期变量的乘积，也可以混合时期变量的乘积：
+
+- 
+$f_{00}=q_{0i}p_{0i}; \quad f_{11}=q_{1i}p_{1i}$
+
+- 
+$f_{01}=q_{0i}p_{1i}; \quad f_{10}=q_{1i}p_{0i}$
+
+```
+
+
+---
+
+## 加权指数：加权平均指数（拉氏）
+
+.pull-left[
+$$\begin{aligned}
+\boldsymbol{I}_{\boldsymbol{q}(L)}  &=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
+&=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{q}_{1i}}{\boldsymbol{q}_{0i}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
+&=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{q} \cdot \boldsymbol{f}_{00}\right)}{\sum\limits_{i=1}^n f_{00}} 
+\\
+&=A_{q(L)} 
+\end{aligned}$$
+]
+
+.pull-right[
+$$\begin{aligned}
+\boldsymbol{I}_{\boldsymbol{p}(L)}  &=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
+&=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{p}_{1i}}{\boldsymbol{p}_{0i}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
+&=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{p} \cdot \boldsymbol{f}_{00}\right)}{\sum\limits_{i=1}^n f_{00}} 
+\\
+&=A_{p(L)} 
+\end{aligned}$$
+
+]
+
+---
+
+## 加权指数：加权平均指数（帕氏）
+
+.pull-left[
+$$\begin{aligned}
+\boldsymbol{I}_{\boldsymbol{q(P)}}  &=\frac{\sum\left(\boldsymbol{q}_{1} \boldsymbol{p}_{1}\right)}{\sum\left(\boldsymbol{q}_{0} \boldsymbol{p}_{1}\right)} \\
+&=\frac{\sum\left[\left(\frac{\boldsymbol{q}_{1}}{\boldsymbol{q}_{\boldsymbol{0}}}\right) \cdot\left(\boldsymbol{q}_{0} \boldsymbol{q}_{1}\right)\right]}{\sum\left(\boldsymbol{q}_{0} \boldsymbol{p}_{1}\right)} \\
+&=\frac{\sum\left(\boldsymbol{k}_{q} \cdot \boldsymbol{f}_{\text {01}}\right)}{\sum \boldsymbol{f}_{01}} \\
+&=\boldsymbol{A}_{\boldsymbol{q(P)}} 
+\end{aligned}$$
+]
+
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-little-yellow.gif")
+class: inverse,center
+# 本节结束
+

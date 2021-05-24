@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>07-complex-index.utf8</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css/hygge-duke.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+exclude: FALSE
+
+# 统计学原理(Statistic)
+
+&lt;!---    chakra: libs/remark-latest.min.js ---&gt;
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### 2021-05-24
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 70px;
+z-index: 0;
+background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:0.2em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+---
+
+class: center, middle, duke-orange,hide_logo
+name: chapter
+exclude: FALSE
+
+# 第七章 指数
+
+
+### [7.1 基本问题](#corl)
+
+### [7.2 总指数编制方法](#concept)
+
+### [7.3 指数体系](#ols)
+
+### [7.4 几种典型的指数](#hypothesis)
+
+### [7.5 综合评价指数](#goodness)
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: report
+
+# 7.1 基本问题
+
+### 指数概念
+
+### 指数分类
+
+### 指数编制中的问题
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter"&gt; 第07章 指数 &lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#report"&gt; 7.1 基本问题 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt;
+
+---
+
+## 指数概念：含义
+
+**指数(index number)**：最早起源于测量物价的变动，是测定多项内容数量综合变动的相对数。
+
+- 指数的实质是测定多项内容。
+
+&gt; 例如，零售价格指数反映的是零售市场几百万种商品价格变化的整体状况
+
+- 指数的表现形式为动态相对数。
+
+&gt; 既然是动态相对数，就涉及到指标的基期对比，不同要素基期的选择就成为指数方法需要讨论的问题。
+
+编制指数的方法就是围绕上述两个问题展开的 
+
+---
+
+## 指数分类A
+
+按考察对象可以分为:
+
+- **个体指数**：反映单一项目的变量变动。
+
+&gt; 如一种商品的价格或销售量的变动
+
+- **总指数**：反映多个项目变量的综合变动。
+
+&gt; 如多种商品的价格或销售量的综合变动
+
+---
+
+## 指数分类B
+
+按计算形式可以分为:
+
+- **简单指数(simple index number)**：计入指数的各个项目的重要性视为相同。
+
+- **加权指数(weighted index number)**：计入指数的项目依据重要程度赋予不同的权数
+
+---
+
+## 指数分类C
+
+按指标性质可以分为:
+
+- **数量指数**：反映物量变动水平。
+
+&gt; 如产品产量指数、商品销售量指数等
+
+- **质量指数**:反映事物内含数量的变动水平。
+
+&gt; 如价格指数、产品成本指数等
+
+---
+
+## 指数编制中的问题
+
+- 选择项目：选择代表规格品
+
+- 确定权数：利用已有的信息构造权数；主观权数
+
+- 计算方法：确定适当的方法
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: report
+
+# 7.2 总指数编制方法
+
+### 简单指数
+
+### 加权指数
+
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter"&gt; 第07章 指数 &lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#report"&gt; 7.2 总指数编制方法 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt;
+
+---
+
+## 简单指数
+
+- **简单综合指数**
+
+
+`$$\begin{align}
+I_{p}=\frac{\sum p_{1}}{\sum p_{0}}; \quad 
+I_{q}=\frac{\sum q_{1}}{\sum q_{0}}
+\end{align}$$`
+
+- **简单平均指数**
+
+
+`$$\begin{align}
+I_{p}=\frac{\sum \frac{p_{1}}{p_{0}}}{n}; \quad I_{q}=\frac{\sum \frac{q_{1}}{q_{0}}}{n}
+\end{align}$$`
+
+---
+
+## 加权指数：同度量因素
+
+**同度量因素**”：指把不能相加的指标过渡为可以相加的因素。
+
+&gt; 例如，社会商品零售价格总指数，单价不能简单相加，以商品销售量为同度量因素，过渡为商品销售额。
+
+**同度量因素**”作用：
+
+- 同度量作用
+
+- 权数作用
+
+`$$\begin{align}
+商品销售额 &amp; =商品销售量 \times 价格 \\
+工业总产值&amp;=工业总产量\times 价格
+\end{align}$$`
+
+---
+
+## 加权指数：同度量因素
+
+“同度量因素”的确定，可以通过如下方法：
+
+1.根据现象之间的联系确定同度量因素
+
+- 计算数量指数时，应以相应的质量为同度量因素
+
+- 计算质量指数时，应以相应的物量为同度量因素
+
+2.确定同度量因素的所属时期
+
+- 可以都是基期，也可以都是报告期
+
+- 使用不同时期的同度量因素，计算结果和意义不同
+
+- 取决于计算指数的预期目的
+
+---
+
+## 加权指数
+
+**加权综合指数**(weighted aggregative index number)：是通过加权来测定一组项目的综合变动。
+
+根据权数不同，有不同的计算公式：
+
+- **拉氏指数**(Laspeyres index)：数量指数和质量指数
+
+- **帕氏指数**(Paasche Laspeyres index)：数量指数和质量指数
+
+---
+
+## 加权指数：拉氏综合指数
+
+**拉氏综合指数**：1864年德国学者拉斯贝尔斯(Laspeyres)提出的一种价格指数计算方法。
+
+该方法在计算一组商品综合指数时，把**权数**固定在**基期**（0期）。
+
+具体计算公式为：
+
+.pull-left[
+- .red[拉氏]**数量指数**：
+.large[
+`\(I_{q(L)}=\frac{\sum\limits_{i=1}^n q_{1i} p_{0i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}}\)`
+]
+]
+
+.pull-right[
+
+- .red[拉氏]**质量指数**：
+.large[
+`\(I_{{p(L)}}=\frac{\sum\limits_{i=1}^n q_{0i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}}\)`
+
+]
+]
+
+&gt; 其中：
+- 
+`\(I_q\)`代表数量指数；
+`\(I_p\)`代表质量指数；
+`\((L)\)`代表拉氏计算方法。
+- 
+`\(0\)`表示基期水平；
+`\(1\)`表示报告期水平；
+`\(i \in (1, 2, \cdots, n)\)`表示商品。
+
+---
+exclude: true
+
+## 指数计算案例
+
+
+
+---
+
+### （案例）企业产品综合指数
+
+**案例说明**：某企业生产三种不同的产品，报告期和基期的产量和出厂价格如下标所示。
+
+&lt;table&gt;
+&lt;caption&gt;企业生产信息表&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 产量\(q_0\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 产量\(q_1\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 价格\(p_0\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 价格\(p_1\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2,200 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 400 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 420 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+请使用拉氏公式分别计算该企业总产值的数量指数
+`\(I_q\)`和质量指数
+`\(I_p\)`？
+
+---
+
+### （案例）企业产品综合指数：拉氏数量指数
+
+&lt;table&gt;
+&lt;caption&gt;拉氏数量指数计算表&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 产量\(q_0\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 产量\(q_1\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 价格\(p_0\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 价格\(p_1\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; \(q_0p_0\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; \(q_1p_0\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2,200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6,000,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7,200,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 400 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 420 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1,440,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1,512,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 20,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7,456,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8,732,000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+根据拉氏**数量**综合指数的计算方法，以及上述计算表，可得到：
+
+`$$\begin{align}
+I_{q(L)} =\frac{\sum\limits_{i=1}^n q_{1i} p_{0i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}}
+ =\frac{8732000}{7456000} 
+ = 1.1711
+ = 117.11 \%
+\end{align}$$`
+
+因为产品产量增加，使得产值增加了117.11%，实现了产值增加额
+`\(\Delta_q(L) = 8732000-7456000=1276000\)`
+
+---
+
+### （案例）企业产品综合指数：拉氏质量指数
+
+&lt;table&gt;
+&lt;caption&gt;拉氏质量指数计算表&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 产量\(q_0\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 产量\(q_1\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 价格\(p_0\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 价格\(p_1\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; \(q_0p_0\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; \(q_0p_1\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2,200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6,000,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6,600,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 400 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 420 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1,440,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1,600,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7,456,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8,216,000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+根据拉氏**质量**综合指数的计算方法，以及上述计算表，可得到：
+
+`$$\begin{align}
+I_{{p(L)}}=\frac{\sum\limits_{i=1}^n q_{0i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}}
+ =\frac{8216000}{7456000} 
+ = 1.1019
+ = 110.19 \%
+\end{align}$$`
+
+因为产品出厂价格变动，使得产值增加了110.19%，实现了产值增加额
+`\(\Delta_p(L) = 8216000-7456000=760000\)`
+
+---
+
+## 加权指数：帕氏综合指数
+
+**拉氏综合指数**：1874年德国学者帕煦(Pasche)所提出一种指数计算方法。
+
+该方法在计算一组商品综合指数时，把**权数**固定在**报告期**（1期）。
+
+具体计算公式为：
+
+.pull-left[
+- .red[帕氏]**数量指数**：
+.large[
+`\(I_{q(P)}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p_{1i}}\)`
+]
+]
+
+.pull-right[
+
+- .red[帕氏]**质量指数**：
+.large[
+`\(I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p_{0i}}\)`
+
+]
+]
+
+&gt; 其中：
+- 
+`\(I_q\)`代表数量指数；
+`\(I_p\)`代表质量指数；
+`\((P)\)`代表拉氏计算方法。
+- 
+`\(0\)`表示基期水平；
+`\(1\)`表示报告期水平；
+`\(i \in (1, 2, \cdots, n)\)`表示商品。
+
+---
+
+### （案例）企业产品综合指数：帕氏数量指数
+
+&lt;table&gt;
+&lt;caption&gt;帕氏数量指数计算表&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 产量\(q_0\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 产量\(q_1\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 价格\(p_0\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 价格\(p_1\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; \(q_0p_0\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; \(q_1p_0\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2,200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6,000,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7,200,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 400 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 420 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1,440,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1,512,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 20,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7,456,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8,732,000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+根据帕氏**数量**综合指数的计算方法，以及上述计算表，可得到：
+
+`$$\begin{align}
+I_{q(P)} =\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p_{1i}}
+ =\frac{9620000}{8216000} 
+ = 1.1709
+ = 117.09 \%
+\end{align}$$`
+
+因为产品产量增加，使得产值增加了117.09%，实现了产值增加额
+`\(\Delta_q(P) = 9620000-8216000=1404000\)`
+
+---
+
+### （案例）企业产品综合指数：帕氏质量指数
+
+&lt;table&gt;
+&lt;caption&gt;帕氏质量指数计算表&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 产量\(q_0\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 产量\(q_1\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 价格\(p_0\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 价格\(p_1\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; \(q_0p_0\) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; \(q_0p_1\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2,200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6,000,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6,600,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 400 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 420 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1,440,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1,600,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7,456,000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8,216,000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+根据帕氏**质量**综合指数的计算方法，以及上述计算表，可得到：
+
+`$$\begin{align}
+I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p_{0i}}
+ =\frac{9620000}{8732000} 
+ = 1.1017
+ = 110.17 \%
+\end{align}$$`
+
+因为产品出厂价格变动，使得产值增加了110.17%，实现了产值增加额
+`\(\Delta_p(L) = 9620000-8732000=888000\)`
+
+---
+
+## 加权指数：拉氏和帕氏指数对比
+
+.pull-left[
+.bg-lightest-blue[
+
+.red[拉氏]**数量指数**：
+`\(I_{q(L)}=\frac{\sum\limits_{i=1}^n q_{1i} p_{0i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}}\)`
+
+.red[拉氏]**质量指数**：
+`\(I_{{p(L)}}=\frac{\sum\limits_{i=1}^n q_{0i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}}\)`
+
+]
+]
+
+.pull-right[
+
+.bg-light-green[
+.purple[帕氏]**数量指数**：
+`\(I_{q(P)}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p_{1i}}\)`
+
+.purple[帕氏]**质量指数**：
+`\(I_{p(P)}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p_{0i}}\)`
+
+]
+
+]
+
+---
+
+## 加权指数：加权平均指数
+
+**加权平均指数**：是指以某一时期的总量指标为权数对**个体指数**进行加权平均得到的相对数。
+
+- **个体指数**：包括个体数量指数
+`\(k_q(i) = \frac{q_{1i}}{q_{0i}}\)`；以及个体质量指数
+`\(k_p(i) = \frac{p_{1i}}{p_{0i}}\)`。
+
+- **加权数**：
+
+&lt;div class="fyi"&gt;
+&lt;p&gt;A.加权数通常是两个有内在联系变量间的乘积。例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;商品销售额(销售价格与销售量的乘积)；&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;农产品总产量(单位面积产量与收获面积的乘积)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;B.加权数可以是同期变量的乘积，也可以混合时期变量的乘积：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="math inline"&gt;\(f_{00}=q_{0i}p_{0i}; \quad f_{11}=q_{1i}p_{1i}\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="math inline"&gt;\(f_{01}=q_{0i}p_{1i}; \quad f_{10}=q_{1i}p_{0i}\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+
+---
+
+## 加权指数：加权平均指数（拉氏）
+
+.pull-left[
+`$$\begin{aligned}
+\boldsymbol{I}_{\boldsymbol{q}(L)}  &amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
+&amp;=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{q}_{1i}}{\boldsymbol{q}_{0i}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
+&amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{q} \cdot \boldsymbol{f}_{00}\right)}{\sum\limits_{i=1}^n f_{00}} 
+\\
+&amp;=A_{q(L)} 
+\end{aligned}$$`
+]
+
+.pull-right[
+`$$\begin{aligned}
+\boldsymbol{I}_{\boldsymbol{p}(L)}  &amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
+&amp;=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{p}_{1i}}{\boldsymbol{p}_{0i}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
+&amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{p} \cdot \boldsymbol{f}_{00}\right)}{\sum\limits_{i=1}^n f_{00}} 
+\\
+&amp;=A_{p(L)} 
+\end{aligned}$$`
+
+]
+
+---
+
+## 加权指数：加权平均指数（帕氏）
+
+.pull-left[
+`$$\begin{aligned}
+\boldsymbol{I}_{\boldsymbol{q(P)}}  &amp;=\frac{\sum\left(\boldsymbol{q}_{1} \boldsymbol{p}_{1}\right)}{\sum\left(\boldsymbol{q}_{0} \boldsymbol{p}_{1}\right)} \\
+&amp;=\frac{\sum\left[\left(\frac{\boldsymbol{q}_{1}}{\boldsymbol{q}_{\boldsymbol{0}}}\right) \cdot\left(\boldsymbol{q}_{0} \boldsymbol{q}_{1}\right)\right]}{\sum\left(\boldsymbol{q}_{0} \boldsymbol{p}_{1}\right)} \\
+&amp;=\frac{\sum\left(\boldsymbol{k}_{q} \cdot \boldsymbol{f}_{\text {01}}\right)}{\sum \boldsymbol{f}_{01}} \\
+&amp;=\boldsymbol{A}_{\boldsymbol{q(P)}} 
+\end{aligned}$$`
+]
+
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-little-yellow.gif")
+class: inverse,center
+# 本节结束
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
