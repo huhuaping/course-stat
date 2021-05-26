@@ -34,7 +34,7 @@ exclude: FALSE
 
 ### huhuaping01@hotmail.com
 
-### 2021-05-24
+### 2021-05-26
 
 
 
@@ -81,24 +81,21 @@ exclude: FALSE
 
 # 第七章 指数
 
+### [7.1 基本概述](#index-principal)
 
-### [7.1 基本问题](#corl)
+### [7.2 总指数编制方法](#index-make)
 
-### [7.2 总指数编制方法](#concept)
+### [7.3 指数体系](#index-system)
 
-### [7.3 指数体系](#ols)
-
-### [7.4 几种典型的指数](#hypothesis)
-
-### [7.5 综合评价指数](#goodness)
+### [7.4 几种典型的指数](#index-life)
 
 
 ---
 layout: false
 class: center, middle, duke-softblue,hide_logo
-name: report
+name: index-principal
 
-# 7.1 基本问题
+# 7.1 基本概述
 
 ### 指数概念
 
@@ -119,7 +116,7 @@ layout: true
 
 &lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter"&gt; 第07章 指数 &lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-&lt;a href="#report"&gt; 7.1 基本问题 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt;
+&lt;a href="#index-principal"&gt; 7.1 基本问题 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt;
 
 ---
 
@@ -175,20 +172,11 @@ layout: true
 
 &gt; 如价格指数、产品成本指数等
 
----
-
-## 指数编制中的问题
-
-- 选择项目：选择代表规格品
-
-- 确定权数：利用已有的信息构造权数；主观权数
-
-- 计算方法：确定适当的方法
 
 ---
 layout: false
 class: center, middle, duke-softblue,hide_logo
-name: report
+name: index-make
 
 # 7.2 总指数编制方法
 
@@ -210,7 +198,17 @@ layout: true
 
 &lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter"&gt; 第07章 指数 &lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-&lt;a href="#report"&gt; 7.2 总指数编制方法 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt;
+&lt;a href="#index-make"&gt; 7.2 总指数编制方法 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt;
+
+---
+
+## 指数编制中的问题
+
+- 选择项目：选择代表规格品
+
+- 确定权数：利用已有的信息构造权数；主观权数
+
+- 计算方法：确定适当的方法
 
 ---
 
@@ -324,25 +322,12 @@ exclude: true
 ## 指数计算案例
 
 
-```
-Warning: `funs()` was deprecated in dplyr 0.8.0.
-Please use a list of either functions or lambdas: 
-
-  # Simple named list: 
-  list(mean = mean, median = median)
-
-  # Auto named with `tibble::lst()`: 
-  tibble::lst(mean, median)
-
-  # Using lambdas
-  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
-```
 
 ---
 
 ### （案例）企业产品综合指数
 
-**案例说明**：某企业生产三种不同的产品，报告期和基期的产量和出厂价格如下标所示。
+**案例说明**：某企业生产三种不同的产品，报告期和基期的产量和出厂价格如下表所示。
 
 &lt;table&gt;
 &lt;caption&gt;企业生产信息表&lt;/caption&gt;
@@ -381,14 +366,6 @@ Please use a list of either functions or lambdas:
    &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 4,000 &lt;/td&gt;
   &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 合计 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
@@ -410,8 +387,8 @@ Please use a list of either functions or lambdas:
    &lt;th style="text-align:center;"&gt; 产量\(q_1\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; 价格\(p_0\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; 价格\(p_1\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(q_0p_0\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; \(q_1p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_0p_0\) &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
@@ -422,8 +399,8 @@ Please use a list of either functions or lambdas:
    &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 2,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 2,200 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 6,000,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 7,200,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,000,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
@@ -432,8 +409,8 @@ Please use a list of either functions or lambdas:
    &lt;td style="text-align:center;"&gt; 420 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1,440,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 1,512,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,440,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
@@ -442,8 +419,8 @@ Please use a list of either functions or lambdas:
    &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
@@ -452,8 +429,8 @@ Please use a list of either functions or lambdas:
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 7,456,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 8,732,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,456,000 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -484,8 +461,8 @@ I_{q(L)} =\frac{\sum\limits_{i=1}^n q_{1i} p_{0i}}{\sum\limits_{i=1}^n q_{0i} p_
    &lt;th style="text-align:center;"&gt; 产量\(q_1\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; 价格\(p_0\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; 价格\(p_1\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(q_0p_0\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; \(q_0p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_0p_0\) &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
@@ -496,8 +473,8 @@ I_{q(L)} =\frac{\sum\limits_{i=1}^n q_{1i} p_{0i}}{\sum\limits_{i=1}^n q_{0i} p_
    &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 2,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 2,200 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 6,000,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 6,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,000,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
@@ -506,8 +483,8 @@ I_{q(L)} =\frac{\sum\limits_{i=1}^n q_{1i} p_{0i}}{\sum\limits_{i=1}^n q_{0i} p_
    &lt;td style="text-align:center;"&gt; 420 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1,440,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 1,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,440,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
@@ -526,8 +503,8 @@ I_{q(L)} =\frac{\sum\limits_{i=1}^n q_{1i} p_{0i}}{\sum\limits_{i=1}^n q_{0i} p_
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 7,456,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 8,216,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,456,000 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -594,8 +571,8 @@ I_{{p(L)}}=\frac{\sum\limits_{i=1}^n q_{0i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p
    &lt;th style="text-align:center;"&gt; 产量\(q_1\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; 价格\(p_0\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; 价格\(p_1\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(q_0p_1\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; \(q_1p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_0p_1\) &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
@@ -606,8 +583,8 @@ I_{{p(L)}}=\frac{\sum\limits_{i=1}^n q_{0i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p
    &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 2,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 2,200 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 6,600,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 7,920,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,600,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
@@ -616,8 +593,8 @@ I_{{p(L)}}=\frac{\sum\limits_{i=1}^n q_{0i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p
    &lt;td style="text-align:center;"&gt; 420 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1,600,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 1,680,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,600,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
@@ -626,8 +603,8 @@ I_{{p(L)}}=\frac{\sum\limits_{i=1}^n q_{0i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p
    &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
@@ -636,8 +613,8 @@ I_{{p(L)}}=\frac{\sum\limits_{i=1}^n q_{0i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 8,216,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 9,620,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8,216,000 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -757,11 +734,12 @@ I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p
 
 ]
 
+
 ---
 
 ## 加权指数：加权平均指数
 
-**加权平均指数**：是指以某一时期的总量指标为权数对**个体指数**进行加权平均得到的相对数。
+**加权平均指数**：是指以某一时期的总量指标为权数对**个体指数**进行加权平均得到的相对数。具体又分为**加权算数平均指数**和**加权调和平均指数**。
 
 - **个体指数**：包括个体数量指数
 `\(k_q(i) = \frac{q_{1i}}{q_{0i}}\)`；以及个体质量指数
@@ -785,7 +763,7 @@ I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p
 
 ---
 
-## 加权指数：加权平均指数A（拉氏数量）
+## 加权指数：加权算数平均指数A（拉氏数量）
 
 .pull-left[ .large[
 .bg-light-green[
@@ -801,11 +779,11 @@ I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p
 
 .pull-right[
 
-![](../mycss/img/face-smile.jpg)
-&gt; 其中：
+
+&gt; ![](../mycss/img/face-smile.jpg)其中：
 - 
-`\(A_q\)`代表加权平均数量指数；
-`\(A_p\)`代表加权平均质量指数；
+`\(A_q\)`代表加权算数平均数量指数；
+`\(A_p\)`代表加权算数平均质量指数；
 `\((L)\)`代表拉氏计算方法。
 - 
 `\(k_q\)`表示个体数量指数；
@@ -820,7 +798,7 @@ I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p
 
 ---
 
-## 加权指数：加权平均指数B（拉氏质量）
+## 加权指数：加权算数平均指数B（拉氏质量）
 
 .pull-left[
 .bg-lightest-blue[ .large[
@@ -835,11 +813,11 @@ I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p
 ]
 
 .pull-right[
-![](../mycss/img/face-normal.jpg)
-&gt; 其中：
+
+&gt; ![](../mycss/img/face-normal.jpg)其中：
 - 
-`\(A_q\)`代表加权平均数量指数；
-`\(A_p\)`代表加权平均质量指数；
+`\(A_q\)`代表加权算数平均数量指数；
+`\(A_p\)`代表加权算数平均质量指数；
 `\((L)\)`代表拉氏计算方法。
 - 
 `\(k_q\)`表示个体数量指数；
@@ -854,7 +832,7 @@ I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p
 
 ---
 
-## 加权指数：加权平均指数C（帕氏数量）
+## 加权指数：加权算数平均指数C（帕氏数量）
 
 .pull-left[ .large[
 .bg-light-yellow[
@@ -868,11 +846,11 @@ I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p
 ]
 
 .pull-right[
-![](../mycss/img/face-cry.jpg)
-&gt; 其中：
+
+&gt; ![](../mycss/img/face-cry.jpg)其中：
 - 
-`\(A_q\)`代表加权平均数量指数；
-`\(A_p\)`代表加权平均质量指数；
+`\(A_q\)`代表加权算数平均数量指数；
+`\(A_p\)`代表加权算数平均质量指数；
 `\((P)\)`代表帕氏计算方法。
 - 
 `\(k_q\)`表示个体数量指数；
@@ -887,7 +865,7 @@ I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p
 
 ---
 
-## 加权指数：加权平均指数D（帕氏质量）
+## 加权指数：加权算数平均指数D（帕氏质量）
 
 .pull-left[ .large[
 .bg-light-pink[
@@ -902,11 +880,11 @@ I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p
 ]
 
 .pull-right[
-![](../mycss/img/face-normal.jpg)
-&gt; 其中：
+
+&gt; ![](../mycss/img/face-normal.jpg)其中：
 - 
-`\(A_q\)`代表加权平均数量指数；
-`\(A_p\)`代表加权平均质量指数；
+`\(A_q\)`代表加权算数平均数量指数；
+`\(A_p\)`代表加权算数平均质量指数；
 `\((P)\)`代表帕氏计算方法。
 - 
 `\(k_q\)`表示个体数量指数；
@@ -921,16 +899,97 @@ I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p
 
 ---
 
-### （案例）企业产值综合指数：基于个体产量指数计算
+## 加权指数：加权算数平均指数（小结）
+
+
+
+.large[
 
 &lt;table&gt;
-&lt;caption&gt;基于个体产量指数的计算表&lt;/caption&gt;
+&lt;caption&gt;基于个体指数计算加权算数平均指数的情形&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 计算类别 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 指数类别 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 序号 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 公式代号 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体指数k &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 权重f &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权算数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 数量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(A_q(L)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_q\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{00}\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权算数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 质量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(A_P(L)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_p\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{00}\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权算数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 数量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; C &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(A_q(P)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_q\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{01}\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权算数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 质量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; D &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(A_p(P)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_p\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{10}\) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+&gt; 其中：
+- 
+`\(A_q\)`代表加权算数平均数量指数；
+`\(A_p\)`代表加权算数平均质量指数；
+`\((L)\)`代表拉氏计算方法；
+`\((P)\)`代表帕氏计算方法。
+- 
+`\(k_q\)`表示个体数量指数；
+`\(k_p\)`表示个体质量指数。
+- 
+`\(0\)`表示基期水平；
+`\(1\)`表示报告期水平；
+`\(i \in (1, 2, \cdots, n)\)`表示商品。
+- 权重
+`\(\boldsymbol{f}_{00},\boldsymbol{f}_{01},\boldsymbol{f}_{11},\boldsymbol{f}_{10}\)`。例如
+`\(\boldsymbol{f}_{10}=q_{1i}p_{0i}\)`。
+
+
+
+---
+
+### （案例）情景A：基于个体产量指数计算拉氏数量指数(数据)
+
+**案例A说明**：某企业生产三种不同的产品，基期产值
+`\(q_0p_0\)`和个体产量指数
+`\(k_q\)`如下表所示。
+
+&lt;table&gt;
+&lt;caption&gt;案例情景A（数据表）&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(q_0p_0\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(k_q\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 基期产值\(q_0p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体产量指数\(k_q\) &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
@@ -952,16 +1011,2519 @@ I_{{p(P)}}=\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p
    &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 1.25 &lt;/td&gt;
   &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+请分析并计算由于产品产量变动，带来的企业总产值变动的指数？
+
+
+---
+
+### （案例）情景A：基于个体产量指数计算拉氏数量指数(解答)
+
+**案例A解答**：因为案例仅仅给出了基期产值
+`\(q_0p_0\)`和个体产量指数
+`\(k_q\)`，因此需要使用**拉氏加权算数平均数量指数**公式
+`\(A_q(L)\)`。
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 基期总产值\(f_{00}=q_0p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体产量指数\(k_q\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(k_q*f_{00}\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,000,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.20 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,200,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,440,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.05 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,512,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+  &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 7,456,000 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8,732,000 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-（拉氏数量公式）
+--
+
+`$$\begin{aligned}
+\boldsymbol{A}_{q(L)} 
+=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{q}_{1i}}{\boldsymbol{q}_{0i}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} 
+=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{q_i} \cdot \boldsymbol{f}_{00}\right)}{\sum\limits_{i=1}^n \boldsymbol{f}_{00}}
+= \frac{8732000}{7456000}
+= 1.1711
+= 117.11\%
+\end{aligned}$$`
+
+--
+
+因为产品产量增加，使得产值增加了117.11%，实现了产值增加额
+`\(\Delta_q(L) = 8732000-7456000=1276000\)`
+
+---
+
+### （案例）情景B：基于个体价格指数计算拉氏质量指数(数据)
+
+**案例B说明**：某企业生产三种不同的产品，基期产值
+`\(q_0p_0\)`和个体价格指数
+`\(k_p\)`如下表所示。
+
+&lt;table&gt;
+&lt;caption&gt;案例情景B（数据表）&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 基期产值\(q_0p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体价格指数\(k_p\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,000,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,440,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+请分析并计算由于产品价格变动，带来的企业总产值变动的指数？
+
+
+---
+
+### （案例）情景B：基于个体价格指数计算拉氏质量指数(解答)
+
+**案例B解答**：因为案例仅仅给出了基期产值
+`\(q_0p_0\)`和个体产量指数
+`\(k_p\)`，因此需要使用**拉氏加权算数平均质量指数**公式
+`\(A_p(L)\)`。
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 基期产值\(f_{00}=q_0p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体价格指数\(k_p\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(k_p*f_{00}\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,000,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,600,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,440,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,600,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,456,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8,216,000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+`$$\begin{aligned}
+\boldsymbol{A}_{p(L)} 
+=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{p}_{1i}}{\boldsymbol{p}_{0i}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} 
+=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{p_i} \cdot \boldsymbol{f}_{00}\right)}{\sum\limits_{i=1}^n \boldsymbol{f}_{00}} 
+= \frac{8216000}{7456000}
+= 1.1019
+= 110.19\%
+\end{aligned}$$`
+
+--
+
+因为产品出厂价格变动，使得产值增加了110.19%，实现了产值增加额
+`\(\Delta_p(L) = 8216000-7456000=760000\)`
+
+---
+
+### （案例）情景C：基于个体产量指数计算帕氏数量指数(数据)
+
+**案例C说明**：某企业生产三种不同的产品，记录了
+`\(q_0p_1\)`和个体产量指数
+`\(k_q\)`如下表所示。
+
+&lt;table&gt;
+&lt;caption&gt;案例情景C（数据表）&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_0p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体产量指数\(k_q\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.20 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.05 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.25 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+请分析并计算由于产品产量变动，带来的企业总产值变动的指数？
+
+
+---
+
+### （案例）情景C：基于个体产量指数计算帕氏数量指数(解答)
+
+**案例C解答**：因为案例仅仅给出了
+`\(q_0p_1\)`和个体产量指数
+`\(k_q\)`，因此需要使用**帕氏加权算数平均数量指数**公式
+`\(A_q(P)\)`。
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(f_{01}=q_0p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体产量指数\(k_q\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(k_q*f_{01}\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.20 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,920,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.05 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,680,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8,216,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9,620,000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+`$$\begin{aligned}
+\boldsymbol{A}_{\boldsymbol{q(P)}} =\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{q}_{1i}}{\boldsymbol{q}_{\boldsymbol{0i}}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)} 
+=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{q_i} \cdot \boldsymbol{f}_{\text {01}}\right)}{\sum\limits_{i=1}^n \boldsymbol{f}_{01}}
+= \frac{9620000}{8216000}
+= 1.1709
+= 117.09\%
+\end{aligned}$$`
+
+--
+
+因为产品产量增加，使得产值增加了117.09%，实现了产值增加额
+`\(\Delta_q(P) = 9620000-8216000=1404000\)`
+
+---
+
+### （案例）情景D：基于个体价格指数计算帕氏数量指数(数据)
+
+**案例D说明**：某企业生产三种不同的产品，以及
+`\(q_1p_0\)`和个体价格指数
+`\(k_p\)`如下表所示。
+
+&lt;table&gt;
+&lt;caption&gt;案例情景D（数据表）&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_1p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体价格指数\(k_p\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,200,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,512,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+请分析并计算由于产品价格变动，带来的企业总产值变动的指数？
+
+
+---
+
+### （案例）情景D：基于个体价格指数计算帕氏数量指数(解答)
+
+**案例D解答**：因为案例仅仅给出了
+`\(q_1p_0\)`和个体产量指数
+`\(k_p\)`，因此需要使用**帕氏加权算数平均质量指数**公式
+`\(A_p(P)\)`。
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(f_{10}=q_1p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体价格指数\(k_p\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(k_p*f_{10}\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,200,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,920,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,512,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,680,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8,732,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9,620,000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+`$$\begin{aligned}
+\boldsymbol{A}_{\boldsymbol{p(P)}} 
+=\frac{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{p}_{1i}}{\boldsymbol{p}_{\boldsymbol{0i}}}\right) \cdot\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)\right]}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)} 
+=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{k}_{p_i} \cdot \boldsymbol{f}_{10}\right)}{\sum \boldsymbol{f}_{10}}
+= \frac{9620000}{8732000}
+= 1.1017
+= 110.17\%
+\end{aligned}$$`
+
+--
+
+因为产品出厂价格变动，使得产值增加了110.17%，实现了产值增加额
+`\(\Delta_p(P) = 9620000-8732000=888000\)`
+
+---
+
+## 加权指数：加权调和平均指数E（拉氏数量）
+
+.pull-left[ .large[
+.bg-light-yellow[
+`$$\begin{aligned}
+\boldsymbol{I}_{\boldsymbol{q}(L)}  &amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
+&amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)}{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{q}_{0i}}{\boldsymbol{q}_{1i}}\right) \cdot\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)\right]} \\
+&amp;=\frac{\sum\limits_{i=1}^n \boldsymbol{f}_{10}}{\sum\limits_{i=1}^n\left(\frac{1}{\boldsymbol{k}_{q_i}} \cdot \boldsymbol{f}_{10}\right)} 
+=\boldsymbol{H}_{q(L)} 
+\end{aligned}$$`
+]
+]
+]
+
+.pull-right[
+
+&gt; ![](../mycss/img/face-normal.jpg)其中：
+- 
+`\(H_q\)`代表加权调和平均数量指数；
+`\(H_p\)`代表加权调和平均质量指数；
+`\((L)\)`代表拉氏计算方法。
+- 
+`\(k_q\)`表示个体数量指数；
+`\(k_p\)`表示个体质量指数。
+- 
+`\(0\)`表示基期水平；
+`\(1\)`表示报告期水平；
+`\(i \in (1, 2, \cdots, n)\)`表示商品。
+- 
+`\(\boldsymbol{f}_{10}=q_{1i}p_{0i}\)`表示权重
+]
+
+---
+
+## 加权指数：加权调和平均指数F（拉氏质量）
+
+.pull-left[
+.bg-light-pink[ .large[
+`$$\begin{aligned}
+\boldsymbol{I}_{\boldsymbol{p}(L)}  &amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{0i}\right)} \\
+&amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{p}_{0i}}{\boldsymbol{p}_{1i}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)\right]} \\
+&amp;=\frac{\sum\limits_{i=1}^n \boldsymbol{f}_{01}}{\sum\limits_{i=1}^n\left(\frac{1}{\boldsymbol{k}_{p_i}} \cdot \boldsymbol{f}_{01}\right)} 
+=\boldsymbol{H}_{p(L)} 
+\end{aligned}$$`
+]
+]
+]
+
+.pull-right[
+
+&gt; ![](../mycss/img/face-cry.jpg)其中：
+- 
+`\(H_q\)`代表加权算数平均数量指数；
+`\(H_p\)`代表加权算数平均质量指数；
+`\((L)\)`代表拉氏计算方法。
+- 
+`\(k_q\)`表示个体数量指数；
+`\(k_p\)`表示个体质量指数。
+- 
+`\(0\)`表示基期水平；
+`\(1\)`表示报告期水平；
+`\(i \in (1, 2, \cdots, n)\)`表示商品。
+- 
+`\(\boldsymbol{f}_{10}=q_{0i}p_{1i}\)`表示权重
+]
+
+---
+
+## 加权指数：加权调和平均指数G（帕氏数量）
+
+.pull-left[ .large[
+.bg-light-yellow[
+`$$\begin{aligned}
+\boldsymbol{I}_{\boldsymbol{q(P)}}  &amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)} \\
+&amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{q}_{0i}}{\boldsymbol{q}_{\boldsymbol{1i}}}\right) \cdot\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{1i}\right)\right]} \\
+&amp;=\frac{\sum\limits_{i=1}^n \boldsymbol{f}_{11}}{\sum\limits_{i=1}^n\left(\frac{1}{\boldsymbol{k}_{q_i}} \cdot \boldsymbol{f}_{11}\right)} 
+=\boldsymbol{A}_{\boldsymbol{q(P)}} 
+\end{aligned}$$`
+]
+]
+]
+
+.pull-right[
+
+&gt; ![](../mycss/img/face-normal.jpg)其中：
+- 
+`\(H_q\)`代表加权算数平均数量指数；
+`\(H_p\)`代表加权算数平均质量指数；
+`\((P)\)`代表帕氏计算方法。
+- 
+`\(k_q\)`表示个体数量指数；
+`\(k_p\)`表示个体质量指数。
+- 
+`\(0\)`表示基期水平；
+`\(1\)`表示报告期水平；
+`\(i \in (1, 2, \cdots, n)\)`表示商品。
+- 
+`\(\boldsymbol{f}_{11}=q_{1i}p_{1i}\)`表示权重
+]
+
+---
+
+## 加权指数：加权调和平均指数H（帕氏质量）
+
+.pull-left[ .large[
+.bg-light-green[
+`$$\begin{aligned}
+\boldsymbol{I}_{\boldsymbol{p(P)}}  &amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)} \\
+&amp;=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{p}_{0i}}{\boldsymbol{p}_{\boldsymbol{1i}}}\right) \cdot\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{1i}\right)\right]} \\
+&amp;=\frac{\sum \boldsymbol{f}_{11}}{\sum\limits_{i=1}^n\left(\frac{1}{\boldsymbol{k}_{p_i}} \cdot \boldsymbol{f}_{11}\right)}
+=\boldsymbol{H}_{\boldsymbol{p(P)}} 
+\end{aligned}$$`
+]
+]
+]
+
+.pull-right[
+
+&gt; ![](../mycss/img/face-smile.jpg)其中：
+- 
+`\(H_q\)`代表加权调和平均数量指数；
+`\(H_p\)`代表加权调和平均质量指数；
+`\((P)\)`代表帕氏计算方法。
+- 
+`\(k_q\)`表示个体数量指数；
+`\(k_p\)`表示个体质量指数。
+- 
+`\(0\)`表示基期水平；
+`\(1\)`表示报告期水平；
+`\(i \in (1, 2, \cdots, n)\)`表示商品。
+- 
+`\(\boldsymbol{f}_{11}=q_{1i}p_{1i}\)`表示权重
+]
+
+---
+
+## 加权指数：加权调和平均指数（小结）
+
+.large[
+
+&lt;table&gt;
+&lt;caption&gt;基于个体指数计算加权调和平均指数的情形&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 计算类别 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 指数类别 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 序号 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 公式代号 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体指数k &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 权重f &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权调和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 数量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; E &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(H_q(L)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_q\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{10}\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权调和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 质量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(H_P(L)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_p\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{01}\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权调和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 数量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; G &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(H_q(P)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_q\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{11}\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权调和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 质量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; H &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(H_p(P)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_p\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{11}\) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+&gt; 其中：
+- 
+`\(H_q\)`代表加权调和平均数量指数；
+`\(H_p\)`代表加权调和平均质量指数；
+`\((L)\)`代表拉氏计算方法；
+`\((P)\)`代表帕氏计算方法。
+- 
+`\(k_q\)`表示个体数量指数；
+`\(k_p\)`表示个体质量指数。
+- 
+`\(0\)`表示基期水平；
+`\(1\)`表示报告期水平；
+`\(i \in (1, 2, \cdots, n)\)`表示商品。
+- 权重
+`\(\boldsymbol{f}_{00},\boldsymbol{f}_{01},\boldsymbol{f}_{11},\boldsymbol{f}_{10}\)`。例如
+`\(\boldsymbol{f}_{10}=q_{1i}p_{0i}\)`。
+
+---
+
+### （案例）情景E：基于个体产量指数计算拉氏数量指数(数据)
+
+**案例E说明**：某企业生产三种不同的产品，并记录了
+`\(q_1p_0\)`和个体产量指数
+`\(k_q\)`如下表所示。
+
+&lt;table&gt;
+&lt;caption&gt;案例情景E（数据表）&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_1p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体产量指数\(k_q\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,200,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.20 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,512,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.05 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.25 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+请分析并计算由于产品产量变动，带来的企业总产值变动的指数？
+
+---
+
+### （案例）情景E：基于个体产量指数计算拉氏数量指数(解答)
+
+**案例E解答**：因为案例仅仅给出了报告期产值
+`\(q_1p_0\)`和个体产量指数
+`\(k_q\)`，因此需要使用**拉氏调和算数平均数量指数**公式
+`\(H_q(L)\)`。
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(f_{10}=q_1p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体产量指数\(k_q\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(f_{10}/k_q\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,200,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.20 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,000,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,512,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.05 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,440,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8,732,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,456,000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+`$$\begin{aligned}
+\boldsymbol{H}_{q(L)}  
+= \frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)}{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{q}_{0i}}{\boldsymbol{q}_{1i}}\right) \cdot\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{0i}\right)\right]} 
+=\frac{\sum\limits_{i=1}^n \boldsymbol{f}_{10}}{\sum\limits_{i=1}^n\left(\frac{1}{\boldsymbol{k}_{q_i}} \cdot \boldsymbol{f}_{10}\right)} 
+= \frac{8732000}{7456000}
+= 1.1711
+= 117.11\%
+\end{aligned}$$`
+
+--
+
+因为产品产量增加，使得产值增加了117.11%，实现了产值增加额
+`\(\Delta_q(L) = 8732000-7456000=1276000\)`
+
+---
+
+### （案例）情景F：基于个体价格指数计算拉氏质量指数(数据)
+
+**案例F说明**：某企业生产三种不同的产品，并记录了
+`\(q_0p_1\)`和个体价格指数
+`\(k_p\)`如下表所示。
+
+&lt;table&gt;
+&lt;caption&gt;案例情景F（数据表）&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_0p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体价格指数\(k_p\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+请分析并计算由于产品价格变动，带来的企业总产值变动的指数？
+
+
+---
+
+### （案例）情景F：基于个体价格指数计算拉氏质量指数(解答)
+
+**案例F解答**：因为案例仅仅给出了报告期产值
+`\(q_0p_1\)`和个体产量指数
+`\(k_p\)`，因此需要使用**拉氏加权算数平均质量指数**公式
+`\(A_p(L)\)`。
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(f_{01}=q_0p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体价格指数\(k_p\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(f_{01}/k_p\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,000,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,600,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,440,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8,216,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,456,000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+`$$\begin{aligned}
+\boldsymbol{H}_{p(L)} 
+=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{p}_{0i}}{\boldsymbol{p}_{1i}}\right) \cdot\left(\boldsymbol{q}_{0i} \boldsymbol{p}_{1i}\right)\right]} =\frac{\sum\limits_{i=1}^n \boldsymbol{f}_{01}}{\sum\limits_{i=1}^n\left(\frac{1}{\boldsymbol{k}_{p_i}} \cdot \boldsymbol{f}_{01}\right)} 
+= \frac{8216000}{7456000}
+= 1.1019
+= 110.19\%
+\end{aligned}$$`
+
+--
+
+因为产品出厂价格变动，使得产值增加了110.19%，实现了产值增加额
+`\(\Delta_p(L) = 8216000-7456000=760000\)`
+
+---
+
+### （案例）情景G：基于个体产量指数计算帕氏数量指数(数据)
+
+**案例G说明**：某企业生产三种不同的产品，记录了
+`\(q_1p_1\)`和个体产量指数
+`\(k_q\)`如下表所示。
+
+&lt;table&gt;
+&lt;caption&gt;案例情景G（数据表）&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 报告期总产值\(q_1p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体产量指数\(k_q\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,920,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.20 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,680,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.05 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.25 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+请分析并计算由于产品产量变动，带来的企业总产值变动的指数？
+
+
+---
+
+### （案例）情景G：基于个体产量指数计算帕氏数量指数(解答)
+
+**案例G解答**：因为案例仅仅给出了
+`\(q_1p_1\)`和个体产量指数
+`\(k_q\)`，因此需要使用**帕氏加权调和平均数量指数**公式
+`\(H_q(P)\)`。
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(f_{11}=q_1p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体产量指数\(k_q\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(f_{11}/k_q\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,920,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.20 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,600,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,680,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.05 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,600,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9,620,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8,216,000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+`$$\begin{aligned}
+\boldsymbol{A}_{\boldsymbol{q(P)}} 
+=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{q}_{0i}}{\boldsymbol{q}_{\boldsymbol{1i}}}\right) \cdot\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{1i}\right)\right]} 
+=\frac{\sum\limits_{i=1}^n \boldsymbol{f}_{11}}{\sum\limits_{i=1}^n\left(\frac{1}{\boldsymbol{k}_{q_i}} \cdot \boldsymbol{f}_{11}\right)} 
+= \frac{9620000}{8216000}
+= 1.1709
+= 117.09\%
+\end{aligned}$$`
+
+--
+
+因为产品产量增加，使得产值增加了117.09%，实现了产值增加额
+`\(\Delta_q(P) = 9620000-8216000=1404000\)`
+
+---
+
+### （案例）情景H：基于个体价格指数计算帕氏质量指数(数据)
+
+**案例H说明**：某企业生产三种不同的产品，报告期产值
+`\(q_1p_1\)`和个体价格指数
+`\(k_p\)`如下表所示。
+
+&lt;table&gt;
+&lt;caption&gt;案例情景H（数据表）&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 报告期总产值\(q_1p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体价格指数\(k_p\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,920,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,680,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+请分析并计算由于产品价格变动，带来的企业总产值变动的指数？
+
+
+---
+
+### （案例）情景H：基于个体价格指数计算帕氏质量指数(解答)
+
+**案例H解答**：因为案例仅仅给出了报告期产值
+`\(q_1p_1\)`和个体产量指数
+`\(k_p\)`，因此需要使用**帕氏加权调和平均质量指数**公式
+`\(H_p(P)\)`。
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(f_{11}=q_1p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体价格指数\(k_p\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(f_{11}/k_p\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,920,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,200,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,680,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,512,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9,620,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8,732,000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+`$$\begin{aligned}
+\boldsymbol{H}_{\boldsymbol{p(P)}}
+=\frac{\sum\limits_{i=1}^n\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{1i}\right)}{\sum\limits_{i=1}^n\left[\left(\frac{\boldsymbol{p}_{0i}}{\boldsymbol{p}_{\boldsymbol{1i}}}\right) \cdot\left(\boldsymbol{q}_{1i} \boldsymbol{p}_{1i}\right)\right]} 
+=\frac{\sum \boldsymbol{f}_{11}}{\sum\limits_{i=1}^n\left(\frac{1}{\boldsymbol{k}_{p_i}} \cdot \boldsymbol{f}_{11}\right)}
+= \frac{9620000}{8732000}
+= 1.1017
+= 110.17\%
+\end{aligned}$$`
+
+--
+
+因为产品出厂价格变动，使得产值增加了110.17%，实现了产值增加额
+`\(\Delta_p(P) = 9620000-8732000=888000\)`
+
+
+---
+
+## 加权指数：公式总结
+
+
+.large[
+
+&lt;table&gt;
+&lt;caption&gt;基于个体指数计算加权平均指数的情形&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 计算类别 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 指数类别 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 序号 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 公式代号 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 个体指数k &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 权重f &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权算数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 数量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(A_q(L)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_q\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{00}\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权算数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 质量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(A_P(L)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_p\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{00}\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权算数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 数量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; C &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(A_q(P)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_q\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{01}\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权算数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 质量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; D &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(A_p(P)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_p\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{10}\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权调和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 数量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; E &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(H_q(L)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_q\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{10}\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权调和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 质量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(H_P(L)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_p\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{01}\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权调和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 数量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; G &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(H_q(P)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_q\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{11}\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 加权调和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 质量指数 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; H &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(H_p(P)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(k_p\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(f_{11}\) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: index-system
+
+# 7.3 指数体系
+
+### 概念和应用
+
+### 总量指数体系变动分析
+
+### 平均数指数体系变动分析
+
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter"&gt; 第07章 指数 &lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#index-system"&gt; 7.3 指数体系 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt;
+
+---
+
+## 概念和应用
+
+**指数体系**：统计上把这些互相联系的指数所构成的体系，叫做指数体系。
+
+指数体系的应用：
+
+- 指数体系是因素分析法的基础。
+
+- 利用指数体系，还可进行指数因素之间的互相换算。
+
+&lt;div class="notes"&gt;
+&lt;p&gt;&lt;strong&gt;总变动指数=因素指数的乘积&lt;/strong&gt;，例如：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;商品销售额=商品价格 × 商品销售量&lt;/li&gt;
+&lt;li&gt;生产费用支出额=单位成本 × 产品产量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;商品销售额指数=商品价格指数 × 商品销售量指数&lt;/li&gt;
+&lt;li&gt;生产费用支出额指数=单位成本指数 × 产品产量指数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+
+
+---
+
+## 总量指数体系变动分析：两因素分析
+
+两因素的**相对数**关系分析：
+
+`$$\begin{align}
+K_{qp} &amp;= K_q \times K_p \\
+K_{qp} &amp;= I_{q(L)} \times I_{p(P)} \\
+\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}}
+&amp;=\frac{\sum\limits_{i=1}^n q_{1i} p_{0i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}}
+\times 
+\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p_{0i}}
+\end{align}$$`
+
+两因素的**绝对额**关系分析：
+
+`$$\begin{align}
+\left({\sum\limits_{i=1}^n q_{1i}p_{1i}}-{\sum\limits_{i=1}^n q_{0i} p_{0i}} \right)
+=\left({\sum\limits_{i=1}^n q_{1i} p_{0i}} - {\sum\limits_{i=1}^n q_{0i} p_{0i}} \right) + \left({\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p_{0i}} \right)
+\end{align}$$`
+
+---
+
+### （案例）两因素变动分析：数据表
+
+**案例说明**：某企业生产三种不同的产品，报告期和基期的产量和出厂价格如下表所示。
+
+&lt;table&gt;
+&lt;caption&gt;案例数据表&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品名称 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产量\(q_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产量\(q_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 价格\(p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 价格\(p_1\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2,200 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 400 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 420 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+请合理使用指数公式，对总产值变动进行两因素（产量和出厂价格）的变动分析。
+
+---
+
+### （案例）两因素变动分析：解答
+
+根据前述数据表，我们可以得到如下计算表：
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产量\(q_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产量\(q_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 价格\(p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 价格\(p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_1p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_0p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_1p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_0p_1\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2,200 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,920,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,000,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,200,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6,600,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 400 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 420 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3,600 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,680,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,440,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,512,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1,600,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9,620,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7,456,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8,732,000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8,216,000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### （案例）两因素变动分析：相对数分析
+
+两因素的**相对数**关系分析中，我们将使用拉氏数量指数+帕氏质量指数分别进行产量和价格变动分析：
+
+步骤1：确定分解公式
+
+`$$\begin{align}
+K_{qp} &amp;= K_q \times K_p \\
+K_{qp} &amp;= I_{q(L)} \times I_{p(P)} 
+\end{align}$$`
+
+---
+
+### （案例）两因素变动分析：相对数分析
+
+步骤2：计算总指数和分解指数
+
+`$$\begin{align}
+K_{qp} = \frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}} 
+ =\frac{9620000}{7456000}
+= 1.2902
+ = 129.02\%\\
+\end{align}$$`
+
+`$$\begin{align}
+I_{q(L)}=\frac{\sum\limits_{i=1}^n q_{1i} p_{0i}}{\sum\limits_{i=1}^n q_{0i} p_{0i}}
+=\frac{8732000}{7456000}
+=1.1711
+=117.11\%
+\end{align}$$`
+
+`$$\begin{align}
+I_{p(P)}=
+\frac{\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p_{0i}}
+=\frac{9620000}{8732000} 
+=1.1017
+=110.17\%
+\end{align}$$`
+
+---
+
+### （案例）两因素变动分析：相对数分析
+
+步骤3：相对数变动分解
+
+`$$\begin{align}
+K_{qp} &amp;= I_{q(L)} \times I_{p(P)}  \\
+129.02\% &amp;= 117.11\% \times 
+110.17\%
+\end{align}$$`
+
+---
+
+### （案例）两因素变动分析：绝对数分析
+
+步骤4：与之相对应，两因素的**绝对额**关系分析结果如下：
+
+`$$\begin{align}
+\left({\sum\limits_{i=1}^n q_{1i}p_{1i}}-{\sum\limits_{i=1}^n q_{0i} p_{0i}} \right)
+&amp;=\left({\sum\limits_{i=1}^n q_{1i} p_{0i}} - {\sum\limits_{i=1}^n q_{0i} p_{0i}} \right) + \left({\sum\limits_{i=1}^n q_{1i} p_{1i}}{\sum\limits_{i=1}^n q_{1i} p_{0i}} \right) \\
+\left({9620000}-{7456000} \right)
+&amp;=\left({8732000} - {7456000} \right) + \left({9620000}-{8732000} \right) \\
+\left({2164000} \right)
+&amp;=\left({1276000}  \right) + \left({888000} \right)
+\end{align}$$`
+
+总产值变动额为2164000，其中因为产量因素引起的产值变动额为1276000，因为出厂价格因素引起的产值变动额为888000。
+
+---
+
+## 总量指数体系变动分析：多因素分析
+
+多因素分析体系变动分析的基本原则：
+
+- 把影响复杂总体变动的各个因素，按照数量指标在前，质量指标在后的顺序进行排列。
+
+- 当分析某一因素对复杂总体变动的影响时，未被分析的后面诸因素要固定在基期水平，而已被分析过的前面诸因素，则要固定在报告期水平。
+
+- 两个相邻的指标相乘必须具有实际经济意义
+
+
+&gt; 初始变量关系：
+- 工业产品原材料支出额=单位产品原材料消耗×产品数量×原材料单价
+
+&gt; 经排列后为：
+- 工业产品原材料支出额=产品数量q×单耗m×单价p
+
+---
+
+## 总量指数体系变动分析：多因素分析
+
+多因素分析体系变动分析的“连锁替代法”：
+
+&gt; 两因素变量情形：
+- 总产值=工人人数×工人劳动生产率
+
+&gt; 多因素变量情形：
+- 总产值=(A)工人人数 × (B)时劳动生产率× (C)平均每日工作时长× (D)平均每月工作天数
+
+`$$\begin{align}
+K_{ABCD} &amp; = K_A *K_B*K_C*K_D \\
+\frac{\sum\limits_{i=1}^n{A_{1} B_{1} C_{1} D_{1}}}{\sum\limits_{i=1}^n{A_{0} B_{0} C_{0} D_{0}}}
+&amp;=\frac{\sum\limits_{i=1}^n{A_{1} B_{0} C_{0} D_{0}}}{\sum\limits_{i=1}^n{A_{0} B_{0} C_{0} D_{0}}} 
+\times \frac{\sum\limits_{i=1}^n{A_{1} B_{1} C_{0} D_{0}}}{\sum\limits_{i=1}^n{A_{1} B_{0} C_{0} D_{0}}} 
+\times \frac{\sum\limits_{i=1}^n{A_{1} B_{1} C_{1} D_{0}}}{\sum\limits_{i=1}^n{A_{1} B_{1} C_{0} D_{0}}} 
+\times \frac{\sum\limits_{i=1}^n{A_{1} B_{1} C_{1} D_{1}}}{\sum\limits_{i=1}^n{A_{1} B_{1} C_{1} D_{0}}}
+\end{align}$$`
+
+---
+exclude: true
+
+## 案例：三因素分析
+
+
+
+
+---
+
+### （案例）多因素变动分析：数据表
+
+**案例说明**：某企业基期、报告期产量（件）、单耗和单价（元）情况表如下，请对该企业的材料总支出的变动进行多因素分析。 
+
+&lt;table&gt;
+&lt;caption&gt;案例数据表&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产量\(q_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 产量\(q_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单耗\(m_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单耗\(m_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 价格\(p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 价格\(p_1\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9.6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.4 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+### （案例）多因素变动分析：计算表
+
+根据多因素变动分析“连锁替代”方法，我们可以首先得到如下计算表：
+
+&lt;table&gt;
+&lt;caption&gt;案例数据表&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(m_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(m_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(p_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_0m_0p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_1m_0p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_1m_1p_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_1m_1p_1\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 甲 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 吨 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9.6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 440 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 400 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 384 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 461 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 乙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千米 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 336 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 403 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 378 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 378 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 丙 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 千块 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 60 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 88 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 77 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 836 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 878 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 850 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 916 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### （案例）多因素变动分析：确定计算公式
+
+**步骤1**：根据多因素变动分析“连锁替代”公式，建立如下的因素分析指标体系：
+
+`$$\begin{align}
+K_{qmp} &amp; = K_q *K_m*K_p \\
+\frac{\sum\limits_{i=1}^n{q_{1} m_{1} p_{1}}}{\sum\limits_{i=1}^n{q_{0} m_{0} p_{0} }}
+&amp;=\frac{\sum\limits_{i=1}^n{q_{1} m_{0} p_{0} }}{\sum\limits_{i=1}^n{q_{0} m_{0} p_{0} }} 
+\times \frac{\sum\limits_{i=1}^n{q_{1} m_{1} p_{0} }}{\sum\limits_{i=1}^n{q_{1} m_{0} p_{0} }} 
+\times \frac{\sum\limits_{i=1}^n{q_{1} m_{1} p_{1} }}{\sum\limits_{i=1}^n{q_{1} m_{1} p_{0} }} 
+\end{align}$$`
+
+---
+
+### （案例）多因素变动分析：总变动分析
+
+下面分别进行总变动和因素变动的指数计算和分析。
+
+**步骤2**：对材料支出额总指数变动进行相对数和绝对数分析
+
+`$$\begin{align}
+K_{qmp}  
+= \frac{\sum\limits_{i=1}^n{q_{1} m_{1} p_{1}}}{\sum\limits_{i=1}^n{q_{0} m_{0} p_{0} }} 
+= \frac{915.8}{836}
+= 1.0955
+= 109.55\%
+\end{align}$$`
+
+因为产品产量、单耗和价格的变动，使得总支出变动了109.55%，实现了总支出变动额
+`\(\Delta = 915.8-836=79.8\)`
+
+---
+
+### （案例）多因素变动分析：产量变动分析
+
+**步骤3**：产量变动对材料支出额的影响，进行相对数和绝对数分析
+
+`$$\begin{align}
+K_{q}  
+= \frac{\sum\limits_{i=1}^n{q_{1} m_{0} p_{0}}}{\sum\limits_{i=1}^n{q_{0} m_{0} p_{0} }} 
+= \frac{878.2}{836}
+= 1.0505
+= 105.05\%
+\end{align}$$`
+
+因为产品产量的变动，使得总支出变动了105.05%，实现了总支出变动额
+`\(\Delta_q = 878.2-836=42.2\)`
+
+---
+
+### （案例）多因素变动分析：单耗变动分析
+
+**步骤4**：单耗变动对材料支出额的影响，进行相对数和绝对数分析
+
+`$$\begin{align}
+K_{m}  
+= \frac{\sum\limits_{i=1}^n{q_{1} m_{1} p_{0}}}{\sum\limits_{i=1}^n{q_{1} m_{0} p_{0} }} 
+= \frac{849.5}{878.2}
+= 0.9673
+= 96.73\%
+\end{align}$$`
+
+因为产品单耗的变动，使得总支出变动了96.73%，实现了总支出变动额
+`\(\Delta_m = 849.5-878.2=-28.7\)`
+
+---
+
+### （案例）多因素变动分析：价格变动分析
+
+**步骤5**：价格变动对材料支出额的影响，进行相对数和绝对数分析
+
+`$$\begin{align}
+K_{p}  
+= \frac{\sum\limits_{i=1}^n{q_{1} m_{1} p_{1}}}{\sum\limits_{i=1}^n{q_{1} m_{1} p_{0} }} 
+= \frac{915.8}{849.5}
+= 1.0780
+= 107.80\%
+\end{align}$$`
+
+因为产品单耗的变动，使得总支出变动了107.80%，实现了总支出变动额
+`\(\Delta_p = 915.8-849.5=66.3\)`
+
+
+
+---
+
+### （案例）多因素变动分析：汇总分析
+
+**相对数**变动分析：
+
+`$$\begin{align}
+K_{qmp} &amp; = K_q * K_m * K_p \\
+109.55\%
+&amp; = 105.05\%
+\times 96.73\%
+\times 107.80\%
+\end{align}$$`
+
+**绝对数**变动分析：
+
+`$$\begin{align}
+\left( {\sum\limits_{i=1}^n{q_{1} m_{1} p_{1}}}- {\sum\limits_{i=1}^n{q_{0} m_{0} p_{0} }} \right)
+&amp;=\left( {\sum\limits_{i=1}^n{q_{1} m_{0} p_{0} }} - {\sum\limits_{i=1}^n{q_{0} m_{0} p_{0} }} \right) \\&amp;+  
+\left( {\sum\limits_{i=1}^n{q_{1} m_{1} p_{0} }} - {\sum\limits_{i=1}^n{q_{1} m_{0} p_{0} }}  \right) \\&amp;+ 
+\left( {\sum\limits_{i=1}^n{q_{1} m_{1} p_{1} }}- {\sum\limits_{i=1}^n{q_{1} m_{1} p_{0} }} \right) \\
+79.80 &amp; = 42.20 + \left(
+-28.70 \right)+ 
+66.30
+\end{align}$$`
+
+---
+
+## 平均数指数体系变动分析：平均数
+
+**平均数指数**：是两个平均数直接对比形成的指数。
+
+平均数的大小受两个因素影响：
+
+- 各组水平
+`\(\overline{X_i}\)`
+
+- 各组结构
+`\(f_i\)`
+
+
+`$$\begin{align}
+\overline{X}=\frac{\sum\limits_{i=1}^n (f_iX_i )}{\sum\limits_{i=1}^n f_i}=\sum\limits_{i=1}^n\left( \frac{f_i}{\sum\limits_{i=1}^n {f_i}} \cdot  X_i\right)
+\end{align}$$`
+
+---
+
+## 平均数指数体系变动分析：因素分解
+
+总变动的因素分解指数公式：
+
+`$$\begin{align}
+I_{X f}= I_f \times I_X
+\end{align}$$`
+
+.pa2.bg-light-yellow[
+其中，**总变动指数**：
+`$$\begin{align}
+I_{X f}=\frac{\overline{X}_{1}}{\overline{X}_{0}}=
+\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{1i}}{\sum\limits_{i=1i}^n f_{1i}} \right) \Bigg/
+\left( \frac{\sum\limits_{i=1}^n f_{0i} X_{0i}}{\sum\limits_{i=1}^n f_{0i}} \right)
+\end{align}$$`
+
+]
+
+---
+
+## 平均数指数体系变动分析：因素分解
+
+总变动的因素分解指数公式：
+
+`$$\begin{align}
+I_{X f}= I_f \times I_X
+\end{align}$$`
+
+.pa2.bg-light-green[
+其中，**结构变动指数**：
+`$$\begin{align}
+I_{f}=\frac{\overline{X}_{n}}{\overline{X}_{0}}=
+\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{0i}}{\sum\limits_{i=1i}^n f_{1i}} \right) \Bigg/
+\left( \frac{\sum\limits_{i=1}^n f_{0i} X_{0i}}{\sum\limits_{i=1}^n f_{0i}} \right)
+\end{align}$$`
+
+]
+
+---
+
+## 平均数指数体系变动分析：因素分解
+
+总变动的因素分解指数公式：
+
+`$$\begin{align}
+I_{X f}= I_f \times I_X
+\end{align}$$`
+
+.pa2.bg-light-blue[
+
+其中，**组水平变动指数**：
+`$$\begin{align}
+I_{X}=\frac{\overline{X}_{1}}{\overline{X}_{n}}=
+\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{1i}}{\sum\limits_{i=1i}^n f_{1i}} \right) \Bigg/
+\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{0i}}{\sum\limits_{i=1}^n f_{1i}} \right)
+\end{align}$$`
+
+]
+
+---
+exclude: true
+
+## 案例：平均数指数体系
+
+
+
+
+---
+
+### （案例）平均数指数变动分析：数据表
+
+**案例说明**：某地区生产同一产品的三个不同企业的职工人数
+`\(f\)`（百人）和劳动生产率
+`\(X\)`（万元/人）和资料如下表，请对**人均劳动生产率**进行因素变动分析。 
+
+&lt;table&gt;
+&lt;caption&gt;案例数据表&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 人数\(f_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 人数\(f_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 生产率\(X_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 生产率\(X_1\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 一厂 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 二厂 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 三厂 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+### （案例）平均数指数变动分析：计算表
+
+**案例解答**：工厂人数和劳动生产率会引发企业整体人均劳动生产率的变动，因此需要使用平均数指数分解，来对**人均劳动生产率**进行因素变动分析。首先得到如下 计算表：
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 产品 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 人数\(f_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 人数\(f_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 生产率\(X_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 生产率\(X_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(f_0X_0\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(f_1X_1\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(f_1X_0\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 一厂 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 44 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 二厂 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 125 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 三厂 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 70 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 120 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 112 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 245 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 289 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 277 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### （案例）平均数指数变动分析：确定计算公式
+
+**步骤1**：根据平均数指数体系变动分析公式，建立如下的因素分析指标体系：
+
+`$$\begin{align}
+I_{X f} &amp; = I_f \times I_X \\
+\frac{\overline{X}_{1}}{\overline{X}_{0}} &amp;= \left(\frac{\overline{X}_{n}}{\overline{X}_{0}}\right) \times
+\left(\frac{\overline{X}_{1}}{\overline{X}_{n}}\right)
+\end{align}$$`
+
+---
+
+### （案例）平均数指数变动分析：总变动分析
+
+
+**步骤2**：对整个企业人均劳动生产率总指数变动进行相对数和绝对数分析。
+
+其中，**总变动指数**：
+
+`$$\begin{align}
+I_{X f}=\frac{\overline{X}_{1}}{\overline{X}_{0}}
+&amp; =
+\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{1i}}{\sum\limits_{i=1i}^n f_{1i}} \right) \Bigg/
+\left( \frac{\sum\limits_{i=1}^n f_{0i} X_{0i}}{\sum\limits_{i=1}^n f_{0i}} \right) \\
+&amp; = \left( \frac{289}{110} \right) \Bigg/
+\left( \frac{245}{100} \right) \\
+&amp;= 2.6273/ 2.4500
+= 1.0724
+= 107.24\%
+\end{align}$$`
+
+
+因为职工人数、劳动生产率的变动，使得整个企业人均劳动生产率变动了107.24%，实现了人均劳动生产率变动绝对数
+`\(\Delta =\overline{X}_1 - \overline{X}_0 = 2.6273-2.4500=0.1773\)`
+
+---
+
+### （案例）平均数指数变动分析：职工人数结构变动分析
+
+**步骤3**：职工人数结构对整个企业人均劳动生产率的影响，进行相对数和绝对数分析
+
+其中，职工人数的**结构变动指数**：
+`$$\begin{align}
+I_{f}=\frac{\overline{X}_{n}}{\overline{X}_{0}}
+&amp;=\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{0i}}{\sum\limits_{i=1i}^n f_{1i}} \right) \Bigg/
+\left( \frac{\sum\limits_{i=1}^n f_{0i} X_{0i}}{\sum\limits_{i=1}^n f_{0i}} \right) \\
+&amp; = \left( \frac{277}{110} \right) \Bigg/
+\left( \frac{245}{100} \right) \\
+&amp; = 2.5182/ 2.4500
+= 1.0278
+= 102.78\%
+\end{align}$$`
+
+因为职工人数结构的变动，使得整个企业**人均劳动生产率**变动了102.78%，实现了人均劳动生产率变动绝对数
+`\(\Delta =\overline{X}_n - \overline{X}_0 =2.5182-2.4500=0.0682\)`
+
+
+---
+
+### （案例）平均数指数变动分析：劳动生产率变动分析
+
+**步骤4**：各厂劳动生产率对整个企业人均劳动生产率的影响，进行相对数和绝对数分析。其中，各厂劳动生产率的**组水平变动指数**：
+
+`$$\begin{align}
+I_{X}=\frac{\overline{X}_{1}}{\overline{X}_{n}}
+&amp;= \left( \frac{\sum\limits_{i=1}^n f_{1i} X_{1i}}{\sum\limits_{i=1i}^n f_{1i}} \right) \Bigg/
+\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{0i}}{\sum\limits_{i=1}^n f_{1i}} \right) \\
+&amp; = \left( \frac{289}{110} \right) \Bigg/
+\left( \frac{277}{110} \right) \\
+&amp; = 2.6273/ 2.5182
+= 1.0433
+= 104.33\%
+\end{align}$$`
+
+因为各厂劳动生产率水平的变动，使得整个企业**人均劳动生产率**变动了104.33%，实现了人均劳动生产率变动绝对数
+`\(\Delta =\overline{X}_1 - \overline{X}_n =2.6273-2.5182=0.1091\)`
+
+
+
+---
+
+### （案例）平均数指数变动分析：汇总分析
+
+**相对数**变动分析：
+
+`$$\begin{align}
+I_{X f} &amp;= I_f \times I_X \\
+\frac{\overline{X}_{1}}{\overline{X}_{0}} &amp;= \left(\frac{\overline{X}_{n}}{\overline{X}_{0}}\right) \times
+\left(\frac{\overline{X}_{1}}{\overline{X}_{n}}\right) \\
+107.24\%
+&amp; = 102.78\%
+\times 104.33\%
+\end{align}$$`
+
+**绝对数**变动分析：
+
+`$$\begin{align}
+\left(\overline{X}_1 - \overline{X}_0 \right) &amp; = 
+\left(\overline{X}_n - \overline{X}_0 \right)  + \left(\overline{X}_1 - \overline{X}_n \right) \\
+\left(2.6273- 2.4500 \right) &amp; = 
+\left(2.5182- 2.4500 \right)  + \left(2.6273- 2.5182 \right) \\
+\left(0.1773 \right) 
+&amp; = \left(0.0682 \right)  + \left(0.1091 \right) 
+\end{align}$$`
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: index-life
+
+# 7.4 几种典型的指数
+
+### 零售价格指数
+
+### 消费价格指数
+
+### 居民消费价格指数
+
+### 股票价格指数
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter"&gt; 第07章 指数 &lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#index-life"&gt; 7.4 几种典型的指数 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt;
+
+---
+
+## 零售价格指数：概念和作用
+
+**零售价格指数**(retailer price index)：是指以现金或信用卡形式支付的零售商品的价格指数。
+
+零售价格指数的意义：
+
+&gt; 
+- 该指数持续上升，可能带来通货膨胀上升的压力，令政府收紧货币供应，利率趋升为该国货币带来利好的支持。
+
+中国的零售价格指数：
+
+- 反映城乡商品零售价格变动趋势的一种经济指数 
+
+- 它的变动直接影响到城乡居民的生活支出和国家财政收入
+
+- 是观察和分析经济活动的重要工具之一 
+
+---
+
+## 零售价格指数：编制过程
+
+我国零售价格指数编制过程
+
+A.调查地区和调查点的选择（采用分层抽样）：
+
+&gt; 
+- 调查地区按经济区域和地区分布合理等原则
+- 选出具有代表性的大、中、小城市和县
+- 选择经营规模大、商品种类多的上场(包括集市) 作为调查点 
+
+B.编制公式（固定权数的平均数指数）：
+
+`$$\begin{align}
+\overline{K}_p = \frac{\sum\limits_{i = 1}^n (k_{pi} \cdot w_i)}{\sum\limits_{i = 1}^n k_{pi}}
+\end{align}$$`
+
+&gt; 其中：
+`\(k_{pi}\)`为个体价格指数或价格类指数；
+`\(w_{i}\)`为各层次零售额比重。
+
+---
+
+## 消费价格指数：概念和特点
+
+**消费者价格指数**(consumer price index)：是对一个固定的消费品篮子价格的衡量，主要反映消费者支付商品和劳务的价格变化情况。它是一种度量通货膨胀水平的工具，以百分比变化为表达形式，一般简写为CPI。 
+
+消费者价格指数的特点：
+
+&gt; 
+- 世界各国普遍编制的一种指数
+- 我国称之为居民消费价格指数
+- 可就城乡分别编制
+
+---
+
+## 消费价格指数：作用
+
+消费价格指数的作用主要体现在：
+
+- 反映货币购买力变动
+
+`$$货币购买力指数 = \frac{1}{cpi}\times 100\%$$`
+
+- 反映对职工实际工资的影响
+
+`$$实际工资 = \frac{名义工资}{cpi}$$`
+
+- 用于缩减经济序列&lt;sup&gt;* &lt;/sup&gt;（剔除货币波动效应）
+
+
+
+---
+layout: false
+background-size: contain
+background-image: url("../pic/chpt07-cpi-demo.png")
+class: center, middle, duke-orange, hide_logo
+
+.fl.bold.w-20[
+CPI编制过程与零售价格指数类似，它包括一揽子特定商品。]
+
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter"&gt; 第07章 指数 &lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#report"&gt; 7.4 几种典型的指数 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt;
+
+---
+exclude:true
+
+## （案例）地区消费价格指数及平减
+
+
+
+
+
+
+---
+
+### （案例）消费者价格指数的计算：数据表
+
+**案例说明**：某地区发布了2018年9月和10月的**食品类**消费价格指数统计资料：
+
+&lt;table&gt;
+&lt;caption&gt;2018年9月和10月食品价格统计资料&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 食品类别 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 9月价格(元) &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 10月价格(元) &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 权数W(%) &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 指数i(%) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 粮食 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 35 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; d）___ &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1.1 细粮 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 65 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; c）___ &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1.1.1 面粉 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2.84 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3.16 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; a）___ &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1.1.2 大米 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4.5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4.82 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 60 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; b）___ &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1.2 粗粮 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 35 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 107.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2 副食品 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 45 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 116.2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 3 其他食品 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 112.5 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+请根据上述**食品类**价格统计资料，（1）计算表中所空缺的a）、b）、c）、d）数值。（2）利用计算结果，进一步计算该地区**食品**消费价格指数。
+
+---
+
+### （案例）消费者价格指数的计算：分析解答1
+
+**案例解答**：
+
+
+（1）个体指数计算公式为：
+`\(k_{p_i} = \frac{P_{1,i}}{P_{0,i}}\)`； 固定权重的加权指数计算公式为：
+
+`\(i=\frac{\sum{k_{p_i} \cdot w_i}}{\sum{w_i}}\)`。所以可以计算得出：
+
+a）
+`\(i_a=k_{p_a}=100*\frac{3.16}{2.84}=\)` 
+111.3
+
+b）
+`\(i_b=k_{p_b}=100*\frac{4.82}{4.5}=\)` 107.1
+
+c）
+`\(i_c=\frac{\sum{k_{p_i} \cdot w_i}}{\sum{w_i}}=\frac{i_a * 40\% +i_b * 60\% }{40\% + 60\% }=\)` 108.8
+
+d）
+`\(i_d=\frac{\sum{k_{p_i} \cdot w_i}}{\sum{w_i}}=\frac{i_c * 65\% +107.6 * 35\% }{65\% + 35\%}=\)` 108.4
+
+---
+
+### （案例）消费者价格指数的计算：分析解答2
+
+**案例解答**：
+
+（2）固定权重的加权指数计算公式为：
+
+`$$i=\frac{\sum{k_{p_i} \cdot w_i}}{\sum{w_i}}$$`
+
+所以可以计算得出：
+
+`$$i_{food}=\frac{\sum{k_{p_i} \cdot w_i}}{\sum{w_i}}=\frac{i_d * 35\% +116.2 * 45\% +112.5 * 20\% }{35\% + 45\% + 20\% }= 112.7$$`
+
+---
+
+### （案例）消费者价格指数平减：工人工资
+
+.pull-left[
+**案例说明**：某地区某国有企业的人均工资（元/人）情况如右表所示。
+
+- 为了计算工人实际工资，并且使得各月份的实际工资具有可比较性。请根据上资料，以2018年6月为不变价格进行CPI平减（即以6月CPI为基准水平进行计算），计算1-10月期间工人每月的**实际**人均工资。
+
+]
+
+.pull-right[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 年月 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; CPI（%,当期值） &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 工资（元/人,当期值） &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 104.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3120 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 103.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3242 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 103.1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3312 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 102.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3380 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 102.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3420 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 101.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3456 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 99.4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3541 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 98.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3568 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 102.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3622 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 101.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3709 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+
+---
+
+### （案例）消费者价格指数平减：分析解答
+
+**分析思路**：
+
+第1步：把当期CPI序列（记为
+`\(CPI_t, \ \ t \in 1, 2, ..., 10\)`）转换成以2018年6月为基准的CPI序列（记为
+`\(CPI_{6,t},  \ \ t \in 1, 2, ..., 10\)`），计算公式为
+
+`$$CPI_{6,t}= 100*\frac{CPI_t}{CPI_6}$$`
+
+第2步：把当期工资（名义工资）序列（记为
+`\(Wage_t,  \ \ t \in 1, 2, ..., 10\)`）换算成以2018年6月CPI为基准的**“实际工资”**序列（记为
+`\(Wage_{6,t},  \ \ t \in 1, 2, ..., 10\)`）。计算公式为
+
+`$$Wage_{6,t}=\frac{Wage_t}{CPI_{6,t}}$$`
+
+---
+
+### （案例）消费者价格指数平减：分析解答
+
+**计算过程**：计算过程和结果见下表
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 年月 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; CPI（%,当期值） &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 工资（元/人,当期值） &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; CPI新序列(%,按6月计) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 工资新序列(元/人,按6月计) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 104.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3120 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 102.6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3040.9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 103.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3242 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 102 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3178.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 103.1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3312 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 101.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3272.7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 102.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3380 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3349.9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 102.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3420 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100.4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3406.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 101.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3456 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3456 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 99.4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3541 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 97.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3631.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 98.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3568 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 96.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3697.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 102.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3622 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100.6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3600.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2018/10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 101.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3709 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 99.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3735.1 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+## 生产价格指数：概念和特点
+
+
+**生产者价格指数**(Producer Price Index)：衡量制造商和农场主向商店出售商品的价格指数，一般简写为PPI。。
+
+&gt; 它主要反映生产资料的价格变化状况，用于衡量各种商品在不同生产阶段的成本价格变化情况。 
+
+生产者价格指数的特点：
+
+- 测量在初级市场上出售的货物的价格变动的一种价格指数
+
+- 根据每种商品在非零售市场上首次交易时的价格计算的
+
+- 生产价格指数的上涨反映了生产者价格的提高，也将反映消费价格和生活费用未来的趋势
+
+- 通常是按月公布
+
+---
+
+## 股票价格指数：概念和特点
+
+**股票价格指数**(stock price index)：反映某一股票市场上多种股票价格变动趋势的一种相对数，简称股价指数。
+
+股票价格指数的特点：
+
+- 其单位一般用“点”(point)表示，即将基期指数作为100，每上升或下降一个单位称为“1点”
+
+- 计算时一般以发行量为权数进行加权综合。其公式为 
+
+`$$\begin{align}
+I_{p}=\frac{\sum\limits_{i=1}^n (p_{1 i} q_{i})}{\sum\limits_{i=1}^n (p_{0 i} q_{i})}
+\end{align}$$`
+
+---
+
+## 股票价格指数：主要证券交易指数
+
+
+世界主要证券交易所的股票价格指数
+
+- 美国的道·琼斯指数和标准普尔指数；
+
+- 伦敦金融时报FTSE指数；
+
+- 法兰克福DAX指数；巴黎CAC指数；
+
+- 瑞士的苏黎士SMI指数；
+
+- 日本的日京指数；
+
+- 香港的恒生指数
+
+我国大陆的两个证券交易所
+
+- 上交所的综合指数和180指数
+
+- 深交所的成分股指数和综合指数
 
 
 ---
