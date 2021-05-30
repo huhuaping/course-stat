@@ -1950,7 +1950,7 @@ I_{X f}= I_f \times I_X
 其中，**总变动指数**：
 $$\begin{align}
 I_{X f}=\frac{\overline{X}_{1}}{\overline{X}_{0}}=
-\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{1i}}{\sum\limits_{i=1i}^n f_{1i}} \right) \Bigg/
+\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{1i}}{\sum\limits_{i=1}^n f_{1i}} \right) \Bigg/
 \left( \frac{\sum\limits_{i=1}^n f_{0i} X_{0i}}{\sum\limits_{i=1}^n f_{0i}} \right)
 \end{align}$$
 
@@ -1970,7 +1970,7 @@ I_{X f}= I_f \times I_X
 其中，**结构变动指数**：
 $$\begin{align}
 I_{f}=\frac{\overline{X}_{n}}{\overline{X}_{0}}=
-\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{0i}}{\sum\limits_{i=1i}^n f_{1i}} \right) \Bigg/
+\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{0i}}{\sum\limits_{i=1}^n f_{1i}} \right) \Bigg/
 \left( \frac{\sum\limits_{i=1}^n f_{0i} X_{0i}}{\sum\limits_{i=1}^n f_{0i}} \right)
 \end{align}$$
 
@@ -1991,7 +1991,7 @@ I_{X f}= I_f \times I_X
 其中，**组水平变动指数**：
 $$\begin{align}
 I_{X}=\frac{\overline{X}_{1}}{\overline{X}_{n}}=
-\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{1i}}{\sum\limits_{i=1i}^n f_{1i}} \right) \Bigg/
+\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{1i}}{\sum\limits_{i=1}^n f_{1i}} \right) \Bigg/
 \left( \frac{\sum\limits_{i=1}^n f_{1i} X_{0i}}{\sum\limits_{i=1}^n f_{1i}} \right)
 \end{align}$$
 
@@ -2079,7 +2079,7 @@ I_{X f} & = I_f \times I_X \\
 $$\begin{align}
 I_{X f}=\frac{\overline{X}_{1}}{\overline{X}_{0}}
 & =
-\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{1i}}{\sum\limits_{i=1i}^n f_{1i}} \right) \Bigg/
+\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{1i}}{\sum\limits_{i=1}^n f_{1i}} \right) \Bigg/
 \left( \frac{\sum\limits_{i=1}^n f_{0i} X_{0i}}{\sum\limits_{i=1}^n f_{0i}} \right) \\
 & = \left( \frac{`r sum_11`}{`r sum_f1`} \right) \Bigg/
 \left( \frac{`r sum_00`}{`r sum_f0`} \right) \\
@@ -2101,7 +2101,7 @@ $\Delta =\overline{X}_1 - \overline{X}_0 = `r num_round(x1)`-`r num_round(x0)`=`
 其中，职工人数的**结构变动指数**：
 $$\begin{align}
 I_{f}=\frac{\overline{X}_{n}}{\overline{X}_{0}}
-&=\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{0i}}{\sum\limits_{i=1i}^n f_{1i}} \right) \Bigg/
+&=\left( \frac{\sum\limits_{i=1}^n f_{1i} X_{0i}}{\sum\limits_{i=1}^n f_{1i}} \right) \Bigg/
 \left( \frac{\sum\limits_{i=1}^n f_{0i} X_{0i}}{\sum\limits_{i=1}^n f_{0i}} \right) \\
 & = \left( \frac{`r sum_10`}{`r sum_f1`} \right) \Bigg/
 \left( \frac{`r sum_00`}{`r sum_f0`} \right) \\
@@ -2122,7 +2122,7 @@ $\Delta =\overline{X}_n - \overline{X}_0 =`r num_round(xn)`-`r num_round(x0)`=`r
 
 $$\begin{align}
 I_{X}=\frac{\overline{X}_{1}}{\overline{X}_{n}}
-&= \left( \frac{\sum\limits_{i=1}^n f_{1i} X_{1i}}{\sum\limits_{i=1i}^n f_{1i}} \right) \Bigg/
+&= \left( \frac{\sum\limits_{i=1}^n f_{1i} X_{1i}}{\sum\limits_{i=1}^n f_{1i}} \right) \Bigg/
 \left( \frac{\sum\limits_{i=1}^n f_{1i} X_{0i}}{\sum\limits_{i=1}^n f_{1i}} \right) \\
 & = \left( \frac{`r sum_11`}{`r sum_f1`} \right) \Bigg/
 \left( \frac{`r sum_10`}{`r sum_f1`} \right) \\
