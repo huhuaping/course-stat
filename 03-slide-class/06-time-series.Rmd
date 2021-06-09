@@ -42,7 +42,9 @@ source("../R/set-global.R")
 source("../R/xfun.R", encoding = "UTF-8")
 source("../R/external-math-equation.R")
 options(width = 70)
-#source("../R/xaringan-chromote-print.R")
+
+# for ggplot theme
+source("Rscript/theme-basic.R", encoding = "UTF-8")
 ```
 
 
@@ -222,6 +224,101 @@ layout: true
 <a href="#explore"> 6.2 时间序列的描述性分析 </a> </span></div>
 
 ---
+exclude: true
+
+## （案例）啤酒案例
+
+```{r}
+source("Rscript/time-series-case-4-vars.R", encoding = "UTF-8")
+```
+
+---
+
+## 图形描述：案例说明
+
+**案例说明**：下表给出了2000-2013年期间我国`r str_compose(names_chn[-1],names(df)[-1],decorate =c("_",""))`。
+
+```{r}
+df %>%
+  datatable(options = list(pageLength = 6,
+                           dom = "tip")) %>%
+  formatRound(c(2:5),digits = 1)
+  
+```
+
+---
+
+### 图形描述：绘制啤酒产量的时序图
+
+```{r, fig.cap="啤酒产量的时序图"}
+i <- 2
+df %>%
+  ggplot(aes(year, beer)) +
+  geom_point(color="blue", size = 4) +
+  geom_line(color="orange") +
+  labs(x = "year年份", 
+       y = str_compose(names(df)[i],names_chn[i], 
+                       decorate =  c("", ""))) +
+  scale_x_continuous(breaks = seq(2000, 2013, 1))+
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.1, hjust=0.1)) +
+  theme_basic()
+```
+
+---
+
+### 图形描述：绘制人均GDP的时序图
+
+```{r, fig.cap="人均GDP的时序图"}
+i <- 3
+df %>%
+  ggplot(aes(year, gdp)) +
+  geom_point(color="blue", size = 4) +
+  geom_line(color="orange") +
+  labs(x = "year年份", 
+       y = str_compose(names(df)[i],names_chn[i], 
+                       decorate =  c("", ""))) +
+  scale_x_continuous(breaks = seq(2000, 2013, 1))+
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.1, hjust=0.1)) +
+  theme_basic()
+```
+
+---
+
+### 图形描述：绘制煤炭消费占比的时序图
+
+```{r, fig.cap="煤炭消费占比的时序图"}
+i <- 4
+df %>%
+  ggplot(aes(year, coal)) +
+  geom_point(color="blue", size = 4) +
+  geom_line(color="orange") +
+  labs(x = "year年份", 
+       y = str_compose(names(df)[i],names_chn[i], 
+                       decorate =  c("", ""))) +
+  scale_x_continuous(breaks = seq(2000, 2013, 1))+
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.1, hjust=0.1)) +
+  theme_basic()
+```
+
+---
+
+### 图形描述：绘制消费价格指数的时序图
+
+```{r, fig.cap="消费价格指数的时序图"}
+i <- 5
+df %>%
+  ggplot(aes(year, cpi)) +
+  geom_point(color="blue", size = 4) +
+  geom_line(color="orange") +
+  labs(x = "year年份", 
+       y = str_compose(names(df)[i],names_chn[i], 
+                       decorate =  c("", ""))) +
+  scale_x_continuous(breaks = seq(2000, 2013, 1))+
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.1, hjust=0.1)) +
+  theme_basic()
+```
+
+---
 
 ## 增长率
 
@@ -252,7 +349,7 @@ layout: true
 
 ---
 
-## 增长1\%绝对值
+## 增长1%绝对值
 
 增长1%绝对值：增长率每增长一个百分点而增加的绝对量，主要用于弥补增长率分析中的局限性。
 
@@ -398,6 +495,59 @@ layout: true
 <div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter"> 第06章 时间序列分析和预测 </a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 <a href="#process"> 6.3 时间序列预测的程序 </a> </span></div>
+
+---
+exclude: true
+
+## （案例）股票价格
+
+```{r}
+source("Rscript/time-series-stock.R", encoding = "UTF-8")
+names_chn <- c("周次","收盘价格（元）")
+```
+
+---
+
+## （案例）股票价格：数据表
+
+**案例说明**：一种股票连续16周的收盘价如下表所示（`r str_compose(names_chn,names(df),decorate =c("_",""))`）。试确定其趋势及其类型。
+```{r}
+df %>%
+  datatable(options = list(pageLength = 6,
+                           dom = "tip")) %>%
+  formatRound(c(2),digits = 2)
+  
+```
+
+---
+
+## （案例）股票价格：确定直线趋势方程
+
+```{r, results='asis'}
+mod <- formula(price ~ week)
+eq <- xmerit::lx.est(mod, df)
+```
+
+
+
+
+---
+
+## （案例）股票价格：添加趋势直线
+
+```{r, fig.cap="股价时序图+趋势线"}
+i <- 2
+df %>%
+  ggplot(aes(week, price)) +
+  geom_point(color="blue", size = 4) +
+  geom_line(color="orange") +
+  labs(x = "week 周次", 
+       y = str_compose(names(df)[i],names_chn[i], 
+                       decorate =  c("", ""))) +
+  scale_x_continuous(breaks = seq(1, n, 1))+
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.1, hjust=0.1)) +
+  theme_basic()
+```
 
 ---
 
