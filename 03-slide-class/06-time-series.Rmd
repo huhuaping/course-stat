@@ -43,6 +43,10 @@ source("../R/xfun.R", encoding = "UTF-8")
 source("../R/external-math-equation.R")
 options(width = 70)
 
+# special pkgs
+require("fpp2")
+require("tsibble")
+
 # for ggplot theme
 source("Rscript/theme-basic.R", encoding = "UTF-8")
 ```
@@ -169,7 +173,7 @@ knitr::include_graphics("../pic/chpt06-compositions.png")
 
 ### 时间序列的成分：平稳
 
-```{r}
+```{r, out.width="60%"}
 knitr::include_graphics("../pic/chpt06-compose-stationary.png")
 ```
 
@@ -177,7 +181,7 @@ knitr::include_graphics("../pic/chpt06-compose-stationary.png")
 
 ### 时间序列的成分：趋势
 
-```{r}
+```{r, out.width="60%"}
 knitr::include_graphics("../pic/chpt06-compose-trend.png")
 ```
 
@@ -185,7 +189,7 @@ knitr::include_graphics("../pic/chpt06-compose-trend.png")
 
 ### 时间序列的成分：季节
 
-```{r}
+```{r, out.width="60%"}
 knitr::include_graphics("../pic/chpt06-compose-season.png")
 ```
 
@@ -193,9 +197,102 @@ knitr::include_graphics("../pic/chpt06-compose-season.png")
 
 ### 时间序列的成分：季节+趋势
 
-```{r}
+```{r, out.width="60%"}
 knitr::include_graphics("../pic/chpt06-compose-trend-season.png")
 ```
+
+---
+
+## 时间序列成分的分解
+
+$$\begin{align}
+\mathrm{Y_t}=\mathrm{f}(\mathrm{T_t},\mathrm{S_t},  \mathrm{C_t}, I_t)
+\end{align}$$
+
+加法模型：
+
+$$\begin{align}
+\mathrm{Y_t}=(\mathrm{T_t} + \mathrm{S_t}  + \mathrm{C_t} + I_t)
+\end{align}$$
+
+乘法模型：
+
+$$\begin{align}
+\mathrm{Y_t}&=(\mathrm{T_t} \times \mathrm{S_t}  \times \mathrm{C_t} \times I_t) \\
+log(Y_t)&=log(T_t) + log(S_t)  + log(C_t) +log(I_t）
+\end{align}$$
+
+---
+exclude: true
+
+## （案例）纽约人口出生情况
+
+```{r, eval=FALSE}
+#install.packages("tsibble")
+
+require("lubridate")
+births <- scan("http://robjhyndman.com/tsdldata/data/nybirths.dat")
+births_ts <- ts(births, frequency = 12, start = c(1946, 1))
+write_rds(births_ts, here("data", "New-York- Births.rds"))
+```
+
+```{r}
+require("tsibble")
+births_ts <- read_rds(here("data", "New-York- Births.rds"))
+
+births_tbl <- as_tsibble(births_ts) %>%
+  mutate( year_month = ym(index),
+          year = lubridate::year(index),
+          month = lubridate::month(index)) %>%
+  rename(births = "value") %>%
+  as_tsibble(key = year_month)
+```
+
+
+???
+
+[参考资料1](https://rpubs.com/PE_Stat/569377)
+[参考资料2](https://cran.r-project.org/web/packages/tsibble/vignettes/intro-tsibble.html)
+
+
+---
+
+## （案例）纽约人口出生情况：数据表
+
+**案例说明**：下表给出了纽约1946-1960年每个月的平均1分钟出生人数（月度数据）。
+
+```{r}
+births_tbl %>%
+  as_tibble() %>%
+  select(year, month, births) %>%
+  datatable(options = list(pageLength = 8,
+                         dom = "tip")) 
+```
+
+
+---
+
+## （案例）纽约人口出生情况：加法模型分解
+
+```{r, out.width="100%"}
+births_ts_decomposed_additive <- decompose(births_ts)
+plot(births_ts_decomposed_additive, 
+     cex.lab=1.5)
+```
+
+
+---
+
+## （案例）纽约人口出生情况：乘法模型分解
+
+```{r, out.width="100%"}
+births_ts_decomposed_multiplicative <- decompose(births_ts, type = "multiplicative")
+
+plot(births_ts_decomposed_multiplicative,
+     cex.lab=1.5)
+```
+
+
 
 ---
 layout: false
@@ -226,7 +323,7 @@ layout: true
 ---
 exclude: true
 
-## （案例）啤酒案例
+## （案例）4个变量数据的案例
 
 ```{r}
 source("Rscript/time-series-case-4-vars.R", encoding = "UTF-8")
@@ -387,10 +484,7 @@ df_format <-  df %>%
 
 ---
 
-### （案例）钢产量：相对指标与总量指标巧妙结合
-
-.panelset[
-.panel[.panel-name[a.案例说明]
+### （案例）钢产量：数据
 
 **案例数据**：我国三个时期两个年份的钢产量数据如下：
 
@@ -404,10 +498,9 @@ df %>%
   datatable(options = list(dom = "t")) 
 ```
 
+---
 
-]
-
-.panel[.panel-name[b.计算指标]
+### （案例）钢产量：计算指标
 
 根据以上数据，我们可以计算出：
 
@@ -418,9 +511,9 @@ $$发展速度\% \quad Speed = 100*Q_{t_1} / Q_{t_0}$$
 $$增长率\% \quad Ratio  =100*(Q_{t_1} - Q_{t_0})/Q_{t_0}=100*\Delta/Q_{t_0}$$
 $$增长1\%的绝对值 = \Delta / Ratio = Q_{t_0}/100$$
 
-]
+---
 
-.panel[.panel-name[c.计算表1]
+### （案例）钢产量：计算表1
 
 
 根据上述指标公式，可以计算得到：
@@ -439,9 +532,9 @@ df %>%
   #gather()
 ```
 
-]
+---
 
-.panel[.panel-name[d.计算表2]
+### （案例）钢产量：计算表2
 
 前述计算表，也可进一步变形为：
 
@@ -461,11 +554,6 @@ df_format %>%
   #rename_at(vars(names(.)), ~ all_of(names_chn)) %>%
   datatable(options = list(dom = "t"))
 ```
-
-]
-
-]
-
 
 
 ---
@@ -497,6 +585,18 @@ layout: true
 <a href="#process"> 6.3 时间序列预测的程序 </a> </span></div>
 
 ---
+
+## 确定时间序列的趋势成分
+
+方法1：绘制时序图（线图），可以初步确定趋势成分是否存在，入手！
+
+- 观察是否存在线性或非线性的趋势
+
+方法2：OLS拟合趋势线，并对回归系数进行显著性检验。
+
+- 如果检验是显著的，则认为初步存在拟合的趋势方程（直线、二次抛物线、...）特征。
+
+---
 exclude: true
 
 ## （案例）股票价格
@@ -508,12 +608,12 @@ names_chn <- c("周次","收盘价格（元）")
 
 ---
 
-## （案例）股票价格：数据表
+### （案例）股票价格：数据表
 
 **案例说明**：一种股票连续16周的收盘价如下表所示（`r str_compose(names_chn,names(df),decorate =c("_",""))`）。试确定其趋势及其类型。
 ```{r}
 df %>%
-  datatable(options = list(pageLength = 6,
+  datatable(options = list(pageLength = 8,
                            dom = "tip")) %>%
   formatRound(c(2),digits = 2)
   
@@ -521,24 +621,11 @@ df %>%
 
 ---
 
-## （案例）股票价格：确定直线趋势方程
+### （案例）股票价格：时序图
 
-```{r, results='asis'}
-mod <- formula(price ~ week)
-eq <- xmerit::lx.est(mod, df)
-```
-
-
-
-
----
-
-## （案例）股票价格：添加趋势直线
-
-```{r, fig.cap="股价时序图+趋势线"}
+```{r, fig.cap="股价时序图"}
 i <- 2
-df %>%
-  ggplot(aes(week, price)) +
+ggplot(df,aes(x=week, y= price)) +
   geom_point(color="blue", size = 4) +
   geom_line(color="orange") +
   labs(x = "week 周次", 
@@ -547,32 +634,212 @@ df %>%
   scale_x_continuous(breaks = seq(1, n, 1))+
   theme(axis.text.x = element_text(angle = 45, vjust = 0.1, hjust=0.1)) +
   theme_basic()
+
 ```
 
 ---
 
-### 预测方法的选择
+### （案例）股票价格：直线拟合方程
+
+```{r, results='asis'}
+eq <- xmerit::lx.est(mod_line, df, 
+                     opt = c("s", "t", "p"))
+```
+
+
+
+
+---
+
+### （案例）股票价格：添加趋势直线
+
+```{r, fig.cap="股价时序图+直线趋势"}
+i <- 2
+mod <- mod_line
+label_eq <- lm_eqn(mod, df, cat = "line")
+
+ggplot(df,aes(x=week, y= price)) +
+  geom_point(color="blue", size = 4) +
+  geom_line(color="orange") +
+  geom_smooth(data = df,method = "lm", 
+              formula =y~x, 
+              se = FALSE, color = "red", lty= "dashed") +
+  geom_text(x = 11, y = 12, size =6,
+            label = label_eq, parse = TRUE) +
+  labs(x = "week 周次", 
+       y = str_compose(names(df)[i],names_chn[i], 
+                       decorate =  c("", ""))) +
+  scale_x_continuous(breaks = seq(1, n, 1))+
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.1, hjust=0.1)) +
+  theme_basic()
+
+```
+
+---
+
+### （案例）股票价格：确定抛物线趋势方程
+
+```{r, results='asis'}
+eq <- xmerit::lx.est(mod_power, df, 
+                     opt = c("s", "t", "p"))
+```
+
+
+
+
+---
+
+### （案例）股票价格：添加抛物线趋势
+
+```{r, fig.cap="股价时序图+抛物线趋势"}
+i <- 2
+mod <- mod_power
+label_eq <- lm_eqn(mod, df, cat = "power")
+
+ggplot(df,aes(x=week, y= price)) +
+  geom_point(color="blue", size = 4) +
+  geom_line(color="orange") +
+  geom_smooth(data = df,method = "lm", 
+              formula =y~x+I(x^2), 
+              se = FALSE, color = "red", lty= "dashed") +
+  geom_text(x = 11, y = 12, size =6,
+            label = label_eq, parse = TRUE) +
+  labs(x = "week 周次", 
+       y = str_compose(names(df)[i],names_chn[i], 
+                       decorate =  c("", ""))) +
+  scale_x_continuous(breaks = seq(1, n, 1))+
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.1, hjust=0.1)) +
+  theme_basic()
+
+```
+
+---
+
+## 确定时间序列的季节成分
+
+方法1：绘制特殊时序线图——年度折叠时间序列图 (folded annual time series plot)。
+
+- 数据至少需要两年及以上，并且按季度、月份、周或天记录观测值。
+
+```{block, type = "case", echo = T}
+
+年度折叠时间序列图的绘制与分析：
+
+- 将每年的数据分开画在图上
+
+- 若序列只存在季节成分，年度折叠序列图中的折线将会有交叉
+
+- 若序列既含有季节成分又含有趋势，则年度折叠时间序列图中的折线将不会有交叉，而且如果趋势是上升的，后面年度的折线将会高于前面年度的折线，如果趋势是下降的，则后面年度的折线将低于前面年度的折线
+
+```
+
+
+---
+exclude: true
+
+## （案例）啤酒季节销售量
 
 ```{r}
+source("Rscript/time-series-beer-sale.R", encoding = "UTF-8")
+names_chn <- c("年份", "季节", "啤酒销售量（万吨）")
+```
+
+---
+
+### （案例）啤酒季节销售量：数据
+
+**案例说明**：下表是啤酒生产企业2010-2015年个季节的啤酒销售数据（`r str_compose(names_chn,names(df),decorate =c("_",""))`）。试绘制年度折叠时序图，并判断啤酒销售量是否存在季节性成分。
+
+```{r}
+df %>%
+  datatable(caption = "长数据形式（long data）",
+            options = list(pageLength = 6,
+                           dom = "tip")) #%>%
+  #formatRound(c(2),digits = 2)
+  
+```
+
+---
+
+### （案例）啤酒季节销售量：数据
+
+**案例说明**：下表是啤酒生产企业2010-2015年个季节的啤酒销售数据（`r str_compose(names_chn,names(df),decorate =c("_",""))`）。试绘制年度折叠时序图，并判断啤酒销售量是否存在季节性成分。
+
+```{r}
+df_wide %>%
+  datatable(caption = "扁数据形式（wide data）",options = list(pageLength = 6,
+                           dom = "t")) #%>%
+  #formatRound(c(2),digits = 2)
+  
+```
+
+---
+
+### （案例）啤酒季节销售量：折叠时序图
+
+```{r}
+i <-3
+ggplot(df, aes(x= season, y = sale,color=as.factor(year))) +
+  geom_point(aes(shape = as.factor(year))) +
+  geom_line() +
+  labs(x = "season 季节", 
+       y = str_compose(names(df)[i],names_chn[i], 
+                       decorate =  c("", ""))) +
+  guides(color = guide_legend(title = "年份"),
+         shape = guide_legend(title = "年份")) +
+  theme_basic()
+```
+
+
+---
+
+## 预测方法的选择
+
+```{r, out.width="90%"}
 knitr::include_graphics("../pic/chpt06-forecast-framework.png")
 ```
 
+???
+
+重点学习趋势和季节性成分的分析。
+
 ---
 
-### 评估预测方法：计算误差
+## 评估预测方法：计算误差1
 
 平均误差ME(mean error)
 
+$$\begin{align}
+M E=\frac{\sum_{i=1}^{n}\left(Y_{i}-F_{i}\right)}{n}
+\end{align}$$
 
 平均绝对误差MAD(mean absolute deviation)
 
+$$\begin{align}
+M A D=\frac{\sum_{i=1}^{n}\left|Y_{i}-F_{i}\right|}{n}
+\end{align}$$
 
 均方误差MSE(mean square error)
 
-平均百分比误差MPE(mean percentage error)
+$$\begin{align}
+M S E=\frac{\sum_{i=1}^{n}\left(Y_{i}-F_{i}\right)^{2}}{n}
+\end{align}$$
 
-平均绝对百分比误差MAPE(mean absolute percentage error)
+---
 
+### 评估预测方法：计算误差2
+
+平均百分比误差MPE(mean percentage error)：
+
+$$\begin{align}
+M P E=\frac{\sum\left(\frac{Y_{i}-F_{i}}{Y_{i}} \times 100\right)}{n}
+\end{align}$$
+
+平均绝对百分比误差MAPE(mean absolute percentage error)：
+
+$$\begin{align}
+M A P E=\frac{\sum_{i=1}^{n}\left(\frac{\left|Y_{i}-F_{i}\right|}{Y_{i}} \times 100\right)}{n}
+\end{align}$$
 
 ---
 layout: false
@@ -607,22 +874,24 @@ layout: true
 ## 简单平均法：过程步骤
 
 步骤1：根据过去已有的
-$T$期观察值来预测下一期的数值 
+$T$期观察值来预测下一期的数值。
 设时间序列已有的其观察值为
 $Y_1, Y_2, \cdots Y_T$，则第
 $T+1$期的预测值
-$F_{T+1}$为:
+$F_{T+1}$为：
 
 $$F_{T+1}=\frac{Y_1+ Y_2+ \cdots + Y_T}{T}=\frac{\sum\limits_{t=1}^T{Y_t}}{T}$$
 
 步骤2：有了第
-$t+1$的实际值，便可计算出预测误差为
+$T+1$的实际值，便可计算出预测误差为
 
-$$e_{t+1}=Y_{t+1} - F_{t+1}$$
+$$e_{T+1}=Y_{T+1} - F_{T+1}$$
 步骤3：第
 $T+2$期的预测值为:
 
-$$F_{T+2}=\frac{Y_1+ Y_2+ \cdots + Y_T +Y_{T+1}}{T+1}=\frac{\sum\limits_{t=1}^{T+1}{Y_t}}{T+1} $$
+$$\begin{align}
+F_{T+2}=\frac{Y_1+ Y_2+ \cdots + Y_T +Y_{T+1}}{T+1}=\frac{\sum\limits_{t=1}^{T+1}{Y_t}}{T+1}
+\end{align}$$
 
 ---
 
@@ -699,6 +968,25 @@ $k$。
 - 对于同一个时间序列，采用不同的移动步长预测的准确性是不同的。
 
 - 选择移动步长时，可通过试验的办法，选择一个使均方误差达到最小的移动步长。
+
+---
+
+### 简单移动平均法
+
+给定移动的阶数为
+$m$，此时简单移动平均可以记为：`MA(m)`（读作m阶移动平均，英文moving average on order m）。
+
+$$\begin{align}
+\widehat{T}_{t}=\frac{1}{m} \sum_{j=-k}^{k} Y_{t+j}
+\end{align}$$
+
+> 其中
+$m = 2k+1$
+
+```{r}
+cpi_tbl
+```
+
 
 ---
 
@@ -802,7 +1090,7 @@ $\alpha$时，可选择几个进行预测，然后找出预测误差最小的作
 第2步：选择【数据分析】，并选择【指数平滑】，然后【确定】
 
 第3步：当对话框出现时，在【输入区域】中输入数据区域在【阻尼系数】（注意：阻尼系数=
-$1-\ahpa$）输入的值选择【确定”】
+$1-\alpha$）输入的值选择【确定”】
 
 
 ---
@@ -1082,6 +1370,17 @@ $$\begin{align}
 步骤3：计算最终的预测值
 
 - 将回归预测值乘以相应的季节指数
+
+
+---
+
+## 本章参考文献
+
+- Hyndman, Rob J., and George Athanasopoulos. 2018. Forecasting: Principles and Practice. OTexts. 图书的最新免费[在线网址](https://otexts.com/fpp2/)。里面有具体的案例数据和R代码。作者随书还配套开发了一个R包`fpp2`可以方便学习使用。
+
+- [Exploring Time Series Data in R](https://semba-blog.netlify.app/02/22/2019/exploring-time-series-data-in-r/)，网页介绍时间序列数据基本分析需要用到的最新R包。
+
+
 
 
 ---
