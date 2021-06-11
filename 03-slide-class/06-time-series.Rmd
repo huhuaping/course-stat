@@ -129,6 +129,14 @@ layout: true
 
 ## 时间序列的分类
 
+```{r, out.width="60%"}
+knitr::include_graphics("../pic/chpt06-types.png")
+```
+
+---
+
+## 时间序列的分类
+
 **平稳序列(stationary series)**：
 
 - 基本上不存在趋势的序列，各观察值基本上在某个固定的水平上波动
@@ -143,14 +151,6 @@ layout: true
 
 ---
 
-## 时间序列的分类
-
-```{r}
-knitr::include_graphics("../pic/chpt06-types.png")
-```
-
----
-
 ## 时间序列的成分
 
 ```{r}
@@ -161,19 +161,19 @@ knitr::include_graphics("../pic/chpt06-compositions.png")
 
 ## 时间序列的成分
 
-- 趋势(trend)：持续向上或持续下降的状态或规律。
+- **趋势**(trend)：持续向上或持续下降的状态或规律。
 
-- 季节性(seasonality)：也称季节变动(Seasonal fluctuation)，时间序列在一年内重复出现的周期性波动。
+- **季节性**(seasonality)：也称季节变动(Seasonal fluctuation)，时间序列在一年内重复出现的周期性波动。
 
-- 周期性(cyclity) ：也称循环波动(Cyclical fluctuation) ，围绕长期趋势的一种波浪形或振荡式变动。
+- **周期性**(cyclity) ：也称循环波动(Cyclical fluctuation)，围绕长期趋势的一种波浪形或振荡式变动。
 
-- 随机性(random) ：也称不规则波动(Irregular variations) ，除去趋势、周期性和季节性之后的偶然性波动。
+- **随机性**(random)：也称不规则波动(Irregular variations)，除去趋势、周期性和季节性之后的偶然性波动。
 
 ---
 
 ### 时间序列的成分：平稳
 
-```{r, out.width="60%"}
+```{r, out.width="70%"}
 knitr::include_graphics("../pic/chpt06-compose-stationary.png")
 ```
 
@@ -181,7 +181,7 @@ knitr::include_graphics("../pic/chpt06-compose-stationary.png")
 
 ### 时间序列的成分：趋势
 
-```{r, out.width="60%"}
+```{r, out.width="70%"}
 knitr::include_graphics("../pic/chpt06-compose-trend.png")
 ```
 
@@ -189,7 +189,7 @@ knitr::include_graphics("../pic/chpt06-compose-trend.png")
 
 ### 时间序列的成分：季节
 
-```{r, out.width="60%"}
+```{r, out.width="70%"}
 knitr::include_graphics("../pic/chpt06-compose-season.png")
 ```
 
@@ -197,13 +197,15 @@ knitr::include_graphics("../pic/chpt06-compose-season.png")
 
 ### 时间序列的成分：季节+趋势
 
-```{r, out.width="60%"}
+```{r, out.width="70%"}
 knitr::include_graphics("../pic/chpt06-compose-trend-season.png")
 ```
 
 ---
 
 ## 时间序列成分的分解
+
+成分分解的一般化公式：
 
 $$\begin{align}
 \mathrm{Y_t}=\mathrm{f}(\mathrm{T_t},\mathrm{S_t},  \mathrm{C_t}, I_t)
@@ -243,7 +245,8 @@ births_ts <- read_rds(here("data", "New-York- Births.rds"))
 births_tbl <- as_tsibble(births_ts) %>%
   mutate( year_month = ym(index),
           year = lubridate::year(index),
-          month = lubridate::month(index)) %>%
+          month = lubridate::month(index),
+          ym = str_c(year,"-" ,month)) %>%
   rename(births = "value") %>%
   as_tsibble(key = year_month)
 ```
@@ -269,6 +272,23 @@ births_tbl %>%
                          dom = "tip")) 
 ```
 
+---
+
+## （案例）纽约人口出生情况：时序图
+
+```{r, out.width="100%",fig.cap="纽约每分总出生人口时序图"}
+births_tbl %>%
+  ggplot(aes(year_month, births)) +
+  geom_point(color="blue", size = 2) +
+  geom_line(color="orange") +
+  labs(x = "ym年月", 
+       y = "births 每分钟出生人口数") +
+  scale_x_date(date_breaks = "4 month",
+               date_labels = "%Y-%m")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.1, hjust=0.1)) +
+  theme_basic() +
+  theme(axis.text.x = element_text(size = 11))
+```
 
 ---
 
@@ -303,7 +323,9 @@ name: explore
 
 ### 图形描述
 
-###  增长率分析
+### 发展速度分析
+
+### 增长率分析
 
 ---
 layout: true
@@ -417,9 +439,34 @@ df %>%
 
 ---
 
+## 发展速度
+
+**发展速度**：反映社会经济现象发展程度的动态相对指标。根据基准组固定方式的不同，可以分为：
+
+- **定基发展速度**：
+
+$$\begin{align}
+D_{t}=\frac{Y_{t}}{Y_{f}} \quad(t=1,2, \cdots, T)
+\end{align}$$
+
+> 其中基期固定在第
+$f(f\in 1, 2, \cdots,T)$期。
+
+- **环比发展速度**：
+
+$$\begin{align}
+D_{t}=\frac{Y_{t}}{Y_{t-1}} \quad(t=1,2, \cdots, T)
+\end{align}$$
+
+> 二者关系：相应环比发展速度之积，等于定基发展速度。
+$\prod\limits_{t=f+1}^m{\left(\frac{Y_{t}}{Y_{t-1}}\right)}=\frac{Y_{m}}{Y_{f}}$
+
+
+---
+
 ## 增长率
 
-**增长率(growth rate)**，也称**增长速度**，是报告期观测值与基期观测值之比减1，用百分比\%表示。
+**增长率(growth rate)**，也称**增长速度**，是报告期观测值与基期观测值之比减1，用百分比%表示。
 
 - 根据对比的基期不同，增长率可以分为**环比增长率**和**定基增长率**
 
@@ -429,20 +476,31 @@ df %>%
 
 ## 环比增长率与定基增长率
 
-环比增长率：报告期水平与前一期水平之比减1
+**环比增长率**：报告期水平与前一期水平之比减1。
 
+$$\begin{align}
+G_{t}=\frac{Y_{t} -Y_{t-1}}{Y_{t-1}}=\frac{Y_{t}}{Y_{t-1}}-1 \quad(t=1,2, \cdots, T)
+\end{align}$$
 
-定基增长率：报告期水平与某一固定时期水平之比减1
+**定基增长率**：报告期水平与某一固定时期水平之比减1。
+
+$$\begin{align}
+G_{t}=\frac{Y_{t}-Y_0}{Y_{0}}=\frac{Y_{t}}{Y_{0}}-1 \quad(t=1,2, \cdots, T)
+\end{align}$$
 
 
 ---
 
 ## 平均增长率
 
-平均增长率(average rate of increase )：用于描述现象在整个观察期内平均增长变化的程度，是序列中各逐期环比值(也称环比发展速度)的几何平均数减1后的结果。
+**平均增长率**(average rate of increase)：用于描述现象在整个观察期内平均增长变化的程度，是序列中各逐期环比值(也称环比发展速度)的几何平均数减1后的结果。
 
 通常用几何平均法求得。计算公式为：
 
+$$\begin{align}
+\bar{G} &=\sqrt[T]{\frac{Y_{1}}{Y_{0}} \times \frac{Y_{2}}{Y_{1}} \times \cdots \times \frac{Y_{T}}{Y_{T-1}}}-1=\sqrt[T]{\prod\limits_{t=1}^T \frac{Y_{t}}{Y_{t-1}}}-1 \\
+&=\sqrt[T]{\frac{Y_{T}}{Y_{0}}}-1 \quad(t=1,2, \cdots, T)
+\end{align}$$
 
 ---
 
@@ -454,9 +512,9 @@ df %>%
 
 $$产量变化 \Delta =Q_{t_1} - Q_{t_0}$$ 
 
-$$发展速度\% \quad Speed = 100*Q_{t_1} / Q_{t_0}$$
+$$环比发展速度\% \quad S_t = 100*Q_{t_1} / Q_{t_0}$$
 
-$$增长率\% \quad Ratio  =100*(Q_{t_1} - Q_{t_0})/Q_{t_0}=100*\Delta/Q_{t_0}$$
+$$环比增长率\% \quad G_t  =100*(Q_{t_1} - Q_{t_0})/Q_{t_0}=100*\Delta/Q_{t_0}$$
 $$增长1\%的绝对值 = \Delta / Ratio = Q_{t_0}/100$$
 
 
@@ -981,11 +1039,30 @@ $$\begin{align}
 \end{align}$$
 
 > 其中
-$m = 2k+1$
+$m = 2k+1$。
 
-```{r}
-cpi_tbl
-```
+当然，我们也可以继续对移动平均序列，进一步做移动平均运算。
+
+
+
+---
+
+### 加权移动平均法
+
+**加权移动平均**（weighted moving average）是基于权重的观测值组合运算（线性加权）。
+
+$$\begin{align}
+\hat{T}_{t}=\sum_{j=-k}^{k} a_{j} Y_{t+j}
+\end{align}$$
+
+> 其中
+$m = 2k+1$，
+$\boldsymbol{\alpha}$为权重向量，例如下面的权重向量。
+
+$$\begin{align}
+\boldsymbol{\alpha}=
+\left[\frac{1}{8}, \frac{1}{4}, \frac{1}{4}, \frac{1}{4}, \frac{1}{8}\right]^{'}
+\end{align}$$
 
 
 ---
@@ -1085,11 +1162,11 @@ $\alpha$时，可选择几个进行预测，然后找出预测误差最小的作
 
 ### 一次指数平滑：Excel操作
 
-第1步：选择【工具】下拉菜单
+**第1步**：选择【工具】下拉菜单
 
-第2步：选择【数据分析】，并选择【指数平滑】，然后【确定】
+**第2步**：选择【数据分析】，并选择【指数平滑】，然后【确定】
 
-第3步：当对话框出现时，在【输入区域】中输入数据区域在【阻尼系数】（注意：阻尼系数=
+**第3步**：当对话框出现时，在【输入区域】中输入数据区域在【阻尼系数】（注意：阻尼系数=
 $1-\alpha$）输入的值选择【确定”】
 
 
