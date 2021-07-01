@@ -1,6 +1,6 @@
 ---
 params:
-  hideslide: TRUE
+  hideslide: FALSE
 output:
   xaringan::moon_reader:
     seal: false
@@ -168,6 +168,22 @@ fun_report_eq(lm.mod = mod_wage, lm.dt = data_wage,
 $R^2$表示**判定系数**，
 $\bar{R}^2$表示**调整判定系数**，F表示模型整体显著性检验中的**样本F统计量值**（
 $F^{\ast}$）,p表示样本F统计量值对应的概率值。
+
+---
+exclude: true
+
+## test xmerit
+
+```{r, results="asis"}
+mod_wage_f <- formula(Y~X)
+out <- lx.est(lm.mod = mod_wage_f, lm.dt = data_wage,opt = c("s"),inf = c("Ftest","over"))
+```
+
+
+$$\begin{alignedat}{999}
+&\widehat{lwage}=&&-0.53&&+0.10educ_i&&+0.01nwifeinc_i\\&(s)&&(0.2011)&&(0.0148)&&(0.0032)\\&(t)&&(-2.61)&&(+6.67)&&(+1.59)\\&(cont.)&&+0.04exper_i&&-0.00exper^2_i&&+0.00exper^2*city_i\\&(s)&&(0.0132)&&(0.0004)&&(0.0002)\\&(t)&&(+3.23)&&(-2.19)&&(+0.79)\\&(over)&&n=428&&\hat{\sigma}=0.6653\\&(fit)&&R^2=0.1636&&\bar{R}^2=0.1537\\&(Ftest)&&F^*=16.51&&p=0.0000
+\end{alignedat}$$
+
 
 ---
 

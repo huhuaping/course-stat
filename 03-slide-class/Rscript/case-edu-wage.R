@@ -1,6 +1,6 @@
 
 # read data ----
-data_wage <- as_tibble(read.xlsx(here("data","extra",
+data_wage <- dplyr::as_tibble(read.xlsx(here("data","extra",
                                  "Table-3-2-edu-wage.xlsx"), 
                                  sheet = 1))
 n <- dim(data_wage)[1]
