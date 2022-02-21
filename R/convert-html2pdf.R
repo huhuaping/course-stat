@@ -17,9 +17,9 @@ out_dir <- "d://github/course-stat/public/slide-pdf/2022-02/"
 path_out <- paste0(out_dir, stringr::str_replace(files_target,"html", "pdf"))
 
 
-for (i in 4:length(files_target)) {
+for (i in 3:3) {
   pagedown::chrome_print(input = path_input[i],output = path_out[i] ,format = "pdf",
-                         browser = path_browser,timeout = 120)
+                         browser = path_browser,timeout = 1020)
   Sys.sleep(0.5)
   print(glue::glue("convert {i} / {length(files_target)} file: {files_target[i]} successed!"))
 }

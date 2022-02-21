@@ -2846,18 +2846,23 @@ curve(pnorm(x),
 
 
 ---
-layout: false
-
 
 ## 连续随机变量：正态分布（二元联合正态）
 
-```{r}
+```{r,eval=FALSE}
 url_plotly<-"https://plot.ly/~mca_unidue/22.embed?width=550&height=550?showlink=false" 
 
 knitr::include_url(url_plotly, height = "530px")
 ```
 
+```{r}
+knitr::include_graphics("../pic/chpt02-bi-normal-statpng.png", dpi=150)
+```
+
+
 ---
+
+layout: false
 
 <center>
 <iframe height="880" width="770" frameborder="0" scrolling="0" src="bivariatenormalv4.html"></iframe>
