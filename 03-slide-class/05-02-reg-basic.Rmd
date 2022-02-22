@@ -997,6 +997,7 @@ sample_all<- rbind(sample1, sample2) %>%
 ```
 
 ```{r, fig.height=6,warning=FALSE}
+require("latex2exp")
 p_sample_all<- p2 + 
   geom_point(data = sample1, 
              aes(x=X, y=Y),color="black", shape=15)+
@@ -1006,11 +1007,11 @@ p_sample_all<- p2 +
   geom_abline( intercept = coef_mod2$coef[1], slope= coef_mod2$coef[2], color="red",lty="dashed") +
   geom_abline( intercept = 17, slope= 0.6, color="purple") +
   geom_text(aes(x=120,y=180),
-             label=TeX("$SRL1:\\hat{Y}=17.81+0.62X_i$"), color="black",size=5)+
+             label=latex2exp::TeX("$SRL1 \\hat{Y}=17.81+0.62X_i$"), color="black",size=5)+
   geom_text(aes(x=120,y=170),
-             label=TeX("$SRL2:\\hat{Y}=7.12+0.65X_i$"), color="purple",size=5) +
+             label=latex2exp::TeX("$SRL2 \\hat{Y}=7.12+0.65X_i$"), color="purple",size=5) +
   geom_text(aes(x=120,y=160),
-             label=TeX("$PRL:\\hat{Y}=17+0.6X_i$"), color="red",size=5) 
+             label=latex2exp::TeX("$PRL \\hat{Y}=17+0.6X_i$"), color="red",size=5) 
   
   
 p_sample_all

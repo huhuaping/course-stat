@@ -1,14 +1,16 @@
 ---
+params:
+  hideslide: FALSE
 output:
   xaringan::moon_reader:
     seal: false
     lib_dir: libs
     css:
+      - default
       - ../mycss/my-theme.css 
       - ../mycss/my-font.css
       - ../mycss/my-custom-for-video-roomy.css
       - ../mycss/text-box.css
-      - default
       - duke-blue
       - hygge-duke
     nature:
@@ -19,6 +21,7 @@ output:
 ---
 background-image: url("../pic/slide-front-page.jpg")
 class: center,middle
+exclude: `r params$hideslide`
 
 # 统计学原理(Statistic)
 
@@ -35,15 +38,12 @@ class: center,middle
 ### `r Sys.Date()`
 
 
-```{r global_options, echo=F,message=FALSE,warning=F}
+```{r , echo=F,message=FALSE,warning=F, eval=!params$hideslide}
 source("../R/set-global.R")
+source("../R/xfun.R", encoding = "UTF-8")
+source("../R/external-math-equation.R")
 options(width = 70)
 #source("../R/xaringan-chromote-print.R")
-```
-
-
-```{r ex-math-eq}
-source("../R/external-math-equation.R")
 ```
 
 ```{r xaringan-logo, echo=FALSE}

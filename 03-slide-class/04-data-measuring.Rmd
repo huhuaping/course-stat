@@ -5337,6 +5337,7 @@ $S_X =\sqrt{\frac{\sum_1^n{(X_i- \bar{X})^2}}{n-1}}$。
 ### （示例）偏态系数的计算：未分组原始数据1
 
 ```{r}
+require("moments")
 
 dist_bin_computer <-bin_computer %>%
   mutate(demean = M- mean_bin,

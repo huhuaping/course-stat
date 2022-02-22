@@ -874,7 +874,7 @@ tbl_flex %>%
 
 ### （案例）银行贷款：相关系数矩阵图
 
-```{r, out.width="99%"}
+```{r, out.width="99%", echo=TRUE,eval=FALSE}
 #remotes::install_github("r-link/corrmorant")
 require("corrmorant")
 corrmorant::corrmorant(df_loan[,-1], style = "binned")+
@@ -891,7 +891,7 @@ corrmorant::corrmorant(df_loan[,-1], style = "binned")+
 
 ### （案例）银行贷款：相关系数矩阵图
 
-```{r, out.width="99%"}
+```{r, out.width="99%",eval=FALSE, echo=TRUE}
 ggcorrm(data = df_loan[,-1]) +
   lotri(geom_point(alpha = 0.5)) +
   lotri(geom_smooth()) +

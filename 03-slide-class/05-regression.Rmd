@@ -70,7 +70,7 @@ name:chapter
 
 ### [5.1 变量间关系的度量](#corl)
 
-### [5.2 回归分析的基本思想](#oncept)
+### [5.2 回归分析的基本思想](#concept)
 
 ### [5.3 OLS方法与参数估计](#ols)
 
@@ -1912,11 +1912,11 @@ p_sample_all<- p2 +
   geom_abline( intercept = coef_mod2$coef[1], slope= coef_mod2$coef[2], color="red",lty="dashed") +
   geom_abline( intercept = 17, slope= 0.6, color="purple") +
   geom_text(aes(x=120,y=180),
-             label=TeX("$SRL1:\\hat{Y}=17.81+0.62X_i$"), color="black",size=5)+
+             label=TeX("$SRL1\\hat{Y}=17.81+0.62X_i$"), color="black",size=5)+
   geom_text(aes(x=120,y=170),
-             label=TeX("$SRL2:\\hat{Y}=7.12+0.65X_i$"), color="purple",size=5) +
+             label=TeX("$SRL2\\hat{Y}=7.12+0.65X_i$"), color="purple",size=5) +
   geom_text(aes(x=120,y=160),
-             label=TeX("$PRL:\\hat{Y}=17+0.6X_i$"), color="red",size=5) 
+             label=TeX("$PRL\\hat{Y}=17+0.6X_i$"), color="red",size=5) 
   
   
 p_sample_all
