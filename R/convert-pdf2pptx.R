@@ -22,7 +22,7 @@ if (!dir.exists(dir_tem)) dir.create(dir_tem)
 # loop to convert
 # this will take long time, maybe 2~5 minutes per 100 slides.
 ratio <- 169
-for (i in 2:2) {
+for (i in 7:7) {
   if (ratio ==169) {
     pdf2pptx::pdf2pptx(pdf_filename =files_path[i],
                        pptx_filename = path_out_169[i],
