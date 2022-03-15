@@ -1,6 +1,6 @@
 book_filename: bookdown
 clean: [packages.bib, bookdown.bbl]
-#rmd_files: ["02-lab-exercise/lab00-research-training.Rmd"]
+rmd_files: ["02-lab-exercise/lab00-research-training.Rmd"]
 rmd_subdir: true
 #new_session: yes
 language:

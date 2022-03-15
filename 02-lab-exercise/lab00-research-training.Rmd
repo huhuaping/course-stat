@@ -1,0 +1,340 @@
+---
+title: "大学生科研创新与数据分析报告"
+subtitle: "——结合大学生科创项目申报的过程训练"
+author: "指导教师：胡华平"
+date: "修订日期-`r Sys.Date()`"
+params:
+  hand_out:
+    value:
+      lab_num: 1
+      name_chn: EViews基本操作：工业化国家CPI案例
+      name_eng: EViews-basic-cpi
+  hw_start: '2022-03-07' # week 3
+  hw_end: '2022-06-26' # week 18
+  term_start: "2022-02-21"
+knit: (function(inputFile, encoding) { 
+  outFile <- sub(pattern = "(.*)\\..*$", replacement = "\\1", basename(inputFile));
+  out_dir <- 'handout';
+  rmarkdown::render(inputFile,
+                    encoding=encoding,
+                     output_file=file.path(dirname(inputFile), out_dir, outFile)) })
+output:
+  bookdown::word_document2:
+    fig_caption: yes
+    toc: no
+    toc_depth: 4
+    number_sections: true
+    global_numbering: true
+    reference_docx: ../template/create-template-tiny-header.docx
+    
+  bookdown::html_document2:
+    number_sections: yes
+    toc_depth: 5 
+    toc: yes
+    fig_caption: yes
+    toc_float: yes
+    mathjax: local
+    self_contained: no
+    highlight: tango
+    theme: united
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    template: template/HWTemplate.tex
+    fig_caption: yes
+    includes:
+      in_header: latex/header.tex
+      before_body: latex/preamble.tex
+    toc: no
+    toc_depth: 4
+    number_sections: yes
+    keep_tex: yes
+bibliography: "../bib/bib.bib"
+biblio-style: apa
+csl: "../bib/china-national-standard-gb-t-7714-2015-author-date-hhp.csl"
+link-citations: true
+always_allow_html: yes
+documentclass: article
+fontsize: "12pt"
+---
+
+```{r global_options, echo=F,message=FALSE,warning=F}
+
+options(bookdown.render.file_scope = FALSE)
+source("../R/set-global-only.R", encoding = "UTF-8")
+#source("R/load-pkg.R", encoding = "UTF-8")
+require(tidyverse)
+require(magrittr)
+require(glue)
+require(here)
+require(openxlsx)
+```
+
+# 作业要求
+
+```{r, echo=FALSE}
+
+library("lubridate")
+options(lubridate.week.start= 1)
+
+start <- as.Date(params$hw_start)
+start_line <- glue::glue("{start}（{weekdays(start)}）24:00:00")
+end <- as.Date(params$hw_end)
+end_line <- glue::glue("{end}（{weekdays(end)}）24:00:00")
+
+
+# Helper function
+term_week <- function(dates, term_start = params$term_start) {
+  week_start <- lubridate::isoweek(as.Date(term_start)) - 1
+  out <- lubridate::isoweek(dates[1])-week_start 
+  return(out)
+}
+
+check_dates <- as.Date(
+  c("2022-04-10", # week 7, 
+    "2022-05-22", # week 13, 
+    "2022-06-12", # week 16, 
+    "2022-06-19" # week 17
+    #"2022-06-26" # week 18
+    )
+  ) 
+
+check_items <- c("选题和方案",
+                 "数据收集",
+                 "数据分析",
+                 "课程报告"
+                 )
+
+show_items <- tibble(items = check_items, dates = check_dates) %>%
+  add_column(index = 1:nrow(.), .before = "items") %>%
+  mutate(dates = as.Date(dates)) %>%
+  mutate(week = map(dates, term_week),
+        weekday = lubridate::wday(dates,label = TRUE)
+         ) %>%
+  mutate(week_str = str_c("第", week,"周"),
+         index_str = str_c("检查环节", index),
+         time_str = "凌晨24:00")
+
+#check_date1 <- glue::glue("{dates[1]}（{weekdays(end)}）24:00:00")
+
+```
+
+## 作业提交
+
+**作业发布时间**：`r start_line`
+
+**最终提交截止时间**：`r end_line`。本学期第18周（周日）之前。
+
+> **温馨提示**：考虑到作业涉及多个环节，所以大家还需要按如下时间点，分别完成中间环节任务！（记住：作业可以反复多次提交，最新一次提交将覆盖之前的提交！）
+
+```{r}
+require(tidyselect)
+vars_sel <- c("index_str", "items", "dates", 
+              "week_str", "weekday", "time_str")
+names_chn <- c("检查环节", "检查内容", "截止日期",
+               "截止周次", "星期几" , "截止时间点")
+show_items %>%
+  select(all_of(vars_sel)) %>%
+  rename_all(., ~names_chn) %>%
+  knitr::kable(caption = "中间环节检查的重要时间节点",
+               align = "c")
+```
+
+
+</br>
+
+**作业提交材料**：
+
+本次作业需要提交的最终材料包括：
+
+- 综合分析报告1份（.docx格式，请参考老师提供的一个模板）。文件命名为：`姓名_学号_综合分析报告.docx`。
+
+- 密切相关的参考文献（**学术期刊**文章）中英文各1篇（.pdf格式）。文件分别命名为：`姓名_学号_英文文章.pdf`和`姓名_学号_中文文章.pdf`。
+
+- 原始数据（包括做图做表内容）1份（.xlsx格式）。文件命名为：`姓名_学号_数据.xlsx`。
+
+</br>
+
+**作业提交注意事项**：
+
+- 每个人都需要提交作业。
+
+- 作业可以多次提交，最后一次提交将会完全覆盖之前的提交。
+
+- 系统准点会自动关闭，请按时提交。
+
+
+**作业提交方式**：本次作业**提交方式**为学校平台系统提交，具体为：
+
+> 西农网站首页登陆**信息综合服务平台** $\Rightarrow$进入**在线综合教育平台**$\Rightarrow$进入《统计学原理》[课程](https://eol.nwafu.edu.cn/meol/jpk/course/layout/newpage/index.jsp?courseId=42427)$\Rightarrow$进入**课程学习**栏目$\Rightarrow$进入**课程作业**子栏目$\Rightarrow$查看或提交作业。
+
+
+## 作业主题
+
+《统计学原理》课程的一个基本教学目标是：同学们能以小组合作方式独立完成一份**综合研究分析报告**。主要训练环节包括：
+
+- 实际问题：发现问题
+
+- 收集数据：取得数据
+
+- 处理数据：整理与图表展示 
+
+- 分析数据：利用统计方法分析数据
+
+- 解释数据：结果的说明
+
+- 得到结论：从数据分析中得出客观结论
+
+
+## 作业内容
+
+本次作业，按照西北农林科技大学教务处发布的大学生科创项目的要求，进行项目设计和分析的全过程训练。要求完成如下的提纲性报告：
+
+- 项目摘要（200字以内）
+
+- 项目实施的目的、意义（不少于200字）
+
+项目背景、研究现状及发展动态（不少于200字）：（项目探讨的现实问题及其对应的理论问题）
+
+- 项目研究内容和拟解决的关键问题（不少于300字）
+
+- 项目实施方案（不少于300字）：（数据如何获取；研究方法和模型；变量的选择等）
+
+- 分析报告（不少于3000字）：（包括图表描述性分析；以及统计和计量建模分析，如回归分析等）
+
+- 研究结论（200字以内）
+
+
+## 完成方式
+
+- 自行确定研究议题。（**要求**：必须金融或经济学议题）。
+
+- 没人独立完成全部上述训练环节。
+
+- 严谨学术失范，禁止剽窃或复制他人知识成果！
+
+\newpage
+
+
+# XXXXX项目设计及分析报告（此处自行修改）
+
+</br>
+
+学生姓名：_________；学生学号：___________；专业班级：金融2003
+
+</br>
+
+## 项目摘要（200字以内）
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+
+## 项目实施的目的、意义（不少于200字）
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+
+## 项目背景、研究现状及发展动态（不少于200字）
+
+> **温馨提示**：项目探讨的现实问题及其对应的理论问题，属于文献综述环节。
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+
+## 项目研究内容和拟解决的关键问题（不少于300字）
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+
+## 项目实施方案（不少于300字）：
+
+> **温馨提示**：数据如何获取，具体来源；具体的研究方法和模型；变量的选择等。
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+
+## 分析报告（不少于3000字）：
+
+> **温馨提示**：包括图表描述性分析；以及统计和计量建模分析，如回归分析等
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+## 研究结论（200字以内）
+
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+
+## 参考文献{-}
+
+> **温馨提示**：请严格按照西北农林科技大学本科毕业论文写作格式规范！
+
