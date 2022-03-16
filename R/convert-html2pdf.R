@@ -9,15 +9,15 @@ files_target <- sort((file_list)[id_target])
 files_path <- paste0(file_dir, files_target)
 
 # chrome app path
-path_browser <- "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+pagedown::find_chrome()
+path_browser <- "C:/Program Files/Google/Chrome/Application/chrome.exe"
 
 # input and output argument
 path_input <- paste0("file:///", files_path) 
 out_dir <- "d://github/course-stat/public/slide-pdf/2022-02/"
 path_out <- paste0(out_dir, stringr::str_replace(files_target,"html", "pdf"))
 
-
-for (i in 6:8) {
+for (i in 5:5) {
   pagedown::chrome_print(input = path_input[i],output = path_out[i] ,format = "pdf",
                          browser = path_browser,timeout = 1020)
   Sys.sleep(0.5)
