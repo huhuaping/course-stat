@@ -57,71 +57,88 @@ xaringanExtra::use_logo(
 )
 ```
 
+<!--- control all child  title and chapter slide---->
+
 ```{r, eval=T}
-params < NULL
+params <- NULL
 params$hideslide <- TRUE
 ```
 
 
 ---
 class: center, middle, duke-orange,hide_logo
-name:chapter
+name: chapter02
 
-# 第五章 相关和回归分析
+# 第二章 数据收集、整理和清洗
 
+.pull-left[
 
-### [5.1 变量间关系的度量](#corl)
+### [2.1 数据目标](#target)
 
-### [5.2 回归分析的基本思想](#concept)
+### [2.2 数据收集](#collection)
 
-### [5.3 OLS方法与参数估计](#ols)
+### [2.3 资料整理和数据清洗](#tidy)
 
-### [5.4 假设检验](#hypothesis)
+### [2.4 数据的数据库化](#database)
 
-### [5.5 拟合优度与残差分析](#goodness)
+]
 
-### [5.6 回归预测分析](#forecast)
+.pull-right[
 
-### [5.7 回归报告解读](#report)
+### [2.5 数据质量](#quality)
+
+### [2.6 抽样设计](#sampling)
+
+### [2.7 抽样分布和抽样误差](#error)
+
+### [2.8 问卷设计技术](#question)
+
+]
+
 
 ---
 
-```{r child='05-01-relationship.Rmd'}
+```{r child='02-part01-data-target.Rmd'}
 ```
 
 ---
 
-```{r child='05-02-reg-basic.Rmd'}
+```{r child='02-part02-data-collect.Rmd'}
 ```
 
 ---
 
-```{r child="05-03-reg-ols.Rmd"}
+```{r child="02-part03-data-clean.Rmd"}
 ```
 
 ---
 
-```{r child="05-04-reg-hypothesis.Rmd"}
+```{r child="02-part04-data-base.Rmd"}
 ```
 
 ---
 
-```{r child='05-05-reg-goodness.Rmd'}
+```{r child='02-part05-data-quality.Rmd'}
 ```
 
 ---
 
-```{r child='05-06-reg-forecast.Rmd'}
+```{r child='02-part06-sampling-design.Rmd'}
 ```
 
 ---
 
-```{r child='05-07-reg-report.Rmd'}
+```{r child='02-part07-sampling-error.Rmd'}
+```
+
+---
+
+```{r child='02-part08-questionaire-tech.Rmd'}
 ```
 
 
 ---
 layout:false
-background-image: url("../pic/thank-you-gif-funny-fan.gif")
+background-image: url("../pic/thank-you-gif-funny-little-yellow.gif")
 class: inverse,center
 # 本章结束

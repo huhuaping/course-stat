@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>02-part02-data-collect.knit</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css/hygge-duke.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding/datatables.js"></script>
+    <script src="libs/jquery/jquery-3.6.0.min.js"></script>
+    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+
+# 统计学原理(Statistic)
+
+&lt;!---    chakra: libs/remark-latest.min.js ---&gt;
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### 2022-03-21
+
+
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 70px;
+z-index: 0;
+background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:0.2em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+---
+class: center, middle, duke-orange,hide_logo
+name: chapter02
+
+# 第二章 数据收集、整理和清洗
+
+.pull-left[
+
+### [2.1 数据目标](#target)
+
+### .white[[2.2 数据收集](#collection)]
+
+### [2.3 资料整理和数据清洗](#tidy)
+
+### [2.4 数据的数据库化](#database)
+
+]
+
+.pull-right[
+
+### [2.5 数据质量](#quality)
+
+### [2.6 抽样设计](#sampling)
+
+### [2.7 抽样分布和抽样误差](#error)
+
+### [2.8 问卷设计技术](#question)
+
+]
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: collection
+
+# 2.2 数据收集
+
+### [数据的来源](#source)
+
+### [数据的载体](#body)
+
+### [数据的状态](#state)
+
+### [收集二手数据](#secondhand)
+
+### [收集调查数据](#fild)
+
+### [收集实验数据](#test)
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter02"&gt; 第02章 数据收集、整理和清洗 &lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#collection"&gt; 2.2 数据收集 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+name:source
+
+## 数据的来源
+
+不同研究方法会产生不同类型数据：
+
+- 观察数据
+
+- 调查数据
+
+- 实验数据
+
+
+---
+
+## 数据的来源
+
+从产生数据的方式方法上又可以有：
+
+- 问卷数据
+
+- 访谈数据
+
+- 文献数据
+
+- 痕迹数据：大数据。（注意不是**痕迹证据**！）
+
+在获得数据的同时，  应该还有一份数据，是记录数据获得过程的，通常称之为日志，  它要记录数据是从哪里来的、什么情况下得到的、数据的基本特征又是什么，  比如文字数据有多少页、图片数据有多少张，这就是日志数据
+
+
+---
+name:body
+
+## 数据的载体
+
+
+从是否数字化来看：
+
+- 数字化的数据
+
+- 非数字化的数据
+
+
+从是否数值化来看：
+
+- 数值数据
+
+- 非数值数据
+
+---
+
+## 数据的载体
+
+从具体形态来看：
+
+- 文本数据：
+    
+    - 访问、观察中的文字记录
+    - 数字化的字符形态的数据
+    - 任何文字加载体的数据，比如文字加载于纸张、羊皮卷等
+
+- 图片数据：
+
+    - 访谈时拍的照片、搜集到的图片、照片的底片等等
+    - 数字化为像素点形态的图片数据
+    - 任何图形加载体的数据，比如图形加载于纸张、胶片、计算机存储等
+
+---
+
+## 数据的载体
+
+- 音频数据：
+    - 访问录音、观察中的语音日志、搜集到的音频记录等。 
+    - 数字化为波形形态的音频数据。
+    - 任何音频加上载体，比如音频加载于钢丝、胶片、磁带、光碟、磁碟、闪存盘、硬盘等
+
+- 视频数据：
+    - 访谈时的全程录像、搜集到的各种各样视频。
+    - 数字化为像素点加上波形形态的视频数据
+    - 视频加上载体，比如比如视频加载于胶片、光碟、闪存盘、硬盘等
+    
+- 实物数据
+
+    - 任何有实物才可以完整保存信息的实物载体数据
+    - 访谈中搜集到的实物、观察中观察到的实物，比如出土文物、建筑等
+
+???
+
+数据的类型主要依据来源和载体形态有不同的划。
+
+对数据整理而言，载体形态是最基本的分类，不同载体形态的整理方式会有不同。 
+
+---
+class: duke-orange
+
+### （提问）课堂思考
+
+
+以上关于数据来源与形式的分类是完全是互斥的吗？
+
+以调查问卷为例：
+
+- 传统纸版问卷，主要是文字、图片形态的数据。
+
+- 新媒体电子问卷，不管是哪一个类型的电子问卷，主要是数据形态的数据，当然也会有图片的、音频的、视频的数据。 
+
+--
+
+以上的分类并不完全是互斥的，只是根据显性的特征来做一些划分，其实我们很难找到一个标准把数据的形态类型区分得非常清楚。 
+
+???
+
+有同学可能会说：“老师，问卷上不是有数吗？”数在数字化里有两个定义的，一个是字符型的，一个是数值型的，有不同的含义；在纸版上不管是数还是字，都是文字形，在纸版问卷中，除了数还有图片，或者是图画，只有这两个形态的数据。  
+
+
+---
+class: duke-orange
+
+### （提问）课堂思考
+
+数字与数值是一个意思吗？
+
+图片、音频、视频看起来的确是数字的，但数字不等于数值！
+
+- 传统照片不是数字的。
+
+- 数码照片的数字指的是像素点的数字
+
+- 音频、视频是同样的道理。
+
+
+---
+class: duke-orange
+
+### （提问）课堂思考
+
+&gt;“老师，不管什么时候我都要用计算机做笔记的。” 
+
+信息化时代，传统手写记录的文本数据是不是越来越没有价值？
+
+- 用计算机或各类终端设备来做电子化记录。
+
+- 用笔和本子做传统记录。 
+
+
+---
+name:state
+## 数据的状态
+
+&gt; “老师，我要做一个研究”
+
+&gt; “你的数据从哪里来？” 
+
+根据数据是否能够直接用于研究分析，数据的状态可以分为：
+
+**原始数据**：一般不能直接用于研究。
+
+**研究数据**：是处理为结构化的、有变量、数值、变量、属性标签的数据。
+
+---
+
+## 数据的状态
+
+
+根据研究数据的持续性，数据的状态有：
+
+1.已经存在的数据。公开数据、正式出版数据、发布的数据，都可以直接使用。
+
+- 政府各类统计数据。包括经济、就业、人口、健康、教育、产业等等数据。
+
+- 上市公司公开数据。根据相关法律，公司的财务数据、生产数据应该公开。
+
+- 研究机构或者研究者个人公开的数据。
+
+2.将要产生的数据。是系统采集的、不断在推进补充的数据。
+
+
+---
+
+## 数据的状态
+
+根据研究数据是否由研究者本人产生，数据的状态可分为：
+
+**一手数据**：是指自己调查获取的数据。自己调查数据是一个不得已的选择，对任何研究者而言，都应该是第二选择而不是第一选择。
+
+**二手数据**：是指已经被使用过的数据，拿来再做分析。如果你的研究能够使用已经存在的数据，尤其是很多人用过的数据，那么最好用这样的数据(为什么呢？)。
+
+--
+
+- 数据的可靠性已经被检验过
+
+- 研究的成果具有可比性
+
+- 通过调查来获取数据，需要专门的能力，包括组织能力、获取数据的能力、评估数据质量的能力、有效运用数据的能力，还需要一定要有资源。
+
+---
+
+## 数据的状态
+
+研究数据的**获取权限**一般有如下情形：
+
+- 无需授权就可以使用的数据。正式出版物提供的数据只需要在使用说明中正式说明出处，就不需要授权。
+
+- 需要申请授权的、公开的数据。大多数的学术研究数据，如果你要使用，是需要申请并且被授权。
+
+- 需要通过授权的、未公开的数据。行为痕迹管理机构的数据，包括政府数据、赢利和非赢利服务机构的数据，都属于这类数据。
+
+    - 政府数据：几乎任何一笔收入，都是经过机构管理的，都有痕迹数据。
+    - 银行数据：每个人都有银行账号，只要是经过银行卡的，都会留下数据。
+    - 电信数据：只要是通过网络通信的数据，都会留下数据记录。
+
+&gt; “老师，他们保存多久呀？”
+
+???
+
+关于网上行为和行为痕迹数据，推荐一本书《删除》，作者Schonberger。
+
+
+
+---
+
+## 二手数据收集：搜索引擎工具集
+
+搜索引擎：
+
+- [谷歌搜索](https://www.google.com/)（需VPN）
+
+- [谷歌学术](http://scholar.google.com/)（需VPN）
+
+- [谷歌图书](http://books.google.com)（需VPN）
+
+- [必应搜索](http://cn.bing.com/#)（可直接访问）
+
+---
+layout: false
+class: middle,right, hide_logo
+background-size: contain
+background-image: url("../pic/chpt02-search-google.png")
+
+## .red[大宝！谷歌搜索]
+
+---
+layout: false
+class: middle,left, hide_logo
+background-size: contain
+background-image: url("../pic/chpt02-search-google-scholar.png")
+
+
+## .red[二宝！谷歌学术]
+
+---
+layout: false
+class: center,top, hide_logo
+background-size: contain
+background-image: url("../pic/chpt02-search-google-book.png")
+
+
+## .red[三宝！谷歌图书]
+
+
+---
+
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter02"&gt; 第02章 数据收集、整理和清洗 &lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#collection"&gt; 2.2 数据收集 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+
+---
+name:secondhand
+
+### 收集二手数据：综合型数据平台(国内文献和数据)
+
+国内文献和统计数据：
+
+- 中国知网（内含统计年鉴资源）——[学校图书馆网站](http://lib.nwsuaf.edu.cn/)
+
+    - CNKI中国知网－[CNKI中国期刊全文数据库](http://fjour.blyun.com/dbguide?go=dbinfo&amp;id=490)
+    - 中国知网-[统计年鉴数据库](http://nianjian.cnki.net/)
+
+- 搜数网——学校购买暂时无访问权限
+
+    - [新版搜数网- 中国资讯行](http://www.soshoo.com/index.do)
+
+- [人大经济论坛](http://www.pinggu.org/bbs/index.asp)：论坛币下载
+
+---
+
+### 收集二手数据：综合型数据平台(国外文献和数据)
+
+国外文献和统计数据：
+
+- 电子期刊：[SpringerLink电子期刊及电子图书](http://fjour.blyun.com/dbguide?go=dbinfo&amp;id=319)
+
+
+- 电子期刊：[Wiley Online Library](http://fjour.blyun.com/dbguide?go=dbinfo&amp;id=358)
+
+
+- 电子期刊：[ScienceDirect](http://fjour.blyun.com/dbguide?go=dbinfo&amp;id=131)
+
+
+- 电子期刊：[Emerald](http://fjour.blyun.com/dbguide?go=dbinfo&amp;id=133)
+
+
+- 学位论文：[ProQuest 学位论文全文库](http://fjour.blyun.com/dbguide?go=dbinfo&amp;id=284)
+
+---
+
+### 收集二手数据：一个项目示例1/2
+
+.left-column[
+- **中国旱区农业科技资源配置研究**
+]
+
+.right-column[
+
+&lt;img src="../pic/chpt02-second-projects.png" width="613" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+
+### 收集二手数据：一个项目示例2/2
+
+.pull-left[
+
+&lt;img src="../pic/chpt02-second-projects2.png" width="407" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+&lt;img src="../pic/chpt02-second-projects3.png" width="313" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+### 收集二手数据：专项型数据平台（国外）
+
+几个主要的数据来源：
+
+- 美国大学联盟[数据集成中心(ICPSR)](https://www.icpsr.umich.edu/icpsrweb/)。机构在密歇根，是世界上最大的学术数据源。
+
+- 美国芝加哥大学-[广泛社会调查(GSS)](https://gss.norc.org/)
+
+- 美国芝加哥大学-[收入动态调查面板数据(PSID)](https://psidonline.isr.umich.edu/)
+
+- 美国密歇根大学-[健康和退休调查数据(HRS)](http://hrsonline.isr.umich.edu/)，公开自1990年
+
+- 英国艾塞克斯大学-[认识社会调查数据库(Understanding Society)](https://www.understandingsociety.ac.uk/)。
+
+---
+
+### 收集二手数据：专项型数据平台（国内）
+
+- 北京大学[中国社会科学调查中心(ISSS)](http://www.isss.pku.edu.cn/)。主要的中国家庭追踪调查（[CFPS](http://www.isss.pku.edu.cn/cfps/index.htm)）、中国健康与养老追踪调查（[CHARLS](http://charls.pku.edu.cn/)）
+
+- 中国人民大学[中国调查与数据中心(NSRC)](http://nsrc.ruc.edu.cn/)。主要的数据源有中国综合社会调查（CGSS）、中国教育追踪调查（CEPS）、中国老年社会追踪调查（CLASS）
+
+- 中国疾病控制中心[(CDC)](http://www.phsciencedata.cn/Share/)。主要的数据源包括了慢病、流行病、艾滋病等多种涉及健康与疾病的调查。
+
+---
+
+### 示例1：中国家庭追踪调查（CFPS）的数据申请
+
+&lt;img src="../pic/chpt02-CFPS-application00.png" width="644" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 示例1：中国家庭追踪调查（CFPS）的数据申请
+
+&lt;img src="../pic/chpt02-CFPS-application01.png" width="976" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 示例1：中国家庭追踪调查（CFPS）的数据申请
+
+&lt;img src="../pic/chpt02-CFPS-application02.png" width="984" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 示例1：中国家庭追踪调查（CFPS）的数据申请
+
+&lt;img src="../pic/chpt02-CFPS-application03.png" width="818" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 示例2：中国健康与养老追踪调查（CHARLS）的数据申请
+
+&lt;img src="../pic/chpt02-CHARLS-application00.png" width="1219" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 示例2：中国健康与养老追踪调查（CHARLS）的数据申请
+
+&lt;img src="../pic/chpt02-CHARLS-application01.png" width="973" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 二手数据收集：数据使用的几个问题
+
+
+- 二手数据可以进行的反复多次的再分析。
+
+    - 同样的数据集，使用不同的方法，可以进行检验或者商榷；
+    - 同样的数据集，用于不同的研究主题和研究目的，则可以用于不同的研究目的。
+    - 不同的数据集，不同的方法，可以以达成特定的研究目的。
+
+- 使用二手数据，应按照学术规范说明数据来源。（千万别忘记！）
+
+- 使用二手数据，往往面临数据处理、转换、加工等技术性的问题。
+
+    - 参考哈佛大学和MIT联合建立的[定量社会科学研究中心IQSS](https://www.iq.harvard.edu/)。
+
+
+- 使用**综合性数据库**还是**专门性数据库**，这是个问题！
+
+    - 综合性数据不一定能够满足专业兴趣的要求和需求。
+    - 专业性数据库可能比较专业，难以与你的研究目标一致。
+
+
+???
+
+入学机会不平等研究。需要用到地区性的当年高中毕业生人数、地区性的当年的经济收入数据、地区性的当年城乡户籍人口数据。
+
+如果用综合数据，这些专题数据显然就找不着。在政府数据中，倒是可以找到一些，但是，需要根据专题去清理、去加工。除此以外，考入北京大学的学生人数和地区，北京大学的招办就有。
+
+---
+name:filed
+
+## 收集调查数据：自填式问卷调查
+
+
+**自填式问卷调查**：没有调查员协助的情况下由被调查者自己完成调查问卷
+问卷递送方法：调查员分发、邮寄、网络、媒体
+
+**优点**：要求调查问卷结构严谨，有清楚的说明
+
+**缺点**：
+
+- 问卷的返回率比较低
+- 不适合结构复杂的问卷
+- 调查周期比较长 
+- 数据搜集过程中出现的问题难于及时采取调改措施 
+
+
+---
+
+## 收集调查数据：面访式问卷调查
+
+**面访式问卷调查**：调查员与被调查者面对面提问、被调查者回答的一种调查方式。
+
+**优点**：
+- 可提高调查的回答率
+- 可提高调查数据的质量
+- 能调节数据搜集所花费的时间
+
+**缺点**：
+- 调查的成本较高
+- 调查过程的质量控制有一定难度
+
+---
+
+## 收集调查数据：电话式问卷调查
+
+**电话式问卷调查**：通过电话向被调查者实施调查。
+
+**特点**：
+- 速度快，能在短时间内完成调查
+- 适合于样本单位十分分散的情况
+
+**局限性**：
+
+- 如果被调查者没有电话，调查将无法实施
+- 访问的时间不能太长
+- 使用的问卷需要简单
+- 被访者不愿意接受调查时，难以说服
+
+---
+
+## 收集调查数据：一个小结
+
+<div id="htmlwidget-dc288243655a94a6c37f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dc288243655a94a6c37f">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7"],["调查时间","调查费用","问卷难度","有形辅助物的使用","调查过程控制","调查员作用的发挥","回答率"],["慢","低","要求容易","中等利用","简单","无法发挥","最低"],["中等","高","可以复杂","充分利用","复杂","充分发挥","较高"],["快捷","低","要求容易","无法利用","容易","一般发挥","一般"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>特征<\/th>\n      <th>自填式<\/th>\n      <th>面访式<\/th>\n      <th>电话式<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+&lt;br&gt;
+
+&gt; 有时间大家可以先看看“调查问卷设计”和“市场调研”相关图书！
+
+---
+name:test
+
+## 收集实验数据
+
+此处略！
+
+
+---
+exclude: TRUE
+
+## 收集数据的几点忠告
+
+&gt; 学生：“既然有这么多的数据，这门课是不是可以不学了？” 
+
+&gt; 回答：“这门课你不仅要学，而且要认认真真地学”
+
+
+掌握数据采集的知识与能力，是用好数据的基础。如果不了解数据是怎么获得的，就没有能力甄别已有的数据到底可不可靠、可不可用，甚至都不知道上哪儿去找数据。
+
+- 第一，研究数据有多种、多重的来源，好好运用既有的数据是研究者的第一选择；
+
+- 第二，获取已经存在的数据有很多个方法，也有多种途径 
+
+- 第三，万一没有办法获取需要的研究数据，那就只好自己动手。
+
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-gentle.gif")
+class: inverse,center
+# 本节结束
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+---
+params:
+  hideslide: FALSE
+output:
+  xaringan::moon_reader:
+    seal: false
+    lib_dir: libs
+    css:
+      - default
+      - ../mycss/my-theme.css 
+      - ../mycss/my-font.css
+      - ../mycss/my-custom-for-video-roomy.css
+      - ../mycss/text-box.css
+      - duke-blue
+      - hygge-duke
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+exclude: `r params$hideslide`
+
+# 统计学原理(Statistic)
+
+<!---    chakra: libs/remark-latest.min.js --->
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### `r Sys.Date()`
+
+```{r , echo=F,message=FALSE,warning=F}
+source("../R/set-global.R")
+options(width = 70)
+#source("../R/xaringan-chromote-print.R")
+```
+
+
+```{r }
+source("../R/external-math-equation.R")
+```
+
+
+```{r , echo=FALSE}
+require('xaringanExtra')
+
+xaringanExtra::use_tachyons()
+
+xaringanExtra::use_panelset()
+
+xaringanExtra::use_logo(
+  image_url = "../pic/logo/nwafu-logo-circle-wb.png",
+  height = '70px',
+  position = xaringanExtra::css_position(top='0.2em',left="1em")
+)
+```
+
+---
+class: center, middle, duke-orange,hide_logo
+name: chapter02
+exclude: `r params$hideslide`
+
+# 第二章 数据收集、整理和清洗
+
+.pull-left[
+
+### [2.1 数据目标](#target)
+
+### [2.2 数据收集](#collection)
+
+### [2.3 资料整理和数据清洗](#tidy)
+
+### [2.4 数据的数据库化](#database)
+
+]
+
+.pull-right[
+
+### [2.5 数据质量](#quality)
+
+### [2.6 抽样设计](#sampling)
+
+### [2.7 抽样分布和抽样误差](#error)
+
+### .white[[2.8 问卷设计技术](#question)]
+
+]
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: question
+
+# 2.8 抽样分布和抽样误差
+
+
+
+---
+layout: true
+
+<div class="my-header-h2"></div>
+
+<div class="watermark1"></div>
+
+<div class="watermark2"></div>
+
+<div class="watermark3"></div>
+
+<div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter02"> 第02章 数据收集、整理和清洗 </a>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="#question"> 2.8 问卷设计技术 </a> </span></div> 
+
+---
+
+## 待补充（敬请期待）
+
+
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-gentle.gif")
+class: inverse,center
+# 本节结束
