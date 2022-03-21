@@ -947,11 +947,59 @@ include_graphics("../pic/chpt02-second-projects3.png", dpi = 110)
 
 ## 典型的学术数据来源（国内）
 
-- 北京大学[中国社会科学调查中心(ISSS)](http://www.isss.pku.edu.cn/)。主要的中国家庭追踪调查（CFPS）、中国健康与养老追踪调查（CHARLS）
+- 北京大学[中国社会科学调查中心(ISSS)](http://www.isss.pku.edu.cn/)。主要的中国家庭追踪调查（[CFPS](http://www.isss.pku.edu.cn/cfps/index.htm)）、中国健康与养老追踪调查（[CHARLS](http://charls.pku.edu.cn/)）
 
 - 中国人民大学[中国调查与数据中心(NSRC)](http://nsrc.ruc.edu.cn/)。主要的数据源有中国综合社会调查（CGSS）、中国教育追踪调查（CEPS）、中国老年社会追踪调查（CLASS）
 
 - 中国疾病控制中心[(CDC)](http://www.phsciencedata.cn/Share/)。主要的数据源包括了慢病、流行病、艾滋病等多种涉及健康与疾病的调查。
+
+---
+
+### 示例1：中国家庭追踪调查（CFPS）的数据申请
+
+```{r}
+knitr::include_graphics("../pic/chpt02-CFPS-application00.png", dpi = 150)
+```
+
+---
+
+### 示例1：中国家庭追踪调查（CFPS）的数据申请
+
+```{r}
+knitr::include_graphics("../pic/chpt02-CFPS-application01.png", dpi = 100)
+```
+
+---
+
+### 示例1：中国家庭追踪调查（CFPS）的数据申请
+
+```{r}
+knitr::include_graphics("../pic/chpt02-CFPS-application02.png", dpi = 100)
+```
+
+---
+
+### 示例1：中国家庭追踪调查（CFPS）的数据申请
+
+```{r}
+knitr::include_graphics("../pic/chpt02-CFPS-application03.png", dpi = 120)
+```
+
+---
+
+### 示例2：中国健康与养老追踪调查（CHARLS）的数据申请
+
+```{r}
+knitr::include_graphics("../pic/chpt02-CHARLS-application00.png", dpi = 100)
+```
+
+---
+
+### 示例2：中国健康与养老追踪调查（CHARLS）的数据申请
+
+```{r}
+knitr::include_graphics("../pic/chpt02-CHARLS-application01.png", dpi = 100)
+```
 
 ---
 
