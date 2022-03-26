@@ -317,6 +317,29 @@ name: record-clean
     - 数据可用性信息。比如问卷数据是否加权？痕迹数据是否数据化了？大数据如何处理？是运用云计算策略，还是裁剪为单机计算容量？
     - 数据错误性信息。比如问卷数据中的缺失，文献数据中的差错等。 
 
+---
+
+### 示例：一次对原始数据的清洗记录1
+
+```{r, out.height=550}
+knitr::include_graphics("../pic/chpt02-data-clean-xian01.png")
+```
+
+---
+
+### 示例：一次对原始数据的清洗记录2
+
+```{r, out.height=350}
+knitr::include_graphics("../pic/chpt02-data-clean-xian02.png")
+```
+
+---
+
+### 示例：一次对原始数据的清洗记录3
+
+```{r, out.height=550}
+knitr::include_graphics("../pic/chpt02-data-clean-xian03.png")
+```
 
 ---
 name: safty-clean

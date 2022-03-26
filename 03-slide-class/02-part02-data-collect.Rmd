@@ -585,6 +585,47 @@ knitr::include_graphics("../pic/chpt02-CHARLS-application01.png", dpi = 100)
 
 如果用综合数据，这些专题数据显然就找不着。在政府数据中，倒是可以找到一些，但是，需要根据专题去清理、去加工。除此以外，考入北京大学的学生人数和地区，北京大学的招办就有。
 
+
+---
+
+### 示例：农产品市场价格数据的爬虫自动抓取1
+
+**西安市农业农村局**（[网址](http://nyncj.xa.gov.cn/nyfw/jgjc/jgxq/1.html)）每日会发布不同农产品、多个市场（批发市场、零售市场如超市等）的农产品价格数据。
+
+网站**页面分析**：
+
+- 不需要登陆权限；
+
+- 但是不具备table元素。
+
+编程爬虫自动化数据**抓取方案**：
+
+- 按页数（选择最大页），循环抓取页面
+
+- 从最后一页开始抓取页面，然后依次往前一页抓取页面
+
+- 每次抓取页面，把数据表**增量式**写入数据库`data/market
+-xian/market.db`的相应table中去
+
+---
+
+### 示例：农产品市场价格数据的爬虫自动抓取2
+
+
+
+```{r, out.height=500}
+knitr::include_graphics("../pic/chpt02-data-scrape-xian01.png")
+```
+
+---
+
+### 示例：农产品市场价格数据的爬虫自动抓取3（动图）
+
+
+```{r, out.height=550}
+knitr::include_graphics("../pic/chpt02-data-scrape-xian-demon.gif")
+```
+
 ---
 name:filed
 
