@@ -5,6 +5,7 @@
 .remark-slide-content {
     font-size: 28px;
     padding: 1em 4em 1em 4em;
+    position: relative;
 }
 
 
@@ -108,17 +109,18 @@ div.my-footer a {
   height: 20%;
   position: absolute;
   top: 150px;
-  left: 100px;
+  left: 200px;
   background-image: url("vlog-nwsuaf.jpg");
   background-size: 80%;
   background-position: 0px 20px;
   background-repeat: no-repeat;
-  opacity: 0.04;  
+  opacity: 0.05;  
   /* Rotate div */
  -ms-transform: rotate(-45deg); /* IE 9 */
  -moz-transform: rotate(-45deg); /* firefox */
  -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
  transform: rotate(-45deg);
+ z-index: 0;
 }
 
 
@@ -134,11 +136,12 @@ div.my-footer a {
   background-size: 80%;
   background-position: 0px 20px;
   background-repeat: no-repeat;
-  opacity: 0.04;  
+  opacity: 0.05;  
   /* Rotate div */
  -ms-transform: rotate(-45deg); /* IE 9 */
  -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
  transform: rotate(-45deg);
+  z-index: 0;
 }
 
 .watermark3::after {
@@ -154,13 +157,24 @@ div.my-footer a {
   background-size: 80%;
   background-position: 0px 20px;
   background-repeat: no-repeat;
-  opacity: 0.04;  
+  opacity: 0.05;  
   /* Rotate div */
  -ms-transform: rotate(-45deg); /* IE 9 */
  -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
  transform: rotate(-45deg);
+ z-index: 0;
 }
 
+
+.remark-slide-content p{
+  position: relative;
+  z-index: 1;
+}
+
+.remark-slide-content ul{
+  position: relative;
+  z-index: 1;
+}
 
 
 /***set horizontal scroll***/

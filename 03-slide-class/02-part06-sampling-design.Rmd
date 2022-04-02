@@ -84,9 +84,9 @@ exclude: `r params$hideslide`
 
 .pull-right[
 
-### .[2.5 数据质量](#quality)
+### [2.5 数据质量](#quality)
 
-### white[[2.6 抽样设计](#sampling)]
+### .white[[2.6 抽样设计](#sampling)]
 
 ### [2.7 抽样分布和抽样误差](#error)
 
