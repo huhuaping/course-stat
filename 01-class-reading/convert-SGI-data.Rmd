@@ -1,0 +1,72 @@
+---
+title: "Untitled"
+author: "hhp"
+date: '2022-04-11'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("../R/set-global.R")
+
+#install.packages("haven")
+#install.packages("sjmisc")
+require("haven")
+require("sjmisc")
+
+```
+
+# 辅助函数
+
+```{r}
+convert_vars <- function(dt){
+  vars_all <- data.frame("name" = names(dt),
+                   "label" = sapply(dt, function(x) attr(x, "label"))  %>% as.character(),
+                   "class" = sapply(dt, typeof),
+                   "format" = sapply(dt, function(x) attr(x, "format.stata"))  %>% as.character(),
+                   "labelled" = sapply(dt, is.labelled),
+                   "labels" = sapply(dt, function(x) attr(x, "labels"))  %>% as.character()) %>%
+  add_column("index"= 1:nrow(.), .before = "name")
+  }
+```
+
+
+## CFPS数据
+
+```{r}
+CFPS2020_person <- read_dta("../data-raw/cfps2020person_202112.dta") 
+
+CFPS2020_person_vars <- convert_vars(CFPS2020_person)
+
+path_out <- "../data/SGI-CFPS2020_person.xlsx"
+write.xlsx(CFPS2020_person, path_out)
+
+path_out <- "../data/SGI-CFPS2020_person_vars.xlsx"
+write.xlsx(CFPS2020_person_vars, path_out)
+
+```
+
+
+## CGSS数据
+
+```{r}
+
+
+CGSS2015 <- read_dta("../data-raw/CGSS2015.dta")  #%>%
+  #as_factor(.,  levels = "both")
+#CGSS2013 <- read_dta("../data-raw/CGSS2013.dta")
+
+n_obs <- nrow(CGSS2015)
+
+vars_all <- data.frame("name" = names(CGSS2015),
+                   "label" = sapply(CGSS2015, function(x) attr(x, "label"))  %>% as.character(),
+                   "class" = sapply(CGSS2015, typeof),
+                   "format" = sapply(CGSS2015, function(x) attr(x, "format.stata"))  %>% as.character(),
+                   "labelled" = sapply(CGSS2015, is.labelled),
+                   "labels" = sapply(CGSS2015, function(x) attr(x, "labels"))  %>% as.character()) %>%
+  add_column("index"= 1:nrow(.), .before = "name")
+n_vars <- nrow(vars_all)
+
+
+```
+
