@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.1.2",
+    "Version": "4.2.1",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -48,6 +48,14 @@
         "magrittr",
         "promises"
       ]
+    },
+    "KernSmooth": {
+      "Package": "KernSmooth",
+      "Version": "2.23-20",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "8dcfa99b14c296bc9f1fd64d52fd3ce7",
+      "Requirements": []
     },
     "MASS": {
       "Package": "MASS",
@@ -232,7 +240,7 @@
       "RemoteRef": "main",
       "RemoteSha": "7fd62243cee01f8c19a65f73379e18b45f9f01b3",
       "Remotes": "rstudio/rmarkdown",
-      "Hash": "15b5f62e6ccd3c8f157178359245af18",
+      "Hash": "1e8b95421551492e92ae7ce13400c54f",
       "Requirements": [
         "htmltools",
         "jquerylib",
@@ -242,6 +250,14 @@
         "xfun",
         "yaml"
       ]
+    },
+    "boot": {
+      "Package": "boot",
+      "Version": "1.3-28",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "0baa960e3b49c6176a4f42addcbacc59",
+      "Requirements": []
     },
     "broom": {
       "Package": "broom",
@@ -310,6 +326,16 @@
         "tibble"
       ]
     },
+    "class": {
+      "Package": "class",
+      "Version": "7.3-20",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "da09d82223e669d270e47ed24ac8686e",
+      "Requirements": [
+        "MASS"
+      ]
+    },
     "cli": {
       "Package": "cli",
       "Version": "3.2.0",
@@ -326,6 +352,22 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "ebaa97ac99cc2daf04e77eecc7b781d7",
+      "Requirements": []
+    },
+    "cluster": {
+      "Package": "cluster",
+      "Version": "2.1.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "c5f8447373ec2a0f593c694024e5b7ee",
+      "Requirements": []
+    },
+    "codetools": {
+      "Package": "codetools",
+      "Version": "0.2-18",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "019388fc48e48b3da0d3a76ff94608a8",
       "Requirements": []
     },
     "colorspace": {
@@ -388,6 +430,16 @@
       "Repository": "CRAN",
       "Hash": "36b67b5adf57b292923f5659f5f0c853",
       "Requirements": []
+    },
+    "datawizard": {
+      "Package": "datawizard",
+      "Version": "0.6.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "2970cca4f4b00f5b392d871e18e3194c",
+      "Requirements": [
+        "insight"
+      ]
     },
     "dbplyr": {
       "Package": "dbplyr",
@@ -968,6 +1020,14 @@
         "uuid"
       ]
     },
+    "insight": {
+      "Package": "insight",
+      "Version": "0.18.6",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "49a5e2067c566cb61060614883f999e7",
+      "Requirements": []
+    },
     "isoband": {
       "Package": "isoband",
       "Version": "0.2.5",
@@ -1194,6 +1254,17 @@
       "Repository": "CRAN",
       "Hash": "b3d98a967ec17c80f795719529812fa0",
       "Requirements": []
+    },
+    "memoise": {
+      "Package": "memoise",
+      "Version": "2.0.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "e2817ccf4a065c5d9d7f2cfbe7c1d78c",
+      "Requirements": [
+        "cachem",
+        "rlang"
+      ]
     },
     "mgcv": {
       "Package": "mgcv",
@@ -1652,6 +1723,14 @@
         "yaml"
       ]
     },
+    "rpart": {
+      "Package": "rpart",
+      "Version": "4.1.16",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "ea3ca1d9473daabb3cd0f1b4f974c1ed",
+      "Requirements": []
+    },
     "rprojroot": {
       "Package": "rprojroot",
       "Version": "2.0.2",
@@ -1788,6 +1867,33 @@
         "sysfonts"
       ]
     },
+    "sjlabelled": {
+      "Package": "sjlabelled",
+      "Version": "1.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4bd18166ef8ca74aeec74ad295dfe77f",
+      "Requirements": [
+        "datawizard",
+        "insight"
+      ]
+    },
+    "sjmisc": {
+      "Package": "sjmisc",
+      "Version": "2.8.9",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "86176cb3be04b2930649dce2bf56d3cb",
+      "Requirements": [
+        "dplyr",
+        "insight",
+        "magrittr",
+        "purrr",
+        "rlang",
+        "sjlabelled",
+        "tidyselect"
+      ]
+    },
     "snakecase": {
       "Package": "snakecase",
       "Version": "0.11.0",
@@ -1825,6 +1931,14 @@
         "lattice"
       ]
     },
+    "spatial": {
+      "Package": "spatial",
+      "Version": "7.3-15",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "c23666fdb7789c8a45e65340bb334607",
+      "Requirements": []
+    },
     "stringi": {
       "Package": "stringi",
       "Version": "1.7.6",
@@ -1843,6 +1957,16 @@
         "glue",
         "magrittr",
         "stringi"
+      ]
+    },
+    "survival": {
+      "Package": "survival",
+      "Version": "3.3-1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "f6189c70451d3d68e0d571235576e833",
+      "Requirements": [
+        "Matrix"
       ]
     },
     "svglite": {
@@ -1866,10 +1990,10 @@
     },
     "sysfonts": {
       "Package": "sysfonts",
-      "Version": "0.8.5",
+      "Version": "0.8.8",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "d5e2db91a3aa1ac242a6edb6b2093eb5",
+      "Hash": "7f4dac41a3e348ae12832167e6beb875",
       "Requirements": []
     },
     "systemfonts": {
@@ -1935,10 +2059,10 @@
     },
     "tidyverse": {
       "Package": "tidyverse",
-      "Version": "1.3.1",
+      "Version": "1.3.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "fc4c72b6ae9bb283416bd59a3303bbab",
+      "Hash": "972389aea7fa1a34739054a810d0c6f6",
       "Requirements": [
         "broom",
         "cli",
@@ -1997,23 +2121,6 @@
       "Hash": "50470c7ed0cc8099cbc17b38f0ef621f",
       "Requirements": []
     },
-    "translateR": {
-      "Package": "translateR",
-      "Version": "2.0",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "ChristopherLucas",
-      "RemoteRepo": "translateR",
-      "RemoteRef": "master",
-      "RemoteSha": "f8ebd4ca5909d52270cdcc7d21794a0095e3b544",
-      "Hash": "43854c3c38d5580c87ff9eed1ef6f9ef",
-      "Requirements": [
-        "RCurl",
-        "RJSONIO",
-        "httr"
-      ]
-    },
     "tseries": {
       "Package": "tseries",
       "Version": "0.10-49",
@@ -2028,10 +2135,10 @@
     },
     "tsibble": {
       "Package": "tsibble",
-      "Version": "1.1.1",
+      "Version": "1.1.3",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "6f071a41883a4636158a77e2b01766c3",
+      "Hash": "a9d10100310663a7583cf7e16a990e6f",
       "Requirements": [
         "anytime",
         "dplyr",
@@ -2198,10 +2305,10 @@
     },
     "xaringan": {
       "Package": "xaringan",
-      "Version": "0.22",
+      "Version": "0.26",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "c0ed5b878f24730ed7f4afbb95af84ae",
+      "Hash": "3ad9326ab938c148730bb17c90f66b63",
       "Requirements": [
         "htmltools",
         "knitr",
@@ -2212,15 +2319,10 @@
     },
     "xaringanExtra": {
       "Package": "xaringanExtra",
-      "Version": "0.4.0",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "xaringanExtra",
-      "RemoteUsername": "gadenbuie",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "f3ab769ccca2a0aa6ce6abc44e5377e02c8492e8",
-      "Hash": "5e72a47068acab7fcb30a98c3b7c2ca5",
+      "Version": "0.7.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "b700278c14be355c081d130d48abc83d",
       "Requirements": [
         "htmltools",
         "jsonlite",
@@ -2255,35 +2357,6 @@
       "Hash": "4c4b3bc29a916f33f1298dd951133351",
       "Requirements": [
         "rJava"
-      ]
-    },
-    "xmerit": {
-      "Package": "xmerit",
-      "Version": "0.0.11",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteUsername": "huhuaping",
-      "RemoteRepo": "xmerit",
-      "RemoteRef": "master",
-      "RemoteSha": "d97241c538df57beea452c0b25160b76b90d8d04",
-      "RemoteHost": "api.github.com",
-      "Remotes": "ChristopherLucas/translateR",
-      "Hash": "561395d24680f008e437dd328b3e3a79",
-      "Requirements": [
-        "dplyr",
-        "fs",
-        "keyring",
-        "kwb.utils",
-        "magrittr",
-        "plyr",
-        "purrr",
-        "stringr",
-        "tibble",
-        "tidyr",
-        "tidyselect",
-        "tidyverse",
-        "translateR",
-        "wooldridge"
       ]
     },
     "xml2": {
