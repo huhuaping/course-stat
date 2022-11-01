@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>05-01-relationship-video.knit</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css/hygge-duke.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+exclude: FALSE
+
+# 统计学原理(Statistic)
+
+
+## 5.1.1 变量间关系的度量
+
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### 2022-11-01
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 70px;
+z-index: 0;
+background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:0.2em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt; &amp;emsp;&amp;emsp; &lt;a href="#chapter"&gt; 第05章 相关和回归分析 &lt;/a&gt; &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&lt;a href="#corl"&gt; 5.1 变量间关系的度量 &lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+### 为什么要关心变量间的关系？
+
+希望回答的**现实问题**：
+
+&lt;div class="fyi"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;我们感兴趣的变量之间是否存在关系？&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果存在关系，它们之间是什么样的关系？&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;变量之间的关系强度如何？如何表达？&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;样本&lt;/strong&gt;所反映的变量之间的关系能否代表变量之间的&lt;strong&gt;总体&lt;/strong&gt;关系？&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+
+为回答上述问题，本节我们的主要学习内容为：
+
+- [变量间关系的类型表达](#corl-vars)
+
+- [相关关系的描述与测度](#corl-measure)
+
+---
+
+### （示例）变量间的关系：经济学专业解读
+
+&lt;img src="../pic/chpt05-intro-1-econ.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “我们数据不少，做了很严格的回归，但异常值略多略多，符合理论的数值反而难找……”
+
+---
+
+### （示例）变量间的关系：金融学专业解读
+
+&lt;img src="../pic/chpt05-intro-2-fin.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “我们的数据多如牛毛，无孔不入。即使做完回归，也会发现异常值和符合理论的数值多得不忍直视。”
+
+---
+
+### （示例）变量间的关系：土木工程专业解读
+
+&lt;img src="../pic/chpt05-intro-3-engine.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “我们得要设计余量，所以理论设计得远高于实际承受……”
+
+
+---
+
+### （示例）变量间的关系：环境科学专业解读
+
+&lt;img src="../pic/chpt05-intro-5-eniron.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “我们的理论和数据大致吻合，就是……应用范围仅限于这个小生态...”
+
+
+---
+
+### （示例）变量间的关系：社会学专业解读
+
+&lt;img src="../pic/chpt05-intro-8-sociology.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “学海无涯苦作舟。那么多数据，那么多理论，慢慢学，恩……”
+
+---
+
+### （示例）变量间的关系：历史学专业解读
+
+&lt;img src="../pic/chpt05-intro-6-history.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “数据虽然很多，可我们能用理论把他们统统连起来！”
+
+---
+
+### （示例）变量间的关系：物理学专业解读
+
+&lt;img src="../pic/chpt05-intro-4-physics.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “我们的理论和数据严丝合缝，bingo！”
+
+---
+
+### （示例）变量间的关系：数学专业解读
+
+&lt;img src="../pic/chpt05-intro-9-math.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “数据很少，但能建立理论～”
+
+---
+
+### （示例）变量间的关系：新闻学专业解读
+
+&lt;img src="../pic/chpt05-intro-10-journalism.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “只有一个数据，也能建立理论……”
+
+---
+
+### （示例）变量间的关系：哲学专业解读
+
+&lt;img src="../pic/chpt05-intro-11-philosophy.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&gt; “没有数据，依然建立理论……”
+
+
+
+---
+name: corl-vars
+
+## 变量间的关系类型：函数关系
+
+两个变量若存在是一一对应的**确定性**关系，则称二者具有**函数关系**。
+
+&lt;div class="notes"&gt;
+&lt;p&gt;设有两个变量 &lt;span class="math inline"&gt;\(X\)&lt;/span&gt;和 &lt;span
+class="math inline"&gt;\(Y\)&lt;/span&gt;，变量 &lt;span
+class="math inline"&gt;\(Y\)&lt;/span&gt;随变量 &lt;span
+class="math inline"&gt;\(X\)&lt;/span&gt;一起变化，并完全依赖于 &lt;span
+class="math inline"&gt;\(X\)&lt;/span&gt;，当变量 &lt;span
+class="math inline"&gt;\(X\)&lt;/span&gt;取某个数值时， &lt;span
+class="math inline"&gt;\(Y\)&lt;/span&gt;依确定的关系取相应的值，则称 &lt;span
+class="math inline"&gt;\(Y\)&lt;/span&gt;是 &lt;span
+class="math inline"&gt;\(X\)&lt;/span&gt;的函数，记为 &lt;span
+class="math inline"&gt;\(Y = f(X)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;/div&gt;
+
+
+
+&gt; 从**几何学**角度来看，数据集各观测点会落在一条理论曲线上。
+
+---
+
+### （示例）函数关系
+
+对于函数关系，常见的例子包括：
+
+&lt;div class="case"&gt;
+&lt;ul&gt;
+&lt;li&gt;某种商品的销售额 &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;与销售量
+&lt;span class="math inline"&gt;\(X\)&lt;/span&gt;之间的关系可表示为( &lt;span
+class="math inline"&gt;\(P\)&lt;/span&gt;为单价)：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class="math display"&gt;\[Y_i = P_i\cdot X_i\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;圆的面积 &lt;span class="math inline"&gt;\(S\)&lt;/span&gt;与半径 &lt;span
+class="math inline"&gt;\(R\)&lt;/span&gt;之间的关系可表示为：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class="math display"&gt;\[S = \pi R^2\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;企业的原材料消耗额 &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;与产量
+&lt;span class="math inline"&gt;\(X1\)&lt;/span&gt; 、单位产量消耗 &lt;span
+class="math inline"&gt;\(X2\)&lt;/span&gt; 、原材料价格 &lt;span
+class="math inline"&gt;\(X3\)&lt;/span&gt;之间的关系可表示为：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class="math display"&gt;\[Y = X_1 \cdot X_2 \cdot X_3\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 变量间的关系类型：相关关系
+
+两个变量若存在是某种**非确定性**的联系，则称二者具有**相关关系**。
+
+相关分析中的总体假定：
+
+- 两个变量之间是线性关系
+
+- 两个变量都是随机变量
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt05-measure-rel.png" alt="相关关系的类型" width="80%" /&gt;
+&lt;p class="caption"&gt;相关关系的类型&lt;/p&gt;
+&lt;/div&gt;
+
+
+---
+
+### （示例）相关关系
+
+对于相关关系，常见的例子包括：
+
+&lt;div class="case"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;父亲身高 &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;与子女身高 &lt;span
+class="math inline"&gt;\(X\)&lt;/span&gt;之间的关系&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;粮食单位面积产量 &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;与施肥量
+&lt;span class="math inline"&gt;\(X1\)&lt;/span&gt; 、降雨量 &lt;span
+class="math inline"&gt;\(X2\)&lt;/span&gt;、温度 &lt;span
+class="math inline"&gt;\(X3\)&lt;/span&gt;之间的关系&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;收入水平 &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;与受教育程度 &lt;span
+class="math inline"&gt;\(X\)&lt;/span&gt;之间的关系&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;商品销售额 &lt;span class="math inline"&gt;\(Y\)&lt;/span&gt;与广告费支出
+&lt;span class="math inline"&gt;\(X\)&lt;/span&gt;之间的关系&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+
+
+
+---
+
+## 相关关系的类型：正相关
+
+.fl.w-50[
+
+&lt;img src="../pic/chpt05-scatter-p0.png" width="583" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.fl.w-50[
+
+&lt;img src="../pic/chpt05-scatter-p1.png" width="583" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## 相关关系的类型：负相关
+
+
+.fl.w-50[
+
+&lt;img src="../pic/chpt05-scatter-n0.png" width="583" style="display: block; margin: auto;" /&gt;
+
+]
+
+--
+
+.fl.w-50[
+
+&lt;img src="../pic/chpt05-scatter-n1.png" width="583" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+## 相关关系的类型：非线性相关
+
+.fl.w-50[
+
+&lt;img src="../pic/chpt05-scatter-nonline.png" width="584" style="display: block; margin: auto;" /&gt;
+
+]
+
+--
+
+.fl.w-50[
+
+&lt;img src="../pic/chpt05-scatter-independence.png" width="584" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+## 相关关系的描述与测度：散点图
+
+**散点图**是一种对变量间相关关系进行图形化展示的方法。
+
+- 将两个变量对应的值在坐标系中用点表示出来。
+
+- 根据点的分布规律或离散程度判断变量之间的相关性及其规律。
+
+---
+
+### 散点图示例1：两类油品价格的关系
+
+&lt;img src="../pic/chpt05-scatter-oil-price.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 散点图示例2：传染病与认知水平的关系
+
+&lt;img src="../pic/chpt05-scatter-disease.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 散点图示例3：多种相关类型的散点图对比
+
+&lt;img src="../pic/chpt05-scatter-all-cases.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+name: corl-measure
+
+## 相关关系的描述与测度：相关系数
+
+**相关系数**：是对变量之间**线性关系**强度的测度量。
+
+&lt;div class="notes"&gt;
+&lt;p&gt;根据&lt;strong&gt;计算层次&lt;/strong&gt;可分为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;根据&lt;strong&gt;样本&lt;/strong&gt;抽样数据计算，称为.red[&lt;strong&gt;样本相关系数&lt;/strong&gt;]，记为
+&lt;span class="math inline"&gt;\(r\)&lt;/span&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;根据&lt;strong&gt;总体&lt;/strong&gt;全部数据计算，称为&lt;strong&gt;总体相关系数&lt;/strong&gt;，记为
+&lt;span class="math inline"&gt;\(\rho\)&lt;/span&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+
+
+.pull-left[
+
+&lt;div class="notes"&gt;
+&lt;p&gt;根据&lt;strong&gt;计算方法&lt;/strong&gt;可分为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;.red[&lt;strong&gt;Pearson相关系数&lt;/strong&gt;]&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Spearman相关系数&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Kendall秩相关系数&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+]
+
+.pull-right[
+
+&lt;div class="notes"&gt;
+&lt;p&gt;根据&lt;strong&gt;变量数量&lt;/strong&gt;可分为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;.red[&lt;strong&gt;简单相关系数&lt;/strong&gt;]&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;偏相关系数&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+]
+
+&gt; 这里，我们重点学习**Pearson样本简单相关系数**。
+
+---
+
+## 相关关系的描述与测度：Pearson相关系数
+
+这里，我们重点介绍Pearson样本简单相关系数的计算：
+
+.mb1.pa1.bg-light-blue[
+
+`$$\begin{align}
+r &amp; = \frac{n \sum X_i Y_i -\sum X_i \sum Y_i}{\sqrt{n \sum X_i^{2}-\left(\sum X_i\right)^{2}} \cdot \sqrt{n \sum Y_i^{2}-\left(\sum Y_i\right)^{2}}} \tag{eq01}
+\end{align}$$`
+
+]
+
+.mb1.pa1.bg-light-blue[
+
+`$$\begin{align}
+r &amp; = \frac{ \sum{\left( (X_i - \overline{X})(Y_i - \overline{Y})\right ) } }{\sqrt{\sum{(X_i - \overline{X})^2 }\sum{(Y_i - \overline{Y})^2}}} 
+= \frac{S S_{XY}}{\sqrt{S S_{XX}} \sqrt{S S_{YY}}}
+= \frac{\sum{x_iy_i}}{\sqrt{\sum{x_i^2}\sum{y_i^2}}}
+\tag{eq02}
+\end{align}$$`
+
+]
+
+
+.mb1.pa1.bg-lightest-blue[
+
+`$$\begin{align}
+S S_{X X} =\sum_{i=1}^{n}\left(X_{i}-\overline{X}\right)^{2}  ;\quad 
+S S_{Y Y} =\sum_{i=1}^{n}\left(Y_{i}-\overline{Y}\right)^{2}  ;\quad 
+S S_{X Y}=\sum_{i=1}^{n}\left(X_{i}-\overline{X}\right)\left(Y_{i}-\overline{Y}\right)
+\end{align}$$`
+
+]
+
+---
+
+## 相关关系的描述与测度：Pearson相关系数
+
+Pearson相关系数具有如下性质：
+
+&lt;div class="notes"&gt;
+&lt;p&gt;&lt;strong&gt;性质1&lt;/strong&gt;： &lt;span
+class="math inline"&gt;\(r\)&lt;/span&gt;的取值范围是 &lt;span
+class="math inline"&gt;\([-1,1]\)&lt;/span&gt;， &lt;span
+class="math inline"&gt;\(|r|\)&lt;/span&gt;越趋于1表示相关关系越强； &lt;span
+class="math inline"&gt;\(|r|\)&lt;/span&gt;越趋于0表示相关关系越弱。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;如果 &lt;span class="math inline"&gt;\(|r|=1\)&lt;/span&gt;，为完全相关。其中
+&lt;span class="math inline"&gt;\(r =1\)&lt;/span&gt;，为完全正相关； &lt;span
+class="math inline"&gt;\(r =-1\)&lt;/span&gt;，为完全负正相关&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果 &lt;span class="math inline"&gt;\(r =
+0\)&lt;/span&gt;，不存在线性相关关系&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果 &lt;span
+class="math inline"&gt;\(-1&amp;lt;r&amp;lt;0\)&lt;/span&gt;，为负相关；如果 &lt;span
+class="math inline"&gt;\(0&amp;lt;r&amp;lt;1\)&lt;/span&gt;，为正相关。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div class="notes"&gt;
+&lt;p&gt;&lt;strong&gt;性质2&lt;/strong&gt;：r具有对称性。即 &lt;span
+class="math inline"&gt;\(X\)&lt;/span&gt;与 &lt;span
+class="math inline"&gt;\(Y\)&lt;/span&gt;之间的相关系数和 &lt;span
+class="math inline"&gt;\(Y\)&lt;/span&gt;与 &lt;span
+class="math inline"&gt;\(X\)&lt;/span&gt;之间的相关系数相等，即 &lt;span
+class="math inline"&gt;\(r_{XY}= r_{YX}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;/div&gt;
+
+
+---
+
+## 相关关系的描述与测度：Pearson相关系数
+
+Pearson相关系数具有如下性质：
+
+&lt;div class="notes"&gt;
+&lt;p&gt;&lt;strong&gt;性质3&lt;/strong&gt;： &lt;span
+class="math inline"&gt;\(r\)&lt;/span&gt;数值大小与 &lt;span
+class="math inline"&gt;\(X\)&lt;/span&gt;和 &lt;span
+class="math inline"&gt;\(Y\)&lt;/span&gt;原点及尺度无关，即改变 &lt;span
+class="math inline"&gt;\(X\)&lt;/span&gt;和 &lt;span
+class="math inline"&gt;\(Y\)&lt;/span&gt;的数据原点及计量尺度，并不改变 &lt;span
+class="math inline"&gt;\(r\)&lt;/span&gt;数值大小。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="notes"&gt;
+&lt;p&gt;&lt;strong&gt;性质4&lt;/strong&gt;：仅仅是 &lt;span
+class="math inline"&gt;\(X\)&lt;/span&gt;与 &lt;span
+class="math inline"&gt;\(Y\)&lt;/span&gt;之间线性关系的一个度量，它不能用于描述非线性关系。这意为着，
+&lt;span
+class="math inline"&gt;\(r=0\)&lt;/span&gt;只表示两个变量之间不存在线性相关关系，并不说明变量之间没有任何关系&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="notes"&gt;
+&lt;p&gt;&lt;strong&gt;性质5&lt;/strong&gt;： &lt;span
+class="math inline"&gt;\(r\)&lt;/span&gt;虽然是两个变量之间线性关系的一个度量，却不一定意味着
+&lt;span class="math inline"&gt;\(X\)&lt;/span&gt;与 &lt;span
+class="math inline"&gt;\(Y\)&lt;/span&gt;一定有因果关系。&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 相关关系的描述与测度：Pearson相关系数
+
+下面给出实证研究时，对样本相关系数的经验解释：
+
+&lt;div class="fyi"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;当 &lt;span
+class="math inline"&gt;\(|r|&amp;lt;0.8\)&lt;/span&gt;时，可视为两个变量之间高度线性相关。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;当 &lt;span
+class="math inline"&gt;\(0.5&amp;lt;|r|&amp;lt;0.8\)&lt;/span&gt;时，可视为中度线性相关。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;当 &lt;span
+class="math inline"&gt;\(0.3&amp;lt;|r|&amp;lt;0.5\)&lt;/span&gt;时，视为低度线性相关。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;当 &lt;span
+class="math inline"&gt;\(|r|&amp;lt;0.3\)&lt;/span&gt;时，认为两个变量之间的相关程度极弱。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&gt; 当然，上述解释必须建立在对相关系数的显著性进行统计检验的基础之上。
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-little-yellow.gif")
+class: inverse,center
+# 本节结束
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

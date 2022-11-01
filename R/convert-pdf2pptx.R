@@ -6,7 +6,7 @@
 
 require(pdf2pptx)
 
-file_dir <- "d://github/course-stat/public/slide-pdf/2022-03/"
+file_dir <- "d://github/course-stat/public/slide-pdf/2022-11/"
 file_list <- list.files(file_dir)
 id_target <- which(stringr::str_detect(file_list, "^[[\\d]]{2}.*\\.pdf$"))
 files_target <- sort((file_list)[id_target])
@@ -22,7 +22,7 @@ if (!dir.exists(dir_tem)) dir.create(dir_tem)
 # loop to convert
 # this will take long time, maybe 2~5 minutes per 100 slides.
 ratio <- 169
-for (i in 1:9) {
+for (i in 1:2) {
   if (ratio ==169) {
     pdf2pptx::pdf2pptx(pdf_filename =files_path[i],
                        pptx_filename = path_out_169[i],
