@@ -1,17 +1,17 @@
 ---
 title: "大学生科研创新与数据分析报告"
-subtitle: "——结合大学生科创项目申报的过程训练"
+subtitle: "——商业经济统计分析全流程训练"
 author: "指导教师：胡华平"
 date: "修订日期-`r Sys.Date()`"
 params:
   hand_out:
     value:
       lab_num: 1
-      name_chn: EViews基本操作：工业化国家CPI案例
-      name_eng: EViews-basic-cpi
-  hw_start: '2022-03-07' # week 3
-  hw_end: '2022-06-26' # week 18
-  term_start: "2022-02-21"
+      name_chn: 科研创新与数据分析报告
+      name_eng: research-data-analysis
+  hw_start: '2023-03-14' # week 3
+  hw_end: '2023-06-19' # week 18
+  term_start: "2023-02-13"
 knit: (function(inputFile, encoding) { 
   outFile <- sub(pattern = "(.*)\\..*$", replacement = "\\1", basename(inputFile));
   out_dir <- 'handout';
@@ -90,10 +90,10 @@ term_week <- function(dates, term_start = params$term_start) {
 }
 
 check_dates <- as.Date(
-  c("2022-04-10", # week 7, 
-    "2022-05-22", # week 13, 
-    "2022-06-12", # week 16, 
-    "2022-06-19" # week 17
+  c("2023-04-02", # week 7, 
+    "2022-05-15", # week 13, 
+    "2022-05-29", # week 15, 
+    "2022-06-12" # week 17
     #"2022-06-26" # week 18
     )
   ) 
@@ -210,7 +210,9 @@ show_items %>%
 
 - 没人独立完成全部上述训练环节。
 
-- 严谨学术失范，禁止剽窃或复制他人知识成果！
+- 严禁学术失范，禁止剽窃或复制他人知识成果！
+
+- 请使用微软MS Word排版软件，严格按照西北农林科技大学本科毕业论文写作格式规范！
 
 \newpage
 
