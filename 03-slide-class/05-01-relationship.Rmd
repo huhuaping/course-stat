@@ -702,6 +702,101 @@ $H_0$，认为相关关系不显著。
 
 ---
 
+### 附录：假设检验的分布及统计量证明1/3
+
+$$
+\begin{align}
+\sum_y y h(y \mid x)& =\sum_y y \frac{f(x, y)}{f_X(x)}= \beta_1 + \beta_2 x && \text{(1)}
+\end{align}
+$$
+
+$$
+\begin{align}
+\sum_y y f(x, y)&=(\beta_1+ \beta_2 x) f_X(x) && \text{(2)}\\
+\sum_{x } \sum_y y f(x, y) &=\sum_{x }(\beta_1+ \beta_2 x) f_X(x) && \text{(3)} \\
+\sum_{x } \sum_y x y f(x, y) &=\sum_{x }\left(\beta_1 x+ \beta_2 x^2\right) f_X(x) && \text{(4)}  \\
+E(X Y)&=\beta_1 E(X)+ \beta_2 E\left(X^2\right) && \text{(5)}\\
+\end{align}
+$$
+
+$$
+\begin{align}
+\mu_Y&=\beta_1 + \beta_2 \mu_X && \text{(6 <--2)} \\
+\mu_X \mu_Y+\rho \sigma_X \sigma_Y &=\beta_1 \mu_X+\beta_2\left(\mu_X^2+\sigma_X^2\right) && \text{(7 <--5)}
+\end{align}
+$$
+
+.footnote[
+
+当然，故事其实比上面还要更复杂。大家可以深入思考和讨论。参看：[1] Hogg R V, Tanis E A, Zimmerman D L.  Probability and statistical inference[M]. 第10版.   NJ,Hoboken:Pearson, 2020. pg 148 (section 4.3)
+
+
+]
+
+---
+
+### 附录：假设检验的分布及统计量证明2/3
+
+利用上述二元一次方程组，可以解出参数：
+
+$$
+\begin{align}
+\beta_1 &=\mu_Y-\rho \frac{\sigma_Y}{\sigma_X} \mu_X && \text{(8)} \\
+\beta_2 &=\rho \frac{\sigma_Y}{\sigma_X}  && \text{(9)}
+\end{align}
+$$
+
+$$
+\begin{align}
+E(Y \mid X_i)= \beta_1 +\beta_2X_i = \beta_1 + \rho \frac{\sigma_Y}{\sigma_X}  X_i && \text{(10)}
+\end{align}
+$$
+
+相关系数
+$\rho$的显著性检验等价于一元线性回归分析中斜率参数
+$\beta_2$的t检验过程，也即：
+$H_0: \rho = 0; \quad H_1: \rho \neq 0$；等价于
+$H_0: \beta_2 = 0; \quad H_1: \beta_2 \neq 0$
+
+---
+
+### 附录：假设检验的分布及统计量证明3/3
+
+一元线性回归
+$Y_i = \beta_1 +\beta_2X_i + u_i$；斜率系数t检验
+$H_0: \beta_2 = 0; H_1: \beta_2 \neq 0$
+
+$$
+\begin{align}
+t=\frac{\hat{\beta_2} -\beta_2}{\hat{\sigma}_{\hat{\beta}_2}}
+=\frac{\hat{\beta_2}}{\sqrt{\frac{\hat{\sigma}^2}{\sum\left(X_i-\bar{X}\right)^2}}}
+=\frac{\hat{\beta_2}-0}{\sqrt{\frac{\mathrm{MSE}}{\sum\left(X_i-\bar{X}\right)^2}}}
+=\frac{r \cdot \left(S_Y / S_X\right)}{\sqrt{\frac{(n-1) S_Y^2 \left(1-r^2\right)}{(n-2) } \cdot \frac{1}{(n-1)S_X^2}}}
+=\frac{r \sqrt{n-2}}{\sqrt{1-r^2}}
+\end{align}
+$$
+
+
+
+$$
+\begin{align}
+r &= \frac{S_{XY}}{S_X S_Y} \\
+\hat{\beta}_2 &=\frac{\frac{1}{n-1} \sum_{i=1}^n\left(X_i-\bar{X}\right)\left(Y_i-\bar{Y}\right)}{\frac{1}{n-1} \sum_{i=1}^n\left(X_i-\bar{X}\right)^2}=\frac{S_{XY}}{S_X^2}=r \cdot \frac{S_Y}{S_X}\\
+\hat{\beta}_1 & = \overline{Y} - \hat{\beta}_2 \overline{X} \\
+M S E \equiv \sigma^2 &= \frac{\sum_{i=1}^n\left(Y_i-\hat{Y}_i\right)^2}{n-2}=\frac{\sum_{i=1}^n\left[Y_i-\left(\bar{Y}+\frac{S_{XY}}{S_X^2}\left(X_i-\bar{X}\right)\right)\right]^2}{n-2}=\frac{(n-1) S_Y^2\left(1-r^2\right)}{n-2}
+\end{align}
+$$
+
+
+
+???
+
+参看队长问答[Why Test Statistic for the Pearson Correlation Coefficient](https://stats.stackexchange.com/questions/270612/why-test-statistic-for-the-pearson-correlation-coefficient-is-frac-r-sqrtn-2/321382#321382)
+
+终极回答见[Three Tests for Rho](https://web.archive.org/web/20130625153233/https://onlinecourses.science.psu.edu/stat414/node/254)
+
+---
+
 exclude: true
 
 ## （案例）银行贷款
