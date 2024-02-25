@@ -28,6 +28,7 @@ options(servr.daemon = TRUE) # unlock thread when infinite moon render
 
 
 # pkg needed
+library(here)
 library('rmarkdown')
 library('bookdown')
 library('knitr')
@@ -60,3 +61,7 @@ require("jpeg")
 require("kableExtra")
 require("foreign")
 require("xmerit")
+require(webshot2)
+
+# for github cred
+library("gitcreds")

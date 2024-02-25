@@ -35,14 +35,18 @@ class: center,middle
 ### `r Sys.Date()`
 
 ```{r global_options, echo=F,message=FALSE,warning=F}
-source("../R/set-global.R")
+source(here::here("R/set-global.R"))
 options(width = 70)
-#source("../R/xaringan-chromote-print.R")
+#source(here("R/xaringan-chromote-print.R"))
+library(purrr)
+
+#avoid error: evaluation nested too deeply: infinite recursion / options(expressions=)?
+options(expressions= 100000)
 ```
 
 
 ```{r ex-math-eq}
-source("../R/external-math-equation.R")
+source(here("R/external-math-equation.R"))
 ```
 
 
@@ -748,7 +752,7 @@ $(\checkmark)$ 在过去十年中，经济和政治因素如何影响英国的�
 根据您要收集的数据，确定最适合您的研究的方法。
 
 ```{r, message=FALSE, warning=FALSE}
-df_tools <- read_delim("../data/data-collection-tool.txt",delim = ";")
+df_tools <- read_delim(here("data/data-collection-tool.txt"),delim = ";")
 #DT::datatable(df_tools,options = list(pageLength =6, dom = "t"))
 df_tools %>%
   add_column("序号"=1:nrow(.), .before = "方法")%>%
@@ -903,7 +907,7 @@ layout: true
 .right-column[
 
 ```{r}
-include_graphics("../pic/chpt02-second-projects.png",dpi=110)
+include_graphics(here("pic/chpt02-second-projects.png"),dpi=110)
 ```
 ]
 
@@ -914,7 +918,7 @@ include_graphics("../pic/chpt02-second-projects.png",dpi=110)
 .pull-left[
 
 ```{r}
-include_graphics("../pic/chpt02-second-projects2.png")
+include_graphics(here("pic/chpt02-second-projects2.png"))
 ```
 
 ]
@@ -922,7 +926,7 @@ include_graphics("../pic/chpt02-second-projects2.png")
 .pull-right[
 
 ```{r}
-include_graphics("../pic/chpt02-second-projects3.png", dpi = 110)
+include_graphics(here("pic/chpt02-second-projects3.png"), dpi = 110)
 ```
 
 ]
@@ -958,7 +962,7 @@ include_graphics("../pic/chpt02-second-projects3.png", dpi = 110)
 ### 示例1：中国家庭追踪调查（CFPS）的数据申请
 
 ```{r}
-knitr::include_graphics("../pic/chpt02-CFPS-application00.png", dpi = 150)
+knitr::include_graphics(here("pic/chpt02-CFPS-application00.png"), dpi = 150)
 ```
 
 ---
@@ -966,7 +970,7 @@ knitr::include_graphics("../pic/chpt02-CFPS-application00.png", dpi = 150)
 ### 示例1：中国家庭追踪调查（CFPS）的数据申请
 
 ```{r}
-knitr::include_graphics("../pic/chpt02-CFPS-application01.png", dpi = 100)
+knitr::include_graphics(here("pic/chpt02-CFPS-application01.png"), dpi = 100)
 ```
 
 ---
@@ -974,7 +978,7 @@ knitr::include_graphics("../pic/chpt02-CFPS-application01.png", dpi = 100)
 ### 示例1：中国家庭追踪调查（CFPS）的数据申请
 
 ```{r}
-knitr::include_graphics("../pic/chpt02-CFPS-application02.png", dpi = 100)
+knitr::include_graphics(here("pic/chpt02-CFPS-application02.png"), dpi = 100)
 ```
 
 ---
@@ -982,7 +986,7 @@ knitr::include_graphics("../pic/chpt02-CFPS-application02.png", dpi = 100)
 ### 示例1：中国家庭追踪调查（CFPS）的数据申请
 
 ```{r}
-knitr::include_graphics("../pic/chpt02-CFPS-application03.png", dpi = 120)
+knitr::include_graphics(here("pic/chpt02-CFPS-application03.png"), dpi = 120)
 ```
 
 ---
@@ -990,7 +994,7 @@ knitr::include_graphics("../pic/chpt02-CFPS-application03.png", dpi = 120)
 ### 示例2：中国健康与养老追踪调查（CHARLS）的数据申请
 
 ```{r}
-knitr::include_graphics("../pic/chpt02-CHARLS-application00.png", dpi = 100)
+knitr::include_graphics(here("pic/chpt02-CHARLS-application00.png"), dpi = 100)
 ```
 
 ---
@@ -998,7 +1002,7 @@ knitr::include_graphics("../pic/chpt02-CHARLS-application00.png", dpi = 100)
 ### 示例2：中国健康与养老追踪调查（CHARLS）的数据申请
 
 ```{r}
-knitr::include_graphics("../pic/chpt02-CHARLS-application01.png", dpi = 100)
+knitr::include_graphics(here("pic/chpt02-CHARLS-application01.png"), dpi = 100)
 ```
 
 ---
@@ -1086,7 +1090,7 @@ knitr::include_graphics("../pic/chpt02-CHARLS-application01.png", dpi = 100)
 ## 收集调查数据：总结
 
 ```{r}
-investigation <- read.xlsx("../data/investigation.xlsx")
+investigation <- read.xlsx(here("data/investigation.xlsx"))
 
 investigation %>%
   datatable(options = list(pageLength =8))
@@ -1519,7 +1523,7 @@ $\ge$ **抽样框**。
 ## 概率抽样1：简单随机抽样（kish table）
 
 ```{r}
-include_graphics("../pic/chpt02-kish-table.png", dpi = 140)
+include_graphics(here("pic/chpt02-kish-table.png"), dpi = 140)
 ```
 
 
@@ -1557,9 +1561,9 @@ include_graphics("../pic/chpt02-kish-table.png", dpi = 140)
 ## 概率抽样1：简单随机抽样（R示例）
 
 ```{r}
-files <- dir("../data/student-list/")
-dir_list <- str_c("../data/student-list/", files)
-
+files <- dir(here("data/student-list/"))
+dir_list <- str_c(here("data/student-list/"),"/", files)
+# i <-1
 students <- NULL
  for (i in seq_along(dir_list) ){
   data_tem <- openxlsx::read.xlsx(dir_list[i], startRow = 3, cols = 1:4, colNames = T) %>%mutate(class =str_extract(`班级`, "([^\\d]+)"),
@@ -1631,7 +1635,7 @@ students%>%
 下面是一张kish随机数表：
 
 ```{r}
-kish <- read.xlsx("../data/kish-table.xlsx")
+kish <- read.xlsx(here("data/kish-table.xlsx"))
 
 kish %>%
   datatable(caption = "一份kish 随机数表")
@@ -1825,7 +1829,7 @@ household %>%
 .pull-right[
 
 ```{r}
-include_graphics("../pic/chpt02-cluster-sampling.png", dpi=300)
+include_graphics(here("pic/chpt02-cluster-sampling.png"), dpi=300)
 ```
 
 ]
@@ -2081,7 +2085,7 @@ $0.0125 \ast 0.04 = 0.0005$。
 </br>
 
 ```{r}
-include_graphics("../pic/chpt02-stratified-sampling.png",dpi=160)
+include_graphics(here("pic/chpt02-stratified-sampling.png"),dpi=160)
 ```
 
 
@@ -2232,7 +2236,7 @@ CGSS 2010年的抽样方案：
 .pull-right[
 
 ```{r}
-include_graphics("../pic/chpt02-non-probability-sampling-2.png")
+include_graphics(here("pic/chpt02-non-probability-sampling-2.png"))
 ```
 
 
@@ -2904,7 +2908,7 @@ knitr::include_url(url_plotly, height = "530px")
 ```
 
 ```{r}
-knitr::include_graphics("../pic/chpt02-bi-normal-statpng.png", dpi=150)
+knitr::include_graphics(here("pic/chpt02-bi-normal-statpng.png"), dpi=150)
 ```
 
 
@@ -3127,7 +3131,7 @@ $s^2_y$见列`s2_y`。
 set.seed(7321)
 
 demo_more <- tibble(sample =1:10) %>%
-  mutate(y = map(sample, .f = function(x){sample(1:6, 8, replace = T)})) %>%
+  mutate(y = purrr::map(sample, .f = function(x){sample(1:6, 8, replace = T)})) %>%
   mutate(bar_y = map_dbl(y, mean),
          s2_y = map_dbl(y, .f = function(x){(sd(x))^2})) %>%
   janitor::adorn_totals()
@@ -3641,7 +3645,7 @@ n &=\frac{1}{\frac{d^{2}}{N^{2} \cdot \mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigm
 .pull-left[
 
 ```{r, out.height= '300px'}
-include_graphics("../pic/chpt02-sampling-stratified.png")
+include_graphics(here("pic/chpt02-sampling-stratified.png"))
 ```
 
 ]
@@ -3852,14 +3856,14 @@ var_st^0.5
 .pull-left[
 
 ```{r, out.height= '250px', fig.cap="系统抽样示例"}
-include_graphics("../pic/chpt02-sampling-systematic.png")
+include_graphics(here("pic/chpt02-sampling-systematic.png"))
 ```
 
 ]
 
 .pull-right[
 ```{r, out.height= '250px', fig.cap="整群抽样示例"}
-include_graphics("../pic/chpt02-sampling-cluster.png")
+include_graphics(here("pic/chpt02-sampling-cluster.png"))
 ```
 ]
 
@@ -3877,7 +3881,7 @@ $y$值将都会被抽中。
 .pull-left[
 
 ```{r, out.height= '250px', fig.cap="系统抽样示例"}
-include_graphics("../pic/chpt02-sampling-systematic-psu.gif")
+include_graphics(here("pic/chpt02-sampling-systematic-psu.gif"))
 ```
 
 - 该案例共有25个主要抽样单位（PSU）：每个5*5中型方框都有25个小格。
@@ -3891,7 +3895,7 @@ $n=16$。
 
 .pull-right[
 ```{r, out.height= '250px', fig.cap="整群抽样示例"}
-include_graphics("../pic/chpt02-sampling-cluster-psu.gif")
+include_graphics(here("pic/chpt02-sampling-cluster-psu.gif"))
 ```
 
 - 该案例共有50个主要抽样单位（PSU）：共有50个2*4型方框。
@@ -3914,7 +3918,7 @@ $n=8$。
 
 ```{r}
 
-include_graphics("../pic/chpt02-sampling-queue.gif")
+include_graphics(here("pic/chpt02-sampling-queue.gif"))
 
 ```
 
@@ -3961,7 +3965,7 @@ $$\begin{align}
 .pull-left[
 
 ```{r, out.height= '400px', fig.cap="系统抽样示例"}
-include_graphics("../pic/chpt02-sampling-systematic-notation.gif")
+include_graphics(here("pic/chpt02-sampling-systematic-notation.gif"))
 ```
 
 ]
@@ -3984,7 +3988,7 @@ $M_i=16$：所有5*5中型方框，共有16个。
 
 .pull-left[
 ```{r, out.height= '400px', fig.cap="整群抽样示例"}
-include_graphics("../pic/chpt02-sampling-cluster-notation.gif")
+include_graphics(here("pic/chpt02-sampling-cluster-notation.gif"))
 ```
 
 ]
@@ -4063,7 +4067,7 @@ df_systematic <- sapply(random_start,FUN =  function(x){seq(from =x, by =50, len
 calc_systematic <- df_systematic %>%
   mutate(out = str_c(id,"(",persons, ")")) %>%
   nest(-select) %>%
-  mutate(out = map(data,.f = function(x){x$out})) %>%
+  mutate(out = purrr::map(data,.f = function(x){x$out})) %>%
   mutate(mean = map_dbl(data,.f = function(x){mean(x$persons)}))
 
 mu_sy <- mean(calc_systematic$mean)
@@ -4215,7 +4219,7 @@ exclude: true
 
 ```{r}
 cluster_id <- sample(1:400, size = 24)
-vocation <- read_table2("../data/Vacation.txt") %>%
+vocation <- read_table2(here("data/Vacation.txt")) %>%
   rename_all( ~c("number.households", "total.budget")) %>%
   add_column(cluster = cluster_id, .before = "number.households")
 
@@ -4502,7 +4506,7 @@ $$\begin{align}
 
 
 ```{r, out.height= '450px', fig.cap="两阶段抽样示例1：10个PSU，4个SSU/PSU"}
-include_graphics("../pic/chpt02-sampling-mutiple-stage-demo1.gif")
+include_graphics(here("pic/chpt02-sampling-mutiple-stage-demo1.gif"))
 ```
 
 
@@ -4513,7 +4517,7 @@ include_graphics("../pic/chpt02-sampling-mutiple-stage-demo1.gif")
 ## 抽样误差：多阶段抽样
 
 ```{r, out.height= '450px', fig.cap="两阶段抽样示例2：20个PSU，2个SSU/PSU"}
-include_graphics("../pic/chpt02-sampling-mutiple-stage-demo2.gif")
+include_graphics(here("pic/chpt02-sampling-mutiple-stage-demo2.gif"))
 ```
 
 
@@ -5376,7 +5380,7 @@ layout: true
 问题是，这些数据是怎么处理的呢？数据清洗关心的正是[这个问题](https://www.alibabacloud.com/help/zh/doc-detail/27875.htm)。
 
 ```{r}
-include_graphics("../pic/chpt02-alibaba-map-reduce.jpg",dpi = 80)
+include_graphics(here("pic/chpt02-alibaba-map-reduce.jpg"),dpi = 80)
 ```
 
 
@@ -5416,9 +5420,9 @@ require("haven")
 require("sjmisc")
 
 
-CGSS2015 <- read_dta("../data-raw/CGSS2015.dta")  #%>%
+CGSS2015 <- read_dta(here("data-raw/CGSS2015.dta"))  #%>%
   #as_factor(.,  levels = "both")
-#CGSS2013 <- read_dta("../data-raw/CGSS2013.dta")
+#CGSS2013 <- read_dta(here("data-raw/CGSS2013.dta"))
 
 n_obs <- nrow(CGSS2015)
 
@@ -5879,7 +5883,7 @@ SPSS数据库的**变量视图**
 ## B.访谈调查数据的数据库化（主要步骤）
 
 ```{r, eval = FALSE}
-database2 <- read_table("../data-raw/qiu-database.txt", col_names =F,
+database2 <- read_table(here("data-raw/qiu-database.txt"), col_names =F,
            locale = locale(encoding = stringi::stri_enc_get())) %>%
   as_tibble()  %>%
   mutate(X2 =str_extract_all(X1,"(?<=text\":\")(.*)(?=\")"))
@@ -6160,7 +6164,7 @@ levels_province<-c('全国','北京','天津','河北','山西','内蒙古','辽
 
 
 ```{r,fig.cap="文献资料文件夹"}
-include_graphics("../pic/data-clean/data-material-dir1.png")
+include_graphics(here("pic/data-clean/data-material-dir1.png"))
 ```
 
 ]
@@ -6189,7 +6193,7 @@ include_graphics("../pic/data-clean/data-material-dir1.png")
 
 
 ```{r, fig.cap= "子文件夹"}
-include_graphics("../pic/data-clean/data-material-dir2-children.png")
+include_graphics(here("pic/data-clean/data-material-dir2-children.png"))
 ```
 
 ]
@@ -6221,7 +6225,7 @@ include_graphics("../pic/data-clean/data-material-dir2-children.png")
 
 
 ```{r, fig.cap= "文献《国家工程技术研究中心》"}
-include_graphics("../pic/data-clean/data-material-dir4-grandchild.png")
+include_graphics(here("pic/data-clean/data-material-dir4-grandchild.png"))
 ```
 
 ]
@@ -6250,7 +6254,7 @@ include_graphics("../pic/data-clean/data-material-dir4-grandchild.png")
 .pull-right[
 
 ```{r,fig.cap="文献《中国科技统计年鉴》"}
-include_graphics("../pic/data-clean/data-material-dir5-file.png")
+include_graphics(here("pic/data-clean/data-material-dir5-file.png"))
 ```
 
 ]
@@ -6280,7 +6284,7 @@ include_graphics("../pic/data-clean/data-material-dir5-file.png")
 .pull-right[
 
 ```{r, fig.cap= "文献-中国科技统计年鉴2018<br>-表1-7 RD支出类型"}
-include_graphics("../pic/data-clean/data-material-dir6-file-excel.png")
+include_graphics(here("pic/data-clean/data-material-dir6-file-excel.png"))
 ```
 
 ]
@@ -6309,7 +6313,7 @@ include_graphics("../pic/data-clean/data-material-dir6-file-excel.png")
 .pull-right[
 
 ```{r, fig.cap= "重新整理后的科技统计年鉴文件夹"}
-include_graphics("../pic/data-clean/data-raw-dir1-children2.png")
+include_graphics(here("pic/data-clean/data-raw-dir1-children2.png"))
 ```
 
 ]
@@ -6339,7 +6343,7 @@ include_graphics("../pic/data-clean/data-raw-dir1-children2.png")
 .pull-right[
 
 ```{r, fig.cap= "历年的RD支出类型（2010-2017）"}
-include_graphics("../pic/data-clean/data-raw-dir2-files.png")
+include_graphics(here("pic/data-clean/data-raw-dir2-files.png"))
 ```
 
 ]
@@ -6370,7 +6374,7 @@ include_graphics("../pic/data-clean/data-raw-dir2-files.png")
 .pull-right[
 
 ```{r, fig.cap= "提取整合后的RD支出类型（2010-2017）"}
-include_graphics("../pic/data-clean/data-extract-dir2-files.png")
+include_graphics(here("pic/data-clean/data-extract-dir2-files.png"))
 ```
 
 ]
@@ -6399,7 +6403,7 @@ include_graphics("../pic/data-clean/data-extract-dir2-files.png")
 .pull-right[
 
 ```{r, fig.cap= "提取整合后的RD支出类型（2010-2017）"}
-include_graphics("../pic/data-clean/data-extract-dir3-excel.png")
+include_graphics(here("pic/data-clean/data-extract-dir3-excel.png"))
 ```
 
 ]
@@ -6427,7 +6431,7 @@ include_graphics("../pic/data-clean/data-extract-dir3-excel.png")
 .pull-right[
 
 ```{r, fig.cap= "加工变形后的RD支出类型<br>（2010-2017）"}
-include_graphics("../pic/data-clean/data-proc-dir1-whole.png")
+include_graphics(here("pic/data-clean/data-proc-dir1-whole.png"))
 ```
 
 ]
@@ -6455,7 +6459,7 @@ include_graphics("../pic/data-clean/data-proc-dir1-whole.png")
 .pull-right[
 
 ```{r, fig.cap= "加工变形后的RD支出类型（2010-2017）"}
-include_graphics("../pic/data-clean/data-proc-dir2-excel.png")
+include_graphics(here("pic/data-clean/data-proc-dir2-excel.png"))
 ```
 
 ]
@@ -6482,7 +6486,7 @@ include_graphics("../pic/data-clean/data-proc-dir2-excel.png")
 .pull-right[
 
 ```{r, fig.cap= "聚合各个子数据集为一个完整RD数据集（2010-2017）"}
-include_graphics("../pic/data-clean/data-analysis-dir1-whole.png")
+include_graphics(here("pic/data-clean/data-analysis-dir1-whole.png"))
 ```
 
 ]
@@ -6510,7 +6514,7 @@ include_graphics("../pic/data-clean/data-analysis-dir1-whole.png")
 .pull-right[
 
 ```{r, fig.cap= "聚合各个子数据集为一个完整RD数据集（2010-2017）"}
-include_graphics("../pic/data-clean/data-analysis-dir2-excel.png",dpi = 150)
+include_graphics(here("pic/data-clean/data-analysis-dir2-excel.png"),dpi = 150)
 ```
 
 ]
@@ -6521,7 +6525,7 @@ include_graphics("../pic/data-clean/data-analysis-dir2-excel.png",dpi = 150)
 
 
 ```{r, fig.cap="变量命名是一门学问！"}
-include_graphics("../pic/data-clean/basic-variables.png",dpi = 150)
+include_graphics(here("pic/data-clean/basic-variables.png"),dpi = 150)
 ```
 
 ---
@@ -6530,10 +6534,10 @@ include_graphics("../pic/data-clean/basic-variables.png",dpi = 150)
 
 ```{r}
 # source R script
-source("../R/get.vars.R")
+source(here("R/get.vars.R"))
 
 # read vars set
-dir_variables <- "../data/basic-vars-2019-8-3.xlsx"
+dir_variables <- here("data/basic-vars-2019-8-3.xlsx")
 basic_vars <- read.xlsx(dir_variables) %>%
     mutate(variables= str_c(block1, block2, block3, block4, sep = "_"))
 

@@ -36,14 +36,15 @@ class: center,middle
 ### `r Sys.Date()`
 
 ```{r global_options, echo=F,message=FALSE,warning=F}
-source("../R/set-global.R")
+library(here)
+source(here("R/set-global.R"))
 options(width = 70)
-#source("../R/xaringan-chromote-print.R")
+#source(here("R/xaringan-chromote-print.R"))
 ```
 
 
 ```{r ex-math-eq}
-source("../R/external-math-equation.R")
+source(here("R/external-math-equation.R"))
 ```
 
 
@@ -55,7 +56,7 @@ xaringanExtra::use_tachyons()
 xaringanExtra::use_panelset()
 
 xaringanExtra::use_logo(
-  image_url = "../pic/logo/nwafu-logo-circle-wb.png",
+  image_url = here("pic/logo/nwafu-logo-circle-wb.png"),
   height = '70px',
   position = xaringanExtra::css_position(top='0.2em',left="1em")
 )
@@ -232,7 +233,7 @@ smry_weight%>%
 
 
 ```{r}
-load("../data-analysis//berkeley.Rdata")
+load(here("data-analysis//berkeley.Rdata"))
 
 berkeley %>%
   rename("女性申请数" ="women.apply", 
@@ -326,7 +327,7 @@ lines( x = c(0,xlu), y = coef[1]+c(0,xlu)*coef[2])
 ## 信念偏见诅咒 
 
 ```{r}
-include_graphics("../pic/chpt01-believe-bias.png")
+include_graphics(here("pic/chpt01-believe-bias.png"))
 ```
 
 
@@ -461,7 +462,7 @@ g <- grViz("digraph flowchart {
       [4]: '离散变量\\n(Discrete variable)'
       [5]: '连续变量\\n(Continuous variable)'
       ")
-g %>% export_svg %>% charToRaw %>% rsvg %>% png::writePNG("../pic/flowchart-variables.pdf")
+g %>% export_svg %>% charToRaw %>% rsvg %>% png::writePNG(here("pic/flowchart-variables.pdf"))
 ```
 
 **变量**：描述事物或现象的变化特征。
@@ -637,7 +638,7 @@ g <- grViz("digraph flowchart {
       [4]: '离散数据\\n(Discrete data)'
       [5]: '连续数据\\n(Continuous data)'
       ")
-g %>% export_svg %>% charToRaw %>% rsvg %>% png::writePNG("../pic/flowchart-data.pdf")
+g %>% export_svg %>% charToRaw %>% rsvg %>% png::writePNG(here("pic/flowchart-data.pdf"))
 ```
 
 **数据**：变量的实际具体取值组成的集合。
@@ -762,7 +763,7 @@ head(flights_jan,500) %>%    # 只看前500条数据
 > —Statistician Nate Silver in the book The Signal and the Noise
 
 ```{r, fig.cap= "DIKW"}
-include_graphics("../pic/chpt01-data-info-DIKW.png",dpi ="120")
+include_graphics(here("pic/chpt01-data-info-DIKW.png"),dpi ="120")
 ```
 
 
@@ -861,7 +862,7 @@ g <- grViz("digraph flowchart {
       [5]: '比率数据\\n(ratio data)'
       ")
 g
-#g %>% export_svg %>% charToRaw %>% rsvg %>% png::writePNG("../pic/flowchart-data-scale.pdf")
+#g %>% export_svg %>% charToRaw %>% rsvg %>% png::writePNG(here("pic/flowchart-data-scale.pdf"))
 ```
 
 
@@ -905,7 +906,7 @@ layout: true
 --
 
 ```{r,fig.cap=""}
-include_graphics("../pic/nominal-show.png")
+include_graphics(here("pic/nominal-show.png"))
 ```
 --
 
@@ -937,7 +938,7 @@ nominal %>%
 - 常用的五分量表
 
 ```{r, fig.cap= ""}
-include_graphics("../pic/ordinal-show.png")
+include_graphics(here("pic/ordinal-show.png"))
 ```
 
 ]
@@ -949,7 +950,7 @@ include_graphics("../pic/ordinal-show.png")
 - 经济学中的无差异曲线
 
 ```{r, fig.cap= ""}
-include_graphics("../pic/ordinal-show2.png")
+include_graphics(here("pic/ordinal-show2.png"))
 ```
 
 ]
@@ -1135,7 +1136,7 @@ $X_1/X_2$）
 
 
 ```{r}
-scale_smry <- read.xlsx2("../data-analysis/chpt01-scale-variable.xlsx",1,startRow = 2) %>%
+scale_smry <- read.xlsx2(here("data-analysis/chpt01-scale-variable.xlsx"),1,startRow = 2) %>%
   as_tibble()
 scale_smry %>%
   datatable(options = list(pageLength =9))
@@ -1202,7 +1203,7 @@ layout: true
 平稳性(stationary)：如果一个时间序列的均值和方差不随时间而系统地变化，那它就是平稳的(stationary) 。
 
 ```{r, fig.cap="1951年1月-1999年9月美国的M1货币供给"}
-include_graphics("../pic/chpt01-1-data-series-M1.png", dpi=120)
+include_graphics(here("pic/chpt01-1-data-series-M1.png"), dpi=120)
 ```
 
 ---
@@ -1218,7 +1219,7 @@ include_graphics("../pic/chpt01-1-data-series-M1.png", dpi=120)
 ### 案例：鸡蛋价格与鸡蛋产量
 
 ```{r}
-eggs <- as_tibble(read.xlsx("../data/extra/Table-1-1-eggs.xlsx"))
+eggs <- as_tibble(read.xlsx(here("data/extra/Table-1-1-eggs.xlsx")))
 eggs %>%
   select(STATE, Y1, X1) %>%
   datatable(options = list(pageLength=5, dom="tip"),
@@ -1288,7 +1289,7 @@ $n=q\ast t$。
 
 
 ```{r}
-steel <- as.tibble(read.xlsx("../data/extra/Table-1-2-steel.xlsx"))
+steel <- as.tibble(read.xlsx(here("data/extra/Table-1-2-steel.xlsx")))
 steel_wide <-steel %>%
   filter(company =="US"| company =="GE") %>%
   gather(key= "var", value="value",I:C) %>%
@@ -1388,7 +1389,7 @@ layout: true
 **主要途径**：**概率论**在其中发挥着重要作用，也是方法论的分水岭。
 
 ```{r}
-include_graphics("../pic/chpt01-stat-methology.png",dpi=150)
+include_graphics(here("pic/chpt01-stat-methology.png"),dpi=150)
 ```
 
 ---
@@ -1413,7 +1414,7 @@ include_graphics("../pic/chpt01-stat-methology.png",dpi=150)
 ## 描述性统计(descriptive statistics)
 
 ```{r}
-include_graphics("../pic/chpt01-descriptive-stat.jpg", dpi = 100)
+include_graphics(here("pic/chpt01-descriptive-stat.jpg"), dpi = 100)
 ```
 
 
@@ -1436,7 +1437,7 @@ include_graphics("../pic/chpt01-descriptive-stat.jpg", dpi = 100)
 ## 推断性统计(inferential statistics)
 
 ```{r}
-include_graphics("../pic/chpt01-inferential-stat.png", dpi = 100)
+include_graphics(here("pic/chpt01-inferential-stat.png"), dpi = 100)
 ```
 
 ---
@@ -1509,7 +1510,7 @@ datatable(tab_cmpr)
 ### 参数和统计量
 
 ```{r, out.width= '650px'}
-include_graphics("../pic/chpt01-inferential-stat-sampling.png")
+include_graphics(here("pic/chpt01-inferential-stat-sampling.png"))
 ```
 
 ---
@@ -1541,7 +1542,7 @@ $[y_i, x_i],n$）
 ### （演示）样本VS总体视角1
 
 ```{r, fig.cap= "一份样本数据"}
-include_graphics("../pic/chpt01-curve-points.png", dpi=200)
+include_graphics(here("pic/chpt01-curve-points.png"), dpi=200)
 ```
 
 ---
@@ -1549,7 +1550,7 @@ include_graphics("../pic/chpt01-curve-points.png", dpi=200)
 ### （演示）样本VS总体视角2
 
 ```{r, fig.cap= "A同学的视界：一条直线"}
-include_graphics("../pic/chpt01-curve-L.png", dpi=200)
+include_graphics(here("pic/chpt01-curve-L.png"), dpi=200)
 ```
 
 ---
@@ -1557,7 +1558,7 @@ include_graphics("../pic/chpt01-curve-L.png", dpi=200)
 ### （演示）样本VS总体视角3
 
 ```{r, fig.cap= "B同学的视界：一条抛物线"}
-include_graphics("../pic/chpt01-curve-U.png", dpi=200)
+include_graphics(here("pic/chpt01-curve-U.png"), dpi=200)
 ```
 
 ---
@@ -1565,7 +1566,7 @@ include_graphics("../pic/chpt01-curve-U.png", dpi=200)
 ### （演示）样本VS总体视角4
 
 ```{r, fig.cap= "C同学的视界：一条S型曲线"}
-include_graphics("../pic/chpt01-curve-S.png", dpi=200)
+include_graphics(here("pic/chpt01-curve-S.png"), dpi=200)
 ```
 
 
@@ -1670,7 +1671,7 @@ layout: true
 .pull-right[
 
 ```{r}
-include_graphics("../pic/chpt01-data-purpose-clearity-message.png")
+include_graphics(here("pic/chpt01-data-purpose-clearity-message.png"))
 ```
 
 

@@ -110,9 +110,7 @@ layout: true
 
 - 使用浏览器（chrome或360极速浏览器）登陆胡华平个人网站<sup>*</sup>。
 
-> 国内线路：[https://home.huhuaping.com/](https://home.huhuaping.com/)。更新频率较低，但是国内访问速度快！
-
-> 国际线路：[https://huhuaping.com/](https://huhuaping.com/)。实时更新，国内用户访问速度受限，但是国外用户访问速度快！
+> [https://www.huhuaping.com/](https://www.huhuaping.com/)。
 
 
 .footnote[.red[**说明**：<sup>*</sup> 
@@ -229,10 +227,11 @@ layout: true
 
 ## 使用教材：
 
-- 贾俊平.统计学(第7版).北京:中国人民大学出版社,2018. **ISBN:9787300253510**（[京东链接](https://item.jd.com/26695537115.html)）
+- 贾俊平.统计学(第8版).北京:中国人民大学出版社,2021. **ISBN:9787300293103**
+
 
 ```{r, out.width='400px'}
-include_graphics("../pic/chpt00-book-jia-7th.jpg")
+include_graphics("../pic/chpt00-book-jia-8th.jpg")
 ```
 
 .footnote[**提示**：贾俊平出版了很多系列和不同版本的各类教材和指导书，购买时务必以ISBN书号为准！！]
@@ -243,15 +242,17 @@ include_graphics("../pic/chpt00-book-jia-7th.jpg")
 
 国内参考教材：
 
-- 李洁明, 祁新娥.统计学原理（第7版）.上海：复旦大学出版社，  2017.03. (ISBN: 9787309128468). [京东链接](https://item.jd.com/11862551.html)
+- 李洁明, 祁新娥.统计学原理（第8版）.上海：复旦大学出版社，2021. (ISBN: 9787309158434). 
 
 - 田海霞，景刚. 统计学——原理与EXCEL应用,机械工业出版社，2016.1. (ISBN: 9787111521907). [京东链接](https://item.jd.com/67768425181.html)
 
 国外参考教材：
 
-- Douglas Lind, William Marchal,Samuel Wathen, Statistical Techniques in Business and Economics（17th）. Irwin/McGraw-Hill11,2018. (ISBN13: 9781259666360). [出版商链接](https://www.mheducation.com/highered/product/statistical-techniques-business-economics-lind-marchal/M9781259666360.html#interactiveCollapse)
+- Lind D A, Marchal W G, Wathen S A. Statistical techniques in business and economics[M]. 第19版. Nueva York: MCGRAW-HILL EDUCATION, 2023.
 
+- Anderson D R, Sweeney D J, Williams T A. Statistics for Business & Economics[M]. 第14版. Cengage, 2019. 
 
+- Newbold P, Carlson W, Thorne B. Statistics for Business and Economics[M]. 第10th版. Harlow, United Kingdom: Pearson Education Limited, 2022.
 
 
 
@@ -280,7 +281,7 @@ layout: true
 
 ---
 
-## 熟练掌握一门计量软件
+## 熟练掌握一门统计软件
 
 
 课程指定软件：**Microsoft Excel**
@@ -298,7 +299,7 @@ layout: true
 
 ---
 
-## 熟练掌握一门计量软件
+## 熟练掌握一门统计软件
 
 自学编程语言1：开源**R软件**（选用，自学）
 

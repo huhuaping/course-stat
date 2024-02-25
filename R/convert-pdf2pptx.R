@@ -6,7 +6,7 @@
 
 require(pdf2pptx)
 
-file_dir <- "d://github/course-stat/public/slide-pdf/2022-11/"
+file_dir <- "d://github/course-stat/public/slide-pdf/2024-03/"
 file_list <- list.files(file_dir)
 id_target <- which(stringr::str_detect(file_list, "^[[\\d]]{2}.*\\.pdf$"))
 files_target <- sort((file_list)[id_target])
