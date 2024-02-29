@@ -56,7 +56,7 @@ xaringanExtra::use_tachyons()
 xaringanExtra::use_panelset()
 
 xaringanExtra::use_logo(
-  image_url = here("pic/logo/nwafu-logo-circle-wb.png"),
+  image_url = "../pic/logo/nwafu-logo-circle-wb.png",
   height = '70px',
   position = xaringanExtra::css_position(top='0.2em',left="1em")
 )
@@ -782,7 +782,7 @@ include_graphics(here("pic/chpt01-data-info-DIKW.png"),dpi ="120")
 
 .pull-left[
 
-大数据的[四大特征（4V）](https://www.dummies.com/careers/find-a-job/the-4-vs-of-big-data/)：
+大数据的四大特征（4V）：
 
 - Volume（数据量大）
 
@@ -795,7 +795,7 @@ include_graphics(here("pic/chpt01-data-info-DIKW.png"),dpi ="120")
 ]
 
 .pull-right[
-![](https://www.go-globe.com/wp-content/uploads/2017/08/60-seconds.gif)
+![](../pic/chpt01-bigdata-60-seconds.gif)
 ]
 
 ???
@@ -911,14 +911,17 @@ include_graphics(here("pic/nominal-show.png"))
 --
 
 ```{r}
-nominal <- as_tibble(list(name= c("tom","jenny","lilei", "hanmeimei"),
-                          gender= c("M","F", "M", "F"),
-                          color =c("brown", "blonde", "black","black"),
-                          area = c("North", "south", "North","Neither")))
+nominal <- as_tibble(
+  list(
+    name= c("Tom","Jenny","Lilei", "Hanmeimei","Dawei"),
+    gender= c("M","F", "M", "F", "M"),
+    color =c("brown", "blonde", "black", "black", "yellow"),
+    area = c("North", "East", "South","West", "Center")))%>%
+  add_column(id = 1:nrow(.), .before = "name")
 
 nominal %>%
   datatable(caption ="") %>%
-  formatStyle(columns = 1:4, target = "cell",Color = "black")
+  formatStyle(columns = 1:5, target = "cell",Color = "black")
 ```
 
 
@@ -1021,7 +1024,8 @@ glimpse(temperature)
 
 ### （示例）区间数据举例：起飞延误时长与星期几有关系么？
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
+
 flights_jfk <-
   nycflights13::flights %>% 
   filter(origin == "JFK",month==1) %>% 
@@ -1289,7 +1293,7 @@ $n=q\ast t$。
 
 
 ```{r}
-steel <- as.tibble(read.xlsx(here("data/extra/Table-1-2-steel.xlsx")))
+steel <- as_tibble(read.xlsx(here("data/extra/Table-1-2-steel.xlsx")))
 steel_wide <-steel %>%
   filter(company =="US"| company =="GE") %>%
   gather(key= "var", value="value",I:C) %>%

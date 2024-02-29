@@ -43,7 +43,7 @@ exclude: FALSE
 
 ### huhuaping01@hotmail.com
 
-### 2022-03-26
+### 2024-02-26
 
 
 
@@ -159,41 +159,17 @@ sample(1:6, 1)
 ```
 
 ```
-[1] 6
+[1] 1
 ```
 
-&lt;table&gt;
-&lt;caption&gt;打六点骰子的PDF和CDF&lt;/caption&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 骰子结果 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 概率 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1/6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1/6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1/6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1/6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1/6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1/6 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 累积概率 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1/6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 2/6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 3/6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 4/6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 5/6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+Table: 打六点骰子的PDF和CDF
+
+|         |    |    |    |    |    |    |
+|:--------|:---|:---|:---|:---|:---|:---|
+|骰子结果 |1   |2   |3   |4   |5   |6   |
+|概率     |1/6 |1/6 |1/6 |1/6 |1/6 |1/6 |
+|累积概率 |1/6 |2/6 |3/6 |4/6 |5/6 |1   |
 
 
 ---
@@ -227,7 +203,7 @@ sample(c("H", "T"), 1)
 ```
 
 ```
-[1] "H"
+[1] "T"
 ```
 
 
@@ -455,28 +431,11 @@ name:portraits
 `\(Y\)`有6种可能取值
 `\(\{ 1,2,3,4,5,6\}\)`，那么每种可能取值的概率分别为：
 
-&lt;table&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 事件Y_i &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 概率p &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1/6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1/6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1/6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1/6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1/6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1/6 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|        |    |    |    |    |    |    |
+|:-------|:---|:---|:---|:---|:---|:---|
+|事件Y_i |1   |2   |3   |4   |5   |6   |
+|概率p   |1/6 |1/6 |1/6 |1/6 |1/6 |1/6 |
 
 总体期望
 `\(\mu_Y\)`和总体方差
@@ -528,8 +487,8 @@ s^{2}_y &amp;=\frac{\sum_{i=1}^{n}\left(y_{i}-\bar{y}\right)^{2}}{n-1} \\
 `\(\bar{y}\)`见列`bar_y`，样本方差
 `\(s^2_y\)`见列`s2_y`。
 
-<div id="htmlwidget-2eb446541b671b500e6f" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2eb446541b671b500e6f">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11"],["1","2","3","4","5","6","7","8","9","10","Total"],["c(6, 6, 6, 2, 1, 3, 6, 1)","c(6, 3, 1, 5, 1, 3, 3, 6)","c(1, 4, 5, 1, 4, 4, 3, 4)","c(4, 3, 2, 4, 5, 3, 1, 2)","c(2, 2, 5, 3, 5, 3, 5, 4)","c(3, 5, 5, 4, 6, 1, 1, 1)","c(6, 4, 1, 3, 3, 3, 1, 4)","c(1, 2, 2, 4, 6, 2, 4, 5)","c(1, 3, 6, 3, 4, 6, 6, 1)","c(2, 3, 6, 2, 5, 2, 1, 1)","-"],[3.875,3.5,3.25,3,3.625,3.25,3.125,3.25,3.75,2.75,33.375],[5.55357142857143,4,2.21428571428571,1.71428571428571,1.69642857142857,4.21428571428571,2.69642857142857,3.07142857142857,4.5,3.35714285714286,33.0178571428571]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>sample<\/th>\n      <th>y<\/th>\n      <th>bar_y<\/th>\n      <th>s2_y<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\");\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-73b4cd20e861a062febb" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-73b4cd20e861a062febb">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11"],["1","2","3","4","5","6","7","8","9","10","Total"],["c(6, 6, 6, 2, 1, 3, 6, 1)","c(6, 3, 1, 5, 1, 3, 3, 6)","c(1, 4, 5, 1, 4, 4, 3, 4)","c(4, 3, 2, 4, 5, 3, 1, 2)","c(2, 2, 5, 3, 5, 3, 5, 4)","c(3, 5, 5, 4, 6, 1, 1, 1)","c(6, 4, 1, 3, 3, 3, 1, 4)","c(1, 2, 2, 4, 6, 2, 4, 5)","c(1, 3, 6, 3, 4, 6, 6, 1)","c(2, 3, 6, 2, 5, 2, 1, 1)","-"],[3.875,3.5,3.25,3,3.625,3.25,3.125,3.25,3.75,2.75,33.375],[5.553571428571429,4,2.214285714285714,1.714285714285714,1.696428571428572,4.214285714285714,2.696428571428572,3.071428571428572,4.499999999999999,3.357142857142858,33.01785714285714]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>sample<\/th>\n      <th>y<\/th>\n      <th>bar_y<\/th>\n      <th>s2_y<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"sample","targets":1},{"name":"y","targets":2},{"name":"bar_y","targets":3},{"name":"s2_y","targets":4}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
 
 ---
 
@@ -813,49 +772,19 @@ exclude: true
 
 .pull-right[
 
-&lt;table&gt;
-&lt;caption&gt;简单随机抽样结果&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; field &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; beetles &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 41 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 234 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 42 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 256 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 128 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 245 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 80 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 211 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 68 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 240 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 202 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 267 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+Table: 简单随机抽样结果
+
+| field| beetles|
+|-----:|-------:|
+|    41|     234|
+|    42|     256|
+|    18|     128|
+|    13|     245|
+|    80|     211|
+|    68|     240|
+|    25|     202|
+|   100|     267|
 
 
 ]
@@ -1040,10 +969,6 @@ exclude: true
 ## case：家庭观看电视时长案例
 
 
-```
-Warning: `read_table2()` was deprecated in readr 2.0.0.
-Please use `read_table()` instead.
-```
 
 ---
 
@@ -1051,36 +976,12 @@ Please use `read_table()` instead.
 
 **案例说明**：一家广告公司为了有针对性地在某个县投放电视广告，公司决定进行抽样调查，以估计该县家庭每周观看电视的平均小时数。该县有两个镇区A和镇区B，还有农村区域C。A区建在一家工厂周围，大多数家庭都有带学龄儿童的工厂工人。B区主要是退休人员，C区主要是农民。A区有155户，B区有62户，C区有93户。公司决定从A区抽选20户，B区抽选8户，C区抽选12户。具体抽样结果如下：
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; Stratification &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; sampling &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; n_h &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; N_h &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Town A &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 35, 43, 36, 39, 28, 28, 29, 25, 38, 27, 26, 32, 29, 40, 35, 41, 37, 31, 45, 34 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 155 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Town B &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 27, 15, 4, 41, 49, 25, 10, 30 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 62 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Rural Area C &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 8, 14, 12, 15, 30, 32, 21, 20, 34, 7, 11, 24 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 93 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|Stratification |sampling                                                                       | n_h| N_h|
+|:--------------|:------------------------------------------------------------------------------|---:|---:|
+|Town A         |35, 43, 36, 39, 28, 28, 29, 25, 38, 27, 26, 32, 29, 40, 35, 41, 37, 31, 45, 34 |  20| 155|
+|Town B         |27, 15, 4, 41, 49, 25, 10, 30                                                  |   8|  62|
+|Rural Area C   |8, 14, 12, 15, 30, 32, 21, 20, 34, 7, 11, 24                                   |  12|  93|
 
 ---
 
@@ -1088,8 +989,8 @@ Please use `read_table()` instead.
 
 各分层的计算表如下：
 
-<div id="htmlwidget-08bee4495f1f294926e0" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-08bee4495f1f294926e0">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["Town A","Town B","Rural Area C"],[20,8,12],[155,62,93],[33.9,25.125,19],[5.94625047713617,15.245022606927,9.36142957225891],[0.25,0.04,0.09],[0.870967741935484,0.870967741935484,0.870967741935484],[1.76789473684211,29.0513392857143,7.3030303030303],[0.384944821731749,1.01211117511521,0.572463343108504],[5254.5,1557.75,1767]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Stratification<\/th>\n      <th>n_h<\/th>\n      <th>N_h<\/th>\n      <th>mean_h<\/th>\n      <th>sd_h<\/th>\n      <th>var_p1<\/th>\n      <th>var_p2<\/th>\n      <th>var_p3<\/th>\n      <th>var_all<\/th>\n      <th>mean_all<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":10,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":3,"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[3,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-7594a88fd53027d52cf3" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7594a88fd53027d52cf3">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["Town A","Town B","Rural Area C"],[20,8,12],[155,62,93],[33.9,25.125,19],[5.946250477136168,15.24502260692697,9.36142957225891],[0.25,0.04000000000000001,0.09],[0.8709677419354839,0.8709677419354839,0.8709677419354839],[1.767894736842105,29.05133928571428,7.303030303030304],[0.3849448217317487,1.012111175115207,0.5724633431085044],[5254.5,1557.75,1767]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Stratification<\/th>\n      <th>n_h<\/th>\n      <th>N_h<\/th>\n      <th>mean_h<\/th>\n      <th>sd_h<\/th>\n      <th>var_p1<\/th>\n      <th>var_p2<\/th>\n      <th>var_p3<\/th>\n      <th>var_all<\/th>\n      <th>mean_all<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":10,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Stratification","targets":1},{"name":"n_h","targets":2},{"name":"N_h","targets":3},{"name":"mean_h","targets":4},{"name":"sd_h","targets":5},{"name":"var_p1","targets":6},{"name":"var_p2","targets":7},{"name":"var_p3","targets":8},{"name":"var_all","targets":9},{"name":"mean_all","targets":10}],"pageLength":3,"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[3,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render"],"jsHooks":[]}</script>
 
 根据该分层抽样，估计的总体均值（该县住户平均收看电视时间）结果为：
 
@@ -1105,8 +1006,8 @@ Please use `read_table()` instead.
 
 各分层的计算表如下：
 
-<div id="htmlwidget-c978130ebb6dfcf58b70" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c978130ebb6dfcf58b70">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["Town A","Town B","Rural Area C"],[20,8,12],[155,62,93],[33.9,25.125,19],[5.94625047713617,15.245022606927,9.36142957225891],[0.25,0.04,0.09],[0.870967741935484,0.870967741935484,0.870967741935484],[1.76789473684211,29.0513392857143,7.3030303030303],[0.384944821731749,1.01211117511521,0.572463343108504],[5254.5,1557.75,1767]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Stratification<\/th>\n      <th>n_h<\/th>\n      <th>N_h<\/th>\n      <th>mean_h<\/th>\n      <th>sd_h<\/th>\n      <th>var_p1<\/th>\n      <th>var_p2<\/th>\n      <th>var_p3<\/th>\n      <th>var_all<\/th>\n      <th>mean_all<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":10,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":3,"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[3,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-02fe18214dbe4188ff13" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-02fe18214dbe4188ff13">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["Town A","Town B","Rural Area C"],[20,8,12],[155,62,93],[33.9,25.125,19],[5.946250477136168,15.24502260692697,9.36142957225891],[0.25,0.04000000000000001,0.09],[0.8709677419354839,0.8709677419354839,0.8709677419354839],[1.767894736842105,29.05133928571428,7.303030303030304],[0.3849448217317487,1.012111175115207,0.5724633431085044],[5254.5,1557.75,1767]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Stratification<\/th>\n      <th>n_h<\/th>\n      <th>N_h<\/th>\n      <th>mean_h<\/th>\n      <th>sd_h<\/th>\n      <th>var_p1<\/th>\n      <th>var_p2<\/th>\n      <th>var_p3<\/th>\n      <th>var_all<\/th>\n      <th>mean_all<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":10,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Stratification","targets":1},{"name":"n_h","targets":2},{"name":"N_h","targets":3},{"name":"mean_h","targets":4},{"name":"sd_h","targets":5},{"name":"var_p1","targets":6},{"name":"var_p2","targets":7},{"name":"var_p3","targets":8},{"name":"var_all","targets":9},{"name":"mean_all","targets":10}],"pageLength":3,"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[3,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render"],"jsHooks":[]}</script>
 
 
 根据该分层抽样，上述关于的总体均值估计（住户平均收看电视时间）的方差为：
@@ -1124,8 +1025,8 @@ Please use `read_table()` instead.
 
 各分层的计算表如下：
 
-<div id="htmlwidget-d3f4d86d729cb84a0361" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d3f4d86d729cb84a0361">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["Town A","Town B","Rural Area C"],[20,8,12],[155,62,93],[33.9,25.125,19],[5.94625047713617,15.245022606927,9.36142957225891],[0.25,0.04,0.09],[0.870967741935484,0.870967741935484,0.870967741935484],[1.76789473684211,29.0513392857143,7.3030303030303],[0.384944821731749,1.01211117511521,0.572463343108504],[5254.5,1557.75,1767]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Stratification<\/th>\n      <th>n_h<\/th>\n      <th>N_h<\/th>\n      <th>mean_h<\/th>\n      <th>sd_h<\/th>\n      <th>var_p1<\/th>\n      <th>var_p2<\/th>\n      <th>var_p3<\/th>\n      <th>var_all<\/th>\n      <th>mean_all<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":10,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":3,"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[3,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-8a02653dd91c016c28a5" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8a02653dd91c016c28a5">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["Town A","Town B","Rural Area C"],[20,8,12],[155,62,93],[33.9,25.125,19],[5.946250477136168,15.24502260692697,9.36142957225891],[0.25,0.04000000000000001,0.09],[0.8709677419354839,0.8709677419354839,0.8709677419354839],[1.767894736842105,29.05133928571428,7.303030303030304],[0.3849448217317487,1.012111175115207,0.5724633431085044],[5254.5,1557.75,1767]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Stratification<\/th>\n      <th>n_h<\/th>\n      <th>N_h<\/th>\n      <th>mean_h<\/th>\n      <th>sd_h<\/th>\n      <th>var_p1<\/th>\n      <th>var_p2<\/th>\n      <th>var_p3<\/th>\n      <th>var_all<\/th>\n      <th>mean_all<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":10,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Stratification","targets":1},{"name":"n_h","targets":2},{"name":"N_h","targets":3},{"name":"mean_h","targets":4},{"name":"sd_h","targets":5},{"name":"var_p1","targets":6},{"name":"var_p2","targets":7},{"name":"var_p3","targets":8},{"name":"var_all","targets":9},{"name":"mean_all","targets":10}],"pageLength":3,"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[3,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render"],"jsHooks":[]}</script>
 
 
 
@@ -1379,8 +1280,8 @@ exclude: true
 
 .pull-right[
 
-<div id="htmlwidget-d9e2d1924347cdb4c7d3" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d9e2d1924347cdb4c7d3">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323","324","325","326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341","342","343","344","345","346","347","348","349","350","351","352","353","354","355","356","357","358","359","360","361","362","363","364","365","366","367","368","369","370","371","372","373","374","375","376","377","378","379","380","381","382","383","384","385","386","387","388","389","390","391","392","393","394","395","396","397","398","399","400"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356,357,358,359,360,361,362,363,364,365,366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400],[5,6,4,8,5,6,5,2,1,5,4,4,5,3,6,4,3,3,5,3,7,5,6,1,4,5,8,6,5,4,4,6,7,3,5,5,6,3,4,5,2,4,3,7,5,6,3,2,4,2,4,6,4,4,4,3,7,3,7,2,4,4,6,5,4,5,5,6,1,5,8,4,4,5,4,4,2,5,5,6,2,3,5,1,5,3,5,3,3,5,6,4,5,7,6,6,3,6,6,5,4,6,4,6,5,7,3,2,6,5,3,4,5,2,4,5,5,5,4,5,4,5,3,7,7,6,3,4,6,5,8,6,5,2,6,5,6,4,5,7,7,3,5,4,4,5,5,3,5,6,3,4,2,5,6,4,6,3,5,5,4,3,6,5,5,6,4,4,4,7,2,7,5,3,5,5,5,5,5,5,2,4,6,6,4,6,8,4,6,7,6,5,4,5,2,5,1,3,4,2,1,4,5,4,1,6,10,3,4,8,5,3,4,6,6,2,5,5,4,4,6,6,6,6,7,6,5,6,4,7,6,5,4,4,1,4,4,6,4,5,4,6,3,4,4,3,6,7,5,3,5,5,4,6,4,6,4,6,4,4,3,2,2,5,4,4,6,5,4,4,3,5,3,4,1,7,6,3,4,3,6,5,3,3,4,3,4,5,4,5,4,5,3,4,5,7,5,5,5,6,5,4,4,6,4,3,5,4,7,5,3,5,4,6,4,4,4,6,5,5,5,4,3,3,4,2,3,7,3,5,3,4,5,6,5,3,6,4,3,4,1,3,4,3,6,4,5,5,4,4,6,3,3,4,5,3,5,1,4,4,7,5,3,5,2,6,3,5,4,4,6,5,5,2,5,5,5,4,6,1,5,7,4,5,5,5,3,4,5,6,2,5,5,5,3,3,4,4,7,4]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>persons<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-585e6967aa5ba4a4065d" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-585e6967aa5ba4a4065d">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323","324","325","326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341","342","343","344","345","346","347","348","349","350","351","352","353","354","355","356","357","358","359","360","361","362","363","364","365","366","367","368","369","370","371","372","373","374","375","376","377","378","379","380","381","382","383","384","385","386","387","388","389","390","391","392","393","394","395","396","397","398","399","400"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356,357,358,359,360,361,362,363,364,365,366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400],[5,6,4,8,5,6,5,2,1,5,4,4,5,3,6,4,3,3,5,3,7,5,6,1,4,5,8,6,5,4,4,6,7,3,5,5,6,3,4,5,2,4,3,7,5,6,3,2,4,2,4,6,4,4,4,3,7,3,7,2,4,4,6,5,4,5,5,6,1,5,8,4,4,5,4,4,2,5,5,6,2,3,5,1,5,3,5,3,3,5,6,4,5,7,6,6,3,6,6,5,4,6,4,6,5,7,3,2,6,5,3,4,5,2,4,5,5,5,4,5,4,5,3,7,7,6,3,4,6,5,8,6,5,2,6,5,6,4,5,7,7,3,5,4,4,5,5,3,5,6,3,4,2,5,6,4,6,3,5,5,4,3,6,5,5,6,4,4,4,7,2,7,5,3,5,5,5,5,5,5,2,4,6,6,4,6,8,4,6,7,6,5,4,5,2,5,1,3,4,2,1,4,5,4,1,6,10,3,4,8,5,3,4,6,6,2,5,5,4,4,6,6,6,6,7,6,5,6,4,7,6,5,4,4,1,4,4,6,4,5,4,6,3,4,4,3,6,7,5,3,5,5,4,6,4,6,4,6,4,4,3,2,2,5,4,4,6,5,4,4,3,5,3,4,1,7,6,3,4,3,6,5,3,3,4,3,4,5,4,5,4,5,3,4,5,7,5,5,5,6,5,4,4,6,4,3,5,4,7,5,3,5,4,6,4,4,4,6,5,5,5,4,3,3,4,2,3,7,3,5,3,4,5,6,5,3,6,4,3,4,1,3,4,3,6,4,5,5,4,4,6,3,3,4,5,3,5,1,4,4,7,5,3,5,2,6,3,5,4,4,6,5,5,2,5,5,5,4,6,1,5,7,4,5,5,5,3,4,5,6,2,5,5,5,3,3,4,4,7,4]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>persons<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"id","targets":1},{"name":"persons","targets":2}],"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 
 ]
 
@@ -1397,8 +1298,8 @@ exclude: true
 - 然后分别以这10个序号作为起始点，每隔50个抽取1个单位，每份样本都会抽取得到8个单位；
 - 最终共获得10份系统抽样样本（每份样本含8个个体）。抽样结果如下（括号内为车内人数）：
 
-<div id="htmlwidget-435c0759634bf05449b5" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-435c0759634bf05449b5">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["sample_1","sample_2","sample_3","sample_4","sample_5","sample_6","sample_7","sample_8","sample_9","sample_10"],[["8(2)","58(3)","108(2)","158(3)","208(3)","258(6)","308(4)","358(1)"],["16(4)","66(5)","116(5)","166(6)","216(2)","266(4)","316(4)","366(6)"],["40(5)","90(5)","140(7)","190(7)","240(5)","290(5)","340(4)","390(6)"],["6(6)","56(3)","106(7)","156(4)","206(6)","256(6)","306(3)","356(3)"],["2(6)","52(6)","102(6)","152(4)","202(4)","252(5)","302(4)","352(3)"],["26(5)","76(4)","126(6)","176(5)","226(6)","276(7)","326(2)","376(5)"],["37(6)","87(5)","137(6)","187(8)","237(4)","287(4)","337(6)","387(3)"],["14(3)","64(5)","114(2)","164(5)","214(6)","264(5)","314(6)","364(5)"],["47(3)","97(3)","147(5)","197(1)","247(6)","297(5)","347(5)","397(4)"],["46(6)","96(6)","146(5)","196(5)","246(3)","296(7)","346(4)","396(3)"]],[3,4.5,5.5,4.75,4.75,5,5.25,4.625,4,4.875]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>select<\/th>\n      <th>out<\/th>\n      <th>mean<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":5,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":["options.columnDefs.0.render"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-34e3b9d306d50b91d70c" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-34e3b9d306d50b91d70c">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["sample_1","sample_2","sample_3","sample_4","sample_5","sample_6","sample_7","sample_8","sample_9","sample_10"],[["8(2)","58(3)","108(2)","158(3)","208(3)","258(6)","308(4)","358(1)"],["16(4)","66(5)","116(5)","166(6)","216(2)","266(4)","316(4)","366(6)"],["40(5)","90(5)","140(7)","190(7)","240(5)","290(5)","340(4)","390(6)"],["6(6)","56(3)","106(7)","156(4)","206(6)","256(6)","306(3)","356(3)"],["2(6)","52(6)","102(6)","152(4)","202(4)","252(5)","302(4)","352(3)"],["26(5)","76(4)","126(6)","176(5)","226(6)","276(7)","326(2)","376(5)"],["37(6)","87(5)","137(6)","187(8)","237(4)","287(4)","337(6)","387(3)"],["14(3)","64(5)","114(2)","164(5)","214(6)","264(5)","314(6)","364(5)"],["47(3)","97(3)","147(5)","197(1)","247(6)","297(5)","347(5)","397(4)"],["46(6)","96(6)","146(5)","196(5)","246(3)","296(7)","346(4)","396(3)"]],[3,4.5,5.5,4.75,4.75,5,5.25,4.625,4,4.875]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>select<\/th>\n      <th>out<\/th>\n      <th>mean<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"select","targets":1},{"name":"out","targets":2},{"name":"mean","targets":3}],"pageLength":5,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render"],"jsHooks":[]}</script>
 
 ---
 
@@ -1495,10 +1396,6 @@ exclude: true
 ## case：家庭休假支出案例
 
 
-```
-Warning: `read_table2()` was deprecated in readr 2.0.0.
-Please use `read_table()` instead.
-```
 
 ---
 
@@ -1517,8 +1414,8 @@ Please use `read_table()` instead.
 
 .pull-right[
 
-<div id="htmlwidget-eab08a174ff3a1d01200" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-eab08a174ff3a1d01200">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],["389","202","39","286","6","180","143","280","126","177","149","96","127","65","287","80","33","134","181","326","7","335","57","200","Total"],[7,9,5,8,12,5,4,8,14,6,3,13,8,4,6,9,3,10,4,7,6,5,7,6,169],[12000,15000,8000,13000,18000,7000,6000,13000,22000,9800,7000,18000,12340,5000,8900,14000,4000,11400,5000,13000,8900,8700,10000,9200,259240]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cluster<\/th>\n      <th>number.households<\/th>\n      <th>total.budget<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-0f866ec291220d94d40c" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-0f866ec291220d94d40c">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],["389","202","39","286","6","180","143","280","126","177","149","96","127","65","287","80","33","134","181","326","7","335","57","200","Total"],[7,9,5,8,12,5,4,8,14,6,3,13,8,4,6,9,3,10,4,7,6,5,7,6,169],[12000,15000,8000,13000,18000,7000,6000,13000,22000,9800,7000,18000,12340,5000,8900,14000,4000,11400,5000,13000,8900,8700,10000,9200,259240]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cluster<\/th>\n      <th>number.households<\/th>\n      <th>total.budget<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"cluster","targets":1},{"name":"number.households","targets":2},{"name":"total.budget","targets":3}],"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 
 ]
 
@@ -1574,8 +1471,8 @@ Please use `read_table()` instead.
 
 前述**比率估计法**需要用到的计算表如下所示：
 
-<div id="htmlwidget-c5792274353212bdcc35" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c5792274353212bdcc35">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],["389","202","39","286","6","180","143","280","126","177","149","96","127","65","287","80","33","134","181","326","7","335","57","200","Total"],[7,9,5,8,12,5,4,8,14,6,3,13,8,4,6,9,3,10,4,7,6,5,7,6,169],[12000,15000,8000,13000,18000,7000,6000,13000,22000,9800,7000,18000,12340,5000,8900,14000,4000,11400,5000,13000,8900,8700,10000,9200,259240],[10737.7514792899,13805.6804733728,7669.8224852071,12271.7159763314,18407.573964497,7669.8224852071,6135.85798816568,12271.7159763314,21475.5029585799,9203.78698224852,4601.89349112426,19941.5384615385,12271.7159763314,6135.85798816568,9203.78698224852,13805.6804733728,4601.89349112426,15339.6449704142,6135.85798816568,10737.7514792899,9203.78698224852,7669.8224852071,10737.7514792899,9203.78698224852,259240],[1593271.32803473,1426399.13168307,109017.191274815,530397.619130983,166116.536535836,448662.161689017,18457.3929484262,530397.619130983,275097.146458455,355469.962536326,5750914.82791219,3769571.59763313,4662.70788837923,1290173.36927979,92286.5305836631,37760.0784286267,362275.77465775,15520802.4929099,1290173.36927979,5117768.36945485,92286.5305836631,1061265.71198487,544277.245194498,14.3412345506122,40387519.0364483]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cluster<\/th>\n      <th>number.households<\/th>\n      <th>total.budget<\/th>\n      <th>r_Mi<\/th>\n      <th>part_sqr<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":9,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[9,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-bf84f7275dc2ce19ea2c" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-bf84f7275dc2ce19ea2c">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],["389","202","39","286","6","180","143","280","126","177","149","96","127","65","287","80","33","134","181","326","7","335","57","200","Total"],[7,9,5,8,12,5,4,8,14,6,3,13,8,4,6,9,3,10,4,7,6,5,7,6,169],[12000,15000,8000,13000,18000,7000,6000,13000,22000,9800,7000,18000,12340,5000,8900,14000,4000,11400,5000,13000,8900,8700,10000,9200,259240],[10737.75147928994,13805.68047337278,7669.822485207101,12271.71597633136,18407.57396449704,7669.822485207101,6135.857988165681,12271.71597633136,21475.50295857988,9203.786982248521,4601.89349112426,19941.53846153846,12271.71597633136,6135.857988165681,9203.786982248521,13805.68047337278,4601.89349112426,15339.6449704142,6135.857988165681,10737.75147928994,9203.786982248521,7669.822485207101,10737.75147928994,9203.786982248521,259240],[1593271.32803473,1426399.131683066,109017.1912748152,530397.6191309826,166116.5365358359,448662.1616890167,18457.3929484262,530397.6191309826,275097.146458455,355469.9625363256,5750914.827912187,3769571.597633134,4662.707888379229,1290173.369279787,92286.53058366313,37760.07842862671,362275.7746577502,15520802.49290991,1290173.369279787,5117768.369454846,92286.53058366313,1061265.711984874,544277.2451944976,14.3412345506122,40387519.0364483]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cluster<\/th>\n      <th>number.households<\/th>\n      <th>total.budget<\/th>\n      <th>r_Mi<\/th>\n      <th>part_sqr<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"cluster","targets":1},{"name":"number.households","targets":2},{"name":"total.budget","targets":3},{"name":"r_Mi","targets":4},{"name":"part_sqr","targets":5}],"pageLength":9,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[9,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
 
 
 ---
@@ -1614,8 +1511,8 @@ Please use `read_table()` instead.
 
 exclude: true
 
-<div id="htmlwidget-2e8e1a19e0c7adda6011" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2e8e1a19e0c7adda6011">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],["389","202","39","286","6","180","143","280","126","177","149","96","127","65","287","80","33","134","181","326","7","335","57","200","Total"],[7,9,5,8,12,5,4,8,14,6,3,13,8,4,6,9,3,10,4,7,6,5,7,6,169],[12000,15000,8000,13000,18000,7000,6000,13000,22000,9800,7000,18000,12340,5000,8900,14000,4000,11400,5000,13000,8900,8700,10000,9200,259240]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cluster<\/th>\n      <th>number.households<\/th>\n      <th>total.budget<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":9,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[9,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-d58c1613e0a26e704a9c" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-d58c1613e0a26e704a9c">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],["389","202","39","286","6","180","143","280","126","177","149","96","127","65","287","80","33","134","181","326","7","335","57","200","Total"],[7,9,5,8,12,5,4,8,14,6,3,13,8,4,6,9,3,10,4,7,6,5,7,6,169],[12000,15000,8000,13000,18000,7000,6000,13000,22000,9800,7000,18000,12340,5000,8900,14000,4000,11400,5000,13000,8900,8700,10000,9200,259240]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cluster<\/th>\n      <th>number.households<\/th>\n      <th>total.budget<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"cluster","targets":1},{"name":"number.households","targets":2},{"name":"total.budget","targets":3}],"pageLength":9,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[9,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
@@ -1663,15 +1560,15 @@ exclude: true
 
 .pull-left[
 
-<div id="htmlwidget-525cf9299a534bd610dd" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-525cf9299a534bd610dd">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11"],["1","2","3","4","5","6","7","8","9","10","Total"],[1000,650,2100,860,2840,1910,390,3200,1500,1200,15650],[643,427,1266,544,1938,1308,250,1933,921,770,10000]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cluster<\/th>\n      <th>employees<\/th>\n      <th>requires<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-6e0f2883d23136edaaab" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-6e0f2883d23136edaaab">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11"],["1","2","3","4","5","6","7","8","9","10","Total"],[1000,650,2100,860,2840,1910,390,3200,1500,1200,15650],[643,427,1266,544,1938,1308,250,1933,921,770,10000]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cluster<\/th>\n      <th>employees<\/th>\n      <th>requires<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"cluster","targets":1},{"name":"employees","targets":2},{"name":"requires","targets":3}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 
 ]
 
 .pull-right[
 
-<div id="htmlwidget-5ec2b35af85b3e459dd3" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5ec2b35af85b3e459dd3">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],[2,8,10],[650,3200,1200],[427,1933,770]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cluster<\/th>\n      <th>employees<\/th>\n      <th>requires<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-e0ad6d765861c7893715" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e0ad6d765861c7893715">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],[2,8,10],[650,3200,1200],[427,1933,770]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cluster<\/th>\n      <th>employees<\/th>\n      <th>requires<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"cluster","targets":1},{"name":"employees","targets":2},{"name":"requires","targets":3}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 
 ]
 
@@ -1680,8 +1577,8 @@ exclude: true
 ### （示例）整群抽样下的抽样误差：计算结果
 
 
-<div id="htmlwidget-4e1deab30d3e7fb1ca23" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4e1deab30d3e7fb1ca23">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["2","8","10","Total"],[650,3200,1200,5050],[427,1933,770,3130],[0.656923076923077,0.6040625,0.641666666666667,1.90265224358974],[0.0227056623931624,-0.0301549145299146,0.00744925213675218,0],[0.00051554710471227,0.000909318870306454,5.5491357396907e-05,0.00148035733241563]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cluster<\/th>\n      <th>employees<\/th>\n      <th>requires<\/th>\n      <th>ratio<\/th>\n      <th>minus<\/th>\n      <th>sqr<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 6, 3, \",\", \".\");\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-3ad96aee6a3457d7efc2" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-3ad96aee6a3457d7efc2">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["2","8","10","Total"],[650,3200,1200,5050],[427,1933,770,3130],[0.6569230769230769,0.6040624999999999,0.6416666666666667,1.902652243589744],[0.02270566239316241,-0.03015491452991459,0.007449252136752182,0],[0.0005155471047122696,0.0009093188703064541,5.549135739690696e-05,0.001480357332415631]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cluster<\/th>\n      <th>employees<\/th>\n      <th>requires<\/th>\n      <th>ratio<\/th>\n      <th>minus<\/th>\n      <th>sqr<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 6, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"cluster","targets":1},{"name":"employees","targets":2},{"name":"requires","targets":3},{"name":"ratio","targets":4},{"name":"minus","targets":5},{"name":"sqr","targets":6}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render"],"jsHooks":[]}</script>
 
 依据抽样数据，我们知道
 `\(n =3\)`，容易计算得到
@@ -1813,8 +1710,8 @@ exclude: true
 **案例说明**：一家餐饮连锁店想估计员工对工作的平均满意度（ 里克特量表1-7分制）。该连锁店共有120家餐厅，连锁店的全体员工总数为6860人。
 研究人员决定使用**两阶段随机抽样**方案，第一阶段采用简单随机抽样来采样10家餐厅（被抽中的序号见列`id`，餐厅总员工数见列`tot_worker`）。然后，第二阶段也使用简单随机抽样对这些餐厅中约20％的员工（被抽中的员工数量见列`sel_worker`）进行抽样和工作满意度采访（见列`satisfaction`）。最终抽样数据结果如下：
 
-<div id="htmlwidget-0910d66f23dac55312c5" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0910d66f23dac55312c5">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[41,119,42,18,13,80,68,25,120,47],[54,48,68,70,52,62,41,53,64,43],[11,10,14,14,11,13,9,11,13,9],[[5,7,4,7,6,7,6,5,3,4,7],[6,3,7,3,6,3,5,6,7,7],[5,5,7,6,4,3,5,5,6,3,6,4,7,4],[3,3,3,4,7,5,7,4,6,7,3,3,3,3],[6,5,5,3,6,3,3,5,7,7,3],[5,5,4,3,6,5,7,7,3,5,3,3,6],[6,4,3,6,6,3,3,5,7],[3,4,5,7,4,7,7,7,4,7,5],[4,3,5,4,4,7,5,6,4,3,7,5,5],[6,7,6,5,7,5,7,6,7]]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>tot_worker<\/th>\n      <th>sel_worker<\/th>\n      <th>satisfaction<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":5,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-909cacf81a43486ce16f" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-909cacf81a43486ce16f">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[41,119,42,18,13,80,68,25,120,47],[54,48,68,70,52,62,41,53,64,43],[11,10,14,14,11,13,9,11,13,9],[[5,7,4,7,6,7,6,5,3,4,7],[6,3,7,3,6,3,5,6,7,7],[5,5,7,6,4,3,5,5,6,3,6,4,7,4],[3,3,3,4,7,5,7,4,6,7,3,3,3,3],[6,5,5,3,6,3,3,5,7,7,3],[5,5,4,3,6,5,7,7,3,5,3,3,6],[6,4,3,6,6,3,3,5,7],[3,4,5,7,4,7,7,7,4,7,5],[4,3,5,4,4,7,5,6,4,3,7,5,5],[6,7,6,5,7,5,7,6,7]]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>tot_worker<\/th>\n      <th>sel_worker<\/th>\n      <th>satisfaction<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"id","targets":1},{"name":"tot_worker","targets":2},{"name":"sel_worker","targets":3},{"name":"satisfaction","targets":4}],"pageLength":5,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 
 
 
@@ -1866,8 +1763,8 @@ exclude: true
 
 我们可以根据**无偏估计法**的相关理论公式，得到如下的计算表：
 
-<div id="htmlwidget-f7be0a711a503f4e1eca" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f7be0a711a503f4e1eca">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[41,119,42,18,13,80,68,25,120,47],[54,48,68,70,52,62,41,53,64,43],[11,10,14,14,11,13,9,11,13,9],[[5,7,4,7,6,7,6,5,3,4,7],[6,3,7,3,6,3,5,6,7,7],[5,5,7,6,4,3,5,5,6,3,6,4,7,4],[3,3,3,4,7,5,7,4,6,7,3,3,3,3],[6,5,5,3,6,3,3,5,7,7,3],[5,5,4,3,6,5,7,7,3,5,3,3,6],[6,4,3,6,6,3,3,5,7],[3,4,5,7,4,7,7,7,4,7,5],[4,3,5,4,4,7,5,6,4,3,7,5,5],[6,7,6,5,7,5,7,6,7]],[5.54545454545455,5.3,5,4.35714285714286,4.81818181818182,4.76923076923077,4.77777777777778,5.45454545454545,4.76923076923077,6.22222222222222],[2.07272727272727,2.9,1.69230769230769,2.86263736263736,2.56363636363636,2.19230769230769,2.44444444444444,2.47272727272727,1.69230769230769,0.694444444444445],[299.454545454545,254.4,340,305,250.545454545455,295.692307692308,195.888888888889,289.090909090909,305.230769230769,267.555555555556],[437.533884297521,528.96,443.868131868132,801.538461538461,496.879338842975,512.325443786982,356.345679012346,500.390082644628,424.899408284024,112.808641975309]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>tot_worker<\/th>\n      <th>sel_worker<\/th>\n      <th>satisfaction<\/th>\n      <th>mean<\/th>\n      <th>variance<\/th>\n      <th>y_hat<\/th>\n      <th>sum_right<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\");\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\");\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":8,"autoWidth":true,"scrollX":true,"order":[],"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-ae8f121e278a2ea5ecc9" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ae8f121e278a2ea5ecc9">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[41,119,42,18,13,80,68,25,120,47],[54,48,68,70,52,62,41,53,64,43],[11,10,14,14,11,13,9,11,13,9],[[5,7,4,7,6,7,6,5,3,4,7],[6,3,7,3,6,3,5,6,7,7],[5,5,7,6,4,3,5,5,6,3,6,4,7,4],[3,3,3,4,7,5,7,4,6,7,3,3,3,3],[6,5,5,3,6,3,3,5,7,7,3],[5,5,4,3,6,5,7,7,3,5,3,3,6],[6,4,3,6,6,3,3,5,7],[3,4,5,7,4,7,7,7,4,7,5],[4,3,5,4,4,7,5,6,4,3,7,5,5],[6,7,6,5,7,5,7,6,7]],[5.545454545454546,5.3,5,4.357142857142857,4.818181818181818,4.769230769230769,4.777777777777778,5.454545454545454,4.769230769230769,6.222222222222222],[2.072727272727273,2.899999999999999,1.692307692307692,2.862637362637362,2.563636363636363,2.192307692307692,2.444444444444445,2.472727272727273,1.692307692307692,0.6944444444444445],[299.4545454545455,254.4,340,305,250.5454545454546,295.6923076923077,195.8888888888889,289.0909090909091,305.2307692307692,267.5555555555555],[437.5338842975207,528.9599999999999,443.8681318681319,801.5384615384614,496.8793388429752,512.3254437869822,356.3456790123457,500.3900826446281,424.8994082840237,112.8086419753087]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>tot_worker<\/th>\n      <th>sel_worker<\/th>\n      <th>satisfaction<\/th>\n      <th>mean<\/th>\n      <th>variance<\/th>\n      <th>y_hat<\/th>\n      <th>sum_right<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"id","targets":1},{"name":"tot_worker","targets":2},{"name":"sel_worker","targets":3},{"name":"satisfaction","targets":4},{"name":"mean","targets":5},{"name":"variance","targets":6},{"name":"y_hat","targets":7},{"name":"sum_right","targets":8}],"pageLength":8,"autoWidth":true,"scrollX":true,"order":[],"orderClasses":false,"lengthMenu":[8,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script>
 
 ---
 
@@ -1911,8 +1808,8 @@ s_{i}^{2}&amp;=\frac{1}{m_{i}-1} \sum_{j=1}^{m_{i}}\left(y_{i j}-\bar{y}_{i}\rig
 
 我们可以根据**比率估计法**的相关理论公式，得到如下的计算表：
 
-<div id="htmlwidget-952b3f72a77f75c1297e" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-952b3f72a77f75c1297e">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[41,119,42,18,13,80,68,25,120,47],[54,48,68,70,52,62,41,53,64,43],[11,10,14,14,11,13,9,11,13,9],[[5,7,4,7,6,7,6,5,3,4,7],[6,3,7,3,6,3,5,6,7,7],[5,5,7,6,4,3,5,5,6,3,6,4,7,4],[3,3,3,4,7,5,7,4,6,7,3,3,3,3],[6,5,5,3,6,3,3,5,7,7,3],[5,5,4,3,6,5,7,7,3,5,3,3,6],[6,4,3,6,6,3,3,5,7],[3,4,5,7,4,7,7,7,4,7,5],[4,3,5,4,4,7,5,6,4,3,7,5,5],[6,7,6,5,7,5,7,6,7]],[5.54545454545455,5.3,5,4.35714285714286,4.81818181818182,4.76923076923077,4.77777777777778,5.45454545454545,4.76923076923077,6.22222222222222],[2.07272727272727,2.9,1.69230769230769,2.86263736263736,2.56363636363636,2.19230769230769,2.44444444444444,2.47272727272727,1.69230769230769,0.694444444444445],[299.454545454545,254.4,340,305,250.545454545455,295.692307692308,195.888888888889,289.090909090909,305.230769230769,267.555555555556],[715.241293378211,143.775021477491,11.6505156741686,2353.57675065718,145.557099611724,303.44961528954,124.749270371103,459.268664915399,323.34277425233,2539.87319552127],[437.533884297521,528.96,443.868131868132,801.538461538461,496.879338842975,512.325443786982,356.345679012346,500.390082644628,424.899408284024,112.808641975309]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>tot_worker<\/th>\n      <th>sel_worker<\/th>\n      <th>satisfaction<\/th>\n      <th>mean<\/th>\n      <th>variance<\/th>\n      <th>y_hat<\/th>\n      <th>sum1_yi_sqr<\/th>\n      <th>sum2_si_sqr<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\");\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\");\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\");\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":8,"autoWidth":true,"scrollX":true,"order":[],"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-c340fa830cf5007a690e" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c340fa830cf5007a690e">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[41,119,42,18,13,80,68,25,120,47],[54,48,68,70,52,62,41,53,64,43],[11,10,14,14,11,13,9,11,13,9],[[5,7,4,7,6,7,6,5,3,4,7],[6,3,7,3,6,3,5,6,7,7],[5,5,7,6,4,3,5,5,6,3,6,4,7,4],[3,3,3,4,7,5,7,4,6,7,3,3,3,3],[6,5,5,3,6,3,3,5,7,7,3],[5,5,4,3,6,5,7,7,3,5,3,3,6],[6,4,3,6,6,3,3,5,7],[3,4,5,7,4,7,7,7,4,7,5],[4,3,5,4,4,7,5,6,4,3,7,5,5],[6,7,6,5,7,5,7,6,7]],[5.545454545454546,5.3,5,4.357142857142857,4.818181818181818,4.769230769230769,4.777777777777778,5.454545454545454,4.769230769230769,6.222222222222222],[2.072727272727273,2.899999999999999,1.692307692307692,2.862637362637362,2.563636363636363,2.192307692307692,2.444444444444445,2.472727272727273,1.692307692307692,0.6944444444444445],[299.4545454545455,254.4,340,305,250.5454545454546,295.6923076923077,195.8888888888889,289.0909090909091,305.2307692307692,267.5555555555555],[715.2412933782106,143.7750214774912,11.6505156741686,2353.576750657184,145.5570996117236,303.44961528954,124.7492703711028,459.2686649153991,323.3427742523303,2539.873195521272],[437.5338842975207,528.9599999999999,443.8681318681319,801.5384615384614,496.8793388429752,512.3254437869822,356.3456790123457,500.3900826446281,424.8994082840237,112.8086419753087]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>tot_worker<\/th>\n      <th>sel_worker<\/th>\n      <th>satisfaction<\/th>\n      <th>mean<\/th>\n      <th>variance<\/th>\n      <th>y_hat<\/th>\n      <th>sum1_yi_sqr<\/th>\n      <th>sum2_si_sqr<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"id","targets":1},{"name":"tot_worker","targets":2},{"name":"sel_worker","targets":3},{"name":"satisfaction","targets":4},{"name":"mean","targets":5},{"name":"variance","targets":6},{"name":"y_hat","targets":7},{"name":"sum1_yi_sqr","targets":8},{"name":"sum2_si_sqr","targets":9}],"pageLength":8,"autoWidth":true,"scrollX":true,"order":[],"orderClasses":false,"lengthMenu":[8,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render"],"jsHooks":[]}</script>
 
 
 ---
@@ -1988,8 +1885,8 @@ exclude: true
 
 **案例说明**：一个学院共有36个专业（`major`）。研究者想估算出上学期学生在教科书上花费（`expenses`）的平均金额。由于每个专业的规模差异很大，因此采用的两阶段抽样方案，其中第一阶段采用的是pps抽样，第二阶段是简单随机抽样。最终抽样数据结果如下：
 
-<div id="htmlwidget-b20442c5e7aa8d617990" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b20442c5e7aa8d617990">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],[18,13,16,4],[10,20,30,15],[4,8,12,6],[[326,400,423,443],[278,312,450,350,227,438,512,403],[512,256,332,402,512,309,411,610,422,630,550,470],[426,312,512,440,342,533]]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>major<\/th>\n      <th>tot_students<\/th>\n      <th>sel_students<\/th>\n      <th>expenses<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":5,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-b759b93c20712832dd5d" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b759b93c20712832dd5d">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],[18,13,16,4],[10,20,30,15],[4,8,12,6],[[326,400,423,443],[278,312,450,350,227,438,512,403],[512,256,332,402,512,309,411,610,422,630,550,470],[426,312,512,440,342,533]]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>major<\/th>\n      <th>tot_students<\/th>\n      <th>sel_students<\/th>\n      <th>expenses<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"major","targets":1},{"name":"tot_students","targets":2},{"name":"sel_students","targets":3},{"name":"expenses","targets":4}],"pageLength":5,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1997,8 +1894,8 @@ exclude: true
 
 我们可以根据**比例概率估计法**的相关理论公式，得到如下的计算表：
 
-<div id="htmlwidget-a2f1397f4f312c5b9f1e" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a2f1397f4f312c5b9f1e">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],[18,13,16,4],[10,20,30,15],[4,8,12,6],[[326,400,423,443],[278,312,450,350,227,438,512,403],[512,256,332,402,512,309,411,610,422,630,550,470],[426,312,512,440,342,533]],[398,371.25,451.333333333333,427.5],[2612.66666666667,9277.35714285714,13828.7878787879,7815.9],[3980,7425,13540,6412.5],[196.583767361111,1662.26085069444,1545.47265625,239.604600694445]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>major<\/th>\n      <th>tot_students<\/th>\n      <th>sel_students<\/th>\n      <th>expenses<\/th>\n      <th>mean<\/th>\n      <th>variance<\/th>\n      <th>y_hat<\/th>\n      <th>sum_sqr<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\");\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":8,"autoWidth":true,"scrollX":true,"order":[],"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-cf6010974a15c3cf7a93" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-cf6010974a15c3cf7a93">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],[18,13,16,4],[10,20,30,15],[4,8,12,6],[[326,400,423,443],[278,312,450,350,227,438,512,403],[512,256,332,402,512,309,411,610,422,630,550,470],[426,312,512,440,342,533]],[398,371.25,451.3333333333333,427.5],[2612.666666666667,9277.357142857143,13828.78787878788,7815.9],[3980,7425,13540,6412.5],[196.5837673611106,1662.260850694443,1545.47265625,239.604600694445]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>major<\/th>\n      <th>tot_students<\/th>\n      <th>sel_students<\/th>\n      <th>expenses<\/th>\n      <th>mean<\/th>\n      <th>variance<\/th>\n      <th>y_hat<\/th>\n      <th>sum_sqr<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"major","targets":1},{"name":"tot_students","targets":2},{"name":"sel_students","targets":3},{"name":"expenses","targets":4},{"name":"mean","targets":5},{"name":"variance","targets":6},{"name":"y_hat","targets":7},{"name":"sum_sqr","targets":8}],"pageLength":8,"autoWidth":true,"scrollX":true,"order":[],"orderClasses":false,"lengthMenu":[8,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script>
 
 .footnote[
 建议使用html浏览本课件，此表可以往右拉动，可以查看更多计算列。
@@ -2184,6 +2081,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

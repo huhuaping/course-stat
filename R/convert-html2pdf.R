@@ -20,7 +20,7 @@ dir.create(out_dir)
 path_out <- paste0(out_dir, stringr::str_replace(files_target,"html", "pdf"))
 
 i <- 17
-for (i in 2) {
+for (i in 2:2) {
   pagedown::chrome_print(input = path_input[i],output = path_out[i] ,format = "pdf",
                          browser = path_browser,timeout = 1020)
   Sys.sleep(0.5)
