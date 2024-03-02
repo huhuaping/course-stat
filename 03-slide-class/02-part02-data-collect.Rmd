@@ -503,21 +503,23 @@ include_graphics("../pic/chpt02-second-projects3.png", dpi = 110)
 
 - 北京大学[中国社会科学调查中心(ISSS)](http://www.isss.pku.edu.cn/)。主要的中国家庭追踪调查（[CFPS](http://www.isss.pku.edu.cn/cfps/index.htm)）、中国健康与养老追踪调查（[CHARLS](http://charls.pku.edu.cn/)）
 
-- 中国人民大学[中国调查与数据中心(NSRC)](http://nsrc.ruc.edu.cn/)。主要的数据源有中国综合社会调查（CGSS）、中国教育追踪调查（CEPS）、中国老年社会追踪调查（CLASS）
+- 中国人民大学[中国调查与数据中心(NSRC)](http://nsrc.ruc.edu.cn/)。主要的数据源有中国综合社会调查（`CGSS`）、中国教育追踪调查（`CEPS`）、中国宗教调查（`CRS`）、中国老年社会追踪调查（`CLASS`）、中国国家调查数据库（`CNSDA`）
+
+- 西南财经大学[中国家庭金融调查与研究中心](https://chfs.swufe.edu.cn/sjzx/sjsq.htm)，发布中国家庭金融调查数据集`CHFS`。
 
 - 中国疾病控制中心[(CDC)](http://www.phsciencedata.cn/Share/)。主要的数据源包括了慢病、流行病、艾滋病等多种涉及健康与疾病的调查。
 
 ---
 
-### 示例1：中国家庭追踪调查（CFPS）的数据申请
+### 示例1：北大/中国家庭追踪调查（CFPS）的数据申请
 
 ```{r}
-knitr::include_graphics("../pic/chpt02-CFPS-application00.png", dpi = 150)
+knitr::include_graphics("../pic/chpt02-CFPS-application00.png", dpi = 180)
 ```
 
 ---
 
-### 示例1：中国家庭追踪调查（CFPS）的数据申请
+### 示例1：北大/中国家庭追踪调查（CFPS）的数据申请
 
 ```{r}
 knitr::include_graphics("../pic/chpt02-CFPS-application01.png", dpi = 100)
@@ -525,35 +527,131 @@ knitr::include_graphics("../pic/chpt02-CFPS-application01.png", dpi = 100)
 
 ---
 
-### 示例1：中国家庭追踪调查（CFPS）的数据申请
+### 示例1：北大/中国家庭追踪调查（CFPS）的数据申请
 
 ```{r}
-knitr::include_graphics("../pic/chpt02-CFPS-application02.png", dpi = 100)
+knitr::include_graphics("../pic/chpt02-CFPS-application02.png", dpi = 140)
 ```
 
 ---
 
-### 示例1：中国家庭追踪调查（CFPS）的数据申请
+### 示例1：北大/中国家庭追踪调查（CFPS）的数据申请
 
 ```{r}
-knitr::include_graphics("../pic/chpt02-CFPS-application03.png", dpi = 120)
+knitr::include_graphics("../pic/chpt02-CFPS-application03.png", dpi = 140)
 ```
 
 ---
 
-### 示例2：中国健康与养老追踪调查（CHARLS）的数据申请
+### 示例1：北大/中国家庭追踪调查（CFPS）数据集列表
 
 ```{r}
-knitr::include_graphics("../pic/chpt02-CHARLS-application00.png", dpi = 100)
+knitr::include_graphics("../pic/chpt02-cfps-source-structure.png", dpi = 180)
+```
+
+.footnote[
+**注意**：官方提供了`Stata`和`SAS`两个版本。
+]
+
+---
+
+### 示例1：北大/中国家庭追踪调查（CFPS）数据文件
+
+```{r}
+knitr::include_graphics("../pic/chpt02-cfps-source-files.png", dpi = 100)
+```
+
+.footnote[
+**注意**：我这里下载的都是`Stata`版本。
+]
+
+
+---
+
+### 示例2：北大/中国健康与养老追踪调查（CHARLS）的数据申请
+
+```{r}
+knitr::include_graphics("../pic/chpt02-CHARLS-application00.png", dpi = 160)
 ```
 
 ---
 
-### 示例2：中国健康与养老追踪调查（CHARLS）的数据申请
+### 示例2：北大/中国健康与养老追踪调查（CHARLS）数据列表
 
 ```{r}
-knitr::include_graphics("../pic/chpt02-CHARLS-application01.png", dpi = 100)
+knitr::include_graphics("../pic/chpt02-CHARLS-application01.png", dpi = 170)
 ```
+
+.footnote[
+
+**注意**：完整的子数据集包括：基本信息、家庭信息、家庭经济交往、健康状况与功能、认知和抑郁、知情人信息收集、医疗保健与保险、工作和退休、养老金、家户收入、支出及资产、个人收入及资产、房产和住房情况、样本权重、样本信息
+
+]
+
+---
+
+### 示例2：北大/中国健康与养老追踪调查（CHARLS）数据文件
+
+```{r}
+knitr::include_graphics("../pic/chpt02-charls2018-source-files.png", dpi = 130)
+```
+
+.footnote[
+**注意**：官方只提供了`Stata`版本。
+]
+
+---
+
+### 示例2：人大/中国调查与数据中心的公开数据项目
+
+```{r}
+knitr::include_graphics("../pic/chpt02-ruc-source-projects.png", dpi = 130)
+```
+
+.footnote[
+
+**注意**：数据集需要在[中国学术调查数据资料库](http://www.cnsda.org/index.php)下载（须注册）
+
+]
+
+---
+
+### 示例2：人大/中国综合社会调查（CGSS）数据集列表
+
+```{r}
+knitr::include_graphics("../pic/chpt02-ruc-source-cgss.png", dpi = 300)
+```
+
+---
+
+### 示例2：人大/中国综合社会调查（CGSS）2021数据文件
+
+
+本项目共3份文档/数据
+
+- 中国综合社会调查（2021）问卷， 格式： PDF
+
+- 原始数据，格式`stata`，变量数700，样本量8148 
+
+- 原始数据，格式`spss`，变量数700，样本量8148 
+
+
+.footnote[
+**注意**：官方提供了`Stata`版本和`SPSS`版本。
+]
+
+
+---
+
+### 示例2：西南财大/中国家庭金融调查数据集（CHFS）
+
+```{r}
+knitr::include_graphics("../pic/chpt02-chfs2019-source-structure.png", dpi = 130)
+```
+
+.footnote[
+**注意**：数据集需要在[中国家庭金融调查中心](https://chfser.swufe.edu.cn/datas/)下载（须注册）；数据集官方提供了`txt`和`Stata`两个版本。
+]
 
 ---
 
@@ -585,6 +683,37 @@ knitr::include_graphics("../pic/chpt02-CHARLS-application01.png", dpi = 100)
 
 如果用综合数据，这些专题数据显然就找不着。在政府数据中，倒是可以找到一些，但是，需要根据专题去清理、去加工。除此以外，考入北京大学的学生人数和地区，北京大学的招办就有。
 
+---
+
+### 二手数据收集：数据来源声明（CGSS）
+
+```{r}
+knitr::include_graphics("../pic/chpt02-ruc-cgss-declare.png", dpi = 260)
+```
+
+.footnote[
+**引用备注**：论文（书）使用数据全部（部分）来自中国人民大学中国调查与数据中心主持之《中国综合社会调查（CGSS）》项目。作者感谢此机构及其人员提供数据协助，本论文（书）内容由作者自行负责
+]
+
+---
+
+### 收集二手数据：互联网公开数据爬取
+
+互联网（`WWW`）世界天然存放了海量的公开信息和数据，是我们收集二手数据的一个重要平台。
+
+主要的开放形式有：
+
+- 网站零散化页面（信息比较破碎，展示格式不统一）：例如[高新技术企业认定工作网](http://www.innocom.gov.cn/gqrdw/index.shtml)
+
+- 网站结构化页面（信息比较规范，展示格式比较统一）：例如[京东商城](https://www.jd.com/)、[全国农产品批发市场价格网](https://pfsc.agri.cn/#/indexPage)、[海关统计数据查询平台](http://stats.customs.gov.cn/)等。
+
+- 网站提供API数据接口（内部有严格的数据库，可供参数化查询下载）：WTO数据库[API接口](https://apiportal.wto.org/)、世界银行数据库[API接口](https://documents.worldbank.org/en/publication/documents-reports/api)等。
+
+需要的相关技能：
+
+- 网络爬虫编程能力
+
+- HTML、SQL和API知识等
 
 ---
 

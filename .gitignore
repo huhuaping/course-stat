@@ -5,4 +5,9 @@
 public/
 
 data-raw/*.dta
+data-raw/cfps2020/
+data-raw/cfps2018/
+data-raw/CHARLS2018/
+data-raw/CGSS/
+
 data/SGI-CFPS2020_person.xlsx

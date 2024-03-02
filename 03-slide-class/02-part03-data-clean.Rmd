@@ -38,14 +38,15 @@ exclude: `r params$hideslide`
 ### `r Sys.Date()`
 
 ```{r , echo=F,message=FALSE,warning=F}
-source("../R/set-global.R")
+library(here)
+source(here("R/set-global.R"))
 options(width = 70)
-#source("../R/xaringan-chromote-print.R")
+#source(here("R/xaringan-chromote-print.R"))
 ```
 
 
-```{r }
-source("../R/external-math-equation.R")
+```{r}
+source(here("R/external-math-equation.R"))
 ```
 
 
@@ -57,7 +58,7 @@ xaringanExtra::use_tachyons()
 xaringanExtra::use_panelset()
 
 xaringanExtra::use_logo(
-  image_url = "../pic/logo/nwafu-logo-circle-wb.png",
+  image_url = here("pic/logo/nwafu-logo-circle-wb.png"),
   height = '70px',
   position = xaringanExtra::css_position(top='0.2em',left="1em")
 )
@@ -322,7 +323,7 @@ name: record-clean
 ### 示例：一次对原始数据的清洗记录1
 
 ```{r, out.height=550}
-knitr::include_graphics("../pic/chpt02-data-clean-xian01.png")
+knitr::include_graphics(here("pic/chpt02-data-clean-xian01.png"))
 ```
 
 ---
@@ -330,15 +331,15 @@ knitr::include_graphics("../pic/chpt02-data-clean-xian01.png")
 ### 示例：一次对原始数据的清洗记录2
 
 ```{r, out.height=350}
-knitr::include_graphics("../pic/chpt02-data-clean-xian02.png")
+knitr::include_graphics(here("pic/chpt02-data-clean-xian02.png"))
 ```
 
 ---
 
 ### 示例：一次对原始数据的清洗记录3
 
-```{r, out.height=550}
-knitr::include_graphics("../pic/chpt02-data-clean-xian03.png")
+```{r, out.height=520}
+knitr::include_graphics(here("pic/chpt02-data-clean-xian03.png"))
 ```
 
 ---
@@ -452,7 +453,7 @@ name: handle-clean
 问题是，这些数据是怎么处理的呢？数据清洗关心的正是[这个问题](https://www.alibabacloud.com/help/zh/doc-detail/27875.htm)。
 
 ```{r}
-include_graphics("../pic/chpt02-alibaba-map-reduce.jpg",dpi = 80)
+include_graphics(here("pic/chpt02-alibaba-map-reduce.jpg"),dpi = 80)
 ```
 
 
@@ -481,32 +482,36 @@ include_graphics("../pic/chpt02-alibaba-map-reduce.jpg",dpi = 80)
 第四步呢，reducing，就是把已经归类好的合并同类项，由此获得的产出是格式化的、结构化的数据， 可以用于分析与研究的数据库化的数据了。 这就是大数据的清洗，这些步骤都是在系统中完成的。 
 
 ---
+exclude: true
 
-### （示例）CGSS数据的清洗：介绍
+### （代码）CGSS数据
 
 ```{r}
 #install.packages("haven")
 #install.packages("sjmisc")
 require("haven")
-require("sjmisc")
+#require("sjmisc")
 
-
-CGSS2015 <- read_dta("../data-raw/CGSS2015.dta")  #%>%
+CGSS2015 <- read_dta(here("data-raw/CGSS/CGSS2015.dta"))  #%>%
   #as_factor(.,  levels = "both")
-#CGSS2013 <- read_dta("../data-raw/CGSS2013.dta")
+#CGSS2013 <- read_dta(here("data-raw/CGSS/CGSS2013.dta"))
 
 n_obs <- nrow(CGSS2015)
 
-vars_all <- data.frame("name" = names(CGSS2015),
-                   "label" = sapply(CGSS2015, function(x) attr(x, "label"))  %>% as.character(),
-                   "class" = sapply(CGSS2015, typeof),
-                   "format" = sapply(CGSS2015, function(x) attr(x, "format.stata"))  %>% as.character(),
-                   "labelled" = sapply(CGSS2015, is.labelled),
-                   "labels" = sapply(CGSS2015, function(x) attr(x, "labels"))  %>% as.character()) %>%
+vars_all <- data.frame(
+  "name" = names(CGSS2015),
+  "label" = sapply(CGSS2015, function(x) attr(x, "label"))  %>% as.character(),
+  "class" = sapply(CGSS2015, typeof),
+  "format" = sapply(CGSS2015, function(x) attr(x, "format.stata"))  %>% as.character(),
+  "labelled" = sapply(CGSS2015, is.labelled),
+  "labels" = sapply(CGSS2015, function(x) attr(x, "labels"))  %>% as.character()) %>%
   add_column("index"= 1:nrow(.), .before = "name")
+
 n_vars <- nrow(vars_all)
 
-
+# unlabelled the dataset
+library(labelled)
+CGSS2015_unlabel <- labelled::unlabelled(CGSS2015 )
 ```
 
 ```{r, eval=FALSE}
@@ -527,7 +532,9 @@ vars_all %>%
 vars_all[name=="a8a",]$labels
 ```
 
+---
 
+### （示例）CGSS数据的清洗：介绍
 
 中国综合社会调查（China General Society Survey，**CGSS**）：
 
@@ -535,7 +542,21 @@ vars_all[name=="a8a",]$labels
 
 - 属于**混合截面数据**：也即不同年份的观测单位不是固定的。
 
-- **CGSS2015**一共有样本数`r n_obs`，变量总数有`r n_vars`
+- 我们这里的`CGSS2015`数据集，其存放文件格式`CGSS2015.dta`，这是一种`Stata`软件的典型**标签化**（labelled）数据格式。
+
+- `CGSS2015`数据集一共有样本数`r n_obs`，变量总数有`r n_vars`
+
+数据集的**标签**（labels）属性一般有 3 种类型：
+
+- 变量标签（variable' labels）：变量的简短描述
+
+- 值标签（value' labels）：与特定值相关的标签，例如M=男；F=女。
+
+- 缺失值标签（Missing values' labels）：具体又包括（1）用户定义的缺失值（`SPSS` 样式），例如定义标签值`999`表示该题项没有回答；以及（2）标记 `NA`缺失值（`Stata` 和 `SAS` 风格）。
+
+???
+
+参看：R包`labelled`的[cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/labelled.pdf)
 
 ---
 
@@ -544,16 +565,20 @@ vars_all[name=="a8a",]$labels
 随机抽取300份样本的前20个变量。`r str_c("CGSS2015数据（样本数=", n_obs, "）")`数据如下：
 
 ```{r}
-
-CGSS2015  %>%
-  sample_n(300) %>%
-  arrange(id) %>%
+set.seed(2015)
+CGSS2015_unlabel  %>%
+  dplyr::sample_n(300) %>%
+  dplyr::arrange(id) %>%
   select(1:20) %>%
-  datatable(#caption = ,
-            extensions = 'FixedColumns',
-            options = list(pageLength = 3,dom= "tip",
-                           fixedColumns = TRUE,
-                           scrollX=TRUE,scrollY=TRUE))
+  DT::datatable(#caption = ,
+            #extensions = 'FixedColumns',
+    options = list(
+      pageLength = 3,
+      dom = "tip",
+      fixedColumns = TRUE,
+      scrollX = TRUE, scrollY = TRUE
+      )
+    )
 ```
 
 ---
@@ -580,11 +605,18 @@ vars_all  %>%
   filter(str_detect(.$label,".*收入")) %>%
   rename_at(names(.), ~names_chn) %>%
   select(one_of(names_chn[c(1:3,7)])) %>%
-  datatable(caption = str_c("含有“收入”的变量（变量数=", nrow(.), "）"),
-            options = list(pageLength = 2, dom = "tip",
-                           scrollX=TRUE,scrollY=TRUE,
-                           autoWidth = TRUE,
-                           columnDefs = list(list(width = '45%', targets =c(2)))))
+  datatable(
+    caption = str_c("含有“收入”的变量（变量数=",
+                    nrow(.), "）"),
+    options = list(
+      pageLength = 2, dom = "tip",
+      scrollX=TRUE, scrollY=TRUE,
+      autoWidth = TRUE,
+      columnDefs = list(
+        list(width = '45%', targets =c(2))
+        )
+      )
+    )
 ```
 
 
@@ -601,11 +633,17 @@ vars_all %>%
   filter(name %in% vars_sel) %>%
   rename_at(names(.), ~names_chn) %>%
   select(one_of(names_chn[c(1:3,7)])) %>%
-  datatable(#caption = str_c("CGSS2015变量体系（变量数=", n_vars, "）"),
-            options = list(pageLenth =3,
-                           scrollX=TRUE,
-                           autoWidth = TRUE,
-                           columnDefs = list(list(width = '30%', targets =c(2)))))
+  datatable(
+    #caption = str_c("CGSS2015变量体系（变量数=", n_vars, "）"),
+    options = list(
+      pageLenth =3,
+      scrollX=TRUE,
+      autoWidth = TRUE,
+      columnDefs = list(
+        list(width = '30%', targets =c(2))
+        )
+      )
+    )
 ```
 
 ---
@@ -616,8 +654,8 @@ vars_all %>%
 
 ```{r}
 vars_sel <- c("id","b8b", "b1011", "a5606") 
-
-CGSS2015 %>%
+set.seed(2015)
+CGSS2015_unlabel %>%
   select(one_of(vars_sel)) %>%
   sample_n(40) %>%
   datatable(#caption = "CGSS2015回答情况一瞥(第20~25个样本)",
@@ -634,7 +672,7 @@ vars_sel <- c("id","a36","a10", "a8a")
 vars_eng <- c("id","Happ","Pol","Inc")
 
 
-dt_sub <- CGSS2015 %>% 
+dt_sub <- CGSS2015_unlabel %>% 
   select(one_of(vars_sel)) %>%
   rename_at(names(.), ~vars_eng) %>%
   filter(Inc >=0 & Inc < 10^6) %>%
@@ -645,12 +683,11 @@ row_sel <- sort(sample(dt_sub$id,100))
 
 .pull-left[
 ```{r}
-
-CGSS2015 %>% 
+CGSS2015_unlabel %>% 
   select(one_of(vars_sel)) %>%
   filter( id %in% row_sel) %>%
   datatable(caption = "变量重新命名前",
-            options = list(pageLength =8, dom = "tip"))
+            options = list(pageLength =7, dom = "tip"))
 ```
 ]
 
@@ -659,8 +696,16 @@ CGSS2015 %>%
 ```{r}
 dt_sub %>%
   filter( id %in% row_sel)  %>%
-  datatable(caption = "变量重新命名后",
-            options = list(pageLength =8, dom = "tip"))
+  datatable(
+    caption = "变量重新命名后",
+    options = list(
+      pageLength =6, dom = "tip"#,
+      #autoWidth = TRUE#,
+      #columnDefs = list(
+      #  list(width = '100px', targets =c(2))
+      #  )
+      )
+    )
 ```
 
 ]
