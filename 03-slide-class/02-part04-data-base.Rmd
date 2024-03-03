@@ -78,7 +78,7 @@ exclude: `r params$hideslide`
 
 ### [2.3 资料整理和数据清洗](#tidy)
 
-### .white[[2.4 数据的数据库化](#database)]
+### .emp[[2.4 数据的数据库化](#database)]
 
 ]
 
@@ -95,7 +95,6 @@ exclude: `r params$hideslide`
 ]
 
 
-
 ---
 layout: false
 class: center, middle, duke-softblue,hide_logo
@@ -109,7 +108,7 @@ name: database
 
 ### 二手资料的数据库化
 
-### [若干实例](#case-proj)
+### .emp[[若干实例](#case-proj)]
 
 ---
 layout: true

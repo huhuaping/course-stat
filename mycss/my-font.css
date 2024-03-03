@@ -122,3 +122,8 @@ div.dataTables_paginate,  div.dataTables_info{
 sup {
   color: red;
 }
+
+/* emphasis text with href */
+span.emp > a {   
+  color: white;
+}

@@ -90,7 +90,7 @@ exclude: `r params$hideslide`
 
 ### [2.7 抽样分布和抽样误差](#error)
 
-### .white[[2.8 问卷设计技术](#question)]
+### .emp[[2.8 问卷设计技术](#question)]
 
 ]
 

@@ -72,7 +72,7 @@ exclude: `r params$hideslide`
 
 .pull-left[
 
-### .white[[2.1 数据目标](#target)]
+### .emp[[2.1 数据目标](#target)]
 
 ### [2.2 数据收集](#collection)
 

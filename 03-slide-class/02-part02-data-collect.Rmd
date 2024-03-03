@@ -74,7 +74,7 @@ exclude: `r params$hideslide`
 
 ### [2.1 数据目标](#target)
 
-### .white[[2.2 数据收集](#collection)]
+### .emp[[2.2 数据收集](#collection)]
 
 ### [2.3 资料整理和数据清洗](#tidy)
 

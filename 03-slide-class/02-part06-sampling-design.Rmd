@@ -38,14 +38,15 @@ exclude: `r params$hideslide`
 ### `r Sys.Date()`
 
 ```{r , echo=F,message=FALSE,warning=F}
-source("../R/set-global.R")
+library(here)
+source(here("R/set-global.R"))
 options(width = 70)
-#source("../R/xaringan-chromote-print.R")
+#source(here("R/xaringan-chromote-print.R"))
 ```
 
 
 ```{r }
-source("../R/external-math-equation.R")
+source(here("R/external-math-equation.R"))
 ```
 
 
@@ -86,7 +87,7 @@ exclude: `r params$hideslide`
 
 ### [2.5 数据质量](#quality)
 
-### .white[[2.6 抽样设计](#sampling)]
+### .emp[[2.6 抽样设计](#sampling)]
 
 ### [2.7 抽样分布和抽样误差](#error)
 
@@ -499,7 +500,7 @@ name:prob
 ## 概率抽样1：简单随机抽样（kish table）
 
 ```{r}
-include_graphics("../pic/chpt02-kish-table.png", dpi = 140)
+include_graphics(here("pic/chpt02-kish-table.png"), dpi = 140)
 ```
 
 
@@ -537,8 +538,8 @@ include_graphics("../pic/chpt02-kish-table.png", dpi = 140)
 ## 概率抽样1：简单随机抽样（R示例）
 
 ```{r}
-files <- dir("../data/student-list/")
-dir_list <- str_c("../data/student-list/", files)
+files <- dir(here("data/student-list"))
+dir_list <- str_c(here("data/student-list"),"/", files)
 
 students <- NULL
  for (i in seq_along(dir_list) ){
@@ -611,7 +612,7 @@ students%>%
 下面是一张kish随机数表：
 
 ```{r}
-kish <- read.xlsx("../data/kish-table.xlsx")
+kish <- read.xlsx(here("data/kish-table.xlsx"))
 
 kish %>%
   datatable(caption = "一份kish 随机数表")
@@ -658,12 +659,10 @@ household %>%
 进一步地，每户都可以在8张表（A-F）中做出随机选择：
 
 ```{r}
-
 household %>%
   gather(key = "table", value = "select", A:`F`) %>%
   arrange(id,table) %>%
   datatable(options = list(pageLength = 6, dom ="tip"))
-
   
 ```
 
@@ -805,7 +804,7 @@ household %>%
 .pull-right[
 
 ```{r}
-include_graphics("../pic/chpt02-cluster-sampling.png", dpi=300)
+include_graphics(here("pic/chpt02-cluster-sampling.png"), dpi=300)
 ```
 
 ]
@@ -1061,7 +1060,7 @@ $0.0125 \ast 0.04 = 0.0005$。
 </br>
 
 ```{r}
-include_graphics("../pic/chpt02-stratified-sampling.png",dpi=160)
+include_graphics(here("pic/chpt02-stratified-sampling.png"),dpi=160)
 ```
 
 
@@ -1213,7 +1212,7 @@ name:non-prob
 .pull-right[
 
 ```{r}
-include_graphics("../pic/chpt02-non-probability-sampling-2.png")
+include_graphics(here("pic/chpt02-non-probability-sampling-2.png"))
 ```
 
 

@@ -77,7 +77,7 @@ exclude: `r params$hideslide`
 
 ### [2.2 数据收集](#collection)
 
-### .white[[2.3 资料整理和数据清洗](#tidy)]
+### .emp[[2.3 资料整理和数据清洗](#tidy)]
 
 ### [2.4 数据的数据库化](#database)
 

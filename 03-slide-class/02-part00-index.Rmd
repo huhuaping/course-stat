@@ -35,11 +35,12 @@ class: center,middle
 ### `r Sys.Date()`
 
 ```{r global_options, echo=F,message=FALSE,warning=F}
-source("../R/set-global.R")
-source("../R/external-math-equation.R")
-source("../R/xfun.R", encoding = "UTF-8")
+library(here)
+source(here("R/set-global.R"))
+source(here("R/external-math-equation.R"))
+source(here("R/xfun.R"), encoding = "UTF-8")
 options(width = 70)
-#source("../R/xaringan-chromote-print.R")
+#source(here("R/xaringan-chromote-print.R"))
 ```
 
 
@@ -51,7 +52,7 @@ xaringanExtra::use_tachyons()
 xaringanExtra::use_panelset()
 
 xaringanExtra::use_logo(
-  image_url = "../pic/logo/nwafu-logo-circle-wb.png",
+  image_url = here("pic/logo/nwafu-logo-circle-wb.png"),
   height = '70px',
   position = xaringanExtra::css_position(top='0.2em',left="1em")
 )

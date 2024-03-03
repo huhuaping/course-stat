@@ -34,7 +34,7 @@ exclude: FALSE
 
 ### huhuaping01@hotmail.com
 
-### 2022-03-26
+### 2024-03-03
 
 
 
@@ -91,7 +91,7 @@ exclude: FALSE
 
 ### [2.3 资料整理和数据清洗](#tidy)
 
-### .white[[2.4 数据的数据库化](#database)]
+### .emp[[2.4 数据的数据库化](#database)]
 
 ]
 
@@ -108,7 +108,6 @@ exclude: FALSE
 ]
 
 
-
 ---
 layout: false
 class: center, middle, duke-softblue,hide_logo
@@ -122,7 +121,7 @@ name: database
 
 ### 二手资料的数据库化
 
-### [若干实例](#case-proj)
+### .emp[[若干实例](#case-proj)]
 
 ---
 layout: true
@@ -1127,6 +1126,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

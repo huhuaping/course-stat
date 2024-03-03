@@ -63,6 +63,8 @@ xaringanExtra::use_logo(
 )
 ```
 
+
+
 ---
 class: center, middle, duke-orange,hide_logo
 name: chapter02
@@ -84,11 +86,12 @@ exclude: `r params$hideslide`
 
 .pull-right[
 
-### .[2.5 数据质量](#quality)
+### [2.5 数据质量](#quality)
 
 ### [2.6 抽样设计](#sampling)
 
-### white[[2.7 抽样分布和抽样误差](#error)]
+
+### .emp[[2.7 抽样分布和抽样误差](#error)]
 
 ### [2.8 问卷设计技术](#question)
 
@@ -751,7 +754,7 @@ curve(dnorm(x, sd = 1/sqrt(n)),
 
 ## 抽样分布：骰子游戏
 
-```{r, out.height='550px'}
+```{r, out.height='500px'}
 # number of repetitions
 reps <- 10000
 
@@ -1125,7 +1128,6 @@ $n=\sum_{h=1}^h{n_L}=20+10+5+5=40$。
 
 ]
 
-
 ---
 
 ## 抽样误差：分层抽样
@@ -1317,14 +1319,14 @@ var_st^0.5
 
 .pull-left[
 
-```{r, out.height= '250px', fig.cap="系统抽样示例"}
+```{r, out.height= '200px', fig.cap="系统抽样示例"}
 include_graphics("../pic/chpt02-sampling-systematic.png")
 ```
 
 ]
 
 .pull-right[
-```{r, out.height= '250px', fig.cap="整群抽样示例"}
+```{r, out.height= '200px', fig.cap="整群抽样示例"}
 include_graphics("../pic/chpt02-sampling-cluster.png")
 ```
 ]
@@ -1340,9 +1342,11 @@ $y$值将都会被抽中。
 
 ## 抽样误差：系统抽样和整群抽样的关系
 
+.page-font-21[
+
 .pull-left[
 
-```{r, out.height= '250px', fig.cap="系统抽样示例"}
+```{r, out.height= '200px', fig.cap="系统抽样示例"}
 include_graphics("../pic/chpt02-sampling-systematic-psu.gif")
 ```
 
@@ -1356,9 +1360,10 @@ $n=16$。
 ]
 
 .pull-right[
-```{r, out.height= '250px', fig.cap="整群抽样示例"}
+```{r, out.height= '200px', fig.cap="整群抽样示例"}
 include_graphics("../pic/chpt02-sampling-cluster-psu.gif")
 ```
+
 
 - 该案例共有50个主要抽样单位（PSU）：共有50个2*4型方框。
 
@@ -1366,6 +1371,8 @@ include_graphics("../pic/chpt02-sampling-cluster-psu.gif")
 $n=8$。
 
 - 只有1个主要抽样单位（PSU）被随机抽中：第1个2*4型方框的全部小格都被抽中，共8个。
+
+]
 
 ]
 
@@ -1472,7 +1479,7 @@ $M_i=8$：每个2*4中型方框中的8个小格。
 
 ## 抽样误差：系统抽样的抽样误差计算
 
-在“1-in-n”系统抽样方案下，估计**次要抽样单元（SSU）**的均值
+此时估计**次要抽样单元（SSU）**的均值
 $\hat{\mu}_{sy}$和方差
 $\widehat{Var}\left(\hat{\mu}_{sy}\right)$分别为：
 
@@ -1481,14 +1488,13 @@ $$\begin{align}
 \end{align}$$
 
 $$\begin{align}
-\widehat{Var}(\hat{\mu}_{sy}) &=\frac{M-n \cdot \bar{M}}{M\cdot n} \cdot \frac{1}{(n-1)} \cdot \sum_{i=1}^{n}\left(\bar{y}_{i}-\hat{\mu}\right)^{2} \\
-&= \frac{M-n \cdot \bar{M}}{M\cdot n} \cdot s^2_{\bar{y}_i}
+\widehat{Var}(\hat{\mu}_{sy}) &=\frac{M-n \cdot \bar{M}}{M\cdot n} \cdot \frac{1}{(n-1)} \cdot \sum_{i=1}^{n}\left(\bar{y}_{i}-\hat{\mu}\right)^{2} = \frac{M-n \cdot \bar{M}}{M\cdot n} \cdot s^2_{\bar{y}_i}
 \end{align}$$
 
 其中：
 - 
-$\bar{y}_{i}=\frac{y_{i}}{M_{i}}=\frac{\sum_{j=1}^{M_{i}} y_{i j}}{M_{i}}; i \in 1,2, \ldots, n$
-- $\bar{M}=M_{1}=M_{2}=\ldots=M_{n}$
+$\bar{y}_{i}=\frac{y_{i}}{M_{i}}=\frac{\sum_{j=1}^{M_{i}} y_{i j}}{M_{i}}; i \in 1,2, \ldots, n$。
+$\bar{M}=M_{1}=M_{2}=\ldots=M_{n}$
 
 - 主要抽样单位（PSU）数量为
 $N$；样本中的主要抽样单位（PSU）数量为
@@ -1581,7 +1587,7 @@ $1-in-50(400 / 8)$的系统抽样方案，也即：
 ```{r}
 calc_systematic %>%
   select(-data) %>%
-  DT::datatable(options = list(dom ="tip", pageLength =5)) %>%
+  DT::datatable(options = list(dom ="tip", pageLength =4)) %>%
   formatRound(3, 2)
 ```
 
