@@ -568,6 +568,29 @@ knitr::include_graphics("../pic/chpt02-cfps-source-files.png", dpi = 100)
 
 ---
 
+### 示例1：北大/中国家庭追踪调查（CFPS）工资性收入部分数据
+
+```{r}
+knitr::include_graphics("../pic/chpt02-cfps2020-data-label.png", dpi = 200)
+```
+
+.footnote[
+**注意**：原始数据集为`cfps2020famecon.dta`，这里只保留了其中“工资性收入”部分的数据。
+]
+
+---
+
+### 示例1：北大/中国家庭追踪调查（CFPS）工资性收入部分问卷
+
+```{r}
+knitr::include_graphics("../pic/chpt02-cfps2020-data-questionare.png", dpi = 300)
+```
+
+
+
+
+---
+
 ### 示例2：北大/中国健康与养老追踪调查（CHARLS）的数据申请
 
 ```{r}
