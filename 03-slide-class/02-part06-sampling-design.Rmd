@@ -318,8 +318,11 @@ CFPS把总体定义为中国的家庭户，是指有中国户籍的家庭户，�
 
 --
 
-```{block, type='puzzle', echo=T}
+
+```{block, type='puzzle', echo=TRUE}
+
 **提问**：
+
 - CFPS中，家庭户指居住在二十五个省级单位内的家庭户吗？
 - 户籍不在本地的算不算？
 - 住又是什么意思呢？
@@ -1464,6 +1467,221 @@ include_graphics(here("pic/chpt02-cluster-sampling.png"), dpi=300)
 
 - 在分群中有一点需要注意，群的规模不宜过大，否则就有可能出现内部同质性。影响抽样的效率，操作起来也很麻烦。
 
+---
+
+### 单阶段和两阶段整群抽样（等概率原则）
+
+在单阶段整群抽样中，主要抽样单位（PSU）内的所有次要抽样单位（SSU）都会被选中。
+
+但是，在某些情况下，一个群组中的次要抽样单位可能非常相似，以至于测量一个群组中的所有次要抽样单位会浪费资源；或者，相对于采样主要抽样单位的成本，测量次要抽样单位可能是昂贵的。
+
+因此，在两阶段群组抽样中的每个阶段，都以相同的概率对主要抽样单位和次要抽样单位进行抽样（与分层抽样类似）。
+
+---
+
+### 单阶段和两阶段整群抽样（比较1-总体）
+
+.pull-left[
+
+**单阶段抽样**
+
+```{r}
+file_tar <- "../pic/chpt02-clusting-compare01-stage-psu.png"
+include_graphics(file_tar)
+```
+
+
+]
+
+.pull-right[
+
+**两阶段抽样**
+
+```{r}
+file_tar <- "../pic/chpt02-clusting-compare01-stage-psu.png"
+include_graphics(file_tar)
+```
+
+]
+
+
+---
+
+### 单阶段和两阶段整群抽样（比较2-psu）
+
+.pull-left[
+
+**单阶段抽样**
+
+```{r}
+file_tar <- "../pic/chpt02-clusting-compare02-stage-psu-srs.png"
+include_graphics(file_tar)
+```
+
+
+]
+
+.pull-right[
+
+**两阶段抽样**
+
+```{r}
+file_tar <- "../pic/chpt02-clusting-compare02-stage-psu-srs.png"
+include_graphics(file_tar)
+```
+
+]
+
+---
+
+### 单阶段和两阶段整群抽样（比较3-ssu）
+
+.pull-left[
+
+**单阶段抽样**
+
+```{r}
+file_tar <- "../pic/chpt02-clusting-compare03-stage-ssu-all.png"
+include_graphics(file_tar)
+```
+
+
+]
+
+.pull-right[
+
+**两阶段抽样**
+
+```{r}
+file_tar <- "../pic/chpt02-clusting-compare03-stage-ssu-srs.png"
+include_graphics(file_tar)
+```
+
+]
+
+---
+exclude: true
+
+## 代码：学积分案例
+
+```{r}
+# source： @lohr2021 chpt 05 Cluster Sampling with Equal Probabilities
+data(gpa, package = "SDAResources")
+ns <- nrow(gpa)
+
+gpa_wide <- gpa %>%
+  select(-wt) %>%
+  group_by(suite) %>%
+  mutate(student = row_number(suite)) %>%
+  ungroup() %>%
+  pivot_wider(id_cols = student, 
+              names_from = suite,
+              values_from = gpa,
+              names_prefix = "suite")
+```
+
+---
+
+### 示例：单阶段整群抽样-psu平衡（案例简介）
+
+一个学生想估算一下他宿舍的平均绩点(GPA)。他没有得到宿舍所有学生的名单并进行简单随机抽样（SRS），而是注意到学生宿舍由100间套房组成，每间套房有4名学生；他计划从这些套房中随机选择5个，然后得到这5个套房中每个人的GPA。
+
+```{r}
+gpa_wide %>%
+  datatable(
+    caption = paste0("单阶段整群抽样(样本数=",ns,")"),
+    options = list(
+      dom = "t",
+      pageLength = 4
+    )
+  )
+```
+
+- 主要抽样单位PSU：套房；次要抽样单位SSU：学生
+
+- 总体群组数（主要抽样单位数）
+$N =100$；总体群组中的单位数（次要抽样单位数）
+$M=4$。样本中的群组数（主要抽样单位数）
+$n = 5$。
+
+---
+exclude: true
+
+## 代码：数学成绩案例
+
+```{r}
+# source： @lohr2021 chpt 5.3 two stage cluster sampling
+
+data(schools, package = "SDAResources")
+ns <- nrow(schools)
+schools_math <- schools %>%
+  select(-starts_with("read"), -finalwt)
+
+smry_math <- schools_math %>%
+  select(schoolid, Mi) %>%
+  group_by(schoolid) %>%
+  summarise(
+    Mi = mean(Mi),
+    mi = n()
+  )
+```
+
+---
+
+### 示例：两阶段整群抽样-psu平衡（案例简介）
+
+在教育调查中，一旦选择了学校或教室，对个别学生的测量就相对容易获得（例如对代数课程进行学生笔试），单阶段整群样本通常是最实用的。
+
+本案例研究感兴趣的响应测度需要研究团队的大量资源投入（学生接受评估专家的个人采访），此时两阶段整群抽样可能会更经济划算。
+
+
+- 在第一阶段的抽样中，从
+$N = 75$所学校的总体中采用简单随机抽样（SRS）选择
+$n = 10$所学校。
+
+- 第二阶段，从每个抽样学校中采用简单随机抽样（SRS）选出
+$m_i = 20$名学生，并派遣专家对学生进行数学能力采访评估。
+
+---
+
+### 示例：两阶段整群抽样-psu非平衡（抽样信息）
+
+```{r}
+smry_math %>%
+  datatable(
+    caption = paste0("两阶段整群抽样信息"),
+    options = list(
+      dom = "tip",
+      pageLength = 5
+    )
+  )
+```
+
+- 主要抽样单位PSU：学校；次要抽样单位SSU：学生
+
+- 总体群组数（主要抽样单位数）
+$N =75$；总体群组中的单位数（次要抽样单位数）
+$M_i$非平衡。样本中的群组数（主要抽样单位数）
+$n = 10$。
+
+---
+
+### 示例：两阶段整群抽样-psu非平衡（抽样数据集）
+
+
+```{r}
+schools_math %>%
+  datatable(
+    caption = paste0("两阶段整群抽样(样本数=",ns,")"),
+    options = list(
+      dom = "tip",
+      pageLength = 8
+    )
+  )
+```
+
+
+
 
 
 ---
@@ -1568,7 +1786,307 @@ $0.0125 \ast 0.04 = 0.0005$。
 - 第四，总的原则是总体要素的被选概率一定要相等。
 
 
+---
+exclude: true
 
+## 代码：班级案例
+
+```{r data-classes}
+data(classes, package = "SDAResources")
+N <- nrow(classes)
+NN <- sum(classes$class_size)
+
+classes_cum <- classes %>%
+  mutate(prop = class_size/sum(class_size)) %>%
+  mutate(
+    cum_rht = cumsum(class_size) ,
+    cum_lft = dplyr::lag(cum_rht, default = 0) +1 )%>%
+  mutate(cum_bin = str_c(cum_lft, " - ", cum_rht)) %>%
+  mutate(
+    index = map2(.x = cum_lft, 
+                 .y = cum_rht,
+                 ~unlist(seq(.x,.y))
+                 )
+    ) 
+
+```
+
+
+```{r sys-pps}
+set.seed(1120)
+n <- 5
+k <- NN/n
+k_int <- ceiling(k) # 取顶整数
+R <- sample(1:k_int, size = 1) # 随机起点
+spl_sys <- R + (0:(n-1))*k_int # 随机编号
+dt_sys <- classes_cum %>%
+  # 匹配随机编号
+  mutate(
+    spl_true = map(
+      .x = index,
+      ~ifelse(spl_sys %in% unlist(.x), TRUE, FALSE))
+  ) %>%
+  # 根据编号确定选定的样本
+  mutate(
+    selected = map(
+      .x = spl_true,
+      ~sum(.x)
+    ),
+    # 标注编号
+    index_ssu = map(
+      .x = spl_true,
+      ~unlist(spl_sys[which(unlist(.x)==TRUE)])
+    )
+  ) %>%
+  # 对应找到psu的编号
+  mutate(
+    psu = map2(
+      .x = selected,
+      .y = class,
+      ~ifelse(.x>0, rep(.y, .x), NA))
+  )
+
+psus_id <- which(!is.na(unlist(dt_sys$psu)))
+(psus <- unlist(dt_sys$psu)[psus_id])
+```
+
+
+---
+
+### 示例：成比例抽样（案例介绍）
+
+一所大学有
+$N=15$个班级（初级抽样单位PSU）进行了《统计学原理》课程学习。
+
+下页表是班级信息的总体情况。其中第
+$i$班有
+$M_i$名学生，总共有`r NN`名学生上统计学原理课程。
+
+考虑到不同班级人数规模是不同的，如果根据次级抽样单位随机抽样（例如采用简单随机抽样或者系统抽样）来确定初级抽样单位，那么就不是等概率抽样（为什么？从哪里能看出来？）。
+
+我们的目标是按照成比例抽样原理：
+
+- **有放回**随机抽取5个班级
+
+- **无放回**随机抽取5个班级
+
+
+
+---
+
+### 示例：成比例抽样（数据集）
+
+```{r}
+classes_cum %>%
+  #mutate(prop = round(prop, 6)) %>%
+  select(class, class_size, prop, cum_bin) %>%
+  janitor::adorn_totals(name = "合计") %>% 
+  datatable(
+    caption = "（总体）班级数据信息",
+    options = list(dom = "tip", pageLength = 8)
+  ) %>%
+    formatRound(columns = 3, digits = 6)
+```
+
+---
+
+### 示例：成比例抽样-有放回1（系统抽样法）
+
+
+**任务**：用**系统抽样**方法进行成比例抽样：
+
+- 对初级抽样单位（班级编号）排序（列`class`）
+
+- 根据每个初级抽样单位包含的次级抽样单位数量（班级人数）制订累加编号区间（列`cum_bin`）。
+
+- 对次级抽样单位进行系统随机抽样：抽样矩
+$k=\frac{\sum^N_{i=1}{M_i}}{n}=\frac{`r NN`}{`r n`} = `r k`  \simeq `r k_int`$。在
+$[1, `r k_int`]$区间获得随机抽样起点
+$R = `r R`$；最后得到系统抽样编号
+$\{R, R+k, \cdots, R+(n-1)\times k\} = \{`r spl_sys`\}$
+
+- 最后，根据次级抽样单位（学生编号）的系统抽样结果
+$\{`r spl_sys`\}$，确定对应的初级抽样单位（班级编号）的抽样编号
+$\{`r psus`\}$。
+
+---
+
+### 示例：成比例抽样-有放回1（系统抽样数据）
+
+
+```{r}
+dt_sys %>%
+  filter(!is.na(psu)) %>%
+  select(class, class_size, prop, cum_bin, index_ssu) %>%
+  janitor::adorn_totals(name = "合计") %>% 
+  datatable(
+    caption = "成比例抽样结果（系统抽样法）",
+    options = list(dom = "t")
+  ) %>%
+    formatRound(columns = 3, digits = 6)
+```
+
+
+- 根据次级抽样单位（学生编号）的系统抽样结果
+$\{`r spl_sys`\}$，确定对应的初级抽样单位（班级编号）的抽样编号
+$\{`r psus`\}$。
+
+- **思考**：同一个班级能否被抽中两次？
+
+
+
+---
+
+### 示例：成比例抽样-有放回2（依概率）
+
+在`R`编程语言基础包中，命令函数`base::sample(x, size, replace = FALSE, prob = NULL)`直接可以设定成比例抽样。
+
+.pull-left[
+
+```{r, echo=TRUE}
+# 总体初级抽样单位数量N
+N <- nrow(classes)
+# 设定随机种子
+set.seed(78065) #<<
+# 按照班级规模，依概率成比例、有放回地
+# 随机抽取5个班级
+pps_units <- sample(
+  1:N, size =  5,
+  replace=TRUE,           #<<
+  prob=classes$class_size #<<
+  )
+# 抽中的样本编号
+pps_units
+```
+
+]
+
+.pull-right[
+
+```{r}
+classes_cum %>%
+  select(class, class_size, prop) %>%
+  .[pps_units,] %>%
+  janitor::adorn_totals(name = "合计") %>% 
+  datatable(
+    caption = "依班级规模概率pps抽样结果",
+    options = list(dom = "t")
+  ) %>%
+  formatRound(columns = 3, digits = 6)
+  
+```
+
+
+]
+
+---
+exclude: true
+
+## 代码：Lahiri拒绝法
+
+```{r script-reject, echo=TRUE}
+N <- nrow(classes)
+Mi <- classes$class_size
+n <- 5
+# 初始化变量
+num_rand1 <- NULL
+num_rand2 <- NULL
+Mi_sel <- NULL
+cond_true <- NULL
+set.seed(12442) # 随机种子 #<< 
+i <- 1
+repeat {  # 循环选定 #<< 
+  num_rand1[i] <- sample(1:N, size =1, replace = TRUE)
+  Mi_sel[i] <- Mi[num_rand1[i]]
+  num_rand2[i] <- sample(1:max(Mi), size =1, replace = TRUE)
+  cond_true[i] <- Mi_sel[i] > num_rand2[i]
+  if (sum(cond_true)==n) break # 判断是否达到目标样本量 #<< 
+  i <- i+1
+}
+# 最终选定的PSU编号
+(id_choose <- num_rand1[which(cond_true==TRUE)])
+```
+
+```{r}
+dt_reject <- tibble(
+  rand1 = num_rand1,
+  Mi = Mi_sel,
+  rand2 = num_rand2,
+  choose = cond_true
+) %>%
+  mutate(
+    decision = ifelse(
+      choose == TRUE, "成功选定", "不成功，重来")
+    ) %>%
+  mutate(
+    index = 1:nrow(.),
+    step = str_c("第", index,"次")
+    )
+  
+```
+
+---
+
+### 示例：成比例抽样-有放回3（Lahiri拒绝法的步骤）
+
+`Lahiri(1951)`提出了一种基于拒绝法的PPS抽样方法：
+
+1. 在1和N之间抽一个随机数，这表示你正在考虑哪个PSU。
+
+2. 在1和
+$max\{M_i\}$之间随机抽取一个数字。如果该随机数小于等于
+$M_i$，则将该PSU纳入样本；否则返回步骤1。
+
+3. 重复上述操作，直到获得所需的样本量。
+
+> **思考**：为什么这种方法具有PPS抽样的性质？
+
+---
+
+### 示例：成比例抽样-有放回3（Lahiri拒绝法的R代码）
+
+```{r, ref.label="script-reject", echo=TRUE}
+
+```
+
+
+---
+
+### 示例：成比例抽样-有放回3（Lahiri拒绝法的过程）
+
+
+```{r}
+dt_reject %>%
+  select(step, everything(), -index) %>%
+  datatable(
+    caption = "Lahiri拒绝法pps抽样过程",
+    options = list(
+      dom = "t",
+      pageLength = 10
+    )
+  )
+```
+
+
+---
+
+### 示例：成比例抽样-有放回3（Lahiri法的抽样结果）
+
+按照前述循环操作步骤，我们得到了初级抽样单位（班级）的编号为
+$\{`r id_choose`\}$。因此最终`Lahiri`拒绝法的抽样结果如下：
+
+```{r}
+classes_cum %>%
+  select(class, class_size, prop) %>%
+  .[id_choose,] %>%
+  janitor::adorn_totals(name = "合计") %>% 
+  datatable(
+    caption = "Lahiri拒绝法的抽样结果",
+    options = list(dom = "t")
+  ) %>%
+  formatRound(columns = 3, digits = 6)
+  
+```
 
 
 ---

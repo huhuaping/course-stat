@@ -164,13 +164,19 @@ name:steps
 根据您要收集的数据，确定最适合您的研究的方法。
 
 ```{r, message=FALSE, warning=FALSE}
-df_tools <- read_delim("../data/data-collection-tool.txt",delim = ";")
-#DT::datatable(df_tools,options = list(pageLength =6, dom = "t"))
-df_tools %>%
-  add_column("序号"=1:nrow(.), .before = "方法")%>%
-  kable(align = "l") %>%
-  kable_styling(full_width = T) %>%
-  column_spec(1, width = "2em")
+df_tools <- read_delim(here("data/data-collection-tool.txt"),delim = ";")
+DT::datatable(
+  df_tools,
+  options = list(
+    pageLength =7, dom = "t",
+    columnDefs = list(list(className = 'dt-left', targets = "_all"))
+    )
+  )
+#df_tools %>%
+#  add_column("序号"=1:nrow(.), .before = "方法")%>%
+#  kable(align = "l") %>%
+#  kable_styling(full_width = T) %>%
+#  column_spec(1, width = "2em")
 ```
 
 

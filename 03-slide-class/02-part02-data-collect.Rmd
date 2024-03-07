@@ -583,7 +583,7 @@ knitr::include_graphics("../pic/chpt02-cfps2020-data-label.png", dpi = 200)
 ### 示例1：北大/中国家庭追踪调查（CFPS）工资性收入部分问卷
 
 ```{r}
-knitr::include_graphics("../pic/chpt02-cfps2020-data-questionare.png", dpi = 300)
+knitr::include_graphics("../pic/chpt02-cfps2020-data-questionare.png", dpi = 310)
 ```
 
 
@@ -708,7 +708,7 @@ knitr::include_graphics("../pic/chpt02-chfs2019-source-structure.png", dpi = 130
 
 ---
 
-### 二手数据收集：数据来源声明（CGSS）
+### 二手数据收集：数据引用声明（CGSS）
 
 ```{r}
 knitr::include_graphics("../pic/chpt02-ruc-cgss-declare.png", dpi = 260)
@@ -717,6 +717,21 @@ knitr::include_graphics("../pic/chpt02-ruc-cgss-declare.png", dpi = 260)
 .footnote[
 **引用备注**：论文（书）使用数据全部（部分）来自中国人民大学中国调查与数据中心主持之《中国综合社会调查（CGSS）》项目。作者感谢此机构及其人员提供数据协助，本论文（书）内容由作者自行负责
 ]
+
+---
+
+### 二手数据收集：数据引用声明（CFPS）
+
+国外绝大部分高质量经济学期刊都明确要求作者提供能供读者复制论文结果的数据或数据申请渠道及分析代码。近些年，国内经济学期刊也陆续提出此要求。
+
+对于CFPS用户来说，应如何回应期刊这一要求？能否将CFPS 微观数据直接放在期刊网站上？
+
+> 在CFPS 用户注册申请数据的用户协议中已明确指出，用户不能将CFPS 微观数据直接放置于包括期刊网站在内的第三方平台上，无论是原始完整数据，还是整理提取后的数据（如提取部分变量、进行清理后的子样本数据集等）。
+
+> CFPS微观数据的版权归北京大学中国社会科学调查中心所有，不可在未经授权的情况下被分享于其他平台。
+
+???
+孙妍, 吴琼, 张春泥.中国家庭追踪调查:设计理念及数据运用问题[J]. 调研世界, 2024(1): 4–14.
 
 ---
 

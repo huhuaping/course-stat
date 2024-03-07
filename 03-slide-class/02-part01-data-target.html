@@ -10,6 +10,15 @@
     <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
     <link href="libs/panelset/panelset.css" rel="stylesheet" />
     <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding/datatables.js"></script>
+    <script src="libs/jquery/jquery-3.6.0.min.js"></script>
+    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
@@ -36,7 +45,7 @@ exclude: FALSE
 
 ### huhuaping01@hotmail.com
 
-### 2024-03-03
+### 2024-03-07
 
 
 
@@ -175,60 +184,8 @@ name:steps
 
 根据您要收集的数据，确定最适合您的研究的方法。
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; 序号 |方 &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; |何时使 &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; |如何收集资料 &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; | &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;width: 2em; "&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 实验          |测 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 因果关系。                   |处理变量并衡量其 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 他人的影响。                               | &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;width: 2em; "&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 民意调查      |了解一 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 人的一般特征或意见。     |在线，亲自或通过电话将问题列表分发 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 样本。                   | &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;width: 2em; "&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 访谈/焦点小组 |深入了解某 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 主题的看法或观点。   |在个别访谈或焦点小组讨论中以口头方式向参 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 者提问开放性问题。 | &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;width: 2em; "&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 观察          |了 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 自然环境中的事物。           |在不影响样本的情况下测量 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 调查样本。                         | &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;width: 2em; "&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 人种学        |直接 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 究社区或组织的文化。       |加入并参与社区，并记录您的观察 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 思考。                       | &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;width: 2em; "&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 档案研究      |了解当 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 或历史事件，条件或做法。 |从图书馆，图书馆或互联网访问手稿，文档 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 记录。               | &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;width: 2em; "&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 二次数据收集  |分析无法直 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 访问的总体数据。     |查找来自政府机构或研究组织等来源的现有 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 据集。               | &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<div class="datatables html-widget html-fill-item" id="htmlwidget-16fb9ad1b917937dbf50" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-16fb9ad1b917937dbf50">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7"],["实验","民意调查","访谈/焦点小组","观察","人种学","档案研究","二次数据收集"],["测试因果关系。","了解一群人的一般特征或意见。","深入了解某个主题的看法或观点。","了解自然环境中的事物。","直接研究社区或组织的文化。","了解当前或历史事件，条件或做法。","分析无法直接访问的总体数据。"],["处理变量并衡量其对他人的影响。","在线，亲自或通过电话将问题列表分发给样本。","在个别访谈或焦点小组讨论中以口头方式向参与者提问开放性问题。","在不影响样本的情况下测量或调查样本。","加入并参与社区，并记录您的观察和思考。","从图书馆，图书馆或互联网访问手稿，文档或记录。","查找来自政府机构或研究组织等来源的现有数据集。"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>方法<\/th>\n      <th>何时使用<\/th>\n      <th>如何收集资料<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"方法","targets":1},{"name":"何时使用","targets":2},{"name":"如何收集资料","targets":3}],"pageLength":7,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[7,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
