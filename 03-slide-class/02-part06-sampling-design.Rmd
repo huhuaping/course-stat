@@ -1382,8 +1382,8 @@ al_cost %>%
       )
   ) %>%
   formatRound(columns = c(3:5), digits = c(4,1,1))
-```
 
+```
 
 > **提问**：数量区别大么？有什么要注意的？三种方案不同，其本质是什么？（更具代表性的样本）
 
@@ -1801,7 +1801,7 @@ $0.0125 \ast 0.04 = 0.0005$。
 ---
 exclude: true
 
-## 代码：班级案例
+## 代码：（班级案例）
 
 ```{r data-classes}
 data(classes, package = "SDAResources")
@@ -1994,7 +1994,7 @@ classes_cum %>%
 ---
 exclude: true
 
-## 代码：Lahiri拒绝法
+## 代码：（班级案例）Lahiri拒绝法
 
 ```{r script-reject, echo=TRUE}
 N <- nrow(classes)
@@ -2103,7 +2103,7 @@ classes_cum %>%
 ---
 exclude: true
 
-## 代码：无放回pps-systemetic
+## 代码：（班级案例）无放回pps-systemetic
 
 ```{r pps-wor, echo=TRUE}
 library("sampling") # R包
@@ -2157,9 +2157,10 @@ dt_pps_wor %>%
 ---
 exclude: true
 
-## 代码：成比例抽样-两阶段无放回
+## 代码：（班级案例）成比例抽样-两阶段无放回
 
 ```{r}
+data(classes, package = "SDAResources")
 classes_long <- classes %>%
   mutate(
     students = map(class_size, ~tibble(student_id = 1:.x))
@@ -2253,7 +2254,6 @@ dt_st2 %>%
 
 ## 概率抽样6：多阶段抽样（复习）
 
---
 
 - 如果总体规模不大，要素在研究变量上的异质性分布具有**随机性**，则我们可以采用**简单随机抽样**、**系统抽样**。
 
@@ -2267,7 +2267,7 @@ dt_st2 %>%
 
 --
 
-- 如果总体规模比较大，总体要素的**异质性也比较大**，且与不同特征群体的规模**有关**，那么至少要采用两个阶段的抽样，并且采用与群体规模**成比例的概率抽样**。
+- 如果总体规模比较大，总体要素的**异质性也比较大**，且与不同特征群体的规模**有关**，那么至少要采用两个阶段的抽样，并且采用与群体规模**成比例的概率抽样PPS**。
 
 --
 
@@ -2290,27 +2290,27 @@ dt_st2 %>%
 
 ---
 
-## 概率抽样6：多阶段抽样（示例）
+## 概率抽样6：多阶段抽样（CGSS抽样方案）
 
 
-CGSS调查中基本要素是家庭中年满18岁或以上的个体。
+`CGSS`调查中基本要素是家庭中年满18岁或以上的个体。
 
 假设研究者希望一次直接抽到个体，就需要编制一份有18岁或以上中国常住人口的抽样框。一个差不多有10亿人口的列表，这是不可能的
 
-CGSS 2010年的抽样方案：
+`CGSS 2010`年的抽样方案：
 
-- 第一阶段，采用了分层抽样（覆盖全国区、县级市、县）。
+- 第一阶段，采用了**分层抽样**（覆盖全国区、县级市、县）。
 
-- 第二阶段，抽到了村居，采用PPS抽样。
+- 第二阶段，抽到了村居，采用**PPS抽样**。
 
-- 第三阶段，抽到了家户，采用了简单随机抽样。 
+- 第三阶段，抽到了家户，采用了**简单随机抽样**。 
 
-- 末端抽样，抽到个体，采用了Kish表抽样。
+- 末端抽样，抽到个体，采用了**Kish表抽样**。
 
 
 ---
 
-## 概率抽样6：多阶段抽样（抽样单位）
+## 概率抽样6：多阶段抽样（CGSS抽样单位）
 
 
 - **初级抽样单位（PSU）**：初级阶段样本框的抽样单位。
@@ -2334,6 +2334,233 @@ CGSS 2010年的抽样方案：
 - 需要包含所有低阶段抽样单位的抽样框；同时由于实行了再抽样，使调查单位在更广泛的范围内展开
 
 - 在大规模的抽样调查中，是经常被采用的方法
+
+---
+exclude: true
+
+## 代码：（班级案例）复杂多阶段抽样
+
+```{r classes-complex, echo=TRUE}
+classes_complex <- classes_long %>%
+  mutate(
+    strat = ifelse( #<<
+      class_size > 70,  1,           # 班级分层1      
+      ifelse(class_size > 40, 2, 3)  # 班级分层2和3 
+      )
+    ) %>%
+  arrange(strat)  # 按班级分层变量排序 #<<
+```
+
+---
+
+### 示例：班级案例多阶段抽样（介绍）
+
+继续考虑之前的**班级案例**长数据集`classes_long`（包含647个学生信息）。这里我们进一步增加班级类别的分层信息`strat`：小规模班级（3=人数少于等于40人）、中等规模班级（
+$2=(40,70]$人）、大规模班级（1=70人以上），得到新的数据集`classes_complex`。
+
+```{r, ref.label="classes-complex", echo=TRUE}
+
+```
+
+
+三阶段抽样设计目标：
+
+- 对3个初级抽样单位（规模）采用无放回分层抽样抽取2个次级抽样单位（班级）
+
+- 对6个次级抽样单位（班级）分别无放回随机抽取3个末端抽样单位（学生）
+
+
+---
+
+### 示例：班级案例多阶段抽样（数据集）
+
+```{r}
+classes_complex %>%
+  datatable(
+    caption = "增加规模分层后的班级案例数据集",
+    options = list(
+      dom = "tip", pageLength = 8)
+  )
+```
+
+---
+
+### 示例：班级案例多阶段抽样（数据概要）
+
+
+```{r}
+smry_complex <- classes_complex %>%
+  nest(.by = strat) %>%
+  mutate(
+    id_class = map(
+      data, ~unlist(unique(.x$class))
+    ),
+    num_class = map(id_class, ~length(.x)),
+    num_students = map(
+      data, ~nrow(.x)
+    )
+  ) %>%
+  select(-data) %>%
+  mutate(
+    id_class = map(id_class, ~paste0(.x, collapse = ";"))
+  ) %>%
+  # 这一步很重要，必须改变数据框的属性类别!!!
+  unnest(cols = c(num_class, num_students)) %>%
+  arrange(strat) 
+
+```
+
+
+```{r}
+smry_complex %>%
+  janitor::adorn_totals( name = "合计") %>%
+  datatable(
+    caption = "数据集摘要",
+    options = list(
+      dom = "t", pageLength = 8
+    )
+  )
+```
+
+.footnote[
+第1阶段分层抽样（`strat`变量），不需要操作，全部抽中`method = ""`。
+
+]
+
+---
+
+### 示例：班级案例多阶段抽样（R代码设计）
+
+```{r, echo=TRUE}
+# 设定阶段抽样数量
+number_select <- list( 
+  num1 = unname(table(classes_complex$strat)), # 176 297 174
+  num2 = rep(2, 3),                    # 2 2 2
+  num3 = rep(3, 6)                     # 3 3 3 3 3 3
+)
+set.seed(75745) # 随机种子
+spl_ms <- sampling::mstage(     # 进行三阶段抽样 #<<
+  data = classes_complex,
+  stage = list("stratified", "cluster", "stratified"), # 阶段方法
+  varnames = list("strat", "class", "student_id"),     # 分层变量
+  size = number_select,                   # 阶段抽样数量
+  method=list("", "srswor", "srswor")     # 具体技术 #<<
+  )
+# 获得三个阶段抽样数据及抽样概率
+dt_sample1 <- getdata(classes_complex, spl_ms)[[1]] #第1阶段样本
+dt_sample2 <- getdata(classes_complex, spl_ms)[[2]] #第2阶段样本
+dt_sample3 <- getdata(classes_complex, spl_ms)[[3]] #第3阶段样本
+
+```
+
+---
+
+### 示例：班级案例多阶段抽样（第1阶段-样本结果）
+
+```{r}
+dt_sample1 %>%
+  janitor::clean_names() %>%
+  select(-stratum) %>%
+  datatable(
+    caption = "第1阶段样本结果",
+    options = list(
+      dom = "tip", pageLength = 8)
+  )%>%
+  formatRound(columns = ~prob_1_stage, digits = 4)
+```
+
+.footnote[
+第1阶段分层抽样（`strat`变量），全部抽中，概率为1（见列`prob_1_stage`）
+]
+
+---
+
+### 示例：班级案例多阶段抽样（第2阶段-样本结果）
+
+```{r}
+dt_sample2 %>%
+  janitor::clean_names() %>%
+  select(-prob) %>%
+  datatable(
+    caption = "第2阶段样本结果",
+    options = list(
+      dom = "tip", pageLength = 8)
+  ) %>%
+  formatRound(columns = ~prob_2_stage, digits = 4) 
+```
+
+.footnote[
+第2阶段整群抽样（cluster），在各规模分层里，各自从其中再抽取得到了2个班级（无放回）
+]
+
+---
+
+### 示例：班级案例多阶段抽样（第2阶段-样本概率）
+
+```{r}
+dt_sample2 %>%
+  janitor::clean_names() %>%
+  select(strat, class, class_size, prob_2_stage) %>%
+  distinct() %>%
+  janitor::adorn_totals(,,, name = "合计",
+                        contains("class_size")) %>%
+  datatable(
+    caption = "第2阶段样本结果（概率分布）",
+    options = list(
+      dom = "t", pageLength = 8)
+  ) %>%
+  formatRound(columns = ~prob_2_stage, digits = 4)
+```
+
+.footnote[
+第2阶段分层抽样（`strat` & `class`变量），抽样概率见列`prob_2_stage`
+]
+
+---
+
+### 示例：班级案例多阶段抽样（第3阶段-样本结果）
+
+```{r}
+dt_sample3 %>%
+  janitor::clean_names() %>%
+  datatable(
+    caption = "第3阶段样本结果",
+    options = list(
+      dom = "tip", pageLength = 8)
+  ) %>%
+  formatRound(columns = ~prob_3_stage+prob, digits = 4)
+```
+
+.footnote[
+第3阶段分层抽样，抽中的班级里，各自从其中再抽取得到了3名学生（无放回）
+]
+
+---
+
+### 示例：班级案例多阶段抽样（第3阶段-样本概率）
+
+```{r}
+dt_sample3 %>%
+  janitor::clean_names() %>%
+  #select(strat, class, class_size,  prob_3_stage) %>%
+  group_by(strat, class, class_size) %>%
+  dplyr::summarise(
+    num_student=n(),
+    prob_3_stage = max(prob_3_stage)) %>%
+  distinct() %>%
+  janitor::adorn_totals(,,, name = "合计",
+                        contains(c("class_size","num_student"))) %>%
+  datatable(
+    caption = "第3阶段样本结果（概率分布）",
+    options = list(
+      dom = "t", pageLength = 8)
+  ) %>%
+  formatRound(columns = ~prob_3_stage, digits = 4)
+```
+
+.footnote[
+第3阶段分层抽样（`strat` & `class`& `student_id`变量），抽样概率见列`prob_3_stage`
+]
 
 ---
 name:non-prob
