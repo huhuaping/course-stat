@@ -38,14 +38,14 @@ exclude: `r params$hideslide`
 ### `r Sys.Date()`
 
 ```{r , echo=F,message=FALSE,warning=F}
-source("../R/set-global.R")
+source(here::here("R/set-global.R"))
 options(width = 70)
-#source("../R/xaringan-chromote-print.R")
+#source(here("R/xaringan-chromote-print.R"))
 ```
 
 
 ```{r }
-source("../R/external-math-equation.R")
+source(here("R/external-math-equation.R"))
 ```
 
 
@@ -57,13 +57,32 @@ xaringanExtra::use_tachyons()
 xaringanExtra::use_panelset()
 
 xaringanExtra::use_logo(
-  image_url = "../pic/logo/nwafu-logo-circle-wb.png",
+  image_url = here("pic/logo/nwafu-logo-circle-wb.png"),
   height = '70px',
   position = xaringanExtra::css_position(top='0.2em',left="1em")
 )
 ```
 
+---
+exclude: true
 
+## 准备：字体
+
+准备字体库
+
+```{r, eval=FALSE}
+library("showtext")
+#showtext_auto(FALSE)
+font_install(source_han_serif())
+font_families()
+#font_families()
+# https://fonts.google.com/featured/Superfamilies
+font_add_google("Noto Serif SC", "Noto Serif SC")
+font_add_google("Ma Shan Zheng", "Ma Shan Zheng")
+showtext_auto()
+
+font_love <- "Ma Shan Zheng"
+```
 
 ---
 class: center, middle, duke-orange,hide_logo
@@ -151,30 +170,44 @@ knitr::kable(pdfdata, caption = "打六点骰子的PDF和CDF")
 
 .pull-left[
 
-```{r, out.height='500px'} 
+- 六点骰子的概率分布pd
+
+```{r, out.height='400px'} 
 # generate the vector of probabilities 
-probability <- rep(1/6, 6) 
+probability <- tibble(
+  output = 1:6,
+  prob = rep(1/6, 6),
+  cumsum = cumsum(prob)) 
 
 # plot the probabilities 
-plot(probability,
-     xlab = "骰子结果",
-     ylab = "概率p",
-     main = "六点骰子的概率分布pd") 
+ggplot(data = probability, aes(x = output, y = prob)) +
+  geom_point(color = "blue", size =  2.5) +
+  labs(#title = "六点骰子的概率分布pd",
+       x = "骰子结果", 
+       y = "概率p" ) +
+  scale_x_continuous(breaks = 1:6)
 ``` 
 
 ]
 
 .pull-right[
 
-```{r, out.height='500px'} 
+- 六点骰子的累积概率分布
+
+```{r, out.height='400px'} 
 # generate the vector of cumulative probabilities 
 cum_probability <- cumsum(probability) 
 
 # plot the probabilites 
-plot(cum_probability, 
-     xlab = "骰子结果",
-     ylab = "概率p",
-     main = "六点骰子的累积概率分布") 
+probability %>%
+  ggplot(aes(x = output, y = cumsum)) +
+  geom_point(color = "red", size =  2.5) +
+  labs(
+    #title = "六点骰子的累积概率分布",
+    x = "骰子结果",
+    y = "累积概率"
+    ) +
+  scale_x_continuous(breaks = 1:6)
 ```
 
 ]
@@ -212,8 +245,7 @@ $P(k=5\vert n = 10, p = 0.5)$，具体计算R函数及其结果为：
 
 
 ```{r, echo = T} 
-p_k5 <- dbinom(x = 5,size = 10, prob = 0.5) 
-p_k5
+(p_k5 <- dbinom(x = 5,size = 10, prob = 0.5) )
 ```
 
 
@@ -231,8 +263,7 @@ $4 \sim 7$次之间的伯努利概率记为
 $P(4 \leq k \leq 7) = P(k \leq 7) - P(k\leq3 )$，具体计算R函数及其结果为：
 
 ```{r, echo=T}
-p_k47 <- pbinom(size = 10, prob = 0.5, q = 7) - pbinom(size = 10, prob = 0.5, q = 3) 
-p_k47
+(p_k47 <- pbinom(size = 10, prob = 0.5, q = 7) - pbinom(size = 10, prob = 0.5, q = 3) )
 ```
 
 连续抛10次硬币（
@@ -371,7 +402,7 @@ knitr::include_url(url_plotly, height = "530px")
 ```
 
 ```{r}
-knitr::include_graphics("../pic/chpt02-bi-normal-statpng.png", dpi=150)
+knitr::include_graphics(here("pic/chpt02-bi-normal-statpng.png"), dpi=200)
 ```
 
 
@@ -380,7 +411,7 @@ knitr::include_graphics("../pic/chpt02-bi-normal-statpng.png", dpi=150)
 layout: false
 
 <center>
-<iframe height="880" width="770" frameborder="0" scrolling="0" src="bivariatenormalv4.html"></iframe>
+<iframe height="800" width="700" frameborder="0" scrolling="0" src="bivariatenormalv4.html"></iframe>
 </center>
 
 ???
@@ -417,7 +448,7 @@ then, \ \ & Z_1^2 + \dots + Z_M^2 = \sum_{m=1}^M Z_m^2 \sim \chi^2(M) \ \
 ## 连续随机变量：卡方分布（PDF、CDF）
 
 
-```{r, out.height= '550px'} 
+```{r, out.height= '500px'} 
 # plot the PDF
 curve(dchisq(x, df = 3), 
       xlim = c(0, 10), 
@@ -443,7 +474,7 @@ legend("topleft",
 
 ## 连续随机变量：卡方分布（PDF、CDF）
 
-```{r, out.height='550px'} 
+```{r, out.height='500px'} 
 # plot the density for M=1
 curve(dchisq(x, df = 1), 
       xlim = c(0, 15), 
@@ -482,7 +513,7 @@ $$T= \frac{Z}{\sqrt{W/m}} \sim t(m) $$
 
 ## 连续随机变量：t分布（PDF、CDF）
 
-```{r, out.height='550px'} 
+```{r, out.height='500px'} 
 # plot the standard normal density
 curve(dnorm(x), 
       xlim = c(-4, 4), 
@@ -697,7 +728,7 @@ $$\begin{align}
 
 ## 抽样分布：骰子游戏
 
-```{r, out.height='550px'}
+```{r, out.height='500px'}
 # Vector of outcomes
 S <- 2:12
 
@@ -721,7 +752,7 @@ barplot(PS,
 
 ## 抽样分布：骰子游戏
 
-```{r, out.height='550px'}
+```{r, out.height='500px'}
 # set sample size and number of samples
 n <- 10
 reps <- 10000
@@ -786,7 +817,56 @@ curve(dchisq(x, df = DF),
 ---
 name:calc
 
-## 抽样误差：均值和方差
+## 随机抽样：总体均值和总体方差
+
+$$\begin{align}
+E(Y) & \equiv \mu_Y= \sum_{i=1}^N{(Y_i\cdot p(Y_i))} = \frac{1}{N}\sum_{i=1}^N {Y_i} \\
+Var(Y)& \equiv \sigma^2_Y= E\left(Y_i - E(Y)\right)^2=E\left(Y_i - \mu \right)^2 
+\end{align}$$
+
+$$\begin{align}
+\bar{y} &= \frac{1}{n}\sum_{i=1}^n {y_i} \\
+Var(y_i)& \equiv s^2 = \frac{1}{n-1}\sum_{i=1}^n{\left(y_i - \bar{y} \right)^2} 
+\end{align}$$
+
+对于随机样本下的
+$\overline{y}$进一步地，其真实方差和无偏估计方差分别为：
+
+
+$$\begin{align}
+Var(\overline{y})& \equiv \sigma^2_{\overline{y}}= \left(\frac{N-n}{N}\right) \frac{\sigma^2_Y}{n} \\
+\widehat{Var}(\overline{y})& \equiv S^2_{\overline{y}}= \left(\frac{N-n}{N}\right) \frac{s^2_y}{n} \\
+\end{align}$$
+
+---
+
+## 随机抽样：总体总量及其方差
+
+总体
+$Y_i$的总量（总和）及其样本估计量分别为：
+
+$$\begin{aligned}
+\tau &=\sum_{i=1}^N {Y_i}=N \cdot\mu_Y \\
+\hat{\tau} &=N \cdot \bar{y}=\frac{N}{n} \sum_{i=1}^n {y_i}
+\end{aligned}$$
+
+进一步地，可以获得总体总量估计量的真实方差和样本方差：
+
+$$\begin{aligned}
+\operatorname{var}(\hat{\tau})
+&=N^2 \cdot \operatorname{var}(\bar{y})
+=N^2 \cdot \left(\frac{N-n}{N}\right) \frac{\sigma^2_Y}{n}
+=N(N-n) \frac{\sigma^2_Y}{n}\\
+\widehat{\operatorname{var}}(\hat{\tau}) 
+&=N^2 \cdot \widehat{\operatorname{var}}(\bar{y})
+= N^2 \cdot \left(\frac{N-n}{N}\right) \frac{s^2_y}{n}
+=N(N-n) \frac{s_y^2}{n}
+\end{aligned}$$
+
+
+---
+
+## 总体均值和总体方差
 
 假定随机样本
 ${y_1,\dots,y_n}$是独立随机抽取自正态分布总体
@@ -912,7 +992,7 @@ $$\begin{align}
 
 上述方差公式中，
 $s^2_y = \frac{\sum_{i=1}^{n}{(y_i - \bar{y})^2}}{n-1}$。而
-$\frac{N-n}{N}$又被称为**有限总体校正比值**（finite population correction）：
+$\frac{N-n}{N}=1-\frac{n}{N}$又被称为**有限总体校正比值**（finite population correction, `fpc`）：
 
 - 如果采用**有放回**的简单随机抽样，则上述方差公式需要去掉**有限总体校正比值**。
 
@@ -1055,7 +1135,9 @@ P\left(|\hat{\theta}-\theta|>\mathcal{Z}_{1-\alpha / 2} \cdot \sqrt{\operatornam
 
 ---
 
-## 必要样本数
+## 必要样本数（A基于总体均值）
+
+假设我们希望通过考察样本与**总体均值**的差距，来确定必要抽样样本数。
 
 令
 $d=|\bar{y} - \mu|$为**抽样极限误差**，则**简单随机抽样**（不放回）方案下**必要样本数**的计算公式为：
@@ -1068,23 +1150,123 @@ n &=\frac{1}{\frac{d^{2}}{\mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigma^{2}}+\frac
 
 ---
 
-### （示例）简单随机抽样方案下必要样本数的计算
+## 必要样本数（A基于总体均值）
+
+令
+$n_0 = \frac{\mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigma^{2}}{d^2}$，则上述式子可以进一步写成：
+
+
+$$\begin{align}
+n &=\frac{1}{\frac{d^{2}}{\mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigma^{2}}+\frac{1}{N}} = \frac{1}{1/n_0 + 1/N}
+\end{align}$$
+
+- 如果总体规模远大于样本容量，也即
+$N \gg n$，则此时有限总体矫正因子`fpc`一项
+$\frac{N-n}{N} \approx 0$，那么必要样本数简化为
+$n = n_0 =\frac{\mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigma^{2}}{d^2}$
+
+---
+
+### 示例1：素菜食谱比例案例（必要样本数的计算1/2）
+
+**素菜食谱**：假设我们想要估计一本食谱中不涉及动物产品的食谱的比例。我们计划对食谱中
+$N = 1251$个食谱进行简单随机抽样（SRS-wor，无放回），并希望误差范围为`0.03`的95% 置信区间。
+
+请计算简单随机抽样方案下的必要样本数？
+
+---
+
+### 示例1：素菜食谱比例案例（必要样本数的计算1/2）
+
+```{r}
+z_tbl <- qnorm(0.975,mean = 0,sd = 1)
+p <- 0.5
+d <- 0.03
+N <- 1251
+s2 <- p*(1-p) # 真实方差
+
+n0 <- z_tbl^2*s2/d^2
+# 知道真实方差
+
+n_needed <-  1/(1/n0 + 1/N)
+```
+
+
+**解答**：根据案例已知
+$N=1251$，抽样极限误差为
+$d =0.03$，给定
+$\alpha = 0.05$下
+$\mathcal{Z}_{1-\alpha/2}=\mathcal{Z}_{0.975}=`r formatC(z_tbl, 2, format ='f')`$。
+
+这是一个典型的**比率估计**问题，在大样本情况下，我们知道总体方差
+$\sigma^2_{\bar{y}} \approx p(1-p)$，且在
+$p = 1/2$时总体方差取最大值。因此我们可以使用总体方差
+$\sigma^2_{\bar{y}} \approx p(1-p)=`r formatC(s2, 2, format ='f')`$，因此必要样本数计算为：
+
+$$\begin{align}
+n_0 =\frac{\mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigma^{2}}{d^2} 
+= \frac{{`r z_tbl`}^{2} \cdot `r s2`}{{`r d`}^2} 
+= `r number(n0, 0.0001)` 
+\end{align}$$
+
+$$\begin{align}
+n = \frac{1}{1/n_0 + 1/N}
+= \frac{1}{1/`r number(n0, 0.0001)` + 1/`r N`}
+= `r number(n_needed, 0.0001)` 
+\approx `r ceiling(n_needed)`
+\end{align}$$
+
+---
+
+## 必要样本数（B基于总体总量）
+
+假设我们希望通过考察样本与**总体总量**的差距，来确定必要抽样样本数。
+
+令
+$d=|n\bar{y} - N\mu|$为**抽样极限误差**，则**简单随机抽样**（不放回）方案下**必要样本数**的计算公式为：
+
+$$\begin{align}
+P\left(|n\bar{y} - N\mu|>\mathcal{Z}_{1-\alpha / 2} \cdot \sqrt{N(N-n) \cdot \frac{\sigma^{2}}{n}}\right) & =\alpha \\
+\mathcal{Z}_{1-\alpha / 2} \sqrt{N(N-n) \cdot \frac{\sigma^{2}}{n}} & \equiv d \\
+n &=\frac{1}{\frac{d^{2}}{N^2\cdot \mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigma^{2}}+\frac{1}{N}}
+\end{align}$$
+
+---
+
+## 必要样本数（B基于总体总量）
+
+令
+$n_0 = \frac{N^2 \cdot \mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigma^{2}}{d^2}$，则上述式子可以进一步写成：
+
+
+$$\begin{align}
+n &=\frac{1}{\frac{d^{2}}{N^2 \cdot \mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigma^{2}}+\frac{1}{N}} = \frac{1}{1/n_0 + 1/N}
+\end{align}$$
+
+- 如果总体规模远大于样本容量，也即
+$N \gg n$，则此时有限总体矫正因子`fpc`一项
+$\frac{N-n}{N} \approx 0$，那么必要样本数简化为
+$n = n_0 =\frac{N^2 \cdot \mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigma^{2}}{d^2}$
+
+---
+
+### 示例2：昆虫数量案例（必要样本数的计算）1/2
 
 ```{r}
 z_tbl <- qnorm(0.975,mean = 0,sd = 1)
 d <- 1000
 N <- 100
+s2 <- (sd(beetles$beetles))^2 # 样本方差
 
-obs_needed <- function(N, d, z, s2){
-  n <- 1/(d^2/(N^2*z^2*s2) +1/N)
-}
-n_needed <-  obs_needed(N =N, d =d, z = z_tbl, s2 =s2)
+n0 <- N^2*z_tbl^2*s2/d^2
+# 知道真实方差
 
+n_needed <-  1/(1/n0 + 1/N)
 ```
 
 
-在前述甲虫数量案例中，给定
-$\alpha = 0.05$下，且抽样极限误差不超过1000只，请计算简单随机抽样方案下的必要样本数？
+**甲虫数量案例**：给定
+$\alpha = 0.05$下，我们的抽样设计希望是对于整个全部田地中**甲虫总数量**的抽样极限误差不超过1000只，请计算简单随机抽样方案下的必要样本数？
 
 **解答**：根据案例已知
 $N=100$，抽样极限误差为
@@ -1092,16 +1274,30 @@ $d =1000$，给定
 $\alpha = 0.05$下
 $\mathcal{Z}_{1-\alpha/2}=\mathcal{Z}_{0.975}=`r formatC(z_tbl, 2, format ='f')`$。
 
-因为我们不知道总体方差
-$\sigma^2_{\bar{y}}$，但是可以使用样本方差
-$s^2_{\bar{y}}=`r formatC(s2, 2, format ='f')`$进行替代
+我们已经计算得到了样本方差
+$\widehat{\sigma}^2_{\bar{y}}=s^2_{\bar{y}} =`r formatC(s2, 2, format ='f')`$
+
+---
+
+### 示例2：昆虫数量案例（必要样本数的计算）2/2
+
+因此必要样本数计算为：
+
 
 $$\begin{align}
-n &=\frac{1}{\frac{d^{2}}{N^{2} \cdot \mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigma^{2}}+\frac{1}{N}} 
-=\frac{1}{\frac{d^{2}}{N^{2} \cdot \mathcal{Z}_{1-\alpha / 2}^{2} \cdot s^{2}_{\bar{y}}}+\frac{1}{N}} \\
-& =\frac{1}{\frac{(1000)^{2}}{(100)^{2} \cdot(1.96)^{2} \cdot 1932.70}+\frac{1}{100}}= `r formatC(n_needed, 2, format ='f')` 
-\doteq `r ceiling(n_needed)`
+n_0 =\frac{N^2 \cdot \mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigma^{2}}{d^2} 
+= \frac{{`r N`}^{2} \cdot {`r z_tbl`}^{2} \cdot `r s2`}{{`r d`}^2} 
+= `r number(n0, 0.0001)` 
 \end{align}$$
+
+$$\begin{align}
+n = \frac{1}{1/n_0 + 1/N}
+= \frac{1}{1/`r number(n0, 0.0001)` + 1/`r N`}
+= `r number(n_needed, 0.0001)` 
+\approx `r ceiling(n_needed)`
+\end{align}$$
+
+
 
 ---
 
@@ -1110,7 +1306,7 @@ n &=\frac{1}{\frac{d^{2}}{N^{2} \cdot \mathcal{Z}_{1-\alpha / 2}^{2} \cdot \sigm
 .pull-left[
 
 ```{r, out.height= '300px'}
-include_graphics("../pic/chpt02-sampling-stratified.png")
+include_graphics(here("pic/chpt02-sampling-stratified.png"))
 ```
 
 ]
@@ -1278,7 +1474,11 @@ $$\begin{aligned}
 = 27.7 \pm `r formatC(t*sqrt(1.97),2, format='f')`
 \end{aligned}$$
 
-.footnote[说明： <sup>*</sup> 如果不是等比例分层抽取，那么自由度的确定需要用到一个计算公式]
+.footnote[
+
+说明： <sup>*</sup> 如果不是等比例分层抽取，那么自由度的确定需要用到一个计算公式
+
+]
 
 ???
 
@@ -1320,14 +1520,14 @@ var_st^0.5
 .pull-left[
 
 ```{r, out.height= '200px', fig.cap="系统抽样示例"}
-include_graphics("../pic/chpt02-sampling-systematic.png")
+include_graphics(here("pic/chpt02-sampling-systematic.png"))
 ```
 
 ]
 
 .pull-right[
 ```{r, out.height= '200px', fig.cap="整群抽样示例"}
-include_graphics("../pic/chpt02-sampling-cluster.png")
+include_graphics(here("pic/chpt02-sampling-cluster.png"))
 ```
 ]
 
@@ -1347,7 +1547,7 @@ $y$值将都会被抽中。
 .pull-left[
 
 ```{r, out.height= '200px', fig.cap="系统抽样示例"}
-include_graphics("../pic/chpt02-sampling-systematic-psu.gif")
+include_graphics(here("pic/chpt02-sampling-systematic-psu.gif"))
 ```
 
 - 该案例共有25个主要抽样单位（PSU）：每个5*5中型方框都有25个小格。
@@ -1361,7 +1561,7 @@ $n=16$。
 
 .pull-right[
 ```{r, out.height= '200px', fig.cap="整群抽样示例"}
-include_graphics("../pic/chpt02-sampling-cluster-psu.gif")
+include_graphics(here("pic/chpt02-sampling-cluster-psu.gif"))
 ```
 
 
@@ -1387,7 +1587,7 @@ $n=8$。
 
 ```{r}
 
-include_graphics("../pic/chpt02-sampling-queue.gif")
+include_graphics(here("pic/chpt02-sampling-queue.gif"))
 
 ```
 
@@ -1434,7 +1634,7 @@ $$\begin{align}
 .pull-left[
 
 ```{r, out.height= '400px', fig.cap="系统抽样示例"}
-include_graphics("../pic/chpt02-sampling-systematic-notation.gif")
+include_graphics(here("pic/chpt02-sampling-systematic-notation.gif"))
 ```
 
 ]
@@ -1457,7 +1657,7 @@ $M_i=16$：所有5*5中型方框，共有16个。
 
 .pull-left[
 ```{r, out.height= '400px', fig.cap="整群抽样示例"}
-include_graphics("../pic/chpt02-sampling-cluster-notation.gif")
+include_graphics(here("pic/chpt02-sampling-cluster-notation.gif"))
 ```
 
 ]
@@ -1687,7 +1887,7 @@ exclude: true
 
 ```{r}
 cluster_id <- sample(1:400, size = 24)
-vocation <- read_table2("../data/Vacation.txt") %>%
+vocation <- read_table2(here("data/Vacation.txt")) %>%
   rename_all( ~c("number.households", "total.budget")) %>%
   add_column(cluster = cluster_id, .before = "number.households")
 
@@ -1974,7 +2174,7 @@ $$\begin{align}
 
 
 ```{r, out.height= '450px', fig.cap="两阶段抽样示例1：10个PSU，4个SSU/PSU"}
-include_graphics("../pic/chpt02-sampling-mutiple-stage-demo1.gif")
+include_graphics(here("pic/chpt02-sampling-mutiple-stage-demo1.gif"))
 ```
 
 
@@ -1985,7 +2185,7 @@ include_graphics("../pic/chpt02-sampling-mutiple-stage-demo1.gif")
 ## 抽样误差：多阶段抽样
 
 ```{r, out.height= '450px', fig.cap="两阶段抽样示例2：20个PSU，2个SSU/PSU"}
-include_graphics("../pic/chpt02-sampling-mutiple-stage-demo2.gif")
+include_graphics(here("pic/chpt02-sampling-mutiple-stage-demo2.gif"))
 ```
 
 
