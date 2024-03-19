@@ -38,18 +38,25 @@ exclude: `r params$hideslide`
 ### `r Sys.Date()`
 
 ```{r , echo=F,message=FALSE,warning=F}
-source("../R/set-global.R")
+source(here::here("R/set-global.R"))
 options(width = 70)
-source("../R/insert_nbsp.R")
+source(here("R/insert_nbsp.R"))
+
+# 对DT下载按钮进行定制
+source(here("R/create-DTbutton.R"))
+
+# gt 表格
+library("gt")
+library("gtExtras")
 ```
 
 
-```{r }
-source("../R/external-math-equation.R")
+```{r}
+source(here("R/external-math-equation.R"))
 ```
 
 
-```{r , echo=FALSE}
+```{r, echo=FALSE}
 require('xaringanExtra')
 
 xaringanExtra::use_tachyons()
@@ -57,7 +64,7 @@ xaringanExtra::use_tachyons()
 xaringanExtra::use_panelset()
 
 xaringanExtra::use_logo(
-  image_url = "../pic/logo/nwafu-logo-circle-wb.png",
+  image_url = here("pic/logo/nwafu-logo-circle-wb.png"),
   height = '70px',
   position = xaringanExtra::css_position(top='0.2em',left="1em")
 )
@@ -133,11 +140,11 @@ layout: true
 
 <div class="my-header-h2"></div>
 
-<div class="watermark1"></div>
+<!---<div class="watermark1"></div>
 
 <div class="watermark2"></div>
 
-<div class="watermark3"></div>
+<div class="watermark3"></div> --->
 
 <div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter02"> 第02章 数据收集、整理和清洗 </a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
@@ -151,7 +158,7 @@ layout: true
 
 - 决定所需要的信息
 
-- 根据所需资料，发展个别的问句
+- 根据所需资料，开发个别的问句
 
 - 决定问卷的顺序(ordering)
 
@@ -164,6 +171,1138 @@ layout: true
 - 前测(pretest)    
 
 - 定稿
+
+---
+
+## 量表设计：基本流程
+
+A. 确定调查的目的
+
+B. 定义量表结构及其关系
+
+- 需要进行文献综述
+
+- 制定一个概念框架/理论框架
+
+C. 查询可供参考或采用的量表
+
+E. 写出量表的条目
+
+F. 对量表开展试点调查
+
+G. 分析试调数据并相应修订量表
+
+
+---
+
+## 李科特量表
+
+**李科特量表**（Likert Scale）是一组相互关联的调查项目，通过一组非常具体的一致的回答选项（例如，强烈不同意，不同意，既不同意也不同意，同意，强烈同意）来测度一个特定的目标话题（潜在变量、理论变量）。
+
+- 李科特量表可能是调查研究中最容易被误解、误用、滥用的一个术语或问卷设计技术。
+
+- 李科特形态的设**问题**目并不属于李科特**量表**。
+
+> 即使一个单独的问题可能以陈述的形式伴随着一个反应量表，其选项包括（5分制或7分制形式）非常同意或非常不同意，但这不是李克特量表。
+
+
+---
+exclude: true
+
+## 代码：gt表格样式
+
+```{r}
+gt_theme_scale <- function(gt_tbl, hide_names =TRUE) {
+  gt_tbl |> 
+  opt_align_table_header(align = "left") |>
+  tab_options(
+    column_labels.hidden = hide_names,
+    table.font.size = "18px",
+    heading.title.font.size  = "24px"
+    ) |>
+  opt_row_striping() |>
+  sub_missing(columns = everything(),
+              rows = everything(),
+              missing_text = "") |>
+  cols_align(align = "center", columns =everything() ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "lightcyan"),
+      cell_text(weight = "bold")
+      ),
+    locations = cells_body(
+      columns = everything(),
+      rows = 1
+    )
+  )
+}
+```
+
+
+
+---
+
+### 示例：李克特量表（公共教育）
+
+```{r}
+
+file_tar <- here("data/scales/fig5-10-likert.xlsx")
+scale_510 <- openxlsx::read.xlsx(
+  file_tar, sheet = "chn",
+  colNames = FALSE)
+```
+
+```{r}
+gt_510 <- gt(scale_510) 
+
+gt_510 %>%
+  tab_header(title = "关于下列陈述，请你对同意或不同意的程度进行打分：") %>%
+  opt_align_table_header(align = "left") %>%
+  tab_options(
+    column_labels.hidden = TRUE,
+    table.font.size = "18px",
+    heading.title.font.size  = "24px"
+    ) %>%
+  opt_row_striping() %>%
+  sub_missing(columns = everything(),
+              rows = everything(),
+              missing_text = "") %>%
+  cols_width(X2:X6~ px(100)) %>%
+  cols_align(align = "left", columns = X1 ) %>%
+  cols_align(align = "center", columns = X2:X6 ) %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightcyan"),
+      cell_text(weight = "bold")
+      ),
+    locations = cells_body(
+      columns = everything(),
+      rows = 1
+    )
+  ) %>%
+  tab_style(
+    style = list(
+      #cell_fill(color = "#F9E3D6"),
+      cell_text(weight = "bold")
+      ),
+    locations = cells_body(
+      columns = 1,
+      rows = 2:4
+    )
+  ) 
+
+```
+
+
+---
+
+### 示例：概念框架/理论框架
+
+
+```{r, fig.cap="学生阅读改善研究的概念框架图"}
+file_tar <- here("pic/chpt02-scale-concepts.png")
+knitr::include_graphics(file_tar, dpi = 600)
+```
+
+???
+
+本图通过在线网站制作，并下载保存到本地
+
+https://www.mermaidchart.com/app/projects/32712ba6-c79d-4ad9-af97-40893e49841e/diagrams/a51a962f-0184-40e8-a766-f858d1a1795e/version/v0.1/edit
+
+---
+exclude: true
+
+### 示例：概念框架/理论框架
+
+
+```{r}
+url_tar <- "https://www.mermaidchart.com/raw/a51a962f-0184-40e8-a766-f858d1a1795e?theme=light&version=v0.1&format=svg"
+
+knitr::include_url(url_tar)
+```
+
+???
+
+国内似乎不能访问url地址。
+
+---
+
+### 示例：量表结构及其关系
+
+.demo[
+**量表主题**：工作满意度
+
+**子量表**：1.工作本身满意度；2.上下级关系满意度；3.工作环境满意度。
+
+**量表设定**：共15个题项，采用5分制李克特反应量表（`非常满意`到`非常不满意`）
+
+]
+
+.demo[
+**量表主题**：对课程评分中的道德规范性认知
+
+**子量表**：1.偏袒/公平性认知；2.评分规则沟通认知；3.保密性认知；4.随堂评分认知；5.多重评分机会认知；6.标准化考试认知；7.监考流程认知。
+
+**量表设定**：36个题项，2分制回答量表（`规范的`和`不规范的`）。
+
+]
+
+
+---
+exclude:true
+
+## 代码：学生成就量表
+
+案例来源：Johnson R L, Morgan G B. Survey scales: a guide to development, analysis, and reporting[M]. New York: The Guilford Press, 2016. chapter 01 pg.7
+
+
+```{r}
+sc_acad <- tibble(
+  `作为一个大学生，我...`= c(
+    "a.享受学习新事物。",
+    "b.完成我所有的作业。",
+    "c.需要更多的帮助才能理解课堂作业。",
+    "d.不带书、笔和纸来上课。",
+    "e.阅读课堂上讨论的材料。",
+    "f.记下我读过的东西。",
+    "g.为应对考试而学习。",
+    "h.逃课/旷课。"
+    ) 
+  ) %>%
+  mutate(
+    `从来没有` = 1, 
+    `有时候会` = 2, 
+    `经常会` = 3, 
+    `总是会` =4
+  )
+
+sc_social <- tibble(
+  `作为一个大学生，我...`= c(
+    "a.在学校有很多朋友。",
+    "b.关心自己是否能完成学业。",
+    "c.很在意其他同学对我的看法。",
+    "d.很在乎老师对我的看法。",
+    "e.知道老师对我的期望。",
+    "f.每当遇到问题时，会与成年人(老师、辅导员、导师)交谈。",
+    "g.经常因为行为不端而被辅导员约谈。"
+    ) 
+  ) %>%
+  mutate(
+    `非常不同意` = 1, 
+    `不同意` = 2, 
+    `同意` = 3, 
+    `非常同意` = 4
+  )
+```
+
+---
+
+### 示例：学生参与程度量表（构成及设定）
+
+.demo[
+**量表主题**：学生参与程度
+
+**子量表**：1.学习参与度；2.社会参与度。
+
+**量表设定**：共17个题项，采用4分制反应量表（`从来没有`到`总是`；`非常不同意`到`非常同意`）
+
+]
+
+---
+
+### 示例：学生参与程度量表（子量表A-题项设定）
+
+```{r}
+sc_acad %>%
+  DT::datatable(
+    caption = "子量表A：学习参与度（课堂活动）",
+    options = list(
+      dom = "t",
+      columnDefs = list(
+        list(targets = 1, className = 'dt-head-left dt-body-left' )
+        )
+    )
+  )
+```
+
+
+---
+
+### 示例：学生参与程度量表（子量表B-题项设定）
+
+```{r}
+sc_social %>%
+  DT::datatable(
+    caption = "子量表B：社会参与度（与人相处）",
+    options = list(
+      #autoWidth = TRUE,
+      dom = "t",
+      columnDefs = list(
+        list(targets = 1, className = 'dt-head-left dt-body-left' ),
+        list(width = '10px', targets = c(1)) 
+        )
+    )
+  )
+```
+
+---
+exclude:true
+
+## 代码：题项一致性
+
+案例来源：Johnson R L, Morgan G B. Survey scales: a guide to development, analysis, and reporting[M]. New York: The Guilford Press, 2016. chapter 05 pg.79
+
+```{r}
+scale_label1 <- tibble(
+  X2 = c("非常不同意", 1, "circle"), 
+  X3 = c("不同意", 2, "circle"), 
+  X4 = c("比较不同意",3, "circle"), 
+  X5  = c("比较同意", 4, "circle"), 
+  X6 = c("同意", 5, "circle"), 
+  X7 = c("非常同意", 6, "circle")
+) 
+
+scale_label2 <- tibble(
+  X2 = c("没有过", 1, "circle"), 
+  X3 = c("一年有一两次", 2, "circle"), 
+  X4 = c("每个月都有",3, "circle"), 
+  X5  = c("每个周都有", 4, "circle"), 
+  X6 = c("每天都有", 5, "circle")
+) 
+```
+
+---
+
+### 量表设计：量表标签与内容结构一致性
+
+
+量表标签设定应该与量表内容结构一致性
+
+- （错误做法）未保持一致
+
+```{r}
+hd <- "a.我偶尔在孩子的教室里做志愿者。"
+gt_tbl <- gt(scale_label1) %>%
+  gt::fmt_icon(
+    columns = X2:X7,
+    rows = 3
+  )
+
+gt_theme_scale(gt_tbl) |>
+  tab_header(title = hd ) |>
+  cols_width(
+    X2:X7~ px(150)
+    )
+  
+```
+
+
+- （正确做法）保持一致
+
+```{r}
+hd <- "a.你多久在孩子的教室里做一次志愿者？"
+
+gt_tbl <- gt(scale_label2) %>%
+  gt::fmt_icon(
+    columns = X2:X6,
+    rows = 3
+  )
+
+gt_theme_scale(gt_tbl) |>
+  tab_header(title = hd ) |>
+  cols_width(
+    X2:X6~ px(160)
+    )
+  
+```
+
+---
+
+### 量表设计：题项问题与应答选项一致1/2
+
+
+```{r}
+scale_513 <- tibble(
+  resp = c("非常糟糕", "糟糕", "满意", "很好", "非常棒"),
+  fa = rep("circle", 5)
+) %>%
+  t() %>%
+  as_tibble() %>%
+  rename_all(., ~paste0("X", 1:5))
+
+```
+
+
+```{r}
+gt_513 <- gt(scale_513) %>%
+  gt::fmt_icon(
+    columns = everything(),
+    rows = 2
+  )
+
+gt_theme_scale(gt_513) |>
+  tab_header(title = "总的来说，您对今天购买的产品有多满意？") |>
+  cols_width(X1:X5~ px(140))
+  
+```
+
+
+---
+
+### 量表设计：题项问题与应答选项一致2/2
+
+
+
+```{r}
+hd <- "在1-10的范围内，请对电商网站(jd.com)在以下方面的表现进行评分："
+
+scale_514 <- tibble(
+  X1 = c(
+    "",
+    "",
+    "您正在寻找的特定产品可以在jd.com上买到",
+    "jd.com网站上的产品价格",
+    "jd.com网站页面的视觉吸引力"
+  ),
+  X2 = c("糟糕", 1, rep("circle", 3)),
+  X3 = c("", 2, rep("circle", 3)),
+  X4 = c("", 3, rep("circle", 3)),
+  X5 = c("", 4, rep("circle", 3)),
+  X6 = c("", 5, rep("circle", 3)),
+  X7 = c("", 6, rep("circle", 3)),
+  X8 = c("", 7, rep("circle", 3)),
+  X9 = c("", 8, rep("circle", 3)),
+  X10 = c("", 9, rep("circle", 3)),
+  X11 = c("非常棒", 10, rep("circle", 3)),
+  X12 = c("不知道", "", rep("circle", 3)),
+)
+
+```
+
+
+```{r}
+gt_tbl <- gt(scale_514) %>%
+  gt::fmt_icon(
+    columns = X2:X12,
+    rows = 3:5
+  )
+
+gt_theme_scale(gt_tbl) |>
+  tab_header(title = hd ) |>
+  cols_width(
+    X1~ px(250),
+    X2:X11~ px(50),
+    X12 ~px(100))
+  
+```
+
+---
+exclude:true
+
+## 代码：6题项量表
+
+案例来源：Bandalos D L. Measurement theory and applications for the social sciences[M]. New York:  The Guilford Press, 2018. chapter 08 pg. 189; pg. 190
+
+
+```{r}
+file_tar <- here("data/scale-items-total6.csv")
+scale_6s <- read.csv(file_tar) %>%
+  janitor::clean_names()
+
+file_tar <- here("data/scale-items-total6-tiny.csv")
+scale_6s_tiny <- read.csv(file_tar) %>%
+  janitor::clean_names()
+```
+
+```{r alpha-hand, echo=TRUE}
+# 计算方差
+calc_6s <- scale_6s %>%
+  summarise(
+    respondent = max(respondent),
+    across(c(item_1:item_6, total_score), ~(sd(.x))^2) #标准差再平方 #<<
+    )
+
+## 计算Cronbach Alpha信度1
+k <- 6
+var_items <- calc_6s %>%  # 题项方差 #<<
+  select(item_1:item_6) %>%
+  unlist()
+var_score <- calc_6s %>%  # 得分方差 #<<
+  select(total_score) %>%
+  unlist()
+cron_a0 <- k/(k-1)*(1- sum(var_items)/var_score) # 公式 #<<
+number(cron_a0, 0.0001) # 显示结果 #<<
+```
+
+```{r alpha-fun, echo=TRUE}
+## 计算Cronbach Alpha信度2
+library("psych") #使用R包 #<<
+alpha_test <- scale_6s %>% 
+  select(item_1:item_6) %>% 
+  psych::alpha()  # 进行Cronbach 信度计算和分析 #<<
+cron_a <- alpha_test$total$raw_alpha
+number(cron_a, 0.0001)  # 显示结果 #<<
+```
+
+---
+
+## 量表质量：如何评价？
+
+
+```{r}
+scale_6s %>%
+  create_DTbutton( #定制
+    caption = "量表试调的回答打分结果（n = 20）",
+    #extensions = 'Buttons',
+    #class = "display",
+    dom = "Btip",
+    pg_len = 6
+  )
+```
+
+
+.footnote[
+本量表包含6个题项，试调研获得20个被调查者的回答打分。
+]
+
+---
+exclude:true
+
+## 代码：信度的定义
+
+
+```{r}
+reliability <- tibble(
+  "信度类别" = c(
+    "内部信度(internal)",
+    "评估者信度(inter-rater)",
+    "副本信度(parallel)",
+    "重测信度(test–retest )"
+    ),
+  "计算系数" = c(
+    "克朗巴哈信度系数(Cronbach)",
+    "科恩卡帕系数(Cohen)",
+    "等效系数(equivalence)",
+    "稳定系数(stability)"
+  ),
+  "一致性评价的内容" = c(
+    "基于量表内部的多个题项",
+    "基于不同评分者打分",
+    "基于量表设计的多个版本",
+    "基于不同调查者的多次测试"
+  )
+)
+```
+
+---
+
+## 量表质量：信度
+
+**信度（Reliability）**刻画量表的真实得分与实际得分之间的一致性程度（Consistency），同时将评估引起真实得分与实际得分不一致的多种误差来源。
+
+```{r}
+reliability %>%
+  DT::datatable(
+    caption = "信度类别及定义",
+    options = list(
+      dom = "t",
+      scrollX = TRUE
+    )
+  )
+```
+
+---
+
+### 内部信度：克朗巴哈信度系数（公式）
+
+克朗巴哈信度（Cronbach Alpha 或
+$\alpha$）是表达量表内部一致性程度的一种测度系数，具体计算公式为：
+
+$$
+\begin{aligned}
+\rho_{C C^{\prime}} &= \frac{k}{k-1}\left(1-\frac{\sum \sigma_i^2}{\sigma_C^2}\right) \\
+\rho_{C C^{\prime}} &= \frac{k}{k-1}\left(1-\frac{\sum \sigma_i^2}{\sum_{i \neq j} \operatorname{cov}_{i j}+\sum \sigma_i^2}\right)
+\end{aligned}
+$$
+
+其中：
+
+- 题项
+$i$方差
+$\sigma^2_{i}$（item variance，纵向方差）
+
+- 观测得分方差
+$\sigma^2_{C}$（total test variance，横向方差）
+
+- 题项之间的协方差
+$\operatorname{cov}_{i j}$
+
+---
+
+### 示例：克朗巴哈信度系数（计算方差）
+
+
+```{r}
+scale_6s %>%
+  DT::datatable(
+    caption = "试调得分结果",
+    options = list(
+      dom = "tip",
+      pageLength = 4
+    )
+  )
+```
+
+```{r}
+calc_6s %>%
+  DT::datatable(
+    caption = "方差计算结果",
+    options = list(
+      dom = "t"
+    )
+  ) %>%
+  formatRound(
+    columns = 2:8,
+    digits = 4
+  )
+```
+
+.footnote[
+
+- 方差计算公式为
+$\widehat{Var}(X_i) = \frac{\sum_{i=1}^{n}{(X_i -\overline{X})^2}}{n-1}$
+
+- 方差计算表中6列`item_`为题项方差（纵向）
+$\sigma^2_i$；最后一列`total_score`为得分方差（横向）
+$\sigma^2_C$
+
+]
+
+
+---
+
+### 示例：克朗巴哈信度系数（计算结果）
+
+根据上一页方差计算表，利用前述克朗巴哈信度系数计算公式，我们可以得到：
+
+$$
+\begin{aligned}
+\alpha \equiv
+\rho_{C C^{\prime}} &= \frac{k}{k-1}\left(1-\frac{\sum \sigma_i^2}{\sigma_C^2}\right) \\
+&=\left(\frac{6}{5}\right)\left(1-\frac{`r number(var_items[1], 0.0001)`+`r number(var_items[2], 0.0001)`+`r number(var_items[3], 0.0001)`+`r number(var_items[4], 0.0001)`+`r number(var_items[5], 0.0001)`+`r number(var_items[6], 0.0001)`}{`r number(var_score, 0.0001)`}\right)\\
+&=\frac{6}{5}\left(1-\frac{`r number(sum(var_items), 0.0001)`}{`r number(var_score, 0.0001)`}\right)=`r number(cron_a0, 0.0001)`
+\end{aligned}
+$$
+
+- 方差计算表中6列`item_`为题项方差（纵向）
+$\sigma^2_i$；最后一列`total_score`为得分方差（横向）
+$\sigma^2_C$
+
+---
+
+### 附录：克朗巴哈信度系数（R代码1-手动计算）
+
+```{r, ref.label="alpha-hand", echo=TRUE}
+
+```
+
+---
+
+### 附录：克朗巴哈信度系数（R代码2-自动计算）
+
+```{r, ref.label="alpha-fun", echo=TRUE}
+
+```
+
+---
+
+### 课堂练习：克朗巴哈信度有什么变化？
+
+
+
+```{r}
+scale_6s_tiny %>%
+  create_DTbutton( #定制
+    caption = "另一份量表试调的回答打分结果（n = 20）",
+    #extensions = 'Buttons',
+    #class = "display",
+    dom = "Btip",
+    pg_len = 6
+  )
+```
+
+.footnote[
+- 请同学们下载数据表（点击`Excel`按钮），并计算克朗巴哈信度系数`a2`（保留4位小数）。
+
+- 这时候的信度系数与我们教学案例中的计算结果有什么差异？主要原因是什么？
+
+]
+
+---
+exclude:true
+
+## 代码：3个评分者
+
+案例来源：Bandalos D L. Measurement theory and applications for the social sciences[M]. New York:  The Guilford Press, 2018. chapter 08 pg. 211-212
+
+
+```{r}
+file_tar <- here("data/scale-rater-nominal.csv")
+scale_rater <- read.csv(file_tar) %>%
+  janitor::clean_names()
+
+# 交叉统计表
+cross_12 <- scale_rater %>%
+    janitor::tabyl(rater_1, rater_2) %>%
+    as_tibble() %>%
+    rename_at(vars(starts_with("rater_")),~"rank" ) 
+
+# calculate agreement coef. P0
+N <- nrow(scale_rater)
+n_ii <- cross_12 %>%
+  as.matrix() %>%
+  .[1:5,2:6] %>%
+  diag()
+p0 <- sum(n_ii)/N
+
+# calculate Cohen kappa coef. k
+## 行小计
+n_row <- cross_12 |> 
+  rowwise(rank) |>
+  mutate(sum_row =sum(c(`1`,`2`,`3`,`4`,`5`))) %>%
+  pull(sum_row)
+## 列小计
+n_col <- cross_12 %>% 
+  select(-rank) %>%
+  summarise(across(c(`1`,`2`,`3`,`4`,`5`), sum)) %>%
+  unlist()
+
+prod_cross <- n_row*n_col    # 交叉乘积
+sum_cross <- sum(prod_cross) # 乘积之和
+pc <- sum_cross/N^2    # 偶然一致系数
+k <- (p0- pc)/(1-pc)   # kappa系数
+```
+
+```{r alpha-agree, echo=TRUE}
+# 计算Cronbach Alpha系数
+k <- 3
+## 计算方差
+calc_3r <- scale_rater %>%
+  mutate(
+    score12 = rater_1+rater_2,
+    score13 = rater_1+rater_3,
+    score23 = rater_2+rater_3,
+    score123 = rater_1+rater_2 +rater_3) %>%
+  summarise(
+    person = max(person),
+    across(c(rater_1:score123), ~(sd(.x))^2) #标准差再平方 #<<
+    ) 
+
+## R包批量计算Cronbach Alpha系数
+library("psych") #使用R包 #<<
+alpha_12 <- scale_rater %>% 
+  select(rater_1,rater_2) %>% 
+  psych::alpha() 
+
+alpha_13 <- scale_rater %>% 
+  select(rater_1,rater_3) %>% 
+  psych::alpha()  
+
+alpha_23 <- scale_rater %>% 
+  select(rater_2,rater_3) %>% 
+  psych::alpha()  
+
+alpha_123 <- scale_rater %>% 
+  select(rater_1:rater_3) %>% 
+  psych::alpha()
+
+# 提取全部结果
+alpha_test <- list(alpha_12, alpha_13, 
+                 alpha_23, alpha_123 )
+alpha_list <- sapply(alpha_test, 
+       FUN = function(x) x$total$raw_alpha )
+
+```
+
+---
+
+## 评估者信度：概念和定义
+
+有时候，被试者的表现或结果由训练有素的评委或评级员进行评级打分。
+
+> 例如，你可能很熟悉围绕奥运会评委对滑冰或体操表演打分的争议。这些争议涉及到一些裁判会倾向于给本国运动员更高打分的说法。
+
+这时，我们关注的一个重要信度问题是：同一份打分表（量表），不同评分者是否造成的分数明显不一致？不同评分者是否达成共识？
+
+
+**评估者信度(inter-rater)**是用来测度不同评分者打分一致性的指标。具体可以通过下列两类系数进行计算：
+
+- **评级共识系数（nominal agreement）**
+
+- **科恩卡帕系数（Cohen Kappa）**
+
+- **克兰巴哈系数（Cronbach Alpha）**（注意比较与内部信度计算时的不同）
+
+---
+
+### 示例：不同评分者是否达成共识？
+
+下面展示了3个评分者使用同一份评分标准（量表）对10位被试者的打分情况：
+
+```{r}
+scale_rater %>%
+  create_DTbutton( #定制
+    caption = "三个评分者的打分结果（n = 10）",
+    #extensions = 'Buttons',
+    #class = "display",
+    dom = "Btip",
+    pg_len = 5
+  )
+```
+
+
+---
+
+### 示例1：评级共识系数（公式和步骤）
+
+
+**评级共识系数（nominal agreement）**适用于测度两个评分员在等级评分（名义变量）上的一致性，其计算公式如下：
+
+$$
+\begin{aligned}
+P_o=\frac{1}{N} \sum_{i=1}^c n_{i i}
+\end{aligned}
+$$
+
+具体做法是：
+
+- 构造两个评分者打分等级的交叉统计表
+
+- 利用上述公式进行计算系数
+
+
+---
+
+### 示例1：评级共识系数（交叉统计表和系数计算）
+
+```{r}
+cross_12 %>%
+  janitor::adorn_totals(
+    where = c("row", "col"), 
+    name = c("n_.i", "n_i.") ) %>%
+  DT::datatable(
+    caption = "评委1和评委2的评级交叉统计表",
+    options = list(
+      dom = "t"
+    )
+  ) 
+```
+
+$$
+\begin{aligned}
+P_o&=\frac{1}{N} \sum_{i=1}^c n_{i i} \\
+&= \frac{1}{10}(1+1+2+1+2)=\frac{7}{10}=0.7
+\end{aligned}
+$$
+
+---
+
+### 示例2：科恩卡帕系数（公式和步骤）
+
+**评级共识系数**存在的一个问题是：它没有考虑到评委可能只是偶然达成一致。对于二分类评分量表，完全随机评分下，两名评委也有大约50%的机会达成一致。
+
+**科恩卡帕系数（Cohen Kappa）**适用于测度两个评分员在等级评分（名义变量）上的一致性，并剔除了随机评分一致性的可能性，其计算公式如下：
+
+$$
+\begin{aligned}
+P_c&=\frac{1}{N^2} \sum_{i=1}^c\left(n_{i+}\right)\left(n_{+i}\right) \\
+\kappa&=\frac{P_o-P_c}{1-P_c}
+\end{aligned}
+$$
+
+具体做法是：
+
+- 构造两个评分者打分等级的交叉统计表
+
+- 分别计算出
+$P_o$和
+$P_c$
+
+- 利用上述公式进行计算科恩卡帕系数（Cohen Kappa）
+
+---
+
+### 示例2：科恩卡帕系数（计算结果）
+
+$$
+\begin{aligned}
+P_o&=\frac{1}{N} \sum_{i=1}^c n_{i i} 
+= \frac{1}{10}(1+1+2+1+2)=\frac{7}{10}=0.7
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+P_c&=\frac{1}{N^2} \sum_{\mathrm{i}=1}^c\left(n_{\mathrm{i}+}\right)\left(n_{+\mathrm{i}}\right)=\frac{1}{10^2}[(2 \times 1)+(2 \times 2)+(3 \times 3)+(1 \times 2)+(2 \times 2)] \\
+& =\frac{1}{100}(2+4+9+2+4)=\frac{21}{100}=0.21
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\kappa=\frac{P_o-P_c}{1-P_c}=\frac{0.7-0.21}{1-0.21}=\frac{0.49}{0.79}=0.62
+\end{aligned}
+$$
+> 科恩Kappa系数可以被解释为对超出偶然性部分的一致性度量，表达为超出偶然性的最大一致性占比。
+
+---
+exclude: true
+
+## 代码：课堂练习
+
+
+```{r}
+index_agree <- function(dt, role1, role2) {
+  # 交叉统计表
+  cross_rater <-  dt %>%
+      #select(all_of(c(role1, role2))) %>%
+      janitor::tabyl(!!sym(role1), !!sym(role2)) %>%
+      tibble::as_tibble() %>%
+      rename_at(vars(starts_with("rater_")),~"rank" )  # !must name as this
+  
+  # 交叉表可能无统计的情形
+  rank <- as.character(1:5)
+  ommit_index <- which(!(rank %in%  names(cross_rater)[-1]) )
+  if (length(ommit_index) >0) {
+    names_add <- rank[ommit_index]
+    cross_add <- matrix(rep(0,length(ommit_index)),
+                      nrow = 5 ) %>%
+    as_tibble() %>%
+      rename_all(., ~names_add)
+    cross_rater <- bind_cols(cross_rater, cross_add) %>%
+      select(all_of(c("rank",rank)))
+    
+  }
+  # calculate agreement coef. P0
+  N <- nrow(dt)
+  n_ii <- cross_rater %>%
+    as.matrix() %>%
+    .[1:5,2:6] %>%
+    diag()
+  p0 <- sum(n_ii)/N
+  
+  # calculate Cohen kappa coef. k
+  ## 行小计
+  n_row <- cross_rater |> 
+    rowwise(rank) |>
+    mutate(sum_row =sum(c(`1`,`2`,`3`,`4`,`5`))) %>%
+    pull(sum_row)
+  ## 列小计
+  n_col <- cross_rater %>% 
+    select(-rank) %>%
+    summarise(across(c(`1`,`2`,`3`,`4`,`5`), sum)) %>%
+    unlist()
+  
+  prod_cross <- n_row*n_col    # 交叉乘积
+  sum_cross <- sum(prod_cross) # 乘积之和
+  pc <- sum_cross/N^2    # 偶然一致系数
+  kappa <- (p0- pc)/(1-pc)   # kappa系数
+  
+  return(list(p0 = p0, pc = pc, kappa = kappa))
+}
+
+index_12 <- index_agree(
+  dt = scale_rater, 
+  role1 = "rater_1", role2 = "rater_2")
+
+index_13 <- index_agree(
+  dt = scale_rater, 
+  role1 = "rater_1", role2 = "rater_3")
+
+index_23 <- index_agree(
+  dt = scale_rater, 
+  role1 = "rater_2", role2 = "rater_3")
+
+tbl_agree <- tibble(vs12 = unlist(index_12 ), 
+       vs13 = unlist(index_13), 
+       vs23 = unlist(index_23)) %>%
+  add_column( index = c("p0", "pc", "kappa"), .before = "vs12")
+```
+
+
+---
+
+### 课堂练习：请你计算其他评委组合的科恩卡帕系数？
+
+对于前述案例，对于三种评委组合：`评委1`VS`评委2`；`评委1`VS`评委3`；`评委2`VS`评委3`，请你分别计算得到**评级共识系数**
+$P_0$和科恩卡帕系数
+$\kappa$？
+
+下面为答案：
+
+--
+
+```{r}
+tbl_agree %>%
+  DT::datatable(
+    caption = "不同评委组合的评估者信度",
+    options = list(dom ="t")
+  ) %>%
+  formatRound(2:4, digits = 3)
+```
+
+
+
+---
+
+### 示例3：克朗巴哈系数（思路方法）
+
+事实上，如果我们可以把不同的评分者打分列视作为**量表题项**，那么就也可以使用内部信度中的**克朗巴哈系数**计算方法判断两个评委是否保持一致！
+
+```{r}
+scale_rater %>%
+  create_DTbutton( #定制
+    caption = "三个评分者的打分结果（n = 10）",
+    #extensions = 'Buttons',
+    #class = "display",
+    dom = "Btip",
+    pg_len = 5
+  )
+```
+
+.footnote[
+具体地，我们可以使用**克朗巴哈系数**方法分别计算得到不同评委组合下的评估者信度，也即：`评委1`VS`评委2`；`评委1`VS`评委3`；`评委2`VS`评委3`；以及全部三个评委。
+
+]
+
+---
+
+### 示例3：克朗巴哈系数（组合分数及方差表）
+
+```{r}
+scale_rater %>%
+  mutate(
+    score12 = rater_1+rater_2,
+    score13 = rater_1+rater_3,
+    score23 = rater_2+rater_3,
+    score123 = rater_1+rater_2 +rater_3) %>%
+  DT::datatable(
+    caption = "被试得分计算表（不同评委组合）",
+    options = list(
+      dom = "tip",
+      pageLength = 5
+    )
+  ) 
+```
+
+
+```{r}
+calc_3r %>%
+  DT::datatable(
+    caption = "方差计算表（不同评委组合）",
+    options = list(
+      dom = "t"
+    )
+  ) %>%
+  formatRound(columns = 2:8, digits = 4)
+```
+
+.footnote[
+- 方差计算表中3列`rater_`为每个评委的题项方差（纵向）
+$\sigma^2_i$；4列`score_`为相应评委组合下的得分方差（横向）
+$\sigma^2_C$
+]
+
+---
+
+### 示例3：克朗巴哈系数（系数结果）
+
+利用前述克朗巴哈信度系数计算公式，我们可以得到**四种**不同评委组合下的**评估者信度**，也即：`评委1`VS`评委2`；`评委1`VS`评委3`；`评委2`VS`评委3`；以及全部三个评委：
+
+$$
+\begin{aligned}
+\alpha_{12}  &= \frac{2}{2-1}\left(1-\frac{\sum_{i\in {1,2}} \sigma_i^2}{\sigma^2_{C12}}\right) 
+=`r number(alpha_list[1], 0.0001)` \\
+\alpha_{13}  &= \frac{2}{2-1}\left(1-\frac{\sum_{i\in {1,3}} \sigma_i^2}{\sigma^2_{C13}}\right) 
+=`r number(alpha_list[2], 0.0001)`\\
+\alpha_{23}  &= \frac{2}{2-1}\left(1-\frac{\sum_{i\in {2,3}} \sigma_i^2}{\sigma^2_{C23}}\right) 
+=`r number(alpha_list[3], 0.0001)`\\
+\alpha_{123}  &= \frac{3}{3-1}\left(1-\frac{\sum_{i\in {1,2,3}} \sigma_i^2}{\sigma^2_{C123}}\right) 
+=`r number(alpha_list[4], 0.0001)`
+\end{aligned}
+$$
+
+
+
+---
+exclude:true
+
+## 代码：效度的定义
+
+```{r}
+validity <- tibble(
+  "效度类别" = c(
+    "内容效度(content relevance)",
+    "流程效度(response process)",
+    "结构效度(internal structure )",
+    "变量效度(variables relation)",
+    "影响效度(consequence effect)"
+    ),
+  "评价目标" = c(
+    "量表内容与研究意图的相关程度",
+    "受访者的调查认知和参与过程的真实性",
+    "量表题项和量表成分之间的一致性",
+    "不同量表之间的关联程度",
+    "调研后影响效果与预期的一致性"
+  ),
+  "效度改进的证据" = c(
+    "召集专家审查量表内容",
+    "儿童调查中量表设置某些笑脸图标",
+    "使用因子分析法检查是否与理论设计一致",
+    "考察不同量表之间的相关关系",
+    "满意度调查后员工改进了客户服务"
+  )
+)
+```
+
+
+---
+
+## 量表质量：效度（定义）
+
+**效度（Validity）**指的是证据和理论在多大程度上支持对量表得分的解释，以达到预期的研究目的。
+
+更确切地说，我们并不是要关注量表本身得到了验证，而是应该关心对调查量表得分的解释和使用是否得到了严格验证。
+
+---
+
+## 量表质量：效度（类别）
+
+1. **内容效度(content relevance)**：评价量表内容与研究意图的相关程度。例如，召集专家审查量表内容。
+
+2. **流程效度(response process)**：评价受访者的调查认知和参与过程的真实性。例如，在儿童调查中量表题项下设置某些笑脸图标（不认同`r fontawesome::fa(name="face-frown",fill = "steelblue")`；一般`r fontawesome::fa(name="face-meh",fill = "steelblue")`；认同`r fontawesome::fa(name="face-smile",fill = "steelblue")`）。
+
+3. **结构效度(internal structure)**：评价量表题项和量表成分之间的一致性。例如：使用因子分析法检查是否与理论设计一致。
+
+4. **变量效度(variables relation)**：评价不同量表之间的关联程度。
+
+5. **影响效度(consequence effect)**：评价调研后影响效果与预期的一致性。例如：满意度调查后员工改进了客户服务。
+
+
+```{r, eval=FALSE}
+validity %>%
+  DT::datatable(
+    caption = "效度类别及定义",
+    options = list(
+      dom = "t",
+      scrollX = TRUE
+    )
+  )
+```
+
+
+
 
 ---
 
@@ -878,7 +2017,7 @@ name:question-ask
 
 .case[
 
-（一项针对小学生调查对象的研究）你认为哪家商场的营销比较疲软？（）
+（一项针对小学生调查对象的研究）你认为哪家商场的营销比较疲软？（____）
 
 ]
 

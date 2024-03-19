@@ -2,7 +2,7 @@
 params:
   hideslide: FALSE
 output:
-  xaringan::moon_reader:
+  xaringan::moon_reader:*/*
     seal: false
     lib_dir: libs
     css:

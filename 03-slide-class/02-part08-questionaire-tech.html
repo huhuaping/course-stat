@@ -10,6 +10,21 @@
     <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
     <link href="libs/panelset/panelset.css" rel="stylesheet" />
     <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding/datatables.js"></script>
+    <script src="libs/jquery/jquery-3.6.0.min.js"></script>
+    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <script src="libs/jszip/jszip.min.js"></script>
+    <link href="libs/dt-ext-buttons/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <script src="libs/dt-ext-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="libs/dt-ext-buttons/js/buttons.html5.min.js"></script>
+    <script src="libs/dt-ext-buttons/js/buttons.colVis.min.js"></script>
+    <script src="libs/dt-ext-buttons/js/buttons.print.min.js"></script>
     <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
     <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
     <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
@@ -34,7 +49,7 @@ exclude: FALSE
 
 ### huhuaping01@hotmail.com
 
-### 2024-03-03
+### 2024-03-19
 
 
 
@@ -47,7 +62,7 @@ exclude: FALSE
 width: 110px;
 height: 70px;
 z-index: 0;
-background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-image: url(D:/github/course-stat/pic/logo/nwafu-logo-circle-wb.png);
 background-size: contain;
 background-repeat: no-repeat;
 position: absolute;
@@ -146,11 +161,11 @@ layout: true
 
 &lt;div class="my-header-h2"&gt;&lt;/div&gt;
 
-&lt;div class="watermark1"&gt;&lt;/div&gt;
+&lt;!---&lt;div class="watermark1"&gt;&lt;/div&gt;
 
 &lt;div class="watermark2"&gt;&lt;/div&gt;
 
-&lt;div class="watermark3"&gt;&lt;/div&gt;
+&lt;div class="watermark3"&gt;&lt;/div&gt; ---&gt;
 
 &lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter02"&gt; 第02章 数据收集、整理和清洗 &lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
@@ -164,7 +179,7 @@ layout: true
 
 - 决定所需要的信息
 
-- 根据所需资料，发展个别的问句
+- 根据所需资料，开发个别的问句
 
 - 决定问卷的顺序(ordering)
 
@@ -177,6 +192,3133 @@ layout: true
 - 前测(pretest)    
 
 - 定稿
+
+---
+
+## 量表设计：基本流程
+
+A. 确定调查的目的
+
+B. 定义量表结构及其关系
+
+- 需要进行文献综述
+
+- 制定一个概念框架/理论框架
+
+C. 查询可供参考或采用的量表
+
+E. 写出量表的条目
+
+F. 对量表开展试点调查
+
+G. 分析试调数据并相应修订量表
+
+
+---
+
+## 李科特量表
+
+**李科特量表**（Likert Scale）是一组相互关联的调查项目，通过一组非常具体的一致的回答选项（例如，强烈不同意，不同意，既不同意也不同意，同意，强烈同意）来测度一个特定的目标话题（潜在变量、理论变量）。
+
+- 李科特量表可能是调查研究中最容易被误解、误用、滥用的一个术语或问卷设计技术。
+
+- 李科特形态的设**问题**目并不属于李科特**量表**。
+
+&gt; 即使一个单独的问题可能以陈述的形式伴随着一个反应量表，其选项包括（5分制或7分制形式）非常同意或非常不同意，但这不是李克特量表。
+
+
+---
+exclude: true
+
+## 代码：gt表格样式
+
+
+
+
+
+---
+
+### 示例：李克特量表（公共教育）
+
+
+
+<div id="mjgrxudkun" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mjgrxudkun table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#mjgrxudkun thead, #mjgrxudkun tbody, #mjgrxudkun tfoot, #mjgrxudkun tr, #mjgrxudkun td, #mjgrxudkun th {
+  border-style: none;
+}
+
+#mjgrxudkun p {
+  margin: 0;
+  padding: 0;
+}
+
+#mjgrxudkun .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mjgrxudkun .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mjgrxudkun .gt_title {
+  color: #333333;
+  font-size: 24px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mjgrxudkun .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mjgrxudkun .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mjgrxudkun .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mjgrxudkun .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mjgrxudkun .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mjgrxudkun .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mjgrxudkun .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mjgrxudkun .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mjgrxudkun .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mjgrxudkun .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mjgrxudkun .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mjgrxudkun .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mjgrxudkun .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mjgrxudkun .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mjgrxudkun .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mjgrxudkun .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mjgrxudkun .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mjgrxudkun .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mjgrxudkun .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mjgrxudkun .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mjgrxudkun .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mjgrxudkun .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mjgrxudkun .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mjgrxudkun .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mjgrxudkun .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mjgrxudkun .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mjgrxudkun .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mjgrxudkun .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mjgrxudkun .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mjgrxudkun .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mjgrxudkun .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mjgrxudkun .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mjgrxudkun .gt_left {
+  text-align: left;
+}
+
+#mjgrxudkun .gt_center {
+  text-align: center;
+}
+
+#mjgrxudkun .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mjgrxudkun .gt_font_normal {
+  font-weight: normal;
+}
+
+#mjgrxudkun .gt_font_bold {
+  font-weight: bold;
+}
+
+#mjgrxudkun .gt_font_italic {
+  font-style: italic;
+}
+
+#mjgrxudkun .gt_super {
+  font-size: 65%;
+}
+
+#mjgrxudkun .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mjgrxudkun .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mjgrxudkun .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mjgrxudkun .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mjgrxudkun .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mjgrxudkun .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mjgrxudkun .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <colgroup>
+    <col/>
+    <col style="width:100px;"/>
+    <col style="width:100px;"/>
+    <col style="width:100px;"/>
+    <col style="width:100px;"/>
+    <col style="width:100px;"/>
+  </colgroup>
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>关于下列陈述，请你对同意或不同意的程度进行打分：</td>
+    </tr>
+    
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="X1" class="gt_row gt_left" style="background-color: #E0FFFF; font-weight: bold;"><br /></td>
+<td headers="X2" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">完全不同意</td>
+<td headers="X3" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">不同意</td>
+<td headers="X4" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">不同意也不反对</td>
+<td headers="X5" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">同意</td>
+<td headers="X6" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">完全同意</td></tr>
+    <tr><td headers="X1" class="gt_row gt_left gt_striped" style="font-weight: bold;">高质量的公共教育是当今国人面临的最重要问题之一。</td>
+<td headers="X2" class="gt_row gt_center gt_striped">1</td>
+<td headers="X3" class="gt_row gt_center gt_striped">2</td>
+<td headers="X4" class="gt_row gt_center gt_striped">3</td>
+<td headers="X5" class="gt_row gt_center gt_striped">4</td>
+<td headers="X6" class="gt_row gt_center gt_striped">5</td></tr>
+    <tr><td headers="X1" class="gt_row gt_left" style="font-weight: bold;">每个人都应该获得免费和适当的公共教育。</td>
+<td headers="X2" class="gt_row gt_center">1</td>
+<td headers="X3" class="gt_row gt_center">2</td>
+<td headers="X4" class="gt_row gt_center">3</td>
+<td headers="X5" class="gt_row gt_center">4</td>
+<td headers="X6" class="gt_row gt_center">5</td></tr>
+    <tr><td headers="X1" class="gt_row gt_left gt_striped" style="font-weight: bold;">我国目前拥有世界上最好的公立学校系统。</td>
+<td headers="X2" class="gt_row gt_center gt_striped">1</td>
+<td headers="X3" class="gt_row gt_center gt_striped">2</td>
+<td headers="X4" class="gt_row gt_center gt_striped">3</td>
+<td headers="X5" class="gt_row gt_center gt_striped">4</td>
+<td headers="X6" class="gt_row gt_center gt_striped">5</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+
+---
+
+### 示例：概念框架/理论框架
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt02-scale-concepts.png" alt="学生阅读改善研究的概念框架图" width="614" /&gt;
+&lt;p class="caption"&gt;学生阅读改善研究的概念框架图&lt;/p&gt;
+&lt;/div&gt;
+
+???
+
+本图通过在线网站制作，并下载保存到本地
+
+https://www.mermaidchart.com/app/projects/32712ba6-c79d-4ad9-af97-40893e49841e/diagrams/a51a962f-0184-40e8-a766-f858d1a1795e/version/v0.1/edit
+
+---
+exclude: true
+
+### 示例：概念框架/理论框架
+
+
+&lt;iframe src="https://www.mermaidchart.com/raw/a51a962f-0184-40e8-a766-f858d1a1795e?theme=light&amp;amp;version=v0.1&amp;amp;format=svg" width="100%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
+
+???
+
+国内似乎不能访问url地址。
+
+---
+
+### 示例：量表结构及其关系
+
+.demo[
+**量表主题**：工作满意度
+
+**子量表**：1.工作本身满意度；2.上下级关系满意度；3.工作环境满意度。
+
+**量表设定**：共15个题项，采用5分制李克特反应量表（`非常满意`到`非常不满意`）
+
+]
+
+.demo[
+**量表主题**：对课程评分中的道德规范性认知
+
+**子量表**：1.偏袒/公平性认知；2.评分规则沟通认知；3.保密性认知；4.随堂评分认知；5.多重评分机会认知；6.标准化考试认知；7.监考流程认知。
+
+**量表设定**：36个题项，2分制回答量表（`规范的`和`不规范的`）。
+
+]
+
+
+---
+exclude:true
+
+## 代码：学生成就量表
+
+案例来源：Johnson R L, Morgan G B. Survey scales: a guide to development, analysis, and reporting[M]. New York: The Guilford Press, 2016. chapter 01 pg.7
+
+
+
+
+---
+
+### 示例：学生参与程度量表（构成及设定）
+
+.demo[
+**量表主题**：学生参与程度
+
+**子量表**：1.学习参与度；2.社会参与度。
+
+**量表设定**：共17个题项，采用4分制反应量表（`从来没有`到`总是`；`非常不同意`到`非常同意`）
+
+]
+
+---
+
+### 示例：学生参与程度量表（子量表A-题项设定）
+
+<div class="datatables html-widget html-fill-item" id="htmlwidget-c37b2180071ed1179e67" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c37b2180071ed1179e67">{"x":{"filter":"none","vertical":false,"caption":"<caption>子量表A：学习参与度（课堂活动）<\/caption>","data":[["1","2","3","4","5","6","7","8"],["a.享受学习新事物。","b.完成我所有的作业。","c.需要更多的帮助才能理解课堂作业。","d.不带书、笔和纸来上课。","e.阅读课堂上讨论的材料。","f.记下我读过的东西。","g.为应对考试而学习。","h.逃课/旷课。"],[1,1,1,1,1,1,1,1],[2,2,2,2,2,2,2,2],[3,3,3,3,3,3,3,3],[4,4,4,4,4,4,4,4]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>作为一个大学生，我...<\/th>\n      <th>从来没有<\/th>\n      <th>有时候会<\/th>\n      <th>经常会<\/th>\n      <th>总是会<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"作为一个大学生，我...","targets":1},{"name":"从来没有","targets":2},{"name":"有时候会","targets":3},{"name":"经常会","targets":4},{"name":"总是会","targets":5}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+
+
+---
+
+### 示例：学生参与程度量表（子量表B-题项设定）
+
+<div class="datatables html-widget html-fill-item" id="htmlwidget-b4001c65b0a2a6dc811b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b4001c65b0a2a6dc811b">{"x":{"filter":"none","vertical":false,"caption":"<caption>子量表B：社会参与度（与人相处）<\/caption>","data":[["1","2","3","4","5","6","7"],["a.在学校有很多朋友。","b.关心自己是否能完成学业。","c.很在意其他同学对我的看法。","d.很在乎老师对我的看法。","e.知道老师对我的期望。","f.每当遇到问题时，会与成年人(老师、辅导员、导师)交谈。","g.经常因为行为不端而被辅导员约谈。"],[1,1,1,1,1,1,1],[2,2,2,2,2,2,2],[3,3,3,3,3,3,3],[4,4,4,4,4,4,4]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>作为一个大学生，我...<\/th>\n      <th>非常不同意<\/th>\n      <th>不同意<\/th>\n      <th>同意<\/th>\n      <th>非常同意<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"作为一个大学生，我...","targets":1},{"name":"非常不同意","targets":2},{"name":"不同意","targets":3},{"name":"同意","targets":4},{"name":"非常同意","targets":5}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+exclude:true
+
+## 代码：题项一致性
+
+案例来源：Johnson R L, Morgan G B. Survey scales: a guide to development, analysis, and reporting[M]. New York: The Guilford Press, 2016. chapter 05 pg.79
+
+
+
+---
+
+### 量表设计：量表标签与内容结构一致性
+
+
+量表标签设定应该与量表内容结构一致性
+
+- （错误做法）未保持一致
+
+<div id="crxkpqgmfb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#crxkpqgmfb table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#crxkpqgmfb thead, #crxkpqgmfb tbody, #crxkpqgmfb tfoot, #crxkpqgmfb tr, #crxkpqgmfb td, #crxkpqgmfb th {
+  border-style: none;
+}
+
+#crxkpqgmfb p {
+  margin: 0;
+  padding: 0;
+}
+
+#crxkpqgmfb .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#crxkpqgmfb .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#crxkpqgmfb .gt_title {
+  color: #333333;
+  font-size: 24px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#crxkpqgmfb .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#crxkpqgmfb .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#crxkpqgmfb .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#crxkpqgmfb .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#crxkpqgmfb .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#crxkpqgmfb .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#crxkpqgmfb .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#crxkpqgmfb .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#crxkpqgmfb .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#crxkpqgmfb .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#crxkpqgmfb .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#crxkpqgmfb .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#crxkpqgmfb .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#crxkpqgmfb .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#crxkpqgmfb .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#crxkpqgmfb .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#crxkpqgmfb .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#crxkpqgmfb .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#crxkpqgmfb .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#crxkpqgmfb .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#crxkpqgmfb .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#crxkpqgmfb .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#crxkpqgmfb .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#crxkpqgmfb .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#crxkpqgmfb .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#crxkpqgmfb .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#crxkpqgmfb .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#crxkpqgmfb .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#crxkpqgmfb .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#crxkpqgmfb .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#crxkpqgmfb .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#crxkpqgmfb .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#crxkpqgmfb .gt_left {
+  text-align: left;
+}
+
+#crxkpqgmfb .gt_center {
+  text-align: center;
+}
+
+#crxkpqgmfb .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#crxkpqgmfb .gt_font_normal {
+  font-weight: normal;
+}
+
+#crxkpqgmfb .gt_font_bold {
+  font-weight: bold;
+}
+
+#crxkpqgmfb .gt_font_italic {
+  font-style: italic;
+}
+
+#crxkpqgmfb .gt_super {
+  font-size: 65%;
+}
+
+#crxkpqgmfb .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#crxkpqgmfb .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#crxkpqgmfb .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#crxkpqgmfb .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#crxkpqgmfb .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#crxkpqgmfb .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#crxkpqgmfb .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <colgroup>
+    <col style="width:150px;"/>
+    <col style="width:150px;"/>
+    <col style="width:150px;"/>
+    <col style="width:150px;"/>
+    <col style="width:150px;"/>
+    <col style="width:150px;"/>
+  </colgroup>
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>a.我偶尔在孩子的教室里做志愿者。</td>
+    </tr>
+    
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="X2" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">非常不同意</td>
+<td headers="X3" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">不同意</td>
+<td headers="X4" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">比较不同意</td>
+<td headers="X5" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">比较同意</td>
+<td headers="X6" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">同意</td>
+<td headers="X7" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">非常同意</td></tr>
+    <tr><td headers="X2" class="gt_row gt_center gt_striped">1</td>
+<td headers="X3" class="gt_row gt_center gt_striped">2</td>
+<td headers="X4" class="gt_row gt_center gt_striped">3</td>
+<td headers="X5" class="gt_row gt_center gt_striped">4</td>
+<td headers="X6" class="gt_row gt_center gt_striped">5</td>
+<td headers="X7" class="gt_row gt_center gt_striped">6</td></tr>
+    <tr><td headers="X2" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X3" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X4" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X5" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X6" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X7" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+
+- （正确做法）保持一致
+
+<div id="mjntfjodet" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mjntfjodet table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#mjntfjodet thead, #mjntfjodet tbody, #mjntfjodet tfoot, #mjntfjodet tr, #mjntfjodet td, #mjntfjodet th {
+  border-style: none;
+}
+
+#mjntfjodet p {
+  margin: 0;
+  padding: 0;
+}
+
+#mjntfjodet .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mjntfjodet .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mjntfjodet .gt_title {
+  color: #333333;
+  font-size: 24px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mjntfjodet .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mjntfjodet .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mjntfjodet .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mjntfjodet .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mjntfjodet .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mjntfjodet .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mjntfjodet .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mjntfjodet .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mjntfjodet .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mjntfjodet .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mjntfjodet .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mjntfjodet .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mjntfjodet .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mjntfjodet .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mjntfjodet .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mjntfjodet .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mjntfjodet .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mjntfjodet .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mjntfjodet .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mjntfjodet .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mjntfjodet .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mjntfjodet .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mjntfjodet .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mjntfjodet .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mjntfjodet .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mjntfjodet .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mjntfjodet .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mjntfjodet .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mjntfjodet .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mjntfjodet .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mjntfjodet .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mjntfjodet .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mjntfjodet .gt_left {
+  text-align: left;
+}
+
+#mjntfjodet .gt_center {
+  text-align: center;
+}
+
+#mjntfjodet .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mjntfjodet .gt_font_normal {
+  font-weight: normal;
+}
+
+#mjntfjodet .gt_font_bold {
+  font-weight: bold;
+}
+
+#mjntfjodet .gt_font_italic {
+  font-style: italic;
+}
+
+#mjntfjodet .gt_super {
+  font-size: 65%;
+}
+
+#mjntfjodet .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mjntfjodet .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mjntfjodet .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mjntfjodet .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mjntfjodet .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mjntfjodet .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mjntfjodet .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <colgroup>
+    <col style="width:160px;"/>
+    <col style="width:160px;"/>
+    <col style="width:160px;"/>
+    <col style="width:160px;"/>
+    <col style="width:160px;"/>
+  </colgroup>
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>a.你多久在孩子的教室里做一次志愿者？</td>
+    </tr>
+    
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="X2" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">没有过</td>
+<td headers="X3" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">一年有一两次</td>
+<td headers="X4" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">每个月都有</td>
+<td headers="X5" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">每个周都有</td>
+<td headers="X6" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">每天都有</td></tr>
+    <tr><td headers="X2" class="gt_row gt_center gt_striped">1</td>
+<td headers="X3" class="gt_row gt_center gt_striped">2</td>
+<td headers="X4" class="gt_row gt_center gt_striped">3</td>
+<td headers="X5" class="gt_row gt_center gt_striped">4</td>
+<td headers="X6" class="gt_row gt_center gt_striped">5</td></tr>
+    <tr><td headers="X2" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X3" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X4" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X5" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X6" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+---
+
+### 量表设计：题项问题与应答选项一致1/2
+
+
+
+
+
+<div id="ygmjwxmark" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ygmjwxmark table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ygmjwxmark thead, #ygmjwxmark tbody, #ygmjwxmark tfoot, #ygmjwxmark tr, #ygmjwxmark td, #ygmjwxmark th {
+  border-style: none;
+}
+
+#ygmjwxmark p {
+  margin: 0;
+  padding: 0;
+}
+
+#ygmjwxmark .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ygmjwxmark .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ygmjwxmark .gt_title {
+  color: #333333;
+  font-size: 24px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ygmjwxmark .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ygmjwxmark .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ygmjwxmark .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ygmjwxmark .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ygmjwxmark .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ygmjwxmark .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ygmjwxmark .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ygmjwxmark .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ygmjwxmark .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ygmjwxmark .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ygmjwxmark .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ygmjwxmark .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ygmjwxmark .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ygmjwxmark .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ygmjwxmark .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ygmjwxmark .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ygmjwxmark .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ygmjwxmark .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ygmjwxmark .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ygmjwxmark .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ygmjwxmark .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ygmjwxmark .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ygmjwxmark .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ygmjwxmark .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ygmjwxmark .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ygmjwxmark .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ygmjwxmark .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ygmjwxmark .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ygmjwxmark .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ygmjwxmark .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ygmjwxmark .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ygmjwxmark .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ygmjwxmark .gt_left {
+  text-align: left;
+}
+
+#ygmjwxmark .gt_center {
+  text-align: center;
+}
+
+#ygmjwxmark .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ygmjwxmark .gt_font_normal {
+  font-weight: normal;
+}
+
+#ygmjwxmark .gt_font_bold {
+  font-weight: bold;
+}
+
+#ygmjwxmark .gt_font_italic {
+  font-style: italic;
+}
+
+#ygmjwxmark .gt_super {
+  font-size: 65%;
+}
+
+#ygmjwxmark .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ygmjwxmark .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ygmjwxmark .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ygmjwxmark .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ygmjwxmark .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ygmjwxmark .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ygmjwxmark .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <colgroup>
+    <col style="width:140px;"/>
+    <col style="width:140px;"/>
+    <col style="width:140px;"/>
+    <col style="width:140px;"/>
+    <col style="width:140px;"/>
+  </colgroup>
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>总的来说，您对今天购买的产品有多满意？</td>
+    </tr>
+    
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="X1" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">非常糟糕</td>
+<td headers="X2" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">糟糕</td>
+<td headers="X3" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">满意</td>
+<td headers="X4" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">很好</td>
+<td headers="X5" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">非常棒</td></tr>
+    <tr><td headers="X1" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X2" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X3" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X4" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X5" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+
+---
+
+### 量表设计：题项问题与应答选项一致2/2
+
+
+
+
+
+
+<div id="cwlxwvpgxv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cwlxwvpgxv table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#cwlxwvpgxv thead, #cwlxwvpgxv tbody, #cwlxwvpgxv tfoot, #cwlxwvpgxv tr, #cwlxwvpgxv td, #cwlxwvpgxv th {
+  border-style: none;
+}
+
+#cwlxwvpgxv p {
+  margin: 0;
+  padding: 0;
+}
+
+#cwlxwvpgxv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#cwlxwvpgxv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#cwlxwvpgxv .gt_title {
+  color: #333333;
+  font-size: 24px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#cwlxwvpgxv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#cwlxwvpgxv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cwlxwvpgxv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cwlxwvpgxv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cwlxwvpgxv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#cwlxwvpgxv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#cwlxwvpgxv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#cwlxwvpgxv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#cwlxwvpgxv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#cwlxwvpgxv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#cwlxwvpgxv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#cwlxwvpgxv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cwlxwvpgxv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#cwlxwvpgxv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#cwlxwvpgxv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#cwlxwvpgxv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cwlxwvpgxv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#cwlxwvpgxv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#cwlxwvpgxv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#cwlxwvpgxv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cwlxwvpgxv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#cwlxwvpgxv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#cwlxwvpgxv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cwlxwvpgxv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cwlxwvpgxv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#cwlxwvpgxv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cwlxwvpgxv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#cwlxwvpgxv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cwlxwvpgxv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cwlxwvpgxv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cwlxwvpgxv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cwlxwvpgxv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cwlxwvpgxv .gt_left {
+  text-align: left;
+}
+
+#cwlxwvpgxv .gt_center {
+  text-align: center;
+}
+
+#cwlxwvpgxv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#cwlxwvpgxv .gt_font_normal {
+  font-weight: normal;
+}
+
+#cwlxwvpgxv .gt_font_bold {
+  font-weight: bold;
+}
+
+#cwlxwvpgxv .gt_font_italic {
+  font-style: italic;
+}
+
+#cwlxwvpgxv .gt_super {
+  font-size: 65%;
+}
+
+#cwlxwvpgxv .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#cwlxwvpgxv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#cwlxwvpgxv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#cwlxwvpgxv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#cwlxwvpgxv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#cwlxwvpgxv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#cwlxwvpgxv .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <colgroup>
+    <col style="width:250px;"/>
+    <col style="width:50px;"/>
+    <col style="width:50px;"/>
+    <col style="width:50px;"/>
+    <col style="width:50px;"/>
+    <col style="width:50px;"/>
+    <col style="width:50px;"/>
+    <col style="width:50px;"/>
+    <col style="width:50px;"/>
+    <col style="width:50px;"/>
+    <col style="width:50px;"/>
+    <col style="width:100px;"/>
+  </colgroup>
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="12" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>在1-10的范围内，请对电商网站(jd.com)在以下方面的表现进行评分：</td>
+    </tr>
+    
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="X1" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;"></td>
+<td headers="X2" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">糟糕</td>
+<td headers="X3" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;"></td>
+<td headers="X4" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;"></td>
+<td headers="X5" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;"></td>
+<td headers="X6" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;"></td>
+<td headers="X7" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;"></td>
+<td headers="X8" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;"></td>
+<td headers="X9" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;"></td>
+<td headers="X10" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;"></td>
+<td headers="X11" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">非常棒</td>
+<td headers="X12" class="gt_row gt_center" style="background-color: #E0FFFF; font-weight: bold;">不知道</td></tr>
+    <tr><td headers="X1" class="gt_row gt_center gt_striped"></td>
+<td headers="X2" class="gt_row gt_center gt_striped">1</td>
+<td headers="X3" class="gt_row gt_center gt_striped">2</td>
+<td headers="X4" class="gt_row gt_center gt_striped">3</td>
+<td headers="X5" class="gt_row gt_center gt_striped">4</td>
+<td headers="X6" class="gt_row gt_center gt_striped">5</td>
+<td headers="X7" class="gt_row gt_center gt_striped">6</td>
+<td headers="X8" class="gt_row gt_center gt_striped">7</td>
+<td headers="X9" class="gt_row gt_center gt_striped">8</td>
+<td headers="X10" class="gt_row gt_center gt_striped">9</td>
+<td headers="X11" class="gt_row gt_center gt_striped">10</td>
+<td headers="X12" class="gt_row gt_center gt_striped"></td></tr>
+    <tr><td headers="X1" class="gt_row gt_center">您正在寻找的特定产品可以在jd.com上买到</td>
+<td headers="X2" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X3" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X4" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X5" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X6" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X7" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X8" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X9" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X10" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X11" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X12" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td></tr>
+    <tr><td headers="X1" class="gt_row gt_center gt_striped">jd.com网站上的产品价格</td>
+<td headers="X2" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X3" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X4" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X5" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X6" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X7" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X8" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X9" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X10" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X11" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X12" class="gt_row gt_center gt_striped"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td></tr>
+    <tr><td headers="X1" class="gt_row gt_center">jd.com网站页面的视觉吸引力</td>
+<td headers="X2" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X3" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X4" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X5" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X6" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X7" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X8" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X9" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X10" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X11" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td>
+<td headers="X12" class="gt_row gt_center"><span style="white-space:nowrap;"><svg aria-label="Circle" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Circle</title><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></span></td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+---
+exclude:true
+
+## 代码：6题项量表
+
+案例来源：Bandalos D L. Measurement theory and applications for the social sciences[M]. New York:  The Guilford Press, 2018. chapter 08 pg. 189; pg. 190
+
+
+
+
+
+```r
+# 计算方差
+calc_6s &lt;- scale_6s %&gt;%
+  summarise(
+    respondent = max(respondent),
+*   across(c(item_1:item_6, total_score), ~(sd(.x))^2) #标准差再平方
+    )
+
+## 计算Cronbach Alpha信度1
+k &lt;- 6
+*var_items &lt;- calc_6s %&gt;%  # 题项方差
+  select(item_1:item_6) %&gt;%
+  unlist()
+*var_score &lt;- calc_6s %&gt;%  # 得分方差
+  select(total_score) %&gt;%
+  unlist()
+*cron_a0 &lt;- k/(k-1)*(1- sum(var_items)/var_score) # 公式
+*number(cron_a0, 0.0001) # 显示结果
+```
+
+```
+total_score 
+   "0.9851" 
+```
+
+
+```r
+## 计算Cronbach Alpha信度2
+*library("psych") #使用R包
+alpha_test &lt;- scale_6s %&gt;% 
+  select(item_1:item_6) %&gt;% 
+* psych::alpha()  # 进行Cronbach 信度计算和分析
+```
+
+```
+Warning in cor.smooth(r): Matrix was not positive definite, smoothing
+was done
+```
+
+```r
+cron_a &lt;- alpha_test$total$raw_alpha
+*number(cron_a, 0.0001)  # 显示结果
+```
+
+```
+[1] "0.9851"
+```
+
+---
+
+## 量表质量：如何评价？
+
+
+<div class="datatables html-widget html-fill-item" id="htmlwidget-c4269ff8df9b0ab01102" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c4269ff8df9b0ab01102">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>量表试调的回答打分结果（n = 20）<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],[1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,4,2,1,2],[1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,4,1,2],[1,1,2,1,2,2,3,2,3,3,4,3,4,4,5,4,5,2,1,2],[2,2,2,1,3,3,3,2,4,4,4,3,5,5,5,4,5,5,1,2],[2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,5,4,2,3],[2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,5,5,2,3],[9,9,10,8,15,15,16,14,21,21,22,20,27,27,28,26,29,22,8,14]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>respondent<\/th>\n      <th>item_1<\/th>\n      <th>item_2<\/th>\n      <th>item_3<\/th>\n      <th>item_4<\/th>\n      <th>item_5<\/th>\n      <th>item_6<\/th>\n      <th>total_score<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Btip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"respondent","targets":1},{"name":"item_1","targets":2},{"name":"item_2","targets":3},{"name":"item_3","targets":4},{"name":"item_4","targets":5},{"name":"item_5","targets":6},{"name":"item_6","targets":7},{"name":"total_score","targets":8}],"pageLength":6,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}","selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.initComplete","callback"],"jsHooks":[]}</script>
+
+
+.footnote[
+本量表包含6个题项，试调研获得20个被调查者的回答打分。
+]
+
+---
+exclude:true
+
+## 代码：信度的定义
+
+
+
+
+---
+
+## 量表质量：信度
+
+**信度（Reliability）**刻画量表的真实得分与实际得分之间的一致性程度（Consistency），同时将评估引起真实得分与实际得分不一致的多种误差来源。
+
+<div class="datatables html-widget html-fill-item" id="htmlwidget-17e9d3ca0f9335e16f72" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-17e9d3ca0f9335e16f72">{"x":{"filter":"none","vertical":false,"caption":"<caption>信度类别及定义<\/caption>","data":[["1","2","3","4"],["内部信度(internal)","评估者信度(inter-rater)","副本信度(parallel)","重测信度(test–retest )"],["克朗巴哈信度系数(Cronbach)","科恩卡帕系数(Cohen)","等效系数(equivalence)","稳定系数(stability)"],["基于量表内部的多个题项","基于不同评分者打分","基于量表设计的多个版本","基于不同调查者的多次测试"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>信度类别<\/th>\n      <th>计算系数<\/th>\n      <th>一致性评价的内容<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"信度类别","targets":1},{"name":"计算系数","targets":2},{"name":"一致性评价的内容","targets":3}],"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+### 内部信度：克朗巴哈信度系数（公式）
+
+克朗巴哈信度（Cronbach Alpha 或
+`\(\alpha\)`）是表达量表内部一致性程度的一种测度系数，具体计算公式为：
+
+$$
+`\begin{aligned}
+\rho_{C C^{\prime}} &amp;= \frac{k}{k-1}\left(1-\frac{\sum \sigma_i^2}{\sigma_C^2}\right) \\
+\rho_{C C^{\prime}} &amp;= \frac{k}{k-1}\left(1-\frac{\sum \sigma_i^2}{\sum_{i \neq j} \operatorname{cov}_{i j}+\sum \sigma_i^2}\right)
+\end{aligned}`
+$$
+
+其中：
+
+- 题项
+`\(i\)`方差
+`\(\sigma^2_{i}\)`（item variance，纵向方差）
+
+- 观测得分方差
+`\(\sigma^2_{C}\)`（total test variance，横向方差）
+
+- 题项之间的协方差
+`\(\operatorname{cov}_{i j}\)`
+
+---
+
+### 示例：克朗巴哈信度系数（计算方差）
+
+
+<div class="datatables html-widget html-fill-item" id="htmlwidget-1c078f44418086ad3752" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-1c078f44418086ad3752">{"x":{"filter":"none","vertical":false,"caption":"<caption>试调得分结果<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],[1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,4,2,1,2],[1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,4,1,2],[1,1,2,1,2,2,3,2,3,3,4,3,4,4,5,4,5,2,1,2],[2,2,2,1,3,3,3,2,4,4,4,3,5,5,5,4,5,5,1,2],[2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,5,4,2,3],[2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,5,5,2,3],[9,9,10,8,15,15,16,14,21,21,22,20,27,27,28,26,29,22,8,14]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>respondent<\/th>\n      <th>item_1<\/th>\n      <th>item_2<\/th>\n      <th>item_3<\/th>\n      <th>item_4<\/th>\n      <th>item_5<\/th>\n      <th>item_6<\/th>\n      <th>total_score<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"respondent","targets":1},{"name":"item_1","targets":2},{"name":"item_2","targets":3},{"name":"item_3","targets":4},{"name":"item_4","targets":5},{"name":"item_5","targets":6},{"name":"item_6","targets":7},{"name":"total_score","targets":8}],"pageLength":4,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+
+<div class="datatables html-widget html-fill-item" id="htmlwidget-12809c800ed000271a04" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-12809c800ed000271a04">{"x":{"filter":"none","vertical":false,"caption":"<caption>方差计算结果<\/caption>","data":[["1"],[20],[1.313157894736842],[1.621052631578947],[1.694736842105263],[1.881578947368421],[1.31578947368421],[1.418421052631579],[51.62894736842105]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>respondent<\/th>\n      <th>item_1<\/th>\n      <th>item_2<\/th>\n      <th>item_3<\/th>\n      <th>item_4<\/th>\n      <th>item_5<\/th>\n      <th>item_6<\/th>\n      <th>total_score<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"respondent","targets":1},{"name":"item_1","targets":2},{"name":"item_2","targets":3},{"name":"item_3","targets":4},{"name":"item_4","targets":5},{"name":"item_5","targets":6},{"name":"item_6","targets":7},{"name":"total_score","targets":8}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render"],"jsHooks":[]}</script>
+
+.footnote[
+
+- 方差计算公式为
+`\(\widehat{Var}(X_i) = \frac{\sum_{i=1}^{n}{(X_i -\overline{X})^2}}{n-1}\)`
+
+- 方差计算表中6列`item_`为题项方差（纵向）
+`\(\sigma^2_i\)`；最后一列`total_score`为得分方差（横向）
+`\(\sigma^2_C\)`
+
+]
+
+
+---
+
+### 示例：克朗巴哈信度系数（计算结果）
+
+根据上一页方差计算表，利用前述克朗巴哈信度系数计算公式，我们可以得到：
+
+$$
+`\begin{aligned}
+\alpha \equiv
+\rho_{C C^{\prime}} &amp;= \frac{k}{k-1}\left(1-\frac{\sum \sigma_i^2}{\sigma_C^2}\right) \\
+&amp;=\left(\frac{6}{5}\right)\left(1-\frac{1.3132+1.6211+1.6947+1.8816+1.3158+1.4184}{51.6289}\right)\\
+&amp;=\frac{6}{5}\left(1-\frac{9.2447}{51.6289}\right)=0.9851
+\end{aligned}`
+$$
+
+- 方差计算表中6列`item_`为题项方差（纵向）
+`\(\sigma^2_i\)`；最后一列`total_score`为得分方差（横向）
+`\(\sigma^2_C\)`
+
+---
+
+### 附录：克朗巴哈信度系数（R代码1-手动计算）
+
+
+```r
+# 计算方差
+calc_6s &lt;- scale_6s %&gt;%
+  summarise(
+    respondent = max(respondent),
+*   across(c(item_1:item_6, total_score), ~(sd(.x))^2) #标准差再平方
+    )
+
+## 计算Cronbach Alpha信度1
+k &lt;- 6
+*var_items &lt;- calc_6s %&gt;%  # 题项方差
+  select(item_1:item_6) %&gt;%
+  unlist()
+*var_score &lt;- calc_6s %&gt;%  # 得分方差
+  select(total_score) %&gt;%
+  unlist()
+*cron_a0 &lt;- k/(k-1)*(1- sum(var_items)/var_score) # 公式
+*number(cron_a0, 0.0001) # 显示结果
+```
+
+```
+total_score 
+   "0.9851" 
+```
+
+---
+
+### 附录：克朗巴哈信度系数（R代码2-自动计算）
+
+
+```r
+## 计算Cronbach Alpha信度2
+*library("psych") #使用R包
+alpha_test &lt;- scale_6s %&gt;% 
+  select(item_1:item_6) %&gt;% 
+* psych::alpha()  # 进行Cronbach 信度计算和分析
+```
+
+```
+Warning in cor.smooth(r): Matrix was not positive definite, smoothing
+was done
+```
+
+```r
+cron_a &lt;- alpha_test$total$raw_alpha
+*number(cron_a, 0.0001)  # 显示结果
+```
+
+```
+[1] "0.9851"
+```
+
+---
+
+### 课堂练习：克朗巴哈信度有什么变化？
+
+
+
+<div class="datatables html-widget html-fill-item" id="htmlwidget-aee3918146dcb0851d32" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-aee3918146dcb0851d32">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>另一份量表试调的回答打分结果（n = 20）<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],[1,1,1,2,2,1,1,2,3,2,2,4,3,1,1,4,1,1,3,1],[2,3,2,2,3,2,3,2,3,2,3,2,3,2,2,3,1,1,2,2],[3,2,3,2,3,3,3,3,3,3,3,3,4,3,2,3,1,2,3,3],[4,4,5,4,4,4,5,4,3,3,4,2,3,3,4,4,3,3,4,3],[5,2,4,4,4,5,5,5,2,5,3,3,1,5,5,5,4,3,4,5],[4,5,4,4,5,5,4,4,3,4,3,3,3,4,4,5,2,2,2,2],[19,17,19,18,21,20,21,20,17,19,18,17,17,18,18,24,12,12,18,16]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>respondent<\/th>\n      <th>item_1<\/th>\n      <th>item_2<\/th>\n      <th>item_3<\/th>\n      <th>item_4<\/th>\n      <th>item_5<\/th>\n      <th>item_6<\/th>\n      <th>total_score<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Btip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"respondent","targets":1},{"name":"item_1","targets":2},{"name":"item_2","targets":3},{"name":"item_3","targets":4},{"name":"item_4","targets":5},{"name":"item_5","targets":6},{"name":"item_6","targets":7},{"name":"total_score","targets":8}],"pageLength":6,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}","selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.initComplete","callback"],"jsHooks":[]}</script>
+
+.footnote[
+- 请同学们下载数据表（点击`Excel`按钮），并计算克朗巴哈信度系数`a2`（保留4位小数）。
+
+- 这时候的信度系数与我们教学案例中的计算结果有什么差异？主要原因是什么？
+
+]
+
+---
+exclude:true
+
+## 代码：3个评分者
+
+案例来源：Bandalos D L. Measurement theory and applications for the social sciences[M]. New York:  The Guilford Press, 2018. chapter 08 pg. 211-212
+
+
+
+
+
+```r
+# 计算Cronbach Alpha系数
+k &lt;- 3
+## 计算方差
+calc_3r &lt;- scale_rater %&gt;%
+  mutate(
+    score12 = rater_1+rater_2,
+    score13 = rater_1+rater_3,
+    score23 = rater_2+rater_3,
+    score123 = rater_1+rater_2 +rater_3) %&gt;%
+  summarise(
+    person = max(person),
+*   across(c(rater_1:score123), ~(sd(.x))^2) #标准差再平方
+    ) 
+
+## R包批量计算Cronbach Alpha系数
+*library("psych") #使用R包
+alpha_12 &lt;- scale_rater %&gt;% 
+  select(rater_1,rater_2) %&gt;% 
+  psych::alpha() 
+
+alpha_13 &lt;- scale_rater %&gt;% 
+  select(rater_1,rater_3) %&gt;% 
+  psych::alpha()  
+
+alpha_23 &lt;- scale_rater %&gt;% 
+  select(rater_2,rater_3) %&gt;% 
+  psych::alpha()  
+
+alpha_123 &lt;- scale_rater %&gt;% 
+  select(rater_1:rater_3) %&gt;% 
+  psych::alpha()
+
+# 提取全部结果
+alpha_test &lt;- list(alpha_12, alpha_13, 
+                 alpha_23, alpha_123 )
+alpha_list &lt;- sapply(alpha_test, 
+       FUN = function(x) x$total$raw_alpha )
+```
+
+---
+
+## 评估者信度：概念和定义
+
+有时候，被试者的表现或结果由训练有素的评委或评级员进行评级打分。
+
+&gt; 例如，你可能很熟悉围绕奥运会评委对滑冰或体操表演打分的争议。这些争议涉及到一些裁判会倾向于给本国运动员更高打分的说法。
+
+这时，我们关注的一个重要信度问题是：同一份打分表（量表），不同评分者是否造成的分数明显不一致？不同评分者是否达成共识？
+
+
+**评估者信度(inter-rater)**是用来测度不同评分者打分一致性的指标。具体可以通过下列两类系数进行计算：
+
+- **评级共识系数（nominal agreement）**
+
+- **科恩卡帕系数（Cohen Kappa）**
+
+- **克兰巴哈系数（Cronbach Alpha）**（注意比较与内部信度计算时的不同）
+
+---
+
+### 示例：不同评分者是否达成共识？
+
+下面展示了3个评分者使用同一份评分标准（量表）对10位被试者的打分情况：
+
+<div class="datatables html-widget html-fill-item" id="htmlwidget-093da51c36dce54f79ea" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-093da51c36dce54f79ea">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>三个评分者的打分结果（n = 10）<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10"],[1,2,3,4,5,6,7,8,9,10],[1,2,2,3,3,3,4,4,5,5],[1,1,2,3,2,3,4,3,5,5],[1,3,3,4,4,4,4,5,5,5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>person<\/th>\n      <th>rater_1<\/th>\n      <th>rater_2<\/th>\n      <th>rater_3<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Btip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"person","targets":1},{"name":"rater_1","targets":2},{"name":"rater_2","targets":3},{"name":"rater_3","targets":4}],"pageLength":5,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}","selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.initComplete","callback"],"jsHooks":[]}</script>
+
+
+---
+
+### 示例1：评级共识系数（公式和步骤）
+
+
+**评级共识系数（nominal agreement）**适用于测度两个评分员在等级评分（名义变量）上的一致性，其计算公式如下：
+
+$$
+`\begin{aligned}
+P_o=\frac{1}{N} \sum_{i=1}^c n_{i i}
+\end{aligned}`
+$$
+
+具体做法是：
+
+- 构造两个评分者打分等级的交叉统计表
+
+- 利用上述公式进行计算系数
+
+
+---
+
+### 示例1：评级共识系数（交叉统计表和系数计算）
+
+<div class="datatables html-widget html-fill-item" id="htmlwidget-79bdd897c4ad96b9f83e" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-79bdd897c4ad96b9f83e">{"x":{"filter":"none","vertical":false,"caption":"<caption>评委1和评委2的评级交叉统计表<\/caption>","data":[["1","2","3","4","5","6"],["1","2","3","4","5","n_.i"],[1,1,0,0,0,2],[0,1,1,0,0,2],[0,0,2,1,0,3],[0,0,0,1,0,1],[0,0,0,0,2,2],[1,2,3,2,2,10]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>rank<\/th>\n      <th>1<\/th>\n      <th>2<\/th>\n      <th>3<\/th>\n      <th>4<\/th>\n      <th>5<\/th>\n      <th>n_i.<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"rank","targets":1},{"name":"1","targets":2},{"name":"2","targets":3},{"name":"3","targets":4},{"name":"4","targets":5},{"name":"5","targets":6},{"name":"n_i.","targets":7}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+
+$$
+`\begin{aligned}
+P_o&amp;=\frac{1}{N} \sum_{i=1}^c n_{i i} \\
+&amp;= \frac{1}{10}(1+1+2+1+2)=\frac{7}{10}=0.7
+\end{aligned}`
+$$
+
+---
+
+### 示例2：科恩卡帕系数（公式和步骤）
+
+**评级共识系数**存在的一个问题是：它没有考虑到评委可能只是偶然达成一致。对于二分类评分量表，完全随机评分下，两名评委也有大约50%的机会达成一致。
+
+**科恩卡帕系数（Cohen Kappa）**适用于测度两个评分员在等级评分（名义变量）上的一致性，并剔除了随机评分一致性的可能性，其计算公式如下：
+
+$$
+`\begin{aligned}
+P_c&amp;=\frac{1}{N^2} \sum_{i=1}^c\left(n_{i+}\right)\left(n_{+i}\right) \\
+\kappa&amp;=\frac{P_o-P_c}{1-P_c}
+\end{aligned}`
+$$
+
+具体做法是：
+
+- 构造两个评分者打分等级的交叉统计表
+
+- 分别计算出
+`\(P_o\)`和
+`\(P_c\)`
+
+- 利用上述公式进行计算科恩卡帕系数（Cohen Kappa）
+
+---
+
+### 示例2：科恩卡帕系数（计算结果）
+
+$$
+`\begin{aligned}
+P_o&amp;=\frac{1}{N} \sum_{i=1}^c n_{i i} 
+= \frac{1}{10}(1+1+2+1+2)=\frac{7}{10}=0.7
+\end{aligned}`
+$$
+
+$$
+`\begin{aligned}
+P_c&amp;=\frac{1}{N^2} \sum_{\mathrm{i}=1}^c\left(n_{\mathrm{i}+}\right)\left(n_{+\mathrm{i}}\right)=\frac{1}{10^2}[(2 \times 1)+(2 \times 2)+(3 \times 3)+(1 \times 2)+(2 \times 2)] \\
+&amp; =\frac{1}{100}(2+4+9+2+4)=\frac{21}{100}=0.21
+\end{aligned}`
+$$
+
+$$
+`\begin{aligned}
+\kappa=\frac{P_o-P_c}{1-P_c}=\frac{0.7-0.21}{1-0.21}=\frac{0.49}{0.79}=0.62
+\end{aligned}`
+$$
+&gt; 科恩Kappa系数可以被解释为对超出偶然性部分的一致性度量，表达为超出偶然性的最大一致性占比。
+
+---
+exclude: true
+
+## 代码：课堂练习
+
+
+
+
+
+---
+
+### 课堂练习：请你计算其他评委组合的科恩卡帕系数？
+
+对于前述案例，对于三种评委组合：`评委1`VS`评委2`；`评委1`VS`评委3`；`评委2`VS`评委3`，请你分别计算得到**评级共识系数**
+`\(P_0\)`和科恩卡帕系数
+`\(\kappa\)`？
+
+下面为答案：
+
+--
+
+<div class="datatables html-widget html-fill-item" id="htmlwidget-53306c2f3e60ebdb808d" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-53306c2f3e60ebdb808d">{"x":{"filter":"none","vertical":false,"caption":"<caption>不同评委组合的评估者信度<\/caption>","data":[["1","2","3"],["p0","pc","kappa"],[0.7,0.21,0.620253164556962],[0.4,0.21,0.2405063291139241],[0.4,0.18,0.2682926829268293]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>index<\/th>\n      <th>vs12<\/th>\n      <th>vs13<\/th>\n      <th>vs23<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"index","targets":1},{"name":"vs12","targets":2},{"name":"vs13","targets":3},{"name":"vs23","targets":4}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render"],"jsHooks":[]}</script>
+
+
+
+---
+
+### 示例3：克朗巴哈系数（思路方法）
+
+事实上，如果我们可以把不同的评分者打分列视作为**量表题项**，那么就也可以使用内部信度中的**克朗巴哈系数**计算方法判断两个评委是否保持一致！
+
+<div class="datatables html-widget html-fill-item" id="htmlwidget-b4058909b16b9ceac3c3" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b4058909b16b9ceac3c3">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>三个评分者的打分结果（n = 10）<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10"],[1,2,3,4,5,6,7,8,9,10],[1,2,2,3,3,3,4,4,5,5],[1,1,2,3,2,3,4,3,5,5],[1,3,3,4,4,4,4,5,5,5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>person<\/th>\n      <th>rater_1<\/th>\n      <th>rater_2<\/th>\n      <th>rater_3<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Btip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"person","targets":1},{"name":"rater_1","targets":2},{"name":"rater_2","targets":3},{"name":"rater_3","targets":4}],"pageLength":5,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}","selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.initComplete","callback"],"jsHooks":[]}</script>
+
+.footnote[
+具体地，我们可以使用**克朗巴哈系数**方法分别计算得到不同评委组合下的评估者信度，也即：`评委1`VS`评委2`；`评委1`VS`评委3`；`评委2`VS`评委3`；以及全部三个评委。
+
+]
+
+---
+
+### 示例3：克朗巴哈系数（组合分数及方差表）
+
+<div class="datatables html-widget html-fill-item" id="htmlwidget-a9df37a8c0fdc98d2e24" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a9df37a8c0fdc98d2e24">{"x":{"filter":"none","vertical":false,"caption":"<caption>被试得分计算表（不同评委组合）<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10"],[1,2,3,4,5,6,7,8,9,10],[1,2,2,3,3,3,4,4,5,5],[1,1,2,3,2,3,4,3,5,5],[1,3,3,4,4,4,4,5,5,5],[2,3,4,6,5,6,8,7,10,10],[2,5,5,7,7,7,8,9,10,10],[2,4,5,7,6,7,8,8,10,10],[3,6,7,10,9,10,12,12,15,15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>person<\/th>\n      <th>rater_1<\/th>\n      <th>rater_2<\/th>\n      <th>rater_3<\/th>\n      <th>score12<\/th>\n      <th>score13<\/th>\n      <th>score23<\/th>\n      <th>score123<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"person","targets":1},{"name":"rater_1","targets":2},{"name":"rater_2","targets":3},{"name":"rater_3","targets":4},{"name":"score12","targets":5},{"name":"score13","targets":6},{"name":"score23","targets":7},{"name":"score123","targets":8}],"pageLength":5,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+
+
+<div class="datatables html-widget html-fill-item" id="htmlwidget-368effa5b3aa7431227a" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-368effa5b3aa7431227a">{"x":{"filter":"none","vertical":false,"caption":"<caption>方差计算表（不同评委组合）<\/caption>","data":[["1"],[10],[1.733333333333333],[2.1],[1.511111111111111],[7.433333333333334],[6.222222222222221],[6.455555555555555],[14.76666666666667]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>person<\/th>\n      <th>rater_1<\/th>\n      <th>rater_2<\/th>\n      <th>rater_3<\/th>\n      <th>score12<\/th>\n      <th>score13<\/th>\n      <th>score23<\/th>\n      <th>score123<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"person","targets":1},{"name":"rater_1","targets":2},{"name":"rater_2","targets":3},{"name":"rater_3","targets":4},{"name":"score12","targets":5},{"name":"score13","targets":6},{"name":"score23","targets":7},{"name":"score123","targets":8}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render"],"jsHooks":[]}</script>
+
+.footnote[
+- 方差计算表中3列`rater_`为每个评委的题项方差（纵向）
+`\(\sigma^2_i\)`；4列`score_`为相应评委组合下的得分方差（横向）
+`\(\sigma^2_C\)`
+]
+
+---
+
+### 示例3：克朗巴哈系数（系数结果）
+
+利用前述克朗巴哈信度系数计算公式，我们可以得到**四种**不同评委组合下的**评估者信度**，也即：`评委1`VS`评委2`；`评委1`VS`评委3`；`评委2`VS`评委3`；以及全部三个评委：
+
+$$
+`\begin{aligned}
+\alpha_{12}  &amp;= \frac{2}{2-1}\left(1-\frac{\sum_{i\in {1,2}} \sigma_i^2}{\sigma^2_{C12}}\right) 
+=0.9686 \\
+\alpha_{13}  &amp;= \frac{2}{2-1}\left(1-\frac{\sum_{i\in {1,3}} \sigma_i^2}{\sigma^2_{C13}}\right) 
+=0.9571\\
+\alpha_{23}  &amp;= \frac{2}{2-1}\left(1-\frac{\sum_{i\in {2,3}} \sigma_i^2}{\sigma^2_{C23}}\right) 
+=0.8812\\
+\alpha_{123}  &amp;= \frac{3}{3-1}\left(1-\frac{\sum_{i\in {1,2,3}} \sigma_i^2}{\sigma^2_{C123}}\right) 
+=0.9571
+\end{aligned}`
+$$
+
+
+
+---
+exclude:true
+
+## 代码：效度的定义
+
+
+
+
+---
+
+## 量表质量：效度（定义）
+
+**效度（Validity）**指的是证据和理论在多大程度上支持对量表得分的解释，以达到预期的研究目的。
+
+更确切地说，我们并不是要关注量表本身得到了验证，而是应该关心对调查量表得分的解释和使用是否得到了严格验证。
+
+---
+
+## 量表质量：效度（类别）
+
+1. **内容效度(content relevance)**：评价量表内容与研究意图的相关程度。例如，召集专家审查量表内容。
+
+2. **流程效度(response process)**：评价受访者的调查认知和参与过程的真实性。例如，在儿童调查中量表题项下设置某些笑脸图标（不认同<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:steelblue;overflow:visible;position:relative;"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM174.6 384.1c-4.5 12.5-18.2 18.9-30.7 14.4s-18.9-18.2-14.4-30.7C146.9 319.4 198.9 288 256 288s109.1 31.4 126.6 79.9c4.5 12.5-2 26.2-14.4 30.7s-26.2-2-30.7-14.4C328.2 358.5 297.2 336 256 336s-72.2 22.5-81.4 48.1zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>；一般<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:steelblue;overflow:visible;position:relative;"><path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM176.4 240a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm192-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM184 328c-13.3 0-24 10.7-24 24s10.7 24 24 24H328c13.3 0 24-10.7 24-24s-10.7-24-24-24H184z"/></svg>；认同<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:steelblue;overflow:visible;position:relative;"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm177.6 62.1C192.8 334.5 218.8 352 256 352s63.2-17.5 78.4-33.9c9-9.7 24.2-10.4 33.9-1.4s10.4 24.2 1.4 33.9c-22 23.8-60 49.4-113.6 49.4s-91.7-25.5-113.6-49.4c-9-9.7-8.4-24.9 1.4-33.9s24.9-8.4 33.9 1.4zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>）。
+
+3. **结构效度(internal structure)**：评价量表题项和量表成分之间的一致性。例如：使用因子分析法检查是否与理论设计一致。
+
+4. **变量效度(variables relation)**：评价不同量表之间的关联程度。
+
+5. **影响效度(consequence effect)**：评价调研后影响效果与预期的一致性。例如：满意度调查后员工改进了客户服务。
+
+
+
+
+
+
 
 ---
 
@@ -891,7 +4033,7 @@ name:question-ask
 
 .case[
 
-（一项针对小学生调查对象的研究）你认为哪家商场的营销比较疲软？（）
+（一项针对小学生调查对象的研究）你认为哪家商场的营销比较疲软？（____）
 
 ]
 
